@@ -18,19 +18,21 @@ export const metadata: Metadata = {
 
 export default function GdprPage() {
   return (
-    <div className="space-y-0 bg-[#111927] text-[#FAF7F2] font-inter">
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+    <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
+      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">GDPR page</h1>
+            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-4">
+              LEGAL
+            </div>
+            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">GDPR page</h1>
           </div>
         </div>
       </section>
 
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <div className="border text-[#D5573B] bg-[#D5573B]/10 border-[#D5573B]/20 font-mono text-xs uppercase tracking-widest font-semibold px-3 py-1 rounded-full inline-block">LEGAL</div>
             <ul className="space-y-3 pt-2">
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
@@ -48,16 +50,16 @@ export default function GdprPage() {
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">The EU General Data Protection Regulation (GDPR) governs the processing of personal data of individuals in the European Union. Treel currently operates primarily in India and does not knowingly collect personal data of EU residents through targeted commercial activities.</p>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">For future European Union deployments (planned for Month 8+ of our current roadmap), we maintain GDPR-ready architecture, contracts, and processes. This page will be expanded to full detail at that time.</p>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">If you are an EU resident and believe we may hold your personal data, you have the following rights under GDPR:</p>
             <ul className="space-y-3 pt-2">
@@ -71,7 +73,7 @@ export default function GdprPage() {
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>**Right to erasure** ("right to be forgotten") — request deletion of your data</span>
+                <span>**Right to erasure** (&quot;right to be forgotten&quot;) — request deletion of your data</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
@@ -93,8 +95,8 @@ export default function GdprPage() {
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">When Treel processes personal data of EU residents, we rely on one of these lawful bases:</p>
             <ul className="space-y-3 pt-2">
@@ -118,29 +120,29 @@ export default function GdprPage() {
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">When we transfer EU personal data outside the European Economic Area, we use appropriate safeguards including Standard Contractual Clauses (SCCs) or reliance on adequacy decisions where available.</p>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">For GDPR-related requests or concerns:</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">**Data Protection Officer**</p>
+            <p className="text-[#FAF7F2] text-base sm:text-lg font-semibold leading-relaxed font-inter">Data Protection Officer</p>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">Treel Mobility Solutions Private Limited</p>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">Email: **dpo@treel.in**</p>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">Postal: S.No. 6/1B, 6/4, 7/4, Plot No. 02, Laxmi Vishnupuram Amenities Business, NDA Road, Village Shivane, Tal. Haveli, Pune, Maharashtra 411023</p>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">If you believe our processing of your personal data violates GDPR, you have the right to lodge a complaint with your local Data Protection Authority.</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">**Dev note:** This is a placeholder page for launch. Activate full GDPR compliance content when EU deployment commences. Prior to EU activation, this page primarily serves to demonstrate readiness to enterprise buyers evaluating Treel for European operations.</p>
+            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter"><strong className="text-[#FAF7F2]">Dev note:</strong> This is a placeholder page for launch. Activate full GDPR compliance content when EU deployment commences. Prior to EU activation, this page primarily serves to demonstrate readiness to enterprise buyers evaluating Treel for European operations.</p>
           </div>
         </div>
       </section>

@@ -253,10 +253,10 @@ export default async function CareersRoleSlugPage({ params }: { params: Promise<
     .filter(Boolean) as RoleDetails[];
 
   return (
-    <div className="space-y-0 bg-[#111927] text-[#FAF7F2] font-inter">
+    <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
       {/* Header & Hero */}
       <header className="relative overflow-hidden pt-24 pb-16 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             {/* Breadcrumb Navigation */}
             <div className="flex items-center gap-2 text-xs font-mono text-[#94A3B8]">
@@ -270,13 +270,13 @@ export default async function CareersRoleSlugPage({ params }: { params: Promise<
             </div>
 
             {/* Role Title (H1) */}
-            <h1 className="font-fraunces text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">
+            <h1 className="font-fraunces text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
               {role.title}
             </h1>
 
             {/* Status Information */} 
             <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-[#94A3B8]">
-              <span className="px-2.5 py-0.5 rounded-full bg-[#D5573B]/10 border border-[#D5573B]/20 text-[#D5573B] font-semibold uppercase">
+              <span className="px-2.5 py-0.5 rounded-[4px] bg-[#D5573B]/10 border border-[#D5573B]/20 text-[#D5573B] font-semibold uppercase">
                 {role.team}
               </span>
               <span className="flex items-center gap-1">
@@ -297,11 +297,11 @@ export default async function CareersRoleSlugPage({ params }: { params: Promise<
 
       {/* Main Content Area */}
       <div className="py-16 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-16">
             {/* About the role */}
             <section className="space-y-4">
-              <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+              <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight">
                 About the role
               </h2>
               {role.aboutTheRole.map((para, idx) => (
@@ -313,12 +313,12 @@ export default async function CareersRoleSlugPage({ params }: { params: Promise<
 
             {/* What you'll do */}
             <section className="space-y-6">
-              <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+              <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight">
                 What you&apos;ll do
               </h2>
               <div className="space-y-3">
                 {role.responsibilities.map((item, idx) => (
-                  <div key={idx} className="p-4 rounded-xl bg-white/[0.03] border border-white/10 flex items-start gap-3.5">
+                  <div key={idx} className="p-4 rounded-lg bg-white/[0.03] border border-white/[0.08] flex items-start gap-3.5">
                     <div className="w-5 h-5 rounded-full bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B] shrink-0 mt-0.5">
                       <CheckCircle2 className="w-3.5 h-3.5" />
                     </div>
@@ -332,7 +332,7 @@ export default async function CareersRoleSlugPage({ params }: { params: Promise<
 
             {/* What we're looking for */}
             <section className="space-y-8">
-              <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+              <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight">
                 What we&apos;re looking for
               </h2>
 
@@ -369,12 +369,12 @@ export default async function CareersRoleSlugPage({ params }: { params: Promise<
 
             {/* What you get */}
             <section className="space-y-4">
-              <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+              <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight">
                 What you get
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 {role.whatYouGet.map((benefit, idx) => (
-                  <div key={idx} className="p-5 rounded-xl bg-white/[0.03] border border-white/10 space-y-1">
+                  <div key={idx} className="p-5 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-1">
                     <span className="text-xs font-mono text-[#D5573B] font-semibold uppercase">Pillar {idx + 1}</span>
                     <p className="text-sm text-[#FAF7F2]">{benefit}</p>
                   </div>
@@ -385,7 +385,7 @@ export default async function CareersRoleSlugPage({ params }: { params: Promise<
             {/* How to apply & Functional Form */}
             <section id="apply" className="space-y-6 pt-4">
               <div className="space-y-2">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight">
                   How to apply
                 </h2>
                 <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed font-inter">
@@ -403,10 +403,10 @@ export default async function CareersRoleSlugPage({ params }: { params: Promise<
       {/* Related Roles Strip */}
       {relatedRoles.length > 0 && (
         <section className="py-20 border-b border-white/10 bg-white/[0.01]">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+          <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
             <div className="max-w-4xl space-y-8">
               <div className="flex items-center justify-between">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2]">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">
                   Related open roles
                 </h2>
                 <Link
@@ -423,16 +423,16 @@ export default async function CareersRoleSlugPage({ params }: { params: Promise<
                   <Link
                     key={idx}
                     href={`/careers/${rel.slug}`}
-                    className="p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-[#D5573B]/40 transition-all group flex flex-col justify-between"
+                    className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between"
                   >
                     <div className="space-y-2">
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#D5573B]/10 border border-[#D5573B]/20 text-[#D5573B] font-semibold uppercase">
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-[4px] bg-[#D5573B]/10 border border-[#D5573B]/20 text-[#D5573B] font-semibold uppercase">
                           {rel.team}
                         </span>
                         <span className="text-xs text-[#94A3B8] font-mono">{rel.location}</span>
                       </div>
-                      <h3 className="font-fraunces text-base font-bold text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">
+                      <h3 className="font-fraunces text-base font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">
                         {rel.title}
                       </h3>
                       <p className="text-xs text-[#94A3B8] line-clamp-2 leading-relaxed font-inter">

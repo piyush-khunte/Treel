@@ -30,10 +30,10 @@ export const metadata: Metadata = {
 
 export default function ResearchRoiFleetIntelligencePage() {
   return (
-    <div className="space-y-0 bg-[#111927] text-[#FAF7F2] font-inter">
+    <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
       {/* Header & Hero Section */}
       <section className="relative overflow-hidden pt-24 pb-16 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             {/* Breadcrumb */}
             <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-[#94A3B8]">
@@ -44,11 +44,11 @@ export default function ResearchRoiFleetIntelligencePage() {
               <span className="text-[#D5573B]">The Fleet ROI and Fuel Savings Paper</span>
             </nav>
 
-            <div className="border text-[#D5573B] bg-[#D5573B]/10 border-[#D5573B]/20 font-mono text-xs uppercase tracking-widest font-semibold px-3 py-1 rounded-full inline-block">
+            <div className="border text-[#D5573B] bg-[#D5573B]/10 border-[#D5573B]/20 font-mono text-xs uppercase tracking-widest font-semibold px-2.5 py-0.5 rounded-[4px] inline-block">
               ROI &amp; PAYBACK
             </div>
 
-            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">
+            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
               The Fleet ROI and Fuel Savings Paper
             </h1>
 
@@ -73,13 +73,13 @@ export default function ResearchRoiFleetIntelligencePage() {
 
       {/* Main Content & Gated Download Grid */}
       <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Column: Abstract & Table of Contents */}
             <div className="lg:col-span-7 space-y-12">
               {/* Abstract */}
               <div className="space-y-4">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2]">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">
                   What this paper covers
                 </h2>
                 <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
@@ -91,8 +91,8 @@ export default function ResearchRoiFleetIntelligencePage() {
               </div>
 
               {/* Table of Contents */}
-              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-8 space-y-6">
-                <h3 className="font-fraunces text-xl font-bold text-[#FAF7F2] flex items-center gap-2.5">
+              <div className="bg-white/[0.03] border border-white/[0.08] rounded-lg p-8 space-y-6">
+                <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] flex items-center gap-2.5">
                   <BookOpen className="w-5 h-5 text-[#D5573B]" />
                   <span>In this paper</span>
                 </h3>
@@ -127,12 +127,12 @@ export default function ResearchRoiFleetIntelligencePage() {
             </div>
 
             {/* Right Column: Gated Download Form */}
-            <div className="lg:col-span-5 bg-white/[0.03] border border-white/10 rounded-2xl p-8 sm:p-10 space-y-6 shadow-xl sticky top-28">
+            <div className="lg:col-span-5 bg-white/[0.03] border border-white/[0.08] rounded-lg p-8 sm:p-10 space-y-6 shadow-xl sticky top-28">
               <div className="space-y-2">
                 <div className="text-xs font-mono uppercase tracking-wider text-[#D5573B] font-semibold">
                   FREE DOWNLOAD
                 </div>
-                <h3 className="font-fraunces text-2xl font-bold text-[#FAF7F2]">
+                <h3 className="font-fraunces text-2xl font-medium text-[#FAF7F2]">
                   Unlock the full paper
                 </h3>
                 <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
@@ -148,21 +148,21 @@ export default function ResearchRoiFleetIntelligencePage() {
 
       {/* Related Research Strip */}
       <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">
-            <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2]">
+            <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">
               Related research
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link 
                 href="/research"
-                className="p-6 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#D5573B]/40 transition-all group block"
+                className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group block"
               >
                 <div className="text-xs font-mono uppercase tracking-wider text-[#D5573B] mb-2 font-semibold">
                   CASE STUDY
                 </div>
-                <h3 className="font-fraunces text-lg font-bold text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">
+                <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">
                   The 1,000-Truck Case Study
                 </h3>
                 <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed">
@@ -175,12 +175,12 @@ export default function ResearchRoiFleetIntelligencePage() {
 
               <Link 
                 href="/vehicle-digital-twin"
-                className="p-6 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#D5573B]/40 transition-all group block"
+                className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group block"
               >
                 <div className="text-xs font-mono uppercase tracking-wider text-[#D5573B] mb-2 font-semibold">
                   TECHNICAL PAPER
                 </div>
-                <h3 className="font-fraunces text-lg font-bold text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">
+                <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">
                   The Vehicle Digital Twin Technical Paper
                 </h3>
                 <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed">

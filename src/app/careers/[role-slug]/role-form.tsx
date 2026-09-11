@@ -68,11 +68,11 @@ export function RoleApplicationForm({ roleTitle }: RoleApplicationFormProps) {
 
   if (status === "success") {
     return (
-      <div className="p-8 sm:p-10 rounded-2xl bg-white/[0.03] border border-white/10 space-y-4">
-        <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+      <div className="p-8 sm:p-10 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-4">
+        <div className="w-12 h-12 rounded-md bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
           <CheckCircle2 className="w-6 h-6" />
         </div>
-        <h3 className="font-fraunces text-2xl font-bold text-[#FAF7F2]">
+        <h3 className="font-fraunces text-2xl font-medium text-[#FAF7F2]">
           Thanks. Your application is in.
         </h3>
         <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed font-inter max-w-xl">
@@ -86,9 +86,9 @@ export function RoleApplicationForm({ roleTitle }: RoleApplicationFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="p-8 sm:p-10 rounded-2xl bg-white/[0.03] border border-white/10 space-y-6">
+    <form onSubmit={handleSubmit} className="p-8 sm:p-10 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-6">
       <div className="space-y-1">
-        <h3 className="font-fraunces text-2xl font-bold text-[#FAF7F2]">
+        <h3 className="font-fraunces text-2xl font-medium text-[#FAF7F2]">
           Apply for {roleTitle}
         </h3>
         <p className="text-xs sm:text-sm text-[#94A3B8] font-inter">
@@ -247,7 +247,7 @@ export function RoleApplicationForm({ roleTitle }: RoleApplicationFormProps) {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-70 cursor-pointer"
+          className="w-full sm:w-auto px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-70 cursor-pointer"
         >
           {status === "loading" ? (
             <>

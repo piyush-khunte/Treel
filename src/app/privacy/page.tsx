@@ -42,15 +42,15 @@ export default function PrivacyPage() {
   ];
 
   return (
-    <div className="space-y-0 bg-[#111927] text-[#FAF7F2] font-inter">
+    <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
       {/* Header & Hero */}
-      <section className="relative overflow-hidden pt-24 pb-16 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="relative overflow-hidden pt-24 pb-16 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <div className="border text-[#D5573B] bg-[#D5573B]/10 border-[#D5573B]/20 font-mono text-xs uppercase tracking-widest font-semibold px-3 py-1 rounded-full inline-block">
+            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-4">
               LEGAL
             </div>
-            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">
+            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
               Privacy Policy
             </h1>
             <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-[#94A3B8] pt-2">
@@ -66,11 +66,11 @@ export default function PrivacyPage() {
 
       {/* Main Content with In-Page Navigation */}
       <div className="py-16">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Sidebar Table of Contents */}
             <aside className="lg:col-span-4">
-              <div className="sticky top-28 p-6 rounded-2xl bg-white/[0.03] border border-white/10 space-y-4">
+              <div className="sticky top-28 p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-4">
                 <div className="text-xs font-mono uppercase tracking-wider text-[#D5573B] font-semibold">
                   Table of Contents
                 </div>
@@ -92,7 +92,7 @@ export default function PrivacyPage() {
             <main className="lg:col-span-8 space-y-16 text-base sm:text-lg text-[#94A3B8] leading-relaxed font-inter">
               {/* Section 1 */}
               <section id="introduction" className="space-y-4 scroll-mt-28">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight leading-[1.12]">
                   1. Introduction
                 </h2>
                 <p>
@@ -108,12 +108,12 @@ export default function PrivacyPage() {
 
               {/* Section 2 */}
               <section id="information-we-collect" className="space-y-6 scroll-mt-28">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight leading-[1.12]">
                   2. Information we collect
                 </h2>
 
                 <div className="space-y-3">
-                  <h3 className="font-fraunces text-xl font-semibold text-[#FAF7F2]">
+                  <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] leading-[1.2]">
                     2.1 Information you provide directly
                   </h3>
                   <p>We collect personal data you provide when you:</p>
@@ -140,7 +140,7 @@ export default function PrivacyPage() {
                 </div>
 
                 <div className="space-y-3 pt-2">
-                  <h3 className="font-fraunces text-xl font-semibold text-[#FAF7F2]">
+                  <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] leading-[1.2]">
                     2.2 Information collected automatically
                   </h3>
                   <p>When you use treel.in, we collect certain information automatically through cookies, log files, and analytics tools:</p>
@@ -153,7 +153,7 @@ export default function PrivacyPage() {
                 </div>
 
                 <div className="space-y-3 pt-2">
-                  <h3 className="font-fraunces text-xl font-semibold text-[#FAF7F2]">
+                  <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] leading-[1.2]">
                     2.3 Information from Treel product usage
                   </h3>
                   <p>When you use a Treel product (TMIP, Suraksha, or Personal TPMS), the product generates operational data about the connected vehicle:</p>
@@ -171,7 +171,7 @@ export default function PrivacyPage() {
 
               {/* Section 3 */}
               <section id="how-we-use-your-information" className="space-y-4 scroll-mt-28">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight leading-[1.12]">
                   3. How we use your information
                 </h2>
                 <p>We use personal data for the following purposes:</p>
@@ -209,13 +209,13 @@ export default function PrivacyPage() {
 
               {/* Section 4 */}
               <section id="how-we-share-your-information" className="space-y-6 scroll-mt-28">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight leading-[1.12]">
                   4. How we share your information
                 </h2>
                 <p>We share personal data only in the following circumstances:</p>
 
                 <div className="space-y-3">
-                  <h3 className="font-fraunces text-xl font-semibold text-[#FAF7F2]">
+                  <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] leading-[1.2]">
                     4.1 With service providers
                   </h3>
                   <p>We share data with third-party service providers who help us operate our business:</p>
@@ -233,7 +233,7 @@ export default function PrivacyPage() {
                 </div>
 
                 <div className="space-y-3">
-                  <h3 className="font-fraunces text-xl font-semibold text-[#FAF7F2]">
+                  <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] leading-[1.2]">
                     4.2 With JK Tyre (parent company)
                   </h3>
                   <p>
@@ -242,7 +242,7 @@ export default function PrivacyPage() {
                 </div>
 
                 <div className="space-y-3">
-                  <h3 className="font-fraunces text-xl font-semibold text-[#FAF7F2]">
+                  <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] leading-[1.2]">
                     4.3 With our authorized dealer and installation network
                   </h3>
                   <p>
@@ -251,7 +251,7 @@ export default function PrivacyPage() {
                 </div>
 
                 <div className="space-y-3">
-                  <h3 className="font-fraunces text-xl font-semibold text-[#FAF7F2]">
+                  <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] leading-[1.2]">
                     4.4 With legal or regulatory authorities
                   </h3>
                   <p>
@@ -260,7 +260,7 @@ export default function PrivacyPage() {
                 </div>
 
                 <div className="space-y-3">
-                  <h3 className="font-fraunces text-xl font-semibold text-[#FAF7F2]">
+                  <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] leading-[1.2]">
                     4.5 In business transfers
                   </h3>
                   <p>
@@ -268,7 +268,7 @@ export default function PrivacyPage() {
                   </p>
                 </div>
 
-                <div className="p-6 rounded-xl bg-white/[0.04] border border-white/10">
+                <div className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08]">
                   <p className="text-[#FAF7F2] font-semibold">
                     We do not sell your personal data. We have never sold personal data, and we do not plan to.
                   </p>
@@ -277,7 +277,7 @@ export default function PrivacyPage() {
 
               {/* Section 5 */}
               <section id="data-retention" className="space-y-4 scroll-mt-28">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight leading-[1.12]">
                   5. Data retention
                 </h2>
                 <p>
@@ -313,35 +313,35 @@ export default function PrivacyPage() {
 
               {/* Section 6 */}
               <section id="your-rights" className="space-y-4 scroll-mt-28">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight leading-[1.12]">
                   6. Your rights under DPDP Act 2023
                 </h2>
                 <p>
                   As a data principal under the India Digital Personal Data Protection Act 2023, you have the following rights:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                  <div className="p-5 rounded-xl bg-white/[0.03] border border-white/10 space-y-1">
-                    <div className="font-fraunces text-base font-bold text-[#FAF7F2]">Right to access</div>
+                  <div className="p-5 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-1">
+                    <div className="font-fraunces text-base font-medium text-[#FAF7F2]">Right to access</div>
                     <p className="text-xs sm:text-sm text-[#94A3B8]">Request confirmation of whether we process your personal data, and a copy of the data we hold.</p>
                   </div>
-                  <div className="p-5 rounded-xl bg-white/[0.03] border border-white/10 space-y-1">
-                    <div className="font-fraunces text-base font-bold text-[#FAF7F2]">Right to correction</div>
+                  <div className="p-5 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-1">
+                    <div className="font-fraunces text-base font-medium text-[#FAF7F2]">Right to correction</div>
                     <p className="text-xs sm:text-sm text-[#94A3B8]">Request correction of inaccurate or incomplete data.</p>
                   </div>
-                  <div className="p-5 rounded-xl bg-white/[0.03] border border-white/10 space-y-1">
-                    <div className="font-fraunces text-base font-bold text-[#FAF7F2]">Right to erasure</div>
+                  <div className="p-5 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-1">
+                    <div className="font-fraunces text-base font-medium text-[#FAF7F2]">Right to erasure</div>
                     <p className="text-xs sm:text-sm text-[#94A3B8]">Request deletion of your personal data, subject to statutory retention requirements.</p>
                   </div>
-                  <div className="p-5 rounded-xl bg-white/[0.03] border border-white/10 space-y-1">
-                    <div className="font-fraunces text-base font-bold text-[#FAF7F2]">Right to grievance redressal</div>
+                  <div className="p-5 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-1">
+                    <div className="font-fraunces text-base font-medium text-[#FAF7F2]">Right to grievance redressal</div>
                     <p className="text-xs sm:text-sm text-[#94A3B8]">Escalate unresolved concerns directly to our Data Protection Officer.</p>
                   </div>
-                  <div className="p-5 rounded-xl bg-white/[0.03] border border-white/10 space-y-1">
-                    <div className="font-fraunces text-base font-bold text-[#FAF7F2]">Right to nominate</div>
+                  <div className="p-5 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-1">
+                    <div className="font-fraunces text-base font-medium text-[#FAF7F2]">Right to nominate</div>
                     <p className="text-xs sm:text-sm text-[#94A3B8]">Nominate another individual to exercise your rights in the event of death or incapacity.</p>
                   </div>
-                  <div className="p-5 rounded-xl bg-white/[0.03] border border-white/10 space-y-1">
-                    <div className="font-fraunces text-base font-bold text-[#FAF7F2]">Right to withdraw consent</div>
+                  <div className="p-5 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-1">
+                    <div className="font-fraunces text-base font-medium text-[#FAF7F2]">Right to withdraw consent</div>
                     <p className="text-xs sm:text-sm text-[#94A3B8]">Withdraw consent for processing based on consent at any time.</p>
                   </div>
                 </div>
@@ -352,7 +352,7 @@ export default function PrivacyPage() {
 
               {/* Section 7 */}
               <section id="data-security" className="space-y-4 scroll-mt-28">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight leading-[1.12]">
                   7. Data security
                 </h2>
                 <p>We implement appropriate technical and organizational measures to protect personal data:</p>
@@ -371,7 +371,7 @@ export default function PrivacyPage() {
 
               {/* Section 8 */}
               <section id="cookies" className="space-y-4 scroll-mt-28">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight leading-[1.12]">
                   8. Cookies and tracking technologies
                 </h2>
                 <p>
@@ -385,7 +385,7 @@ export default function PrivacyPage() {
 
               {/* Section 9 */}
               <section id="international-transfers" className="space-y-4 scroll-mt-28">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight leading-[1.12]">
                   9. International data transfers
                 </h2>
                 <p>
@@ -395,7 +395,7 @@ export default function PrivacyPage() {
 
               {/* Section 10 */}
               <section id="childrens-privacy" className="space-y-4 scroll-mt-28">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight leading-[1.12]">
                   10. Children&apos;s privacy
                 </h2>
                 <p>
@@ -405,7 +405,7 @@ export default function PrivacyPage() {
 
               {/* Section 11 */}
               <section id="changes-to-policy" className="space-y-4 scroll-mt-28">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight leading-[1.12]">
                   11. Changes to this policy
                 </h2>
                 <p>
@@ -415,13 +415,13 @@ export default function PrivacyPage() {
 
               {/* Section 12 */}
               <section id="contact-dpo" className="space-y-6 scroll-mt-28">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight leading-[1.12]">
                   12. Contact our Data Protection Officer
                 </h2>
                 <p>For questions, concerns, or requests related to your personal data:</p>
-                <div className="p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/10 space-y-4">
+                <div className="p-6 sm:p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-4">
                   <div>
-                    <h3 className="font-fraunces text-xl font-bold text-[#FAF7F2]">Data Protection Officer</h3>
+                    <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] leading-[1.2]">Data Protection Officer</h3>
                     <p className="text-sm text-[#94A3B8]">Treel Mobility Solutions Private Limited</p>
                   </div>
                   <div className="space-y-2 text-sm text-[#94A3B8]">
@@ -433,7 +433,7 @@ export default function PrivacyPage() {
                       <MapPin className="w-4 h-4 text-[#D5573B] mt-0.5 shrink-0" />
                       <span>Postal: S.No. 6/1B, 6/4, 7/4, Plot No. 02, Laxmi Vishnupuram Amenities Business, NDA Road, Village Shivane, Tal. Haveli, Pune, Maharashtra 411023</span>
                     </p>
-                    <p className="flex items-center gap-2 pt-2 border-t border-white/10">
+                    <p className="flex items-center gap-2 pt-2 border-t border-white/[0.08]">
                       <span>For general inquiries: <a href="mailto:hello@treel.in" className="text-[#FAF7F2] underline hover:text-[#D5573B]">hello@treel.in</a> or <a href="tel:18008330233" className="text-[#FAF7F2] underline hover:text-[#D5573B]">1800 833 0233</a></span>
                     </p>
                   </div>

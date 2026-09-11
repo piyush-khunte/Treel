@@ -18,24 +18,41 @@ export const metadata: Metadata = {
 
 export default function PartnersPage() {
   return (
-    <div className="space-y-0 bg-[#111927] text-[#FAF7F2] font-inter">
+    <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
+      {/* 1. HERO SECTION */}
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div 
+          className="absolute -top-24 -right-24 w-[500px] h-[500px] pointer-events-none rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(213, 87, 59, 0.12) 0%, transparent 65%)" }}
+          aria-hidden="true"
+        />
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 relative z-10">
           <div className="max-w-4xl space-y-6">
-            <div className="border text-[#D5573B] bg-[#D5573B]/10 border-[#D5573B]/20 font-mono text-xs uppercase tracking-widest font-semibold px-3 py-1 rounded-full inline-block">PARTNERS</div>
-            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">We built Treel with partners, not around them.</h1>
-            <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-inter max-w-3xl">Our partnership philosophy is simple: we build the mobility intelligence platform and Vehicle Digital Twin architecture that only we can build. For everything else, we partner with the best in the category. Below are the partners that make Treel work.</p>
+            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-6 sm:mb-8">
+              PARTNERS
+            </div>
+            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.08]">
+              We built Treel with partners, not around them.
+            </h1>
+            <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-inter max-w-3xl">
+              Our partnership philosophy is simple: we build the mobility intelligence platform and Vehicle Digital Twin architecture that only we can build. For everything else, we partner with the best in the category. Below are the partners that make Treel work.
+            </p>
           </div>
         </div>
       </section>
 
+      {/* 2. PARTNER INQUIRY */}
       <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">Interested in partnering with Treel?</h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">If your company builds fleet software, provides financing, distributes commercial vehicle products, or operates in an adjacent category, we would like to talk. Partnership decisions are made by the founder directly; we do not partner casually.</p>
+            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
+              Interested in partnering with Treel?
+            </h2>
+            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
+              If your company builds fleet software, provides financing, distributes commercial vehicle products, or operates in an adjacent category, we would like to talk. Partnership decisions are made by the founder directly; we do not partner casually.
+            </p>
             <div className="pt-6">
-              <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]">
+              <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-sm bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]">
                 Send us a note <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

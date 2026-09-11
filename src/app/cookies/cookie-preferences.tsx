@@ -71,7 +71,7 @@ export function CookiePreferencesManager() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831] focus:outline-none focus:ring-2 focus:ring-[#D5573B] focus:ring-offset-2 focus:ring-offset-[#111927]"
+          className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831] focus:outline-none focus:ring-2 focus:ring-[#D5573B] focus:ring-offset-2 focus:ring-offset-[#0F1419]"
         >
           <Sliders className="w-4 h-4" />
           Manage cookie preferences
@@ -89,37 +89,37 @@ export function CookiePreferencesManager() {
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
           <div 
-            className="w-full max-w-xl bg-[#182234] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-6 text-[#FAF7F2]"
+            className="w-full max-w-xl bg-[#141B22] border border-white/[0.08] rounded-lg p-6 sm:p-8 shadow-2xl space-y-6 text-[#FAF7F2]"
             role="dialog"
             aria-modal="true"
             aria-labelledby="cookie-modal-title"
           >
-            <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-4">
+            <div className="flex items-start justify-between gap-4 border-b border-white/[0.08] pb-4">
               <div>
                 <div className="text-[#D5573B] font-mono text-xs uppercase tracking-widest font-semibold mb-1">
                   CONSENT MANAGEMENT
                 </div>
-                <h3 id="cookie-modal-title" className="font-fraunces text-2xl font-bold text-[#FAF7F2]">
+                <h3 id="cookie-modal-title" className="font-fraunces text-2xl font-medium text-[#FAF7F2] leading-[1.12]">
                   Manage Cookie Preferences
                 </h3>
               </div>
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="text-[#94A3B8] hover:text-white text-sm p-1 rounded-lg hover:bg-white/10"
+                className="text-[#94A3B8] hover:text-white text-sm p-1 rounded-md hover:bg-white/10"
                 aria-label="Close modal"
               >
                 ✕
               </button>
             </div>
 
-            <p className="text-[#94A3B8] text-sm leading-relaxed">
+            <p className="text-[#94A3B8] text-sm leading-relaxed font-inter">
               Configure which categories of cookies you authorize during your visits to treel.in. Strictly necessary cookies remain active to provide core platform functions.
             </p>
 
             <div className="space-y-4">
               {/* Strictly Necessary */}
-              <div className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/10">
+              <div className="flex items-center justify-between p-4 rounded-lg bg-white/[0.03] border border-white/[0.08]">
                 <div className="space-y-1 pr-4">
                   <div className="flex items-center gap-2">
                     <span className="font-semibold text-sm text-[#FAF7F2]">Strictly Necessary Cookies</span>
@@ -138,7 +138,7 @@ export function CookiePreferencesManager() {
               </div>
 
               {/* Functional */}
-              <div className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/10">
+              <div className="flex items-center justify-between p-4 rounded-lg bg-white/[0.03] border border-white/[0.08]">
                 <div className="space-y-1 pr-4">
                   <span className="font-semibold text-sm text-[#FAF7F2]">Functional Cookies</span>
                   <p className="text-xs text-[#94A3B8]">
@@ -154,7 +154,7 @@ export function CookiePreferencesManager() {
               </div>
 
               {/* Analytics */}
-              <div className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/10">
+              <div className="flex items-center justify-between p-4 rounded-lg bg-white/[0.03] border border-white/[0.08]">
                 <div className="space-y-1 pr-4">
                   <span className="font-semibold text-sm text-[#FAF7F2]">Analytics Cookies</span>
                   <p className="text-xs text-[#94A3B8]">
@@ -170,7 +170,7 @@ export function CookiePreferencesManager() {
               </div>
 
               {/* Marketing */}
-              <div className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/10">
+              <div className="flex items-center justify-between p-4 rounded-lg bg-white/[0.03] border border-white/[0.08]">
                 <div className="space-y-1 pr-4">
                   <span className="font-semibold text-sm text-[#FAF7F2]">Marketing Cookies</span>
                   <p className="text-xs text-[#94A3B8]">
@@ -187,19 +187,19 @@ export function CookiePreferencesManager() {
             </div>
 
             {/* Actions */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-white/10">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-white/[0.08]">
               <div className="flex items-center gap-2 w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={handleRejectAll}
-                  className="w-1/2 sm:w-auto px-4 py-2 text-xs font-semibold text-[#94A3B8] hover:text-white border border-white/15 rounded-lg hover:bg-white/5"
+                  className="w-1/2 sm:w-auto px-4 py-2 text-xs font-semibold text-[#94A3B8] hover:text-white border border-white/15 rounded-[4px] hover:bg-white/5"
                 >
                   Reject Non-Essential
                 </button>
                 <button
                   type="button"
                   onClick={handleAcceptAll}
-                  className="w-1/2 sm:w-auto px-4 py-2 text-xs font-semibold text-[#FAF7F2] bg-white/10 rounded-lg hover:bg-white/20"
+                  className="w-1/2 sm:w-auto px-4 py-2 text-xs font-semibold text-[#FAF7F2] bg-white/10 rounded-[4px] hover:bg-white/20"
                 >
                   Accept All
                 </button>
@@ -207,7 +207,7 @@ export function CookiePreferencesManager() {
               <button
                 type="button"
                 onClick={() => handleSave()}
-                className="w-full sm:w-auto px-6 py-2 text-xs font-semibold bg-[#D5573B] text-[#FAF7F2] rounded-lg hover:bg-[#CB4831]"
+                className="w-full sm:w-auto px-6 py-2 text-xs font-semibold bg-[#D5573B] text-[#FAF7F2] rounded-[4px] hover:bg-[#CB4831]"
               >
                 Save Preferences
               </button>

@@ -61,15 +61,15 @@ export default function CareersPage() {
   ];
 
   return (
-    <div className="space-y-0 bg-[#111927] text-[#FAF7F2] font-inter">
+    <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <div className="border text-[#D5573B] bg-[#D5573B]/10 border-[#D5573B]/20 font-mono text-xs uppercase tracking-widest font-semibold px-3 py-1 rounded-full inline-block">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
+          <div className="max-w-4xl">
+            <p className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-6 sm:mb-8">
               CAREERS
-            </div>
-            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">
+            </p>
+            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12] mb-6">
               Come build mobility intelligence.
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-inter max-w-3xl">
@@ -81,9 +81,9 @@ export default function CareersPage() {
 
       {/* Section · Culture pillars */}
       <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">
-            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">
+            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#FAF7F2]">
               Culture pillars
             </h2>
 
@@ -91,11 +91,11 @@ export default function CareersPage() {
               {pillars.map((p, i) => {
                 const IconComp = p.icon;
                 return (
-                  <div key={i} className="p-8 rounded-2xl bg-white/[0.03] border border-white/10 space-y-4">
-                    <div className="w-10 h-10 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B]">
+                  <div key={i} className="p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 space-y-4">
+                    <div className="w-10 h-10 rounded-md bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B]">
                       <IconComp className="w-5 h-5" />
                     </div>
-                    <h3 className="font-fraunces text-xl font-bold text-[#FAF7F2]">
+                    <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2]">
                       {p.title}
                     </h3>
                     <p className="text-sm text-[#94A3B8] leading-relaxed font-inter">
@@ -111,15 +111,15 @@ export default function CareersPage() {
 
       {/* Section · Benefits */}
       <section className="py-20 border-b border-white/10 bg-white/[0.01]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">
-            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">
+            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#FAF7F2]">
               What we offer.
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {benefits.map((b, i) => (
-                <div key={i} className="p-5 rounded-xl bg-white/[0.03] border border-white/10 flex items-start gap-3">
+                <div key={i} className="p-5 rounded-lg bg-white/[0.03] border border-white/[0.08] flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-[#D5573B] shrink-0 mt-0.5" />
                   <span className="text-sm sm:text-base text-[#FAF7F2] font-inter">{b}</span>
                 </div>
@@ -131,10 +131,10 @@ export default function CareersPage() {
 
       {/* Section · Open roles */}
       <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">
             <div>
-              <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">
+              <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#FAF7F2]">
                 Open roles
               </h2>
               <p className="text-[#94A3B8] text-sm mt-2 font-inter">
@@ -149,9 +149,9 @@ export default function CareersPage() {
 
       {/* Section · Not seeing your role? */}
       <section className="py-20 border-b border-white/10 bg-white/[0.02]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">
+            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#FAF7F2]">
               Don&apos;t see a role that fits?
             </h2>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
@@ -160,7 +160,7 @@ export default function CareersPage() {
             <div className="pt-2">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md"
               >
                 <span>Send us a note</span>
                 <ArrowRight className="w-4 h-4" />

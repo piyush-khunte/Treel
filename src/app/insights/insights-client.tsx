@@ -126,10 +126,10 @@ export function InsightsClientView() {
     <div className="space-y-0">
       {/* Featured Article Hero */}
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="flex items-center gap-3">
-              <span className="px-3 py-1 rounded-full bg-[#D5573B]/10 border border-[#D5573B]/20 text-[#D5573B] font-mono text-xs uppercase tracking-widest font-semibold">
+              <span className="px-2.5 py-0.5 rounded-[4px] bg-[#D5573B]/10 border border-[#D5573B]/20 text-[#D5573B] font-mono text-xs uppercase tracking-widest font-semibold">
                 FEATURED
               </span>
               <span className="text-xs font-mono text-[#94A3B8]">
@@ -138,7 +138,7 @@ export function InsightsClientView() {
             </div>
 
             <Link href={`/insights/${featuredArticle.slug}`} className="group block space-y-4">
-              <h1 className="font-fraunces text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-[1.2]">
+              <h1 className="font-fraunces text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-[1.12]">
                 {featuredArticle.title}
               </h1>
               <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter max-w-3xl">
@@ -147,7 +147,7 @@ export function InsightsClientView() {
             </Link>
 
             {/* Editorial Visual Container */}
-            <div className="w-full aspect-[21/9] rounded-2xl bg-gradient-to-br from-white/[0.06] to-white/[0.01] border border-white/10 flex items-center justify-center relative overflow-hidden my-6">
+            <div className="w-full aspect-[21/9] rounded-lg bg-gradient-to-br from-white/[0.06] to-white/[0.01] border border-white/[0.08] flex items-center justify-center relative overflow-hidden my-6">
               <div className="flex flex-col items-center gap-2 text-[#94A3B8]">
                 <BookOpen className="w-10 h-10 text-[#D5573B]/70" />
                 <span className="text-xs font-mono tracking-wider uppercase">Editorial Feature</span>
@@ -166,7 +166,7 @@ export function InsightsClientView() {
 
               <Link
                 href={`/insights/${featuredArticle.slug}`}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#D5573B] text-[#FAF7F2] font-semibold text-xs hover:bg-[#CB4831] transition-all shadow-md"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-xs hover:bg-[#CB4831] transition-all shadow-md"
               >
                 <span>Read the article</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -178,7 +178,7 @@ export function InsightsClientView() {
 
       {/* Category Filter Chips */}
       <section className="py-8 border-b border-white/10 bg-white/[0.01]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="flex flex-wrap items-center gap-2">
             {categories.map((cat) => (
               <button
@@ -199,13 +199,13 @@ export function InsightsClientView() {
 
       {/* Article Grid */}
       <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredArticles.map((article) => (
               <Link
                 key={article.slug}
                 href={`/insights/${article.slug}`}
-                className="rounded-2xl bg-white/[0.03] border border-white/10 hover:border-[#D5573B]/40 transition-all group flex flex-col justify-between overflow-hidden shadow-sm"
+                className="rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-sm"
               >
                 {/* Thumbnail Placeholder */}
                 <div className="w-full aspect-[16/9] bg-gradient-to-br from-white/[0.05] to-white/[0.01] border-b border-white/10 flex items-center justify-center text-[#94A3B8]">
@@ -217,7 +217,7 @@ export function InsightsClientView() {
                     <span className="text-[11px] font-mono uppercase tracking-wider text-[#D5573B] font-semibold">
                       {article.category}
                     </span>
-                    <h3 className="font-fraunces text-xl font-bold text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-snug">
+                    <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-snug">
                       {article.title}
                     </h3>
                     <p className="text-xs text-[#94A3B8] line-clamp-3 leading-relaxed font-inter">
@@ -238,14 +238,14 @@ export function InsightsClientView() {
 
       {/* Section · Newsletter Signup */}
       <section className="py-20 border-b border-white/10 bg-white/[0.02]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <div className="w-12 h-12 rounded-full bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B] mx-auto">
               <Mail className="w-6 h-6" />
             </div>
 
             <div className="space-y-2">
-              <h2 className="font-fraunces text-3xl sm:text-4xl font-bold text-[#FAF7F2]">
+              <h2 className="font-fraunces text-3xl sm:text-4xl font-medium text-[#FAF7F2]">
                 Mobility intelligence in your inbox.
               </h2>
               <p className="text-sm sm:text-base text-[#94A3B8] max-w-xl mx-auto leading-relaxed">
@@ -254,7 +254,7 @@ export function InsightsClientView() {
             </div>
 
             {subscribed ? (
-              <div className="p-4 rounded-xl bg-white/[0.04] border border-[#D5573B]/30 max-w-md mx-auto flex items-center justify-center gap-2 text-sm text-[#FAF7F2] animate-in fade-in">
+              <div className="p-4 rounded-lg bg-white/[0.04] border border-[#D5573B]/30 max-w-md mx-auto flex items-center justify-center gap-2 text-sm text-[#FAF7F2] animate-in fade-in">
                 <CheckCircle2 className="w-5 h-5 text-[#D5573B]" />
                 <span>Thank you for subscribing to Treel Insights.</span>
               </div>
@@ -271,7 +271,7 @@ export function InsightsClientView() {
                 <button
                   type="submit"
                   disabled={isSubscribing}
-                  className="w-full sm:w-auto px-6 py-3 rounded-lg bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md shrink-0 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  className="w-full sm:w-auto px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md shrink-0 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
                   {isSubscribing ? (
                     <>

@@ -134,7 +134,7 @@ export function ResearchLibrary() {
   return (
     <div className="space-y-12">
       {/* Filter Bar Controls */}
-      <div className="p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/10 space-y-6">
+      <div className="p-6 sm:p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-xs font-mono text-[#D5573B] uppercase tracking-widest font-semibold">
             <Filter className="w-3.5 h-3.5" />
@@ -149,7 +149,7 @@ export function ResearchLibrary() {
               placeholder="Search topics or papers..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 text-xs bg-white/5 border border-white/10 rounded-lg text-[#FAF7F2] placeholder-[#94A3B8] focus:outline-none focus:border-[#D5573B]"
+              className="w-full pl-9 pr-4 py-2 text-xs bg-white/5 border border-white/10 rounded-md text-[#FAF7F2] placeholder-[#94A3B8] focus:outline-none focus:border-[#D5573B]"
             />
           </div>
         </div>
@@ -189,10 +189,10 @@ export function ResearchLibrary() {
             <select
               value={selectedIndustry}
               onChange={(e) => setSelectedIndustry(e.target.value)}
-              className="w-full px-3 py-2 text-xs bg-[#182234] border border-white/10 rounded-lg text-[#FAF7F2] focus:outline-none focus:border-[#D5573B]"
+              className="w-full px-3 py-2 text-xs bg-[#141B22] border border-white/10 rounded-md text-[#FAF7F2] focus:outline-none focus:border-[#D5573B] cursor-pointer"
             >
               {INDUSTRIES.map((ind) => (
-                <option key={ind} value={ind} className="bg-[#182234] text-white">
+                <option key={ind} value={ind} className="bg-[#141B22] text-white">
                   {ind === "All" ? "All Industries" : ind}
                 </option>
               ))}
@@ -206,10 +206,10 @@ export function ResearchLibrary() {
             <select
               value={selectedYear}
               onChange={(e) => setSelectedYear(e.target.value)}
-              className="w-full px-3 py-2 text-xs bg-[#182234] border border-white/10 rounded-lg text-[#FAF7F2] focus:outline-none focus:border-[#D5573B]"
+              className="w-full px-3 py-2 text-xs bg-[#141B22] border border-white/10 rounded-md text-[#FAF7F2] focus:outline-none focus:border-[#D5573B] cursor-pointer"
             >
               {YEARS.map((yr) => (
-                <option key={yr} value={yr} className="bg-[#182234] text-white">
+                <option key={yr} value={yr} className="bg-[#141B22] text-white">
                   {yr === "All" ? "All Years" : yr}
                 </option>
               ))}
@@ -239,9 +239,9 @@ export function ResearchLibrary() {
         </div>
 
         {filteredWhitepapers.length === 0 ? (
-          <div className="p-12 text-center rounded-2xl bg-white/[0.02] border border-white/10 space-y-3">
+          <div className="p-12 text-center rounded-lg bg-white/[0.02] border border-white/[0.08] space-y-3">
             <BookOpen className="w-8 h-8 text-[#94A3B8] mx-auto opacity-50" />
-            <h3 className="font-fraunces text-lg text-[#FAF7F2]">No papers match your filter criteria</h3>
+            <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2]">No papers match your filter criteria</h3>
             <p className="text-xs text-[#94A3B8] max-w-md mx-auto">
               Try adjusting your topic, industry, or year selections, or suggest a new research area below.
             </p>
@@ -251,16 +251,16 @@ export function ResearchLibrary() {
             {filteredWhitepapers.map((paper) => (
               <div
                 key={paper.id}
-                className="group relative flex flex-col justify-between p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-[#D5573B]/50 transition-all duration-300 hover:bg-white/[0.04]"
+                className="group relative flex flex-col justify-between p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="space-y-4">
                   {/* Cover Thumbnail Visual */}
-                  <div className="relative h-44 rounded-xl bg-gradient-to-br from-[#1C283F] via-[#152033] to-[#0D1522] border border-white/10 p-5 flex flex-col justify-between overflow-hidden group-hover:border-white/20 transition-all">
+                  <div className="relative h-44 rounded-md bg-gradient-to-br from-[#1C283F] via-[#152033] to-[#0D1522] border border-white/10 p-5 flex flex-col justify-between overflow-hidden group-hover:border-white/20 transition-all">
                     <div className="flex items-center justify-between">
-                      <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-md bg-white/5 border border-white/10 flex items-center justify-center">
                         <FileText className="w-4 h-4 text-[#D5573B]" />
                       </div>
-                      <span className={`text-[10px] font-mono uppercase px-2 py-0.5 rounded border ${paper.tagColor}`}>
+                      <span className={`text-[10px] font-mono uppercase px-2 py-0.5 rounded-[4px] border ${paper.tagColor}`}>
                         {paper.topic}
                       </span>
                     </div>
@@ -269,7 +269,7 @@ export function ResearchLibrary() {
                       <div className="text-[10px] font-mono text-[#94A3B8] uppercase tracking-wider">
                         Treel Research · {paper.length}
                       </div>
-                      <div className="font-fraunces text-sm font-bold text-[#FAF7F2] line-clamp-2 leading-tight">
+                      <div className="font-fraunces text-sm font-medium text-[#FAF7F2] line-clamp-2 leading-tight">
                         {paper.title}
                       </div>
                     </div>
@@ -292,7 +292,7 @@ export function ResearchLibrary() {
                       </span>
                     </div>
 
-                    <h3 className="font-fraunces text-lg font-bold text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-snug">
+                    <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-snug">
                       {paper.title}
                     </h3>
 

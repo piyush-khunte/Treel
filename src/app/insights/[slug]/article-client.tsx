@@ -37,7 +37,7 @@ export function ArticleShareBar({ title, url }: ArticleShareProps) {
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-8 h-8 rounded-lg bg-white/[0.05] border border-white/10 flex items-center justify-center text-[#94A3B8] hover:text-[#FAF7F2] hover:bg-white/10 hover:border-white/20 transition-all"
+        className="w-8 h-8 rounded-[4px] bg-white/[0.05] border border-white/10 flex items-center justify-center text-[#94A3B8] hover:text-[#FAF7F2] hover:bg-white/10 hover:border-white/20 transition-all"
         aria-label="Share on LinkedIn"
       >
         <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -48,7 +48,7 @@ export function ArticleShareBar({ title, url }: ArticleShareProps) {
         href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-8 h-8 rounded-lg bg-white/[0.05] border border-white/10 flex items-center justify-center text-[#94A3B8] hover:text-[#FAF7F2] hover:bg-white/10 hover:border-white/20 transition-all"
+        className="w-8 h-8 rounded-[4px] bg-white/[0.05] border border-white/10 flex items-center justify-center text-[#94A3B8] hover:text-[#FAF7F2] hover:bg-white/10 hover:border-white/20 transition-all"
         aria-label="Share on Twitter / X"
       >
         <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -57,7 +57,7 @@ export function ArticleShareBar({ title, url }: ArticleShareProps) {
       </a>
       <button
         onClick={handleCopy}
-        className="w-8 h-8 rounded-lg bg-white/[0.05] border border-white/10 flex items-center justify-center text-[#94A3B8] hover:text-[#FAF7F2] hover:bg-white/10 hover:border-white/20 transition-all relative"
+        className="w-8 h-8 rounded-[4px] bg-white/[0.05] border border-white/10 flex items-center justify-center text-[#94A3B8] hover:text-[#FAF7F2] hover:bg-white/10 hover:border-white/20 transition-all relative"
         aria-label="Copy article link"
         title="Copy link"
       >
@@ -65,7 +65,7 @@ export function ArticleShareBar({ title, url }: ArticleShareProps) {
       </button>
       <a
         href={`mailto:?subject=${encodedTitle}&body=${encodedUrl}`}
-        className="w-8 h-8 rounded-lg bg-white/[0.05] border border-white/10 flex items-center justify-center text-[#94A3B8] hover:text-[#FAF7F2] hover:bg-white/10 hover:border-white/20 transition-all"
+        className="w-8 h-8 rounded-[4px] bg-white/[0.05] border border-white/10 flex items-center justify-center text-[#94A3B8] hover:text-[#FAF7F2] hover:bg-white/10 hover:border-white/20 transition-all"
         aria-label="Share via Email"
       >
         <Mail className="w-4 h-4" />
@@ -101,9 +101,9 @@ export function ArticleNewsletterForm() {
   };
 
   return (
-    <div className="p-8 sm:p-10 rounded-2xl bg-white/[0.03] border border-white/10 space-y-6">
+    <div className="p-8 sm:p-10 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-6">
       <div className="space-y-2">
-        <h3 className="font-fraunces text-2xl font-bold text-[#FAF7F2]">
+        <h3 className="font-fraunces text-2xl font-medium text-[#FAF7F2]">
           Mobility intelligence in your inbox.
         </h3>
         <p className="text-sm text-[#94A3B8] leading-relaxed font-inter max-w-xl">
@@ -112,7 +112,7 @@ export function ArticleNewsletterForm() {
       </div>
 
       {status === "success" ? (
-        <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm flex items-center gap-3">
+        <div className="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm flex items-center gap-3">
           <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
           <span>You are subscribed to Treel Insights. We&apos;ll be in touch with our monthly research dispatch.</span>
         </div>
@@ -127,13 +127,13 @@ export function ArticleNewsletterForm() {
                 if (status === "error") setStatus("idle");
               }}
               placeholder="name@company.com"
-              className="flex-1 px-4 py-3 rounded-lg bg-white/[0.05] border border-white/15 text-[#FAF7F2] placeholder-[#94A3B8]/60 text-sm focus:outline-none focus:border-[#D5573B] transition-all"
+              className="flex-1 px-4 py-3 rounded-md bg-white/[0.05] border border-white/15 text-[#FAF7F2] placeholder-[#94A3B8]/60 text-sm focus:outline-none focus:border-[#D5573B] transition-all"
               aria-label="Work email address"
             />
             <button
               type="submit"
               disabled={status === "loading"}
-              className="px-6 py-3 rounded-lg bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md flex items-center justify-center gap-2 whitespace-nowrap disabled:opacity-70"
+              className="px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md flex items-center justify-center gap-2 whitespace-nowrap disabled:opacity-70"
             >
               {status === "loading" ? (
                 <>

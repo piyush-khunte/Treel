@@ -18,24 +18,26 @@ export const metadata: Metadata = {
 
 export default function AnnualReportsPage() {
   return (
-    <div className="space-y-0 bg-[#111927] text-[#FAF7F2] font-inter">
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+    <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
+      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <div className="border text-[#D5573B] bg-[#D5573B]/10 border-[#D5573B]/20 font-mono text-xs uppercase tracking-widest font-semibold px-3 py-1 rounded-full inline-block">ANNUAL REPORTS</div>
-            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">Annual reports and statutory filings.</h1>
+            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-4">
+              ANNUAL REPORTS
+            </div>
+            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">Annual reports and statutory filings.</h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-inter max-w-3xl">Treel Mobility Solutions Private Limited publishes its annual returns and reports here, as required by Indian company law and as part of our commitment to transparency.</p>
           </div>
         </div>
       </section>
 
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">[DEV: This section is dynamically populated from the admin panel. Reports uploaded with year, type, publish date metadata. Grouped by financial year.]</p>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">Report entry format (grouped by FY, most recent first):</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">**Financial Year 2025-26**</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">**Financial Year 2024-25**</p>
+            <p className="text-[#FAF7F2] text-base sm:text-lg font-semibold leading-relaxed font-inter pt-2">Financial Year 2025-26</p>
+            <p className="text-[#FAF7F2] text-base sm:text-lg font-semibold leading-relaxed font-inter pt-2">Financial Year 2024-25</p>
             <ul className="space-y-3 pt-2">
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
@@ -63,25 +65,25 @@ export default function AnnualReportsPage() {
               </li>
             </ul>
             <div className="pt-6">
-              <Link href="#" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]">
+              <Link href="#" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]">
                 Download <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">Compliance & transparency</h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">Treel Mobility Solutions Private Limited files its annual returns and reports with the Ministry of Corporate Affairs (MCA) as required under Section 92 and Section 137 of the Companies Act 2013. Full filings are available on the MCA portal at <Link href="https://www.mca.gov.in" className="underline hover:text-white transition-colors">www.mca.gov.in</Link>. The reports published on this page are the same documents filed with the Registrar of Companies, published here for stakeholder convenience.</p>
+            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">Compliance & transparency</h2>
+            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">Treel Mobility Solutions Private Limited files its annual returns and reports with the Ministry of Corporate Affairs (MCA) as required under Section 92 and Section 137 of the Companies Act 2013. Full filings are available on the MCA portal at <Link href="https://www.mca.gov.in" className="text-[#D5573B] underline hover:text-white transition-colors">www.mca.gov.in</Link>. The reports published on this page are the same documents filed with the Registrar of Companies, published here for stakeholder convenience.</p>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">Corporate & compliance queries</h2>
+            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">Corporate & compliance queries</h2>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">For queries related to annual reports, corporate filings, or compliance matters, please contact us.</p>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">## Appendix A  ·  Reference data used in this content</p>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">Facts and copy elements pulled from the current treel.in website (accessed September 2026):</p>
@@ -149,19 +151,19 @@ export default function AnnualReportsPage() {
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>"Whatever road you choose, choose safety"</span>
+                <span>&quot;Whatever road you choose, choose safety&quot;</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>"Now see the unforeseen"</span>
+                <span>&quot;Now see the unforeseen&quot;</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>"A TPMS that's more than just a TPMS"</span>
+                <span>&quot;A TPMS that&apos;s more than just a TPMS&quot;</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>"Turn money leaks into profit peaks" (prior Enterprise framing)</span>
+                <span>&quot;Turn money leaks into profit peaks&quot; (prior Enterprise framing)</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
@@ -205,7 +207,7 @@ export default function AnnualReportsPage() {
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>**Manish Ingale's handwritten signature image:** for founder note signature block.</span>
+                <span>**Manish Ingale&apos;s handwritten signature image:** for founder note signature block.</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
@@ -229,7 +231,7 @@ export default function AnnualReportsPage() {
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>**TMIP customer names willing to be publicly listed** on `/tmip/customers` logo wall (or approval to use "[CUSTOMER 1-12]" placeholder framing at launch).</span>
+                <span>**TMIP customer names willing to be publicly listed** on `/tmip/customers` logo wall (or approval to use &quot;[CUSTOMER 1-12]&quot; placeholder framing at launch).</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
@@ -261,11 +263,11 @@ export default function AnnualReportsPage() {
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>**Individual press releases:** launch with 2-3 seed releases (e.g., "Treel launches Suraksha", "Treel launches new brand identity").</span>
+                <span>**Individual press releases:** launch with 2-3 seed releases (e.g., &quot;Treel launches Suraksha&quot;, &quot;Treel launches new brand identity&quot;).</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>**The founder note draft on `/founder-note`** was written on Manish's behalf using facts from public record and prior conversations. Manish should read, edit as needed, and approve before publish. This is the highest E-E-A-T weight page on the site.</span>
+                <span>**The founder note draft on `/founder-note`** was written on Manish&apos;s behalf using facts from public record and prior conversations. Manish should read, edit as needed, and approve before publish. This is the highest E-E-A-T weight page on the site.</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
@@ -277,27 +279,27 @@ export default function AnnualReportsPage() {
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>"Vehicle Digital Twin" (capitalised, always)</span>
+                <span>&quot;Vehicle Digital Twin&quot; (capitalised, always)</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>"The mobility intelligence platform"</span>
+                <span>&quot;The mobility intelligence platform&quot;</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>"Book a demo" (not "request a demo", not "get started" — "Book a demo")</span>
+                <span>&quot;Book a demo&quot; (not &quot;request a demo&quot;, not &quot;get started&quot; — &quot;Book a demo&quot;)</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Cost is always "cost per kilometre" (spelled out), not "CPK" or "cost/km"</span>
+                <span>Cost is always &quot;cost per kilometre&quot; (spelled out), not &quot;CPK&quot; or &quot;cost/km&quot;</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Never use "solution" as a noun (it is a lazy word)</span>
+                <span>Never use &quot;solution&quot; as a noun (it is a lazy word)</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Never say "unlock" or "leverage" (marketing tics that dilute technical credibility)</span>
+                <span>Never say &quot;unlock&quot; or &quot;leverage&quot; (marketing tics that dilute technical credibility)</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
@@ -321,7 +323,7 @@ export default function AnnualReportsPage() {
               </li>
             </ul>
             <div className="pt-6">
-              <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]">
+              <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]">
                 Contact us <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

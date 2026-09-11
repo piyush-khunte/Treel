@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function InsightsPage() {
   return (
-    <div className="space-y-0 bg-[#111927] text-[#FAF7F2] font-inter">
+    <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
       {/* Client View with Filters, Featured Card, Grid, and Newsletter */}
       <InsightsClientView />
     </div>

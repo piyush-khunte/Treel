@@ -18,19 +18,21 @@ export const metadata: Metadata = {
 
 export default function AccessibilityPage() {
   return (
-    <div className="space-y-0 bg-[#111927] text-[#FAF7F2] font-inter">
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+    <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
+      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">Accessibility Statement</h1>
+            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-4">
+              LEGAL
+            </div>
+            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">Accessibility Statement</h1>
           </div>
         </div>
       </section>
 
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <div className="border text-[#D5573B] bg-[#D5573B]/10 border-[#D5573B]/20 font-mono text-xs uppercase tracking-widest font-semibold px-3 py-1 rounded-full inline-block">LEGAL</div>
             <ul className="space-y-3 pt-2">
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
@@ -48,22 +50,22 @@ export default function AccessibilityPage() {
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">Treel is committed to ensuring that treel.in and our digital products are accessible to people with disabilities. We believe technology should be usable by everyone, regardless of ability.</p>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">We aim to conform to the **Web Content Accessibility Guidelines (WCAG) 2.2 at Level AA**. These guidelines are the international standard for web accessibility.</p>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">Our website includes the following accessibility features:</p>
             <ul className="space-y-3 pt-2">
@@ -111,8 +113,8 @@ export default function AccessibilityPage() {
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">We are working on improving:</p>
             <ul className="space-y-3 pt-2">
@@ -132,11 +134,11 @@ export default function AccessibilityPage() {
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">If you encounter an accessibility issue or need content in an alternative format, please contact us and we will respond within 5 business days.</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">**Contact:**</p>
+            <p className="text-[#FAF7F2] text-base sm:text-lg font-semibold leading-relaxed font-inter">Contact:</p>
             <ul className="space-y-3 pt-2">
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
@@ -148,14 +150,14 @@ export default function AccessibilityPage() {
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Subject line: "Accessibility feedback" helps us route quickly</span>
+                <span>Subject line: &quot;Accessibility feedback&quot; helps us route quickly</span>
               </li>
             </ul>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">Accessibility is not a one-time achievement. We conduct accessibility reviews on every major release and incorporate user feedback into our roadmap.</p>
           </div>

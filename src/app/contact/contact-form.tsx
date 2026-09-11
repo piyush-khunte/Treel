@@ -147,14 +147,14 @@ export function CorporateContactForm() {
       <div 
         role="status" 
         aria-live="polite"
-        className="bg-white/[0.03] border border-[#D5573B]/30 rounded-2xl p-8 sm:p-10 space-y-6 animate-in fade-in duration-300"
+        className="bg-white/[0.03] border border-[#D5573B]/30 rounded-lg p-8 sm:p-10 space-y-6 animate-in fade-in duration-300"
       >
         <div className="w-14 h-14 rounded-full bg-[#D5573B]/10 border border-[#D5573B]/30 flex items-center justify-center text-[#D5573B]">
           <CheckCircle2 className="w-8 h-8" />
         </div>
         
         <div className="space-y-3">
-          <h3 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2]">
+          <h3 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">
             Message received.
           </h3>
           <p className="text-[#94A3B8] text-base leading-relaxed font-inter">
@@ -169,7 +169,7 @@ export function CorporateContactForm() {
           <button
             type="button"
             onClick={handleReset}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/20 text-sm font-semibold text-[#FAF7F2] hover:bg-white/10 transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[4px] border border-white/20 text-sm font-semibold text-[#FAF7F2] hover:bg-white/10 transition-all cursor-pointer"
           >
             <RotateCcw className="w-4 h-4" /> Send another note
           </button>
@@ -437,7 +437,7 @@ export function CorporateContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] active:scale-[0.99] transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full sm:w-auto px-8 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] active:scale-[0.99] transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
             <>

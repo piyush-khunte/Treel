@@ -52,11 +52,11 @@ export function WhitepaperGatedForm() {
 
   if (isSubmitted) {
     return (
-      <div className="p-6 rounded-xl bg-white/[0.04] border border-[#D5573B]/30 space-y-4 animate-in fade-in duration-300">
+      <div className="p-6 rounded-lg bg-white/[0.04] border border-[#D5573B]/30 space-y-4 animate-in fade-in duration-300">
         <div className="w-10 h-10 rounded-full bg-[#D5573B]/10 text-[#D5573B] flex items-center justify-center">
           <CheckCircle2 className="w-6 h-6" />
         </div>
-        <h4 className="font-fraunces text-xl font-bold text-[#FAF7F2]">Check your inbox.</h4>
+        <h4 className="font-fraunces text-xl font-medium text-[#FAF7F2]">Check your inbox.</h4>
         <p className="text-xs text-[#94A3B8] leading-relaxed">
           We&apos;ve emailed the whitepaper to <span className="text-white font-medium">{formData.workEmail}</span>. If you don&apos;t see it in a few minutes, check your spam folder. Any questions? Reach us at{" "}
           <a href="mailto:hello@treel.in" className="text-[#D5573B] underline">hello@treel.in</a>.
@@ -199,7 +199,7 @@ export function WhitepaperGatedForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-3 rounded-lg bg-[#D5573B] text-[#FAF7F2] font-semibold text-xs hover:bg-[#CB4831] transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+          className="w-full py-3.5 px-7 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-xs hover:bg-[#CB4831] transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
         >
           {isSubmitting ? (
             <>

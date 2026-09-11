@@ -107,13 +107,13 @@ export function DataArchWhitepaperGatedForm() {
 
   if (submitted) {
     return (
-      <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-8 sm:p-10 space-y-6 text-left">
-        <div className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+      <div className="bg-white/[0.03] border border-white/[0.08] rounded-lg p-8 sm:p-10 space-y-6 text-left">
+        <div className="w-12 h-12 rounded-md bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
           <CheckCircle2 className="w-6 h-6" />
         </div>
 
         <div className="space-y-2">
-          <h3 className="font-fraunces text-2xl font-bold text-[#FAF7F2]">
+          <h3 className="font-fraunces text-2xl font-medium text-[#FAF7F2]">
             Check your inbox.
           </h3>
           <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed font-inter">
@@ -121,7 +121,7 @@ export function DataArchWhitepaperGatedForm() {
           </p>
         </div>
 
-        <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 text-xs text-[#94A3B8] font-mono flex items-center gap-2">
+        <div className="p-4 rounded-lg bg-white/[0.02] border border-white/[0.08] text-xs text-[#94A3B8] font-mono flex items-center gap-2">
           <span>✓ Direct download initiated</span>
         </div>
       </div>
@@ -129,9 +129,9 @@ export function DataArchWhitepaperGatedForm() {
   }
 
   return (
-    <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-8 sm:p-10 space-y-6 text-left shadow-2xl">
+    <div className="bg-white/[0.03] border border-white/[0.08] rounded-lg p-8 sm:p-10 space-y-6 text-left shadow-2xl">
       <div className="space-y-2">
-        <h3 className="font-fraunces text-2xl font-bold text-[#FAF7F2]">
+        <h3 className="font-fraunces text-2xl font-medium text-[#FAF7F2]">
           Unlock the full paper
         </h3>
         <p className="text-sm text-[#94A3B8] leading-relaxed font-inter">
@@ -280,7 +280,7 @@ export function DataArchWhitepaperGatedForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3 px-6 rounded-lg bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-70 mt-4"
+          className="w-full py-3.5 px-7 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-70 mt-4 cursor-pointer"
         >
           {loading ? (
             <>

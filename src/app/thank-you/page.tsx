@@ -18,17 +18,20 @@ export const metadata: Metadata = {
 
 export default function ThankYouPage() {
   return (
-    <div className="space-y-0 bg-[#111927] text-[#FAF7F2] font-inter">
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+    <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
+      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">Thank You</h1>
+            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-4">
+              CONFIRMATION
+            </div>
+            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">Thank You</h1>
           </div>
         </div>
       </section>
 
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <ul className="space-y-3 pt-2">
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
@@ -45,32 +48,32 @@ export default function ThankYouPage() {
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>**Support tickets** — response within your SLA tier (see <Link href="/tmip/support" className="underline hover:text-white transition-colors">support page</Link> for TMIP customers)</span>
+                <span>**Support tickets** — response within your SLA tier (see <Link href="/tmip/support" className="text-[#D5573B] underline hover:text-[#CB4831] transition-colors">support page</Link> for TMIP customers)</span>
               </li>
             </ul>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">**Primary CTA:** `Go to homepage  →` → `/`</p>
+            <p className="text-[#FAF7F2] text-base sm:text-lg font-semibold leading-relaxed font-inter">Primary CTA: `Go to homepage  →` → `/`</p>
             <ul className="space-y-3 pt-2">
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Explore our <Link href="/products" className="underline hover:text-white transition-colors">products</Link></span>
+                <span>Explore our <Link href="/products" className="text-[#D5573B] underline hover:text-[#CB4831] transition-colors">products</Link></span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Read our latest <Link href="/insights" className="underline hover:text-white transition-colors">insights</Link></span>
+                <span>Read our latest <Link href="/insights" className="text-[#D5573B] underline hover:text-[#CB4831] transition-colors">insights</Link></span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Follow us on <Link href="/contact" className="underline hover:text-white transition-colors">LinkedIn</Link> for company updates</span>
+                <span>Follow us on <Link href="/contact" className="text-[#D5573B] underline hover:text-[#CB4831] transition-colors">LinkedIn</Link> for company updates</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>This is a generic thank-you page used as fallback for forms that don't have a dedicated success page</span>
+                <span>This is a generic thank-you page used as fallback for forms that don&apos;t have a dedicated success page</span>
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
@@ -81,6 +84,11 @@ export default function ThankYouPage() {
                 <span>Preserve UTM parameters from the referring form submission for analytics attribution</span>
               </li>
             </ul>
+            <div className="pt-6">
+              <Link href="/" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]">
+                Go to homepage <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

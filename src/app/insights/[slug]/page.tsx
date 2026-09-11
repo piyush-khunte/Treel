@@ -332,19 +332,19 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
 
   if (!article) {
     return (
-      <div className="min-h-[70vh] bg-[#111927] text-[#FAF7F2] font-inter py-24 flex items-center">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10 text-center space-y-6">
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-[#D5573B]">
+      <div className="min-h-[70vh] bg-[#0F1419] text-[#FAF7F2] font-inter py-24 flex items-center">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 text-center space-y-6">
+          <div className="w-16 h-16 mx-auto rounded-lg bg-white/[0.05] border border-white/10 flex items-center justify-center text-[#D5573B]">
             <BookOpen className="w-8 h-8" />
           </div>
-          <h1 className="font-fraunces text-3xl sm:text-4xl font-bold">That article isn&apos;t available.</h1>
+          <h1 className="font-fraunces text-3xl sm:text-4xl font-medium">That article isn&apos;t available.</h1>
           <p className="text-[#94A3B8] text-base max-w-md mx-auto">
             The article you are looking for might have moved or is being updated. Here&apos;s what&apos;s fresh across our insights repository.
           </p>
           <div className="pt-4">
             <Link
               href="/insights"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md"
             >
               <span>Back to all insights</span>
               <ArrowRight className="w-4 h-4" />
@@ -360,10 +360,10 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
     .filter(Boolean) as InsightArticle[];
 
   return (
-    <article className="space-y-0 bg-[#111927] text-[#FAF7F2] font-inter">
+    <article className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
       {/* Article Header & Hero */}
       <header className="relative overflow-hidden pt-24 pb-16 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             {/* Breadcrumb Navigation */}
             <div className="flex items-center gap-2 text-xs font-mono text-[#94A3B8]">
@@ -377,12 +377,12 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
             </div>
 
             {/* Category Tag */}
-            <div className="inline-block px-3 py-1 rounded-full bg-[#D5573B]/10 border border-[#D5573B]/20 text-[#D5573B] font-mono text-xs uppercase tracking-widest font-semibold">
+            <div className="inline-block px-2.5 py-0.5 rounded-[4px] bg-[#D5573B]/10 border border-[#D5573B]/20 text-[#D5573B] font-mono text-xs uppercase tracking-widest font-semibold">
               {article.category}
             </div>
 
             {/* Headline (H1) */}
-            <h1 className="font-fraunces text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">
+            <h1 className="font-fraunces text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
               {article.title}
             </h1>
 
@@ -424,15 +424,15 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
 
       {/* Main Content Area */}
       <div className="py-16 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-12">
             {/* Article Visual Hero */} 
-            <div className="w-full aspect-[16/9] rounded-2xl bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-white/[0.01] border border-white/10 relative overflow-hidden shadow-2xl">
+            <div className="w-full aspect-[16/9] rounded-lg bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-white/[0.01] border border-white/[0.08] relative overflow-hidden shadow-2xl">
               <div className="absolute inset-0 bg-white/5 opacity-40" />
             </div>
 
             {/* TL;DR Callout Block */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#D5573B]/[0.06] border border-[#D5573B]/20 space-y-3">
+            <div className="p-6 sm:p-8 rounded-lg bg-[#D5573B]/[0.06] border border-[#D5573B]/20 space-y-3">
               <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#D5573B] font-bold">
                 <FileText className="w-4 h-4 text-[#D5573B]" />
                 <span>TL;DR</span>
@@ -446,7 +446,7 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
             <div className="space-y-10 text-base sm:text-lg text-[#94A3B8] leading-relaxed font-inter">
               {article.body.sections.map((sec, idx) => (
                 <div key={idx} className="space-y-4">
-                  <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2] tracking-tight pt-4">
+                  <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight pt-4">
                     {sec.heading}
                   </h2>
                   {sec.paragraphs.map((p, pIdx) => (
@@ -457,7 +457,7 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
 
                   {/* Inline Pull Quote after Section 1 */}
                   {idx === 0 && article.body.pullQuote && (
-                    <div className="my-8 py-6 px-8 border-l-2 border-[#D5573B] bg-white/[0.02] rounded-r-xl space-y-3">
+                    <div className="my-8 py-6 px-8 border-l-2 border-[#D5573B] bg-white/[0.02] rounded-r-lg space-y-3">
                       <blockquote className="font-fraunces text-xl sm:text-2xl italic font-normal text-[#D5573B] leading-snug">
                         &ldquo;{article.body.pullQuote.quote}&rdquo;
                       </blockquote>
@@ -471,11 +471,11 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
             </div>
 
             {/* Author Bio Card */}
-            <div className="p-8 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+            <div className="p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center gap-6">
               <div className="w-20 h-20 rounded-full bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-white/[0.01] border border-white/15 relative overflow-hidden flex-shrink-0" />
               <div className="space-y-2 flex-1">
                 <div>
-                  <h3 className="font-fraunces text-xl font-bold text-[#FAF7F2]">
+                  <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2]">
                     {article.author}
                   </h3>
                   <div className="text-xs font-mono uppercase tracking-wider text-[#D5573B] font-semibold mt-0.5">
@@ -497,10 +497,10 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
       {/* Related Articles Strip */}
       {relatedArticles.length > 0 && (
         <section className="py-20 border-b border-white/10 bg-white/[0.01]">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+          <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
             <div className="max-w-4xl space-y-8">
               <div className="flex items-center justify-between">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2]">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">
                   Continue reading
                 </h2>
                 <Link
@@ -517,7 +517,7 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
                   <Link
                     key={idx}
                     href={`/insights/${rel.slug}`}
-                    className="group rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all overflow-hidden flex flex-col justify-between"
+                    className="group rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col justify-between"
                   >
                     <div>
                       {/* 16:9 Thumbnail Area */}
@@ -528,7 +528,7 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
                         <div className="text-[10px] font-mono uppercase tracking-wider text-[#D5573B] font-semibold">
                           {rel.category}
                         </div>
-                        <h3 className="font-fraunces text-base font-bold text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors line-clamp-2 leading-snug">
+                        <h3 className="font-fraunces text-base font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors line-clamp-2 leading-snug">
                           {rel.title}
                         </h3>
                         <p className="text-xs text-[#94A3B8] line-clamp-2 leading-relaxed font-inter">

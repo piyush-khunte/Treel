@@ -81,10 +81,10 @@ export default function ResearchDataArchitecturePage() {
   ];
 
   return (
-    <div className="space-y-0 bg-[#111927] text-[#FAF7F2] font-inter">
+    <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
       {/* Header & Hero Section */}
       <section className="relative overflow-hidden pt-24 pb-16 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             {/* Breadcrumb Navigation */}
             <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-[#94A3B8]">
@@ -95,11 +95,11 @@ export default function ResearchDataArchitecturePage() {
               <span className="text-[#D5573B]">Data Architecture &amp; Telemetry Ingestion</span>
             </nav>
 
-            <div className="border text-[#D5573B] bg-[#D5573B]/10 border-[#D5573B]/20 font-mono text-xs uppercase tracking-widest font-semibold px-3 py-1 rounded-full inline-block">
+            <div className="border text-[#D5573B] bg-[#D5573B]/10 border-[#D5573B]/20 font-mono text-xs uppercase tracking-widest font-semibold px-2.5 py-0.5 rounded-[4px] inline-block">
               DATA INFRASTRUCTURE
             </div>
 
-            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">
+            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
               Data Architecture &amp; Telemetry Ingestion at Enterprise Scale
             </h1>
 
@@ -124,13 +124,13 @@ export default function ResearchDataArchitecturePage() {
 
       {/* Main Content & Gated Download Grid */}
       <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Column: Abstract, Diagram & Table of Contents */}
             <div className="lg:col-span-7 space-y-12">
               {/* Abstract */}
               <div className="space-y-4">
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2]">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">
                   What this paper covers
                 </h2>
                 <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
@@ -142,32 +142,32 @@ export default function ResearchDataArchitecturePage() {
               </div>
 
               {/* Architecture Visual Area */}
-              <div className="rounded-2xl bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-white/[0.01] border border-white/10 p-6 sm:p-8 space-y-4 shadow-xl">
+              <div className="rounded-lg bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-white/[0.01] border border-white/[0.08] p-6 sm:p-8 space-y-4 shadow-xl">
                 <div className="text-xs font-mono uppercase tracking-widest text-[#D5573B] font-semibold">
                   ARCHITECTURE STACK OVERVIEW
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-                  <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 space-y-1.5">
+                  <div className="p-4 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-1.5">
                     <div className="text-xs font-mono text-[#D5573B] font-bold">TIER 1</div>
-                    <div className="font-fraunces text-sm font-bold text-[#FAF7F2]">Edge Buffer</div>
+                    <div className="font-fraunces text-sm font-medium text-[#FAF7F2]">Edge Buffer</div>
                     <div className="text-xs text-[#94A3B8]">Offline telemetry cache &amp; flash de-duplication</div>
                   </div>
-                  <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 space-y-1.5">
+                  <div className="p-4 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-1.5">
                     <div className="text-xs font-mono text-[#D5573B] font-bold">TIER 2</div>
-                    <div className="font-fraunces text-sm font-bold text-[#FAF7F2]">Stream Engine</div>
+                    <div className="font-fraunces text-sm font-medium text-[#FAF7F2]">Stream Engine</div>
                     <div className="text-xs text-[#94A3B8]">Sub-second message broker with clock correction</div>
                   </div>
-                  <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 space-y-1.5">
+                  <div className="p-4 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-1.5">
                     <div className="text-xs font-mono text-[#D5573B] font-bold">TIER 3</div>
-                    <div className="font-fraunces text-sm font-bold text-[#FAF7F2]">Digital Twin</div>
+                    <div className="font-fraunces text-sm font-medium text-[#FAF7F2]">Digital Twin</div>
                     <div className="text-xs text-[#94A3B8]">Dual-state persistence &amp; append-only history</div>
                   </div>
                 </div>
               </div>
 
               {/* Table of Contents */}
-              <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-8 space-y-6">
-                <h3 className="font-fraunces text-xl font-bold text-[#FAF7F2] flex items-center gap-2.5">
+              <div className="bg-white/[0.03] border border-white/[0.08] rounded-lg p-8 space-y-6">
+                <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] flex items-center gap-2.5">
                   <BookOpen className="w-5 h-5 text-[#D5573B]" />
                   <span>In this paper</span>
                 </h3>
@@ -193,9 +193,9 @@ export default function ResearchDataArchitecturePage() {
 
       {/* Related Whitepapers Strip */}
       <section className="py-20 border-b border-white/10 bg-white/[0.01]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">
-            <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2]">
+            <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">
               Related research
             </h2>
 
@@ -204,13 +204,13 @@ export default function ResearchDataArchitecturePage() {
                 <Link
                   key={idx}
                   href={`/${rel.slug}`}
-                  className="group p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between space-y-6"
+                  className="group p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between space-y-6"
                 >
                   <div className="space-y-3">
                     <div className="text-[10px] font-mono uppercase tracking-wider text-[#D5573B] font-semibold">
                       {rel.topic}
                     </div>
-                    <h3 className="font-fraunces text-lg font-bold text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-snug">
+                    <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-snug">
                       {rel.title}
                     </h3>
                     <p className="text-xs text-[#94A3B8] leading-relaxed font-inter">

@@ -31,15 +31,15 @@ export default function CookiesPage() {
   ];
 
   return (
-    <div className="space-y-0 bg-[#111927] text-[#FAF7F2] font-inter">
+    <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
       {/* Header & Hero */}
-      <section className="relative overflow-hidden pt-24 pb-16 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="relative overflow-hidden pt-24 pb-16 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <div className="border text-[#D5573B] bg-[#D5573B]/10 border-[#D5573B]/20 font-mono text-xs uppercase tracking-widest font-semibold px-3 py-1 rounded-full inline-block">
+            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-4">
               LEGAL
             </div>
-            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">
+            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
               Cookie Policy
             </h1>
             <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-[#94A3B8] pt-2">
@@ -54,12 +54,12 @@ export default function CookiesPage() {
       </section>
 
       {/* Main Content Layout */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-10 py-16">
+      <div className="max-w-[1320px] mx-auto px-6 sm:px-10 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Table of Contents / Sidebar */}
           <aside className="lg:col-span-4">
-            <div className="sticky top-28 p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-6">
-              <h3 className="font-fraunces text-lg font-semibold text-[#FAF7F2] flex items-center gap-2">
+            <div className="sticky top-28 p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-6">
+              <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] flex items-center gap-2 leading-[1.2]">
                 <Sliders className="w-4 h-4 text-[#D5573B]" />
                 Policy Sections
               </h3>
@@ -68,14 +68,14 @@ export default function CookiesPage() {
                   <a
                     key={sec.id}
                     href={`#${sec.id}`}
-                    className="block text-sm text-[#94A3B8] hover:text-[#FAF7F2] hover:translate-x-1 transition-all py-1.5 border-b border-white/5 last:border-0"
+                    className="block text-sm text-[#94A3B8] hover:text-[#FAF7F2] hover:translate-x-1 transition-all py-1.5 border-b border-white/[0.04] last:border-0"
                   >
                     {sec.title}
                   </a>
                 ))}
               </nav>
 
-              <div className="pt-4 border-t border-white/10 space-y-3">
+              <div className="pt-4 border-t border-white/[0.08] space-y-3">
                 <div className="text-xs font-mono text-[#94A3B8] uppercase tracking-wider">
                   Quick Action
                 </div>
@@ -90,7 +90,7 @@ export default function CookiesPage() {
             <section id="what-are-cookies" className="scroll-mt-28 space-y-6">
               <div className="flex items-center gap-3">
                 <span className="text-[#D5573B] font-mono text-sm font-semibold">01</span>
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2]">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] leading-[1.12]">
                   What are cookies
                 </h2>
               </div>
@@ -103,7 +103,7 @@ export default function CookiesPage() {
             <section id="categories" className="scroll-mt-28 space-y-8">
               <div className="flex items-center gap-3">
                 <span className="text-[#D5573B] font-mono text-sm font-semibold">02</span>
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2]">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] leading-[1.12]">
                   Cookie categories we use
                 </h2>
               </div>
@@ -113,9 +113,9 @@ export default function CookiesPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* 2.1 Strictly necessary */}
-                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-4">
+                <div className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-fraunces text-lg font-semibold text-[#FAF7F2]">
+                    <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] leading-[1.2]">
                       2.1 · Strictly necessary cookies
                     </h3>
                     <span className="text-[10px] font-mono uppercase bg-[#00B37E]/20 text-[#00B37E] border border-[#00B37E]/30 px-2 py-0.5 rounded">
@@ -125,7 +125,7 @@ export default function CookiesPage() {
                   <p className="text-sm text-[#94A3B8]">
                     Required for the website to function. Cannot be disabled. Include:
                   </p>
-                  <ul className="space-y-2 pt-2 border-t border-white/5">
+                  <ul className="space-y-2 pt-2 border-t border-white/[0.04]">
                     <li className="text-xs text-[#94A3B8] flex items-start gap-2">
                       <span className="text-[#D5573B] mt-0.5">•</span>
                       <span>Session cookies (remember your cart, form inputs)</span>
@@ -142,9 +142,9 @@ export default function CookiesPage() {
                 </div>
 
                 {/* 2.2 Functional */}
-                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-4">
+                <div className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-fraunces text-lg font-semibold text-[#FAF7F2]">
+                    <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] leading-[1.2]">
                       2.2 · Functional cookies
                     </h3>
                     <span className="text-[10px] font-mono uppercase bg-white/10 text-white/70 px-2 py-0.5 rounded">
@@ -154,7 +154,7 @@ export default function CookiesPage() {
                   <p className="text-sm text-[#94A3B8]">
                     Enhance your experience but not required. Include:
                   </p>
-                  <ul className="space-y-2 pt-2 border-t border-white/5">
+                  <ul className="space-y-2 pt-2 border-t border-white/[0.04]">
                     <li className="text-xs text-[#94A3B8] flex items-start gap-2">
                       <span className="text-[#D5573B] mt-0.5">•</span>
                       <span>Language and region preferences</span>
@@ -171,9 +171,9 @@ export default function CookiesPage() {
                 </div>
 
                 {/* 2.3 Analytics */}
-                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-4">
+                <div className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-fraunces text-lg font-semibold text-[#FAF7F2]">
+                    <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] leading-[1.2]">
                       2.3 · Analytics cookies
                     </h3>
                     <span className="text-[10px] font-mono uppercase bg-white/10 text-white/70 px-2 py-0.5 rounded">
@@ -183,7 +183,7 @@ export default function CookiesPage() {
                   <p className="text-sm text-[#94A3B8]">
                     Help us understand how visitors use the website. Include:
                   </p>
-                  <ul className="space-y-2 pt-2 border-t border-white/5">
+                  <ul className="space-y-2 pt-2 border-t border-white/[0.04]">
                     <li className="text-xs text-[#94A3B8] flex items-start gap-2">
                       <span className="text-[#D5573B] mt-0.5">•</span>
                       <span>Google Analytics (page views, session duration, referrers)</span>
@@ -199,9 +199,9 @@ export default function CookiesPage() {
                 </div>
 
                 {/* 2.4 Marketing */}
-                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-4">
+                <div className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-fraunces text-lg font-semibold text-[#FAF7F2]">
+                    <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] leading-[1.2]">
                       2.4 · Marketing cookies
                     </h3>
                     <span className="text-[10px] font-mono uppercase bg-white/10 text-white/70 px-2 py-0.5 rounded">
@@ -211,7 +211,7 @@ export default function CookiesPage() {
                   <p className="text-sm text-[#94A3B8]">
                     Deliver relevant marketing across our channels. Include:
                   </p>
-                  <ul className="space-y-2 pt-2 border-t border-white/5">
+                  <ul className="space-y-2 pt-2 border-t border-white/[0.04]">
                     <li className="text-xs text-[#94A3B8] flex items-start gap-2">
                       <span className="text-[#D5573B] mt-0.5">•</span>
                       <span>Meta (Facebook, Instagram) advertising pixels</span>
@@ -233,7 +233,7 @@ export default function CookiesPage() {
             <section id="manage-preferences" className="scroll-mt-28 space-y-6">
               <div className="flex items-center gap-3">
                 <span className="text-[#D5573B] font-mono text-sm font-semibold">03</span>
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2]">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] leading-[1.12]">
                   Manage your preferences
                 </h2>
               </div>
@@ -241,22 +241,22 @@ export default function CookiesPage() {
                 You can update your cookie preferences at any time:
               </p>
               <ul className="space-y-4">
-                <li className="p-4 rounded-xl bg-white/[0.02] border border-white/10 flex items-start gap-3">
+                <li className="p-4 rounded-lg bg-white/[0.03] border border-white/[0.08] flex items-start gap-3">
                   <span className="text-[#D5573B] mt-1 font-bold">•</span>
                   <div className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
-                    <strong className="text-[#FAF7F2]">Through our cookie consent banner</strong> — click the "Configure" button when it appears, or use the "Cookie preferences" link in the footer
+                    <strong className="text-[#FAF7F2]">Through our cookie consent banner</strong> — click the &quot;Configure&quot; button when it appears, or use the &quot;Cookie preferences&quot; link in the footer
                   </div>
                 </li>
-                <li className="p-4 rounded-xl bg-white/[0.02] border border-white/10 flex items-start gap-3">
+                <li className="p-4 rounded-lg bg-white/[0.03] border border-white/[0.08] flex items-start gap-3">
                   <span className="text-[#D5573B] mt-1 font-bold">•</span>
                   <div className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
                     <strong className="text-[#FAF7F2]">Through your browser settings</strong> — most browsers allow you to block or delete cookies; instructions vary by browser
                   </div>
                 </li>
-                <li className="p-4 rounded-xl bg-white/[0.02] border border-white/10 flex items-start gap-3">
+                <li className="p-4 rounded-lg bg-white/[0.03] border border-white/[0.08] flex items-start gap-3">
                   <span className="text-[#D5573B] mt-1 font-bold">•</span>
                   <div className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
-                    <strong className="text-[#FAF7F2]">Through platform-specific opt-outs</strong> — Google Analytics opt-out browser add-on; Meta's ad preferences page
+                    <strong className="text-[#FAF7F2]">Through platform-specific opt-outs</strong> — Google Analytics opt-out browser add-on; Meta&apos;s ad preferences page
                   </div>
                 </li>
               </ul>
@@ -271,7 +271,7 @@ export default function CookiesPage() {
             <section id="third-parties" className="scroll-mt-28 space-y-6">
               <div className="flex items-center gap-3">
                 <span className="text-[#D5573B] font-mono text-sm font-semibold">04</span>
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2]">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] leading-[1.12]">
                   Cookies set by third parties
                 </h2>
               </div>
@@ -284,12 +284,12 @@ export default function CookiesPage() {
             <section id="changes" className="scroll-mt-28 space-y-6">
               <div className="flex items-center gap-3">
                 <span className="text-[#D5573B] font-mono text-sm font-semibold">05</span>
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2]">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] leading-[1.12]">
                   Changes to this policy
                 </h2>
               </div>
               <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-                We update this Cookie Policy when we add, remove, or change cookies. The "Last updated" date reflects the current version.
+                We update this Cookie Policy when we add, remove, or change cookies. The &quot;Last updated&quot; date reflects the current version.
               </p>
             </section>
 
@@ -297,7 +297,7 @@ export default function CookiesPage() {
             <section id="contact" className="scroll-mt-28 space-y-6">
               <div className="flex items-center gap-3">
                 <span className="text-[#D5573B] font-mono text-sm font-semibold">06</span>
-                <h2 className="font-fraunces text-2xl sm:text-3xl font-bold text-[#FAF7F2]">
+                <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] leading-[1.12]">
                   Contact us
                 </h2>
               </div>
@@ -305,7 +305,7 @@ export default function CookiesPage() {
                 Questions about our cookie use? Email <a href="mailto:dpo@treel.in" className="text-[#D5573B] font-semibold hover:underline">dpo@treel.in</a> or contact <a href="mailto:hello@treel.in" className="text-[#D5573B] font-semibold hover:underline">hello@treel.in</a>.
               </p>
 
-              <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-4">
+              <div className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-4">
                 <div className="text-xs font-mono text-[#D5573B] uppercase tracking-wider font-semibold">
                   DATA PROTECTION & COMPLIANCE OFFICE
                 </div>

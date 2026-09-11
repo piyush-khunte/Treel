@@ -18,39 +18,66 @@ export const metadata: Metadata = {
 
 export default function WhyTreelPage() {
   return (
-    <div className="space-y-0 bg-[#111927] text-[#FAF7F2] font-inter">
+    <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
+      {/* 1. HERO SECTION */}
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div 
+          className="absolute -top-24 -right-24 w-[500px] h-[500px] pointer-events-none rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(213, 87, 59, 0.12) 0%, transparent 65%)" }}
+          aria-hidden="true"
+        />
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 relative z-10">
           <div className="max-w-4xl space-y-6">
-            <div className="border text-[#D5573B] bg-[#D5573B]/10 border-[#D5573B]/20 font-mono text-xs uppercase tracking-widest font-semibold px-3 py-1 rounded-full inline-block">WHY TREEL</div>
-            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">Six reasons the mobility intelligence category runs on Treel.</h1>
-            <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-inter max-w-3xl">You have options in the fleet intelligence space. Here is why two hundred enterprise fleets, sixty-eight thousand vehicles, and an entire owner-driver community have chosen Treel to run on.</p>
+            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-6 sm:mb-8">
+              WHY TREEL
+            </div>
+            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.08]">
+              Six reasons the mobility intelligence category runs on Treel.
+            </h1>
+            <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-inter max-w-3xl">
+              You have options in the fleet intelligence space. Here is why two hundred enterprise fleets, sixty-eight thousand vehicles, and an entire owner-driver community have chosen Treel to run on.
+            </p>
           </div>
         </div>
       </section>
 
+      {/* 2. CUSTOMER STORIES */}
       <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">Read the customer stories.</h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">We are not the only serious player in India's fleet intelligence space. If you are evaluating alternatives, the comparison typically involves Intangles, Tata Fleetman, Mahindra iMax, and Eye-Net. Book a demo and we will walk through the fit honestly. If the answer is that a competitor fits your specific use case better, we will tell you that.</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">**Case study strip**</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">The best case for Treel is what our customers have already done.</p>
+            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
+              Read the customer stories.
+            </h2>
+            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
+              We are not the only serious player in India's fleet intelligence space. If you are evaluating alternatives, the comparison typically involves Intangles, Tata Fleetman, Mahindra iMax, and Eye-Net. Book a demo and we will walk through the fit honestly. If the answer is that a competitor fits your specific use case better, we will tell you that.
+            </p>
+            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
+              **Case study strip**
+            </p>
+            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
+              The best case for Treel is what our customers have already done.
+            </p>
             <div className="pt-6">
-              <Link href="/tmip/customers/case-studies" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]">
+              <Link href="/tmip/customers/case-studies" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-sm bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]">
                 See case studies <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
         </div>
       </section>
+
+      {/* 3. TALK TO US */}
       <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">Talk to us.</h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">We would rather have a conversation about your fleet than send you more marketing pages.</p>
+            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
+              Talk to us.
+            </h2>
+            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
+              We would rather have a conversation about your fleet than send you more marketing pages.
+            </p>
             <div className="pt-6">
-              <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]">
+              <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-sm bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]">
                 Get in touch <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

@@ -18,17 +18,20 @@ export const metadata: Metadata = {
 
 export default function EventsSlugPage() {
   return (
-    <div className="space-y-0 bg-[#111927] text-[#FAF7F2] font-inter">
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+    <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
+      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">Individual event</h1>
+            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-4">
+              EVENTS
+            </div>
+            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">Individual event</h1>
           </div>
         </div>
       </section>
 
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <ul className="space-y-3 pt-2">
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
@@ -45,32 +48,32 @@ export default function EventsSlugPage() {
               </li>
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Location: [Full address or "Online (Zoom)"]</span>
+                <span>Location: [Full address or &quot;Online (Zoom)&quot;]</span>
               </li>
             </ul>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">About this event</h2>
+            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">About this event</h2>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">[200-400 word event description]</p>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">Agenda</h2>
+            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">Agenda</h2>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">Timed agenda list with session names and speakers</p>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">Speakers</h2>
+            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">Speakers</h2>
             <ul className="space-y-3 pt-2">
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
@@ -80,10 +83,10 @@ export default function EventsSlugPage() {
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 border-b border-white/[0.08]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">**Share buttons**</p>
+            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter font-semibold">Share buttons</p>
             <ul className="space-y-3 pt-2">
               <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
                 <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
