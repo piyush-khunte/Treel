@@ -1,0 +1,52 @@
+{
+  "name": "Treel — The Mobility Intelligence Company",
+  "short_name": "Treel",
+  "description": "The mobility intelligence company. TMIP for enterprise fleets, Suraksha for owner-drivers, Personal TPMS for consumers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F1419",
+  "theme_color": "#D5573B",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-IN",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Suraksha nearest centre",
+      "short_name": "Nearest Centre",
+      "url": "/suraksha/centres",
+      "icons": [{ "src": "/icons/shortcut-centre.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "TMIP demo request",
+      "short_name": "Book demo",
+      "url": "/tmip/demo",
+      "icons": [{ "src": "/icons/shortcut-demo.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Personal TPMS buy",
+      "short_name": "Buy",
+      "url": "/personal/buy",
+      "icons": [{ "src": "/icons/shortcut-buy.png", "sizes": "96x96" }]
+    }
+  ]
+}

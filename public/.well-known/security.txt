@@ -1,0 +1,9 @@
+# Treel Security Policy
+# RFC 9116 compliant
+
+Contact: mailto:security@treel.in
+Expires: 2027-10-01T00:00:00.000Z
+Preferred-Languages: en, hi
+Canonical: https://treel.in/.well-known/security.txt
+Policy: https://treel.in/tmip/security
+Acknowledgments: https://treel.in/security/acknowledgments
