@@ -737,8 +737,28 @@ pm.cmd run build):** Compiled 141/141 static and dynamic routes cleanly in Turbo
 ### C. Quality & Verification
 - **Documentation & Markdown Leakage Audit:** 0 leaked directives, 0 raw markdown strings.
 - **Brand System Fidelity:** 100% compliant with Personal TPMS Brand Guidelines V3.1 colors (60/25/15 White/Charcoal/Steel Blue, <=3% Signal Green), Manrope typography, and automotive tech tone.
-- **ESLint (
-pm.cmd run lint):** Passed with 0 errors (exit code 0).
-- **Next.js Production Build (
-pm.cmd run build):** Compiled 141/141 static and dynamic routes cleanly in Turbopack with exit code 0.
+- **ESLint (`npm.cmd run lint`):** Passed with 0 errors (exit code 0).
+- **Next.js Production Build (`npm.cmd run build`):** Compiled 141/141 static and dynamic routes cleanly in Turbopack with exit code 0.
 - **Strict Scope Locks:** Strictly the 1 target route (/personal/track-order) modified. Admin, database, Supabase, MongoDB, packages, and all other routes remain completely untouched.
+
+---
+
+## 23. NEXT.JS /manifest.json VERCEL PRERENDER BUILD FIX (2026-09-11)
+
+### A. Root Cause Identified
+- **Issue:** Vercel deployment build failed with `Error: Invariant: failed to find source route /manifest.json for prerender /manifest.json`.
+- **Diagnosis:** During initial route scaffolding, an invalid page directory `src/app/manifest.json/` containing `page.tsx` was created. In Next.js 16.3.4, `isStaticMetadataFile('/manifest.json')` evaluates to `true`. When Next.js builds the adapter output in `next/dist/build/adapter/build-complete.js`, it skips adding `/manifest.json` to `appOutputMap` expecting a static metadata `.body` file. But because `src/app/manifest.json/page.tsx` was a standard page emitting `.html`, it failed the `.body` check and was subsequently passed to `getParentOutput('/manifest.json', '/manifest.json')`. Since it was absent from `appOutputMap`, Next.js threw `Invariant: failed to find source route /manifest.json for prerender /manifest.json`.
+- **Vercel Discrepancy:** This error persisted on Vercel because commit `f052a86` on GitHub (`origin/main`) still contained `src/app/manifest.json/page.tsx` before the uncommitted deletion was pushed.
+
+### B. Resolution Implemented
+1. **Removed Invalid Directory:** Deleted `src/app/manifest.json/` and its dummy `page.tsx`.
+2. **Canonical Manifest Endpoint:** Kept `public/manifest.json` as the single canonical static manifest implementation serving `/manifest.json` with HTTP 200 and Content-Type `application/json`.
+3. **No Duplicate Competing Routes:** Verified no competing App Router manifest stubs or conflicting route handlers remain.
+
+### C. Quality & Verification
+- **ESLint (`npm.cmd run lint`):** Passed with 0 errors (exit code 0).
+- **Next.js Production Build (`npm.cmd run build`):** 140/140 static and dynamic pages compiled cleanly in Turbopack with exit code 0.
+- **Manifest Endpoint Test:** Tested production server at `http://localhost:<port>/manifest.json` — returns HTTP 200, valid JSON with Treel metadata and PWA icons.
+- **Strict Scope Compliance:** Only the invalid manifest page was deleted. Zero unrelated files modified.
+
+
