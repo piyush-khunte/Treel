@@ -761,4 +761,63 @@ pm.cmd run build):** Compiled 141/141 static and dynamic routes cleanly in Turbo
 - **Manifest Endpoint Test:** Tested production server at `http://localhost:<port>/manifest.json` — returns HTTP 200, valid JSON with Treel metadata and PWA icons.
 - **Strict Scope Compliance:** Only the invalid manifest page was deleted. Zero unrelated files modified.
 
+---
+
+## 24. TREEL CORPORATE HOMEPAGE COSMETIC ALIGNMENT (2026-09-11)
+
+### A. Target Route (Strictly Corporate Homepage)
+- **Target Route:** `/` (`src/app/page.tsx`)
+- **Header Component Scoped:** `src/components/layout/master-header.tsx` (Homepage-specific dark theme condition: `isHomepage = pathname === "/"`)
+
+### B. Objectives & Strict Boundaries
+- **Strict Visual Alignment:** Aligned the main Treel Corporate homepage with the visual design defined in Treel Brand Guidelines V3.1 and `Treel_Homepages_Mockup.html`.
+- **Content Freeze (100% Retained):** Strictly zero text additions, removals, or rewrites. All headlines, ledes, stats, labels, and CTA destinations preserved exactly as originally authored.
+- **Scope Lock:** Zero modifications to any other route (`/tmip/*`, `/suraksha/*`, `/personal/*`, `/admin/*`, etc.), zero database, package, or API changes.
+
+### C. Cosmetic & Visual Corrections Implemented
+1. **Master Header Scoped Dark Environment (`master-header.tsx`):**
+   - Added `isHomepage = pathname === "/"` check ensuring only the main corporate homepage receives the dark `#0F1419` navigation environment.
+   - Header base set to `#0F1419` with subtle `border-white/10` and backdrop blur.
+   - Navigation links rendered in `#94A3B8` with `#D5573B` hover states.
+   - Solutions & Brands dropdown panel converted to dark `#0F1419` panel with `border-white/10`.
+   - Header CTAs styled with 4px border-radius (`rounded-[4px]`), Treel Red `#D5573B` primary and subtle white/20 secondary border.
+   - Preserves standard light theme on all other corporate subpages (`/about`, `/contact`, `/insights`, etc.).
+
+2. **Hero Section (`src/app/page.tsx`):**
+   - **Eyebrow:** Removed pill button wrapper container; styled as clean uppercase tracking text (`font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-6 sm:mb-8`).
+   - **Headline:** Re-styled H1 with `font-fraunces text-4xl sm:text-6xl lg:text-[76px] xl:text-[84px] font-medium tracking-[-0.03em] text-[#FAF7F2] leading-[1.04] sm:leading-[0.98]`, with italicized "a signal" in `#D5573B` and `fontVariationSettings: '"opsz" 144'`.
+   - **Lede:** Styled in `font-fraunces text-lg sm:text-[22px] font-normal leading-[1.45] text-[#94A3B8] mb-8 sm:mb-10 max-w-[540px]`.
+   - **CTAs:** Primary `#D5573B` button with 4px border-radius (`rounded-[4px] px-7 py-3.5`), hover `#CB4831`; Secondary outlined button with 4px border-radius (`rounded-[4px] px-7 py-3.5 border border-[#94A3B8]/30 hover:border-[#D5573B]`).
+   - **Layout:** Rebalanced into a 2-column grid (`grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-20 items-center`).
+   - **Treel Motion Marks Visual:** Embedded the official Treel Motion Marks visual (SVG with 3 horizontal rounded bars with `#D5573B` gradient fill) as specified in `Treel_Homepages_Mockup.html`.
+
+3. **Metrics Band:**
+   - Unified `border-l-2 border-[#D5573B] pl-5` across all 4 metrics (eliminating discordant multi-color borders).
+   - Values styled in `font-fraunces text-4xl sm:text-5xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-[-0.03em] leading-none mb-2.5`.
+   - Labels styled in `font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed`.
+   - Band container styled with `bg-[#D5573B]/[0.03] border-b border-white/[0.08] py-16 sm:py-20`.
+
+4. **Three Product Families:**
+   - Unified all 3 product cards into the Corporate master dark panel aesthetic (`group p-8 sm:p-10 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300`).
+   - Eliminated discordant bright yellow background on Suraksha card.
+   - Names rendered in `font-fraunces text-2xl sm:text-[32px] font-medium text-[#FAF7F2] tracking-[-0.02em]`.
+   - Audience labels rendered in `font-jetbrains font-mono text-[10px] text-[#64748B] tracking-[0.12em] uppercase mt-1.5`.
+   - Descriptions rendered in `text-[#CBD5E1] text-sm leading-[1.6] font-inter`.
+   - Links rendered in `font-inter text-[13px] font-semibold text-[#D5573B] inline-flex items-center gap-1.5 group-hover:gap-2.5`.
+
+5. **The Company Section:**
+   - Title in `font-fraunces text-3xl sm:text-4xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-tight leading-[1.12]`.
+   - Lede in `font-fraunces text-lg sm:text-xl font-normal leading-[1.45] text-[#94A3B8] italic`.
+   - CTAs styled with 4px border-radius (`rounded-[4px] px-7 py-3.5`).
+   - Credibility Grid (4 cards) in `p-6 rounded-lg bg-white/[0.03] border border-white/[0.08]` with Fraunces values (`24 Hz`, `IP69K`, `ARAI`, `99.98%`) and JetBrains Mono labels.
+
+6. **JK Tyre Disclosure Strip:**
+   - Styled with `bg-[#0B0F14] border-b border-white/10 py-6 text-center font-jetbrains font-mono text-xs uppercase tracking-[0.1em] text-[#64748B]`.
+
+### D. Verification Results
+- **ESLint (`npm.cmd run lint`):** Passed with 0 errors (exit code 0).
+- **Next.js Production Build (`npm.cmd run build`):** 140/140 static and dynamic routes compiled cleanly in Turbopack with exit code 0.
+- **Git Scope Audit:** Strictly `src/app/page.tsx`, `src/components/layout/master-header.tsx`, and `HANDOFF.md` modified.
+
+
 
