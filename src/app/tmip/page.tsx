@@ -53,32 +53,44 @@ const capabilities = [
 
 export default function TmipPage() {
   return (
-    <div className="bg-[#050A17] text-[#F1F5F9] font-ibm">
+    <div className="relative bg-[#050A17] text-[#F1F5F9] font-ibm-plex overflow-x-hidden min-h-screen">
+      {/* Subtle Blueprint Grid Background: 60px x 60px rgba(59,130,246,0.04) */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-60 z-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px)
+          `,
+          backgroundSize: "60px 60px",
+        }}
+      />
+
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <div className="inline-flex items-center gap-2 border border-[#3B82F6]/30 bg-[#3B82F6]/10 px-3.5 py-1 rounded-full text-xs font-mono tracking-widest text-[#3B82F6] uppercase font-semibold">
+      <section className="relative z-10 pt-24 sm:pt-28 pb-28 sm:pb-32 px-6 sm:px-10 border-b border-slate-400/10">
+        <div className="max-w-[1440px] mx-auto">
+          <div className="max-w-[900px]">
+            <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] mb-7 font-medium">
               TREEL MOBILITY INTELLIGENCE PLATFORM
             </div>
-            <h1 className="font-space text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F1F5F9] leading-[1.12]">
+            <h1 className="font-space-grotesk text-4xl sm:text-6xl lg:text-[72px] xl:text-[84px] font-semibold tracking-[-0.03em] text-[#F1F5F9] leading-[1.02] mb-8">
               From tyre monitoring to{" "}
-              <span className="italic text-[#3B82F6]">mobility intelligence</span>.
+              <span className="text-[#3B82F6]">mobility intelligence</span>.
             </h1>
-            <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed max-w-3xl">
+            <p className="font-ibm-plex text-lg sm:text-[20px] leading-[1.55] text-[#94A3B8] max-w-[640px] mb-10">
               The Vehicle Digital Twin platform for enterprise fleets that treat data as operating capital. API-first
               architecture. Native integration with Fleetx, Locus, LogiNext, and custom TMS stacks.
             </p>
-            <div className="flex flex-wrap items-center gap-4 pt-4">
+            <div className="flex flex-wrap items-center gap-4">
               <Link
                 href="/tmip/demo"
-                className="px-6 py-3 rounded-lg font-semibold text-sm transition-all shadow-md inline-flex items-center gap-2 bg-[#3B82F6] text-white hover:bg-[#2563EB]"
+                className="px-7 py-3.5 rounded-[3px] font-space-grotesk font-semibold text-sm bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-lg shadow-[#3B82F6]/20 inline-flex items-center gap-2 transition-all duration-200"
               >
                 Book a demo <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/tmip/whitepapers/roi-fleet-intelligence"
-                className="px-6 py-3 rounded-lg font-semibold text-sm transition-all inline-flex items-center gap-2 border border-white/20 text-[#F1F5F9] hover:bg-white/10"
+                className="px-7 py-3.5 rounded-[3px] font-ibm-plex font-medium text-sm text-[#F1F5F9] border border-[rgba(59,130,246,0.3)] hover:border-[#3B82F6] hover:bg-[#3B82F6]/[0.08] inline-flex items-center transition-all duration-200"
               >
                 Read the whitepaper
               </Link>
@@ -88,55 +100,71 @@ export default function TmipPage() {
       </section>
 
       {/* Metrics band (4 metrics) */}
-      <section className="py-12 border-b border-white/10 bg-[#080E1E]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="space-y-1.5">
-              <div className="font-space text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F1F5F9] tracking-tight">
+      <section className="relative z-10 py-14 sm:py-16 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]/80">
+        <div className="max-w-[1440px] mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+            <div className="border-l-2 border-[#3B82F6] pl-5 space-y-2">
+              <div className="font-space-grotesk text-3xl sm:text-4xl lg:text-[44px] font-semibold text-[#F59E0B] tracking-[-0.03em] leading-none mb-2">
                 68,412
               </div>
-              <div className="text-xs sm:text-sm text-[#94A3B8]">Vehicles under management</div>
-              <div className="text-xs font-mono text-[#10B981] font-medium">+247 this quarter</div>
+              <div className="font-jetbrains text-[10px] sm:text-[11px] tracking-[0.1em] uppercase text-[#94A3B8] leading-[1.4]">
+                Vehicles under management
+              </div>
+              <div className="font-jetbrains text-[10px] sm:text-[11px] text-[#10B981] font-medium mt-1">
+                +247 this quarter
+              </div>
             </div>
 
-            <div className="space-y-1.5">
-              <div className="font-space text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F1F5F9] tracking-tight">
+            <div className="border-l-2 border-[#3B82F6] pl-5 space-y-2">
+              <div className="font-space-grotesk text-3xl sm:text-4xl lg:text-[44px] font-semibold text-[#F59E0B] tracking-[-0.03em] leading-none mb-2">
                 99.7%
               </div>
-              <div className="text-xs sm:text-sm text-[#94A3B8]">Platform uptime, trailing 90 days</div>
-              <div className="text-xs font-mono text-[#10B981] font-medium">+0.3% WoW</div>
+              <div className="font-jetbrains text-[10px] sm:text-[11px] tracking-[0.1em] uppercase text-[#94A3B8] leading-[1.4]">
+                Platform uptime, trailing 90 days
+              </div>
+              <div className="font-jetbrains text-[10px] sm:text-[11px] text-[#10B981] font-medium mt-1">
+                +0.3% WoW
+              </div>
             </div>
 
-            <div className="space-y-1.5">
-              <div className="font-space text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F1F5F9] tracking-tight">
+            <div className="border-l-2 border-[#3B82F6] pl-5 space-y-2">
+              <div className="font-space-grotesk text-3xl sm:text-4xl lg:text-[44px] font-semibold text-[#F59E0B] tracking-[-0.03em] leading-none mb-2">
                 5-7%
               </div>
-              <div className="text-xs sm:text-sm text-[#94A3B8]">Tyre-life extension</div>
-              <div className="text-xs font-mono text-[#F59E0B] font-medium">Fleet median</div>
+              <div className="font-jetbrains text-[10px] sm:text-[11px] tracking-[0.1em] uppercase text-[#94A3B8] leading-[1.4]">
+                Tyre-life extension
+              </div>
+              <div className="font-jetbrains text-[10px] sm:text-[11px] text-[#F59E0B] font-medium mt-1">
+                Fleet median
+              </div>
             </div>
 
-            <div className="space-y-1.5">
-              <div className="font-space text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F1F5F9] tracking-tight">
+            <div className="border-l-2 border-[#3B82F6] pl-5 space-y-2">
+              <div className="font-space-grotesk text-3xl sm:text-4xl lg:text-[44px] font-semibold text-[#F59E0B] tracking-[-0.03em] leading-none mb-2">
                 9 mo
               </div>
-              <div className="text-xs sm:text-sm text-[#94A3B8]">Payback period</div>
-              <div className="text-xs font-mono text-[#3B82F6] font-medium">Median across cohort</div>
+              <div className="font-jetbrains text-[10px] sm:text-[11px] tracking-[0.1em] uppercase text-[#94A3B8] leading-[1.4]">
+                Payback period
+              </div>
+              <div className="font-jetbrains text-[10px] sm:text-[11px] text-[#3B82F6] font-medium mt-1">
+                Median across cohort
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Section · Vehicle Digital Twin in real time */}
-      <section className="py-20 lg:py-24 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10 space-y-10">
-          <div className="max-w-3xl space-y-4">
-            <div className="text-xs font-mono tracking-widest text-[#3B82F6] uppercase font-semibold">
+      <section className="relative z-10 py-20 lg:py-28 px-6 sm:px-10 border-b border-slate-400/10">
+        <div className="max-w-[1440px] mx-auto space-y-12">
+          <div className="max-w-[720px] space-y-4 mb-10 sm:mb-12">
+            <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold">
               THE VEHICLE DIGITAL TWIN
             </div>
-            <h2 className="font-space text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F1F5F9]">
+            <h2 className="font-space-grotesk text-3xl sm:text-4xl lg:text-[48px] font-semibold leading-[1.1] tracking-[-0.03em] text-[#F1F5F9]">
               The Vehicle Digital Twin, in real time.
             </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed">
+            <p className="font-ibm-plex text-base sm:text-[18px] leading-[1.55] text-[#94A3B8]">
               Every truck rendered as a live intelligence surface. Component health, tyre state, fuel signature, driver
               behaviour, predicted maintenance windows. One view, per vehicle, per fleet, per region.
             </p>
@@ -147,13 +175,13 @@ export default function TmipPage() {
       </section>
 
       {/* Section · Built for the fleet operations director */}
-      <section className="py-20 lg:py-24 border-b border-white/10 bg-[#080E1E]/50">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10 space-y-12">
-          <div className="max-w-3xl space-y-4">
-            <div className="text-xs font-mono tracking-widest text-[#3B82F6] uppercase font-semibold">
+      <section className="relative z-10 py-20 lg:py-28 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]/50">
+        <div className="max-w-[1440px] mx-auto space-y-12">
+          <div className="max-w-[720px] space-y-4">
+            <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold">
               CAPABILITIES
             </div>
-            <h2 className="font-space text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F1F5F9]">
+            <h2 className="font-space-grotesk text-3xl sm:text-4xl lg:text-[48px] font-semibold leading-[1.1] tracking-[-0.03em] text-[#F1F5F9]">
               Built for the fleet operations director.
             </h2>
           </div>
@@ -164,14 +192,18 @@ export default function TmipPage() {
               return (
                 <div
                   key={i}
-                  className="p-8 rounded-2xl bg-[#0B1220] border border-white/10 hover:border-[#3B82F6]/50 transition-all group flex flex-col justify-between space-y-6"
+                  className="p-8 rounded-[4px] bg-[#0B1220]/60 border border-slate-400/10 hover:border-[#3B82F6]/30 hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between space-y-6"
                 >
                   <div className="space-y-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6] group-hover:bg-[#3B82F6] group-hover:text-white transition-all">
+                    <div className="w-12 h-12 rounded-[4px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6] group-hover:bg-[#3B82F6] group-hover:text-[#050A17] transition-all">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <h3 className="font-space text-xl font-bold text-[#F1F5F9]">{cap.title}</h3>
-                    <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">{cap.body}</p>
+                    <h3 className="font-space-grotesk text-xl font-semibold text-[#F1F5F9] tracking-[-0.01em]">
+                      {cap.title}
+                    </h3>
+                    <p className="font-ibm-plex text-sm text-[#94A3B8] leading-[1.6]">
+                      {cap.body}
+                    </p>
                   </div>
                 </div>
               );
@@ -181,20 +213,20 @@ export default function TmipPage() {
       </section>
 
       {/* CTA band (final section) */}
-      <section className="py-20 lg:py-24 border-b border-white/10 bg-[#050A17]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-t border-[rgba(59,130,246,0.15)] bg-gradient-to-br from-[#3B82F6]/[0.06] to-[#F59E0B]/[0.04]">
+        <div className="max-w-[1440px] mx-auto">
           <div className="max-w-3xl space-y-6">
-            <h2 className="font-space text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F1F5F9]">
+            <h2 className="font-space-grotesk text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.02em] text-[#F1F5F9]">
               See TMIP on your fleet.
             </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed">
+            <p className="font-ibm-plex text-base sm:text-lg text-[#94A3B8] leading-[1.6]">
               A 30-minute demo with a Treel solutions engineer, followed by a 14-day pilot on a subset of your fleet. If
               the payback math does not work for you, we do not sell into it.
             </p>
             <div className="pt-4">
               <Link
                 href="/tmip/demo"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all shadow-md bg-[#3B82F6] text-white hover:bg-[#2563EB]"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-[3px] font-space-grotesk font-semibold text-sm sm:text-base bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-lg shadow-[#3B82F6]/20 transition-all duration-200"
               >
                 Book a demo <ArrowRight className="w-4 h-4" />
               </Link>

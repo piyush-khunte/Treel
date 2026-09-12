@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Clock, User, Rss } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 interface InsightArticle {
   id: string;
@@ -96,16 +96,16 @@ export function InsightsClient() {
   return (
     <div className="space-y-12">
       {/* Category Filter Chips */}
-      <div className="flex flex-wrap items-center gap-2 pb-4 border-b border-white/10">
-        <span className="text-xs font-mono text-[#94A3B8] uppercase mr-2">Filter Category:</span>
+      <div className="flex flex-wrap items-center gap-2 pb-4 border-b border-slate-400/10">
+        <span className="text-xs font-jetbrains text-[#94A3B8] uppercase mr-2 font-semibold">Filter Category:</span>
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-ibm transition-all ${
+            className={`px-3 py-1 rounded-[2px] text-xs font-jetbrains transition-all cursor-pointer ${
               selectedCategory === cat
                 ? "bg-[#3B82F6] text-white font-medium shadow-sm"
-                : "bg-white/[0.03] text-[#94A3B8] hover:text-[#F1F5F9] hover:bg-white/[0.08] border border-white/5"
+                : "bg-white/[0.03] text-[#94A3B8] hover:text-[#F1F5F9] hover:bg-white/[0.08] border border-slate-400/10"
             }`}
           >
             {cat}
@@ -118,30 +118,31 @@ export function InsightsClient() {
         {filteredArticles.map((article) => (
           <div
             key={article.id}
-            className="p-8 rounded-2xl bg-[#0B1220] border border-white/10 hover:border-[#3B82F6]/50 transition-all flex flex-col justify-between space-y-6 group"
+            className="p-8 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between space-y-6 group"
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-[#3B82F6] font-semibold">
+                <span className="text-[11px] font-jetbrains uppercase tracking-wider text-[#3B82F6] font-semibold">
                   {article.category}
                 </span>
-                <span className="text-xs font-mono text-[#64748B]">{article.readTime}</span>
+                <span className="text-xs font-jetbrains text-[#64748B]">{article.readTime}</span>
               </div>
 
-              <h3 className="font-space text-xl font-bold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors leading-snug">
+              <h3 className="font-space-grotesk text-xl font-bold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors leading-snug">
                 {article.title}
               </h3>
 
-              <p className="text-sm text-[#94A3B8] leading-relaxed line-clamp-3">{article.excerpt}</p>
+              <p className="text-sm text-[#94A3B8] font-ibm-plex leading-relaxed line-clamp-3">{article.excerpt}</p>
             </div>
 
-            <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-[#94A3B8]">
+            <div className="pt-4 border-t border-slate-400/10 flex items-center justify-between text-xs font-jetbrains text-[#94A3B8]">
               <span>{article.date}</span>
               <Link
                 href="/tmip/whitepapers/roi-fleet-intelligence"
                 className="text-[#3B82F6] font-semibold group-hover:text-white flex items-center gap-1 transition-colors"
               >
-                Read article <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                <span>Read article</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>

@@ -52,12 +52,12 @@ export function WhitepaperForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border border-[#10B981]/30 bg-[#0B1220] p-8 text-center space-y-4">
-        <div className="w-12 h-12 rounded-full bg-[#10B981]/20 border border-[#10B981]/40 flex items-center justify-center text-[#10B981] mx-auto">
+      <div className="rounded-[4px] border border-blue-500/30 bg-[#0B1220] p-8 text-center space-y-4">
+        <div className="w-12 h-12 rounded-[3px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6] mx-auto">
           <CheckCircle2 className="w-6 h-6" />
         </div>
-        <h3 className="font-space text-2xl font-bold text-[#F1F5F9]">Check your inbox.</h3>
-        <p className="text-sm sm:text-base text-[#94A3B8] max-w-md mx-auto leading-relaxed">
+        <h3 className="font-space-grotesk text-2xl font-bold text-[#F1F5F9]">Check your inbox.</h3>
+        <p className="text-sm sm:text-base text-[#94A3B8] max-w-md mx-auto leading-relaxed font-ibm-plex">
           We&apos;ve emailed the full 28-page whitepaper to <strong className="text-[#F1F5F9]">{formData.email}</strong>. If you
           don&apos;t see it in a few minutes, check your spam folder.
         </p>
@@ -66,18 +66,18 @@ export function WhitepaperForm() {
   }
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-[#0B1220] p-6 sm:p-8 shadow-xl">
-      <div className="flex items-center gap-2 text-xs font-mono text-[#3B82F6] uppercase tracking-wider mb-3">
+    <div className="rounded-[4px] border border-slate-400/10 bg-[#0B1220]/80 p-6 sm:p-8 shadow-xl">
+      <div className="flex items-center gap-2 text-xs font-jetbrains text-[#3B82F6] uppercase tracking-wider mb-3 font-semibold">
         <Lock className="w-3.5 h-3.5" />
         <span>Gated Industry Report · Instant Access</span>
       </div>
-      <h3 className="font-space text-2xl font-bold text-[#F1F5F9] mb-2">Unlock the full paper</h3>
-      <p className="text-sm text-[#94A3B8] mb-6 leading-relaxed">
+      <h3 className="font-space-grotesk text-2xl font-bold text-[#F1F5F9] mb-2">Unlock the full paper</h3>
+      <p className="text-sm text-[#94A3B8] mb-6 leading-relaxed font-ibm-plex">
         Enter your details to receive the complete whitepaper by email. No spam. Unsubscribe anytime.
       </p>
 
       {error && (
-        <div className="mb-6 p-3.5 rounded-lg bg-rose-500/10 border border-rose-500/30 flex items-center gap-2.5 text-xs text-rose-300">
+        <div className="mb-6 p-3.5 rounded-[3px] bg-rose-500/10 border border-rose-500/30 flex items-center gap-2.5 text-xs text-rose-300">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{error}</span>
         </div>
@@ -85,7 +85,7 @@ export function WhitepaperForm() {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-xs font-mono text-[#94A3B8] mb-1.5 uppercase tracking-wide">
+          <label className="block text-xs font-jetbrains text-[#94A3B8] mb-1.5 uppercase tracking-wide">
             Full name <span className="text-[#3B82F6]">*</span>
           </label>
           <input
@@ -94,12 +94,12 @@ export function WhitepaperForm() {
             placeholder="e.g. Rajesh Sharma"
             value={formData.fullName}
             onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-            className="w-full px-4 py-2.5 rounded-lg bg-[#050A17] border border-white/10 text-sm text-[#F1F5F9] placeholder-white/20 focus:outline-none focus:border-[#3B82F6]"
+            className="w-full px-4 py-2.5 rounded-[3px] bg-[#050A17] border border-slate-400/20 text-sm text-[#F1F5F9] placeholder-slate-500 focus:outline-none focus:border-[#3B82F6]"
           />
         </div>
 
         <div>
-          <label className="block text-xs font-mono text-[#94A3B8] mb-1.5 uppercase tracking-wide">
+          <label className="block text-xs font-jetbrains text-[#94A3B8] mb-1.5 uppercase tracking-wide">
             Work email <span className="text-[#3B82F6]">*</span>
           </label>
           <input
@@ -108,14 +108,14 @@ export function WhitepaperForm() {
             placeholder="name@company.com"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="w-full px-4 py-2.5 rounded-lg bg-[#050A17] border border-white/10 text-sm text-[#F1F5F9] placeholder-white/20 focus:outline-none focus:border-[#3B82F6]"
+            className="w-full px-4 py-2.5 rounded-[3px] bg-[#050A17] border border-slate-400/20 text-sm text-[#F1F5F9] placeholder-slate-500 focus:outline-none focus:border-[#3B82F6]"
           />
-          <p className="text-[11px] text-[#64748B] mt-1">Please use your business email address.</p>
+          <p className="text-[11px] text-[#64748B] mt-1 font-ibm-plex">Please use your business email address.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-mono text-[#94A3B8] mb-1.5 uppercase tracking-wide">
+            <label className="block text-xs font-jetbrains text-[#94A3B8] mb-1.5 uppercase tracking-wide">
               Company <span className="text-[#3B82F6]">*</span>
             </label>
             <input
@@ -124,16 +124,16 @@ export function WhitepaperForm() {
               placeholder="e.g. Apex Logistics"
               value={formData.company}
               onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-lg bg-[#050A17] border border-white/10 text-sm text-[#F1F5F9] placeholder-white/20 focus:outline-none focus:border-[#3B82F6]"
+              className="w-full px-4 py-2.5 rounded-[3px] bg-[#050A17] border border-slate-400/20 text-sm text-[#F1F5F9] placeholder-slate-500 focus:outline-none focus:border-[#3B82F6]"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-mono text-[#94A3B8] mb-1.5 uppercase tracking-wide">Role</label>
+            <label className="block text-xs font-jetbrains text-[#94A3B8] mb-1.5 uppercase tracking-wide">Role</label>
             <select
               value={formData.role}
               onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-lg bg-[#050A17] border border-white/10 text-sm text-[#F1F5F9] focus:outline-none focus:border-[#3B82F6]"
+              className="w-full px-4 py-2.5 rounded-[3px] bg-[#050A17] border border-slate-400/20 text-sm text-[#F1F5F9] focus:outline-none focus:border-[#3B82F6]"
             >
               <option value="Fleet Operations Director">Fleet Operations Director</option>
               <option value="CFO">CFO</option>
@@ -151,7 +151,7 @@ export function WhitepaperForm() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-mono text-[#94A3B8] mb-1.5 uppercase tracking-wide">
+            <label className="block text-xs font-jetbrains text-[#94A3B8] mb-1.5 uppercase tracking-wide">
               Phone <span className="text-[#64748B]">(Optional)</span>
             </label>
             <input
@@ -159,18 +159,18 @@ export function WhitepaperForm() {
               placeholder="+91 98765 43210"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-lg bg-[#050A17] border border-white/10 text-sm text-[#F1F5F9] placeholder-white/20 focus:outline-none focus:border-[#3B82F6]"
+              className="w-full px-4 py-2.5 rounded-[3px] bg-[#050A17] border border-slate-400/20 text-sm text-[#F1F5F9] placeholder-slate-500 focus:outline-none focus:border-[#3B82F6]"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-mono text-[#94A3B8] mb-1.5 uppercase tracking-wide">
+            <label className="block text-xs font-jetbrains text-[#94A3B8] mb-1.5 uppercase tracking-wide">
               Fleet size <span className="text-[#64748B]">(Optional)</span>
             </label>
             <select
               value={formData.fleetSize}
               onChange={(e) => setFormData({ ...formData, fleetSize: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-lg bg-[#050A17] border border-white/10 text-sm text-[#F1F5F9] focus:outline-none focus:border-[#3B82F6]"
+              className="w-full px-4 py-2.5 rounded-[3px] bg-[#050A17] border border-slate-400/20 text-sm text-[#F1F5F9] focus:outline-none focus:border-[#3B82F6]"
             >
               <option value="Under 25">Under 25</option>
               <option value="25-100">25-100</option>
@@ -188,9 +188,9 @@ export function WhitepaperForm() {
               required
               checked={formData.consent}
               onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
-              className="mt-1 rounded border-white/20 bg-[#050A17] text-[#3B82F6] focus:ring-[#3B82F6]"
+              className="mt-1 rounded border-slate-400/30 bg-[#050A17] text-[#3B82F6] focus:ring-[#3B82F6]"
             />
-            <span className="text-xs text-[#94A3B8] leading-relaxed">
+            <span className="text-xs text-[#94A3B8] leading-relaxed font-ibm-plex">
               I agree to receive the requested whitepaper and periodic intelligence research updates from Treel. I can
               unsubscribe at any time.
             </span>
@@ -200,9 +200,10 @@ export function WhitepaperForm() {
         <div className="pt-3">
           <button
             type="submit"
-            className="w-full py-3 px-6 rounded-lg font-semibold text-sm transition-all shadow-md bg-[#3B82F6] text-white hover:bg-[#2563EB] flex items-center justify-center gap-2"
+            className="w-full py-3.5 px-6 rounded-[3px] font-semibold text-sm transition-all shadow-md bg-[#3B82F6] hover:bg-[#2563EB] text-white flex items-center justify-center gap-2 cursor-pointer"
           >
-            Download full paper (PDF) <ArrowRight className="w-4 h-4" />
+            <span>Download full paper (PDF)</span>
+            <ArrowRight className="w-4 h-4" />
           </button>
         </div>
       </form>

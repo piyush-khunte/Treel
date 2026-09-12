@@ -25,14 +25,14 @@ export function TwinInteractive() {
   const [selectedSystem, setSelectedSystem] = useState("all");
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-[#0B1220] p-6 lg:p-8 shadow-2xl overflow-hidden">
+    <div className="rounded-[6px] border border-[rgba(59,130,246,0.15)] bg-[rgba(59,130,246,0.03)] p-6 lg:p-8 shadow-2xl overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         {/* Sidebar system selector */}
-        <div className="lg:col-span-3 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10 pb-6 lg:pb-0 lg:pr-6">
+        <div className="lg:col-span-3 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-400/10 pb-6 lg:pb-0 lg:pr-6">
           <div>
-            <div className="text-[11px] font-mono tracking-widest text-[#94A3B8] uppercase font-semibold mb-4 flex items-center justify-between">
+            <div className="text-[10px] font-jetbrains tracking-[0.1em] text-[#64748B] uppercase font-semibold mb-4 flex items-center justify-between">
               <span>System View</span>
-              <span className="inline-flex items-center gap-1 text-[#10B981] text-[10px]">
+              <span className="inline-flex items-center gap-1 text-[#10B981] text-[10px] font-jetbrains">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse"></span>
                 LIVE
               </span>
@@ -45,9 +45,9 @@ export function TwinInteractive() {
                   <button
                     key={s.id}
                     onClick={() => setSelectedSystem(s.id)}
-                    className={`w-full text-left px-3.5 py-2.5 rounded-lg text-xs font-ibm flex items-center justify-between transition-all ${
+                    className={`w-full text-left px-3.5 py-2.5 rounded-[3px] text-xs font-ibm-plex flex items-center justify-between transition-all ${
                       isActive
-                        ? "bg-[#3B82F6]/15 border border-[#3B82F6]/40 text-[#F1F5F9] font-medium shadow-sm"
+                        ? "bg-[#3B82F6]/15 border border-[#3B82F6]/40 text-[#3B82F6] font-semibold shadow-sm"
                         : "text-[#94A3B8] hover:text-[#F1F5F9] hover:bg-white/[0.03] border border-transparent"
                     }`}
                   >
@@ -60,23 +60,23 @@ export function TwinInteractive() {
                       <Icon className={`w-3.5 h-3.5 ${isActive ? "text-[#3B82F6]" : "text-[#64748B]"}`} />
                       <span>{s.name}</span>
                     </span>
-                    <span className="font-mono text-[10px] text-[#64748B]">{s.count}</span>
+                    <span className="font-jetbrains text-[10px] text-[#64748B]">{s.count}</span>
                   </button>
                 );
               })}
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-white/5 text-[11px] text-[#64748B] font-mono">
+          <div className="mt-6 pt-4 border-t border-slate-400/10 text-[11px] text-[#64748B] font-jetbrains">
             Telemetry latency: <span className="text-[#10B981]">180ms</span> · 5G Edge
           </div>
         </div>
 
         {/* Central visualization (truck rendered with sensor overlay dots) */}
-        <div className="lg:col-span-6 flex flex-col items-center justify-center relative min-h-[300px] lg:min-h-[360px] bg-[#050A17]/70 rounded-xl border border-white/5 p-4 sm:p-8">
+        <div className="lg:col-span-6 flex flex-col items-center justify-center relative min-h-[300px] lg:min-h-[360px] bg-[#050A17]/80 rounded-[4px] border border-slate-400/10 p-4 sm:p-8">
           {/* Subtle grid background */}
           <div
-            className="absolute inset-0 opacity-[0.07] pointer-events-none"
+            className="absolute inset-0 opacity-[0.05] pointer-events-none"
             style={{
               backgroundImage: "radial-gradient(circle at 1px 1px, #3B82F6 1px, transparent 0)",
               backgroundSize: "20px 20px",
@@ -185,7 +185,7 @@ export function TwinInteractive() {
               )}
             </svg>
 
-            <div className="mt-4 flex items-center justify-between px-2 text-[11px] font-mono text-[#94A3B8]">
+            <div className="mt-4 flex items-center justify-between px-2 text-[11px] font-jetbrains text-[#94A3B8]">
               <span>VIN: <strong className="text-[#F1F5F9]">MH-12-TR-9418</strong></span>
               <span className="text-[#3B82F6]">18-WHEELER TRACTOR</span>
               <span className="text-[#10B981]">OPERATIONAL</span>
@@ -194,51 +194,51 @@ export function TwinInteractive() {
         </div>
 
         {/* Right legend (Status label + counts: Excellent 247, Good 1,584, Warning 14, Critical 2) */}
-        <div className="lg:col-span-3 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-white/10 pt-6 lg:pt-0 lg:pl-6">
+        <div className="lg:col-span-3 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-slate-400/10 pt-6 lg:pt-0 lg:pl-6">
           <div>
-            <div className="text-[11px] font-mono tracking-widest text-[#94A3B8] uppercase font-semibold mb-4">
+            <div className="text-[10px] font-jetbrains tracking-[0.1em] text-[#64748B] uppercase font-semibold mb-4">
               Status
             </div>
 
             <div className="space-y-3">
-              <div className="p-3 rounded-lg bg-white/[0.02] border border-white/5 flex items-center justify-between">
+              <div className="p-3 rounded-[3px] bg-white/[0.02] border border-white/5 flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] shadow-[0_0_8px_#10B981]" />
-                  <span className="text-xs text-[#F1F5F9] font-medium">Excellent</span>
+                  <span className="text-xs text-[#F1F5F9] font-ibm-plex font-medium">Excellent</span>
                 </div>
-                <span className="font-mono text-sm font-semibold text-[#F1F5F9]">247</span>
+                <span className="font-jetbrains text-sm font-semibold text-[#F1F5F9]">247</span>
               </div>
 
-              <div className="p-3 rounded-lg bg-white/[0.02] border border-white/5 flex items-center justify-between">
+              <div className="p-3 rounded-[3px] bg-white/[0.02] border border-white/5 flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#3B82F6] shadow-[0_0_8px_#3B82F6]" />
-                  <span className="text-xs text-[#F1F5F9] font-medium">Good</span>
+                  <span className="text-xs text-[#F1F5F9] font-ibm-plex font-medium">Good</span>
                 </div>
-                <span className="font-mono text-sm font-semibold text-[#F1F5F9]">1,584</span>
+                <span className="font-jetbrains text-sm font-semibold text-[#F1F5F9]">1,584</span>
               </div>
 
-              <div className="p-3 rounded-lg bg-white/[0.02] border border-white/5 flex items-center justify-between">
+              <div className="p-3 rounded-[3px] bg-white/[0.02] border border-white/5 flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B] shadow-[0_0_8px_#F59E0B]" />
-                  <span className="text-xs text-[#F1F5F9] font-medium">Warning</span>
+                  <span className="text-xs text-[#F1F5F9] font-ibm-plex font-medium">Warning</span>
                 </div>
-                <span className="font-mono text-sm font-semibold text-[#F59E0B]">14</span>
+                <span className="font-jetbrains text-sm font-semibold text-[#F59E0B]">14</span>
               </div>
 
-              <div className="p-3 rounded-lg bg-white/[0.02] border border-white/5 flex items-center justify-between">
+              <div className="p-3 rounded-[3px] bg-white/[0.02] border border-white/5 flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444] shadow-[0_0_8px_#EF4444]" />
-                  <span className="text-xs text-[#F1F5F9] font-medium">Critical</span>
+                  <span className="text-xs text-[#F1F5F9] font-ibm-plex font-medium">Critical</span>
                 </div>
-                <span className="font-mono text-sm font-semibold text-[#EF4444]">2</span>
+                <span className="font-jetbrains text-sm font-semibold text-[#EF4444]">2</span>
               </div>
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-white/5 space-y-2">
-            <div className="text-[11px] text-[#94A3B8] flex justify-between">
+          <div className="mt-6 pt-4 border-t border-slate-400/10 space-y-2">
+            <div className="text-[11px] font-ibm-plex text-[#94A3B8] flex justify-between">
               <span>Active Twin Coverage:</span>
-              <strong className="text-[#F1F5F9] font-mono">1,847 / 1,847</strong>
+              <strong className="text-[#F1F5F9] font-jetbrains">1,847 / 1,847</strong>
             </div>
             <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
               <div className="bg-[#3B82F6] h-full rounded-full" style={{ width: "99.1%" }} />

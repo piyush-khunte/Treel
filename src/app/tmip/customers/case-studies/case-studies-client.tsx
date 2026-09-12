@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Filter, Truck, Bus, HardHat, Pickaxe, Award } from "lucide-react";
+import { ArrowRight, Filter } from "lucide-react";
 
 interface CaseStudy {
   id: string;
@@ -102,8 +102,8 @@ export function CaseStudiesClient() {
   return (
     <div className="space-y-12">
       {/* Filter Controls */}
-      <div className="p-6 rounded-2xl bg-[#0B1220] border border-white/10 space-y-6">
-        <div className="flex items-center gap-2 text-xs font-mono text-[#3B82F6] uppercase tracking-wider font-semibold">
+      <div className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10 space-y-6">
+        <div className="flex items-center gap-2 text-xs font-jetbrains text-[#3B82F6] uppercase tracking-wider font-semibold">
           <Filter className="w-3.5 h-3.5" />
           <span>Filter Case Studies</span>
         </div>
@@ -111,16 +111,16 @@ export function CaseStudiesClient() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Industry Filter */}
           <div className="space-y-2">
-            <label className="text-xs font-mono text-[#94A3B8] uppercase">Industry</label>
+            <label className="text-xs font-jetbrains text-[#94A3B8] uppercase">Industry</label>
             <div className="flex flex-wrap gap-2">
               {industries.map((ind) => (
                 <button
                   key={ind}
                   onClick={() => setSelectedIndustry(ind)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-ibm transition-all ${
+                  className={`px-3 py-1.5 rounded-[3px] text-xs font-ibm-plex transition-all ${
                     selectedIndustry === ind
                       ? "bg-[#3B82F6] text-white font-medium shadow-sm"
-                      : "bg-white/[0.03] text-[#94A3B8] hover:text-[#F1F5F9] hover:bg-white/[0.06] border border-white/5"
+                      : "bg-white/[0.03] text-[#94A3B8] hover:text-[#F1F5F9] hover:bg-white/[0.06] border border-slate-400/10"
                   }`}
                 >
                   {ind}
@@ -131,16 +131,16 @@ export function CaseStudiesClient() {
 
           {/* Fleet Size Filter */}
           <div className="space-y-2">
-            <label className="text-xs font-mono text-[#94A3B8] uppercase">Fleet Size</label>
+            <label className="text-xs font-jetbrains text-[#94A3B8] uppercase">Fleet Size</label>
             <div className="flex flex-wrap gap-2">
               {fleetSizes.map((size) => (
                 <button
                   key={size}
                   onClick={() => setSelectedFleetSize(size)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-ibm transition-all ${
+                  className={`px-3 py-1.5 rounded-[3px] text-xs font-ibm-plex transition-all ${
                     selectedFleetSize === size
                       ? "bg-[#3B82F6] text-white font-medium shadow-sm"
-                      : "bg-white/[0.03] text-[#94A3B8] hover:text-[#F1F5F9] hover:bg-white/[0.06] border border-white/5"
+                      : "bg-white/[0.03] text-[#94A3B8] hover:text-[#F1F5F9] hover:bg-white/[0.06] border border-slate-400/10"
                   }`}
                 >
                   {size}
@@ -153,50 +153,50 @@ export function CaseStudiesClient() {
 
       {/* Featured Case Study Card at top */}
       {selectedIndustry === "All" && selectedFleetSize === "All" && (
-        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[#0B1220] to-[#0D182E] border border-[#3B82F6]/30 shadow-2xl relative overflow-hidden group">
+        <div className="p-8 sm:p-10 rounded-[4px] bg-gradient-to-br from-[#0B1220] to-[#0D182E] border border-[#3B82F6]/30 shadow-2xl relative overflow-hidden group">
           <div className="flex flex-wrap items-center gap-3 mb-4">
-            <span className="bg-[#3B82F6] text-white text-[11px] font-mono font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+            <span className="bg-[#3B82F6] text-white text-[11px] font-jetbrains font-bold px-3 py-1 rounded-[2px] uppercase tracking-wider">
               FEATURED CASE STUDY
             </span>
-            <span className="bg-white/10 text-[#F1F5F9] text-xs font-mono px-3 py-1 rounded-full">
+            <span className="bg-white/10 text-[#F1F5F9] text-xs font-jetbrains px-3 py-1 rounded-[2px]">
               Logistics
             </span>
-            <span className="bg-white/10 text-[#94A3B8] text-xs font-mono px-3 py-1 rounded-full">
+            <span className="bg-white/10 text-[#94A3B8] text-xs font-jetbrains px-3 py-1 rounded-[2px]">
               1,000+ Vehicles
             </span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-4">
-              <h2 className="font-space text-3xl sm:text-4xl font-bold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors">
+              <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors">
                 1,000 trucks. 12 months. What changed.
               </h2>
-              <p className="text-base text-[#94A3B8] leading-relaxed max-w-2xl">
+              <p className="text-base text-[#94A3B8] leading-relaxed max-w-2xl font-ibm-plex">
                 The full operational story of a large logistics fleet running TMIP for one year. Deployment timeline,
                 operating changes, measured outcomes, and what the fleet operator does differently now.
               </p>
               <div className="pt-2">
                 <Link
                   href="/tmip/customers/case-studies/1000-truck-case-study"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all shadow-md bg-[#3B82F6] text-white hover:bg-[#2563EB]"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[3px] font-semibold text-sm transition-all shadow-md bg-[#3B82F6] text-white hover:bg-[#2563EB]"
                 >
                   Read the study <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
 
-            <div className="lg:col-span-4 p-6 rounded-2xl bg-[#050A17]/80 border border-white/10 space-y-4">
+            <div className="lg:col-span-4 p-6 rounded-[4px] bg-[#050A17]/80 border border-slate-400/10 space-y-4">
               <div>
-                <div className="font-space text-3xl font-bold text-[#10B981]">5.2% Fuel</div>
-                <div className="text-xs text-[#94A3B8]">Fleetwide Fuel Consumption Reduction</div>
+                <div className="font-space-grotesk text-3xl font-bold text-[#10B981]">5.2% Fuel</div>
+                <div className="text-xs text-[#94A3B8] font-ibm-plex">Fleetwide Fuel Consumption Reduction</div>
               </div>
-              <div className="border-t border-white/5 pt-3">
-                <div className="font-space text-3xl font-bold text-[#3B82F6]">6.8% Tyre Life</div>
-                <div className="text-xs text-[#94A3B8]">Median Tread Life Extension</div>
+              <div className="border-t border-slate-400/10 pt-3">
+                <div className="font-space-grotesk text-3xl font-bold text-[#3B82F6]">6.8% Tyre Life</div>
+                <div className="text-xs text-[#94A3B8] font-ibm-plex">Median Tread Life Extension</div>
               </div>
-              <div className="border-t border-white/5 pt-3">
-                <div className="font-space text-3xl font-bold text-[#F59E0B]">34% Downtime</div>
-                <div className="text-xs text-[#94A3B8]">Drop in Unscheduled Roadside Breakdowns</div>
+              <div className="border-t border-slate-400/10 pt-3">
+                <div className="font-space-grotesk text-3xl font-bold text-[#F59E0B]">34% Downtime</div>
+                <div className="text-xs text-[#94A3B8] font-ibm-plex">Drop in Unscheduled Roadside Breakdowns</div>
               </div>
             </div>
           </div>
@@ -205,19 +205,19 @@ export function CaseStudiesClient() {
 
       {/* Case Study Grid */}
       <div className="space-y-6">
-        <h3 className="font-space text-xl font-bold text-[#F1F5F9]">
+        <h3 className="font-space-grotesk text-xl font-bold text-[#F1F5F9]">
           Case Studies ({filteredStudies.length})
         </h3>
 
         {filteredStudies.length === 0 ? (
-          <div className="p-12 text-center rounded-2xl bg-[#0B1220] border border-white/10 space-y-3">
-            <p className="text-base text-[#94A3B8]">No case studies match the selected filters.</p>
+          <div className="p-12 text-center rounded-[4px] bg-[#0B1220] border border-slate-400/10 space-y-3">
+            <p className="text-base text-[#94A3B8] font-ibm-plex">No case studies match the selected filters.</p>
             <button
               onClick={() => {
                 setSelectedIndustry("All");
                 setSelectedFleetSize("All");
               }}
-              className="text-xs font-mono text-[#3B82F6] underline"
+              className="text-xs font-jetbrains text-[#3B82F6] underline"
             >
               Reset filters
             </button>
@@ -227,33 +227,33 @@ export function CaseStudiesClient() {
             {filteredStudies.map((study) => (
               <div
                 key={study.id}
-                className="p-8 rounded-2xl bg-[#0B1220] border border-white/10 hover:border-[#3B82F6]/50 transition-all flex flex-col justify-between space-y-6 group"
+                className="p-8 rounded-[4px] bg-[#0B1220] border border-slate-400/10 hover:border-[#3B82F6]/50 transition-all flex flex-col justify-between space-y-6 group"
               >
                 <div className="space-y-4">
                   <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-[#3B82F6] font-semibold">
+                    <span className="text-[11px] font-jetbrains uppercase tracking-wider text-[#3B82F6] font-semibold">
                       {study.industry}
                     </span>
-                    <span className="text-[11px] font-mono text-[#64748B]">·</span>
-                    <span className="text-[11px] font-mono text-[#94A3B8]">{study.fleetSize}</span>
+                    <span className="text-[11px] font-jetbrains text-[#64748B]">·</span>
+                    <span className="text-[11px] font-jetbrains text-[#94A3B8]">{study.fleetSize}</span>
                   </div>
 
-                  <h4 className="font-space text-xl font-bold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors leading-snug">
+                  <h4 className="font-space-grotesk text-xl font-bold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors leading-snug">
                     {study.headline}
                   </h4>
 
-                  <div className="p-3 rounded-lg bg-white/[0.02] border border-white/5 space-y-1">
-                    <div className="font-space text-lg font-bold text-[#10B981]">{study.metricValue}</div>
-                    <div className="text-[11px] text-[#94A3B8] font-mono">{study.metricLabel}</div>
+                  <div className="p-3 rounded-[3px] bg-white/[0.02] border border-slate-400/10 space-y-1">
+                    <div className="font-space-grotesk text-lg font-bold text-[#10B981]">{study.metricValue}</div>
+                    <div className="text-[11px] text-[#94A3B8] font-jetbrains">{study.metricLabel}</div>
                   </div>
 
-                  <p className="text-sm text-[#94A3B8] leading-relaxed line-clamp-3">{study.excerpt}</p>
+                  <p className="text-sm text-[#94A3B8] leading-relaxed line-clamp-3 font-ibm-plex">{study.excerpt}</p>
                 </div>
 
-                <div className="pt-2 border-t border-white/5">
+                <div className="pt-2 border-t border-slate-400/10">
                   <Link
                     href={`/tmip/customers/case-studies/${study.slug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-[#3B82F6] group-hover:text-white transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-jetbrains font-semibold text-[#3B82F6] group-hover:text-white transition-colors"
                   >
                     Read the study <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </Link>

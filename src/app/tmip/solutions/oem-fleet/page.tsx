@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Award, Factory, Cpu, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Award, Factory, Cpu, ShieldCheck, CheckCircle2, ChevronRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "OEM Fleet Solutions  ·  TMIP",
@@ -42,18 +42,44 @@ const oemPillars = [
 
 export default function TmipSolutionsOemFleetPage() {
   return (
-    <div className="bg-[#050A17] text-[#F1F5F9] font-ibm">
+    <div className="relative bg-[#050A17] text-[#F1F5F9] font-ibm-plex overflow-x-hidden min-h-screen">
+      {/* Subtle Blueprint Grid: 60px x 60px rgba(59,130,246,0.04) */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-60 z-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px)
+          `,
+          backgroundSize: "60px 60px",
+        }}
+      />
+
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]">
+        <div className="max-w-[1440px] mx-auto">
           <div className="max-w-4xl space-y-6">
-            <div className="inline-flex items-center gap-2 border border-[#3B82F6]/30 bg-[#3B82F6]/10 px-3.5 py-1 rounded-full text-xs font-mono tracking-widest text-[#3B82F6] uppercase font-semibold">
+            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-4">
+              <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
+                TMIP
+              </Link>
+              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
+              <Link href="/tmip/solutions" className="hover:text-[#F1F5F9] transition-colors">
+                Solutions
+              </Link>
+              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
+              <span className="text-[#3B82F6]">OEM Fleet</span>
+            </nav>
+
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[3px] bg-[#3B82F6]/10 border border-[#3B82F6]/30 text-[#3B82F6] font-jetbrains text-xs tracking-wider uppercase font-semibold">
               SOLUTIONS · OEM FLEET
             </div>
-            <h1 className="font-space text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F1F5F9] leading-[1.12]">
+
+            <h1 className="font-space-grotesk text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F1F5F9] leading-[1.12]">
               TMIP at the vehicle-delivery stage.
             </h1>
-            <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed max-w-3xl">
+
+            <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed max-w-3xl font-ibm-plex">
               For commercial vehicle OEMs — Tata, Mahindra, and others — TMIP integrates at the point of vehicle delivery.
               Fleet buyers receive mobility intelligence as part of the vehicle, co-branded, ready to run.
             </p>
@@ -62,18 +88,18 @@ export default function TmipSolutionsOemFleetPage() {
       </section>
 
       {/* Section · What OEM integration looks like */}
-      <section className="py-20 lg:py-24 border-b border-white/10 bg-[#080E1E]/50">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10 space-y-12">
+      <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]/50">
+        <div className="max-w-[1440px] mx-auto space-y-12">
           <div className="max-w-3xl space-y-4">
-            <h2 className="font-space text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
+            <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               TMIP as an OEM offering.
             </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed">
+            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex">
               Commercial vehicle OEMs increasingly offer connected vehicle solutions as part of their fleet buyer
               proposition. TMIP is available for OEM integration under a co-branded arrangement, where Treel provides the
               mobility intelligence platform and the OEM manages the customer relationship.
             </p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed">
+            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex">
               Integration happens at manufacturing or pre-delivery. Sensors are fitted, the Vehicle Digital Twin is
               registered, and the fleet buyer receives a connected vehicle from day one of ownership.
             </p>
@@ -85,14 +111,14 @@ export default function TmipSolutionsOemFleetPage() {
               return (
                 <div
                   key={i}
-                  className="p-6 sm:p-7 rounded-2xl bg-[#0B1220] border border-white/10 space-y-4 flex flex-col justify-between"
+                  className="p-6 sm:p-7 rounded-[4px] bg-[#0B1220] border border-slate-400/10 space-y-4 flex flex-col justify-between"
                 >
                   <div className="space-y-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6]">
+                    <div className="w-10 h-10 rounded-[4px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6]">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="font-space text-lg font-bold text-[#F1F5F9]">{p.title}</h3>
-                    <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">{p.desc}</p>
+                    <h3 className="font-space-grotesk text-lg font-bold text-[#F1F5F9]">{p.title}</h3>
+                    <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed font-ibm-plex">{p.desc}</p>
                   </div>
                 </div>
               );
@@ -102,17 +128,17 @@ export default function TmipSolutionsOemFleetPage() {
       </section>
 
       {/* Section · Partnership model */}
-      <section className="py-20 lg:py-24 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10">
+        <div className="max-w-[1440px] mx-auto">
           <div className="max-w-3xl space-y-6">
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-[#F59E0B] uppercase tracking-wider font-semibold">
+            <div className="inline-flex items-center gap-2 text-xs font-jetbrains text-[#F59E0B] uppercase tracking-wider font-semibold">
               <CheckCircle2 className="w-4 h-4" />
               <span>Direct Executive Partnership</span>
             </div>
-            <h2 className="font-space text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
+            <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               How we work with OEM partners.
             </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed">
+            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex">
               OEM engagements are handled directly by Treel&apos;s founder and executive team. This is not a
               self-service offering. Every OEM partnership is structured around the OEM&apos;s product roadmap,
               distribution model, and customer relationships.
@@ -122,20 +148,20 @@ export default function TmipSolutionsOemFleetPage() {
       </section>
 
       {/* CTA band */}
-      <section className="py-20 lg:py-24 border-b border-white/10 bg-[#080E1E]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]">
+        <div className="max-w-[1440px] mx-auto">
           <div className="max-w-3xl space-y-6">
-            <h2 className="font-space text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F1F5F9]">
+            <h2 className="font-space-grotesk text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F1F5F9]">
               Explore an OEM partnership.
             </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed">
+            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex">
               Contact our executive partnerships group to discuss factory-line integration, warranty telemetry programs,
               and joint go-to-market strategies.
             </p>
             <div className="pt-4">
               <Link
                 href="/contact?subject=Partners"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all shadow-md bg-[#3B82F6] text-white hover:bg-[#2563EB]"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[3px] font-semibold text-sm transition-all shadow-md bg-[#3B82F6] text-white hover:bg-[#2563EB]"
               >
                 Contact partnerships <ArrowRight className="w-4 h-4" />
               </Link>

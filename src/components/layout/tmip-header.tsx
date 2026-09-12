@@ -16,7 +16,7 @@ export function TmipHeader() {
 
       {/* 2. TMIP NAVBAR */}
       <div className="bg-[#050A17]/95 backdrop-blur-md border-b border-blue-900/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
           {/* Brand Area: Official Treel Logo + Separator + TMIP Logo */}
           <div className="flex items-center gap-4 sm:gap-6">
             <Link href="/" className="flex items-center group">
@@ -43,14 +43,14 @@ export function TmipHeader() {
                   </g>
                 </svg>
               </div>
-              <span className="font-space-grotesk text-lg sm:text-xl font-bold tracking-tight text-[#F1F5F9] group-hover:text-white transition-colors">
+              <span className="font-space-grotesk text-[20px] font-semibold tracking-[-0.02em] text-[#F1F5F9] group-hover:text-white transition-colors">
                 TMIP
               </span>
             </Link>
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-8 text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">
+          <nav className="hidden lg:flex items-center space-x-8 font-ibm-plex text-[13px] font-medium uppercase tracking-[0.05em] text-[#94A3B8]">
             <Link href="/tmip/platform" className="hover:text-[#3B82F6] transition-colors">
               Platform
             </Link>
@@ -72,7 +72,7 @@ export function TmipHeader() {
           <div className="hidden md:flex items-center">
             <Link 
               href="/tmip/demo"
-              className="px-5 py-2.5 rounded text-xs font-bold uppercase tracking-wider bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] hover:text-white shadow-md flex items-center gap-1.5 transition-all"
+              className="px-5 py-2.5 rounded-[3px] font-space-grotesk text-[13px] font-semibold uppercase tracking-wider bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-md flex items-center gap-1.5 transition-all"
             >
               Book a demo <span className="text-sm leading-none">→</span>
             </Link>
@@ -94,7 +94,7 @@ export function TmipHeader() {
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden border-t border-blue-900/40 bg-[#050A17] px-6 py-6 space-y-5 shadow-2xl animate-in slide-in-from-top-4 duration-200">
-          <div className="space-y-3 text-sm font-semibold uppercase tracking-wider text-[#94A3B8]">
+          <div className="space-y-3 font-ibm-plex text-[13px] font-medium uppercase tracking-[0.05em] text-[#94A3B8]">
             <Link 
               href="/tmip/platform" 
               onClick={() => setMobileMenuOpen(false)}
@@ -136,7 +136,7 @@ export function TmipHeader() {
             <Link 
               href="/tmip/demo" 
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-2.5 rounded text-xs font-bold uppercase tracking-wider bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] hover:text-white shadow-md flex items-center justify-center gap-1.5 transition-all"
+              className="w-full text-center py-2.5 rounded-[3px] font-space-grotesk text-[13px] font-semibold uppercase tracking-wider bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-md flex items-center justify-center gap-1.5 transition-all"
             >
               Book a demo <span>→</span>
             </Link>

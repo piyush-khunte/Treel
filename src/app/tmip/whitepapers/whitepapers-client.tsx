@@ -118,39 +118,39 @@ export function WhitepapersClient() {
   return (
     <div className="space-y-12">
       {/* Search & Filter Panel */}
-      <div className="p-6 rounded-2xl bg-[#080E1E] border border-white/10 space-y-6">
+      <div className="p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 space-y-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-xs font-mono text-[#3B82F6] uppercase tracking-wider font-semibold">
+          <div className="flex items-center gap-2 text-xs font-jetbrains text-[#3B82F6] uppercase tracking-wider font-semibold">
             <Filter className="w-3.5 h-3.5" />
             <span>Filter Research Library</span>
           </div>
 
           {/* Search input */}
           <div className="relative w-full md:w-72">
-            <Search className="w-4 h-4 text-[#94A3B8] absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search research topics..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 rounded-lg bg-[#050A17] border border-white/10 text-xs font-ibm text-[#F1F5F9] placeholder-[#64748B] focus:outline-none focus:border-[#3B82F6]"
+              className="w-full pl-9 pr-4 py-2 rounded-[3px] bg-[#050A17] border border-slate-400/20 text-xs font-ibm-plex text-[#F1F5F9] placeholder-slate-500 focus:outline-none focus:border-[#3B82F6]"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2 border-t border-white/5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2 border-t border-slate-400/10">
           {/* Topic Filter */}
           <div className="space-y-2">
-            <label className="text-xs font-mono text-[#94A3B8] uppercase">Topic Category</label>
+            <label className="text-xs font-jetbrains text-[#94A3B8] uppercase font-semibold">Topic Category</label>
             <div className="flex flex-wrap gap-2">
               {topics.map((top) => (
                 <button
                   key={top}
                   onClick={() => setSelectedTopic(top)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-ibm transition-all ${
+                  className={`px-3 py-1 rounded-[2px] text-xs font-jetbrains transition-all cursor-pointer ${
                     selectedTopic === top
                       ? "bg-[#3B82F6] text-white font-medium shadow-sm"
-                      : "bg-white/[0.03] text-[#94A3B8] hover:text-[#F1F5F9] hover:bg-white/[0.06] border border-white/5"
+                      : "bg-white/[0.03] text-[#94A3B8] hover:text-[#F1F5F9] hover:bg-white/[0.06] border border-slate-400/10"
                   }`}
                 >
                   {top}
@@ -161,16 +161,16 @@ export function WhitepapersClient() {
 
           {/* Industry Filter */}
           <div className="space-y-2">
-            <label className="text-xs font-mono text-[#94A3B8] uppercase">Industry Lens</label>
+            <label className="text-xs font-jetbrains text-[#94A3B8] uppercase font-semibold">Industry Lens</label>
             <div className="flex flex-wrap gap-2">
               {industries.map((ind) => (
                 <button
                   key={ind}
                   onClick={() => setSelectedIndustry(ind)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-ibm transition-all ${
+                  className={`px-3 py-1 rounded-[2px] text-xs font-jetbrains transition-all cursor-pointer ${
                     selectedIndustry === ind
                       ? "bg-[#3B82F6] text-white font-medium shadow-sm"
-                      : "bg-white/[0.03] text-[#94A3B8] hover:text-[#F1F5F9] hover:bg-white/[0.06] border border-white/5"
+                      : "bg-white/[0.03] text-[#94A3B8] hover:text-[#F1F5F9] hover:bg-white/[0.06] border border-slate-400/10"
                   }`}
                 >
                   {ind}
@@ -186,43 +186,43 @@ export function WhitepapersClient() {
         {filtered.map((paper) => (
           <div
             key={paper.id}
-            className={`p-8 rounded-2xl bg-[#080E1E] border flex flex-col justify-between space-y-6 transition-all hover:border-[#3B82F6]/50 ${
-              paper.isFeatured ? "border-white/15 shadow-lg" : "border-white/10"
+            className={`p-8 rounded-[4px] bg-[#0B1220]/80 border flex flex-col justify-between space-y-6 transition-all hover:border-blue-500/30 ${
+              paper.isFeatured ? "border-slate-400/20 shadow-lg" : "border-slate-400/10"
             }`}
           >
             <div className="space-y-4">
               {/* Graphical Card Cover Bar */}
-              <div className="h-36 rounded-xl bg-gradient-to-br from-[#0B1220] to-[#050A17] border border-white/10 p-5 flex flex-col justify-between relative overflow-hidden">
+              <div className="h-36 rounded-[3px] bg-[#050A17] border border-slate-400/10 p-5 flex flex-col justify-between relative overflow-hidden">
                 <div className="flex items-center justify-between">
-                  <span className="border border-[#3B82F6]/30 bg-[#3B82F6]/10 px-2.5 py-0.5 rounded-full text-[10px] font-mono text-[#3B82F6] uppercase font-semibold">
+                  <span className="border border-blue-500/20 bg-blue-500/10 px-2 py-0.5 rounded-[2px] text-[10px] font-jetbrains text-blue-400 uppercase font-semibold">
                     {paper.topic}
                   </span>
-                  <span className="text-[10px] font-mono text-[#94A3B8]">{paper.length}</span>
+                  <span className="text-[10px] font-jetbrains text-[#94A3B8]">{paper.length}</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs font-mono text-[#94A3B8]">
+                <div className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8]">
                   <FileText className="w-4 h-4 text-[#3B82F6]" />
                   <span>TREEL RESEARCH REPORT</span>
                 </div>
               </div>
 
               <div className="space-y-2">
-                <div className="flex items-center gap-2 text-xs font-mono text-[#94A3B8]">
+                <div className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8]">
                   <span>{paper.publishDate}</span>
                   <span>·</span>
                   <span className="text-[#3B82F6]">{paper.industry}</span>
                 </div>
-                <h3 className="font-space text-lg font-bold text-[#F1F5F9] leading-snug hover:text-[#3B82F6] transition-colors">
+                <h3 className="font-space-grotesk text-lg font-bold text-[#F1F5F9] leading-snug hover:text-[#3B82F6] transition-colors">
                   <Link href={paper.href}>{paper.title}</Link>
                 </h3>
-                <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed line-clamp-3">{paper.excerpt}</p>
+                <p className="text-xs sm:text-sm text-[#94A3B8] font-ibm-plex leading-relaxed line-clamp-3">{paper.excerpt}</p>
               </div>
             </div>
 
-            <div className="pt-2 border-t border-white/5 flex items-center justify-between">
-              <span className="text-xs font-mono text-[#94A3B8]">{paper.length} PDF</span>
+            <div className="pt-2 border-t border-slate-400/10 flex items-center justify-between">
+              <span className="text-xs font-jetbrains text-[#94A3B8]">{paper.length} PDF</span>
               <Link
                 href={paper.href}
-                className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-[#3B82F6] hover:underline"
+                className="inline-flex items-center gap-1.5 text-xs font-jetbrains font-semibold text-[#3B82F6] hover:underline"
               >
                 <span>{paper.topic === "ROI & Payback" ? "Download →" : "Read Research →"}</span>
               </Link>
@@ -232,15 +232,15 @@ export function WhitepapersClient() {
       </div>
 
       {filtered.length === 0 && (
-        <div className="p-12 text-center rounded-2xl bg-[#080E1E] border border-white/10 space-y-4">
-          <p className="text-sm font-mono text-[#94A3B8]">No research papers match your selected filters.</p>
+        <div className="p-12 text-center rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 space-y-4">
+          <p className="text-sm font-jetbrains text-[#94A3B8]">No research papers match your selected filters.</p>
           <button
             onClick={() => {
               setSelectedTopic("All");
               setSelectedIndustry("All");
               setSearchQuery("");
             }}
-            className="px-4 py-2 rounded-lg bg-[#3B82F6] text-white text-xs font-mono font-semibold hover:bg-[#2563EB] transition-colors"
+            className="px-4 py-2 rounded-[3px] bg-[#3B82F6] text-white text-xs font-jetbrains font-semibold hover:bg-[#2563EB] transition-colors cursor-pointer"
           >
             Reset Filters
           </button>
