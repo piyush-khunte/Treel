@@ -122,8 +122,8 @@ export default function SurakshaPage() {
               </p>
 
               {/* Price Pill */}
-              <div className="inline-flex flex-wrap items-center gap-3 p-2 pr-5 rounded-2xl bg-[#FEF3C7] border-2 border-[#DC2626]/30">
-                <span className="font-anton text-2xl sm:text-3xl font-normal text-[#DC2626] px-3 py-1 rounded-xl bg-[#DC2626]/10">
+              <div className="inline-flex flex-wrap items-center gap-3 p-2 pr-5 rounded-lg bg-[#FEF3C7] border-2 border-[#DC2626]/30">
+                <span className="font-anton text-2xl sm:text-3xl font-normal text-[#DC2626] px-3 py-1 rounded-[4px] bg-[#DC2626]/10">
                   ₹17,500
                 </span>
                 <span className="text-[#78350F] font-rubik text-sm font-semibold">
@@ -135,13 +135,13 @@ export default function SurakshaPage() {
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
                   href="/suraksha/centres"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-rubik font-bold text-base transition-all shadow-md bg-[#DC2626] text-[#FEF3C7] hover:bg-[#B91C1C] active:scale-[0.98]"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all shadow-md bg-[#DC2626] text-[#FEF3C7] hover:bg-[#B91C1C] active:scale-[0.98]"
                 >
                   Nearest Centre <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
                   href="/suraksha/whatsapp"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-rubik font-bold text-base transition-all border-2 border-[#DC2626] text-[#DC2626] bg-[#FEF3C7] hover:bg-[#DC2626]/10 active:scale-[0.98]"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all border-2 border-[#DC2626] text-[#DC2626] bg-[#FEF3C7] hover:bg-[#DC2626]/10 active:scale-[0.98]"
                 >
                   <MessageCircle className="w-5 h-5 text-[#DC2626]" /> WhatsApp Kariye
                 </Link>
@@ -150,7 +150,7 @@ export default function SurakshaPage() {
 
             {/* Right Kit Visual Box */}
             <div className="lg:col-span-5">
-              <div className="p-8 rounded-3xl bg-[#FEF3C7] border-3 border-[#DC2626] shadow-xl relative overflow-hidden space-y-6">
+              <div className="p-8 rounded-lg bg-[#FEF3C7] border-3 border-[#DC2626] shadow-xl relative overflow-hidden space-y-6">
                 <div className="flex items-center justify-between border-b-2 border-[#DC2626]/20 pb-4">
                   <span className="font-anton text-lg tracking-wider text-[#DC2626] uppercase">
                     KIT INCLUDES
@@ -161,8 +161,8 @@ export default function SurakshaPage() {
                 </div>
 
                 {/* Branded Kit Visual Diagram */}
-                <div className="p-6 rounded-2xl bg-[#FFFBEB] border-2 border-[#DC2626]/20 space-y-5 text-center">
-                  <div className="mx-auto w-24 h-16 rounded-xl bg-[#451A03] border-2 border-[#DC2626] flex flex-col items-center justify-center text-[#FEF3C7] shadow-md">
+                <div className="p-6 rounded-[6px] bg-[#FFFBEB] border-2 border-[#DC2626]/20 space-y-5 text-center">
+                  <div className="mx-auto w-24 h-16 rounded-[4px] bg-[#451A03] border-2 border-[#DC2626] flex flex-col items-center justify-center text-[#FEF3C7] shadow-md">
                     <span className="font-anton text-xs text-[#EA580C]">IN-CAB DISPLAY</span>
                     <span className="font-rubik text-sm font-bold text-[#10B981]">118 PSI · 54°C</span>
                   </div>
@@ -171,7 +171,7 @@ export default function SurakshaPage() {
                     {[1, 2, 3, 4].map((sensor) => (
                       <div
                         key={sensor}
-                        className="p-2 rounded-xl bg-[#FEF3C7] border border-[#DC2626]/30 text-center"
+                        className="p-2 rounded-[4px] bg-[#FEF3C7] border border-[#DC2626]/30 text-center"
                       >
                         <div className="w-6 h-6 mx-auto rounded-full bg-[#DC2626] text-[#FEF3C7] text-[10px] font-bold flex items-center justify-center mb-1">
                           S{sensor}
@@ -217,14 +217,14 @@ export default function SurakshaPage() {
               return (
                 <div
                   key={pillar.number}
-                  className="p-8 rounded-3xl bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all flex flex-col justify-between space-y-6 shadow-md"
+                  className="p-8 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all flex flex-col justify-between space-y-6 shadow-md"
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <span className={`font-rubik text-xs font-bold px-3 py-1 rounded-full border ${pillar.badgeBg}`}>
                         {pillar.number}
                       </span>
-                      <div className="w-10 h-10 rounded-xl bg-[#FEF3C7] border border-[#451A03]/10 flex items-center justify-center text-[#DC2626]">
+                      <div className="w-10 h-10 rounded-[6px] bg-[#FEF3C7] border border-[#451A03]/10 flex items-center justify-center text-[#DC2626]">
                         <Icon className="w-5 h-5" />
                       </div>
                     </div>
@@ -246,7 +246,7 @@ export default function SurakshaPage() {
 
                   {pillar.badge && (
                     <div className="pt-4 border-t border-[#451A03]/10">
-                      <span className="inline-block px-3 py-1 rounded-lg bg-[#0891B2]/10 border border-[#0891B2]/30 text-[#0891B2] font-rubik text-xs font-bold">
+                      <span className="inline-block px-3 py-1 rounded-[4px] bg-[#0891B2]/10 border border-[#0891B2]/30 text-[#0891B2] font-rubik text-xs font-bold">
                         {pillar.badge}
                       </span>
                     </div>
@@ -277,7 +277,7 @@ export default function SurakshaPage() {
             {clusters.map((cluster) => (
               <div
                 key={cluster.region}
-                className="p-6 rounded-2xl bg-[#FEF3C7] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all space-y-2"
+                className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all space-y-2"
               >
                 <div className="font-anton text-2xl font-normal text-[#451A03] uppercase">
                   {cluster.region}
@@ -309,7 +309,7 @@ export default function SurakshaPage() {
               {/* Toll-Free Card */}
               <a
                 href="tel:18008330233"
-                className="p-6 rounded-2xl bg-[#FEF3C7] text-[#451A03] border-2 border-[#FEF3C7] hover:scale-[1.02] transition-transform text-center shadow-lg block group"
+                className="p-6 rounded-lg bg-[#FEF3C7] text-[#451A03] border-2 border-[#FEF3C7] hover:scale-[1.02] transition-transform text-center shadow-lg block group"
               >
                 <div className="font-rubik text-xs font-bold uppercase tracking-wider text-[#DC2626] mb-1">
                   TOLL-FREE CALL
@@ -325,12 +325,12 @@ export default function SurakshaPage() {
               {/* WhatsApp QR Card */}
               <Link
                 href="/suraksha/whatsapp"
-                className="p-6 rounded-2xl bg-[#FEF3C7] text-[#451A03] border-2 border-[#FEF3C7] hover:scale-[1.02] transition-transform text-center shadow-lg block group"
+                className="p-6 rounded-lg bg-[#FEF3C7] text-[#451A03] border-2 border-[#FEF3C7] hover:scale-[1.02] transition-transform text-center shadow-lg block group"
               >
                 <div className="font-rubik text-xs font-bold uppercase tracking-wider text-[#0891B2] mb-1">
                   SCAN FOR WHATSAPP
                 </div>
-                <div className="w-16 h-16 mx-auto my-2 rounded-xl bg-white border-2 border-[#451A03]/20 flex items-center justify-center text-[#10B981]">
+                <div className="w-16 h-16 mx-auto my-2 rounded-[4px] bg-white border-2 border-[#451A03]/20 flex items-center justify-center text-[#10B981]">
                   <QrCode className="w-10 h-10" />
                 </div>
                 <div className="text-xs font-semibold text-[#78350F] flex items-center justify-center gap-1">

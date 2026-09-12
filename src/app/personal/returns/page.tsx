@@ -1,180 +1,178 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, CheckCircle2, ShieldCheck, Activity, HelpCircle, ChevronRight, MessageSquare, PhoneCall, Check } from "lucide-react";
+import { 
+  RotateCcw, 
+  CheckCircle2, 
+  ShieldCheck, 
+  AlertCircle, 
+  ArrowRight, 
+  Mail, 
+  PhoneCall,
+  PackageCheck
+} from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Returns Policy  \u00b7  Personal TPMS  \u00b7  Treel",
+  title: "Returns Policy · Personal TPMS · Treel",
   description: "Personal TPMS return policy. 7-day return window for unopened kits. Return process, eligibility, and refund timeline.",
   alternates: {
     canonical: "https://treel.in/personal/returns",
   },
   openGraph: {
-    title: "Returns Policy  \u00b7  Personal TPMS  \u00b7  Treel",
+    title: "Returns Policy · Personal TPMS · Treel",
     description: "Personal TPMS return policy. 7-day return window for unopened kits. Return process, eligibility, and refund timeline.",
     url: "https://treel.in/personal/returns",
   },
 };
 
 export default function PersonalReturnsPage() {
+  const returnSteps = [
+    {
+      num: "01",
+      title: "Contact Support",
+      desc: "Reach out via our support portal or email hello@treel.in within 7 days of delivery with your order ID."
+    },
+    {
+      num: "02",
+      title: "Receive Return Authorization",
+      desc: "Our team validates eligibility and issues a Return Authorization (RA) number with pickup details."
+    },
+    {
+      num: "03",
+      title: "Pack the Kit Securely",
+      desc: "Repack the complete kit with all 4 sensors, batteries, tools, and accessories in original product packaging."
+    },
+    {
+      num: "04",
+      title: "Reverse Pickup",
+      desc: "A Shiprocket partner courier collects the parcel from your doorstep at Treel's expense for eligible returns."
+    },
+    {
+      num: "05",
+      title: "Inspection & Refund",
+      desc: "Upon warehouse inspection, your full refund is initiated to the original payment source within 7-10 days."
+    }
+  ];
+
   return (
-    <div className="space-y-0 bg-[#0D1B2A] text-[#FAF7F2] font-manrope">
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
+    <div className="bg-white text-[#111827] font-manrope min-h-screen selection:bg-[#2563EB]/20 selection:text-[#111827]">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-24 pb-20 border-b border-black/[0.06] bg-gradient-to-b from-white to-[#F3F4F6]/60">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h1 className="font-manrope text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">Returns Policy</h1>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
+              LEGAL · PERSONAL TPMS
+            </div>
+            <h1 className="font-manrope text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#111827] leading-[1.12]">
+              Returns Policy
+            </h1>
+            <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-[#6B7280]">
+              <span>Effective Date: 1 October 2026</span>
+              <span>•</span>
+              <span>Applies to: Personal TPMS purchases from treel.in</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-20 border-b border-white/10">
+      {/* Main Policy Content */}
+      <section className="py-20 border-b border-black/[0.06] bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <div className="border text-[#FF8A00] bg-[#FF8A00]/10 border-[#FF8A00]/30 font-mono text-xs uppercase tracking-widest font-semibold px-3 py-1 rounded-full inline-block">LEGAL  ·  PERSONAL TPMS</div>
-            <ul className="space-y-3 pt-2">
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>H1: Returns Policy</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>Effective date: `1 October 2026</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>Applies to: **Personal TPMS purchases from treel.in only.** (Suraksha kits sold through Truck Wheels centres follow the centre's return terms; TMIP is governed by enterprise contract.)</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope">You may return your Personal TPMS kit within **7 calendar days** of receiving your order, subject to the eligibility criteria below.</p>
-          </div>
-        </div>
-      </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope">To be eligible for return:</p>
-            <ul className="space-y-3 pt-2">
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>The kit must be in **original condition**, unused</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>Original packaging must be intact</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>All accessories (sensors, batteries, mounting kit, quick-start guide) must be included</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>Original invoice or proof of purchase must be provided</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>Return request must be initiated within 7 calendar days of delivery</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope">The following are not eligible for return:</p>
-            <ul className="space-y-3 pt-2">
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>Kits that have been installed on a vehicle</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>Kits with broken or missing seals</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>Kits missing components or with damaged packaging</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>Kits purchased more than 7 days ago</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>Kits purchased through third-party marketplaces (return with the marketplace instead)</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope">**Step 1** · Contact our support team at <Link href="/personal/support/contact" className="underline hover:text-white transition-colors">/personal/support/contact</Link> or email **hello@treel.in** with your order ID and reason for return.</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope">**Step 2** · Our team will confirm eligibility and share a return authorization number (RA number) along with return shipping instructions.</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope">**Step 3** · Pack the kit securely in its original packaging. Include the RA number visibly on the outer packaging.</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope">**Step 4** · Ship using the specified courier (usually Shiprocket-managed reverse pickup). Return shipping is at Treel's cost for eligible returns; at your cost otherwise.</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope">**Step 5** · Once we receive and inspect the returned kit, we will process your refund per Section 5.</p>
-          </div>
-        </div>
-      </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope">Approved refunds are processed within **7-10 business days** of return receipt.</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope">Refund method:</p>
-            <ul className="space-y-3 pt-2">
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>Original payment method (Razorpay reverses to the source card/UPI/wallet)</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>Bank credit typically visible within 3-5 additional business days depending on your bank</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope">If your order arrives damaged, defective, or incorrect:</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope">For damaged/defective/incorrect orders, the 7-day window does not apply and the return is free.</p>
-            <ul className="space-y-3 pt-2">
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>Contact us within **48 hours** of delivery</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>Photographs of the damage/issue help expedite resolution</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope flex items-start gap-3">
-                <span className="text-[#FF8A00] mt-1.5 font-bold">•</span>
-                <span>We will arrange free reverse pickup and immediate replacement (or full refund at your preference)</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope">Return policy applies to unused kits within 7 days. After installation or beyond 7 days, product issues are handled under the <Link href="/personal/support/warranty" className="underline hover:text-white transition-colors">warranty</Link> — which covers full replacement for manufacturing defects for 1 year from purchase.</p>
-          </div>
-        </div>
-      </section>
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-manrope">Questions about returns? Email **hello@treel.in** or call **1800 833 0233** (Monday to Friday, 9 AM to 6 PM IST).</p>
+          <div className="max-w-4xl space-y-12">
+            {/* 7-Day Window Overview */}
+            <div className="p-8 sm:p-10 rounded-3xl bg-[#F9FAFB] border border-black/[0.06] space-y-4">
+              <div className="flex items-center gap-3 text-[#2563EB]">
+                <RotateCcw className="w-6 h-6" />
+                <h2 className="text-2xl font-bold text-[#111827]">7-Day Return Window</h2>
+              </div>
+              <p className="text-sm sm:text-base text-[#4B5563] leading-relaxed">
+                You may return your Personal TPMS kit within <strong>7 calendar days</strong> of confirmed delivery date, subject to the eligibility criteria outlined below.
+              </p>
+            </div>
+
+            {/* Eligibility Criteria */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="p-8 rounded-3xl bg-white border border-black/[0.06] shadow-sm space-y-4">
+                <h3 className="text-xl font-bold text-[#111827] flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-[#10B981]" />
+                  <span>Eligible for Return</span>
+                </h3>
+                <ul className="space-y-3 text-xs sm:text-sm text-[#4B5563]">
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#10B981] font-bold">•</span>
+                    <span>Kit is in original, uninstalled condition</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#10B981] font-bold">•</span>
+                    <span>Original outer packaging and barcode labels intact</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#10B981] font-bold">•</span>
+                    <span>All accessories (4 sensors, lock nuts, mini-spanner, card) present</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#10B981] font-bold">•</span>
+                    <span>Initiated within 7 days of delivery receipt</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="p-8 rounded-3xl bg-white border border-black/[0.06] shadow-sm space-y-4">
+                <h3 className="text-xl font-bold text-[#111827] flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5 text-[#EF4444]" />
+                  <span>Not Eligible for Return</span>
+                </h3>
+                <ul className="space-y-3 text-xs sm:text-sm text-[#4B5563]">
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#EF4444] font-bold">•</span>
+                    <span>Sensors that have been mounted and driven on tyres</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#EF4444] font-bold">•</span>
+                    <span>Kits missing internal components or with destroyed packaging</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#EF4444] font-bold">•</span>
+                    <span>Returns requested after more than 7 days from delivery</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#EF4444] font-bold">•</span>
+                    <span>Third-party marketplace purchases (return via respective portal)</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* 5-Step Return Process */}
+            <div className="space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#111827]">Return Process Walkthrough</h2>
+              <div className="space-y-3">
+                {returnSteps.map((st, idx) => (
+                  <div key={idx} className="p-6 rounded-3xl bg-[#F9FAFB] border border-black/[0.06] flex items-start gap-4">
+                    <div className="text-xl font-extrabold text-[#2563EB] font-mono shrink-0 w-8">{st.num}</div>
+                    <div className="space-y-1">
+                      <h4 className="font-bold text-base text-[#111827]">{st.title}</h4>
+                      <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed">{st.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Warranty Boundary Note */}
+            <div className="p-8 rounded-3xl bg-white border border-black/[0.06] shadow-sm space-y-3">
+              <h3 className="text-xl font-bold text-[#111827]">Returns vs. Warranty Protection</h3>
+              <p className="text-sm text-[#4B5563] leading-relaxed">
+                The 7-day return policy applies strictly to unused kits. After installation or after 7 days, any technical malfunction, battery reading anomaly, or sensor hardware issue is fully protected under our <strong>1-Year Full Replacement Warranty</strong>.
+              </p>
+              <div className="pt-2">
+                <Link
+                  href="/personal/support/warranty"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-[#2563EB] hover:underline"
+                >
+                  Learn about the 1-Year Warranty →
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

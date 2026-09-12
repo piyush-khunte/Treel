@@ -122,18 +122,18 @@ export default function PersonalFeaturesAppPage() {
   ];
 
   return (
-    <div className="bg-white text-slate-900 font-manrope min-h-screen">
+    <div className="bg-white text-[#111827] font-manrope min-h-screen selection:bg-[#2563EB]/20 selection:text-[#111827]">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-slate-200 bg-slate-50">
+      <section className="relative overflow-hidden pt-24 pb-20 border-b border-black/[0.06] bg-gradient-to-b from-white to-[#F3F4F6]/60">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <div className="border text-blue-600 bg-blue-50 border-blue-200 text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
               FEATURE · APP
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
+            <h1 className="font-manrope text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#111827] leading-[1.12]">
               The app that makes it work.
             </h1>
-            <p className="text-slate-600 text-lg sm:text-xl leading-relaxed font-normal max-w-3xl">
+            <p className="text-[#4B5563] text-lg sm:text-xl leading-relaxed font-manrope font-medium max-w-3xl">
               Personal TPMS runs on a native iOS and Android app. Home screen widget. Apple Watch complications. Dark mode. Multi-vehicle support. Below is what the app does and how to get it.
             </p>
           </div>
@@ -141,23 +141,23 @@ export default function PersonalFeaturesAppPage() {
       </section>
 
       {/* App Screenshots Gallery Section */}
-      <section className="py-20 border-b border-slate-200 bg-white">
+      <section className="py-20 border-b border-black/[0.06] bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-3xl mb-12 space-y-4">
-            <div className="border text-blue-600 bg-blue-50 border-blue-200 text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
               INTERFACE TOUR
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111827]">
               See the app
             </h2>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {screenshots.map((s, idx) => (
-              <div key={idx} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2 hover:border-blue-400 transition-colors">
-                <div className="text-xs font-bold text-blue-600 font-mono">0{idx + 1}</div>
-                <h3 className="font-bold text-slate-900 text-base">{s.title}</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">{s.desc}</p>
+              <div key={idx} className="p-6 rounded-3xl bg-[#F9FAFB] border border-black/[0.06] space-y-2 hover:border-[#2563EB]/30 hover:shadow-md transition-all">
+                <div className="text-xs font-bold text-[#2563EB] font-mono">0{idx + 1}</div>
+                <h3 className="font-bold text-[#111827] text-base">{s.title}</h3>
+                <p className="text-xs text-[#6B7280] leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -165,13 +165,13 @@ export default function PersonalFeaturesAppPage() {
       </section>
 
       {/* App Features Grid Section */}
-      <section className="py-20 border-b border-slate-200 bg-slate-50">
+      <section className="py-20 border-b border-black/[0.06] bg-[#F9FAFB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-3xl mb-16 space-y-4">
-            <div className="border text-blue-600 bg-blue-50 border-blue-200 text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
               COMPLETE CAPABILITIES
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111827]">
               What the app does
             </h2>
           </div>
@@ -180,12 +180,12 @@ export default function PersonalFeaturesAppPage() {
             {appFeatures.map((feat, idx) => {
               const IconComp = feat.icon;
               return (
-                <div key={idx} className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                <div key={idx} className="p-6 rounded-3xl bg-white border border-black/[0.06] shadow-sm space-y-3 hover:border-[#2563EB]/30 hover:shadow-md transition-all">
+                  <div className="w-12 h-12 rounded-2xl bg-[#2563EB]/10 text-[#2563EB] flex items-center justify-center font-bold">
                     <IconComp className="w-5 h-5" />
                   </div>
-                  <h3 className="font-bold text-slate-900 text-base">{feat.title}</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{feat.desc}</p>
+                  <h3 className="font-bold text-[#111827] text-base">{feat.title}</h3>
+                  <p className="text-xs text-[#6B7280] leading-relaxed">{feat.desc}</p>
                 </div>
               );
             })}
@@ -194,32 +194,32 @@ export default function PersonalFeaturesAppPage() {
       </section>
 
       {/* Platform Requirements Section */}
-      <section className="py-20 border-b border-slate-200 bg-white">
+      <section className="py-20 border-b border-black/[0.06] bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-4xl space-y-8">
-            <div className="border text-blue-600 bg-blue-50 border-blue-200 text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
               COMPATIBILITY
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111827]">
               What you need.
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
-                <strong className="text-slate-900 text-sm font-bold block">iOS</strong>
-                <p className="text-xs text-slate-600">iPhone running iOS 15 or later (compatible with Apple Watch Series 4+)</p>
+              <div className="p-6 rounded-3xl bg-[#F9FAFB] border border-black/[0.06] space-y-1">
+                <strong className="text-[#111827] text-sm font-bold block">iOS</strong>
+                <p className="text-xs text-[#6B7280]">iPhone running iOS 15 or later (compatible with Apple Watch Series 4+)</p>
               </div>
-              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
-                <strong className="text-slate-900 text-sm font-bold block">Android</strong>
-                <p className="text-xs text-slate-600">Android device running Android 10 or later (compatible with Wear OS 3+)</p>
+              <div className="p-6 rounded-3xl bg-[#F9FAFB] border border-black/[0.06] space-y-1">
+                <strong className="text-[#111827] text-sm font-bold block">Android</strong>
+                <p className="text-xs text-[#6B7280]">Android device running Android 10 or later (compatible with Wear OS 3+)</p>
               </div>
-              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
-                <strong className="text-slate-900 text-sm font-bold block">Bluetooth</strong>
-                <p className="text-xs text-slate-600">Bluetooth 5.0 Low Energy support (any standard smartphone from 2018 onward)</p>
+              <div className="p-6 rounded-3xl bg-[#F9FAFB] border border-black/[0.06] space-y-1">
+                <strong className="text-[#111827] text-sm font-bold block">Bluetooth</strong>
+                <p className="text-xs text-[#6B7280]">Bluetooth 5.0 Low Energy support (any standard smartphone from 2018 onward)</p>
               </div>
-              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
-                <strong className="text-slate-900 text-sm font-bold block">Storage & Permissions</strong>
-                <p className="text-xs text-slate-600">~45 MB storage. Bluetooth (required), Notifications (recommended), Location (optional)</p>
+              <div className="p-6 rounded-3xl bg-[#F9FAFB] border border-black/[0.06] space-y-1">
+                <strong className="text-[#111827] text-sm font-bold block">Storage & Permissions</strong>
+                <p className="text-xs text-[#6B7280]">~45 MB storage. Bluetooth (required), Notifications (recommended), Location (optional)</p>
               </div>
             </div>
           </div>
@@ -227,17 +227,17 @@ export default function PersonalFeaturesAppPage() {
       </section>
 
       {/* Download The App Section */}
-      <section className="py-20 border-b border-slate-200 bg-slate-50">
+      <section className="py-20 border-b border-black/[0.06] bg-[#F9FAFB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-4xl space-y-8">
             <div className="space-y-3">
-              <div className="border text-blue-600 bg-blue-50 border-blue-200 text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
                 GET STARTED
               </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111827]">
                 Download the app
               </h2>
-              <p className="text-slate-600 text-base sm:text-lg">
+              <p className="text-[#4B5563] text-base sm:text-lg">
                 The Personal TPMS app is free to download. It only works with Personal TPMS sensors purchased from Treel.
               </p>
             </div>
@@ -245,61 +245,61 @@ export default function PersonalFeaturesAppPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link
                 href="/personal/app/ios"
-                className="p-6 rounded-2xl bg-slate-900 text-white hover:bg-slate-800 transition-all shadow-md flex items-center justify-between group cursor-pointer"
+                className="p-8 rounded-[32px] bg-[#111827] text-white hover:bg-black transition-all shadow-xl hover:shadow-2xl flex items-center justify-between group cursor-pointer border border-white/10"
               >
                 <div>
-                  <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">For iPhone & Apple Watch</div>
-                  <div className="text-xl font-bold text-white mt-1">Download on the App Store →</div>
+                  <div className="text-xs uppercase tracking-wider text-[#94A3B8] font-bold">For iPhone & Apple Watch</div>
+                  <div className="text-2xl font-extrabold text-white pt-1">App Store</div>
+                  <div className="text-xs text-[#94A3B8] pt-1">Requires iOS 15.0+</div>
                 </div>
-                <Apple className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
+                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:bg-[#2563EB] transition-colors">
+                  <Apple className="w-6 h-6" />
+                </div>
               </Link>
 
-              <a
-                href="https://play.google.com/store/apps/details?id=com.treel.android"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-6 rounded-2xl bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-md flex items-center justify-between group cursor-pointer"
+              <Link
+                href="/personal/app/android"
+                className="p-8 rounded-[32px] bg-[#111827] text-white hover:bg-black transition-all shadow-xl hover:shadow-2xl flex items-center justify-between group cursor-pointer border border-white/10"
               >
                 <div>
-                  <div className="text-[11px] font-bold text-blue-200 uppercase tracking-wider">For Android & Wear OS</div>
-                  <div className="text-xl font-bold text-white mt-1">Get it on Google Play →</div>
+                  <div className="text-xs uppercase tracking-wider text-[#94A3B8] font-bold">For Android & Wear OS</div>
+                  <div className="text-2xl font-extrabold text-white pt-1">Google Play</div>
+                  <div className="text-xs text-[#94A3B8] pt-1">Requires Android 10.0+</div>
                 </div>
-                <Play className="w-8 h-8 fill-white text-white group-hover:scale-110 transition-transform" />
-              </a>
+                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:bg-[#2563EB] transition-colors">
+                  <Play className="w-6 h-6 fill-current" />
+                </div>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* App Reviews Section */}
+      {/* Customer Reviews on App Section */}
       <section className="py-20 bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-3xl mb-16 space-y-4">
-            <div className="border text-blue-600 bg-blue-50 border-blue-200 text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
-              DRIVER EXPERIENCES
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
+              USER FEEDBACK
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-              What users say about the app
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111827]">
+              Customer reviews of the app.
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {reviews.map((rev, idx) => (
-              <div key={idx} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex text-amber-400">
-                    {[...Array(rev.stars)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400" />
-                    ))}
-                  </div>
-                  <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full flex items-center gap-1">
-                    <CheckCircle2 className="w-3 h-3" /> Verified Purchase
-                  </span>
+              <div key={idx} className="p-8 rounded-3xl bg-[#F9FAFB] border border-black/[0.06] space-y-4 hover:border-[#2563EB]/30 hover:shadow-md transition-all">
+                <div className="flex gap-1 text-[#F59E0B]">
+                  {[...Array(rev.stars)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-current" />
+                  ))}
                 </div>
-                <h3 className="font-bold text-slate-900 text-base">"{rev.title}"</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">{rev.body}</p>
-                <div className="pt-2 border-t border-slate-200/80 text-xs font-bold text-slate-700">
-                  {rev.name} · <span className="font-normal text-slate-500">{rev.role}</span>
+                <h3 className="font-bold text-[#111827] text-base">"{rev.title}"</h3>
+                <p className="text-xs text-[#4B5563] leading-relaxed italic">"{rev.body}"</p>
+                <div className="pt-2 border-t border-black/[0.06] text-xs text-[#6B7280]">
+                  <span className="font-bold text-[#111827] block">{rev.name}</span>
+                  <span>{rev.role}</span>
                 </div>
               </div>
             ))}

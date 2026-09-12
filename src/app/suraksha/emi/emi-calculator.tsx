@@ -53,9 +53,9 @@ export function SurakshaEmiCalculator() {
   }
 
   return (
-    <div className="p-8 sm:p-12 rounded-3xl bg-[#FEF3C7] border-3 border-[#DC2626] shadow-xl max-w-4xl space-y-8">
+    <div className="p-8 sm:p-12 rounded-lg bg-[#FEF3C7] border-3 border-[#DC2626] shadow-xl max-w-4xl space-y-8">
       <div className="flex items-center gap-3">
-        <div className="w-12 h-12 rounded-2xl bg-[#DC2626]/10 border border-[#DC2626]/30 flex items-center justify-center text-[#DC2626]">
+        <div className="w-12 h-12 rounded-[4px] bg-[#DC2626]/10 border border-[#DC2626]/30 flex items-center justify-center text-[#DC2626]">
           <Calculator className="w-6 h-6" />
         </div>
         <div>
@@ -79,7 +79,7 @@ export function SurakshaEmiCalculator() {
             <select
               value={selectedConfigIndex}
               onChange={(e) => setSelectedConfigIndex(Number(e.target.value))}
-              className="w-full px-4 py-3.5 rounded-xl bg-[#FFFBEB] border-2 border-[#451A03]/20 text-[#451A03] font-rubik font-semibold text-sm focus:border-[#DC2626] focus:outline-none transition-colors"
+              className="w-full px-4 py-3.5 rounded-[4px] bg-[#FFFBEB] border-2 border-[#451A03]/20 text-[#451A03] font-rubik font-semibold text-sm focus:border-[#DC2626] focus:outline-none transition-colors"
             >
               {CONFIGURATIONS.map((config, idx) => (
                 <option key={config.label} value={idx}>
@@ -97,7 +97,7 @@ export function SurakshaEmiCalculator() {
             <select
               value={selectedTenureMonths}
               onChange={(e) => setSelectedTenureMonths(Number(e.target.value))}
-              className="w-full px-4 py-3.5 rounded-xl bg-[#FFFBEB] border-2 border-[#451A03]/20 text-[#451A03] font-rubik font-semibold text-sm focus:border-[#DC2626] focus:outline-none transition-colors"
+              className="w-full px-4 py-3.5 rounded-[4px] bg-[#FFFBEB] border-2 border-[#451A03]/20 text-[#451A03] font-rubik font-semibold text-sm focus:border-[#DC2626] focus:outline-none transition-colors"
             >
               {TENURES.map((tenure) => (
                 <option key={tenure.months} value={tenure.months}>
@@ -132,7 +132,7 @@ export function SurakshaEmiCalculator() {
         </div>
 
         {/* Calculated Result Card */}
-        <div className="p-6 sm:p-8 rounded-2xl bg-[#FFFBEB] border-2 border-[#DC2626] flex flex-col justify-between space-y-6 shadow-md">
+        <div className="p-6 sm:p-8 rounded-lg bg-[#FFFBEB] border-2 border-[#DC2626] flex flex-col justify-between space-y-6 shadow-md">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <span className="font-rubik text-xs font-bold uppercase tracking-wider text-[#78350F]">
@@ -177,7 +177,7 @@ export function SurakshaEmiCalculator() {
           <div className="pt-2">
             <Link
               href={`/suraksha/emi/apply?config=${encodeURIComponent(selectedConfig.label)}&tenure=${selectedTenureMonths}`}
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-rubik font-bold text-base transition-all shadow-md bg-[#DC2626] text-[#FEF3C7] hover:bg-[#B91C1C] active:scale-[0.98]"
+              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all shadow-md bg-[#DC2626] text-[#FEF3C7] hover:bg-[#B91C1C] active:scale-[0.98]"
             >
               Apply Now <ArrowRight className="w-5 h-5" />
             </Link>

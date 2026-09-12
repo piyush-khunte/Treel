@@ -160,9 +160,9 @@ export default function SurakshaProductPage() {
               return (
                 <div
                   key={item.title}
-                  className="p-6 rounded-2xl bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all space-y-3 shadow-sm"
+                  className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all space-y-3 shadow-sm"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[#FEF3C7] border border-[#DC2626]/30 flex items-center justify-center text-[#DC2626]">
+                  <div className="w-10 h-10 rounded-[4px] bg-[#FEF3C7] border border-[#DC2626]/30 flex items-center justify-center text-[#DC2626]">
                     <Icon className="w-5 h-5" />
                   </div>
                   <h3 className="font-rubik text-lg font-bold text-[#451A03]">
@@ -190,7 +190,7 @@ export default function SurakshaProductPage() {
             </h2>
           </div>
 
-          <div className="overflow-hidden rounded-3xl border-2 border-[#451A03]/15 bg-[#FEF3C7] shadow-md max-w-4xl">
+          <div className="overflow-hidden rounded-lg border-2 border-[#451A03]/15 bg-[#FEF3C7] shadow-md max-w-4xl">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="border-b-2 border-[#451A03]/15 bg-[#451A03] text-[#FEF3C7]">
@@ -238,7 +238,7 @@ export default function SurakshaProductPage() {
             {differentiators.map((diff) => (
               <div
                 key={diff.title}
-                className="p-6 rounded-2xl bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all space-y-3 shadow-sm"
+                className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all space-y-3 shadow-sm"
               >
                 <div className="flex items-center gap-2">
                   <div className="w-6 h-6 rounded-full bg-[#10B981] text-white flex items-center justify-center flex-shrink-0">
@@ -260,7 +260,7 @@ export default function SurakshaProductPage() {
       {/* Warranty Section */}
       <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="p-8 sm:p-12 rounded-3xl bg-[#FEF3C7] border-3 border-[#DC2626] max-w-4xl space-y-6 shadow-md">
+          <div className="p-8 sm:p-12 rounded-lg bg-[#FEF3C7] border-3 border-[#DC2626] max-w-4xl space-y-6 shadow-md">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase">
               <Award className="w-4 h-4" /> GUARANTEED REPLACEMENT
             </div>
@@ -299,13 +299,13 @@ export default function SurakshaProductPage() {
             <div className="pt-4 flex flex-wrap justify-center gap-4">
               <Link
                 href="/suraksha/centres"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-rubik font-bold text-base transition-all shadow-md bg-[#FEF3C7] text-[#451A03] hover:bg-white active:scale-[0.98]"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all shadow-md bg-[#FEF3C7] text-[#451A03] hover:bg-white active:scale-[0.98]"
               >
                 Nearest Centre <ArrowRight className="w-5 h-5 text-[#DC2626]" />
               </Link>
               <Link
                 href="/suraksha/whatsapp"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-rubik font-bold text-base transition-all border-2 border-[#FEF3C7] text-[#FEF3C7] hover:bg-white/10 active:scale-[0.98]"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all border-2 border-[#FEF3C7] text-[#FEF3C7] hover:bg-white/10 active:scale-[0.98]"
               >
                 <MessageCircle className="w-5 h-5" /> WhatsApp Kariye
               </Link>

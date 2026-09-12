@@ -98,18 +98,18 @@ export default function PersonalSupportWarrantyPage() {
   ];
 
   return (
-    <div className="bg-white text-slate-900 font-manrope min-h-screen">
+    <div className="bg-white text-[#111827] font-manrope min-h-screen selection:bg-[#2563EB]/20 selection:text-[#111827]">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-slate-200 bg-slate-50">
+      <section className="relative overflow-hidden pt-24 pb-20 border-b border-black/[0.06] bg-[#F9FAFB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <div className="border text-blue-600 bg-blue-50 border-blue-200 text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em] inline-block">
               WARRANTY & SUPPORT
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#111827] leading-[1.15]">
               1 year. Full replacement. No questions.
             </h1>
-            <p className="text-slate-600 text-lg sm:text-xl leading-relaxed font-normal max-w-3xl">
+            <p className="text-[#4B5563] text-lg sm:text-xl leading-relaxed font-normal max-w-3xl">
               Every Personal TPMS kit ships with a 1-year full replacement warranty on all four sensors and the app. Register below, or submit a claim if something has gone wrong.
             </p>
           </div>
@@ -117,38 +117,38 @@ export default function PersonalSupportWarrantyPage() {
       </section>
 
       {/* Coverage Breakdown Section */}
-      <section className="py-20 border-b border-slate-200 bg-white">
+      <section className="py-20 border-b border-black/[0.06] bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* What's Covered */}
-            <div className="p-8 rounded-3xl bg-emerald-50/50 border border-emerald-200 space-y-6">
+            <div className="p-8 rounded-3xl bg-[#10B981]/10/50 border border-[#10B981]/20 space-y-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-[#059669] flex items-center justify-center">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <h2 className="text-2xl font-bold text-emerald-950">Coverage Summary</h2>
               </div>
               <ul className="space-y-4 text-sm text-emerald-900">
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-[#10B981] shrink-0 mt-0.5" />
                   <div>
                     <strong>Sensor manufacturing defects</strong> — Full replacement of affected sensor(s).
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-[#10B981] shrink-0 mt-0.5" />
                   <div>
                     <strong>App connectivity issues</strong> — Free updates and priority support to resolve.
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-[#10B981] shrink-0 mt-0.5" />
                   <div>
                     <strong>Sensor housing integrity</strong> — Full replacement if IP67 seal fails under normal driving conditions.
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-[#10B981] shrink-0 mt-0.5" />
                   <div>
                     <strong>Coverage duration</strong> — 12 months from the date of purchase.
                   </div>
@@ -157,32 +157,32 @@ export default function PersonalSupportWarrantyPage() {
             </div>
 
             {/* What's Not Covered */}
-            <div className="p-8 rounded-3xl bg-slate-50 border border-slate-200 space-y-6">
+            <div className="p-8 rounded-3xl bg-[#F9FAFB] border border-black/[0.06] space-y-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-[#E5E7EB] text-[#374151] flex items-center justify-center">
                   <ShieldAlert className="w-5 h-5" />
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900">Not Covered</h2>
+                <h2 className="text-2xl font-bold text-[#111827]">Not Covered</h2>
               </div>
-              <ul className="space-y-4 text-sm text-slate-700">
+              <ul className="space-y-4 text-sm text-[#374151]">
                 <li className="flex items-start gap-3">
-                  <AlertTriangle className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
+                  <AlertTriangle className="w-5 h-5 text-[#9CA3AF] shrink-0 mt-0.5" />
                   <span>Physical damage from severe impact, crushing, kerbing, or misuse.</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <AlertTriangle className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
+                  <AlertTriangle className="w-5 h-5 text-[#9CA3AF] shrink-0 mt-0.5" />
                   <span>Water damage below or beyond the specified IP67 rating.</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <AlertTriangle className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
+                  <AlertTriangle className="w-5 h-5 text-[#9CA3AF] shrink-0 mt-0.5" />
                   <span>Battery replacement (CR1632 is a standard consumable, easily replaced).</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <AlertTriangle className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
+                  <AlertTriangle className="w-5 h-5 text-[#9CA3AF] shrink-0 mt-0.5" />
                   <span>Damage resulting from unauthorized tampering, disassembly, or third-party repair.</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <AlertTriangle className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
+                  <AlertTriangle className="w-5 h-5 text-[#9CA3AF] shrink-0 mt-0.5" />
                   <span>Loss or theft of individual sensors.</span>
                 </li>
               </ul>
@@ -192,15 +192,15 @@ export default function PersonalSupportWarrantyPage() {
       </section>
 
       {/* Interactive Forms Section */}
-      <section className="py-20 border-b border-slate-200 bg-slate-50">
+      <section className="py-20 border-b border-black/[0.06] bg-[#F9FAFB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Register Your Warranty Form */}
-            <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-6">
+            <div className="p-8 sm:p-10 rounded-3xl bg-white border border-black/[0.06] shadow-sm space-y-6">
               <div>
-                <div className="text-xs uppercase tracking-widest text-blue-600 font-extrabold mb-1">Step 1</div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">Register your warranty</h2>
-                <p className="text-slate-600 text-sm mt-1">
+                <div className="text-xs uppercase tracking-widest text-[#2563EB] font-extrabold mb-1">Step 1</div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-[#111827]">Register your warranty</h2>
+                <p className="text-[#4B5563] text-sm mt-1">
                   Warranty registration helps us serve you faster if you ever need to claim. It only takes a minute.
                 </p>
               </div>
@@ -213,7 +213,7 @@ export default function PersonalSupportWarrantyPage() {
                     </div>
                   )}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-[#374151] uppercase tracking-wider mb-1.5">
                       Order ID <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -221,12 +221,12 @@ export default function PersonalSupportWarrantyPage() {
                       value={regOrderId}
                       onChange={(e) => setRegOrderId(e.target.value)}
                       placeholder="e.g. TR-98241"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      className="w-full px-4 py-3 rounded-xl border border-black/[0.12] text-sm font-medium text-[#111827] focus:outline-none focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-[#374151] uppercase tracking-wider mb-1.5">
                       Email Address <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -234,13 +234,13 @@ export default function PersonalSupportWarrantyPage() {
                       value={regEmail}
                       onChange={(e) => setRegEmail(e.target.value)}
                       placeholder="you@email.com (used during purchase)"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      className="w-full px-4 py-3 rounded-xl border border-black/[0.12] text-sm font-medium text-[#111827] focus:outline-none focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-xl bg-blue-600 text-white font-bold text-sm hover:bg-blue-700 transition-all shadow-md cursor-pointer"
+                    className="w-full py-3.5 rounded-full bg-[#2563EB] text-white font-bold text-sm hover:bg-[#1D4ED8] transition-all shadow-md cursor-pointer"
                   >
                     Verify Order →
                   </button>
@@ -249,7 +249,7 @@ export default function PersonalSupportWarrantyPage() {
 
               {regStep === "verified" && (
                 <div className="space-y-5">
-                  <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 space-y-2">
+                  <div className="p-4 rounded-full bg-[#2563EB]/10 border border-[#2563EB]/20 space-y-2">
                     <div className="text-xs font-bold text-blue-900">Order Verified: {regOrderId}</div>
                     <div className="text-xs text-blue-800">
                       Product: <strong>Personal TPMS (4-Tyre Kit)</strong><br />
@@ -268,8 +268,8 @@ export default function PersonalSupportWarrantyPage() {
               )}
 
               {regStep === "completed" && (
-                <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-3">
-                  <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
+                <div className="p-6 rounded-3xl bg-[#10B981]/10 border border-[#10B981]/20 text-center space-y-3">
+                  <CheckCircle2 className="w-10 h-10 text-[#10B981] mx-auto" />
                   <h3 className="font-bold text-emerald-950 text-lg">Warranty Registered!</h3>
                   <p className="text-xs text-emerald-800 leading-relaxed">
                     Confirmation sent to <strong>{regEmail}</strong>. Your 12-month full replacement coverage is now officially recorded.
@@ -280,7 +280,7 @@ export default function PersonalSupportWarrantyPage() {
                       setRegOrderId("");
                       setRegEmail("");
                     }}
-                    className="text-xs font-bold text-blue-600 hover:underline pt-2 inline-block cursor-pointer"
+                    className="text-xs font-bold text-[#2563EB] hover:underline pt-2 inline-block cursor-pointer"
                   >
                     Register another kit
                   </button>
@@ -289,11 +289,11 @@ export default function PersonalSupportWarrantyPage() {
             </div>
 
             {/* Submit a Warranty Claim Form */}
-            <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-6">
+            <div className="p-8 sm:p-10 rounded-3xl bg-white border border-black/[0.06] shadow-sm space-y-6">
               <div>
-                <div className="text-xs uppercase tracking-widest text-blue-600 font-extrabold mb-1">Step 2</div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">Submit a warranty claim</h2>
-                <p className="text-slate-600 text-sm mt-1">
+                <div className="text-xs uppercase tracking-widest text-[#2563EB] font-extrabold mb-1">Step 2</div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-[#111827]">Submit a warranty claim</h2>
+                <p className="text-[#4B5563] text-sm mt-1">
                   If something has gone wrong with your Personal TPMS, submit a claim below. We'll respond within 2 business days.
                 </p>
               </div>
@@ -306,7 +306,7 @@ export default function PersonalSupportWarrantyPage() {
                     </div>
                   )}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-[#374151] uppercase tracking-wider mb-1.5">
                       Order ID <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -314,12 +314,12 @@ export default function PersonalSupportWarrantyPage() {
                       value={claimOrderId}
                       onChange={(e) => setClaimOrderId(e.target.value)}
                       placeholder="e.g. TR-98241"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      className="w-full px-4 py-3 rounded-xl border border-black/[0.12] text-sm font-medium text-[#111827] focus:outline-none focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-[#374151] uppercase tracking-wider mb-1.5">
                       Email Address <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -327,13 +327,13 @@ export default function PersonalSupportWarrantyPage() {
                       value={claimEmail}
                       onChange={(e) => setClaimEmail(e.target.value)}
                       placeholder="you@email.com"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      className="w-full px-4 py-3 rounded-xl border border-black/[0.12] text-sm font-medium text-[#111827] focus:outline-none focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-xl bg-slate-900 text-white font-bold text-sm hover:bg-slate-800 transition-all shadow-md cursor-pointer"
+                    className="w-full py-3.5 rounded-full bg-[#111827] text-white font-bold text-sm hover:bg-black transition-all shadow-md cursor-pointer"
                   >
                     Verify Order & Continue →
                   </button>
@@ -348,13 +348,13 @@ export default function PersonalSupportWarrantyPage() {
                     </div>
                   )}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-[#374151] uppercase tracking-wider mb-1.5">
                       Issue Type <span className="text-red-500">*</span>
                     </label>
                     <select
                       value={claimIssueType}
                       onChange={(e) => setClaimIssueType(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
+                      className="w-full px-4 py-2.5 rounded-xl border border-black/[0.12] text-sm font-medium text-[#111827] focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
                     >
                       <option value="Sensor not working">Sensor not working</option>
                       <option value="App issue">App issue</option>
@@ -365,7 +365,7 @@ export default function PersonalSupportWarrantyPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-[#374151] uppercase tracking-wider mb-1.5">
                       Describe the issue <span className="text-red-500">*</span>
                     </label>
                     <textarea
@@ -374,18 +374,18 @@ export default function PersonalSupportWarrantyPage() {
                       value={claimDesc}
                       onChange={(e) => setClaimDesc(e.target.value)}
                       placeholder="Please explain the issue you are facing..."
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      className="w-full px-4 py-2.5 rounded-xl border border-black/[0.12] text-sm font-medium text-[#111827] focus:outline-none focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-[#374151] uppercase tracking-wider mb-1.5">
                       Preferred Resolution
                     </label>
                     <select
                       value={claimResolution}
                       onChange={(e) => setClaimResolution(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
+                      className="w-full px-4 py-2.5 rounded-xl border border-black/[0.12] text-sm font-medium text-[#111827] focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
                     >
                       <option value="Replacement">Replacement Sensor</option>
                       <option value="Refund (if within return window)">Refund (if eligible)</option>
@@ -395,7 +395,7 @@ export default function PersonalSupportWarrantyPage() {
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-xl bg-blue-600 text-white font-bold text-sm hover:bg-blue-700 transition-all shadow-md cursor-pointer"
+                    className="w-full py-3.5 rounded-full bg-[#2563EB] text-white font-bold text-sm hover:bg-[#1D4ED8] transition-all shadow-md cursor-pointer"
                   >
                     Submit Claim →
                   </button>
@@ -403,12 +403,12 @@ export default function PersonalSupportWarrantyPage() {
               )}
 
               {claimStep === "submitted" && (
-                <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold">
+                <div className="p-6 rounded-3xl bg-[#F9FAFB] border border-black/[0.06] space-y-3">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 text-[#1D4ED8] text-xs font-bold">
                     Claim ID: {generatedClaimId}
                   </div>
-                  <h3 className="font-bold text-slate-900 text-xl">Claim submitted.</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">
+                  <h3 className="font-bold text-[#111827] text-xl">Claim submitted.</h3>
+                  <p className="text-xs text-[#4B5563] leading-relaxed">
                     Your claim ID is <strong>{generatedClaimId}</strong>. We've emailed a confirmation to <strong>{claimEmail}</strong>. Our support team will respond within 2 business days. If your issue is urgent, call us at <strong>1800 833 0233</strong>.
                   </p>
                   <button
@@ -418,7 +418,7 @@ export default function PersonalSupportWarrantyPage() {
                       setClaimEmail("");
                       setClaimDesc("");
                     }}
-                    className="text-xs font-bold text-blue-600 hover:underline pt-2 inline-block cursor-pointer"
+                    className="text-xs font-bold text-[#2563EB] hover:underline pt-2 inline-block cursor-pointer"
                   >
                     Submit another claim
                   </button>
@@ -430,14 +430,14 @@ export default function PersonalSupportWarrantyPage() {
       </section>
 
       {/* FAQ Accordion Section */}
-      <section className="py-20 border-b border-slate-200 bg-white">
+      <section className="py-20 border-b border-black/[0.06] bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-3xl space-y-8">
             <div>
-              <div className="border text-blue-600 bg-blue-50 border-blue-200 text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block mb-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em] inline-block mb-3">
                 QUESTIONS & ANSWERS
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#111827] tracking-tight">
                 Warranty FAQs
               </h2>
             </div>
@@ -446,21 +446,21 @@ export default function PersonalSupportWarrantyPage() {
               {faqs.map((faq, idx) => (
                 <div
                   key={idx}
-                  className="rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-xs"
+                  className="rounded-3xl border border-black/[0.06] overflow-hidden bg-white shadow-xs"
                 >
                   <button
                     onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                    className="w-full p-6 text-left flex items-center justify-between gap-4 font-bold text-slate-900 text-base hover:bg-slate-50 transition-colors cursor-pointer"
+                    className="w-full p-6 text-left flex items-center justify-between gap-4 font-bold text-[#111827] text-base hover:bg-[#F9FAFB] transition-colors cursor-pointer"
                   >
                     <span>{faq.q}</span>
                     {openFaq === idx ? (
-                      <ChevronUp className="w-5 h-5 text-blue-600 shrink-0" />
+                      <ChevronUp className="w-5 h-5 text-[#2563EB] shrink-0" />
                     ) : (
-                      <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
+                      <ChevronDown className="w-5 h-5 text-[#9CA3AF] shrink-0" />
                     )}
                   </button>
                   {openFaq === idx && (
-                    <div className="px-6 pb-6 pt-1 text-sm text-slate-600 leading-relaxed border-t border-slate-100">
+                    <div className="px-6 pb-6 pt-1 text-sm text-[#4B5563] leading-relaxed border-t border-black/[0.04]">
                       {faq.a}
                     </div>
                   )}

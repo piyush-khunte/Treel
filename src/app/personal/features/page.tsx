@@ -105,18 +105,18 @@ export default function PersonalFeaturesPage() {
   ];
 
   return (
-    <div className="bg-white text-slate-900 font-manrope min-h-screen">
+    <div className="bg-white text-[#111827] font-manrope min-h-screen selection:bg-[#2563EB]/20 selection:text-[#111827]">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-slate-200 bg-slate-50">
+      <section className="relative overflow-hidden pt-24 pb-20 border-b border-black/[0.06] bg-gradient-to-b from-white to-[#F3F4F6]/60">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <div className="border text-blue-600 bg-blue-50 border-blue-200 text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
               FEATURES
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
+            <h1 className="font-manrope text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#111827] leading-[1.12]">
               What Personal TPMS actually does.
             </h1>
-            <p className="text-slate-600 text-lg sm:text-xl leading-relaxed font-normal max-w-3xl">
+            <p className="text-[#4B5563] text-lg sm:text-xl leading-relaxed font-manrope font-medium max-w-3xl">
               Six features. Six deep-dive pages. Read the summary here, or click through for the details on any one.
             </p>
           </div>
@@ -124,7 +124,7 @@ export default function PersonalFeaturesPage() {
       </section>
 
       {/* Feature Cards Grid Section */}
-      <section className="py-20 border-b border-slate-200 bg-white">
+      <section className="py-20 border-b border-black/[0.06] bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featureCards.map((card, idx) => {
@@ -132,31 +132,31 @@ export default function PersonalFeaturesPage() {
               return (
                 <div
                   key={idx}
-                  className="p-8 rounded-2xl bg-white border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all flex flex-col justify-between group"
+                  className="p-8 rounded-2xl bg-white border border-black/[0.06] hover:border-[#2563EB]/30 hover:shadow-md transition-all flex flex-col justify-between group"
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                      <div className="w-12 h-12 rounded-xl bg-[#EFF6FF] border border-[#2563EB]/15 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
                         <IconComp className="w-6 h-6" />
                       </div>
-                      <span className="text-[11px] font-bold text-slate-400 bg-slate-100 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                      <span className="text-[11px] font-bold text-[#6B7280] bg-[#F3F4F6] px-2.5 py-1 rounded-full uppercase tracking-wider">
                         {card.highlight}
                       </span>
                     </div>
 
-                    <h3 className="text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                    <h3 className="font-manrope text-2xl font-bold text-[#111827] group-hover:text-[#2563EB] transition-colors">
                       {card.title}
                     </h3>
 
-                    <p className="text-slate-600 text-sm leading-relaxed">
+                    <p className="text-[#4B5563] text-sm leading-relaxed font-normal">
                       {card.desc}
                     </p>
                   </div>
 
-                  <div className="pt-6 border-t border-slate-100 mt-6">
+                  <div className="pt-6 border-t border-black/[0.06] mt-6">
                     <Link
                       href={card.href}
-                      className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 transition-colors group-hover:translate-x-1 duration-200"
+                      className="inline-flex items-center gap-2 text-sm font-bold text-[#2563EB] hover:text-[#1D4ED8] transition-colors group-hover:translate-x-1 duration-200"
                     >
                       {card.cta} <ArrowRight className="w-4 h-4" />
                     </Link>
@@ -169,17 +169,17 @@ export default function PersonalFeaturesPage() {
       </section>
 
       {/* Comparison Snippet: Enterprise Heritage Section */}
-      <section className="py-20 bg-slate-50 border-b border-slate-200">
+      <section className="py-20 bg-[#F9FAFB] border-b border-black/[0.06]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-3xl space-y-4 mb-16">
-            <div className="border text-blue-600 bg-blue-50 border-blue-200 text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
               ENTERPRISE HERITAGE
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+            <h2 className="font-manrope text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111827]">
               What makes Personal TPMS different.
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
-              We built Personal TPMS on the same sensor family, cloud infrastructure, and engineering team that powers TMIP — Treel's enterprise fleet intelligence platform. When you buy Personal TPMS, you are getting consumer packaging on enterprise-grade technology.
+            <p className="text-[#4B5563] text-base sm:text-lg leading-relaxed font-medium">
+              We built Personal TPMS on the same sensor family, cloud infrastructure, and engineering team that powers TMIP — Treel&apos;s enterprise fleet intelligence platform. When you buy Personal TPMS, you are getting consumer packaging on enterprise-grade technology.
             </p>
           </div>
 
@@ -187,14 +187,14 @@ export default function PersonalFeaturesPage() {
             {pillars.map((p, idx) => {
               const PillarIcon = p.icon;
               return (
-                <div key={idx} className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-sm space-y-3">
+                <div key={idx} className="p-6 rounded-2xl bg-white border border-black/[0.06] shadow-xs space-y-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
+                    <div className="w-10 h-10 rounded-lg bg-[#EFF6FF] border border-[#2563EB]/15 flex items-center justify-center text-[#2563EB]">
                       <PillarIcon className="w-5 h-5" />
                     </div>
-                    <h3 className="font-bold text-slate-900 text-lg">{p.title}</h3>
+                    <h3 className="font-manrope font-bold text-[#111827] text-lg">{p.title}</h3>
                   </div>
-                  <p className="text-slate-600 text-sm leading-relaxed pl-13">
+                  <p className="text-[#4B5563] text-sm leading-relaxed pl-13">
                     {p.desc}
                   </p>
                 </div>
@@ -207,27 +207,30 @@ export default function PersonalFeaturesPage() {
       {/* CTA Band */}
       <section className="py-20 bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-blue-950 text-white shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div className="space-y-3 max-w-2xl text-center lg:text-left">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs font-bold uppercase tracking-wider">
-                Special Offer
+          <div className="p-10 sm:p-14 rounded-3xl bg-gradient-to-br from-[#DBEAFE] to-[#EFF6FF] border border-[#2563EB]/15 text-center max-w-4xl mx-auto space-y-6 shadow-sm">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white border border-black/[0.08] text-[#2563EB] text-xs font-bold uppercase tracking-wider shadow-xs">
+              Special Offer
+            </div>
+            <h2 className="font-manrope text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#111827]">
+              Equip your personal vehicle today.
+            </h2>
+            <p className="text-[#4B5563] text-base sm:text-lg max-w-xl mx-auto leading-relaxed font-medium">
+              Launch price of ₹8,999 (MRP ₹12,999). Includes 4 wireless smart sensors, lifetime Treel app access, and 1-year full replacement warranty.
+            </p>
+
+            <div className="inline-flex items-baseline justify-center gap-3 px-6 py-3 rounded-full bg-white border border-black/[0.08] shadow-xs">
+              <span className="font-manrope text-3xl sm:text-4xl font-extrabold text-[#111827]">
+                ₹8,999
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-                Equip your personal vehicle today.
-              </h2>
-              <p className="text-slate-300 text-sm sm:text-base">
-                Launch price of ₹8,999 (MRP ₹12,999). Includes 4 wireless smart sensors, lifetime Treel app access, and 1-year full replacement warranty.
-              </p>
+              <span className="text-[#6B7280] line-through text-base font-medium">
+                MRP ₹12,999
+              </span>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
-              <div className="text-center sm:text-right">
-                <div className="text-3xl font-extrabold text-white">₹8,999</div>
-                <div className="text-xs text-slate-400 line-through">MRP ₹12,999</div>
-              </div>
+            <div className="pt-2 flex justify-center">
               <Link
                 href="/personal/buy/cart"
-                className="px-8 py-4 rounded-xl bg-blue-600 text-white font-bold text-sm hover:bg-blue-500 transition-all shadow-lg flex items-center gap-2"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-manrope font-bold text-sm uppercase tracking-wider transition-all shadow-md bg-[#2563EB] text-white hover:bg-[#1D4ED8]"
               >
                 <ShoppingCart className="w-4 h-4" /> Add to cart →
               </Link>

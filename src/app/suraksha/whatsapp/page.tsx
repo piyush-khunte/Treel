@@ -127,7 +127,7 @@ export default function SurakshaWhatsappPage() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-rubik font-bold text-lg sm:text-xl transition-all shadow-xl bg-[#25D366] text-white hover:bg-[#1EBE5D] active:scale-[0.98] border-2 border-[#1EBE5D]"
+                className="inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 rounded-[4px] font-rubik font-bold text-base sm:text-lg uppercase tracking-wider transition-all shadow-xl bg-[#25D366] text-white hover:bg-[#1EBE5D] active:scale-[0.98] border-2 border-[#1EBE5D]"
               >
                 <MessageCircle className="w-6 h-6 fill-current" />
                 Open WhatsApp <ArrowRight className="w-5 h-5" />
@@ -155,9 +155,9 @@ export default function SurakshaWhatsappPage() {
               return (
                 <div
                   key={item.title}
-                  className="p-6 rounded-2xl bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all space-y-3 shadow-sm"
+                  className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all space-y-3 shadow-sm"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[#FEF3C7] border border-[#DC2626]/30 flex items-center justify-center text-[#DC2626]">
+                  <div className="w-10 h-10 rounded-[4px] bg-[#FEF3C7] border border-[#DC2626]/30 flex items-center justify-center text-[#DC2626]">
                     <Icon className="w-5 h-5" />
                   </div>
                   <h3 className="font-rubik text-base font-bold text-[#451A03]">
@@ -191,10 +191,10 @@ export default function SurakshaWhatsappPage() {
               return (
                 <div
                   key={item.label}
-                  className="p-8 rounded-3xl bg-[#FEF3C7] border-2 border-[#451A03]/15 space-y-4 shadow-sm"
+                  className="p-6 sm:p-8 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 space-y-4 shadow-sm"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#FFFBEB] border border-[#451A03]/10 flex items-center justify-center text-[#DC2626]">
+                    <div className="w-10 h-10 rounded-[4px] bg-[#FFFBEB] border border-[#451A03]/10 flex items-center justify-center text-[#DC2626]">
                       <Icon className="w-5 h-5" />
                     </div>
                     <span className="font-rubik text-sm font-semibold text-[#78350F]">
@@ -232,7 +232,7 @@ export default function SurakshaWhatsappPage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               <a
                 href="tel:18008330233"
-                className="p-6 rounded-2xl bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all text-center space-y-2 block group shadow-sm"
+                className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all text-center space-y-2 block group shadow-sm"
               >
                 <PhoneCall className="w-6 h-6 mx-auto text-[#DC2626]" />
                 <div className="font-rubik font-bold text-sm text-[#451A03]">
@@ -243,7 +243,7 @@ export default function SurakshaWhatsappPage() {
 
               <Link
                 href="/suraksha/callback"
-                className="p-6 rounded-2xl bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all text-center space-y-2 block group shadow-sm"
+                className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all text-center space-y-2 block group shadow-sm"
               >
                 <Clock className="w-6 h-6 mx-auto text-[#EA580C]" />
                 <div className="font-rubik font-bold text-sm text-[#451A03]">
@@ -254,7 +254,7 @@ export default function SurakshaWhatsappPage() {
 
               <Link
                 href="/suraksha/contact"
-                className="p-6 rounded-2xl bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all text-center space-y-2 block group shadow-sm"
+                className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all text-center space-y-2 block group shadow-sm"
               >
                 <FileText className="w-6 h-6 mx-auto text-[#0891B2]" />
                 <div className="font-rubik font-bold text-sm text-[#451A03]">

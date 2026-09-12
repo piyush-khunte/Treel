@@ -3,7 +3,7 @@ import { PersonalHeader } from "@/components/layout/personal-header";
 
 export default function PersonalLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-[#F8FAFC] text-slate-900 min-h-screen font-manrope antialiased selection:bg-blue-600/20 selection:text-blue-900">
+    <div className="bg-[#FFFFFF] text-[#111827] min-h-screen font-manrope antialiased selection:bg-[#2563EB]/20 selection:text-[#111827]">
       <PersonalHeader />
       <div>{children}</div>
     </div>

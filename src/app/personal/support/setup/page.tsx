@@ -73,18 +73,18 @@ export default function PersonalSupportSetupPage() {
   ];
 
   return (
-    <div className="bg-white text-slate-900 font-manrope min-h-screen">
+    <div className="bg-white text-[#111827] font-manrope min-h-screen selection:bg-[#2563EB]/20 selection:text-[#111827]">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-slate-200 bg-slate-50">
+      <section className="relative overflow-hidden pt-24 pb-20 border-b border-black/[0.06] bg-[#F9FAFB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <div className="border text-blue-600 bg-blue-50 border-blue-200 text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em] inline-block">
               SETUP GUIDE
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#111827] leading-[1.15]">
               Installed in 10 minutes.
             </h1>
-            <p className="text-slate-600 text-lg sm:text-xl leading-relaxed font-normal max-w-3xl">
+            <p className="text-[#4B5563] text-lg sm:text-xl leading-relaxed font-normal max-w-3xl">
               Personal TPMS is designed for DIY installation. Six steps. Video below if you prefer to watch.
             </p>
           </div>
@@ -92,15 +92,15 @@ export default function PersonalSupportSetupPage() {
       </section>
 
       {/* Video Demo Section */}
-      <section className="py-16 border-b border-slate-200 bg-white">
+      <section className="py-16 border-b border-black/[0.06] bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl mx-auto rounded-3xl bg-slate-900 p-8 sm:p-12 text-white shadow-2xl text-center space-y-6 relative overflow-hidden">
-            <div className="w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center mx-auto shadow-lg hover:scale-110 transition-transform cursor-pointer">
+          <div className="max-w-4xl mx-auto rounded-3xl bg-[#111827] p-8 sm:p-12 text-white shadow-2xl text-center space-y-6 relative overflow-hidden">
+            <div className="w-16 h-16 rounded-full bg-[#2563EB] text-white flex items-center justify-center mx-auto shadow-lg hover:scale-110 transition-transform cursor-pointer">
               <Play className="w-7 h-7 fill-white ml-1" />
             </div>
             <div className="space-y-2">
               <h3 className="text-2xl font-bold text-white">3-Minute Installation Walkthrough</h3>
-              <p className="text-slate-300 text-sm max-w-md mx-auto">
+              <p className="text-[#D1D5DB] text-sm max-w-md mx-auto">
                 Watch our quick visual guide demonstrating sensor mounting, anti-theft locking, and mobile pairing.
               </p>
             </div>
@@ -109,13 +109,13 @@ export default function PersonalSupportSetupPage() {
       </section>
 
       {/* Six Steps Walkthrough Section */}
-      <section className="py-20 border-b border-slate-200 bg-slate-50">
+      <section className="py-20 border-b border-black/[0.06] bg-[#F9FAFB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-3xl mb-16 space-y-4">
-            <div className="border text-blue-600 bg-blue-50 border-blue-200 text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em] inline-block">
               STEP-BY-STEP
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111827]">
               The six steps
             </h2>
           </div>
@@ -124,20 +124,20 @@ export default function PersonalSupportSetupPage() {
             {steps.map((st, idx) => {
               const IconComp = st.icon;
               return (
-                <div key={idx} className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
+                <div key={idx} className="p-8 rounded-3xl bg-white border border-black/[0.06] shadow-sm flex flex-col justify-between space-y-6">
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-3xl font-extrabold text-blue-600 font-mono">{st.num}</span>
-                      <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                      <span className="text-3xl font-extrabold text-[#2563EB] font-mono">{st.num}</span>
+                      <div className="w-10 h-10 rounded-full bg-[#2563EB]/10 text-[#2563EB] flex items-center justify-center">
                         <IconComp className="w-5 h-5" />
                       </div>
                     </div>
 
-                    <h3 className="text-xl font-bold text-slate-900">{st.title}</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">{st.body}</p>
+                    <h3 className="text-xl font-bold text-[#111827]">{st.title}</h3>
+                    <p className="text-sm text-[#4B5563] leading-relaxed">{st.body}</p>
                   </div>
 
-                  <div className="pt-4 border-t border-slate-100 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                  <div className="pt-4 border-t border-black/[0.04] text-xs font-bold text-[#6B7280] uppercase tracking-wider">
                     {st.detail}
                   </div>
                 </div>
@@ -152,20 +152,20 @@ export default function PersonalSupportSetupPage() {
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Troubleshooting shortcut */}
-            <div className="p-8 rounded-3xl bg-slate-50 border border-slate-200 space-y-4 flex flex-col justify-between">
+            <div className="p-8 rounded-3xl bg-[#F9FAFB] border border-black/[0.06] space-y-4 flex flex-col justify-between">
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-[#2563EB]/10 text-[#2563EB] flex items-center justify-center">
                   <HelpCircle className="w-5 h-5" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900">Something not working?</h3>
-                <p className="text-slate-600 text-sm leading-relaxed">
+                <h3 className="text-2xl font-bold text-[#111827]">Something not working?</h3>
+                <p className="text-[#4B5563] text-sm leading-relaxed">
                   If a sensor doesn't pair, if the app doesn't recognise a sensor, or if you see other issues during setup, see the troubleshooting page.
                 </p>
               </div>
               <div className="pt-4">
                 <Link
                   href="/personal/support/troubleshooting"
-                  className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:underline"
+                  className="inline-flex items-center gap-2 text-[#2563EB] font-bold text-sm hover:underline"
                 >
                   Troubleshooting →
                 </Link>
@@ -173,20 +173,20 @@ export default function PersonalSupportSetupPage() {
             </div>
 
             {/* Warranty registration shortcut */}
-            <div className="p-8 rounded-3xl bg-slate-50 border border-slate-200 space-y-4 flex flex-col justify-between">
+            <div className="p-8 rounded-3xl bg-[#F9FAFB] border border-black/[0.06] space-y-4 flex flex-col justify-between">
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-[#10B981]/10 text-[#059669] flex items-center justify-center">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900">Register your warranty</h3>
-                <p className="text-slate-600 text-sm leading-relaxed">
+                <h3 className="text-2xl font-bold text-[#111827]">Register your warranty</h3>
+                <p className="text-[#4B5563] text-sm leading-relaxed">
                   Once installed, register your warranty. It only takes a minute and it means we can help faster if you ever need it.
                 </p>
               </div>
               <div className="pt-4">
                 <Link
                   href="/personal/support/warranty"
-                  className="inline-flex items-center gap-2 text-emerald-700 font-bold text-sm hover:underline"
+                  className="inline-flex items-center gap-2 text-[#059669] font-bold text-sm hover:underline"
                 >
                   Register warranty →
                 </Link>

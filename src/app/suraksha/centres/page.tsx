@@ -83,16 +83,17 @@ export default function SurakshaCentresPage() {
   });
 
   return (
-    <div className="space-y-0 bg-[#FEF3C7] text-[#451A03] font-rubik min-h-screen">
+    <div className="space-y-0 bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20 min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-[#451A03]/10">
+      <section className="relative overflow-hidden pt-16 pb-16 sm:pt-20 sm:pb-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <div className="border text-[#DC2626] bg-[#DC2626]/10 border-[#DC2626]/20 font-rubik text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
+              <MapPin className="w-3.5 h-3.5" />
               NEAREST CENTRE
             </div>
-            <h1 className="font-anton uppercase tracking-wider text-4xl sm:text-5xl lg:text-6xl text-[#DC2626] leading-[1.15]">
-              Karib Ka Suraksha Centre Dhoondiye.
+            <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
+              Karib Ka <span className="italic text-[#DC2626]">Suraksha Centre</span> Dhoondiye.
             </h1>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
               Truck Wheels centres, JK tyre dealers, aur 400+ certified highway service points across India. 15-minute quick installation, instant warranty setup, and easy EMI approval.
@@ -102,7 +103,7 @@ export default function SurakshaCentresPage() {
       </section>
 
       {/* Locator Controls */}
-      <section className="py-12 border-b border-[#451A03]/10 bg-[#FFFBEB]">
+      <section className="py-10 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="relative">
@@ -112,19 +113,19 @@ export default function SurakshaCentresPage() {
                 placeholder="Pincode, city, state, ya highway number search karein..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-white border-2 border-[#451A03]/20 rounded-xl text-[#451A03] font-medium text-base focus:outline-none focus:border-[#DC2626] shadow-sm"
+                className="w-full pl-12 pr-4 py-3.5 bg-white border-2 border-[#451A03]/20 rounded-[4px] text-[#451A03] font-medium text-base focus:outline-none focus:border-[#DC2626] shadow-sm"
               />
             </div>
 
-            <div className="flex flex-wrap gap-3 items-center text-xs font-bold uppercase tracking-wider">
+            <div className="flex flex-wrap gap-2 sm:gap-3 items-center text-xs font-bold uppercase tracking-wider">
               {["All", "Truck Wheels Centre", "JK Tyre Dealer", "Certified Installation Point"].map((t) => (
                 <button
                   key={t}
                   onClick={() => setSelectedType(t)}
-                  className={`px-4 py-2 rounded-lg transition-all cursor-pointer ${
+                  className={`px-4 py-2 rounded-[4px] transition-all cursor-pointer ${
                     selectedType === t
                       ? "bg-[#DC2626] text-white shadow-md"
-                      : "bg-[#FEF3C7] text-[#78350F] border border-[#451A03]/20 hover:bg-white"
+                      : "bg-[#FFFBEB] text-[#78350F] border-2 border-[#451A03]/15 hover:bg-white hover:text-[#451A03]"
                   }`}
                 >
                   {t}
@@ -136,18 +137,18 @@ export default function SurakshaCentresPage() {
       </section>
 
       {/* Centres List Grid */}
-      <section className="py-16">
+      <section className="py-16 bg-[#FEF3C7]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {filteredCentres.map((c, idx) => (
-              <div key={idx} className="bg-[#FFFBEB] border border-[#451A03]/10 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all space-y-6 flex flex-col justify-between">
+              <div key={idx} className="bg-[#FFFBEB] border-2 border-[#451A03]/15 rounded-lg p-6 sm:p-8 shadow-sm hover:border-[#DC2626] hover:shadow-md transition-all space-y-6 flex flex-col justify-between">
                 <div className="space-y-4">
-                  <div className="inline-block px-3 py-1 rounded-full bg-[#DC2626]/10 text-[#DC2626] font-bold text-xs uppercase tracking-wider">
+                  <div className="inline-block px-2.5 py-1 rounded-[4px] bg-[#DC2626]/10 text-[#DC2626] font-bold text-xs uppercase tracking-wider border border-[#DC2626]/20">
                     {c.type}
                   </div>
                   <div>
-                    <h3 className="font-anton text-xl uppercase tracking-wider text-[#451A03]">{c.name}</h3>
-                    <div className="text-xs font-bold text-[#EA580C] mt-1">{c.city}, {c.state}</div>
+                    <h3 className="font-anton text-xl uppercase tracking-normal text-[#451A03]">{c.name}</h3>
+                    <div className="text-xs font-bold text-[#EA580C] mt-1 uppercase tracking-wider">{c.city}, {c.state}</div>
                   </div>
 
                   <div className="space-y-2 text-xs text-[#78350F] font-medium">
@@ -167,23 +168,23 @@ export default function SurakshaCentresPage() {
 
                   <div className="flex flex-wrap gap-1.5 pt-2">
                     {c.services.map((s, sIdx) => (
-                      <span key={sIdx} className="px-2 py-0.5 rounded bg-[#FEF3C7] border border-[#451A03]/10 text-[10px] font-bold text-[#451A03]">
+                      <span key={sIdx} className="px-2 py-0.5 rounded-[4px] bg-[#FEF3C7] border border-[#451A03]/15 text-[10px] font-bold text-[#451A03]">
                         {s}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#451A03]/10 flex items-center justify-between">
+                <div className="pt-4 border-t-2 border-[#451A03]/10 flex items-center justify-between">
                   <Link
                     href={`tel:${c.phone}`}
-                    className="text-xs font-bold text-[#DC2626] hover:underline flex items-center gap-1"
+                    className="text-xs font-bold text-[#DC2626] hover:underline flex items-center gap-1 uppercase tracking-wider"
                   >
                     Call Centre →
                   </Link>
                   <Link
                     href="/suraksha/whatsapp"
-                    className="text-xs font-bold text-[#0891B2] hover:underline flex items-center gap-1"
+                    className="text-xs font-bold text-[#0891B2] hover:underline flex items-center gap-1 uppercase tracking-wider"
                   >
                     WhatsApp Helpline
                   </Link>

@@ -80,18 +80,18 @@ export default function PersonalSupportTroubleshootingPage() {
   ];
 
   return (
-    <div className="bg-white text-slate-900 font-manrope min-h-screen">
+    <div className="bg-white text-[#111827] font-manrope min-h-screen selection:bg-[#2563EB]/20 selection:text-[#111827]">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-slate-200 bg-slate-50">
+      <section className="relative overflow-hidden pt-24 pb-20 border-b border-black/[0.06] bg-[#F9FAFB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <div className="border text-blue-600 bg-blue-50 border-blue-200 text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em] inline-block">
               TROUBLESHOOTING
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#111827] leading-[1.15]">
               Something not working? Let's fix it.
             </h1>
-            <p className="text-slate-600 text-lg sm:text-xl leading-relaxed font-normal max-w-3xl">
+            <p className="text-[#4B5563] text-lg sm:text-xl leading-relaxed font-normal max-w-3xl">
               Common Personal TPMS issues and their solutions. If your issue isn't listed here or the solution doesn't work, contact support.
             </p>
           </div>
@@ -99,45 +99,45 @@ export default function PersonalSupportTroubleshootingPage() {
       </section>
 
       {/* Accordion Problems Section */}
-      <section className="py-20 border-b border-slate-200 bg-white">
+      <section className="py-20 border-b border-black/[0.06] bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-3xl mx-auto space-y-6">
             <div className="space-y-2 mb-8">
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111827]">
                 Common Problems & Fixes
               </h2>
-              <p className="text-slate-600 text-sm">Click on any issue below to see diagnostic steps.</p>
+              <p className="text-[#4B5563] text-sm">Click on any issue below to see diagnostic steps.</p>
             </div>
 
             <div className="space-y-4">
               {problems.map((prob, idx) => (
                 <div
                   key={idx}
-                  className="rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-xs"
+                  className="rounded-3xl border border-black/[0.06] overflow-hidden bg-white shadow-xs"
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                    className="w-full p-6 text-left flex items-center justify-between gap-4 font-bold text-slate-900 text-base sm:text-lg hover:bg-slate-50 transition-colors cursor-pointer"
+                    className="w-full p-6 text-left flex items-center justify-between gap-4 font-bold text-[#111827] text-base sm:text-lg hover:bg-[#F9FAFB] transition-colors cursor-pointer"
                   >
                     <span>{prob.q}</span>
                     {openIndex === idx ? (
-                      <ChevronUp className="w-5 h-5 text-blue-600 shrink-0" />
+                      <ChevronUp className="w-5 h-5 text-[#2563EB] shrink-0" />
                     ) : (
-                      <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
+                      <ChevronDown className="w-5 h-5 text-[#9CA3AF] shrink-0" />
                     )}
                   </button>
 
                   {openIndex === idx && (
-                    <div className="px-6 pb-6 pt-2 border-t border-slate-100 bg-slate-50/50 space-y-4 text-sm">
-                      <div className="p-3 rounded-xl bg-blue-50 border border-blue-200 text-xs text-blue-900 font-medium">
+                    <div className="px-6 pb-6 pt-2 border-t border-black/[0.04] bg-[#F9FAFB]/50 space-y-4 text-sm">
+                      <div className="p-3 rounded-full bg-[#2563EB]/10 border border-[#2563EB]/20 text-xs text-blue-900 font-medium">
                         <strong>Probable Cause:</strong> {prob.cause}
                       </div>
 
                       <div className="space-y-2">
-                        <strong className="text-xs uppercase tracking-wider text-slate-700 font-bold block">
+                        <strong className="text-xs uppercase tracking-wider text-[#374151] font-bold block">
                           Step-by-step Solution:
                         </strong>
-                        <ol className="space-y-2 text-slate-700 list-decimal list-inside text-xs sm:text-sm">
+                        <ol className="space-y-2 text-[#374151] list-decimal list-inside text-xs sm:text-sm">
                           {prob.steps.map((step, sIdx) => (
                             <li key={sIdx} className="leading-relaxed">
                               <span>{step}</span>
@@ -155,18 +155,18 @@ export default function PersonalSupportTroubleshootingPage() {
       </section>
 
       {/* Still Stuck Section */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-20 bg-[#F9FAFB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-3xl mx-auto p-8 sm:p-12 rounded-3xl bg-white border border-slate-200 shadow-xl text-center space-y-6">
-            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto">
+          <div className="max-w-3xl mx-auto p-8 sm:p-12 rounded-3xl bg-white border border-black/[0.06] shadow-xl text-center space-y-6">
+            <div className="w-12 h-12 rounded-3xl bg-[#2563EB]/10 text-[#2563EB] flex items-center justify-center mx-auto">
               <HelpCircle className="w-6 h-6" />
             </div>
 
             <div className="space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111827]">
                 Still stuck?
               </h2>
-              <p className="text-slate-600 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+              <p className="text-[#4B5563] text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
                 If your issue isn't listed above or the solutions don't work, our support team is ready to help.
               </p>
             </div>
@@ -174,7 +174,7 @@ export default function PersonalSupportTroubleshootingPage() {
             <div className="pt-2">
               <Link
                 href="/personal/support/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-blue-600 text-white font-bold text-sm hover:bg-blue-700 transition-all shadow-md cursor-pointer"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#2563EB] text-white font-bold text-sm hover:bg-[#1D4ED8] transition-all shadow-md cursor-pointer"
               >
                 Contact support →
               </Link>

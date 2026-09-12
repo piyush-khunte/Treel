@@ -127,7 +127,7 @@ export default function SurakshaPricingPage() {
             {configurations.map((item) => (
               <div
                 key={item.type}
-                className={`p-6 sm:p-8 rounded-3xl border-3 transition-all relative flex flex-col justify-between space-y-6 shadow-md ${
+                className={`p-6 sm:p-8 rounded-lg border-3 transition-all relative flex flex-col justify-between space-y-6 shadow-md ${
                   item.popular
                     ? "bg-[#FFFBEB] border-[#DC2626] ring-4 ring-[#DC2626]/20"
                     : "bg-[#FFFBEB] border-[#451A03]/15 hover:border-[#DC2626]"
@@ -173,9 +173,9 @@ export default function SurakshaPricingPage() {
       {/* Cup of Tea Maths (Payback Framing) */}
       <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="p-8 sm:p-12 rounded-3xl bg-[#FEF3C7] border-3 border-[#EA580C] max-w-4xl space-y-6 shadow-md">
+          <div className="p-8 sm:p-12 rounded-lg bg-[#FEF3C7] border-3 border-[#EA580C] max-w-4xl space-y-6 shadow-md">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-[#EA580C]/10 border border-[#EA580C]/30 flex items-center justify-center text-[#EA580C]">
+              <div className="w-12 h-12 rounded-[4px] bg-[#EA580C]/10 border border-[#EA580C]/30 flex items-center justify-center text-[#EA580C]">
                 <Coffee className="w-6 h-6" />
               </div>
               <div className="font-rubik text-xs font-bold uppercase tracking-widest text-[#EA580C]">
@@ -217,7 +217,7 @@ export default function SurakshaPricingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Included */}
-            <div className="p-8 rounded-3xl bg-[#FFFBEB] border-2 border-[#10B981]/40 space-y-5 shadow-sm">
+            <div className="p-8 rounded-lg bg-[#FFFBEB] border-2 border-[#10B981]/40 space-y-5 shadow-sm">
               <div className="font-anton text-xl text-[#047857] uppercase tracking-wider">
                 Included in every kit
               </div>
@@ -234,7 +234,7 @@ export default function SurakshaPricingPage() {
             </div>
 
             {/* Not Included */}
-            <div className="p-8 rounded-3xl bg-[#FFFBEB] border-2 border-[#451A03]/15 space-y-5 shadow-sm">
+            <div className="p-8 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 space-y-5 shadow-sm">
               <div className="font-anton text-xl text-[#78350F] uppercase tracking-wider">
                 Separate or optional costs
               </div>
@@ -263,8 +263,8 @@ export default function SurakshaPricingPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl bg-[#FEF3C7] border-2 border-[#451A03]/15 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-[#FFFBEB] border border-[#451A03]/10 flex items-center justify-center text-[#DC2626]">
+            <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 space-y-3">
+              <div className="w-10 h-10 rounded-[4px] bg-[#FFFBEB] border border-[#451A03]/10 flex items-center justify-center text-[#DC2626]">
                 <CreditCard className="w-5 h-5" />
               </div>
               <h3 className="font-anton text-xl uppercase text-[#451A03]">
@@ -275,8 +275,8 @@ export default function SurakshaPricingPage() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#FEF3C7] border-2 border-[#DC2626]/40 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-[#FFFBEB] border border-[#DC2626]/20 flex items-center justify-center text-[#EA580C]">
+            <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#DC2626]/40 space-y-3">
+              <div className="w-10 h-10 rounded-[4px] bg-[#FFFBEB] border border-[#DC2626]/20 flex items-center justify-center text-[#EA580C]">
                 <Sparkles className="w-5 h-5" />
               </div>
               <h3 className="font-anton text-xl uppercase text-[#451A03]">
@@ -295,8 +295,8 @@ export default function SurakshaPricingPage() {
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#FEF3C7] border-2 border-[#451A03]/15 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-[#FFFBEB] border border-[#451A03]/10 flex items-center justify-center text-[#0891B2]">
+            <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 space-y-3">
+              <div className="w-10 h-10 rounded-[4px] bg-[#FFFBEB] border border-[#451A03]/10 flex items-center justify-center text-[#0891B2]">
                 <Building className="w-5 h-5" />
               </div>
               <h3 className="font-anton text-xl uppercase text-[#451A03]">
@@ -313,7 +313,7 @@ export default function SurakshaPricingPage() {
       {/* Bulk Pricing for Fleet Operators */}
       <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="p-8 sm:p-12 rounded-3xl bg-[#FFFBEB] border-2 border-[#451A03]/20 max-w-4xl space-y-6">
+          <div className="p-8 sm:p-12 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/20 max-w-4xl space-y-6">
             <h2 className="font-anton text-3xl sm:text-4xl font-normal text-[#451A03] uppercase">
               FLEET OPERATORS KE LIYE?
             </h2>
@@ -322,7 +322,7 @@ export default function SurakshaPricingPage() {
               5+ trucks ke liye bulk discount available. WhatsApp par baat kijiye ya call kariye — customized quote milega.
             </p>
 
-            <div className="p-4 rounded-2xl bg-[#FEF3C7] border border-[#451A03]/10 text-sm text-[#451A03] flex items-center justify-between flex-wrap gap-4">
+            <div className="p-4 rounded-[4px] bg-[#FEF3C7] border border-[#451A03]/10 text-sm text-[#451A03] flex items-center justify-between flex-wrap gap-4">
               <span>
                 10+ trucks ke fleet operators ke liye TMIP enterprise platform bhi consider kariye — bahut zyada features milte hai.
               </span>
@@ -352,13 +352,13 @@ export default function SurakshaPricingPage() {
             <div className="pt-4 flex flex-wrap justify-center gap-4">
               <Link
                 href="/suraksha/centres"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-rubik font-bold text-base transition-all shadow-md bg-[#FEF3C7] text-[#451A03] hover:bg-white active:scale-[0.98]"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all shadow-md bg-[#FEF3C7] text-[#451A03] hover:bg-white active:scale-[0.98]"
               >
                 Nearest Centre <ArrowRight className="w-5 h-5 text-[#DC2626]" />
               </Link>
               <Link
                 href="/suraksha/emi"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-rubik font-bold text-base transition-all border-2 border-[#FEF3C7] text-[#FEF3C7] hover:bg-white/10 active:scale-[0.98]"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all border-2 border-[#FEF3C7] text-[#FEF3C7] hover:bg-white/10 active:scale-[0.98]"
               >
                 EMI Options
               </Link>

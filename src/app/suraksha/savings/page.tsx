@@ -18,232 +18,270 @@ export const metadata: Metadata = {
 
 export default function SurakshaSavingsPage() {
   return (
-    <div className="space-y-0 bg-[#111315] text-[#FAF7F2] font-rubik">
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
+    <div className="bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-12 pb-16 sm:pt-16 sm:pb-24 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <div className="border text-[#E65100] bg-[#E65100]/10 border-[#E65100]/30 font-mono text-xs uppercase tracking-widest font-semibold px-3 py-1 rounded-full inline-block">SAVINGS</div>
-            <h1 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">NINE MONTHS.<br />*POORI KIMAT WAPAS.*</h1>
-            <p className="text-[#A3A3A3] text-lg sm:text-xl leading-relaxed font-rubik max-w-3xl">₹17,500 ka kit nine months mein poora paisa wapas de deta hai. Kaise? Fuel, tyre life, aur roadside events — teenon jaghon se savings aati hai. Calculator use kariye apne truck ke liye.</p>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
+              SAVINGS
+            </div>
+            <h1 className="font-anton uppercase tracking-wide text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95]">
+              NINE MONTHS.<br /><span className="italic text-[#DC2626]">POORI KIMAT WAPAS.</span>
+            </h1>
+            <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
+              ₹17,500 ka kit nine months mein poora paisa wapas de deta hai. Kaise? Fuel, tyre life, aur roadside events — teenon jaghon se savings aati hai. Calculator use kariye apne truck ke liye.
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="py-20 border-b border-white/10">
+      {/* Savings Buckets */}
+      <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-wide text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">PAISA KAHAAN SE AATA HAI?</h2>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Three savings buckets with detailed explanations:</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">**Bucket 1 · Fuel savings (5-6%)**</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">**Bucket 2 · Tyre life extension (5-7%)**</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">**Bucket 3 · Roadside downtime avoidance**</p>
-            <ul className="space-y-3 pt-2">
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Body (Hinglish): Underinflated tyres 5-6% extra fuel burn karte hai. Yeh most drivers ko pata hi nahi hota — kyunki eye se check karna mushkil hai, especially heavy load par.</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Numbers:</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>10-wheeler monthly fuel expense: ₹80,000-₹1,20,000 (typical, varies by route)</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>5% savings = ₹4,000-₹6,000 per month</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Annual savings = ₹48,000-₹72,000</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Explanation: Suraksha ke saath aapko har trip pe correct pressure ka confirmation milta hai. Long-run mein this is the biggest savings bucket.</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Body (Hinglish): Correct pressure pe tyres uniform wear karte hai. Uneven wear (jo underinflation ya overinflation se hoti hai) tyre life 5-7% kam kar deti hai.</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Numbers:</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Set of truck tyres cost: ₹2,00,000-₹3,50,000</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>5-7% extension over tyre lifecycle: ₹10,000-₹24,500 savings per tyre cycle</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Typical tyre cycle: 18-24 months for heavy commercial use</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Monthly effective savings: ₹500-₹1,500</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Body (Hinglish): Ek blowout ya major puncture mein direct costs (towing, repair) + indirect costs (delayed delivery, driver time, customer complaints) hote hai.</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Numbers per event:</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Towing charges: ₹5,000-₹15,000</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Emergency repair: ₹3,000-₹8,000</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Delivery delay penalty (contract-based): Variable, often ₹5,000-₹25,000</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Driver overtime + waiting cost: ₹1,000-₹3,000</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Total per event: ₹14,000-₹51,000</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Frequency: Even 1-2 events per year avoided pays for the entire kit.</span>
-              </li>
-            </ul>
+          <div className="max-w-4xl space-y-8">
+            <div>
+              <div className="inline-block font-rubik text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-2">
+                SAVINGS BREAKDOWN
+              </div>
+              <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
+                PAISA KAHAAN SE AATA HAI?
+              </h2>
+              <p className="text-[#78350F] text-base mt-2 font-medium">
+                Three savings buckets with detailed explanations:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Bucket 1 */}
+              <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm space-y-4">
+                <div className="font-anton text-xl uppercase text-[#DC2626]">
+                  Bucket 1 · Fuel savings (5-6%)
+                </div>
+                <p className="text-[#451A03] text-sm leading-relaxed">
+                  Underinflated tyres 5-6% extra fuel burn karte hai. Yeh most drivers ko pata hi nahi hota — kyunki eye se check karna mushkil hai, especially heavy load par.
+                </p>
+                <div className="pt-3 border-t border-[#451A03]/10 space-y-2 text-xs text-[#78350F]">
+                  <div className="font-bold text-[#451A03]">Numbers:</div>
+                  <div>• 10-wheeler monthly fuel expense: ₹80,000-₹1,20,000 (typical, varies by route)</div>
+                  <div>• 5% savings = ₹4,000-₹6,000 per month</div>
+                  <div className="font-bold text-[#DC2626]">• Annual savings = ₹48,000-₹72,000</div>
+                  <div className="pt-1 text-[#451A03]">Explanation: Suraksha ke saath aapko har trip pe correct pressure ka confirmation milta hai. Long-run mein this is the biggest savings bucket.</div>
+                </div>
+              </div>
+
+              {/* Bucket 2 */}
+              <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#EA580C] transition-all shadow-sm space-y-4">
+                <div className="font-anton text-xl uppercase text-[#EA580C]">
+                  Bucket 2 · Tyre life extension (5-7%)
+                </div>
+                <p className="text-[#451A03] text-sm leading-relaxed">
+                  Correct pressure pe tyres uniform wear karte hai. Uneven wear (jo underinflation ya overinflation se hoti hai) tyre life 5-7% kam kar deti hai.
+                </p>
+                <div className="pt-3 border-t border-[#451A03]/10 space-y-2 text-xs text-[#78350F]">
+                  <div className="font-bold text-[#451A03]">Numbers:</div>
+                  <div>• Set of truck tyres cost: ₹2,00,000-₹3,50,000</div>
+                  <div className="font-bold text-[#EA580C]">• 5-7% extension over tyre lifecycle: ₹10,000-₹24,500 savings per tyre cycle</div>
+                  <div>• Typical tyre cycle: 18-24 months for heavy commercial use</div>
+                  <div>• Monthly effective savings: ₹500-₹1,500</div>
+                </div>
+              </div>
+
+              {/* Bucket 3 */}
+              <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#0891B2] transition-all shadow-sm space-y-4">
+                <div className="font-anton text-xl uppercase text-[#0891B2]">
+                  Bucket 3 · Roadside downtime avoidance
+                </div>
+                <p className="text-[#451A03] text-sm leading-relaxed">
+                  Ek blowout ya major puncture mein direct costs (towing, repair) + indirect costs (delayed delivery, driver time, customer complaints) hote hai.
+                </p>
+                <div className="pt-3 border-t border-[#451A03]/10 space-y-2 text-xs text-[#78350F]">
+                  <div className="font-bold text-[#451A03]">Numbers per event:</div>
+                  <div>• Towing charges: ₹5,00,0-₹15,000</div>
+                  <div>• Emergency repair: ₹3,000-₹8,000</div>
+                  <div>• Delivery delay penalty (contract-based): Variable, often ₹5,000-₹25,000</div>
+                  <div>• Driver overtime + waiting cost: ₹1,000-₹3,000</div>
+                  <div className="font-bold text-[#0891B2]">• Total per event: ₹14,000-₹51,000</div>
+                  <div className="pt-1 text-[#451A03]">Frequency: Even 1-2 events per year avoided pays for the entire kit.</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
+
+      {/* Savings Calculator Section */}
+      <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-wide text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">CALCULATE YOUR TRUCK'S SAVINGS</h2>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Calculator inputs:</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">**Calculate button:** `Calculate my payback  →`</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Results section:</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Result cards (post-calculation):</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Below results:</p>
-            <ul className="space-y-3 pt-2">
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Truck configuration (dropdown): 6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, 16-wheeler, 18-wheeler</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Monthly kilometres (number): typical 8,000-25,000 km</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Current fuel expense per month (₹): typical 60,000-1,50,000</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Current tyre expense per year (₹): typical 60,000-1,50,000</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Roadside events per year (estimate): 0, 1, 2, 3, 4+</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Alt CTA: `EMI Options  →` → `/suraksha/emi</span>
-              </li>
-            </ul>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
-              <Link href="#" className="p-6 rounded-xl bg-[#1C1F22] border border-white/10 hover:border-[#E65100]/40 transition-all group block">
-                <h3 className="font-anton uppercase tracking-wide text-xl font-bold text-[#FAF7F2] group-hover:text-[#E65100] transition-colors">Kit price for your configuration</h3>
-                <p className="text-[#A3A3A3] text-sm mt-2 font-rubik leading-relaxed">₹[amount]</p>
-                <div className="mt-4 font-semibold text-xs text-[#E65100] flex items-center gap-1">
-                  Learn more <ChevronRight className="w-3.5 h-3.5" />
-                </div>
-              </Link>
-              <Link href="#" className="p-6 rounded-xl bg-[#1C1F22] border border-white/10 hover:border-[#E65100]/40 transition-all group block">
-                <h3 className="font-anton uppercase tracking-wide text-xl font-bold text-[#FAF7F2] group-hover:text-[#E65100] transition-colors">Estimated monthly fuel savings</h3>
-                <p className="text-[#A3A3A3] text-sm mt-2 font-rubik leading-relaxed">₹[amount]</p>
-                <div className="mt-4 font-semibold text-xs text-[#E65100] flex items-center gap-1">
-                  Learn more <ChevronRight className="w-3.5 h-3.5" />
-                </div>
-              </Link>
-              <Link href="#" className="p-6 rounded-xl bg-[#1C1F22] border border-white/10 hover:border-[#E65100]/40 transition-all group block">
-                <h3 className="font-anton uppercase tracking-wide text-xl font-bold text-[#FAF7F2] group-hover:text-[#E65100] transition-colors">Estimated monthly tyre life savings</h3>
-                <p className="text-[#A3A3A3] text-sm mt-2 font-rubik leading-relaxed">₹[amount]</p>
-                <div className="mt-4 font-semibold text-xs text-[#E65100] flex items-center gap-1">
-                  Learn more <ChevronRight className="w-3.5 h-3.5" />
-                </div>
-              </Link>
-              <Link href="#" className="p-6 rounded-xl bg-[#1C1F22] border border-white/10 hover:border-[#E65100]/40 transition-all group block">
-                <h3 className="font-anton uppercase tracking-wide text-xl font-bold text-[#FAF7F2] group-hover:text-[#E65100] transition-colors">Estimated annual downtime avoidance</h3>
-                <p className="text-[#A3A3A3] text-sm mt-2 font-rubik leading-relaxed">₹[amount]</p>
-                <div className="mt-4 font-semibold text-xs text-[#E65100] flex items-center gap-1">
-                  Learn more <ChevronRight className="w-3.5 h-3.5" />
-                </div>
-              </Link>
-              <Link href="#" className="p-6 rounded-xl bg-[#1C1F22] border border-white/10 hover:border-[#E65100]/40 transition-all group block">
-                <h3 className="font-anton uppercase tracking-wide text-xl font-bold text-[#FAF7F2] group-hover:text-[#E65100] transition-colors">**Payback period</h3>
-                <p className="text-[#A3A3A3] text-sm mt-2 font-rubik leading-relaxed">[X] months**</p>
-                <div className="mt-4 font-semibold text-xs text-[#E65100] flex items-center gap-1">
-                  Learn more <ChevronRight className="w-3.5 h-3.5" />
-                </div>
-              </Link>
-              <Link href="#" className="p-6 rounded-xl bg-[#1C1F22] border border-white/10 hover:border-[#E65100]/40 transition-all group block">
-                <h3 className="font-anton uppercase tracking-wide text-xl font-bold text-[#FAF7F2] group-hover:text-[#E65100] transition-colors">3-year net savings</h3>
-                <p className="text-[#A3A3A3] text-sm mt-2 font-rubik leading-relaxed">₹[amount]</p>
-                <div className="mt-4 font-semibold text-xs text-[#E65100] flex items-center gap-1">
-                  Learn more <ChevronRight className="w-3.5 h-3.5" />
-                </div>
-              </Link>
+          <div className="max-w-4xl space-y-8">
+            <div>
+              <div className="inline-block font-rubik text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-2">
+                ESTIMATE YOUR ROI
+              </div>
+              <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
+                CALCULATE YOUR TRUCK'S SAVINGS
+              </h2>
+              <p className="text-[#78350F] text-base mt-2 font-medium">
+                Calculator inputs:
+              </p>
             </div>
-            <div className="pt-6">
-              <Link href="/suraksha/centres" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all shadow-md bg-[#E65100] text-[#FAF7F2] hover:bg-[#F57C00]">
+
+            <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-4">
+              <ul className="space-y-2.5 text-sm text-[#451A03]">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#DC2626] font-bold">•</span>
+                  <span><strong>Truck configuration (dropdown):</strong> 6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, 16-wheeler, 18-wheeler</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#DC2626] font-bold">•</span>
+                  <span><strong>Monthly kilometres (number):</strong> typical 8,000-25,000 km</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#DC2626] font-bold">•</span>
+                  <span><strong>Current fuel expense per month (₹):</strong> typical 60,000-1,50,000</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#DC2626] font-bold">•</span>
+                  <span><strong>Current tyre expense per year (₹):</strong> typical 60,000-1,50,000</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#DC2626] font-bold">•</span>
+                  <span><strong>Roadside events per year (estimate):</strong> 0, 1, 2, 3, 4+</span>
+                </li>
+              </ul>
+
+              <div className="pt-3 border-t border-[#451A03]/10 flex flex-wrap items-center gap-4">
+                <button className="px-6 py-3 rounded-[4px] font-rubik font-bold text-sm shadow-md bg-[#DC2626] text-[#FEF3C7] hover:bg-[#B91C1C] transition-all">
+                  Calculate my payback →
+                </button>
+                <Link
+                  href="/suraksha/emi"
+                  className="px-6 py-3 rounded-[4px] font-rubik font-bold text-sm border-2 border-[#DC2626] text-[#DC2626] bg-[#FEF3C7] hover:bg-[#DC2626]/10 transition-all"
+                >
+                  EMI Options →
+                </Link>
+              </div>
+            </div>
+
+            <div>
+              <div className="text-sm font-semibold text-[#78350F] mb-4">
+                Results section: Result cards (post-calculation):
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 shadow-sm space-y-2">
+                  <h3 className="font-anton uppercase tracking-wide text-lg text-[#451A03]">Kit price for your configuration</h3>
+                  <p className="font-anton text-2xl text-[#DC2626]">₹[amount]</p>
+                  <div className="pt-2 font-bold text-xs text-[#DC2626] flex items-center gap-1">
+                    Learn more <ChevronRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+
+                <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 shadow-sm space-y-2">
+                  <h3 className="font-anton uppercase tracking-wide text-lg text-[#451A03]">Estimated monthly fuel savings</h3>
+                  <p className="font-anton text-2xl text-[#DC2626]">₹[amount]</p>
+                  <div className="pt-2 font-bold text-xs text-[#DC2626] flex items-center gap-1">
+                    Learn more <ChevronRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+
+                <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 shadow-sm space-y-2">
+                  <h3 className="font-anton uppercase tracking-wide text-lg text-[#451A03]">Estimated monthly tyre life savings</h3>
+                  <p className="font-anton text-2xl text-[#DC2626]">₹[amount]</p>
+                  <div className="pt-2 font-bold text-xs text-[#DC2626] flex items-center gap-1">
+                    Learn more <ChevronRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+
+                <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 shadow-sm space-y-2">
+                  <h3 className="font-anton uppercase tracking-wide text-lg text-[#451A03]">Estimated annual downtime avoidance</h3>
+                  <p className="font-anton text-2xl text-[#DC2626]">₹[amount]</p>
+                  <div className="pt-2 font-bold text-xs text-[#DC2626] flex items-center gap-1">
+                    Learn more <ChevronRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+
+                <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#DC2626] shadow-sm space-y-2">
+                  <h3 className="font-anton uppercase tracking-wide text-lg text-[#DC2626]">**Payback period</h3>
+                  <p className="font-anton text-2xl text-[#DC2626]">[X] months**</p>
+                  <div className="pt-2 font-bold text-xs text-[#DC2626] flex items-center gap-1">
+                    Learn more <ChevronRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+
+                <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 shadow-sm space-y-2">
+                  <h3 className="font-anton uppercase tracking-wide text-lg text-[#451A03]">3-year net savings</h3>
+                  <p className="font-anton text-2xl text-[#0891B2]">₹[amount]</p>
+                  <div className="pt-2 font-bold text-xs text-[#0891B2] flex items-center gap-1">
+                    Learn more <ChevronRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <div className="text-xs font-semibold text-[#78350F] mb-3">Below results:</div>
+              <Link
+                href="/suraksha/centres"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all shadow-md bg-[#DC2626] text-[#FEF3C7] hover:bg-[#B91C1C]"
+              >
                 Nearest Centre <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
+
+      {/* Timeline Section */}
+      <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Timeline visualization:</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Body (Hinglish):</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Yeh graph typical 10-wheeler ke liye hai. Aapke truck ke exact numbers calculator mein try kariye.</p>
-            <ul className="space-y-3 pt-2">
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Month 0: Buy kit (₹17,500)</span>
+          <div className="max-w-4xl p-8 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 shadow-sm space-y-4">
+            <div className="inline-block font-rubik text-xs font-bold uppercase tracking-widest text-[#DC2626]">
+              TIMELINE VISUALIZATION
+            </div>
+            <p className="text-base text-[#451A03] font-medium leading-relaxed">
+              Yeh graph typical 10-wheeler ke liye hai. Aapke truck ke exact numbers calculator mein try kariye.
+            </p>
+            <div className="text-xs font-bold uppercase tracking-wider text-[#78350F]">
+              Body (Hinglish):
+            </div>
+            <ul className="space-y-2.5 pt-2 text-sm text-[#451A03]">
+              <li className="flex items-start gap-2">
+                <span className="text-[#DC2626] font-bold">•</span>
+                <span><strong>Month 0:</strong> Buy kit (₹17,500)</span>
               </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Month 1-9: Monthly savings accumulate</span>
+              <li className="flex items-start gap-2">
+                <span className="text-[#EA580C] font-bold">•</span>
+                <span><strong>Month 1-9:</strong> Monthly savings accumulate</span>
               </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Month 9: Payback point reached</span>
+              <li className="flex items-start gap-2">
+                <span className="text-[#10B981] font-bold">•</span>
+                <span><strong>Month 9:</strong> Payback point reached</span>
               </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Month 10-36 (3-year warranty period): Pure profit</span>
+              <li className="flex items-start gap-2">
+                <span className="text-[#0891B2] font-bold">•</span>
+                <span><strong>Month 10-36 (3-year warranty period):</strong> Pure profit</span>
               </li>
             </ul>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
+
+      {/* Chai Framing CTA Band */}
+      <section className="py-20 bg-gradient-to-r from-[#DC2626] to-[#EA580C] text-[#FEF3C7]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-wide text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">₹16 PER DAY. EK CUP CHAI JAISA.</h2>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">3-year warranty ke hisaab se, Suraksha ka effective cost ₹16 per day hai — ek cup chai jitna. Aur woh bhi 9 months ke baad savings mein badal jata hai.</p>
-            <div className="pt-6">
-              <Link href="/suraksha/centres" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all shadow-md bg-[#E65100] text-[#FAF7F2] hover:bg-[#F57C00]">
-                Nearest Centre <ArrowRight className="w-4 h-4" />
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FEF3C7]">
+              ₹16 PER DAY. EK CUP CHAI JAISA.
+            </h2>
+            <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
+              3-year warranty ke hisaab se, Suraksha ka effective cost ₹16 per day hai — ek cup chai jitna. Aur woh bhi 9 months ke baad savings mein badal jata hai.
+            </p>
+            <div className="pt-2 flex flex-wrap justify-center gap-4">
+              <Link
+                href="/suraksha/centres"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all shadow-md bg-[#FEF3C7] text-[#451A03] hover:bg-white active:scale-[0.98]"
+              >
+                Nearest Centre <ArrowRight className="w-4 h-4 text-[#DC2626]" />
               </Link>
             </div>
           </div>

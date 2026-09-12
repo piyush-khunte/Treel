@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ShoppingCart, Smartphone, Package, Menu, X, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/lib/commerce/cart-context";
 import { EcosystemBar } from "./ecosystem-bar";
@@ -21,24 +20,24 @@ export function PersonalHeader() {
       <EcosystemBar />
 
       {/* Shipping Sub-banner */}
-      <div className="bg-slate-900 text-white text-xs py-1.5 px-4 sm:px-8">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-4 text-slate-300 font-manrope">
-            <span className="text-blue-400 font-semibold">Free Express Shipping Across India</span>
+      <div className="bg-[#111827] text-white text-xs py-2 px-4 sm:px-10 border-b border-white/10">
+        <div className="max-w-[1440px] mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-4 text-[#94A3B8] font-manrope">
+            <span className="text-[#60A5FA] font-semibold">Free Express Shipping Across India</span>
             <span className="hidden sm:inline">•</span>
             <span className="hidden sm:inline">1-Year Official Replacement Warranty</span>
           </div>
           <div className="flex items-center space-x-4 text-xs font-manrope">
-            <Link href="/personal/track-order" className="hover:text-blue-400 flex items-center gap-1 text-slate-300 font-medium">
-              <Package className="w-3.5 h-3.5 text-blue-400" /> Track Order
+            <Link href="/personal/track-order" className="hover:text-[#60A5FA] flex items-center gap-1 text-[#94A3B8] font-medium">
+              <Package className="w-3.5 h-3.5 text-[#60A5FA]" /> Track Order
             </Link>
           </div>
         </div>
       </div>
 
       {/* Main Nav */}
-      <div className="border-b border-slate-200 bg-white/95 backdrop-blur-md font-manrope">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+      <div className="border-b border-black/[0.06] bg-white/95 backdrop-blur-md font-manrope">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-10 h-20 flex items-center justify-between">
           {/* Brand Area: Official Treel Logo + Separator + Personal TPMS Brand */}
           <div className="flex items-center gap-4 sm:gap-6">
             <Link href="/" className="flex items-center group">
@@ -52,7 +51,7 @@ export function PersonalHeader() {
               />
             </Link>
 
-            <div className="h-6 w-[1px] bg-slate-200 hidden sm:block" />
+            <div className="h-6 w-[1px] bg-black/[0.08] hidden sm:block" />
 
             {/* Personal TPMS Logo & Brand Mark */}
             <Link href="/personal" className="flex items-center gap-3 group">
@@ -67,12 +66,12 @@ export function PersonalHeader() {
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                  <span className="font-manrope text-xl sm:text-2xl font-bold tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors">
+                  <span className="font-manrope text-xl sm:text-2xl font-extrabold tracking-tight text-[#111827] group-hover:text-[#2563EB] transition-colors">
                     Treel TPMS
                   </span>
-                  <Badge variant="personal" className="text-[10px] py-0 px-1.5 font-bold">Consumer</Badge>
+                  <Badge variant="personal" className="text-[10px] py-0.5 px-2 font-bold uppercase tracking-wider rounded-full border border-[#2563EB]/20 bg-[#2563EB]/10 text-[#2563EB]">Consumer</Badge>
                 </div>
-                <span className="text-[9px] tracking-widest uppercase text-slate-500 font-bold -mt-1">
+                <span className="text-[10px] tracking-widest uppercase text-[#6B7280] font-bold -mt-0.5">
                   Smart Tyre Sensors
                 </span>
               </div>
@@ -80,45 +79,45 @@ export function PersonalHeader() {
           </div>
 
           {/* Desktop Links */}
-          <nav className="hidden lg:flex items-center space-x-7 text-sm font-semibold text-slate-700 font-manrope">
-            <Link href="/personal/buy" className={`hover:text-blue-600 transition-colors ${pathname === '/personal/buy' ? 'text-blue-600 font-bold' : ''}`}>
+          <nav className="hidden lg:flex items-center space-x-8 text-sm font-semibold text-[#4B5563] font-manrope">
+            <Link href="/personal/buy" className={`hover:text-[#2563EB] transition-colors ${pathname === '/personal/buy' ? 'text-[#2563EB] font-bold' : ''}`}>
               Shop TPMS Kits
             </Link>
-            <Link href="/personal/features" className={`hover:text-blue-600 transition-colors ${pathname === '/personal/features' ? 'text-blue-600 font-bold' : ''}`}>
+            <Link href="/personal/features" className={`hover:text-[#2563EB] transition-colors ${pathname === '/personal/features' ? 'text-[#2563EB] font-bold' : ''}`}>
               Features
             </Link>
-            <Link href="/personal/specs" className={`hover:text-blue-600 transition-colors ${pathname === '/personal/specs' ? 'text-blue-600 font-bold' : ''}`}>
+            <Link href="/personal/specs" className={`hover:text-[#2563EB] transition-colors ${pathname === '/personal/specs' ? 'text-[#2563EB] font-bold' : ''}`}>
               Tech Specs
             </Link>
-            <Link href="/personal/app" className={`hover:text-blue-600 transition-colors flex items-center gap-1 ${pathname === '/personal/app' ? 'text-blue-600 font-bold' : ''}`}>
-              <Smartphone className="w-4 h-4 text-blue-600" /> Treel Care App
+            <Link href="/personal/app" className={`hover:text-[#2563EB] transition-colors flex items-center gap-1.5 ${pathname === '/personal/app' ? 'text-[#2563EB] font-bold' : ''}`}>
+              <Smartphone className="w-4 h-4 text-[#2563EB]" /> Treel Care App
             </Link>
-            <Link href="/personal/support/warranty" className="hover:text-blue-600 transition-colors">
+            <Link href="/personal/support/warranty" className="hover:text-[#2563EB] transition-colors">
               Warranty
             </Link>
           </nav>
 
           {/* Cart & Shop CTAs */}
           <div className="flex items-center space-x-3">
-            <Link href="/personal/buy/cart" className="relative p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-800 transition-colors">
+            <Link href="/personal/buy/cart" className="relative p-2.5 rounded-full border border-black/[0.08] hover:bg-[#F3F4F6] text-[#111827] transition-colors">
               <ShoppingCart className="w-5 h-5" />
               {totalItems > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-blue-600 text-white text-[11px] font-bold rounded-full flex items-center justify-center animate-in zoom-in">
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#2563EB] text-white text-[11px] font-bold rounded-full flex items-center justify-center animate-in zoom-in">
                   {totalItems}
                 </span>
               )}
             </Link>
 
             <Link href="/personal/buy" className="hidden sm:inline-block">
-              <Button variant="personal" size="sm" className="font-bold">
-                Buy Now <ArrowRight className="w-3.5 h-3.5 ml-1" />
-              </Button>
+              <button className="rounded-full font-manrope font-bold text-xs uppercase tracking-wider px-5 py-2.5 bg-[#2563EB] text-white hover:bg-[#1D4ED8] transition-all shadow-sm inline-flex items-center gap-1.5 cursor-pointer">
+                Buy Now <ArrowRight className="w-3.5 h-3.5" />
+              </button>
             </Link>
 
             {/* Mobile toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2.5 rounded-xl border border-slate-200 text-slate-800"
+              className="lg:hidden p-2.5 rounded-full border border-black/[0.08] text-[#111827]"
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -127,18 +126,18 @@ export function PersonalHeader() {
 
         {/* Mobile Drawer */}
         {mobileOpen && (
-          <div className="lg:hidden border-t border-slate-200 bg-white px-6 py-6 space-y-4 text-sm font-semibold shadow-2xl font-manrope">
-            <Link href="/personal/buy" onClick={() => setMobileOpen(false)} className="block py-2 text-blue-600 font-bold">Shop Car & Bike Kits</Link>
-            <Link href="/personal/features" onClick={() => setMobileOpen(false)} className="block py-2 text-slate-800 hover:text-blue-600">Features & App</Link>
-            <Link href="/personal/specs" onClick={() => setMobileOpen(false)} className="block py-2 text-slate-800 hover:text-blue-600">Technical Specs</Link>
-            <Link href="/personal/track-order" onClick={() => setMobileOpen(false)} className="block py-2 text-slate-800 hover:text-blue-600">Track Order</Link>
-            <Link href="/personal/app" onClick={() => setMobileOpen(false)} className="block py-2 text-slate-800 hover:text-blue-600">Treel Care Mobile App</Link>
-            <Link href="/personal/support/warranty" onClick={() => setMobileOpen(false)} className="block py-2 text-slate-800 hover:text-blue-600">Warranty Registration</Link>
+          <div className="lg:hidden border-t border-black/[0.06] bg-white px-6 py-6 space-y-4 text-sm font-semibold shadow-2xl font-manrope">
+            <Link href="/personal/buy" onClick={() => setMobileOpen(false)} className="block py-2 text-[#2563EB] font-bold">Shop Car & Bike Kits</Link>
+            <Link href="/personal/features" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">Features & App</Link>
+            <Link href="/personal/specs" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">Technical Specs</Link>
+            <Link href="/personal/track-order" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">Track Order</Link>
+            <Link href="/personal/app" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">Treel Care Mobile App</Link>
+            <Link href="/personal/support/warranty" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">Warranty Registration</Link>
             <div className="pt-2">
               <Link href="/personal/buy" onClick={() => setMobileOpen(false)}>
-                <Button variant="personal" className="w-full justify-center font-bold">
+                <button className="w-full justify-center font-manrope font-bold text-xs uppercase tracking-wider py-3 rounded-full bg-[#2563EB] text-white hover:bg-[#1D4ED8] transition-all shadow-sm">
                   Shop Smart TPMS Kits
-                </Button>
+                </button>
               </Link>
             </div>
           </div>

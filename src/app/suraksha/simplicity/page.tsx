@@ -18,143 +18,274 @@ export const metadata: Metadata = {
 
 export default function SurakshaSimplicityPage() {
   return (
-    <div className="space-y-0 bg-[#111315] text-[#FAF7F2] font-rubik">
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
+    <div className="bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-12 pb-16 sm:pt-16 sm:pb-24 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <div className="border text-[#E65100] bg-[#E65100]/10 border-[#E65100]/30 font-mono text-xs uppercase tracking-widest font-semibold px-3 py-1 rounded-full inline-block">SIMPLICITY</div>
-            <h1 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-[1.15]">PUNCTURE SHOP PE FIT.<br />*CABIN MEIN DEKHO.*</h1>
-            <p className="text-[#A3A3A3] text-lg sm:text-xl leading-relaxed font-rubik max-w-3xl">Suraksha ka design driver-first hai. Koi app nahi. Koi subscription nahi. Koi mechanic nahi. Just — fit, drive, watch.</p>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
+              SIMPLICITY
+            </div>
+            <h1 className="font-anton uppercase tracking-wide text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95]">
+              PUNCTURE SHOP PE FIT.<br /><span className="italic text-[#DC2626]">CABIN MEIN DEKHO.</span>
+            </h1>
+            <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
+              Suraksha ka design driver-first hai. Koi app nahi. Koi subscription nahi. Koi mechanic nahi. Just — fit, drive, watch.
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="py-20 border-b border-white/10">
+      {/* What's Not Needed */}
+      <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-wide text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">SURAKSHA KYA NAHI CHAHATA</h2>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Simple grid of what's NOT needed (with strikethrough visual):</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Item 1: **Smartphone app** — In-cab display standalone hai. Phone ki zaroorat nahi. Older drivers, non-tech users ke liye perfect.</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Item 2: **Internet connection** — Sensors aur display RF-based communication use karte hai. WiFi ya mobile data ki zaroorat nahi.</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Item 3: **Subscription ya monthly fee** — Ek baar kharidiye. Done. No recurring costs.</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Item 4: **Certified mechanic** — Kisi bhi puncture shop wala fit kar deta hai. Truck Wheels centres, JK dealers, roadside puncture shops — sab jaghon installation possible.</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Item 5: **Specific tyre brand** — Kisi bhi tyre ke saath kaam karta hai. JK, MRF, Apollo, CEAT, Bridgestone, Michelin, Chinese brands — sab supported.</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Item 6: **Truck downtime for installation** — 15 minute mein install ho jata hai. Bahut short window mein fit ho jayega.</p>
+          <div className="max-w-4xl space-y-8">
+            <div>
+              <div className="inline-block font-rubik text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-2">
+                HASSLE-FREE PROMISE
+              </div>
+              <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
+                SURAKSHA KYA NAHI CHAHATA
+              </h2>
+              <p className="text-[#78350F] text-base mt-2 font-medium">
+                Simple grid of what's NOT needed (with strikethrough visual):
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm space-y-2">
+                <div className="font-anton text-lg uppercase text-[#DC2626] line-through">
+                  Item 1: Smartphone app
+                </div>
+                <p className="text-sm text-[#451A03] leading-relaxed">
+                  In-cab display standalone hai. Phone ki zaroorat nahi. Older drivers, non-tech users ke liye perfect.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm space-y-2">
+                <div className="font-anton text-lg uppercase text-[#DC2626] line-through">
+                  Item 2: Internet connection
+                </div>
+                <p className="text-sm text-[#451A03] leading-relaxed">
+                  Sensors aur display RF-based communication use karte hai. WiFi ya mobile data ki zaroorat nahi.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm space-y-2">
+                <div className="font-anton text-lg uppercase text-[#DC2626] line-through">
+                  Item 3: Subscription ya monthly fee
+                </div>
+                <p className="text-sm text-[#451A03] leading-relaxed">
+                  Ek baar kharidiye. Done. No recurring costs.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm space-y-2">
+                <div className="font-anton text-lg uppercase text-[#DC2626] line-through">
+                  Item 4: Certified mechanic
+                </div>
+                <p className="text-sm text-[#451A03] leading-relaxed">
+                  Kisi bhi puncture shop wala fit kar deta hai. Truck Wheels centres, JK dealers, roadside puncture shops — sab jaghon installation possible.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm space-y-2">
+                <div className="font-anton text-lg uppercase text-[#DC2626] line-through">
+                  Item 5: Specific tyre brand
+                </div>
+                <p className="text-sm text-[#451A03] leading-relaxed">
+                  Kisi bhi tyre ke saath kaam karta hai. JK, MRF, Apollo, CEAT, Bridgestone, Michelin, Chinese brands — sab supported.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm space-y-2">
+                <div className="font-anton text-lg uppercase text-[#DC2626] line-through">
+                  Item 6: Truck downtime for installation
+                </div>
+                <p className="text-sm text-[#451A03] leading-relaxed">
+                  15 minute mein install ho jata hai. Bahut short window mein fit ho jayega.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
+
+      {/* 15 Minute, 3 Steps */}
+      <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-wide text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">15 MINUTE, 3 STEPS</h2>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Step-by-step visual:</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Step 1 (5 min): Display installation</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Display cabin dashboard ya windshield pe mount karo. Wiring truck battery se connect karo. Done.</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Step 2 (7 min): Sensor installation</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Har tyre pe ek sensor. Wheel-nut style secure mount. Anti-theft locking. 4 tyres = ~7 minute.</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Step 3 (3 min): Pairing + testing</p>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Display automatically sensors detect karta hai. Har tyre ka pressure check karo. Baseline set ho gaya. Fit hai.</p>
-            <ul className="space-y-3 pt-2">
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Image: Display mounted in cabin</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Image: Sensor being mounted on wheel</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>Image: Display showing all 4 tyres green</span>
-              </li>
-            </ul>
+          <div className="max-w-4xl space-y-8">
+            <div>
+              <div className="inline-block font-rubik text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-2">
+                FAST INSTALLATION
+              </div>
+              <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
+                15 MINUTE, 3 STEPS
+              </h2>
+              <p className="text-[#78350F] text-base mt-2 font-medium">
+                Step-by-step visual:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-3">
+                <div className="font-anton text-2xl text-[#DC2626]">01</div>
+                <div className="font-anton text-lg uppercase text-[#451A03]">
+                  Step 1 (5 min): Display installation
+                </div>
+                <p className="text-sm text-[#78350F] leading-relaxed">
+                  Display cabin dashboard ya windshield pe mount karo. Wiring truck battery se connect karo. Done.
+                </p>
+                <div className="pt-2 text-xs font-semibold text-[#DC2626]">
+                  Image: Display mounted in cabin
+                </div>
+              </div>
+
+              <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-3">
+                <div className="font-anton text-2xl text-[#EA580C]">02</div>
+                <div className="font-anton text-lg uppercase text-[#451A03]">
+                  Step 2 (7 min): Sensor installation
+                </div>
+                <p className="text-sm text-[#78350F] leading-relaxed">
+                  Har tyre pe ek sensor. Wheel-nut style secure mount. Anti-theft locking. 4 tyres = ~7 minute.
+                </p>
+                <div className="pt-2 text-xs font-semibold text-[#EA580C]">
+                  Image: Sensor being mounted on wheel
+                </div>
+              </div>
+
+              <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-3">
+                <div className="font-anton text-2xl text-[#0891B2]">03</div>
+                <div className="font-anton text-lg uppercase text-[#451A03]">
+                  Step 3 (3 min): Pairing + testing
+                </div>
+                <p className="text-sm text-[#78350F] leading-relaxed">
+                  Display automatically sensors detect karta hai. Har tyre ka pressure check karo. Baseline set ho gaya. Fit hai.
+                </p>
+                <div className="pt-2 text-xs font-semibold text-[#0891B2]">
+                  Image: Display showing all 4 tyres green
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
+
+      {/* What Suraksha Delivers On */}
+      <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-wide text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">What Suraksha delivers on</h2>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Badges grid:</p>
-            <ul className="space-y-3 pt-2">
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>✓ No app required</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>✓ No monthly fees</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>✓ No subscription</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>✓ No mechanic needed</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>✓ Any tyre brand</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>✓ Any truck</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>✓ Any puncture shop</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>✓ 15-minute install</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>✓ 3-year warranty</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>✓ Toll-free + WhatsApp support</span>
-              </li>
-            </ul>
+          <div className="max-w-4xl space-y-8">
+            <div>
+              <div className="inline-block font-rubik text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-2">
+                THE DELIVERABLES
+              </div>
+              <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
+                What Suraksha delivers on
+              </h2>
+              <p className="text-[#78350F] text-base mt-2 font-medium">
+                Badges grid:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[
+                "✓ No app required",
+                "✓ No monthly fees",
+                "✓ No subscription",
+                "✓ No mechanic needed",
+                "✓ Any tyre brand",
+                "✓ Any truck",
+                "✓ Any puncture shop",
+                "✓ 15-minute install",
+                "✓ 3-year warranty",
+                "✓ Toll-free + WhatsApp support",
+              ].map((badge) => (
+                <div
+                  key={badge}
+                  className="p-4 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 font-rubik font-semibold text-sm text-[#451A03] shadow-sm flex items-center gap-2"
+                >
+                  <span className="text-[#10B981] font-bold">✓</span>
+                  <span>{badge.replace("✓ ", "")}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
+
+      {/* Common Questions */}
+      <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-wide text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">Common questions</h2>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Accordion:</p>
-            <ul className="space-y-3 pt-2">
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>**Kya sach mein koi app download nahi karni?** · Haan, sach mein nahi. Display standalone hai — sab kuch cabin mein dikhta hai.</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>**Kya WhatsApp ke bina bhi kaam karega?** · Haan. Product operation ke liye WhatsApp nahi chahiye. WhatsApp sirf support ke liye hai (agar aap chahein toh).</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>**Puncture shop wala install kar dega?** · Haan. Video guide hai, phone support hai. Ek page ka installation manual bhi kit mein aata hai — sab kuch clear hai.</span>
-              </li>
-              <li className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
-                <span className="text-[#E65100] mt-1.5 font-bold">•</span>
-                <span>**Agar 3 saal baad problem aayi toh?** · Warranty 3 saal ki hai — free replacement. Uske baad new kit affordable price mein available hai.</span>
-              </li>
-            </ul>
+            <div>
+              <div className="inline-block font-rubik text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-2">
+                QUESTIONS
+              </div>
+              <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
+                Common questions
+              </h2>
+              <p className="text-[#78350F] text-base mt-2 font-medium">
+                Accordion:
+              </p>
+            </div>
+
+            <div className="space-y-4 pt-2">
+              <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-2">
+                <div className="font-rubik font-bold text-base text-[#451A03]">
+                  Kya sach mein koi app download nahi karni?
+                </div>
+                <p className="text-sm text-[#78350F] leading-relaxed">
+                  Haan, sach mein nahi. Display standalone hai — sab kuch cabin mein dikhta hai.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-2">
+                <div className="font-rubik font-bold text-base text-[#451A03]">
+                  Kya WhatsApp ke bina bhi kaam karega?
+                </div>
+                <p className="text-sm text-[#78350F] leading-relaxed">
+                  Haan. Product operation ke liye WhatsApp nahi chahiye. WhatsApp sirf support ke liye hai (agar aap chahein toh).
+                </p>
+              </div>
+
+              <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-2">
+                <div className="font-rubik font-bold text-base text-[#451A03]">
+                  Puncture shop wala install kar dega?
+                </div>
+                <p className="text-sm text-[#78350F] leading-relaxed">
+                  Haan. Video guide hai, phone support hai. Ek page ka installation manual bhi kit mein aata hai — sab kuch clear hai.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-2">
+                <div className="font-rubik font-bold text-base text-[#451A03]">
+                  Agar 3 saal baad problem aayi toh?
+                </div>
+                <p className="text-sm text-[#78350F] leading-relaxed">
+                  Warranty 3 saal ki hai — free replacement. Uske baad new kit affordable price mein available hai.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-      <section className="py-20 border-b border-white/10">
+
+      {/* CTA Band */}
+      <section className="py-20 bg-gradient-to-r from-[#DC2626] to-[#EA580C] text-[#FEF3C7]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-wide text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#FAF7F2]">SIMPLICITY MATLAB YAHI HAI.</h2>
-            <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed font-rubik">Kit kharidiye, fit karwaiye, drive kariye. Bas.</p>
-            <div className="pt-6">
-              <Link href="/suraksha/centres" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all shadow-md bg-[#E65100] text-[#FAF7F2] hover:bg-[#F57C00]">
-                Nearest Centre <ArrowRight className="w-4 h-4" />
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FEF3C7]">
+              SIMPLICITY MATLAB YAHI HAI.
+            </h2>
+            <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
+              Kit kharidiye, fit karwaiye, drive kariye. Bas.
+            </p>
+            <div className="pt-2 flex flex-wrap justify-center gap-4">
+              <Link
+                href="/suraksha/centres"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all shadow-md bg-[#FEF3C7] text-[#451A03] hover:bg-white active:scale-[0.98]"
+              >
+                Nearest Centre <ArrowRight className="w-4 h-4 text-[#DC2626]" />
               </Link>
             </div>
           </div>

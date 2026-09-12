@@ -162,7 +162,7 @@ export default function SurakshaEmiPage() {
       {/* Zero-Cost EMI Section */}
       <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="p-8 sm:p-12 rounded-3xl bg-[#FEF3C7] border-3 border-[#10B981] max-w-4xl space-y-4 shadow-md">
+          <div className="p-8 sm:p-12 rounded-lg bg-[#FEF3C7] border-3 border-[#10B981] max-w-4xl space-y-4 shadow-md">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#10B981]/15 text-[#047857] font-rubik text-xs font-bold uppercase">
               <Sparkles className="w-4 h-4" /> LIMITED-TIME OFFER
             </div>
@@ -183,7 +183,7 @@ export default function SurakshaEmiPage() {
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl">
             {/* Eligibility */}
-            <div className="p-8 rounded-3xl bg-[#FFFBEB] border-2 border-[#451A03]/15 space-y-6 shadow-sm">
+            <div className="p-8 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 space-y-6 shadow-sm">
               <h2 className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase">
                 ELIGIBILITY CRITERIA (Bajaj Finance)
               </h2>
@@ -192,7 +192,7 @@ export default function SurakshaEmiPage() {
                 {eligibilityCriteria.map((item) => (
                   <div
                     key={item.label}
-                    className="p-3.5 rounded-xl bg-[#FEF3C7] border border-[#451A03]/10 flex items-center justify-between text-xs sm:text-sm"
+                    className="p-3.5 rounded-[4px] bg-[#FEF3C7] border border-[#451A03]/10 flex items-center justify-between text-xs sm:text-sm"
                   >
                     <span className="font-bold text-[#451A03]">{item.label}</span>
                     <span className="text-[#78350F] font-medium text-right ml-2">
@@ -208,7 +208,7 @@ export default function SurakshaEmiPage() {
             </div>
 
             {/* Documents */}
-            <div className="p-8 rounded-3xl bg-[#FFFBEB] border-2 border-[#451A03]/15 space-y-6 shadow-sm">
+            <div className="p-8 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 space-y-6 shadow-sm">
               <h2 className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase">
                 DOCUMENTS JO CHAHIYE
               </h2>
@@ -241,10 +241,10 @@ export default function SurakshaEmiPage() {
             {steps.map((step) => (
               <div
                 key={step.num}
-                className="p-6 rounded-2xl bg-[#FEF3C7] border-2 border-[#451A03]/15 space-y-3 relative flex flex-col justify-between"
+                className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 space-y-3 relative flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-8 h-8 rounded-xl bg-[#DC2626] text-[#FEF3C7] font-anton text-lg flex items-center justify-center mb-3">
+                  <div className="w-8 h-8 rounded-[4px] bg-[#DC2626] text-[#FEF3C7] font-anton text-lg flex items-center justify-center mb-3">
                     {step.num}
                   </div>
                   <h3 className="font-rubik text-sm font-bold text-[#451A03] leading-snug">
@@ -261,7 +261,7 @@ export default function SurakshaEmiPage() {
           <div className="pt-8 flex justify-center">
             <Link
               href="/suraksha/emi/apply"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-rubik font-bold text-base transition-all shadow-md bg-[#DC2626] text-[#FEF3C7] hover:bg-[#B91C1C] active:scale-[0.98]"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all shadow-md bg-[#DC2626] text-[#FEF3C7] hover:bg-[#B91C1C] active:scale-[0.98]"
             >
               Apply Now <ArrowRight className="w-5 h-5" />
             </Link>
@@ -282,7 +282,7 @@ export default function SurakshaEmiPage() {
             {faqs.map((faq) => (
               <div
                 key={faq.q}
-                className="p-6 rounded-2xl bg-[#FFFBEB] border-2 border-[#451A03]/15 space-y-2 shadow-sm"
+                className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 space-y-2 shadow-sm"
               >
                 <h3 className="font-rubik text-base font-bold text-[#451A03]">
                   {faq.q}
@@ -310,7 +310,7 @@ export default function SurakshaEmiPage() {
               <Link
                 key={card.title}
                 href={card.href}
-                className="p-6 rounded-2xl bg-[#FEF3C7] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all group block shadow-sm"
+                className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all group block shadow-sm"
               >
                 <h3 className="font-anton text-xl font-normal text-[#451A03] group-hover:text-[#DC2626] transition-colors uppercase">
                   {card.title}

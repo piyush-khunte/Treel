@@ -20,16 +20,17 @@ export default function SurakshaCallbackPage() {
   };
 
   return (
-    <div className="space-y-0 bg-[#FEF3C7] text-[#451A03] font-rubik min-h-screen">
+    <div className="space-y-0 bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20 min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-[#451A03]/10">
+      <section className="relative overflow-hidden pt-16 pb-16 sm:pt-20 sm:pb-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <div className="border text-[#DC2626] bg-[#DC2626]/10 border-[#DC2626]/20 font-rubik text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
+              <PhoneCall className="w-3.5 h-3.5" />
               CALLBACK REQUEST
             </div>
-            <h1 className="font-anton text-4xl sm:text-5xl lg:text-6xl uppercase tracking-wider text-[#DC2626] leading-[1.15]">
-              Request a Driver Helpline Callback.
+            <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
+              Request a <span className="italic text-[#DC2626]">Driver Helpline</span> Callback.
             </h1>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
               Enter your mobile number. A Suraksha support advisor will call you back within 15 minutes in Hindi, Punjabi, Tamil, Telugu, or Marathi.
@@ -39,10 +40,10 @@ export default function SurakshaCallbackPage() {
       </section>
 
       {/* Form Section */}
-      <section className="py-20 border-b border-[#451A03]/10">
+      <section className="py-16 sm:py-20 bg-[#FEF3C7]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
-          <div className="max-w-md mx-auto bg-[#FFFBEB] border border-[#451A03]/10 p-8 sm:p-10 rounded-2xl shadow-xl space-y-6">
-            <h2 className="font-anton text-2xl uppercase tracking-wider text-[#451A03]">
+          <div className="max-w-md mx-auto bg-[#FFFBEB] border-2 border-[#451A03]/15 p-6 sm:p-8 rounded-lg shadow-sm space-y-6">
+            <h2 className="font-anton text-2xl uppercase tracking-normal text-[#451A03]">
               15-Minute Callback
             </h2>
 
@@ -57,7 +58,7 @@ export default function SurakshaCallbackPage() {
                   placeholder="Naam darj karein"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-3 bg-[#FEF3C7]/60 border border-[#451A03]/20 rounded-lg text-[#451A03] placeholder-[#78350F]/50 focus:outline-none focus:border-[#DC2626] text-sm font-medium"
+                  className="w-full px-4 py-3 bg-white border-2 border-[#451A03]/20 rounded-[4px] text-[#451A03] placeholder-[#78350F]/50 focus:outline-none focus:border-[#DC2626] text-sm font-medium shadow-sm"
                 />
               </div>
 
@@ -71,16 +72,16 @@ export default function SurakshaCallbackPage() {
                   placeholder="10-digit phone number"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-4 py-3 bg-[#FEF3C7]/60 border border-[#451A03]/20 rounded-lg text-[#451A03] placeholder-[#78350F]/50 focus:outline-none focus:border-[#DC2626] text-sm font-medium"
+                  className="w-full px-4 py-3 bg-white border-2 border-[#451A03]/20 rounded-[4px] text-[#451A03] placeholder-[#78350F]/50 focus:outline-none focus:border-[#DC2626] text-sm font-medium shadow-sm"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 rounded-lg font-anton uppercase tracking-wider text-base bg-[#DC2626] text-white hover:bg-[#B91C1C] transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                className="w-full py-3.5 rounded-[4px] font-rubik font-bold uppercase tracking-wider text-xs bg-[#DC2626] text-white hover:bg-[#B91C1C] transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
               >
-                <PhoneCall className="w-5 h-5" /> {isSubmitting ? "Sending..." : "Request Callback Now"}
+                <PhoneCall className="w-4 h-4" /> {isSubmitting ? "Sending..." : "Request Callback Now"}
               </button>
             </form>
           </div>
