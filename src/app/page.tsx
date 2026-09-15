@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Radio, Cpu, ShieldCheck, BarChart3 } from "lucide-react";
+import { TreelSignature } from "@/components/corporate/treel-signature";
 
 export const metadata: Metadata = {
   title: "Treel · The Mobility Intelligence Company",
@@ -76,21 +77,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Column: Treel Motion Marks Visual */}
+            {/* Right Column: Treel Signature Visual */}
             <div className="hidden lg:flex justify-center items-center p-6 xl:p-10">
-              <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-[420px] h-auto drop-shadow-2xl">
-                <defs>
-                  <linearGradient id="mmHeroGrad" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#D5573B" stopOpacity="0.6" />
-                    <stop offset="100%" stopColor="#D5573B" stopOpacity="1" />
-                  </linearGradient>
-                </defs>
-                <g fill="url(#mmHeroGrad)">
-                  <rect x="30" y="40" width="340" height="42" rx="4" />
-                  <rect x="30" y="110" width="340" height="42" rx="4" />
-                  <rect x="30" y="180" width="340" height="42" rx="4" />
-                </g>
-              </svg>
+              <TreelSignature variant="hero" />
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { TreelSignature } from "@/components/corporate/treel-signature";
 import { CookiePreferencesManager } from "./cookie-preferences";
 import { Shield, Lock, Sliders, ExternalLink, Mail, Phone, MapPin, CheckCircle2, ChevronRight } from "lucide-react";
 
@@ -33,19 +34,22 @@ export default function CookiesPage() {
   return (
     <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
       {/* Header & Hero */}
-      <section className="relative overflow-hidden pt-24 pb-16 border-b border-white/[0.08]">
+      <section className="relative overflow-hidden pt-28 pb-16 border-b border-white/[0.08]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-4">
-              LEGAL
+            <div className="flex items-center gap-3 mb-2">
+              <TreelSignature variant="compact" />
+              <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#D5573B] font-semibold">
+                LEGAL & COMPLIANCE
+              </span>
             </div>
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
               Cookie Policy
             </h1>
             <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-[#94A3B8] pt-2">
-              <span>Effective date: 1 October 2026</span>
+              <span>Effective October 1, 2026</span>
               <span className="text-white/20">·</span>
-              <span>Last updated: 1 October 2026</span>
+              <span>Last updated October 1, 2026</span>
               <span className="text-white/20">·</span>
               <span className="text-[#D5573B]">treel.in</span>
             </div>
@@ -118,7 +122,7 @@ export default function CookiesPage() {
                     <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] leading-[1.2]">
                       2.1 · Strictly necessary cookies
                     </h3>
-                    <span className="text-[10px] font-mono uppercase bg-[#00B37E]/20 text-[#00B37E] border border-[#00B37E]/30 px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-mono uppercase bg-[#D5573B]/20 text-[#D5573B] border border-[#D5573B]/30 px-2 py-0.5 rounded">
                       Always active
                     </span>
                   </div>

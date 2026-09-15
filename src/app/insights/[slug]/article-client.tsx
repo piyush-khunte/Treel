@@ -61,7 +61,7 @@ export function ArticleShareBar({ title, url }: ArticleShareProps) {
         aria-label="Copy article link"
         title="Copy link"
       >
-        {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <LinkIcon className="w-4 h-4" />}
+        {copied ? <Check className="w-4 h-4 text-[#D5573B]" /> : <LinkIcon className="w-4 h-4" />}
       </button>
       <a
         href={`mailto:?subject=${encodedTitle}&body=${encodedUrl}`}
@@ -112,8 +112,8 @@ export function ArticleNewsletterForm() {
       </div>
 
       {status === "success" ? (
-        <div className="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm flex items-center gap-3">
-          <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+        <div className="p-4 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 text-[#FAF7F2] text-sm flex items-center gap-3">
+          <CheckCircle2 className="w-5 h-5 text-[#D5573B] flex-shrink-0" />
           <span>You are subscribed to Treel Insights. We&apos;ll be in touch with our monthly research dispatch.</span>
         </div>
       ) : (

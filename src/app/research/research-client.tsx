@@ -40,7 +40,7 @@ const WHITEPAPERS: Whitepaper[] = [
     length: "28 pages",
     date: "Q3 2026",
     href: "/research/data-architecture",
-    tagColor: "bg-[#00B37E]/10 text-[#00B37E] border-[#00B37E]/20",
+    tagColor: "bg-[#D5573B]/10 text-[#D5573B] border-[#D5573B]/20",
   },
   {
     id: "case-study-1000-truck",
@@ -88,7 +88,7 @@ const WHITEPAPERS: Whitepaper[] = [
     length: "20 pages",
     date: "August 2025",
     href: "/research/data-architecture",
-    tagColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+    tagColor: "bg-[#D5573B]/10 text-[#D5573B] border-[#D5573B]/20",
   },
 ];
 

@@ -11,6 +11,7 @@ import {
   Layers,
   Users
 } from "lucide-react";
+import { TreelSignature } from "@/components/corporate/treel-signature";
 
 export const metadata: Metadata = {
   title: "A JK Tyre Technology Company  ·  Treel",
@@ -37,8 +38,11 @@ export default function JkTyrePage() {
         />
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 relative z-10">
           <div className="max-w-4xl space-y-6">
-            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-6 sm:mb-8">
-              OWNERSHIP
+            <div className="flex items-center gap-2 mb-6 sm:mb-8">
+              <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
+                OWNERSHIP
+              </span>
+              <TreelSignature variant="compact" />
             </div>
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.08]">
               A JK Tyre technology company.

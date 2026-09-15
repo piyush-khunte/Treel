@@ -78,7 +78,7 @@ export function CookiePreferencesManager() {
         </button>
 
         {savedMessage && (
-          <span className="inline-flex items-center gap-1.5 text-xs font-mono text-[#00B37E] bg-[#00B37E]/10 border border-[#00B37E]/20 px-3 py-1.5 rounded-full animate-in fade-in">
+          <span className="inline-flex items-center gap-1.5 text-xs font-mono text-[#D5573B] bg-[#D5573B]/10 border border-[#D5573B]/20 px-3 py-1.5 rounded-full animate-in fade-in">
             <Check className="w-3.5 h-3.5" />
             Preferences updated successfully
           </span>

@@ -391,7 +391,7 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
               {article.deck}
             </p>
 
-            {/* Author Byline & Article Details */}
+            {/* Author & Article Details */}
             <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-6">
               <div className="flex items-center gap-4 text-xs sm:text-sm text-[#94A3B8] font-inter">
                 <div>

@@ -33,6 +33,12 @@ export function MasterHeader() {
     return null;
   }
 
+  const isTechActive = pathname.startsWith("/technology") || pathname.startsWith("/data-infrastructure") || pathname.startsWith("/mobility-intelligence");
+  const isTwinActive = pathname.startsWith("/vehicle-digital-twin");
+  const isInsightsActive = pathname.startsWith("/insights") || pathname.startsWith("/research");
+  const isAboutActive = pathname.startsWith("/about") || pathname.startsWith("/leadership") || pathname.startsWith("/founder-note") || pathname.startsWith("/our-story") || pathname.startsWith("/why-treel") || pathname.startsWith("/jk-tyre") || pathname.startsWith("/partners");
+  const isContactActive = pathname.startsWith("/contact");
+
   return (
     <header className="sticky top-0 z-50 w-full transition-all shadow-sm">
       {/* 1. TOP PRODUCTION ECOSYSTEM BAR */}
@@ -40,7 +46,7 @@ export function MasterHeader() {
 
       {/* 2. MAIN PRODUCTION NAVIGATION BAR */}
       <div className="bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#E5DFD7]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
           {/* Brand Logo - Official Treel Logo from public/images/logo.png */}
           <Link href="/" className="flex items-center group">
             <Image
@@ -54,12 +60,12 @@ export function MasterHeader() {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-8 text-sm font-medium text-slate-800 font-inter">
+          <nav className="hidden lg:flex items-center space-x-7 text-sm font-medium text-slate-800 font-inter">
             {/* Solutions & Brands Dropdown */}
             <div className="relative group">
               <button 
                 onClick={() => setBrandDropdownOpen(!brandDropdownOpen)}
-                className="flex items-center gap-1.5 hover:text-[#00B37E] py-2 transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 hover:text-[#D5573B] py-2 transition-colors cursor-pointer"
               >
                 <span>Solutions & Brands</span>
                 <ChevronDown className="w-4 h-4 text-slate-400 group-hover:rotate-180 transition-transform" />
@@ -101,19 +107,34 @@ export function MasterHeader() {
               </div>
             </div>
 
-            <Link href="/technology" className="hover:text-[#00B37E] transition-colors">
+            <Link 
+              href="/technology" 
+              className={`transition-colors py-2 ${isTechActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"}`}
+            >
               Technology
             </Link>
-            <Link href="/vehicle-digital-twin" className="hover:text-[#00B37E] transition-colors">
+            <Link 
+              href="/vehicle-digital-twin" 
+              className={`transition-colors py-2 ${isTwinActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"}`}
+            >
               Digital Twin
             </Link>
-            <Link href="/insights" className="hover:text-[#00B37E] transition-colors">
+            <Link 
+              href="/insights" 
+              className={`transition-colors py-2 ${isInsightsActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"}`}
+            >
               Insights
             </Link>
-            <Link href="/about" className="hover:text-[#00B37E] transition-colors">
+            <Link 
+              href="/about" 
+              className={`transition-colors py-2 ${isAboutActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"}`}
+            >
               About Us
             </Link>
-            <Link href="/contact" className="hover:text-[#00B37E] transition-colors">
+            <Link 
+              href="/contact" 
+              className={`transition-colors py-2 ${isContactActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"}`}
+            >
               Contact
             </Link>
           </nav>
@@ -156,7 +177,7 @@ export function MasterHeader() {
               className="flex items-center justify-between p-3 rounded-xl bg-slate-50 font-medium text-slate-900"
             >
               <div className="flex items-center gap-3">
-                <Activity className="w-5 h-5 text-[#00B37E]" />
+                <Activity className="w-5 h-5 text-[#00E5FF]" />
                 <span>TMIP Enterprise Fleet</span>
               </div>
               <ArrowRight className="w-4 h-4 text-slate-400" />
@@ -186,12 +207,12 @@ export function MasterHeader() {
           </div>
 
           <div className="border-t border-slate-100 pt-4 space-y-3 text-sm font-medium text-slate-800 font-inter">
-            <Link href="/technology" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#00B37E]">Technology & IoT</Link>
-            <Link href="/vehicle-digital-twin" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#00B37E]">Vehicle Digital Twin</Link>
-            <Link href="/insights" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#00B37E]">Insights & Research</Link>
-            <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#00B37E]">About & Leadership</Link>
-            <Link href="/careers" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#00B37E]">Careers</Link>
-            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#00B37E]">Contact & Support</Link>
+            <Link href="/technology" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#D5573B]">Technology & IoT</Link>
+            <Link href="/vehicle-digital-twin" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#D5573B]">Vehicle Digital Twin</Link>
+            <Link href="/insights" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#D5573B]">Insights & Research</Link>
+            <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#D5573B]">About & Leadership</Link>
+            <Link href="/careers" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#D5573B]">Careers</Link>
+            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#D5573B]">Contact & Support</Link>
           </div>
 
           <div className="pt-2 flex flex-col gap-2.5">

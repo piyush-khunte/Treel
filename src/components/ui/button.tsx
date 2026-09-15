@@ -12,6 +12,10 @@ const buttonVariants = cva(
           "bg-[#0F1E19] text-[#FAF7F2] hover:bg-[#14532D] shadow-sm hover:shadow-md",
         emerald:
           "bg-[#00B37E] text-white hover:bg-[#009668] shadow-sm hover:shadow-md",
+        treel:
+          "bg-[#D5573B] text-[#FAF7F2] font-semibold hover:bg-[#C2492F] shadow-sm hover:shadow-md",
+        treelOutline:
+          "border border-[#94A3B8]/30 bg-transparent text-[#FAF7F2] hover:border-[#D5573B] hover:text-[#D5573B] hover:bg-[#D5573B]/10",
         tmip:
           "bg-[#00E5FF] text-[#0A0F1A] font-semibold hover:bg-[#00C2D6] hover:shadow-[0_0_20px_rgba(0,229,255,0.4)]",
         tmipOutline:

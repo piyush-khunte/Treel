@@ -13,15 +13,17 @@ import {
   Layers,
   Zap
 } from "lucide-react";
+import { TreelSignature } from "@/components/corporate/treel-signature";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Data Infrastructure  ·  Treel",
+  title: "Data Infrastructure · Treel",
   description: "Treel operates India's largest connected commercial vehicle dataset. 68,000 vehicles under active management, sub-second telemetry, eight years of longitudinal data. Infrastructure, governance, and privacy.",
   alternates: {
     canonical: "https://treel.in/data-infrastructure",
   },
   openGraph: {
-    title: "Data Infrastructure  ·  Treel",
+    title: "Data Infrastructure · Treel",
     description: "Treel operates India's largest connected commercial vehicle dataset. 68,000 vehicles under active management, sub-second telemetry, eight years of longitudinal data. Infrastructure, governance, and privacy.",
     url: "https://treel.in/data-infrastructure",
   },
@@ -77,8 +79,11 @@ export default function DataInfrastructurePage() {
         />
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 relative z-10">
           <div className="max-w-4xl space-y-6">
-            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-6 sm:mb-8">
-              DATA INFRASTRUCTURE
+            <div className="flex items-center gap-3">
+              <TreelSignature variant="compact" />
+              <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
+                DATA INFRASTRUCTURE
+              </span>
             </div>
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.08]">
               India&apos;s largest connected commercial vehicle dataset.
@@ -266,13 +271,12 @@ export default function DataInfrastructurePage() {
                 </p>
               </div>
 
-              <Link
-                href="/research/data-architecture"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-sm bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831] whitespace-nowrap"
-              >
-                <span>Read the whitepaper</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+              <Button asChild variant="treel" size="lg" className="whitespace-nowrap">
+                <Link href="/research/data-architecture" className="inline-flex items-center gap-2">
+                  <span>Read the whitepaper</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -289,13 +293,12 @@ export default function DataInfrastructurePage() {
               Connect directly with our engineering and platform architecture team in Pune to evaluate integration with your enterprise fleet systems.
             </p>
             <div className="pt-2">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-sm bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]"
-              >
-                <span>Talk to engineering</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+              <Button asChild variant="treel" size="lg">
+                <Link href="/contact" className="inline-flex items-center gap-2">
+                  <span>Talk to engineering</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>

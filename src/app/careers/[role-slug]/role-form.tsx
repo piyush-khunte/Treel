@@ -69,7 +69,7 @@ export function RoleApplicationForm({ roleTitle }: RoleApplicationFormProps) {
   if (status === "success") {
     return (
       <div className="p-8 sm:p-10 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-4">
-        <div className="w-12 h-12 rounded-md bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+        <div className="w-12 h-12 rounded-md bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B]">
           <CheckCircle2 className="w-6 h-6" />
         </div>
         <h3 className="font-fraunces text-2xl font-medium text-[#FAF7F2]">

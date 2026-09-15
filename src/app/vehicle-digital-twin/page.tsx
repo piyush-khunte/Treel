@@ -102,7 +102,7 @@ export default function VehicleDigitalTwinPage() {
 
               {/* Prediction Layer */}
               <div className="p-6 sm:p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 space-y-4">
-                <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                <div className="w-10 h-10 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B]">
                   <TrendingUp className="w-5 h-5" />
                 </div>
                 <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2]">

@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, CheckCircle2, ShieldCheck, Activity, HelpCircle, ChevronRight, MessageSquare, PhoneCall, Check } from "lucide-react";
+import { ArrowRight, ShieldCheck, Activity, HelpCircle } from "lucide-react";
+import { TreelSignature } from "@/components/corporate/treel-signature";
 
 export const metadata: Metadata = {
-  title: "Accessibility  \u00b7  Treel",
+  title: "Accessibility · Treel",
   description: "Treel's commitment to accessibility. Our WCAG 2.2 Level AA target, current status, and how to report accessibility issues.",
   alternates: {
     canonical: "https://treel.in/accessibility",
   },
   openGraph: {
-    title: "Accessibility  \u00b7  Treel",
+    title: "Accessibility · Treel",
     description: "Treel's commitment to accessibility. Our WCAG 2.2 Level AA target, current status, and how to report accessibility issues.",
     url: "https://treel.in/accessibility",
   },
@@ -19,37 +19,39 @@ export const metadata: Metadata = {
 export default function AccessibilityPage() {
   return (
     <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/[0.08]">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
+        <div 
+          className="absolute -top-24 -right-24 w-[500px] h-[500px] pointer-events-none rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(213, 87, 59, 0.12) 0%, transparent 65%)" }}
+          aria-hidden="true"
+        />
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 relative z-10">
           <div className="max-w-4xl space-y-6">
-            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-4">
-              LEGAL
+            <div className="flex items-center gap-3">
+              <TreelSignature variant="compact" />
+              <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
+                ACCESSIBILITY
+              </span>
             </div>
-            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">Accessibility Statement</h1>
+            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.08]">
+              Accessibility <span className="italic font-normal text-[#D5573B]">Statement.</span>
+            </h1>
+            <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-[#94A3B8] pt-2">
+              <span className="px-3 py-1 rounded bg-white/5 border border-white/10">
+                Effective: 1 October 2026
+              </span>
+              <span className="px-3 py-1 rounded bg-white/5 border border-white/10">
+                Last updated: 1 October 2026
+              </span>
+              <span className="px-3 py-1 rounded bg-[#D5573B]/10 border border-[#D5573B]/30 text-[#D5573B] font-semibold">
+                Target: WCAG 2.2 Level AA
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-20 border-b border-white/[0.08]">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <ul className="space-y-3 pt-2">
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
-                <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>H1: Accessibility Statement</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
-                <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Effective date: `1 October 2026</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
-                <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Last updated: `1 October 2026</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
       <section className="py-20 border-b border-white/[0.08]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">

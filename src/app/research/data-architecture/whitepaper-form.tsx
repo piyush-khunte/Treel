@@ -108,7 +108,7 @@ export function DataArchWhitepaperGatedForm() {
   if (submitted) {
     return (
       <div className="bg-white/[0.03] border border-white/[0.08] rounded-lg p-8 sm:p-10 space-y-6 text-left">
-        <div className="w-12 h-12 rounded-md bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+        <div className="w-12 h-12 rounded-md bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B]">
           <CheckCircle2 className="w-6 h-6" />
         </div>
 

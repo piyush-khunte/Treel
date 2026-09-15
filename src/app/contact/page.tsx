@@ -11,15 +11,16 @@ import {
   ShieldCheck
 } from "lucide-react";
 import { CorporateContactForm } from "./contact-form";
+import { TreelSignature } from "@/components/corporate/treel-signature";
 
 export const metadata: Metadata = {
-  title: "Contact Treel  ·  Get in Touch",
+  title: "Contact Treel · Get in Touch",
   description: "Contact Treel Mobility Solutions. Enterprise sales, media inquiries, partnerships, general questions. Toll-free 1800 833 0233 or email hello@treel.in.",
   alternates: {
     canonical: "https://treel.in/contact",
   },
   openGraph: {
-    title: "Contact Treel  ·  Get in Touch",
+    title: "Contact Treel · Get in Touch",
     description: "Contact Treel Mobility Solutions. Enterprise sales, media inquiries, partnerships, general questions. Toll-free 1800 833 0233 or email hello@treel.in.",
     url: "https://treel.in/contact",
   },
@@ -37,8 +38,11 @@ export default function ContactPage() {
         />
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 relative z-10">
           <div className="max-w-4xl space-y-6">
-            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-6 sm:mb-8">
-              CONTACT
+            <div className="flex items-center gap-3">
+              <TreelSignature variant="compact" />
+              <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
+                CONTACT
+              </span>
             </div>
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.08]">
               Get in touch.

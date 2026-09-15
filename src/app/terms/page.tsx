@@ -1,64 +1,87 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, CheckCircle2, ShieldCheck, Activity, HelpCircle, ChevronRight, MessageSquare, PhoneCall, Check } from "lucide-react";
+import { ArrowRight, ShieldCheck, FileText, ChevronRight } from "lucide-react";
+import { TreelSignature } from "@/components/corporate/treel-signature";
 
 export const metadata: Metadata = {
-  title: "Terms of Service  \u00b7  Treel",
+  title: "Terms of Service · Treel",
   description: "Treel's Terms of Service. Terms governing use of treel.in, TMIP, Project Suraksha, Personal TPMS, and related services.",
   alternates: {
     canonical: "https://treel.in/terms",
   },
   openGraph: {
-    title: "Terms of Service  \u00b7  Treel",
+    title: "Terms of Service · Treel",
     description: "Treel's Terms of Service. Terms governing use of treel.in, TMIP, Project Suraksha, Personal TPMS, and related services.",
     url: "https://treel.in/terms",
   },
 };
 
+const toc = [
+  { id: "acceptance", label: "1. Acceptance of terms" },
+  { id: "services", label: "2. Description of services" },
+  { id: "obligations", label: "3. User obligations" },
+  { id: "ip", label: "4. Intellectual property" },
+  { id: "warranties", label: "5. Warranties and disclaimers" },
+  { id: "liability", label: "6. Limitation of liability" },
+  { id: "indemnification", label: "7. Indemnification" },
+  { id: "disputes", label: "8. Dispute resolution" },
+  { id: "governing-law", label: "9. Governing law" },
+  { id: "modifications", label: "10. Modifications to terms" },
+  { id: "contact", label: "11. Contact us" },
+];
+
 export default function TermsPage() {
   return (
     <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/[0.08]">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
+      {/* 1. HERO SECTION */}
+      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
+        <div 
+          className="absolute -top-24 -right-24 w-[500px] h-[500px] pointer-events-none rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(213, 87, 59, 0.12) 0%, transparent 65%)" }}
+          aria-hidden="true"
+        />
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 relative z-10">
           <div className="max-w-4xl space-y-6">
-            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-4">
-              LEGAL
+            <div className="flex items-center gap-3">
+              <TreelSignature variant="compact" />
+              <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
+                LEGAL &amp; COMPLIANCE
+              </span>
             </div>
-            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">Terms of Service</h1>
+            <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.08]">
+              Terms of <span className="italic font-normal text-[#D5573B]">Service.</span>
+            </h1>
+            <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-[#94A3B8] pt-2">
+              <span className="px-3 py-1 rounded bg-white/5 border border-white/10">
+                Effective: 1 October 2026
+              </span>
+              <span className="px-3 py-1 rounded bg-white/5 border border-white/10">
+                Last updated: 1 October 2026
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-20 border-b border-white/[0.08]">
+      {/* 2. TABLE OF CONTENTS */}
+      <section className="py-12 border-b border-white/10 bg-[#121820]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <p className="text-[#FAF7F2] text-base sm:text-lg font-semibold leading-relaxed font-inter">Table of contents (in-page anchor nav)</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">1. Acceptance of terms</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">2. Description of services</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">3. User obligations</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">4. Intellectual property</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">5. Warranties and disclaimers</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">6. Limitation of liability</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">7. Indemnification</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">8. Dispute resolution</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">9. Governing law</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">10. Modifications to terms</p>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">11. Contact us</p>
-            <ul className="space-y-3 pt-2">
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
-                <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>H1: Terms of Service</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
-                <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Effective date: `1 October 2026</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
-                <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Last updated: `1 October 2026</span>
-              </li>
-            </ul>
+          <div className="max-w-4xl rounded-xl border border-white/10 bg-[#0F1419] p-6 sm:p-8 space-y-4">
+            <div className="text-xs font-mono font-semibold uppercase tracking-widest text-[#D5573B]">
+              TABLE OF CONTENTS
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 pt-2">
+              {toc.map((item) => (
+                <a 
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className="text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors py-1 flex items-center gap-1.5 group"
+                >
+                  <ChevronRight className="w-3 h-3 text-white/30 group-hover:text-[#D5573B]" />
+                  <span>{item.label}</span>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>

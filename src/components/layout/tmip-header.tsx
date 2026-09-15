@@ -3,11 +3,14 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { EcosystemBar } from "./ecosystem-bar";
 
 export function TmipHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isTmipHome = pathname === "/tmip";
 
   return (
     <header className="sticky top-0 z-50 w-full transition-all shadow-md">
@@ -16,7 +19,7 @@ export function TmipHeader() {
 
       {/* 2. TMIP NAVBAR */}
       <div className="bg-[#050A17]/95 backdrop-blur-md border-b border-blue-900/30">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
+        <div className={`${isTmipHome ? "max-w-[1320px]" : "max-w-[1440px]"} mx-auto px-6 sm:px-10 h-20 flex items-center justify-between`}>
           {/* Brand Area: Official Treel Logo + Separator + TMIP Logo */}
           <div className="flex items-center gap-4 sm:gap-6">
             <Link href="/" className="flex items-center group">

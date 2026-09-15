@@ -79,11 +79,11 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${inter.variable} ${spaceGrotesk.variable} ${ibmPlexSans.variable} ${jetbrainsMono.variable} ${anton.variable} ${rubik.variable} ${baloo2.variable} ${manrope.variable}`}
     >
-      <body className="min-h-screen flex flex-col antialiased selection:bg-[#00B37E]/20 selection:text-[#0F1E19]">
+      <body className="min-h-screen flex flex-col antialiased selection:bg-[#D5573B]/20 selection:text-[#FAF7F2]">
         <CartProvider>
           <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-[#00B37E] text-white font-medium rounded-lg shadow-lg"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-[#D5573B] text-white font-medium rounded-lg shadow-lg"
           >
             Skip to main content
           </a>

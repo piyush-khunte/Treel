@@ -67,41 +67,72 @@ export default function TmipPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-24 sm:pt-28 pb-28 sm:pb-32 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto">
-          <div className="max-w-[900px]">
-            <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] mb-7 font-medium">
-              TREEL MOBILITY INTELLIGENCE PLATFORM
+      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 px-6 sm:px-10 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-[80px] items-center">
+            {/* Left Column: Headline & Value Proposition */}
+            <div>
+              <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] mb-6 sm:mb-8 font-medium">
+                TREEL MOBILITY INTELLIGENCE PLATFORM
+              </div>
+              <h1 className="font-space-grotesk text-4xl sm:text-6xl lg:text-[72px] xl:text-[84px] font-semibold tracking-[-0.03em] text-[#F1F5F9] leading-[1.02] mb-6 sm:mb-8">
+                From tyre monitoring to{" "}
+                <span className="text-[#3B82F6]">mobility intelligence</span>.
+              </h1>
+              <p className="font-ibm-plex text-lg sm:text-[20px] leading-[1.55] text-[#94A3B8] max-w-[580px] mb-8 sm:mb-10">
+                The Vehicle Digital Twin platform for enterprise fleets that treat data as operating capital. API-first
+                architecture. Native integration with Fleetx, Locus, LogiNext, and custom TMS stacks.
+              </p>
+              <div className="flex flex-wrap items-center gap-4">
+                <Link
+                  href="/tmip/demo"
+                  className="px-7 py-3.5 rounded-[3px] font-space-grotesk font-semibold text-sm bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-lg shadow-[#3B82F6]/20 inline-flex items-center gap-2 transition-all duration-200"
+                >
+                  Book a demo <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  href="/tmip/whitepapers/roi-fleet-intelligence"
+                  className="px-7 py-3.5 rounded-[3px] font-ibm-plex font-medium text-sm text-[#F1F5F9] border border-[rgba(59,130,246,0.3)] hover:border-[#3B82F6] hover:bg-[#3B82F6]/[0.08] inline-flex items-center transition-all duration-200"
+                >
+                  Read the whitepaper
+                </Link>
+              </div>
             </div>
-            <h1 className="font-space-grotesk text-4xl sm:text-6xl lg:text-[72px] xl:text-[84px] font-semibold tracking-[-0.03em] text-[#F1F5F9] leading-[1.02] mb-8">
-              From tyre monitoring to{" "}
-              <span className="text-[#3B82F6]">mobility intelligence</span>.
-            </h1>
-            <p className="font-ibm-plex text-lg sm:text-[20px] leading-[1.55] text-[#94A3B8] max-w-[640px] mb-10">
-              The Vehicle Digital Twin platform for enterprise fleets that treat data as operating capital. API-first
-              architecture. Native integration with Fleetx, Locus, LogiNext, and custom TMS stacks.
-            </p>
-            <div className="flex flex-wrap items-center gap-4">
-              <Link
-                href="/tmip/demo"
-                className="px-7 py-3.5 rounded-[3px] font-space-grotesk font-semibold text-sm bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-lg shadow-[#3B82F6]/20 inline-flex items-center gap-2 transition-all duration-200"
+
+            {/* Right Column: TMIP Signature Visual */}
+            <div className="hidden lg:flex justify-center items-center p-6 xl:p-10 select-none" aria-hidden="true">
+              <svg
+                viewBox="0 0 380 220"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-full max-w-[420px] h-auto"
               >
-                Book a demo <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/tmip/whitepapers/roi-fleet-intelligence"
-                className="px-7 py-3.5 rounded-[3px] font-ibm-plex font-medium text-sm text-[#F1F5F9] border border-[rgba(59,130,246,0.3)] hover:border-[#3B82F6] hover:bg-[#3B82F6]/[0.08] inline-flex items-center transition-all duration-200"
-              >
-                Read the whitepaper
-              </Link>
+                <defs>
+                  <filter id="tmipHeroGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" />
+                  </filter>
+                </defs>
+                {/* Subtle blueprint glow */}
+                <g fill="#3B82F6" filter="url(#tmipHeroGlow)" opacity="0.25">
+                  <rect x="30" y="32" width="320" height="36" rx="4" opacity="0.55" />
+                  <rect x="30" y="92" width="320" height="36" rx="4" opacity="0.8" />
+                  <rect x="30" y="152" width="320" height="36" rx="4" />
+                </g>
+                {/* Precision TMIP Motion Marks */}
+                <g fill="#3B82F6">
+                  <rect x="30" y="32" width="320" height="36" rx="4" opacity="0.55" />
+                  <rect x="30" y="92" width="320" height="36" rx="4" opacity="0.8" />
+                  <rect x="30" y="152" width="320" height="36" rx="4" />
+                </g>
+              </svg>
             </div>
           </div>
         </div>
       </section>
 
       {/* Metrics band (4 metrics) */}
-      <section className="relative z-10 py-14 sm:py-16 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]/80">
-        <div className="max-w-[1440px] mx-auto">
+      <section className="relative z-10 py-16 sm:py-20 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]/80">
+        <div className="max-w-[1320px] mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             <div className="border-l-2 border-[#3B82F6] pl-5 space-y-2">
               <div className="font-space-grotesk text-3xl sm:text-4xl lg:text-[44px] font-semibold text-[#F59E0B] tracking-[-0.03em] leading-none mb-2">
@@ -156,7 +187,7 @@ export default function TmipPage() {
 
       {/* Section · Vehicle Digital Twin in real time */}
       <section className="relative z-10 py-20 lg:py-28 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto space-y-12">
+        <div className="max-w-[1320px] mx-auto space-y-12">
           <div className="max-w-[720px] space-y-4 mb-10 sm:mb-12">
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold">
               THE VEHICLE DIGITAL TWIN
@@ -176,7 +207,7 @@ export default function TmipPage() {
 
       {/* Section · Built for the fleet operations director */}
       <section className="relative z-10 py-20 lg:py-28 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]/50">
-        <div className="max-w-[1440px] mx-auto space-y-12">
+        <div className="max-w-[1320px] mx-auto space-y-12">
           <div className="max-w-[720px] space-y-4">
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold">
               CAPABILITIES
@@ -214,7 +245,7 @@ export default function TmipPage() {
 
       {/* CTA band (final section) */}
       <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-t border-[rgba(59,130,246,0.15)] bg-gradient-to-br from-[#3B82F6]/[0.06] to-[#F59E0B]/[0.04]">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-3xl space-y-6">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.02em] text-[#F1F5F9]">
               See TMIP on your fleet.
