@@ -96,8 +96,8 @@ export default function SurakshaPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-12 pb-16 sm:pt-16 sm:pb-24 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="relative overflow-hidden pt-16 sm:pt-20 pb-20 sm:pb-24 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Hero Content */}
             <div className="lg:col-span-7 space-y-6">
@@ -197,8 +197,8 @@ export default function SurakshaPage() {
       </section>
 
       {/* Three Reasons Drivers Install Suraksha */}
-      <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 sm:py-28 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-14">
             <div className="inline-block font-rubik text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-2">
               THREE REASONS DRIVERS INSTALL SURAKSHA
@@ -259,8 +259,8 @@ export default function SurakshaPage() {
       </section>
 
       {/* Six Regional Clusters */}
-      <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 sm:py-28 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <div className="inline-block font-rubik text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-2">
               SIX REGIONAL CLUSTERS
@@ -292,8 +292,8 @@ export default function SurakshaPage() {
       </section>
 
       {/* Final CTA Gradient Band */}
-      <section className="py-20 bg-gradient-to-r from-[#DC2626] to-[#EA580C] text-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+      <section className="py-20 sm:py-24 bg-gradient-to-r from-[#DC2626] to-[#EA580C] text-[#FEF3C7]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h2 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#FEF3C7] leading-[0.95] uppercase">
               NINE MONTHS.<br />

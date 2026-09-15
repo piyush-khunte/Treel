@@ -35,7 +35,7 @@ export default function TmipWhitepapersPage() {
 
       {/* Header & Hero */}
       <section className="relative z-10 pt-24 pb-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-4">
               <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
@@ -63,14 +63,14 @@ export default function TmipWhitepapersPage() {
 
       {/* Interactive Whitepapers Directory */}
       <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <WhitepapersClient />
         </div>
       </section>
 
       {/* Suggest a Topic CTA Band */}
       <section className="relative z-10 py-20">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="p-10 sm:p-14 rounded-[4px] bg-[#0B1220]/90 border border-blue-500/30 text-center space-y-6 max-w-4xl mx-auto">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Suggest a research topic.

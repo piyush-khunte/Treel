@@ -165,7 +165,7 @@ export default function TmipPlatformPage() {
 
       {/* Hero Section */}
       <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-4xl space-y-6">
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
               PLATFORM
@@ -183,7 +183,7 @@ export default function TmipPlatformPage() {
 
       {/* Section · The five-layer architecture */}
       <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]/50">
-        <div className="max-w-[1440px] mx-auto space-y-12">
+        <div className="max-w-[1320px] mx-auto space-y-12">
           <div className="max-w-3xl space-y-4">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#F1F5F9]">
               How TMIP is put together.
@@ -240,7 +240,7 @@ export default function TmipPlatformPage() {
 
       {/* Section · What you get across all five layers */}
       <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto space-y-12">
+        <div className="max-w-[1320px] mx-auto space-y-12">
           <div className="max-w-3xl space-y-4">
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold">
               DIFFERENTIATORS
@@ -271,7 +271,7 @@ export default function TmipPlatformPage() {
 
       {/* Section · Feature detail links */}
       <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]/50">
-        <div className="max-w-[1440px] mx-auto space-y-12">
+        <div className="max-w-[1320px] mx-auto space-y-12">
           <div className="max-w-3xl space-y-4">
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold">
               CORE CAPABILITIES
@@ -311,7 +311,7 @@ export default function TmipPlatformPage() {
 
       {/* Section · Integration snapshot */}
       <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto space-y-10">
+        <div className="max-w-[1320px] mx-auto space-y-10">
           <div className="max-w-3xl space-y-4">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#F1F5F9]">
               Native integrations, out of the box.
@@ -338,7 +338,7 @@ export default function TmipPlatformPage() {
 
       {/* Section · Security snapshot */}
       <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-4xl p-8 sm:p-12 rounded-[4px] bg-[#0B1220]/90 border border-slate-400/10 shadow-2xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
             <div className="space-y-4 max-w-2xl">
               <div className="flex items-center gap-2 text-xs font-jetbrains text-[#10B981] uppercase tracking-wider font-semibold">
@@ -368,7 +368,7 @@ export default function TmipPlatformPage() {
 
       {/* CTA band */}
       <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-t border-[rgba(59,130,246,0.15)] bg-gradient-to-br from-[#3B82F6]/[0.06] to-[#F59E0B]/[0.04]">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-3xl space-y-6">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.02em] text-[#F1F5F9]">
               See it running on your fleet.

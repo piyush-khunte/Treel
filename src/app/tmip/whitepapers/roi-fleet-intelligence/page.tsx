@@ -35,7 +35,7 @@ export default function RoiFleetIntelligencePage() {
 
       {/* Header & Breadcrumbs */}
       <section className="relative z-10 pt-24 pb-16 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-6">
             <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
               TMIP
@@ -75,7 +75,7 @@ export default function RoiFleetIntelligencePage() {
 
       {/* Main Content Grid: Abstract/TOC on Left, Gated Form on Right */}
       <section className="relative z-10 py-16 sm:py-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Column: Abstract & Table of Contents */}
             <div className="lg:col-span-7 space-y-12">
@@ -176,7 +176,7 @@ export default function RoiFleetIntelligencePage() {
 
       {/* Related Whitepapers Strip */}
       <section className="relative z-10 py-16 sm:py-20 bg-[#0B1220]/40">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 space-y-8">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-8">
           <div className="flex items-center justify-between">
             <h2 className="font-space-grotesk text-2xl font-bold text-[#F1F5F9]">Related Research &amp; Case Studies</h2>
             <Link

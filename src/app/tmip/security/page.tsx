@@ -138,7 +138,7 @@ export default function TmipSecurityPage() {
 
       {/* Hero Section */}
       <section className="relative z-10 pt-24 pb-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="rounded-[2px] font-jetbrains text-xs uppercase tracking-wider font-semibold px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 inline-block">
               SECURITY
@@ -155,7 +155,7 @@ export default function TmipSecurityPage() {
 
       {/* Certifications */}
       <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">
             <div className="space-y-3">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
@@ -194,7 +194,7 @@ export default function TmipSecurityPage() {
 
       {/* Infrastructure */}
       <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#0B1220]/40">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">
             <div className="space-y-3">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
@@ -226,7 +226,7 @@ export default function TmipSecurityPage() {
 
       {/* Data Security */}
       <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">
             <div className="space-y-3">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
@@ -261,7 +261,7 @@ export default function TmipSecurityPage() {
 
       {/* Application Security */}
       <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#0B1220]/40">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">
             <div className="space-y-3">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
@@ -296,7 +296,7 @@ export default function TmipSecurityPage() {
 
       {/* Incident Response */}
       <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">
             <div className="space-y-3">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
@@ -328,7 +328,7 @@ export default function TmipSecurityPage() {
 
       {/* Responsible Disclosure */}
       <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#0B1220]/40">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="space-y-3">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
@@ -365,7 +365,7 @@ export default function TmipSecurityPage() {
 
       {/* Enterprise Security Documentation Package CTA */}
       <section className="relative z-10 py-20">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl p-8 sm:p-12 rounded-[4px] bg-[#0B1220]/90 border border-blue-500/30 space-y-6">
             <div className="space-y-2">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl font-bold text-[#F1F5F9]">

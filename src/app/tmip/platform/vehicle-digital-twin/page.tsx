@@ -144,7 +144,7 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
 
       {/* Hero Section */}
       <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-4xl space-y-6">
             <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-4">
               <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
@@ -190,7 +190,7 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
 
       {/* TL;DR Section for AEO */}
       <section className="relative z-10 py-16 px-6 sm:px-10 border-b border-slate-400/10 bg-[#0B1220]/60">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="p-8 rounded-[4px] bg-[#080E1E] border border-blue-500/20 max-w-4xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
             <div className="flex items-center gap-2 mb-3">
@@ -208,7 +208,7 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
 
       {/* Section 1: How TMIP builds a Twin */}
       <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-3xl mb-12">
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold mb-2">
               DIGITAL TWIN ANATOMY
@@ -267,7 +267,7 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
 
       {/* Section 2: How operators use it */}
       <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]/50">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-3xl mb-12">
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold mb-2">
               OPERATIONAL USE CASES
@@ -313,7 +313,7 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
 
       {/* Section 3: ROI examples */}
       <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-3xl mb-12">
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold mb-2">
               PROVEN RESULTS
@@ -351,7 +351,7 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
 
       {/* Section 4: Related Features */}
       <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]/50">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-3xl mb-12">
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold mb-2">
               ECOSYSTEM
@@ -390,7 +390,7 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
 
       {/* CTA Band */}
       <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-t border-[rgba(59,130,246,0.15)] bg-gradient-to-br from-[#3B82F6]/[0.06] to-[#F59E0B]/[0.04]">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="p-8 sm:p-14 rounded-[4px] bg-[#0B1220]/80 border border-blue-500/20 text-center max-w-4xl mx-auto space-y-6">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-semibold tracking-[-0.02em] text-[#F1F5F9]">
               See a Vehicle Digital Twin on your fleet.

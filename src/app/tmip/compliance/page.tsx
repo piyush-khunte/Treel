@@ -32,7 +32,7 @@ export default function TmipCompliancePage() {
 
       {/* Hero Section */}
       <section className="relative z-10 pt-24 pb-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="rounded-[2px] font-jetbrains text-xs uppercase tracking-wider font-semibold px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 inline-block">
               COMPLIANCE
@@ -49,7 +49,7 @@ export default function TmipCompliancePage() {
 
       {/* India DPDP Act 2023 */}
       <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               India DPDP Act 2023
@@ -92,7 +92,7 @@ export default function TmipCompliancePage() {
 
       {/* GDPR */}
       <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#0B1220]/40">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               GDPR
@@ -106,7 +106,7 @@ export default function TmipCompliancePage() {
 
       {/* Industry-specific */}
       <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Industry-specific
@@ -135,7 +135,7 @@ export default function TmipCompliancePage() {
 
       {/* Data residency */}
       <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#0B1220]/40">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Data residency
@@ -149,7 +149,7 @@ export default function TmipCompliancePage() {
 
       {/* Third-party audit */}
       <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Third-party audit

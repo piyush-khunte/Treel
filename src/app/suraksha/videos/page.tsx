@@ -20,7 +20,7 @@ export default function SurakshaVideosPage() {
   return (
     <div className="space-y-0 bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20 min-h-screen">
       <section className="relative overflow-hidden pt-16 pb-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
               <Activity className="w-3.5 h-3.5" />
@@ -37,7 +37,7 @@ export default function SurakshaVideosPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Filter chips: All  ·  Installation  ·  Testimonials  ·  Product overview  ·  How-to guides</p>
           </div>
@@ -45,7 +45,7 @@ export default function SurakshaVideosPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-bold">Card layout per video:</p>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold"><strong>Sample video categories:</strong></p>
@@ -138,7 +138,7 @@ export default function SurakshaVideosPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">Aur bhi videos ke liye YouTube pe subscribe kariye.</p>
             <div className="pt-2">
@@ -151,7 +151,7 @@ export default function SurakshaVideosPage() {
       </section>
 
       <section className="py-16 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="pt-2">
               <Link href="/suraksha/centres" className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider transition-all shadow-md bg-[#DC2626] text-white hover:bg-[#B91C1C]">

@@ -117,7 +117,7 @@ export default function TmipApiPage() {
 
       {/* Hero Section */}
       <section className="relative z-10 pt-24 pb-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="rounded-[2px] font-jetbrains text-xs uppercase tracking-wider font-semibold px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 inline-block">
               API
@@ -134,7 +134,7 @@ export default function TmipApiPage() {
 
       {/* API-first architecture */}
       <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">
             <div className="space-y-3">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
@@ -171,7 +171,7 @@ export default function TmipApiPage() {
 
       {/* What the API enables */}
       <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#0B1220]/40">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">
             <div className="space-y-3">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
@@ -211,7 +211,7 @@ export default function TmipApiPage() {
 
       {/* Authentication */}
       <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="space-y-3">
               <div className="flex items-center gap-2 text-xs font-jetbrains text-[#3B82F6] uppercase tracking-wider font-semibold">
@@ -246,7 +246,7 @@ export default function TmipApiPage() {
 
       {/* Access model */}
       <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#0B1220]/40">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">
             <div className="space-y-3">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
@@ -287,7 +287,7 @@ export default function TmipApiPage() {
 
       {/* Request API access CTA */}
       <section className="relative z-10 py-20">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl p-8 sm:p-12 rounded-[4px] bg-[#0B1220]/90 border border-blue-500/30 space-y-6">
             <div className="space-y-2">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl font-bold text-[#F1F5F9]">

@@ -113,7 +113,7 @@ export default function TmipPlatformPredictiveMaintenancePage() {
 
       {/* Hero Section */}
       <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-4xl space-y-6">
             <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-4">
               <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
@@ -159,7 +159,7 @@ export default function TmipPlatformPredictiveMaintenancePage() {
 
       {/* TL;DR Section for AEO */}
       <section className="relative z-10 py-16 px-6 sm:px-10 border-b border-slate-400/10 bg-[#0B1220]/60">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="p-8 rounded-[4px] bg-[#080E1E] border border-blue-500/20 max-w-4xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
             <div className="flex items-center gap-2 mb-3">
@@ -177,7 +177,7 @@ export default function TmipPlatformPredictiveMaintenancePage() {
 
       {/* Section 1: How the models work */}
       <section className="relative z-10 py-20 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-4xl space-y-8">
             <div>
               <div className="font-jetbrains text-xs uppercase tracking-widest text-[#3B82F6] font-semibold mb-2">
@@ -207,7 +207,7 @@ export default function TmipPlatformPredictiveMaintenancePage() {
 
       {/* Section 2: Example predictions */}
       <section className="relative z-10 py-20 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]/50">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-3xl mb-12">
             <div className="font-jetbrains text-xs uppercase tracking-widest text-[#3B82F6] font-semibold mb-2">
               PREDICTIVE CAPABILITIES
@@ -260,7 +260,7 @@ export default function TmipPlatformPredictiveMaintenancePage() {
 
       {/* Section 3: What operators see change */}
       <section className="relative z-10 py-20 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-3xl mb-12">
             <div className="font-jetbrains text-xs uppercase tracking-widest text-[#3B82F6] font-semibold mb-2">
               MEASURABLE ROI
@@ -306,7 +306,7 @@ export default function TmipPlatformPredictiveMaintenancePage() {
 
       {/* Section 4: Model validation */}
       <section className="relative z-10 py-20 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]/50">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-4xl space-y-6">
             <div className="font-jetbrains text-xs uppercase tracking-widest text-[#3B82F6] font-semibold mb-2">
               TRANSPARENT VALIDATION
@@ -323,7 +323,7 @@ export default function TmipPlatformPredictiveMaintenancePage() {
 
       {/* CTA Band */}
       <section className="relative z-10 py-20 px-6 sm:px-10 bg-[#080E1E]">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="p-10 sm:p-16 rounded-[4px] bg-gradient-to-br from-[#0B1220] to-[#050A17] border border-blue-500/30 relative overflow-hidden text-center max-w-4xl mx-auto">
             <div className="space-y-6 max-w-2xl mx-auto">
               <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">

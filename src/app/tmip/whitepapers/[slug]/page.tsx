@@ -34,7 +34,7 @@ export default function TmipWhitepapersSlugPage() {
 
       {/* Header & Breadcrumb */}
       <section className="relative z-10 pt-24 pb-16 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-6">
             <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
               TMIP
@@ -64,7 +64,7 @@ export default function TmipWhitepapersSlugPage() {
 
       {/* Featured Whitepapers Grid */}
       <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 space-y-12">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Link
               href="/tmip/whitepapers/roi-fleet-intelligence"
@@ -146,7 +146,7 @@ export default function TmipWhitepapersSlugPage() {
 
       {/* CTA Band */}
       <section className="relative z-10 py-20">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="p-10 sm:p-14 rounded-[4px] bg-[#0B1220]/90 border border-blue-500/30 text-center space-y-6 max-w-4xl mx-auto">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Explore the TMIP Research Library

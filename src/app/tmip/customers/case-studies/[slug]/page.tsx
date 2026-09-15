@@ -34,7 +34,7 @@ export default function TmipCustomersCaseStudiesSlugPage() {
 
       {/* Header & Breadcrumb */}
       <section className="relative z-10 pt-24 sm:pt-28 pb-16 sm:pb-20 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-6">
             <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
               TMIP
@@ -68,7 +68,7 @@ export default function TmipCustomersCaseStudiesSlugPage() {
 
       {/* Featured Case Studies Directory Grid */}
       <section className="relative z-10 py-20 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto space-y-12">
+        <div className="max-w-[1320px] mx-auto space-y-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Link
               href="/tmip/customers/case-studies/1000-truck-case-study"
@@ -213,7 +213,7 @@ export default function TmipCustomersCaseStudiesSlugPage() {
 
       {/* CTA Band */}
       <section className="relative z-10 py-20 px-6 sm:px-10 bg-[#050A17]">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="p-10 sm:p-14 rounded-[4px] bg-gradient-to-br from-[#080E1E] to-[#0B1220] border border-blue-500/30 text-center space-y-6 max-w-4xl mx-auto">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               See if TMIP fits your fleet.

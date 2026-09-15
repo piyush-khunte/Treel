@@ -49,7 +49,7 @@ export function Footer({ variant, className }: FooterProps) {
       bottomLink: "hover:text-[#FAF7F2] transition-colors",
     },
     tmip: {
-      footer: `bg-[#050A17] text-[#E5E7EB] border-t border-[#3B82F6]/20 pt-16 pb-10 ${pathname === "/tmip" ? "px-6" : "px-4"} sm:px-10 font-ibm-plex relative z-10`,
+      footer: "bg-[#050A17] text-[#E5E7EB] border-t border-[#3B82F6]/20 pt-16 pb-10 px-6 sm:px-10 font-ibm-plex relative z-10",
       gridBorder: "border-b border-white/5",
       tagline: "font-ibm-plex text-[15px] text-[#94A3B8] leading-relaxed max-w-sm",
       subtext: "text-xs text-[#64748B] font-jetbrains pt-2",
@@ -63,7 +63,7 @@ export function Footer({ variant, className }: FooterProps) {
       bottomLink: "hover:text-[#3B82F6] transition-colors",
     },
     suraksha: {
-      footer: "bg-[#FEF3C7] text-[#451A03] border-t-2 border-[#451A03]/10 pt-16 pb-10 px-4 sm:px-10 font-rubik relative z-10",
+      footer: "bg-[#FEF3C7] text-[#451A03] border-t-2 border-[#451A03]/10 pt-16 pb-10 px-6 sm:px-10 font-rubik relative z-10",
       gridBorder: "border-b border-[#451A03]/10",
       tagline: "font-rubik text-[15px] text-[#78350F] font-medium leading-relaxed max-w-sm",
       subtext: "text-xs text-[#92400E] font-semibold font-rubik pt-2",

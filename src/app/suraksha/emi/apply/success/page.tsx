@@ -20,7 +20,7 @@ export default function SurakshaEmiApplySuccessPage() {
   return (
     <div className="space-y-0 bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20 min-h-screen">
       <section className="relative overflow-hidden pt-16 pb-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#10B981] bg-[#10B981]/10 text-[#047857] font-rubik text-xs font-bold uppercase tracking-wider">
               <CheckCircle2 className="w-3.5 h-3.5" />
@@ -38,7 +38,7 @@ export default function SurakshaEmiApplySuccessPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-bold">Application details card:</p>
             <div className="bg-[#FFFBEB] border-2 border-[#451A03]/15 rounded-lg p-6 sm:p-8 shadow-sm">
@@ -74,7 +74,7 @@ export default function SurakshaEmiApplySuccessPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">AAGE KYA HOGA?</h2>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Numbered steps:</p>
@@ -100,7 +100,7 @@ export default function SurakshaEmiApplySuccessPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">Reference number <code className="font-mono bg-[#FFFBEB] px-2 py-0.5 rounded border border-[#451A03]/20 font-bold">SRK-EMI-[NUMBER]</code> ko save kar lijiye — future queries ke liye zaroori hoga.</p>
             <div className="bg-[#FFFBEB] border-2 border-[#451A03]/15 rounded-lg p-6 shadow-sm">
@@ -128,7 +128,7 @@ export default function SurakshaEmiApplySuccessPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">Application ke baare mein koi bhi doubt ho toh WhatsApp par baat kijiye. Aap ki application ki status bhi WhatsApp par check kar sakte hai.</p>
             <ul className="space-y-3 pt-2">
@@ -147,7 +147,7 @@ export default function SurakshaEmiApplySuccessPage() {
       </section>
 
       <section className="py-16 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
               <Link href="/suraksha/how-it-works" className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all group block shadow-sm">

@@ -32,7 +32,7 @@ export default function TmipSupportPage() {
 
       {/* Hero Section */}
       <section className="relative z-10 pt-24 pb-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="rounded-[2px] font-jetbrains text-xs uppercase tracking-wider font-semibold px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 inline-block">
               SUPPORT
@@ -49,7 +49,7 @@ export default function TmipSupportPage() {
 
       {/* Support tiers by contract */}
       <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Support tiers by contract
@@ -131,7 +131,7 @@ export default function TmipSupportPage() {
 
       {/* For existing customers */}
       <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#0B1220]/40">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               For existing customers
@@ -154,7 +154,7 @@ export default function TmipSupportPage() {
 
       {/* For everyone else */}
       <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               For everyone else
@@ -177,7 +177,7 @@ export default function TmipSupportPage() {
 
       {/* Common questions */}
       <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#0B1220]/40">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Common questions

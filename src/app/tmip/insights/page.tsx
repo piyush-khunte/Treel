@@ -35,7 +35,7 @@ export default function TmipInsightsPage() {
 
       {/* Hero (Featured Article) */}
       <section className="relative z-10 pt-24 pb-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="flex flex-wrap items-center gap-3">
               <span className="bg-[#3B82F6] text-white text-[11px] font-jetbrains font-bold px-2.5 py-0.5 rounded-[2px] uppercase tracking-wider">
@@ -81,14 +81,14 @@ export default function TmipInsightsPage() {
 
       {/* Main Content: Category Filter & Grid */}
       <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <InsightsClient />
         </div>
       </section>
 
       {/* Section · Related Content Strip & RSS */}
       <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10 bg-[#0B1220]/40">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 space-y-12">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
           <div className="max-w-3xl space-y-4">
             <h2 className="font-space-grotesk text-3xl font-bold tracking-tight text-[#F1F5F9]">
               More Research from Treel

@@ -72,7 +72,7 @@ export default function TmipSolutionsPage() {
 
       {/* Hero Section */}
       <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[3px] bg-[#3B82F6]/10 border border-[#3B82F6]/30 text-[#3B82F6] font-jetbrains text-xs tracking-wider uppercase font-semibold">
               SOLUTIONS
@@ -90,7 +90,7 @@ export default function TmipSolutionsPage() {
 
       {/* Section · Industry cards */}
       <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {industryCards.map((card, idx) => {
               const Icon = card.icon;
@@ -123,7 +123,7 @@ export default function TmipSolutionsPage() {
 
       {/* Section · Industry-agnostic value */}
       <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-2 text-xs font-jetbrains text-[#F59E0B] uppercase tracking-wider font-semibold">
               <CheckCircle2 className="w-4 h-4" />
@@ -144,7 +144,7 @@ export default function TmipSolutionsPage() {
 
       {/* CTA band */}
       <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#050A17]">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1320px] mx-auto">
           <div className="max-w-3xl space-y-6">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F1F5F9]">
               See how TMIP fits your industry.

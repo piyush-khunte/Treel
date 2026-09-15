@@ -29,7 +29,7 @@ export default function SurakshaEMIApplyPage() {
     <div className="space-y-0 bg-[#FEF3C7] text-[#451A03] font-rubik min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-[#451A03]/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="border text-[#DC2626] bg-[#DC2626]/10 border-[#DC2626]/20 font-rubik text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
               SURAKSHA EMI
@@ -46,7 +46,7 @@ export default function SurakshaEMIApplyPage() {
 
       {/* Form Section */}
       <section className="py-20 border-b border-[#451A03]/10">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-2xl mx-auto bg-[#FFFBEB] border border-[#451A03]/10 p-8 sm:p-10 rounded-2xl shadow-xl space-y-6">
             <h2 className="font-anton text-2xl uppercase tracking-wider text-[#451A03]">
               Quick Application Form

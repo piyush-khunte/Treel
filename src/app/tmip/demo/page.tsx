@@ -45,7 +45,7 @@ export default function TMIPDemoPage() {
 
       {/* Hero Section */}
       <section className="relative z-10 pt-24 pb-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="rounded-[2px] font-jetbrains text-xs uppercase tracking-wider font-semibold px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 inline-block">
               BOOK A DEMO
@@ -62,7 +62,7 @@ export default function TMIPDemoPage() {
 
       {/* Form Section */}
       <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-7 bg-[#0B1220]/80 border border-slate-400/10 p-8 sm:p-10 rounded-[4px] shadow-xl">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl font-bold text-[#F1F5F9] mb-6">

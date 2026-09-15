@@ -19,7 +19,7 @@ export default function SurakshaBlogPage() {
   return (
     <div className="space-y-0 bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20 min-h-screen">
       <section className="relative overflow-hidden pt-24 pb-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
               BLOG
@@ -35,7 +35,7 @@ export default function SurakshaBlogPage() {
       </section>
 
       <section className="py-12 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl">
             <div className="p-6 bg-[#FFFBEB] border-2 border-[#451A03]/15 rounded-lg shadow-sm">
               <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-medium">
@@ -47,7 +47,7 @@ export default function SurakshaBlogPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6 bg-[#FEF3C7] border-2 border-[#451A03]/15 rounded-lg p-6 sm:p-8 shadow-sm">
             <ul className="space-y-3 pt-2">
               <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
@@ -77,7 +77,7 @@ export default function SurakshaBlogPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6 bg-[#FFFBEB] border-2 border-[#451A03]/15 rounded-lg p-6 sm:p-8 shadow-sm">
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Card format:</p>
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-bold">**Sample blog topics for launch (10-15 seed articles):**</p>
@@ -174,7 +174,7 @@ export default function SurakshaBlogPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">
               Blog updates chahiye?
@@ -195,7 +195,7 @@ export default function SurakshaBlogPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6 bg-[#FFFBEB] border-2 border-[#451A03]/15 rounded-lg p-6 sm:p-8 shadow-sm">
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik">
               *End of Phase 3 (Suraksha). Phase 4 (Legal + System + SEO infrastructure) content follows below.*

@@ -20,7 +20,7 @@ export default function SurakshaTestimonialsPage() {
   return (
     <div className="space-y-0 bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20 min-h-screen">
       <section className="relative overflow-hidden pt-16 pb-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
               <MessageSquare className="w-3.5 h-3.5" />
@@ -37,7 +37,7 @@ export default function SurakshaTestimonialsPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-bold">Filter chips:</p>
             <div className="bg-[#FFFBEB] border-2 border-[#451A03]/15 rounded-lg p-6 shadow-sm">
@@ -61,7 +61,7 @@ export default function SurakshaTestimonialsPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-bold">Card layout (per testimonial):</p>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold"><strong>Sample testimonials (for launch — need 12-15 real testimonials):</strong></p>
@@ -158,7 +158,7 @@ export default function SurakshaTestimonialsPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">Reviews from drivers who prefer to write</h2>
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">Written review cards (shorter format):</p>
@@ -191,7 +191,7 @@ export default function SurakshaTestimonialsPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">APNI STORY SHARE KIJIYE</h2>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-medium">Aap Suraksha use kar rahe hai aur experience share karna chahte hai? WhatsApp par video ya written testimonial bhejiye. Selected stories site pe feature ki jayegi.</p>
@@ -205,7 +205,7 @@ export default function SurakshaTestimonialsPage() {
       </section>
 
       <section className="py-16 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">AAP BHI EK STORY BAN JAAO.</h2>
             <div className="pt-2">

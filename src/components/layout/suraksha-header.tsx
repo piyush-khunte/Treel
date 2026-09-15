@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { MessageCircle, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { EcosystemBar } from "./ecosystem-bar";
 
 export function SurakshaHeader() {
@@ -16,30 +16,11 @@ export function SurakshaHeader() {
       {/* Top Production Ecosystem Bar */}
       <EcosystemBar />
 
-      {/* Driver Hotline Sub-bar */}
-      <div className="bg-[#451A03] text-[#FEF3C7] text-xs py-1.5 px-4 sm:px-8 border-b border-[#78350F]/40">
-        <div className="max-w-[1440px] mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-3 font-rubik text-xs font-semibold">
-            <span className="text-[#FEF3C7]">सुरक्षा हेल्पलाइन: <strong>1800 258 4567</strong> (Toll-Free)</span>
-            <span className="hidden sm:inline text-[#EA580C]">•</span>
-            <span className="hidden sm:inline text-[#FEF3C7]/90">400+ Highway Suraksha Centres Across India</span>
-          </div>
-          <div className="flex items-center space-x-4 text-xs font-rubik">
-            <Link
-              href="/suraksha/whatsapp"
-              className="hover:text-white flex items-center gap-1.5 text-[#FEF3C7] font-bold bg-[#EA580C]/30 hover:bg-[#EA580C]/50 px-2.5 py-0.5 rounded transition-colors"
-            >
-              <MessageCircle className="w-3.5 h-3.5 text-[#FEF3C7]" /> WhatsApp Pe Baat Karein
-            </Link>
-          </div>
-        </div>
-      </div>
-
       {/* Main Suraksha Nav */}
       <div className="bg-[#FEF3C7]/95 backdrop-blur-md border-b-2 border-[#451A03]/10">
-        <nav className="suraksha-nav">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between relative">
           {/* Brand Area: Official Treel Logo + Separator + Suraksha Brand */}
-          <div className="flex items-center gap-4 sm:gap-6">
+          <div className="flex items-center gap-4 sm:gap-6 shrink-0 z-10">
             <Link href="/" className="flex items-center group">
               <Image
                 src="/images/logo.png"
@@ -69,8 +50,11 @@ export function SurakshaHeader() {
             </Link>
           </div>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden lg:flex suraksha-nav-links">
+          {/* Desktop Nav Links - Centered */}
+          <nav
+            aria-label="Suraksha Navigation"
+            className="hidden lg:flex items-center gap-8 suraksha-nav-links lg:absolute lg:left-1/2 lg:-translate-x-1/2 z-10"
+          >
             <Link
               href="/suraksha/product"
               className={`transition-colors hover:text-[#DC2626] ${
@@ -103,10 +87,10 @@ export function SurakshaHeader() {
             >
               EMI
             </Link>
-          </div>
+          </nav>
 
           {/* Mobile menu toggle */}
-          <div className="lg:hidden flex items-center">
+          <div className="lg:hidden flex items-center z-10">
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="p-2 rounded border border-[#451A03]/20 text-[#451A03] hover:bg-[#FFFBEB] transition-colors"
@@ -115,7 +99,7 @@ export function SurakshaHeader() {
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
-        </nav>
+        </div>
 
         {/* Mobile Drawer */}
         {mobileOpen && (

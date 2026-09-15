@@ -20,7 +20,7 @@ export default function SurakshaContactPage() {
   return (
     <div className="space-y-0 bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20 min-h-screen">
       <section className="relative overflow-hidden pt-16 pb-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
               <PhoneCall className="w-3.5 h-3.5" />
@@ -37,7 +37,7 @@ export default function SurakshaContactPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-bold">Two large contact tiles:</p>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Tile 1 · Toll-Free:</p>
@@ -91,7 +91,7 @@ export default function SurakshaContactPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">FORM BHARIYE — HUM CALL KARENGE</h2>
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Form fields:</p>
@@ -169,7 +169,7 @@ export default function SurakshaContactPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">DHANYAWAAD! MESSAGE MIL GAYA.</h2>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik">Aap ka message hum tak pahunch gaya. 4 business hours mein humari team aap ko call ya WhatsApp karegi. Urgent ho toh direct 1800 833 0233 par call kariye.</p>
@@ -178,7 +178,7 @@ export default function SurakshaContactPage() {
       </section>
 
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">Aapke area ka nearest Suraksha centre find karne ke liye:</p>
             <div className="pt-2">
@@ -191,7 +191,7 @@ export default function SurakshaContactPage() {
       </section>
 
       <section className="py-16 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">Sabse fastest — WhatsApp par direct message kariye.</p>
             <div className="pt-2">

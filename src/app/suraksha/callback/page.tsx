@@ -23,7 +23,7 @@ export default function SurakshaCallbackPage() {
     <div className="space-y-0 bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20 min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-16 pb-16 sm:pt-20 sm:pb-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
               <PhoneCall className="w-3.5 h-3.5" />
@@ -41,7 +41,7 @@ export default function SurakshaCallbackPage() {
 
       {/* Form Section */}
       <section className="py-16 sm:py-20 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-md mx-auto bg-[#FFFBEB] border-2 border-[#451A03]/15 p-6 sm:p-8 rounded-lg shadow-sm space-y-6">
             <h2 className="font-anton text-2xl uppercase tracking-normal text-[#451A03]">
               15-Minute Callback

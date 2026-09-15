@@ -21,7 +21,7 @@ export default function SurakshaWhySurakshaPage() {
     <div className="bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-12 pb-16 sm:pt-16 sm:pb-24 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
               KYUN SURAKSHA?
@@ -38,7 +38,7 @@ export default function SurakshaWhySurakshaPage() {
 
       {/* Pillar 1: Safety */}
       <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl p-8 sm:p-10 rounded-lg bg-[#FFFBEB] border-3 border-[#DC2626] shadow-md space-y-6">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <span className="font-rubik text-xs font-bold px-3 py-1 rounded-full border border-[#DC2626]/30 bg-[#DC2626]/10 text-[#DC2626]">
@@ -106,7 +106,7 @@ export default function SurakshaWhySurakshaPage() {
 
       {/* Pillar 2: Savings */}
       <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl p-8 sm:p-10 rounded-lg bg-[#FEF3C7] border-3 border-[#EA580C] shadow-md space-y-6">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <span className="font-rubik text-xs font-bold px-3 py-1 rounded-full border border-[#EA580C]/30 bg-[#EA580C]/10 text-[#EA580C]">
@@ -184,7 +184,7 @@ export default function SurakshaWhySurakshaPage() {
 
       {/* Pillar 3: Simplicity */}
       <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl p-8 sm:p-10 rounded-lg bg-[#FFFBEB] border-3 border-[#0891B2] shadow-md space-y-6">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <span className="font-rubik text-xs font-bold px-3 py-1 rounded-full border border-[#0891B2]/30 bg-[#0891B2]/10 text-[#0891B2]">
@@ -262,7 +262,7 @@ export default function SurakshaWhySurakshaPage() {
 
       {/* Final CTA Band */}
       <section className="py-20 bg-gradient-to-r from-[#DC2626] to-[#EA580C] text-[#FEF3C7]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FEF3C7]">
               TEEN REASONS. EK KIT.<br />SIRF ₹17,500.
