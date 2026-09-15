@@ -83,7 +83,7 @@ export default function PersonalSupportTroubleshootingPage() {
     <div className="bg-white text-[#111827] font-manrope min-h-screen selection:bg-[#2563EB]/20 selection:text-[#111827]">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-black/[0.06] bg-[#F9FAFB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em] inline-block">
               TROUBLESHOOTING
@@ -100,7 +100,7 @@ export default function PersonalSupportTroubleshootingPage() {
 
       {/* Accordion Problems Section */}
       <section className="py-20 border-b border-black/[0.06] bg-white">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mx-auto space-y-6">
             <div className="space-y-2 mb-8">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111827]">
@@ -156,7 +156,7 @@ export default function PersonalSupportTroubleshootingPage() {
 
       {/* Still Stuck Section */}
       <section className="py-20 bg-[#F9FAFB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mx-auto p-8 sm:p-12 rounded-3xl bg-white border border-black/[0.06] shadow-xl text-center space-y-6">
             <div className="w-12 h-12 rounded-3xl bg-[#2563EB]/10 text-[#2563EB] flex items-center justify-center mx-auto">
               <HelpCircle className="w-6 h-6" />

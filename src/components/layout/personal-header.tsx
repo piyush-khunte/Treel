@@ -20,8 +20,8 @@ export function PersonalHeader() {
       <EcosystemBar />
 
       {/* Shipping Sub-banner */}
-      <div className="bg-[#111827] text-white text-xs py-2 px-4 sm:px-10 border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto flex items-center justify-between">
+      <div className="bg-[#111827] text-white text-xs py-2 px-6 sm:px-10 border-b border-white/10">
+        <div className="max-w-[1320px] mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-4 text-[#94A3B8] font-manrope">
             <span className="text-[#60A5FA] font-semibold">Free Express Shipping Across India</span>
             <span className="hidden sm:inline">•</span>
@@ -37,7 +37,7 @@ export function PersonalHeader() {
 
       {/* Main Nav */}
       <div className="border-b border-black/[0.06] bg-white/95 backdrop-blur-md font-manrope">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10 h-20 flex items-center justify-between">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
           {/* Brand Area: Official Treel Logo + Separator + Personal TPMS Brand */}
           <div className="flex items-center gap-4 sm:gap-6">
             <Link href="/" className="flex items-center group">

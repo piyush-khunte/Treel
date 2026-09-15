@@ -101,7 +101,7 @@ export default function PersonalSupportWarrantyPage() {
     <div className="bg-white text-[#111827] font-manrope min-h-screen selection:bg-[#2563EB]/20 selection:text-[#111827]">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-black/[0.06] bg-[#F9FAFB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em] inline-block">
               WARRANTY & SUPPORT
@@ -118,7 +118,7 @@ export default function PersonalSupportWarrantyPage() {
 
       {/* Coverage Breakdown Section */}
       <section className="py-20 border-b border-black/[0.06] bg-white">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* What's Covered */}
             <div className="p-8 rounded-3xl bg-[#10B981]/10/50 border border-[#10B981]/20 space-y-6">
@@ -193,7 +193,7 @@ export default function PersonalSupportWarrantyPage() {
 
       {/* Interactive Forms Section */}
       <section className="py-20 border-b border-black/[0.06] bg-[#F9FAFB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Register Your Warranty Form */}
             <div className="p-8 sm:p-10 rounded-3xl bg-white border border-black/[0.06] shadow-sm space-y-6">
@@ -431,7 +431,7 @@ export default function PersonalSupportWarrantyPage() {
 
       {/* FAQ Accordion Section */}
       <section className="py-20 border-b border-black/[0.06] bg-white">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl space-y-8">
             <div>
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em] inline-block mb-3">

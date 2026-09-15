@@ -125,7 +125,7 @@ export default function PersonalFeaturesAppPage() {
     <div className="bg-white text-[#111827] font-manrope min-h-screen selection:bg-[#2563EB]/20 selection:text-[#111827]">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-black/[0.06] bg-gradient-to-b from-white to-[#F3F4F6]/60">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
               FEATURE · APP
@@ -142,7 +142,7 @@ export default function PersonalFeaturesAppPage() {
 
       {/* App Screenshots Gallery Section */}
       <section className="py-20 border-b border-black/[0.06] bg-white">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12 space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
               INTERFACE TOUR
@@ -166,7 +166,7 @@ export default function PersonalFeaturesAppPage() {
 
       {/* App Features Grid Section */}
       <section className="py-20 border-b border-black/[0.06] bg-[#F9FAFB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-16 space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
               COMPLETE CAPABILITIES
@@ -195,7 +195,7 @@ export default function PersonalFeaturesAppPage() {
 
       {/* Platform Requirements Section */}
       <section className="py-20 border-b border-black/[0.06] bg-white">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
               COMPATIBILITY
@@ -228,7 +228,7 @@ export default function PersonalFeaturesAppPage() {
 
       {/* Download The App Section */}
       <section className="py-20 border-b border-black/[0.06] bg-[#F9FAFB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">
             <div className="space-y-3">
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
@@ -277,7 +277,7 @@ export default function PersonalFeaturesAppPage() {
 
       {/* Customer Reviews on App Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-16 space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
               USER FEEDBACK

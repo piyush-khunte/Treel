@@ -77,7 +77,7 @@ export function Footer({ variant, className }: FooterProps) {
       bottomLink: "hover:text-[#DC2626] transition-colors",
     },
     personal: {
-      footer: "bg-[#0B132B] text-slate-100 border-t border-blue-500/20 pt-16 pb-10 px-4 sm:px-10 font-manrope relative z-10",
+      footer: "bg-[#0B132B] text-slate-100 border-t border-blue-500/20 pt-16 pb-10 px-6 sm:px-10 font-manrope relative z-10",
       gridBorder: "border-b border-slate-800",
       tagline: "font-manrope text-[15px] text-slate-400 leading-relaxed max-w-sm",
       subtext: "text-xs text-slate-500 font-manrope pt-2",

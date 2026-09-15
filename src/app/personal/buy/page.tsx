@@ -108,7 +108,7 @@ export default function PersonalBuyPage() {
 
       {/* Hero / Header Section */}
       <section className="pt-24 pb-12 border-b border-black/[0.06] bg-gradient-to-b from-white via-slate-50/40 to-[#F3F4F6]/40">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           {/* Breadcrumbs */}
           <div className="flex items-center gap-2 text-xs font-semibold text-[#6B7280] uppercase tracking-wider mb-6">
             <Link href="/personal" className="hover:text-[#2563EB] transition-colors">Personal TPMS</Link>
@@ -175,7 +175,7 @@ export default function PersonalBuyPage() {
 
       {/* Product Grid Section */}
       <section className="py-16 bg-white">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="flex items-center justify-between pb-6 border-b border-black/[0.06] mb-10">
             <div className="text-sm font-bold text-[#111827]">
               Showing <span className="text-[#2563EB]">{filteredProducts.length}</span> {filteredProducts.length === 1 ? "Product" : "Products"}
@@ -285,7 +285,7 @@ export default function PersonalBuyPage() {
 
       {/* Trust Badges */}
       <section className="py-14 bg-[#F9FAFB] border-t border-b border-black/[0.06]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div className="p-4 rounded-2xl bg-white border border-black/[0.06] text-center space-y-1.5">
               <Truck className="w-6 h-6 text-[#2563EB] mx-auto" />
@@ -313,7 +313,7 @@ export default function PersonalBuyPage() {
 
       {/* Related Informational Links */}
       <section className="py-16 bg-white">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-8 space-y-2">
             <div className="text-xs font-bold uppercase tracking-wider text-[#2563EB]">HELP & GUIDANCE</div>
             <h3 className="text-2xl font-bold text-[#111827]">Frequently Explored TPMS Resources</h3>

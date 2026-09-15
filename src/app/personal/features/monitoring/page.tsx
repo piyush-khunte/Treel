@@ -81,7 +81,7 @@ export default function PersonalFeaturesMonitoringPage() {
     <div className="bg-white text-[#111827] font-manrope min-h-screen selection:bg-[#2563EB]/20 selection:text-[#111827]">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-black/[0.06] bg-gradient-to-b from-white to-[#F3F4F6]/60">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
               FEATURE · MONITORING
@@ -98,7 +98,7 @@ export default function PersonalFeaturesMonitoringPage() {
 
       {/* How Monitoring Works Section */}
       <section className="py-20 border-b border-black/[0.06] bg-white">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
@@ -164,7 +164,7 @@ export default function PersonalFeaturesMonitoringPage() {
 
       {/* The App View Section */}
       <section className="py-20 border-b border-black/[0.06] bg-[#F9FAFB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-16 space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
               UNIFIED DASHBOARD
@@ -196,7 +196,7 @@ export default function PersonalFeaturesMonitoringPage() {
 
       {/* Sample Scenarios Section */}
       <section className="py-20 border-b border-black/[0.06] bg-white">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-16 space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
               REAL-WORLD UTILITY
@@ -222,7 +222,7 @@ export default function PersonalFeaturesMonitoringPage() {
 
       {/* CTA Band */}
       <section className="py-20 bg-[#F9FAFB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="p-8 sm:p-14 rounded-[32px] bg-[#111827] text-white shadow-2xl border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-8">
             <div className="space-y-2 text-center sm:text-left">
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">

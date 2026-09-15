@@ -145,7 +145,7 @@ function ProductDetailContent() {
 
       {/* Product Details Section */}
       <section className="pt-24 pb-16 border-b border-black/[0.06]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           {/* Breadcrumbs */}
           <div className="flex items-center gap-2 text-xs font-semibold text-[#6B7280] uppercase tracking-wider mb-8 overflow-x-auto">
             <Link href="/personal" className="hover:text-[#2563EB] transition-colors shrink-0">Personal TPMS</Link>
@@ -307,7 +307,7 @@ function ProductDetailContent() {
 
       {/* Tabs Section: Overview, In The Box, Installation */}
       <section className="py-16 bg-[#F9FAFB] border-b border-black/[0.06]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="flex items-center gap-2 border-b border-black/[0.06] pb-px overflow-x-auto">
             <button
               onClick={() => setActiveTab("overview")}
@@ -398,7 +398,7 @@ function ProductDetailContent() {
 
       {/* Other Kits in the Catalog */}
       <section className="py-20 bg-white">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-4 border-b border-black/[0.06]">
             <div>
               <div className="text-xs font-bold uppercase tracking-wider text-[#2563EB]">MORE OPTIONS</div>

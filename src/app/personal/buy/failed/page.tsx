@@ -7,7 +7,7 @@ import { AlertCircle, ArrowRight, RefreshCw, PhoneCall } from "lucide-react";
 export default function OrderFailedPage() {
   return (
     <div className="py-24 bg-white text-[#111827] font-manrope min-h-screen selection:bg-[#2563EB]/20 selection:text-[#111827]">
-      <div className="max-w-2xl mx-auto px-4 sm:px-8 text-center space-y-8">
+      <div className="max-w-2xl mx-auto px-6 sm:px-10 text-center space-y-8">
         <div className="w-20 h-20 rounded-full bg-[#EF4444]/10 text-[#EF4444] flex items-center justify-center mx-auto shadow-md">
           <AlertCircle className="w-12 h-12" />
         </div>

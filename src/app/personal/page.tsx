@@ -73,7 +73,7 @@ export default function PersonalPage() {
     <div className="bg-white text-[#111827] font-manrope selection:bg-[#2563EB]/20 selection:text-[#111827]">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-16 pb-20 sm:pt-20 sm:pb-28 border-b border-black/[0.06] bg-gradient-to-b from-white to-[#F3F4F6]/60">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Hero Content */}
             <div className="lg:col-span-7 space-y-6">
@@ -168,7 +168,7 @@ export default function PersonalPage() {
 
       {/* Why Personal TPMS Section */}
       <section className="py-20 border-b border-black/[0.06] bg-white">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-14">
             <div className="inline-block font-manrope text-xs font-bold uppercase tracking-[0.15em] text-[#2563EB] mb-2">
               WHY PERSONAL TPMS
@@ -209,7 +209,7 @@ export default function PersonalPage() {
 
       {/* Specs at a Glance */}
       <section className="py-20 border-b border-black/[0.06] bg-[#F9FAFB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <div className="inline-block font-manrope text-xs font-bold uppercase tracking-[0.15em] text-[#2563EB] mb-2">
               SPECS AT A GLANCE
@@ -251,7 +251,7 @@ export default function PersonalPage() {
 
       {/* CTA Band */}
       <section className="py-20 bg-white">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="p-10 sm:p-16 rounded-3xl bg-gradient-to-br from-[#DBEAFE] to-[#EFF6FF] border border-[#2563EB]/15 text-center max-w-4xl mx-auto space-y-6 shadow-sm">
             <div className="inline-block font-manrope text-xs font-bold uppercase tracking-[0.15em] text-[#2563EB]">
               READY TO DRIVE SAFE

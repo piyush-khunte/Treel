@@ -1,7 +1,7 @@
-﻿import { Footer, FooterProps } from "./footer";
+import { Footer, FooterProps } from "./footer";
 
 export function MasterFooter(props: FooterProps) {
-  return <Footer variant="master" {...props} />;
+  return <Footer {...props} />;
 }
 
 export default MasterFooter;

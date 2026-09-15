@@ -70,7 +70,7 @@ export default function PersonalAppPage() {
     <div className="bg-white text-[#111827] font-manrope min-h-screen selection:bg-[#2563EB]/20 selection:text-[#111827]">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-black/[0.06] bg-gradient-to-b from-white to-[#F3F4F6]/60">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
               MOBILE APP
@@ -87,7 +87,7 @@ export default function PersonalAppPage() {
 
       {/* Download Badges Section */}
       <section className="py-16 border-b border-black/[0.06] bg-white">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
             {/* iOS App Store Badge */}
             <Link
@@ -124,7 +124,7 @@ export default function PersonalAppPage() {
 
       {/* App Visual & Features Grid */}
       <section className="py-20 border-b border-black/[0.06] bg-[#F9FAFB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Phone Screen Mockup */}
             <div className="lg:col-span-5 flex justify-center">
@@ -211,7 +211,7 @@ export default function PersonalAppPage() {
 
       {/* System Requirements & Store Ratings Section */}
       <section className="py-20 border-b border-black/[0.06] bg-white">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* System Requirements */}
             <div className="lg:col-span-6 p-8 sm:p-10 rounded-3xl bg-[#F9FAFB] border border-black/[0.06] space-y-6">
@@ -285,7 +285,7 @@ export default function PersonalAppPage() {
 
       {/* CTA Band */}
       <section className="py-20 bg-[#F9FAFB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="p-8 sm:p-14 rounded-[32px] bg-[#111827] text-white shadow-2xl border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-8">
             <div className="space-y-2 text-center sm:text-left">
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">

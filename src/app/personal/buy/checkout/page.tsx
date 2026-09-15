@@ -48,7 +48,7 @@ export default function CheckoutPage() {
     <div className="space-y-0 bg-white text-[#111827] font-manrope min-h-screen selection:bg-[#2563EB]/20 selection:text-[#111827]">
       {/* Header Banner */}
       <section className="pt-24 pb-12 border-b border-black/[0.06] bg-[#F9FAFB]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-2">
             <div className="text-xs font-bold uppercase tracking-widest text-[#2563EB] flex items-center gap-1.5">
               <Lock className="w-3.5 h-3.5" /> SECURE 256-BIT ENCRYPTED GUEST CHECKOUT
@@ -62,7 +62,7 @@ export default function CheckoutPage() {
 
       {/* Main Checkout Grid */}
       <section className="py-16">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <form onSubmit={handlePlaceOrder} className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Form Column */}
             <div className="lg:col-span-7 space-y-8">
