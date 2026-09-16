@@ -100,8 +100,8 @@ export default function TmipCustomersPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1320px] mx-auto">
+      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 border-b border-slate-400/10 bg-[#080E1E]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[3px] bg-[#3B82F6]/10 border border-[#3B82F6]/30 text-[#3B82F6] font-jetbrains text-xs tracking-wider uppercase font-semibold">
               CUSTOMERS
@@ -119,8 +119,8 @@ export default function TmipCustomersPage() {
       </section>
 
       {/* Section · Trust signals */}
-      <section className="relative z-10 py-12 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1320px] mx-auto">
+      <section className="relative z-10 py-12 border-b border-slate-400/10 bg-[#080E1E]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="space-y-1.5">
               <div className="font-space-grotesk text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F1F5F9] tracking-tight">
@@ -158,8 +158,8 @@ export default function TmipCustomersPage() {
       </section>
 
       {/* Section · Customer logo wall / Roster */}
-      <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto space-y-12">
+      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
           <div className="max-w-3xl space-y-4">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               A partial list of who runs on TMIP.
@@ -201,8 +201,8 @@ export default function TmipCustomersPage() {
       </section>
 
       {/* Section · Featured case studies */}
-      <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]/50">
-        <div className="max-w-[1320px] mx-auto space-y-12">
+      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10 bg-[#080E1E]/50">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="max-w-3xl space-y-4">
               <div className="text-xs font-jetbrains tracking-widest text-[#3B82F6] uppercase font-semibold">
@@ -253,8 +253,8 @@ export default function TmipCustomersPage() {
       </section>
 
       {/* Section · What our customers report back */}
-      <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#050A17]">
-        <div className="max-w-[1320px] mx-auto">
+      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10 bg-[#050A17]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl p-8 sm:p-12 rounded-[4px] bg-[#0B1220] border border-slate-400/10 space-y-6">
             <div className="inline-flex items-center gap-2 text-xs font-jetbrains text-[#10B981] uppercase tracking-wider font-semibold">
               <CheckCircle2 className="w-4 h-4" />
@@ -273,8 +273,8 @@ export default function TmipCustomersPage() {
       </section>
 
       {/* CTA band */}
-      <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1320px] mx-auto">
+      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10 bg-[#080E1E]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl space-y-6">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F1F5F9]">
               Join them.

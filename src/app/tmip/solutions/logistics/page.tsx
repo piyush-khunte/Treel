@@ -99,8 +99,8 @@ export default function TmipSolutionsLogisticsPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1320px] mx-auto">
+      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 border-b border-slate-400/10 bg-[#080E1E]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-4">
               <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
@@ -146,8 +146,8 @@ export default function TmipSolutionsLogisticsPage() {
       </section>
 
       {/* Metrics Impact Summary */}
-      <section className="relative z-10 py-12 px-6 sm:px-10 border-b border-slate-400/10 bg-[#050A17]">
-        <div className="max-w-[1320px] mx-auto">
+      <section className="relative z-10 py-12 border-b border-slate-400/10 bg-[#050A17]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
               <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#10B981]">5–6%</div>
@@ -169,8 +169,8 @@ export default function TmipSolutionsLogisticsPage() {
       </section>
 
       {/* Industry Challenges Section */}
-      <section className="relative z-10 py-20 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto space-y-12">
+      <section className="relative z-10 py-20 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
           <div className="max-w-3xl space-y-4">
             <h2 className="font-space-grotesk text-2xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               What logistics operators lose sleep over.
@@ -196,8 +196,8 @@ export default function TmipSolutionsLogisticsPage() {
       </section>
 
       {/* TMIP's Fit Section */}
-      <section className="relative z-10 py-20 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1320px] mx-auto">
+      <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#080E1E]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[3px] bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981] font-jetbrains text-xs tracking-wider uppercase font-semibold">
@@ -251,8 +251,8 @@ export default function TmipSolutionsLogisticsPage() {
       </section>
 
       {/* Relevant Capabilities Section */}
-      <section className="relative z-10 py-20 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto space-y-12">
+      <section className="relative z-10 py-20 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
           <div className="max-w-3xl space-y-4">
             <h2 className="font-space-grotesk text-2xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Relevant Capabilities
@@ -281,8 +281,8 @@ export default function TmipSolutionsLogisticsPage() {
       </section>
 
       {/* Logistics Case Studies Section */}
-      <section className="relative z-10 py-20 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1320px] mx-auto space-y-12">
+      <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#080E1E]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-2xl space-y-3">
               <div className="text-xs font-jetbrains text-[#3B82F6] uppercase tracking-wider font-semibold">
@@ -375,8 +375,8 @@ export default function TmipSolutionsLogisticsPage() {
       </section>
 
       {/* CTA Band Section */}
-      <section className="relative z-10 py-20 px-6 sm:px-10 bg-[#050A17]">
-        <div className="max-w-[1320px] mx-auto">
+      <section className="relative z-10 py-20 bg-[#050A17]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="p-10 sm:p-14 rounded-[4px] bg-gradient-to-br from-[#080E1E] to-[#0B1220] border border-blue-500/30 text-center space-y-6 max-w-4xl mx-auto">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               See TMIP on a logistics fleet like yours.

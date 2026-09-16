@@ -34,8 +34,8 @@ export default function TmipCustomersCaseStudiesPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1320px] mx-auto">
+      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 border-b border-slate-400/10 bg-[#080E1E]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-4">
               <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
@@ -66,15 +66,15 @@ export default function TmipCustomersCaseStudiesPage() {
       </section>
 
       {/* Main Section · Interactive Filter & Case Study Cards */}
-      <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto">
+      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <CaseStudiesClient />
         </div>
       </section>
 
       {/* CTA band */}
-      <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1320px] mx-auto">
+      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10 bg-[#080E1E]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl space-y-6">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F1F5F9]">
               Not seeing your industry?

@@ -67,8 +67,8 @@ export default function TmipPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto">
+      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-[80px] items-center">
             {/* Left Column: Headline & Value Proposition */}
             <div>
@@ -131,8 +131,8 @@ export default function TmipPage() {
       </section>
 
       {/* Metrics band (4 metrics) */}
-      <section className="relative z-10 py-16 sm:py-20 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]/80">
-        <div className="max-w-[1320px] mx-auto">
+      <section className="relative z-10 py-16 sm:py-20 border-b border-slate-400/10 bg-[#080E1E]/80">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             <div className="border-l-2 border-[#3B82F6] pl-5 space-y-2">
               <div className="font-space-grotesk text-3xl sm:text-4xl lg:text-[44px] font-semibold text-[#F59E0B] tracking-[-0.03em] leading-none mb-2">
@@ -186,8 +186,8 @@ export default function TmipPage() {
       </section>
 
       {/* Section · Vehicle Digital Twin in real time */}
-      <section className="relative z-10 py-20 lg:py-28 px-6 sm:px-10 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto space-y-12">
+      <section className="relative z-10 py-20 lg:py-28 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
           <div className="max-w-[720px] space-y-4 mb-10 sm:mb-12">
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold">
               THE VEHICLE DIGITAL TWIN
@@ -206,8 +206,8 @@ export default function TmipPage() {
       </section>
 
       {/* Section · Built for the fleet operations director */}
-      <section className="relative z-10 py-20 lg:py-28 px-6 sm:px-10 border-b border-slate-400/10 bg-[#080E1E]/50">
-        <div className="max-w-[1320px] mx-auto space-y-12">
+      <section className="relative z-10 py-20 lg:py-28 border-b border-slate-400/10 bg-[#080E1E]/50">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
           <div className="max-w-[720px] space-y-4">
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold">
               CAPABILITIES
@@ -244,8 +244,8 @@ export default function TmipPage() {
       </section>
 
       {/* CTA band (final section) */}
-      <section className="relative z-10 py-20 lg:py-24 px-6 sm:px-10 border-t border-[rgba(59,130,246,0.15)] bg-gradient-to-br from-[#3B82F6]/[0.06] to-[#F59E0B]/[0.04]">
-        <div className="max-w-[1320px] mx-auto">
+      <section className="relative z-10 py-20 lg:py-24 border-t border-[rgba(59,130,246,0.15)] bg-gradient-to-br from-[#3B82F6]/[0.06] to-[#F59E0B]/[0.04]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl space-y-6">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.02em] text-[#F1F5F9]">
               See TMIP on your fleet.
