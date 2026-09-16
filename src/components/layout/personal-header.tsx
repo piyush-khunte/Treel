@@ -19,21 +19,6 @@ export function PersonalHeader() {
       {/* Top Production Ecosystem Bar */}
       <EcosystemBar />
 
-      {/* Shipping Sub-banner */}
-      <div className="bg-[#111827] text-white text-xs py-2 px-6 sm:px-10 border-b border-white/10">
-        <div className="max-w-[1320px] mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-4 text-[#94A3B8] font-manrope">
-            <span className="text-[#60A5FA] font-semibold">Free Express Shipping Across India</span>
-            <span className="hidden sm:inline">•</span>
-            <span className="hidden sm:inline">1-Year Official Replacement Warranty</span>
-          </div>
-          <div className="flex items-center space-x-4 text-xs font-manrope">
-            <Link href="/personal/track-order" className="hover:text-[#60A5FA] flex items-center gap-1 text-[#94A3B8] font-medium">
-              <Package className="w-3.5 h-3.5 text-[#60A5FA]" /> Track Order
-            </Link>
-          </div>
-        </div>
-      </div>
 
       {/* Main Nav */}
       <div className="border-b border-black/[0.06] bg-white/95 backdrop-blur-md font-manrope">
@@ -106,6 +91,13 @@ export function PersonalHeader() {
                   {totalItems}
                 </span>
               )}
+            </Link>
+
+            <Link
+              href="/personal/track-order"
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-[#4B5563] hover:text-[#2563EB] transition-colors px-3 py-2 rounded-full hover:bg-[#F3F4F6]"
+            >
+              <Package className="w-3.5 h-3.5 text-[#2563EB]" /> Track Order
             </Link>
 
             <Link href="/personal/buy" className="hidden sm:inline-block">

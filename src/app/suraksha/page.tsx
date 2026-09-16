@@ -16,16 +16,16 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Suraksha · Truck TPMS Safety Kit · ₹17,500 · Nine-Month Payback",
+  title: "Suraksha · Truck TPMS Safety Kit · Nine-Month Payback",
   description:
-    "Suraksha safety kit for Indian trucks. Real-time tyre pressure display in cabin. Fifteen-minute install at any Truck Wheels centre. ₹17,500 for a 10-wheeler. Nine-month payback. Made by Treel.",
+    "Suraksha safety kit for Indian trucks. Real-time tyre pressure display in cabin. Fifteen-minute install at any Truck Wheels centre. Nine-month payback. Made by Treel.",
   alternates: {
     canonical: "https://treel.in/suraksha",
   },
   openGraph: {
-    title: "Suraksha · Truck TPMS Safety Kit · ₹17,500 · Nine-Month Payback",
+    title: "Suraksha · Truck TPMS Safety Kit · Nine-Month Payback",
     description:
-      "Suraksha safety kit for Indian trucks. Real-time tyre pressure display in cabin. Fifteen-minute install at any Truck Wheels centre. ₹17,500 for a 10-wheeler. Nine-month payback. Made by Treel.",
+      "Suraksha safety kit for Indian trucks. Real-time tyre pressure display in cabin. Fifteen-minute install at any Truck Wheels centre. Nine-month payback. Made by Treel.",
     url: "https://treel.in/suraksha",
   },
 };
@@ -81,8 +81,6 @@ export default function SurakshaPage() {
       "Suraksha safety kit for Indian commercial trucks with in-cab wireless display and 4 to 18 tyre sensors.",
     offers: {
       "@type": "Offer",
-      price: "17500",
-      priceCurrency: "INR",
       availability: "https://schema.org/InStock",
       url: "https://treel.in/suraksha",
     },
@@ -121,13 +119,13 @@ export default function SurakshaPage() {
                 Tyre pressure dikhata hai. Nine months mein poori kimat wapas. Fifteen minute mein install ho jata hai. Fits any truck. Anywhere in India.
               </p>
 
-              {/* Price Pill */}
+              {/* Value Statement Pill */}
               <div className="inline-flex flex-wrap items-center gap-3 p-2 pr-5 rounded-lg bg-[#FEF3C7] border-2 border-[#DC2626]/30">
-                <span className="font-anton text-2xl sm:text-3xl font-normal text-[#DC2626] px-3 py-1 rounded-[4px] bg-[#DC2626]/10">
-                  ₹17,500
+                <span className="font-anton text-base sm:text-lg font-normal text-[#DC2626] px-3 py-1 rounded-[4px] bg-[#DC2626]/10 uppercase tracking-wide">
+                  Built for your safety
                 </span>
                 <span className="text-[#78350F] font-rubik text-sm font-semibold">
-                  for a 10-wheeler · EMI available
+                  Made for the road.
                 </span>
               </div>
 
@@ -301,7 +299,7 @@ export default function SurakshaPage() {
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl leading-relaxed font-medium max-w-2xl mx-auto">
-              Suraksha ka safety kit ₹17,500 mein. EMI available on Bajaj Finance at every Truck Wheels centre. Fifteen minute mein install ho jata hai.
+              Suraksha ka safety kit. EMI available on Bajaj Finance at every Truck Wheels centre. Fifteen minute mein install ho jata hai.
             </p>
 
             {/* Two Contact Cards */}
