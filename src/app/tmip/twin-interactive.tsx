@@ -6,21 +6,18 @@ import {
   Activity,
   Cpu,
   Disc,
-  Fuel,
-  Zap,
-  GitCommit,
-  ShieldAlert,
   Sliders,
   ChevronLeft,
   ChevronRight,
+  Clock,
+  UserCheck,
+  Wrench,
+  DollarSign,
+  BarChart3,
+  Dna,
+  Layers,
+  TrendingUp,
 } from "lucide-react";
-
-interface SystemItem {
-  id: string;
-  name: string;
-  icon: React.ElementType;
-  count: string;
-}
 
 interface MetricItem {
   label: string;
@@ -30,10 +27,11 @@ interface MetricItem {
 
 interface ViewItem {
   id: string;
-  systemId: string;
   name: string;
   image: string;
   alt: string;
+  icon: React.ElementType;
+  count: string;
   statusTitle: string;
   metrics: MetricItem[];
   bottom: {
@@ -43,24 +41,14 @@ interface ViewItem {
   };
 }
 
-const systems: SystemItem[] = [
-  { id: "all", name: "All Systems", icon: Sliders, count: "1,847 nodes" },
-  { id: "engine", name: "Engine", icon: Cpu, count: "91% health" },
-  { id: "tyres", name: "Tyres", icon: Disc, count: "85% health" },
-  { id: "fuel", name: "Fuel System", icon: Fuel, count: "82% health" },
-  { id: "electrical", name: "Electrical", icon: Zap, count: "90% health" },
-  { id: "driveline", name: "Driveline", icon: GitCommit, count: "88% health" },
-  { id: "brakes", name: "Brakes", icon: ShieldAlert, count: "80% health" },
-  { id: "suspension", name: "Suspension", icon: Activity, count: "78% safety" },
-];
-
 const views: ViewItem[] = [
   {
-    id: "main-twin",
-    systemId: "all",
+    id: "vehicle-digital-twin",
     name: "Vehicle Digital Twin",
     image: "/images/vehicle_digital_twin.png",
-    alt: "TMIP Vehicle Digital Twin",
+    alt: "Vehicle Digital Twin",
+    icon: Sliders,
+    count: "1,847 nodes",
     statusTitle: "Status",
     metrics: [
       { label: "Engine Health", value: "91%", color: "green" },
@@ -75,11 +63,12 @@ const views: ViewItem[] = [
     },
   },
   {
-    id: "3d-twin",
-    systemId: "all",
+    id: "3d-interactive-twin",
     name: "3D Interactive Twin",
     image: "/images/3D-Interactive_twin.png",
     alt: "3D Interactive Twin",
+    icon: Layers,
+    count: "Active",
     statusTitle: "Status",
     metrics: [
       { label: "Excellent", value: "247", color: "green" },
@@ -94,11 +83,12 @@ const views: ViewItem[] = [
     },
   },
   {
-    id: "engine-twin",
-    systemId: "engine",
+    id: "engine-digital-twin",
     name: "Engine Digital Twin",
     image: "/images/engine_digital_twin.png",
     alt: "Engine Digital Twin",
+    icon: Cpu,
+    count: "91 / 100",
     statusTitle: "Engine Status",
     metrics: [
       { label: "Engine Health", value: "91 / 100", color: "green" },
@@ -113,11 +103,12 @@ const views: ViewItem[] = [
     },
   },
   {
-    id: "tyre-twin",
-    systemId: "tyres",
+    id: "tyre-digital-twin",
     name: "Tyre Digital Twin",
     image: "/images/Tyre_digital_twin.png",
     alt: "Tyre Digital Twin",
+    icon: Disc,
+    count: "92% health",
     statusTitle: "Tyre Status",
     metrics: [
       { label: "FL Tyre (76°C)", value: "8.2 Bar · 92%", color: "green" },
@@ -132,11 +123,12 @@ const views: ViewItem[] = [
     },
   },
   {
-    id: "ai-prediction",
-    systemId: "electrical",
+    id: "ai-prediction-rul",
     name: "AI Prediction & RUL",
     image: "/images/AI_prediction_RUL.png",
     alt: "AI Prediction & RUL",
+    icon: TrendingUp,
+    count: "4% risk",
     statusTitle: "AI Prediction",
     metrics: [
       { label: "Breakdown Prob.", value: "4% (Low)", color: "green" },
@@ -151,11 +143,12 @@ const views: ViewItem[] = [
     },
   },
   {
-    id: "health-score",
-    systemId: "all",
+    id: "health-score-breakdown",
     name: "Health Score Breakdown",
     image: "/images/Health_score_breakdown.png",
     alt: "Health Score Breakdown",
+    icon: Activity,
+    count: "84 avg",
     statusTitle: "Health Scores",
     metrics: [
       { label: "Engine", value: "91 / 100", color: "green" },
@@ -171,10 +164,11 @@ const views: ViewItem[] = [
   },
   {
     id: "event-timeline",
-    systemId: "brakes",
     name: "Event Timeline",
     image: "/images/event_timeline.png",
     alt: "Event Timeline",
+    icon: Clock,
+    count: "5 events",
     statusTitle: "Event Timeline",
     metrics: [
       { label: "10:18 AM Coolant", value: "Warning", color: "yellow" },
@@ -190,10 +184,11 @@ const views: ViewItem[] = [
   },
   {
     id: "driver-behavior",
-    systemId: "suspension",
     name: "Driver Behavior",
     image: "/images/driver_behavior.png",
     alt: "Driver Behavior",
+    icon: UserCheck,
+    count: "91 / 100",
     statusTitle: "Driver Score",
     metrics: [
       { label: "Driver Score", value: "91 / 100", color: "green" },
@@ -209,10 +204,11 @@ const views: ViewItem[] = [
   },
   {
     id: "maintenance-rul",
-    systemId: "driveline",
     name: "Maintenance & RUL",
     image: "/images/maintenance_RUL.png",
     alt: "Maintenance & RUL",
+    icon: Wrench,
+    count: "17 days",
     statusTitle: "Maintenance & RUL",
     metrics: [
       { label: "Engine Oil (Good)", value: "17 Days", color: "green" },
@@ -228,10 +224,11 @@ const views: ViewItem[] = [
   },
   {
     id: "cost-impact",
-    systemId: "fuel",
     name: "Cost Impact",
     image: "/images/cost_impacr.png",
     alt: "Cost Impact",
+    icon: DollarSign,
+    count: "₹1.65L",
     statusTitle: "Cost Impact (30D)",
     metrics: [
       { label: "Fuel Savings", value: "₹ 18,400", color: "green" },
@@ -247,10 +244,11 @@ const views: ViewItem[] = [
   },
   {
     id: "fleet-benchmark",
-    systemId: "fuel",
     name: "Fleet Benchmark",
     image: "/images/fleet_benchmark.png",
     alt: "Fleet Benchmark",
+    icon: BarChart3,
+    count: "5 metrics",
     statusTitle: "Fleet Benchmark",
     metrics: [
       { label: "Fuel Efficiency", value: "4.8 vs 5.6 km/l", color: "blue" },
@@ -266,10 +264,11 @@ const views: ViewItem[] = [
   },
   {
     id: "vehicle-dna",
-    systemId: "engine",
     name: "Vehicle DNA",
     image: "/images/vehicle_DNA.png",
     alt: "Vehicle DNA Normal Behavior Pattern",
+    icon: Dna,
+    count: "Normal",
     statusTitle: "Vehicle DNA",
     metrics: [
       { label: "RPM Pattern", value: "600–1600 rpm", color: "green" },
@@ -287,7 +286,6 @@ const views: ViewItem[] = [
 
 export function TwinInteractive() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [selectedSystem, setSelectedSystem] = useState("all");
   const [isPaused, setIsPaused] = useState(false);
 
   const currentView = views[activeIndex];
@@ -296,47 +294,24 @@ export function TwinInteractive() {
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
-      setActiveIndex((prev) => {
-        const next = (prev + 1) % views.length;
-        setSelectedSystem(views[next].systemId);
-        return next;
-      });
+      setActiveIndex((prev) => (prev + 1) % views.length);
     }, 5000);
     return () => clearInterval(timer);
   }, [isPaused]);
 
   const handlePrev = useCallback(() => {
-    setActiveIndex((prev) => {
-      const next = (prev - 1 + views.length) % views.length;
-      setSelectedSystem(views[next].systemId);
-      return next;
-    });
+    setIsPaused(true);
+    setActiveIndex((prev) => (prev - 1 + views.length) % views.length);
   }, []);
 
   const handleNext = useCallback(() => {
-    setActiveIndex((prev) => {
-      const next = (prev + 1) % views.length;
-      setSelectedSystem(views[next].systemId);
-      return next;
-    });
+    setIsPaused(true);
+    setActiveIndex((prev) => (prev + 1) % views.length);
   }, []);
 
-  const handleSystemClick = (sysId: string) => {
-    setSelectedSystem(sysId);
-    // Find matching views for this system
-    const matching = views
-      .map((v, i) => (v.systemId === sysId ? i : -1))
-      .filter((i) => i !== -1);
-    if (matching.length > 0) {
-      if (matching.includes(activeIndex)) {
-        // Cycle within matching views
-        const curPos = matching.indexOf(activeIndex);
-        const nextIdx = matching[(curPos + 1) % matching.length];
-        setActiveIndex(nextIdx);
-      } else {
-        setActiveIndex(matching[0]);
-      }
-    }
+  const handleViewClick = (idx: number) => {
+    setIsPaused(true);
+    setActiveIndex(idx);
   };
 
   return (
@@ -345,44 +320,44 @@ export function TwinInteractive() {
         {/* Sidebar system selector */}
         <div className="lg:col-span-3 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-400/10 pb-6 lg:pb-0 lg:pr-6">
           <div>
-            <div className="text-[10px] font-jetbrains tracking-[0.1em] text-[#64748B] uppercase font-semibold mb-4 flex items-center justify-between">
+            <div className="text-[10px] font-jetbrains tracking-[0.1em] text-[#64748B] uppercase font-semibold mb-3 flex items-center justify-between">
               <span>System View</span>
               <span className="inline-flex items-center gap-1 text-[#10B981] text-[10px] font-jetbrains">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse"></span>
                 LIVE
               </span>
             </div>
-            <div className="space-y-1.5">
-              {systems.map((s) => {
-                const Icon = s.icon;
-                const isActive = selectedSystem === s.id;
+            <div className="space-y-1 max-h-[420px] lg:max-h-[460px] overflow-y-auto pr-1">
+              {views.map((v, idx) => {
+                const Icon = v.icon;
+                const isActive = activeIndex === idx;
                 return (
                   <button
-                    key={s.id}
-                    onClick={() => handleSystemClick(s.id)}
-                    className={`w-full text-left px-3.5 py-2.5 rounded-[3px] text-xs font-ibm-plex flex items-center justify-between transition-all ${
+                    key={v.id}
+                    onClick={() => handleViewClick(idx)}
+                    className={`w-full text-left px-3 py-2 rounded-[3px] text-xs font-ibm-plex flex items-center justify-between transition-all ${
                       isActive
                         ? "bg-[#3B82F6]/15 border border-[#3B82F6]/40 text-[#3B82F6] font-semibold shadow-sm"
                         : "text-[#94A3B8] hover:text-[#F1F5F9] hover:bg-white/[0.03] border border-transparent"
                     }`}
                   >
-                    <span className="flex items-center gap-2.5">
+                    <span className="flex items-center gap-2 min-w-0">
                       <span
-                        className={`w-2 h-2 rounded-full transition-colors ${
+                        className={`w-1.5 h-1.5 rounded-full flex-shrink-0 transition-colors ${
                           isActive ? "bg-[#3B82F6] shadow-[0_0_8px_#3B82F6]" : "bg-white/20"
                         }`}
                       />
-                      <Icon className={`w-3.5 h-3.5 ${isActive ? "text-[#3B82F6]" : "text-[#64748B]"}`} />
-                      <span>{s.name}</span>
+                      <Icon className={`w-3.5 h-3.5 flex-shrink-0 ${isActive ? "text-[#3B82F6]" : "text-[#64748B]"}`} />
+                      <span className="truncate">{v.name}</span>
                     </span>
-                    <span className="font-jetbrains text-[10px] text-[#64748B]">{s.count}</span>
+                    <span className="font-jetbrains text-[10px] text-[#64748B] flex-shrink-0 ml-2">{v.count}</span>
                   </button>
                 );
               })}
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-slate-400/10 text-[11px] text-[#64748B] font-jetbrains">
+          <div className="mt-4 pt-3 border-t border-slate-400/10 text-[11px] text-[#64748B] font-jetbrains">
             Telemetry latency: <span className="text-[#10B981]">180ms</span> · 5G Edge
           </div>
         </div>
@@ -436,10 +411,7 @@ export function TwinInteractive() {
               {views.map((v, idx) => (
                 <button
                   key={v.id}
-                  onClick={() => {
-                    setActiveIndex(idx);
-                    setSelectedSystem(v.systemId);
-                  }}
+                  onClick={() => handleViewClick(idx)}
                   className={`h-1 transition-all rounded-full ${
                     idx === activeIndex
                       ? "w-5 bg-[#3B82F6] shadow-[0_0_6px_#3B82F6]"
