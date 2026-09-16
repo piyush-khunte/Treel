@@ -116,31 +116,6 @@ export default function WhyTreelPage() {
         </div>
       </section>
 
-      {/* 3. HONEST COMPETITIVE COMPARISON SECTION */}
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-3xl space-y-6">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#D5573B] font-semibold">
-              EVALUATION
-            </span>
-            <h2 className="font-fraunces text-3xl sm:text-4xl font-medium tracking-tight text-[#FAF7F2]">
-              See how we compare.
-            </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-              We are not the only serious player in India&apos;s fleet intelligence space. If you are evaluating alternatives, the comparison typically involves Intangles, Tata Fleetman, Mahindra iMax, and Eye-Net. Book a demo and we will walk through the fit honestly. If the answer is that a competitor fits your specific use case better, we will tell you that.
-            </p>
-            <div className="pt-2">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]"
-              >
-                <span>Book a comparison walkthrough</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* 4. CASE STUDY STRIP */}
       <section className="py-20 border-b border-white/10 bg-white/[0.01]">

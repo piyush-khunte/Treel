@@ -25,8 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/products`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/technology`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/data-infrastructure`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/partners`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/jk-tyre`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+
     { url: `${baseUrl}/careers`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/press`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/media-kit`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },

@@ -16,11 +16,9 @@ export function Footer({ variant, className }: FooterProps) {
   const pathname = usePathname();
 
   // Determine variant automatically if not explicitly provided
-  let activeVariant: FooterVariant = variant || "master";
+  let activeVariant: FooterVariant = (variant === "suraksha" ? "master" : variant) || "master";
   if (!variant && pathname) {
-    if (pathname.startsWith("/suraksha")) {
-      activeVariant = "suraksha";
-    } else if (pathname.startsWith("/tmip")) {
+    if (pathname.startsWith("/tmip")) {
       activeVariant = "tmip";
     } else if (pathname.startsWith("/personal")) {
       activeVariant = "personal";
@@ -227,16 +225,7 @@ export function Footer({ variant, className }: FooterProps) {
                   Why Treel
                 </Link>
               </li>
-              <li>
-                <Link href="/jk-tyre" className={theme.link}>
-                  JK Tyre Partnership
-                </Link>
-              </li>
-              <li>
-                <Link href="/partners" className={theme.link}>
-                  Partners &amp; OEMs
-                </Link>
-              </li>
+
               <li>
                 <Link href="/careers" className={theme.link}>
                   Careers

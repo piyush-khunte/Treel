@@ -36,7 +36,7 @@ export function MasterHeader() {
   const isTechActive = pathname.startsWith("/technology") || pathname.startsWith("/data-infrastructure") || pathname.startsWith("/mobility-intelligence");
   const isTwinActive = pathname.startsWith("/vehicle-digital-twin");
   const isInsightsActive = pathname.startsWith("/insights") || pathname.startsWith("/research");
-  const isAboutActive = pathname.startsWith("/about") || pathname.startsWith("/leadership") || pathname.startsWith("/founder-note") || pathname.startsWith("/our-story") || pathname.startsWith("/why-treel") || pathname.startsWith("/jk-tyre") || pathname.startsWith("/partners");
+  const isAboutActive = pathname.startsWith("/about") || pathname.startsWith("/leadership") || pathname.startsWith("/founder-note") || pathname.startsWith("/our-story") || pathname.startsWith("/why-treel");
   const isContactActive = pathname.startsWith("/contact");
 
   return (
