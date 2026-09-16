@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Activity, Truck, Car, Check, ChevronRight, HelpCircle } from "lucide-react";
-import { TreelSignature } from "@/components/corporate/treel-signature";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
@@ -84,7 +83,6 @@ export default function ProductsPage() {
               <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
                 PRODUCTS
               </span>
-              <TreelSignature variant="compact" />
             </div>
 
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.08]">
@@ -271,7 +269,6 @@ export default function ProductsPage() {
               <span className="text-xs font-mono uppercase tracking-widest text-[#D5573B] font-semibold">
                 RECOMMENDATION
               </span>
-              <TreelSignature variant="compact" />
             </div>
             <h2 className="font-fraunces text-3xl sm:text-4xl font-medium tracking-tight text-[#FAF7F2]">
               Find the right product for your situation.

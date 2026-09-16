@@ -12,17 +12,16 @@ import {
   Award,
   Globe2
 } from "lucide-react";
-import { TreelSignature } from "@/components/corporate/treel-signature";
 
 export const metadata: Metadata = {
   title: "About Treel  ·  The Mobility Intelligence Company",
-  description: "Treel Mobility Solutions is India's mobility intelligence company. Founded 2018 by Manish Ingale. Backed by JK Tyre. Headquartered in Pune. 200+ enterprise customers, 68K vehicles under management.",
+  description: "Treel Mobility Solutions is India's mobility intelligence company. Founded 2018 by Manish Ingale. Headquartered in Pune. 200+ enterprise customers, 68K vehicles under management.",
   alternates: {
     canonical: "https://treel.in/about",
   },
   openGraph: {
     title: "About Treel  ·  The Mobility Intelligence Company",
-    description: "Treel Mobility Solutions is India's mobility intelligence company. Founded 2018 by Manish Ingale. Backed by JK Tyre. Headquartered in Pune. 200+ enterprise customers, 68K vehicles under management.",
+    description: "Treel Mobility Solutions is India's mobility intelligence company. Founded 2018 by Manish Ingale. Headquartered in Pune. 200+ enterprise customers, 68K vehicles under management.",
     url: "https://treel.in/about",
   },
 };
@@ -66,7 +65,6 @@ export default function AboutPage() {
               <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
                 THE COMPANY
               </span>
-              <TreelSignature variant="compact" />
             </div>
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.08]">
               We started with a tyre.<br />
@@ -90,7 +88,7 @@ export default function AboutPage() {
               In 2018, India had two hundred million commercial vehicles on the road and near-zero real-time data about any of them. Fleet owners knew what they had bought. They knew what they had paid for fuel. They knew when a truck broke down. Between those three data points was a fog.
             </p>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-              Treel was founded to lift that fog. We started at the tyre because it is the vehicle&apos;s most talkative component, and because JK Tyre had spent five decades understanding what tyres try to tell you. The tyre was the entry point. The vehicle was always the destination.
+              Treel was founded to lift that fog. We started at the tyre because it is the vehicle&apos;s most talkative component, and because decades of engineering had gone into understanding what tyres try to tell you. The tyre was the entry point. The vehicle was always the destination.
             </p>
           </div>
         </div>
@@ -196,24 +194,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Section · JK Tyre relationship */}
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
-              A JK Tyre technology company.
-            </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-              Treel is JK Tyre&apos;s technology arm for mobility intelligence. JK Tyre backs Treel with five decades of tyre engineering, national distribution reach, and the operational credibility that comes with one of India&apos;s most trusted commercial tyre brands. Treel operates independently on product, platform, and go-to-market decisions.
-            </p>
-            <div className="pt-2">
-              <Link href="/jk-tyre" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-medium text-sm transition-all border border-[#94A3B8]/30 text-[#FAF7F2] hover:border-[#D5573B]">
-                Read more on this relationship <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* CTA band */}
       <section className="py-20 border-b border-white/10 bg-white/[0.02]">

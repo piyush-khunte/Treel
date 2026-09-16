@@ -45,7 +45,7 @@ export function SurakshaHeader() {
               </div>
               <div>
                 <div className="suraksha-nav-brand-name">Suraksha</div>
-                <div className="suraksha-nav-parent">A Treel · JK Tyre Product</div>
+                <div className="suraksha-nav-parent">A Treel Product</div>
               </div>
             </Link>
           </div>

@@ -83,8 +83,7 @@ export function EcosystemBar() {
         </div>
 
         {/* Right: Parent Company & Support */}
-        <div className="hidden md:flex items-center space-x-5 text-slate-300 text-xs">
-          <span className="text-slate-400">A JK Tyre Group Company</span>
+        <div className="hidden md:flex items-center text-slate-300 text-xs">
           <Link
             href="/contact"
             className="hover:text-[#D5573B] font-medium text-slate-300 transition-colors"

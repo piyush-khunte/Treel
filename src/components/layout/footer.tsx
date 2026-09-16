@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { TreelSignature } from "@/components/corporate/treel-signature";
 
 export type FooterVariant = "master" | "tmip" | "suraksha" | "personal";
 
@@ -110,10 +109,6 @@ export function Footer({ variant, className }: FooterProps) {
             <p className={theme.tagline}>
               The mobility intelligence company. Every vehicle a signal, every signal an insight.
             </p>
-            <div className="flex items-center gap-2 pt-1">
-              <TreelSignature variant="compact" />
-              <span className="text-xs text-[#94A3B8] font-mono">A JK Tyre Group Technology Company</span>
-            </div>
             <p className="text-xs text-[#64748B]">
               ARAI &amp; ISO 9001:2015 Certified · Patents in India, US &amp; EU
             </p>

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { AlertOctagon, RefreshCw, Home } from "lucide-react";
-import { TreelSignature } from "@/components/corporate/treel-signature";
 import { Button } from "@/components/ui/button";
 
 export default function ServerError({ reset }: { error?: Error & { digest?: string }; reset?: () => void }) {
@@ -10,7 +9,6 @@ export default function ServerError({ reset }: { error?: Error & { digest?: stri
     <div className="min-h-screen bg-[#0F1419] text-[#FAF7F2] font-inter selection:bg-[#D5573B]/20 selection:text-[#FAF7F2] py-24 px-6 sm:px-12 flex items-center justify-center">
       <div className="max-w-xl w-full p-8 sm:p-12 bg-white/[0.03] border border-white/[0.08] rounded-xl text-center space-y-6 shadow-2xl backdrop-blur-sm">
         <div className="flex justify-center mb-2">
-          <TreelSignature variant="compact" />
         </div>
         <div className="w-16 h-16 bg-[#D5573B]/10 text-[#D5573B] rounded-lg flex items-center justify-center mx-auto border border-[#D5573B]/20">
           <AlertOctagon className="w-8 h-8" />

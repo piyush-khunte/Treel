@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { TreelSignature } from "@/components/corporate/treel-signature";
 import { UnsubscribeForm } from "./unsubscribe-form";
 
 export const metadata: Metadata = {
@@ -25,7 +24,6 @@ export default function UnsubscribePage() {
         <div className="relative max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl space-y-6">
             <div className="flex items-center gap-3">
-              <TreelSignature variant="compact" />
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#D5573B] font-semibold">
                 Communication Preferences
               </span>

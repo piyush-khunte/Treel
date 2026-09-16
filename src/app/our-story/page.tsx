@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Calendar, ChevronRight } from "lucide-react";
-import { TreelSignature } from "@/components/corporate/treel-signature";
 
 export const metadata: Metadata = {
   title: "Our Story · Treel Mobility Solutions",
-  description: "From a JK Tyre R&D idea in 2018 to India's largest connected commercial vehicle dataset in 2026. The Treel story, in milestones.",
+  description: "From an advanced automotive R&D idea in 2018 to India's largest connected commercial vehicle dataset in 2026. The Treel story, in milestones.",
   alternates: {
     canonical: "https://treel.in/our-story",
   },
   openGraph: {
     title: "Our Story · Treel Mobility Solutions",
-    description: "From a JK Tyre R&D idea in 2018 to India's largest connected commercial vehicle dataset in 2026. The Treel story, in milestones.",
+    description: "From an advanced automotive R&D idea in 2018 to India's largest connected commercial vehicle dataset in 2026. The Treel story, in milestones.",
     url: "https://treel.in/our-story",
   },
 };
@@ -77,14 +76,13 @@ export default function OurStoryPage() {
               <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
                 OUR STORY
               </span>
-              <TreelSignature variant="compact" />
             </div>
 
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.08]">
               Eight years. One category.
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-inter max-w-3xl">
-              From a JK Tyre R&amp;D idea in 2018 to India&apos;s largest connected commercial vehicle dataset in 2026. The milestones that got us here.
+              From an advanced automotive R&amp;D idea in 2018 to India&apos;s largest connected commercial vehicle dataset in 2026. The milestones that got us here.
             </p>
           </div>
         </div>

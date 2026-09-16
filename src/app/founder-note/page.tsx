@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ChevronRight, MessageSquare } from "lucide-react";
-import { TreelSignature } from "@/components/corporate/treel-signature";
 
 export const metadata: Metadata = {
   title: "Manish Ingale · Founder Note · Treel",
@@ -64,7 +63,6 @@ export default function FounderNotePage() {
               <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
                 FOUNDER NOTE
               </span>
-              <TreelSignature variant="compact" />
             </div>
 
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.08]">
@@ -129,7 +127,7 @@ export default function FounderNotePage() {
             </p>
 
             <p>
-              We are backed by JK Tyre, one of India&apos;s most trusted commercial tyre brands, which gives us five decades of tyre engineering, national distribution reach, and the operational credibility that only a real industrial partner can lend a young platform company. We operate independently on product, platform, and go-to-market. The relationship works because both sides are clear about what each does best.
+              We are backed by one of India&apos;s most trusted commercial tyre manufacturing networks, which gives us five decades of tyre engineering, national distribution reach, and the operational credibility that only a real industrial partner can lend a young platform company. We operate independently on product, platform, and go-to-market. The relationship works because both sides are clear about what each does best.
             </p>
 
             <div className="space-y-4 pt-4">
@@ -157,8 +155,7 @@ export default function FounderNotePage() {
 
             {/* Signature Block */}
             <div className="pt-10 border-t border-white/10 space-y-2">
-              <TreelSignature variant="divider" />
-              <div className="font-fraunces text-2xl text-[#FAF7F2] font-medium pt-2">
+                <div className="font-fraunces text-2xl text-[#FAF7F2] font-medium pt-2">
                 Manish Ingale
               </div>
               <div className="text-xs font-mono text-[#94A3B8]">

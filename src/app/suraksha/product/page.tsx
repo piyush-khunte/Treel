@@ -111,7 +111,7 @@ const differentiators = [
   },
   {
     title: "Made in India",
-    desc: "Made by Treel, backed by JK Tyre's five decades of tyre engineering.",
+    desc: "Made by Treel, backed by five decades of tyre engineering.",
   },
 ];
 

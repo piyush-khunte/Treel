@@ -11,17 +11,16 @@ import {
   Layers,
   Users
 } from "lucide-react";
-import { TreelSignature } from "@/components/corporate/treel-signature";
 
 export const metadata: Metadata = {
-  title: "A JK Tyre Technology Company  ·  Treel",
-  description: "Treel Mobility Solutions is a JK Tyre technology company. We operate independently on product, platform, and go-to-market. The JK Tyre backing brings five decades of tyre engineering, national distribution, and industrial credibility.",
+  title: "JK Tyre Partnership  ·  Treel",
+  description: "Treel Mobility Solutions operates an independent mobility platform in strategic partnership with JK Tyre, bringing five decades of tyre engineering, national distribution, and industrial credibility.",
   alternates: {
     canonical: "https://treel.in/jk-tyre",
   },
   openGraph: {
-    title: "A JK Tyre Technology Company  ·  Treel",
-    description: "Treel Mobility Solutions is a JK Tyre technology company. We operate independently on product, platform, and go-to-market. The JK Tyre backing brings five decades of tyre engineering, national distribution, and industrial credibility.",
+    title: "JK Tyre Partnership  ·  Treel",
+    description: "Treel Mobility Solutions operates an independent mobility platform in strategic partnership with JK Tyre, bringing five decades of tyre engineering, national distribution, and industrial credibility.",
     url: "https://treel.in/jk-tyre",
   },
 };
@@ -42,13 +41,12 @@ export default function JkTyrePage() {
               <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
                 OWNERSHIP
               </span>
-              <TreelSignature variant="compact" />
             </div>
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.08]">
-              A JK Tyre technology company.
+              The JK Tyre Partnership.
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-inter max-w-3xl">
-              Treel Mobility Solutions is JK Tyre&apos;s technology arm for mobility intelligence. This is what that means, in practical terms.
+              Treel Mobility Solutions operates an independent mobility intelligence platform in partnership with JK Tyre. This is what that means, in practical terms.
             </p>
           </div>
         </div>

@@ -12,7 +12,6 @@ import {
   Check, 
   Copy 
 } from "lucide-react";
-import { TreelSignature } from "@/components/corporate/treel-signature";
 import { PressShareBar } from "./press-share-bar";
 
 interface PressReleaseDetail {
@@ -47,7 +46,7 @@ const PRESS_DETAILS: Record<string, PressReleaseDetail> = {
       role: "Founder & CEO, Treel Mobility Solutions",
     },
     bodyParagraphs: [
-      "Founded in 2018 and backed by JK Tyre, Treel has focused systematically on solving the single highest operating cost variable in commercial road transport: tyre lifecycle and unscheduled roadside breakdowns. Roadside tyre failures historically account for over 35% of unplanned highway stoppages in heavy multi-axle freight.",
+      "Founded in 2018, Treel has focused systematically on solving the single highest operating cost variable in commercial road transport: tyre lifecycle and unscheduled roadside breakdowns. Roadside tyre failures historically account for over 35% of unplanned highway stoppages in heavy multi-axle freight.",
       "By engineering sensors that sample wheel-end thermodynamics, rotational dynamics, and pressure decay at 24 Hz, Treel constructs a continuous five-layer Vehicle Digital Twin for every connected vehicle. The platform translates raw telemetry into predictive maintenance schedules, enabling fleet operators to intervene during depot turnaround rather than losing valuable transit hours to emergency roadside repairs.",
       "Today, Treel serves more than 200 enterprise fleet operators, including major logistics conglomerates, intercity passenger transit corporations, and heavy industrial mining fleets. Across this fleet baseline, operators report an average 3.2% fuel efficiency improvement and a median payback period of under nine months.",
     ],
@@ -221,7 +220,6 @@ export default async function PressReleasePage({ params }: { params: Promise<{ y
               <span className="text-xs font-mono uppercase px-3 py-0.5 rounded-[4px] bg-[#D5573B]/10 text-[#D5573B] border border-[#D5573B]/20 font-semibold tracking-wider">
                 {release.category}
               </span>
-              <TreelSignature variant="compact" />
             </div>
 
             <h1 className="font-fraunces text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
@@ -274,7 +272,7 @@ export default async function PressReleasePage({ params }: { params: Promise<{ y
                 About Treel Mobility Solutions
               </h3>
               <p className="text-sm text-[#94A3B8] leading-relaxed">
-                Treel Mobility Solutions Private Limited is the mobility intelligence company operating India&apos;s largest connected commercial vehicle dataset. Founded in 2018 and backed by JK Tyre, Treel serves two hundred enterprise customers with sixty-eight thousand vehicles under active management. Its three product families — TMIP for enterprise fleets, Project Suraksha for owner-drivers, and Personal TPMS for consumers — operate on a shared Vehicle Digital Twin architecture. Headquartered in Pune. Learn more at{" "}
+                Treel Mobility Solutions Private Limited is the mobility intelligence company operating India&apos;s largest connected commercial vehicle dataset. Founded in 2018, Treel serves two hundred enterprise customers with sixty-eight thousand vehicles under active management. Its three product families — TMIP for enterprise fleets, Project Suraksha for owner-drivers, and Personal TPMS for consumers — operate on a shared Vehicle Digital Twin architecture. Headquartered in Pune. Learn more at{" "}
                 <Link href="/" className="text-[#D5573B] underline hover:text-[#FAF7F2]">
                   treel.in
                 </Link>.

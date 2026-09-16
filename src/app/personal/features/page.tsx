@@ -77,7 +77,7 @@ export default function PersonalFeaturesPage() {
       desc: "Full replacement warranty on all four sensors and the app. Simple claim process. No questions.",
       href: "/personal/support/warranty",
       cta: "Read the warranty",
-      highlight: "Direct JK Tyre & Treel backing"
+      highlight: "Official 1-Year Treel backing"
     },
   ];
 

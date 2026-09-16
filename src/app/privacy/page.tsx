@@ -11,7 +11,6 @@ import {
   ChevronRight,
   CheckCircle2
 } from "lucide-react";
-import { TreelSignature } from "@/components/corporate/treel-signature";
 
 export const metadata: Metadata = {
   title: "Privacy Policy  ·  Treel",
@@ -49,7 +48,6 @@ export default function PrivacyPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <div className="flex items-center gap-3 mb-2">
-              <TreelSignature variant="compact" />
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#D5573B] font-semibold">
                 DATA PROTECTION & PRIVACY
               </span>
@@ -238,10 +236,10 @@ export default function PrivacyPage() {
 
                 <div className="space-y-3">
                   <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] leading-[1.2]">
-                    4.2 With JK Tyre (parent company)
+                    4.2 Strategic & Corporate Partners
                   </h3>
                   <p>
-                    As a JK Tyre technology company, Treel operates independently but may share aggregated, non-personal insights with JK Tyre for corporate reporting purposes. <strong>We do not share individual customer personal data with JK Tyre</strong> for marketing, sales, or any other secondary purpose.
+                    Treel operates independently but may share aggregated, non-personal insights with corporate partners for governance and reporting purposes. <strong>We do not share individual customer personal data with external entities</strong> for marketing, sales, or any other secondary purpose.
                   </p>
                 </div>
 

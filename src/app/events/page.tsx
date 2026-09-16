@@ -13,7 +13,6 @@ import {
   CheckCircle2, 
   Send 
 } from "lucide-react";
-import { TreelSignature } from "@/components/corporate/treel-signature";
 import { Button } from "@/components/ui/button";
 
 interface EventItem {
@@ -110,7 +109,6 @@ export default function EventsPage() {
               <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
                 EVENTS
               </span>
-              <TreelSignature variant="compact" />
             </div>
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
               Where you can meet Treel.
@@ -249,7 +247,6 @@ export default function EventsPage() {
               <span className="text-xs font-mono uppercase tracking-widest text-[#D5573B] font-semibold">
                 STAY INFORMED
               </span>
-              <TreelSignature variant="compact" />
             </div>
             <h2 className="font-fraunces text-3xl sm:text-4xl font-medium tracking-tight text-[#FAF7F2]">
               Get notified.

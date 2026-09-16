@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Database, Award, ShieldCheck, Cpu, TrendingUp, DollarSign, ChevronRight } from "lucide-react";
-import { TreelSignature } from "@/components/corporate/treel-signature";
 
 export const metadata: Metadata = {
   title: "Why Treel · The Mobility Intelligence Choice",
-  description: "Six reasons enterprise fleet operators, owner-drivers, and consumers choose Treel: data scale, category authority, JK Tyre backing, technical depth, customer proof, financial rigour.",
+  description: "Six reasons enterprise fleet operators, owner-drivers, and consumers choose Treel: data scale, category authority, industrial backing, technical depth, customer proof, financial rigour.",
   alternates: {
     canonical: "https://treel.in/why-treel",
   },
   openGraph: {
     title: "Why Treel · The Mobility Intelligence Choice",
-    description: "Six reasons enterprise fleet operators, owner-drivers, and consumers choose Treel: data scale, category authority, JK Tyre backing, technical depth, customer proof, financial rigour.",
+    description: "Six reasons enterprise fleet operators, owner-drivers, and consumers choose Treel: data scale, category authority, industrial backing, technical depth, customer proof, financial rigour.",
     url: "https://treel.in/why-treel",
   },
 };
@@ -33,8 +32,8 @@ export default function WhyTreelPage() {
     {
       num: "03",
       icon: ShieldCheck,
-      title: "Backed by JK Tyre.",
-      body: "A JK Tyre technology company means five decades of tyre engineering, national distribution across India, and the operational credibility that only a real industrial partner can lend a young platform company.",
+      title: "Backed by Industrial Reliability.",
+      body: "Five decades of tyre engineering, national distribution across India, and the operational credibility that only a real industrial partner can lend a young platform company.",
     },
     {
       num: "04",
@@ -71,7 +70,6 @@ export default function WhyTreelPage() {
               <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
                 WHY TREEL
               </span>
-              <TreelSignature variant="compact" />
             </div>
 
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.08]">

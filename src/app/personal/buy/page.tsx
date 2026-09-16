@@ -119,7 +119,7 @@ export default function PersonalBuyPage() {
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
             <div className="max-w-3xl space-y-4">
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] text-xs font-bold uppercase tracking-[0.15em]">
-                <Sparkles className="w-3.5 h-3.5" /> DIRECT FROM JK TYRE & TREEL
+                <Sparkles className="w-3.5 h-3.5" /> DIRECT FROM TREEL
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#111827] leading-[1.15]">
                 Smart TPMS Products & Kits
@@ -299,7 +299,7 @@ export default function PersonalBuyPage() {
             </div>
             <div className="p-4 rounded-2xl bg-white border border-black/[0.06] text-center space-y-1.5">
               <ShieldCheck className="w-6 h-6 text-[#2563EB] mx-auto" />
-              <div className="text-xs font-bold text-[#111827]">JK Tyre Backed Warranty</div>
+              <div className="text-xs font-bold text-[#111827]">Official 1-Year Warranty</div>
               <div className="text-[11px] text-[#6B7280]">Full replacement coverage</div>
             </div>
             <div className="p-4 rounded-2xl bg-white border border-black/[0.06] text-center space-y-1.5">

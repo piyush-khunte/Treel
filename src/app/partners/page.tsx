@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Building2, Cpu, Landmark, Truck } from "lucide-react";
-import { TreelSignature } from "@/components/corporate/treel-signature";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
@@ -75,7 +74,6 @@ export default function PartnersPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 relative z-10">
           <div className="max-w-4xl space-y-6">
             <div className="flex items-center gap-3">
-              <TreelSignature variant="compact" />
               <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
                 PARTNERS
               </span>

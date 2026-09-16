@@ -156,7 +156,7 @@ export default function LeadershipPage() {
                 <span>Governance &amp; Industrial Advisory</span>
               </div>
               <p className="text-sm text-[#94A3B8] leading-relaxed font-inter">
-                Treel operates with independent board governance backed by senior leadership representation from JK Tyre, automotive manufacturing, and software engineering leaders in India and global markets.
+                Treel operates with independent board governance backed by senior leadership representation from automotive manufacturing, and software engineering leaders in India and global markets.
               </p>
             </div>
           </div>

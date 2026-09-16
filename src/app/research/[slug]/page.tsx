@@ -12,7 +12,6 @@ import {
   Layers, 
   Download 
 } from "lucide-react";
-import { TreelSignature } from "@/components/corporate/treel-signature";
 import { WhitepaperGatedForm } from "../roi-fleet-intelligence/whitepaper-form";
 
 interface WhitepaperDetail {
@@ -150,7 +149,6 @@ export default async function ResearchSlugPage({ params }: { params: Promise<{ s
               <span className="text-xs font-mono uppercase px-3 py-0.5 rounded-[4px] bg-[#D5573B]/10 text-[#D5573B] border border-[#D5573B]/20 font-semibold tracking-wider">
                 {paper.topic}
               </span>
-              <TreelSignature variant="compact" />
             </div>
 
             <h1 className="font-fraunces text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">

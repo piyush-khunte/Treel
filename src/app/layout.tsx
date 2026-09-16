@@ -37,7 +37,6 @@ export const metadata: Metadata = {
     "Mobility Intelligence",
     "Fleet Telematics",
     "Tyre Pressure Monitoring System",
-    "JK Tyre",
     "Suraksha Truck Kit",
     "TMIP Platform",
   ],
