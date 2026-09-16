@@ -45,7 +45,7 @@ const views: ViewItem[] = [
   {
     id: "vehicle-digital-twin",
     name: "Vehicle Digital Twin",
-    image: "/images/vehicle_digital_twin.png",
+    image: "/images/vehicle-digital_twin.png",
     alt: "Vehicle Digital Twin",
     icon: Sliders,
     count: "1,847 nodes",
@@ -65,7 +65,7 @@ const views: ViewItem[] = [
   {
     id: "3d-interactive-twin",
     name: "3D Interactive Twin",
-    image: "/images/3D-Interactive_twin.png",
+    image: "/images/3D_Interactive_twin.png",
     alt: "3D Interactive Twin",
     icon: Layers,
     count: "Active",
@@ -85,7 +85,7 @@ const views: ViewItem[] = [
   {
     id: "engine-digital-twin",
     name: "Engine Digital Twin",
-    image: "/images/engine_digital_twin.png",
+    image: "/images/engine-digital_twin.png",
     alt: "Engine Digital Twin",
     icon: Cpu,
     count: "91 / 100",
@@ -105,7 +105,7 @@ const views: ViewItem[] = [
   {
     id: "tyre-digital-twin",
     name: "Tyre Digital Twin",
-    image: "/images/Tyre_digital_twin.png",
+    image: "/images/Tyre-digital_twin.png",
     alt: "Tyre Digital Twin",
     icon: Disc,
     count: "92% health",
@@ -125,7 +125,7 @@ const views: ViewItem[] = [
   {
     id: "ai-prediction-rul",
     name: "AI Prediction & RUL",
-    image: "/images/AI_prediction_RUL.png",
+    image: "/images/AI-prediction_RUL.png",
     alt: "AI Prediction & RUL",
     icon: TrendingUp,
     count: "4% risk",
@@ -145,7 +145,7 @@ const views: ViewItem[] = [
   {
     id: "health-score-breakdown",
     name: "Health Score Breakdown",
-    image: "/images/Health_score_breakdown.png",
+    image: "/images/Health_score-breakdown.png",
     alt: "Health Score Breakdown",
     icon: Activity,
     count: "84 avg",
@@ -165,7 +165,7 @@ const views: ViewItem[] = [
   {
     id: "event-timeline",
     name: "Event Timeline",
-    image: "/images/event_timeline.png",
+    image: "/images/event-timeline.png",
     alt: "Event Timeline",
     icon: Clock,
     count: "5 events",
@@ -185,7 +185,7 @@ const views: ViewItem[] = [
   {
     id: "driver-behavior",
     name: "Driver Behavior",
-    image: "/images/driver_behavior.png",
+    image: "/images/driver-behavior.png",
     alt: "Driver Behavior",
     icon: UserCheck,
     count: "91 / 100",
@@ -205,7 +205,7 @@ const views: ViewItem[] = [
   {
     id: "maintenance-rul",
     name: "Maintenance & RUL",
-    image: "/images/maintenance_RUL.png",
+    image: "/images/maintenance-RUL.png",
     alt: "Maintenance & RUL",
     icon: Wrench,
     count: "17 days",
@@ -225,7 +225,7 @@ const views: ViewItem[] = [
   {
     id: "cost-impact",
     name: "Cost Impact",
-    image: "/images/cost_impacr.png",
+    image: "/images/cost-impacr.png",
     alt: "Cost Impact",
     icon: DollarSign,
     count: "₹1.65L",
@@ -245,7 +245,7 @@ const views: ViewItem[] = [
   {
     id: "fleet-benchmark",
     name: "Fleet Benchmark",
-    image: "/images/fleet_benchmark.png",
+    image: "/images/fleet-benchmark.png",
     alt: "Fleet Benchmark",
     icon: BarChart3,
     count: "5 metrics",
