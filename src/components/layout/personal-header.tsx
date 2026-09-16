@@ -19,7 +19,6 @@ export function PersonalHeader() {
       {/* Top Production Ecosystem Bar */}
       <EcosystemBar />
 
-
       {/* Main Nav */}
       <div className="border-b border-black/[0.06] bg-white/95 backdrop-blur-md font-manrope">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
