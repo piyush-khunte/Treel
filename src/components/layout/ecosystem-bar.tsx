@@ -83,7 +83,7 @@ export function EcosystemBar() {
         </div>
 
         {/* Right: Parent Company & Support */}
-        <div className="hidden md:flex items-center text-slate-300 text-xs">
+        <div className="hidden md:flex items-center text-slate-300 text-xs mr-4">
           <Link
             href="/contact"
             className="hover:text-[#D5573B] font-medium text-slate-300 transition-colors"
