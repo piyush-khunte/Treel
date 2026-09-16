@@ -41,7 +41,7 @@ export default function TmipInsightsPage() {
               <span className="bg-[#3B82F6] text-white text-[11px] font-jetbrains font-bold px-2.5 py-0.5 rounded-[2px] uppercase tracking-wider">
                 FEATURED
               </span>
-              <span className="border border-blue-500/20 bg-blue-500/10 px-2.5 py-0.5 rounded-[2px] text-xs font-jetbrains text-blue-400 uppercase font-semibold">
+              <span className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
                 FLEET ANALYTICS
               </span>
             </div>
