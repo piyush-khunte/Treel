@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Rss, Layers, Clock, FileText } from "lucide-react";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { InsightsClient } from "./insights-client";
 
 export const metadata: Metadata = {
@@ -37,6 +38,13 @@ export default function TmipInsightsPage() {
       <section className="relative z-10 pt-24 pb-20 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
+            <Breadcrumb
+              variant="tmip"
+              items={[
+                { label: "TMIP", href: "/tmip" },
+                { label: "Fleet Insights" },
+              ]}
+            />
             <div className="flex flex-wrap items-center gap-3">
               <span className="bg-[#3B82F6] text-white text-[11px] font-jetbrains font-bold px-2.5 py-0.5 rounded-[2px] uppercase tracking-wider">
                 FEATURED

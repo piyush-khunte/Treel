@@ -14,6 +14,7 @@ import {
   Sparkles
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 interface PressRelease {
   slug: string;
@@ -117,6 +118,13 @@ export default function PressPage() {
         />
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 relative z-10">
           <div className="max-w-4xl space-y-6">
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Press" },
+              ]}
+            />
             <div className="flex items-center gap-2">
               <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
                 PRESS

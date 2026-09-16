@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, HelpCircle, ChevronDown, ChevronUp, MessageCircle } from "lucide-react";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export default function SurakshaFAQsPage() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
@@ -61,6 +62,13 @@ export default function SurakshaFAQsPage() {
       <section className="relative overflow-hidden pt-24 pb-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
+            <Breadcrumb
+              variant="suraksha"
+              items={[
+                { label: "Suraksha", href: "/suraksha" },
+                { label: "FAQs" },
+              ]}
+            />
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
               FAQS
             </div>

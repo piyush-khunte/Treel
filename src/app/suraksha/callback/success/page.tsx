@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle2, ShieldCheck, Activity, HelpCircle, ChevronRight, MessageSquare, PhoneCall, Check } from "lucide-react";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Callback Request Received  \u00b7  Suraksha",
@@ -22,6 +23,14 @@ export default function SurakshaCallbackSuccessPage() {
       <section className="relative overflow-hidden pt-16 pb-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
+            <Breadcrumb
+              variant="suraksha"
+              items={[
+                { label: "Suraksha", href: "/suraksha" },
+                { label: "Request Callback", href: "/suraksha/callback" },
+                { label: "Confirmation" },
+              ]}
+            />
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#10B981] bg-[#10B981]/10 text-[#047857] font-rubik text-xs font-bold uppercase tracking-wider">
               <CheckCircle2 className="w-3.5 h-3.5" />
               CALLBACK CONFIRMED

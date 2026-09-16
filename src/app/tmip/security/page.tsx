@@ -14,6 +14,7 @@ import {
   Eye,
   FileText
 } from "lucide-react";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Security  ·  TMIP",
@@ -140,6 +141,13 @@ export default function TmipSecurityPage() {
       <section className="relative z-10 pt-24 pb-20 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
+            <Breadcrumb
+              variant="tmip"
+              items={[
+                { label: "TMIP", href: "/tmip" },
+                { label: "Security" },
+              ]}
+            />
             <div className="rounded-[2px] font-jetbrains text-xs uppercase tracking-wider font-semibold px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 inline-block">
               SECURITY
             </div>

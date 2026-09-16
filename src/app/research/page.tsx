@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ResearchLibrary } from "./research-client";
 import { ArrowRight, BookOpen, FileCheck, Layers, Sparkles } from "lucide-react";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Research & Whitepapers  ·  Treel",
@@ -26,8 +27,15 @@ export default function ResearchPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl">
-            <p className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-6 sm:mb-8">
+          <div className="max-w-4xl space-y-6">
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Research" },
+              ]}
+            />
+            <p className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
               RESEARCH
             </p>
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12] mb-6">

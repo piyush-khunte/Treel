@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Clock, Mail, ShieldCheck, FileText, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Thank You · Treel",
@@ -51,6 +52,13 @@ export default function ThankYouPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] via-transparent to-transparent pointer-events-none" />
         <div className="relative max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl space-y-6">
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Thank You" },
+              ]}
+            />
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#D5573B] font-semibold">
                 Submission Confirmed

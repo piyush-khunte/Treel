@@ -15,6 +15,7 @@ import {
   CheckCircle2, 
   Clock 
 } from "lucide-react";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "API  ·  TMIP",
@@ -119,6 +120,13 @@ export default function TmipApiPage() {
       <section className="relative z-10 pt-24 pb-20 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
+            <Breadcrumb
+              variant="tmip"
+              items={[
+                { label: "TMIP", href: "/tmip" },
+                { label: "Developer API" },
+              ]}
+            />
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
               API
             </div>

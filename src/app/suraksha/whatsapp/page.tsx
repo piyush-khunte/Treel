@@ -14,6 +14,7 @@ import {
   FileText,
   Package,
 } from "lucide-react";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "WhatsApp Suraksha · Direct Chat with Support",
@@ -103,6 +104,14 @@ export default function SurakshaWhatsappPage() {
       <section className="relative overflow-hidden pt-12 pb-16 sm:pt-16 sm:pb-24 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
+            <Breadcrumb
+              variant="suraksha"
+              items={[
+                { label: "Suraksha", href: "/suraksha" },
+                { label: "WhatsApp" },
+              ]}
+              className="flex justify-center"
+            />
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#10B981] bg-[#10B981]/10 text-[#047857] font-rubik text-xs font-bold uppercase tracking-wider">
               <MessageCircle className="w-3.5 h-3.5" />
               WHATSAPP

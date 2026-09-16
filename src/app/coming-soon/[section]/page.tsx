@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Sparkles, Clock, Globe, Smartphone, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ComingSoonForm } from "./coming-soon-form";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 interface SectionConfig {
   title: string;
@@ -101,6 +102,13 @@ export default async function ComingSoonSectionPage({
         <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] via-transparent to-transparent pointer-events-none" />
         <div className="relative max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl space-y-6">
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Coming Soon" },
+              ]}
+            />
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#D5573B] font-semibold">
                 {config.badge}

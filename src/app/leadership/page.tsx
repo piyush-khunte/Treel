@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Building2, MapPin } from "lucide-react";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Leadership  ·  Treel",
@@ -50,6 +51,13 @@ export default function LeadershipPage() {
         />
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 relative z-10">
           <div className="max-w-4xl space-y-6">
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Leadership" },
+              ]}
+            />
             <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-6 sm:mb-8">
               LEADERSHIP
             </div>

@@ -11,6 +11,7 @@ import {
   ShieldCheck
 } from "lucide-react";
 import { CorporateContactForm } from "./contact-form";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Contact Treel · Get in Touch",
@@ -37,6 +38,13 @@ export default function ContactPage() {
         />
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 relative z-10">
           <div className="max-w-4xl space-y-6">
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Contact" },
+              ]}
+            />
             <div className="flex items-center gap-3">
               <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
                 CONTACT

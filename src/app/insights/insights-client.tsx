@@ -14,6 +14,7 @@ import {
   ChevronRight,
   BookOpen
 } from "lucide-react";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 interface Article {
   slug: string;
@@ -128,6 +129,13 @@ export function InsightsClientView() {
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Insights" },
+              ]}
+            />
             <div className="flex items-center gap-3">
               <span className="px-2.5 py-0.5 rounded-[4px] bg-[#D5573B]/10 border border-[#D5573B]/20 text-[#D5573B] font-mono text-xs uppercase tracking-widest font-semibold">
                 FEATURED

@@ -14,6 +14,7 @@ import {
   Zap
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Data Infrastructure · Treel",
@@ -78,6 +79,13 @@ export default function DataInfrastructurePage() {
         />
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 relative z-10">
           <div className="max-w-4xl space-y-6">
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Data Infrastructure" },
+              ]}
+            />
             <div className="flex items-center gap-3">
               <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
                 DATA INFRASTRUCTURE

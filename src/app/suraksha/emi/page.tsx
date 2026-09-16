@@ -15,6 +15,7 @@ import {
   MessageCircle,
   Truck,
 } from "lucide-react";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { SurakshaEmiCalculator } from "./emi-calculator";
 
 export const metadata: Metadata = {
@@ -126,6 +127,13 @@ export default function SurakshaEmiPage() {
       <section className="relative overflow-hidden pt-16 pb-16 sm:pt-20 sm:pb-24 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
+            <Breadcrumb
+              variant="suraksha"
+              items={[
+                { label: "Suraksha", href: "/suraksha" },
+                { label: "EMI Plans" },
+              ]}
+            />
             <div className="flex flex-wrap items-center gap-3">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#EA580C] bg-[#EA580C]/10 text-[#EA580C] font-rubik text-xs font-bold uppercase tracking-wider">
                 <CreditCard className="w-3.5 h-3.5" />

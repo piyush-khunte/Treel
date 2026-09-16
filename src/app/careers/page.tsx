@@ -13,6 +13,7 @@ import {
   GraduationCap
 } from "lucide-react";
 import { CareersInteractiveRoster } from "./careers-client";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Careers at Treel  ·  Build Mobility Intelligence",
@@ -65,8 +66,15 @@ export default function CareersPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl">
-            <p className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-6 sm:mb-8">
+          <div className="max-w-4xl space-y-6">
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Careers" },
+              ]}
+            />
+            <p className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
               CAREERS
             </p>
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12] mb-6">

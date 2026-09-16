@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CookiePreferencesManager } from "./cookie-preferences";
 import { Shield, Lock, Sliders, ExternalLink, Mail, Phone, MapPin, CheckCircle2, ChevronRight } from "lucide-react";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Cookie Policy  ·  Treel",
@@ -36,6 +37,13 @@ export default function CookiesPage() {
       <section className="relative overflow-hidden pt-28 pb-16 border-b border-white/[0.08]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Cookie Policy" },
+              ]}
+            />
             <div className="flex items-center gap-3 mb-2">
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#D5573B] font-semibold">
                 LEGAL & COMPLIANCE

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight, CheckCircle2, ShieldCheck, PhoneCall } from "lucide-react";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export default function SurakshaEMIApplyPage() {
   const router = useRouter();
@@ -31,6 +32,14 @@ export default function SurakshaEMIApplyPage() {
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-[#451A03]/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
+            <Breadcrumb
+              variant="suraksha"
+              items={[
+                { label: "Suraksha", href: "/suraksha" },
+                { label: "EMI Plans", href: "/suraksha/emi" },
+                { label: "Apply" },
+              ]}
+            />
             <div className="border text-[#DC2626] bg-[#DC2626]/10 border-[#DC2626]/20 font-rubik text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
               SURAKSHA EMI
             </div>
