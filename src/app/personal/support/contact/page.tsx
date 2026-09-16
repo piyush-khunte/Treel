@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { 
   Mail, 
   Phone, 
@@ -70,6 +71,14 @@ export default function PersonalSupportContactPage() {
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-black/[0.06] bg-[#F9FAFB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
+            <Breadcrumb
+              variant="personal"
+              items={[
+                { label: "Personal TPMS", href: "/personal" },
+                { label: "Support", href: "/personal/support" },
+                { label: "Contact" },
+              ]}
+            />
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em] inline-block">
               CONTACT SUPPORT
             </div>

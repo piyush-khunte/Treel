@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import { Play, ArrowRight, ExternalLink } from "lucide-react";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export default function PersonalAppAndroidPage() {
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.treel.smarttyre";
@@ -19,6 +20,16 @@ export default function PersonalAppAndroidPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-28 pb-20 border-b border-black/[0.06] bg-gradient-to-b from-white to-[#F3F4F6]/60">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
+          <div className="max-w-xl mx-auto mb-6">
+            <Breadcrumb
+              variant="personal"
+              items={[
+                { label: "Personal TPMS", href: "/personal" },
+                { label: "Treel Care App", href: "/personal/app" },
+                { label: "Android" },
+              ]}
+            />
+          </div>
           <div className="max-w-xl mx-auto p-8 sm:p-12 rounded-[32px] bg-white border border-black/[0.06] shadow-2xl text-center space-y-6">
             <div className="w-16 h-16 rounded-3xl bg-[#2563EB] text-white flex items-center justify-center mx-auto shadow-md">
               <Play className="w-8 h-8 fill-current text-white" />

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight, ShieldCheck, Lock, Truck, CreditCard } from "lucide-react";
 import { useCart } from "@/lib/commerce/cart-context";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -49,7 +50,16 @@ export default function CheckoutPage() {
       {/* Header Banner */}
       <section className="pt-24 pb-12 border-b border-black/[0.06] bg-[#F9FAFB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-2">
+          <div className="max-w-4xl space-y-4">
+            <Breadcrumb
+              variant="personal"
+              items={[
+                { label: "Personal TPMS", href: "/personal" },
+                { label: "Product Store", href: "/personal/buy" },
+                { label: "Cart", href: "/personal/buy/cart" },
+                { label: "Checkout" },
+              ]}
+            />
             <div className="text-xs font-bold uppercase tracking-widest text-[#2563EB] flex items-center gap-1.5">
               <Lock className="w-3.5 h-3.5" /> SECURE 256-BIT ENCRYPTED GUEST CHECKOUT
             </div>

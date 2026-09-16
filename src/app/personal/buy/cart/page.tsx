@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight, Trash2, ShoppingBag, Plus, Minus, ShieldCheck, Truck } from "lucide-react";
 import { useCart } from "@/lib/commerce/cart-context";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, totalInr, totalItems } = useCart();
@@ -14,6 +15,14 @@ export default function CartPage() {
       <section className="relative overflow-hidden pt-24 pb-16 border-b border-black/[0.06] bg-[#F9FAFB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-4">
+            <Breadcrumb
+              variant="personal"
+              items={[
+                { label: "Personal TPMS", href: "/personal" },
+                { label: "Product Store", href: "/personal/buy" },
+                { label: "Cart" },
+              ]}
+            />
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em] inline-block">
               SHOPPING CART
             </div>

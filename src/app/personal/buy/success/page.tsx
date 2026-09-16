@@ -3,11 +3,22 @@
 import React from "react";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, Package, Truck, ShieldCheck } from "lucide-react";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export default function OrderSuccessPage() {
   return (
     <div className="py-24 bg-white text-[#111827] font-manrope min-h-screen selection:bg-[#2563EB]/20 selection:text-[#111827]">
       <div className="max-w-2xl mx-auto px-6 sm:px-10 text-center space-y-8">
+        <div className="text-left">
+          <Breadcrumb
+            variant="personal"
+            items={[
+              { label: "Personal TPMS", href: "/personal" },
+              { label: "Product Store", href: "/personal/buy" },
+              { label: "Order Confirmed" },
+            ]}
+          />
+        </div>
         <div className="w-20 h-20 rounded-full bg-[#10B981]/10 text-[#10B981] flex items-center justify-center mx-auto shadow-md">
           <CheckCircle2 className="w-12 h-12" />
         </div>
