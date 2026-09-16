@@ -21,12 +21,12 @@ export function TreelSignature({
 }: TreelSignatureProps) {
   if (variant === "hero") {
     return (
-      <div className={`relative flex items-center justify-center select-none ${className}`} aria-hidden="true">
+      <div className={`w-full relative flex items-center justify-center select-none ${className}`} aria-hidden="true">
         <svg
           viewBox="0 0 380 200"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full max-w-[420px] h-auto"
+          className="w-full max-w-[360px] xl:max-w-[400px] h-auto"
         >
           <g fill={color}>
             {/* Three clean horizontal bars derived directly from the original Treel logo */}
