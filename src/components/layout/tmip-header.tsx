@@ -23,19 +23,19 @@ export function TmipHeader() {
               <Image
                 src="/images/logo.png"
                 alt="Treel"
-                width={140}
-                height={38}
-                className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                width={160}
+                height={44}
+                className="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-[1.02]"
                 priority
               />
             </Link>
 
-            <div className="h-6 w-[1px] bg-blue-900/60 hidden sm:block" />
+            <div className="h-[27px] w-[1px] bg-blue-900/60 hidden sm:block" />
 
             {/* TMIP Brand Logo (3-bar mark + TMIP) */}
             <Link href="/tmip" className="flex items-center gap-2.5 group">
               <div className="flex items-center">
-                <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg" className="h-5 sm:h-6 w-auto">
+                <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg" className="h-[22px] sm:h-[27px] w-auto">
                   <g fill="#3B82F6">
                     <rect x="5" y="4" width="90" height="9" rx="1.5" opacity="0.55" />
                     <rect x="5" y="16" width="90" height="9" rx="1.5" opacity="0.8" />
@@ -43,7 +43,7 @@ export function TmipHeader() {
                   </g>
                 </svg>
               </div>
-              <span className="font-space-grotesk text-[20px] font-semibold tracking-[-0.02em] text-[#F1F5F9] group-hover:text-white transition-colors">
+              <span className="font-space-grotesk text-[22px] sm:text-[23px] font-semibold tracking-[-0.02em] text-[#F1F5F9] group-hover:text-white transition-colors">
                 TMIP
               </span>
             </Link>
