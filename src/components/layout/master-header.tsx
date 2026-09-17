@@ -52,9 +52,9 @@ export function MasterHeader() {
             <Image
               src="/images/logo.png"
               alt="Treel Mobility Intelligence"
-              width={160}
-              height={44}
-              className="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+              width={180}
+              height={50}
+              className="h-10 sm:h-[45px] w-auto object-contain transition-transform group-hover:scale-[1.02]"
               priority
             />
           </Link>
