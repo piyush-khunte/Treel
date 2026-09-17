@@ -48,10 +48,10 @@ export function PersonalHeader() {
                 </svg>
               </div>
               <div className="flex flex-col">
-                <span className="font-manrope text-xl sm:text-2xl font-extrabold tracking-tight text-[#111827] group-hover:text-[#2563EB] transition-colors whitespace-nowrap leading-none">
+                <span className="font-manrope text-[17px] sm:text-[19px] font-extrabold tracking-tight text-[#111827] group-hover:text-[#2563EB] transition-colors whitespace-nowrap leading-none">
                   TPMS
                 </span>
-                <span className="text-[10px] tracking-widest uppercase text-[#6B7280] font-bold mt-1 whitespace-nowrap">
+                <span className="text-[8px] sm:text-[8.5px] tracking-widest uppercase text-[#6B7280] font-bold mt-0.5 whitespace-nowrap">
                   Smart Tyre Sensors
                 </span>
               </div>
