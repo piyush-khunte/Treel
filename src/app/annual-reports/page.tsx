@@ -17,80 +17,38 @@ export const metadata: Metadata = {
   },
 };
 
-const financialReports = [
+interface ReportItem {
+  title: string;
+  type: string;
+  format: string;
+  url: string;
+}
+
+interface FinancialYearGroup {
+  year: string;
+  reports: ReportItem[];
+}
+
+const financialReports: FinancialYearGroup[] = [
+  {
+    year: "Financial Year 2025–26",
+    reports: [
+      {
+        title: "Annual Report",
+        type: "Annual Report",
+        format: "PDF",
+        url: "https://www.mca.gov.in",
+      },
+    ],
+  },
   {
     year: "Financial Year 2024–25",
     reports: [
       {
-        title: "Annual Statutory Return (MGT-7)",
+        title: "Annual Return",
         type: "Annual Return",
-        published: "October 2025",
-        fileSize: "2.4 MB",
-        fileName: "treel-annual-return-fy24-25.pdf",
-      },
-      {
-        title: "Annual Director & Auditor Report",
-        type: "Annual Report",
-        published: "September 2025",
-        fileSize: "4.1 MB",
-        fileName: "treel-directors-report-fy24-25.pdf",
-      },
-    ],
-  },
-  {
-    year: "Financial Year 2023–24",
-    reports: [
-      {
-        title: "Annual Statutory Return (MGT-7)",
-        type: "Annual Return",
-        published: "October 2024",
-        fileSize: "2.1 MB",
-        fileName: "treel-annual-return-fy23-24.pdf",
-      },
-      {
-        title: "Annual Director & Auditor Report",
-        type: "Annual Report",
-        published: "September 2024",
-        fileSize: "3.8 MB",
-        fileName: "treel-directors-report-fy23-24.pdf",
-      },
-    ],
-  },
-  {
-    year: "Financial Year 2022–23",
-    reports: [
-      {
-        title: "Annual Statutory Return (MGT-7)",
-        type: "Annual Return",
-        published: "November 2023",
-        fileSize: "1.9 MB",
-        fileName: "treel-annual-return-fy22-23.pdf",
-      },
-      {
-        title: "Annual Director & Auditor Report",
-        type: "Annual Report",
-        published: "September 2023",
-        fileSize: "3.2 MB",
-        fileName: "treel-directors-report-fy22-23.pdf",
-      },
-    ],
-  },
-  {
-    year: "Financial Year 2021–22",
-    reports: [
-      {
-        title: "Annual Statutory Return (MGT-7)",
-        type: "Annual Return",
-        published: "October 2022",
-        fileSize: "1.8 MB",
-        fileName: "treel-annual-return-fy21-22.pdf",
-      },
-      {
-        title: "Annual Director & Auditor Report",
-        type: "Annual Report",
-        published: "September 2022",
-        fileSize: "2.9 MB",
-        fileName: "treel-directors-report-fy21-22.pdf",
+        format: "PDF",
+        url: "https://www.mca.gov.in",
       },
     ],
   },
@@ -99,46 +57,6 @@ const financialReports = [
 export default function AnnualReportsPage() {
   return (
     <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
-                <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Mobile: 91120 00174</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
-                <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Email: hello@treel.in</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
-                <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Office address: Treel Mobility Solutions Private Limited, S.No.6/1B, 6/4, 7/4, Plot No.02, Laxmi Vishnupuram Amenities Business, NDA Road, Vill. Shivane, Tal. Haveli, Pune, Maharashtra 411023</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
-                <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Google Maps: https://maps.app.goo.gl/VjJUeqtM8iBgHsXH8</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
-                <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>LinkedIn: https://www.linkedin.com/company/jktreel/</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
-                <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Facebook: https://www.facebook.com/jktreel/</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
-                <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Instagram: https://www.instagram.com/jktreel/</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
-                <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>YouTube: https://youtube.com/@jktreel5290</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
-                <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>ARAI certification</span>
-              </li>
-              <li className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter flex items-start gap-3">
-                <span className="text-[#D5573B] mt-1.5 font-bold">•</span>
-                <span>Warranty: 5 years car sensor, 3 years bike sensor, 1 year upgrade kit</span>
-              </li>
       {/* 1. HERO SECTION */}
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
         <div 
@@ -164,7 +82,7 @@ export default function AnnualReportsPage() {
               Annual reports and <span className="italic font-normal text-[#D5573B]">statutory filings.</span>
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-inter max-w-3xl">
-              Treel Mobility Solutions Private Limited publishes its annual returns and statutory reports here, as required by Indian company law and as part of our commitment to governance transparency.
+              Treel Mobility Solutions Private Limited publishes its annual returns and reports here, as required by Indian company law and as part of our commitment to transparency.
             </p>
           </div>
         </div>
@@ -213,22 +131,24 @@ export default function AnnualReportsPage() {
                             <h4 className="font-fraunces text-lg font-medium text-[#FAF7F2]">
                               {report.title}
                             </h4>
-                            <div className="text-xs text-[#94A3B8] mt-1">
-                              Filed: {report.published} • {report.fileSize} PDF
+                            <div className="text-xs text-[#94A3B8] mt-1 font-mono">
+                              Format: {report.format} • Statutory Filing
                             </div>
                           </div>
                         </div>
 
                         <a 
-                          href={`#download-${report.fileName}`} 
+                          href={report.url} 
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="inline-flex items-center justify-between w-full px-4 py-2.5 rounded-md text-xs font-semibold bg-white/[0.04] border border-white/10 text-[#FAF7F2] hover:bg-[#D5573B] hover:border-[#D5573B] transition-all group"
                         >
                           <span className="flex items-center gap-2">
                             <Download className="w-4 h-4 text-[#D5573B] group-hover:text-[#FAF7F2] transition-colors" />
                             Download Document
                           </span>
-                          <span className="text-[10px] text-[#94A3B8] group-hover:text-white/80 font-mono">
-                            PDF
+                          <span className="text-[10px] text-[#94A3B8] group-hover:text-white/80 font-mono flex items-center gap-1">
+                            PDF <ExternalLink className="w-3 h-3" />
                           </span>
                         </a>
                       </div>
@@ -236,6 +156,27 @@ export default function AnnualReportsPage() {
                   </div>
                 </div>
               ))}
+
+              {/* Historical Filings Callout */}
+              <div className="rounded-xl border border-white/10 bg-[#0F1419] p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                <div className="space-y-1 max-w-2xl">
+                  <h4 className="font-fraunces text-lg font-medium text-[#FAF7F2]">
+                    Historical Statutory Filings
+                  </h4>
+                  <p className="text-sm text-[#94A3B8] leading-relaxed">
+                    Annual returns and statutory filings for prior financial years (FY 2018–19 through FY 2024–25) are maintained with the Ministry of Corporate Affairs and accessible via the MCA portal or on request from our compliance team.
+                  </p>
+                </div>
+                <a
+                  href="https://www.mca.gov.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-xs font-semibold bg-white/[0.04] border border-white/10 text-[#FAF7F2] hover:bg-[#D5573B] hover:border-[#D5573B] transition-all group"
+                >
+                  <span>Access MCA Portal</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-[#D5573B] group-hover:text-[#FAF7F2]" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -275,11 +216,11 @@ export default function AnnualReportsPage() {
               Corporate &amp; compliance queries
             </h2>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-              For queries related to annual reports, corporate filings, or statutory compliance matters, our compliance and legal team can be reached directly through our contact portal.
+              For queries related to annual reports, corporate filings, or compliance matters, please contact us.
             </p>
             <div className="pt-2">
               <Button asChild variant="treel" size="lg">
-                <Link href="/contact?subject=Compliance" className="inline-flex items-center gap-2">
+                <Link href="/contact?subject=General+inquiry" className="inline-flex items-center gap-2">
                   Contact us <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
