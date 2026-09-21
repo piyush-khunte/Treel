@@ -104,6 +104,20 @@ export function MasterHeader() {
                     <p className="text-xs text-slate-500 mt-0.5">Smart tyre sensor kits for cars and 2-wheelers.</p>
                   </div>
                 </Link>
+                <div className="pt-2 mt-1 border-t border-slate-100">
+                  <Link 
+                    href="#" 
+                    className="flex items-center px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-colors text-sm font-semibold text-slate-900"
+                  >
+                    Commercial Vehicle TPMS
+                  </Link>
+                  <Link 
+                    href="#" 
+                    className="flex items-center px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-colors text-sm font-semibold text-slate-900 mt-0.5"
+                  >
+                    OTR TPMS
+                  </Link>
+                </div>
               </div>
             </div>
 

@@ -23,9 +23,11 @@ export function EcosystemBar() {
       <div className="max-w-[1320px] mx-auto px-6 sm:px-10 flex items-center justify-between">
         {/* Left: Ecosystem Links */}
         <div className="flex items-center space-x-4 sm:space-x-6 overflow-x-auto no-scrollbar py-0.5">
-          <span className="text-slate-400 font-medium whitespace-nowrap hidden sm:inline">
-            Treel Ecosystem:
-          </span>
+          {pathname !== "/" && (
+            <span className="text-slate-400 font-medium whitespace-nowrap hidden sm:inline">
+              Treel Ecosystem:
+            </span>
+          )}
 
           {/* Treel Corporate */}
           <Link

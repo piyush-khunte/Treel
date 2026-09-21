@@ -23,16 +23,27 @@ export function TreelSignature({
     return (
       <div className={`w-full relative flex items-center justify-center select-none ${className}`} aria-hidden="true">
         <svg
-          viewBox="0 0 380 200"
+          viewBox="0 0 380 220"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full max-w-[360px] xl:max-w-[400px] h-auto"
+          className="w-full max-w-[420px] h-auto"
         >
+          <defs>
+            <filter id="treelHeroGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="6" />
+            </filter>
+          </defs>
+          {/* Subtle glow */}
+          <g fill={color} filter="url(#treelHeroGlow)" opacity="0.25">
+            <rect x="30" y="32" width="320" height="36" rx="4" opacity="0.55" />
+            <rect x="30" y="92" width="320" height="36" rx="4" opacity="0.8" />
+            <rect x="30" y="152" width="320" height="36" rx="4" />
+          </g>
+          {/* Precision Treel Motion Marks */}
           <g fill={color}>
-            {/* Three clean horizontal bars derived directly from the original Treel logo */}
-            <polygon points="50,31 350,31 345,65 45,65" />
-            <polygon points="42,83 342,83 337,117 37,117" />
-            <polygon points="34,135 334,135 329,169 29,169" />
+            <rect x="30" y="32" width="320" height="36" rx="4" opacity="0.55" />
+            <rect x="30" y="92" width="320" height="36" rx="4" opacity="0.8" />
+            <rect x="30" y="152" width="320" height="36" rx="4" />
           </g>
         </svg>
       </div>
