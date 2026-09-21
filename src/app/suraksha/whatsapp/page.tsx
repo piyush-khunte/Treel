@@ -19,27 +19,27 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 export const metadata: Metadata = {
   title: "WhatsApp Suraksha · Direct Chat with Support",
   description:
-    "WhatsApp Suraksha directly. 24/7 automated responses, business hours human support. Product info, pricing, EMI, installation, warranty — sab kuch WhatsApp par.",
+    "WhatsApp Suraksha directly. 24/7 automated responses, business hours human support. Product info, pricing, EMI, installation, warranty — सब कुछ WhatsApp पर।",
   alternates: {
     canonical: "https://treel.in/suraksha/whatsapp",
   },
   openGraph: {
     title: "WhatsApp Suraksha · Direct Chat with Support",
     description:
-      "WhatsApp Suraksha directly. 24/7 automated responses, business hours human support. Product info, pricing, EMI, installation, warranty — sab kuch WhatsApp par.",
+      "WhatsApp Suraksha directly. 24/7 automated responses, business hours human support. Product info, pricing, EMI, installation, warranty — सब कुछ WhatsApp पर।",
     url: "https://treel.in/suraksha/whatsapp",
   },
 };
 
 const capabilities = [
   {
-    title: "Product info le sakte hai",
-    desc: "Kit ke baare mein sab kuch pooch sakte hai",
+    title: "Product info ले सकते हैं",
+    desc: "Kit के बारे में सब कुछ पूछ सकते हैं",
     icon: Package,
   },
   {
     title: "Price check",
-    desc: "Configuration wise pricing turant milega",
+    desc: "Configuration wise pricing तुरंत मिलेगा",
     icon: Zap,
   },
   {
@@ -49,7 +49,7 @@ const capabilities = [
   },
   {
     title: "Nearest centre find",
-    desc: "Pincode share kariye, nearest centres bhejenge",
+    desc: "Pincode share करिए, nearest centres भेजेंगे",
     icon: MapPin,
   },
   {
@@ -59,17 +59,17 @@ const capabilities = [
   },
   {
     title: "Warranty claim",
-    desc: "Photo bhejiye, hum process kar denge",
+    desc: "Photo भेजिए, हम process कर देंगे",
     icon: ShieldCheck,
   },
   {
     title: "Order status",
-    desc: "Kit order ka status check",
+    desc: "Kit order का status check",
     icon: CheckCircle2,
   },
   {
     title: "Any other question",
-    desc: "Business hours mein human agent answer karega",
+    desc: "Business hours में human agent answer करेगा",
     icon: HelpCircle,
   },
 ];
@@ -77,7 +77,7 @@ const capabilities = [
 const responseTimes = [
   {
     label: "Automated responses",
-    time: "Turant (24/7)",
+    time: "तुरंत (24/7)",
     detail: "Instant bot replies for prices, nearby centres, and FAQs",
     icon: Zap,
   },
@@ -119,7 +119,7 @@ export default function SurakshaWhatsappPage() {
 
             <h1 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95] uppercase">
               WHATSAPP <br />
-              <span className="italic text-[#DC2626]">KARIYE.</span>
+              <span className="italic text-[#DC2626]">करिए।</span>
             </h1>
 
             <p className="text-[#DC2626] font-rubik text-xl sm:text-2xl font-bold">
@@ -127,7 +127,7 @@ export default function SurakshaWhatsappPage() {
             </p>
 
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-medium max-w-2xl mx-auto">
-              Suraksha ke baare mein kuch bhi puchna ho — product, price, EMI, installation, warranty — WhatsApp par direct baat kijiye. 24/7 automated response + business hours human support.
+              Suraksha के बारे में कुछ भी पूछना हो — product, price, EMI, installation, warranty — WhatsApp पर direct बात कीजिए। 24/7 automated response + business hours human support।
             </p>
 
             {/* Huge WhatsApp Primary CTA */}
@@ -151,10 +151,10 @@ export default function SurakshaWhatsappPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              WHATSAPP PAR KYA HO SAKTA HAI?
+              WHATSAPP पर क्या हो सकता है?
             </h2>
             <p className="text-[#78350F] text-lg mt-3 font-medium">
-              Aapka personal assistant har sawaal aur madad ke liye 24/7 taiyaar hai.
+              आपका personal assistant हर सवाल और मदद के लिए 24/7 तैयार है।
             </p>
           </div>
 
@@ -234,7 +234,7 @@ export default function SurakshaWhatsappPage() {
                 ALTERNATIVE CONTACT
               </h2>
               <p className="text-[#78350F] text-base mt-2 font-medium">
-                WhatsApp use nahi kar sakte? Yeh options bhi available hai:
+                WhatsApp use नहीं कर सकते? यह options भी available हैं:
               </p>
             </div>
 
@@ -258,7 +258,7 @@ export default function SurakshaWhatsappPage() {
                 <div className="font-rubik font-bold text-sm text-[#451A03]">
                   Callback Request
                 </div>
-                <div className="text-xs text-[#78350F]">Hum aapko call karenge</div>
+                <div className="text-xs text-[#78350F]">हम आपको call करेंगे</div>
               </Link>
 
               <Link

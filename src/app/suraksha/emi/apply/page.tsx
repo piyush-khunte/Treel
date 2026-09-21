@@ -69,7 +69,7 @@ export default function SurakshaEMIApplyPage() {
                 <input
                   type="text"
                   required
-                  placeholder="Apna poora naam likhein"
+                  placeholder="अपना पूरा नाम लिखें"
                   value={formData.ownerName}
                   onChange={(e) => setFormData({ ...formData, ownerName: e.target.value })}
                   className="w-full px-4 py-3 bg-[#FEF3C7]/60 border border-[#451A03]/20 rounded-lg text-[#451A03] placeholder-[#78350F]/50 focus:outline-none focus:border-[#DC2626] text-sm font-medium"

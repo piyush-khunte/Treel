@@ -35,10 +35,10 @@ export default function SurakshaSavingsPage() {
               SAVINGS
             </div>
             <h1 className="font-anton uppercase tracking-wide text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95]">
-              NINE MONTHS.<br /><span className="italic text-[#DC2626]">POORI KIMAT WAPAS.</span>
+              NINE MONTHS.<br /><span className="italic text-[#DC2626]">पूरी कीमत वापस।</span>
             </h1>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              ₹17,500 ka kit nine months mein poora paisa wapas de deta hai. Kaise? Fuel, tyre life, aur roadside events — teenon jaghon se savings aati hai. Calculator use kariye apne truck ke liye.
+              ₹17,500 का kit nine months में पूरा पैसा वापस दे देता है। कैसे? Fuel, tyre life, और roadside events — तीनों जगहों से savings आती है। Calculator use करिए अपने truck के लिए।
             </p>
           </div>
         </div>
@@ -53,7 +53,7 @@ export default function SurakshaSavingsPage() {
                 SAVINGS BREAKDOWN
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                PAISA KAHAAN SE AATA HAI?
+                पैसा कहाँ से आता है?
               </h2>
               <p className="text-[#78350F] text-base mt-2 font-medium">
                 Three savings buckets with detailed explanations:
@@ -67,14 +67,14 @@ export default function SurakshaSavingsPage() {
                   Bucket 1 · Fuel savings (5-6%)
                 </div>
                 <p className="text-[#451A03] text-sm leading-relaxed">
-                  Underinflated tyres 5-6% extra fuel burn karte hai. Yeh most drivers ko pata hi nahi hota — kyunki eye se check karna mushkil hai, especially heavy load par.
+                  Underinflated tyres 5-6% extra fuel burn करते हैं। यह most drivers को पता ही नहीं होता — क्योंकि eye से check करना मुश्किल है, especially heavy load पर।
                 </p>
                 <div className="pt-3 border-t border-[#451A03]/10 space-y-2 text-xs text-[#78350F]">
                   <div className="font-bold text-[#451A03]">Numbers:</div>
                   <div>• 10-wheeler monthly fuel expense: ₹80,000-₹1,20,000 (typical, varies by route)</div>
                   <div>• 5% savings = ₹4,000-₹6,000 per month</div>
                   <div className="font-bold text-[#DC2626]">• Annual savings = ₹48,000-₹72,000</div>
-                  <div className="pt-1 text-[#451A03]">Explanation: Suraksha ke saath aapko har trip pe correct pressure ka confirmation milta hai. Long-run mein this is the biggest savings bucket.</div>
+                  <div className="pt-1 text-[#451A03]">Explanation: Suraksha के साथ आपको हर trip पे correct pressure का confirmation मिलता है। Long-run में this is the biggest savings bucket।</div>
                 </div>
               </div>
 
@@ -84,7 +84,7 @@ export default function SurakshaSavingsPage() {
                   Bucket 2 · Tyre life extension (5-7%)
                 </div>
                 <p className="text-[#451A03] text-sm leading-relaxed">
-                  Correct pressure pe tyres uniform wear karte hai. Uneven wear (jo underinflation ya overinflation se hoti hai) tyre life 5-7% kam kar deti hai.
+                  Correct pressure पे tyres uniform wear करते हैं। Uneven wear (जो underinflation या overinflation से होती है) tyre life 5-7% कम कर देती है।
                 </p>
                 <div className="pt-3 border-t border-[#451A03]/10 space-y-2 text-xs text-[#78350F]">
                   <div className="font-bold text-[#451A03]">Numbers:</div>
@@ -101,7 +101,7 @@ export default function SurakshaSavingsPage() {
                   Bucket 3 · Roadside downtime avoidance
                 </div>
                 <p className="text-[#451A03] text-sm leading-relaxed">
-                  Ek blowout ya major puncture mein direct costs (towing, repair) + indirect costs (delayed delivery, driver time, customer complaints) hote hai.
+                  एक blowout या major puncture में direct costs (towing, repair) + indirect costs (delayed delivery, driver time, customer complaints) होते हैं।
                 </p>
                 <div className="pt-3 border-t border-[#451A03]/10 space-y-2 text-xs text-[#78350F]">
                   <div className="font-bold text-[#451A03]">Numbers per event:</div>
@@ -247,7 +247,7 @@ export default function SurakshaSavingsPage() {
               TIMELINE VISUALIZATION
             </div>
             <p className="text-base text-[#451A03] font-medium leading-relaxed">
-              Yeh graph typical 10-wheeler ke liye hai. Aapke truck ke exact numbers calculator mein try kariye.
+              यह graph typical 10-wheeler के लिए है। आपके truck के exact numbers calculator में try करिए।
             </p>
             <div className="text-xs font-bold uppercase tracking-wider text-[#78350F]">
               Body (Hinglish):
@@ -279,10 +279,10 @@ export default function SurakshaSavingsPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FEF3C7]">
-              ₹16 PER DAY. EK CUP CHAI JAISA.
+              ₹16 PER DAY. एक कप चाय जैसा।
             </h2>
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
-              3-year warranty ke hisaab se, Suraksha ka effective cost ₹16 per day hai — ek cup chai jitna. Aur woh bhi 9 months ke baad savings mein badal jata hai.
+              3-year warranty के हिसाब से, Suraksha का effective cost ₹16 per day है — एक कप चाय जितना। और वह भी 9 months के बाद savings में बदल जाता है।
             </p>
             <div className="pt-2 flex flex-wrap justify-center gap-4">
               <Link

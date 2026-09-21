@@ -145,7 +145,7 @@ export function SurakshaHeader() {
                 onClick={() => setMobileOpen(false)}
                 className="suraksha-cta-secondary justify-center text-center py-3"
               >
-                WhatsApp Kariye
+                WhatsApp करिए
               </Link>
             </div>
           </div>

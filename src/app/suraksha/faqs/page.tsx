@@ -12,43 +12,43 @@ export default function SurakshaFAQsPage() {
   const faqs = [
     {
       cat: "Installation",
-      q: "Suraksha kit install kaise hoti hai aur kitna time lagta hai?",
-      a: "Suraksha install karna bahut asaan hai. 15 minute mein 3 steps mein install ho jata hai: (1) In-cab display cabin mein 12V/24V socket mein mount karo, (2) Har tyre ke valve stem pe ek smart sensor lagao, (3) Display auto-detect karega aur tyre pressure turant screen pe dikha dega. Koi wiring cut karne ki zaroorat nahi hoti."
+      q: "Suraksha kit install कैसे होती है और कितना time लगता है?",
+      a: "Suraksha install करना बहुत आसान है। 15 minute में 3 steps में install हो जाता है: (1) In-cab display cabin में 12V/24V socket में mount करो, (2) हर tyre के valve stem पे एक smart sensor लगाओ, (3) Display auto-detect करेगा और tyre pressure तुरंत screen पे दिखा देगा। कोई wiring cut करने की ज़रूरत नहीं होती।"
     },
     {
       cat: "Installation",
-      q: "Kya kisi certified mechanic ke paas jana padega?",
-      a: "Nahi. Kisi bhi highway puncture shop wala ya driver khud 15 minute mein fit kar leta hai. Kit ke andar ek page ka vernacular manual aur video QR code aata hai."
+      q: "क्या किसी certified mechanic के पास जाना पड़ेगा?",
+      a: "नहीं। किसी भी highway puncture shop वाला या driver खुद 15 minute में fit कर लेता है। Kit के अंदर एक page का vernacular manual और video QR code आता है।"
     },
     {
       cat: "Pricing",
-      q: "Suraksha kit ki kya keemat hai?",
-      a: "Standard 10-wheeler truck ke liye ₹17,500 hai. 6-wheeler ke liye ₹10,500, 12-wheeler ke liye ₹21,000, 14-wheeler ke liye ₹24,500, aur 18-wheeler trailer ke liye ₹31,500. Price mein display, sensors, mounting kit, official JK Tyre warranty, aur helpline support sab shamil hai."
+      q: "Suraksha kit की क्या कीमत है?",
+      a: "Standard 10-wheeler truck के लिए ₹17,500 है। 6-wheeler के लिए ₹10,500, 12-wheeler के लिए ₹21,000, 14-wheeler के लिए ₹24,500, और 18-wheeler trailer के लिए ₹31,500। Price में display, sensors, mounting kit, official JK Tyre warranty, और helpline support सब शामिल है।"
     },
     {
       cat: "Pricing",
-      q: "Kya koi monthly subscription ya renewal fee hai?",
-      a: "Bilkul nahi! Suraksha zero-subscription product hai. Ek baar kit khareed li, uske baad koi monthly app fee ya SIM recharge charge nahi hota."
+      q: "क्या कोई monthly subscription या renewal fee है?",
+      a: "बिल्कुल नहीं! Suraksha zero-subscription product है। एक बार kit खरीद ली, उसके बाद कोई monthly app fee या SIM recharge charge नहीं होता।"
     },
     {
       cat: "EMI",
-      q: "Kya Suraksha par easy EMI mil sakti hai?",
-      a: "Haan. Bajaj Finance ke saath zero-downpayment easy EMI available hai. Monthly instalment ₹1,199/month se shuru hoti hai. Sirf Aadhar aur RC book par turant approval mil jata hai."
+      q: "क्या Suraksha पर easy EMI मिल सकती है?",
+      a: "हाँ। Bajaj Finance के साथ zero-downpayment easy EMI available है। Monthly instalment ₹1,199/month से शुरू होती है। सिर्फ Aadhar और RC book पर तुरंत approval मिल जाता है।"
     },
     {
       cat: "Warranty",
-      q: "Warranty kitne saal ki hai aur sensor battery kitna chalti hai?",
-      a: "Suraksha sensors mein 5-year battery life aati hai. Pure hardware par 1-year direct replacement warranty milti hai kisi bhi JK Truck Wheels centre par."
+      q: "Warranty कितने साल की है और sensor battery कितना चलती है?",
+      a: "Suraksha sensors में 5-year battery life आती है। पूरे hardware पर 1-year direct replacement warranty मिलती है किसी भी JK Truck Wheels centre पर।"
     },
     {
       cat: "Product",
-      q: "Puncture hone se pehle Suraksha kaise alert karta hai?",
-      a: "Sensor continuous micro-pressure drop detect karta hai. Jaise hi tyre mein slow puncture ya abnormal heating hoti hai, display laal light aur audible buzzer bajata hai taaki tyre burst hone se pehle truck safely roka ja sake."
+      q: "Puncture होने से पहले Suraksha कैसे alert करता है?",
+      a: "Sensor continuous micro-pressure drop detect करता है। जैसे ही tyre में slow puncture या abnormal heating होती है, display लाल light और audible buzzer बजाता है ताकि tyre burst होने से पहले truck safely रोका जा सके।"
     },
     {
       cat: "Support",
-      q: "Raste mein madad ke liye kahan contact karein?",
-      a: "Humari 24x7 Toll-Free Suraksha Helpline 1800 258 4567 par call karein ya WhatsApp helpline par message karein. Hindi, Punjabi, Tamil, Telugu aur Marathi mein instant support milta hai."
+      q: "रास्ते में मदद के लिए कहाँ contact करें?",
+      a: "हमारी 24x7 Toll-Free Suraksha Helpline 1800 258 4567 पर call करें या WhatsApp helpline पर message करें। Hindi, Punjabi, Tamil, Telugu और Marathi में instant support मिलता है।"
     }
   ];
 
@@ -73,10 +73,10 @@ export default function SurakshaFAQsPage() {
               FAQS
             </div>
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#DC2626] leading-[1.05]">
-              Aapke Sawaal. Hamare Jawaab.
+              आपके सवाल. हमारे जवाब.
             </h1>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Suraksha kit ke baare mein common questions. Category-wise filter kar sakte hai. Koi aur sawaal ho toh toll-free helpline ya WhatsApp par baat kijiye.
+              Suraksha kit के बारे में common questions. Category-wise filter कर सकते हैं। कोई और सवाल हो तो toll-free helpline या WhatsApp पर बात कीजिए।
             </p>
           </div>
         </div>
@@ -140,10 +140,10 @@ export default function SurakshaFAQsPage() {
             <div className="bg-[#451A03] text-[#FEF3C7] p-8 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl border-2 border-[#451A03]/20">
               <div>
                 <h3 className="font-anton text-2xl uppercase tracking-normal text-white">
-                  Koi Aur Sawaal Hai?
+                  कोई और सवाल है?
                 </h3>
                 <p className="text-xs text-[#FEF3C7]/80 mt-1 font-rubik">
-                  Suraksha helpline par turant baat karein: 1800 258 4567 (Toll-Free)
+                  Suraksha helpline पर तुरंत बात करें: 1800 258 4567 (Toll-Free)
                 </p>
               </div>
 
@@ -151,7 +151,7 @@ export default function SurakshaFAQsPage() {
                 href="/suraksha/whatsapp"
                 className="px-6 py-3 rounded-[4px] bg-[#EA580C] text-white font-rubik font-bold text-xs uppercase tracking-wider hover:bg-[#DC2626] transition-all flex items-center gap-2 whitespace-nowrap shadow-sm"
               >
-                <MessageCircle className="w-4 h-4" /> WhatsApp Pe Baat Karein
+                <MessageCircle className="w-4 h-4" /> WhatsApp पे बात करें
               </Link>
             </div>
           </div>

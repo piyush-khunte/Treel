@@ -35,10 +35,10 @@ export default function SurakshaContactPage() {
               CONTACT
             </div>
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
-              HUM SE <span className="italic text-[#DC2626]">BAAT KIJIYE.</span>
+              हम से <span className="italic text-[#DC2626]">बात कीजिए।</span>
             </h1>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik max-w-3xl font-medium">
-              Suraksha ke baare mein koi bhi baat — product query, pricing, installation, warranty, ya just general question. Neeche kisi bhi channel se contact kijiye.
+              Suraksha के बारे में कोई भी बात — product query, pricing, installation, warranty, या just general question. नीचे किसी भी channel से contact कीजिए।
             </p>
           </div>
         </div>
@@ -101,7 +101,7 @@ export default function SurakshaContactPage() {
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">FORM BHARIYE — HUM CALL KARENGE</h2>
+            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">FORM भरिए — हम CALL करेंगे</h2>
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Form fields:</p>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik"><strong>Submit button:</strong> <code className="font-mono bg-[#FEF3C7] px-2 py-0.5 rounded border border-[#451A03]/20 font-bold">Send  →</code></p>
             <div className="bg-[#FEF3C7] border-2 border-[#451A03]/15 rounded-lg p-6 sm:p-8 shadow-sm">
@@ -164,11 +164,11 @@ export default function SurakshaContactPage() {
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                  <span>Message (required, textarea, max 1000 chars, placeholder: "Aap ka sawaal ya baat jo aapko puchni hai...")</span>
+                  <span>Message (required, textarea, max 1000 chars, placeholder: "आपका सवाल या बात जो आपको पूछनी है...")</span>
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                  <span>Consent checkbox: Mai aap ke saath contact kar sakte hai iski permission deta hoon. Privacy policy padhi. (Required)</span>
+                  <span>Consent checkbox: मैं आप के साथ contact कर सकते हैं इसकी permission देता हूँ। Privacy policy पढ़ी। (Required)</span>
                 </li>
               </ul>
             </div>
@@ -179,8 +179,8 @@ export default function SurakshaContactPage() {
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">DHANYAWAAD! MESSAGE MIL GAYA.</h2>
-            <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik">Aap ka message hum tak pahunch gaya. 4 business hours mein humari team aap ko call ya WhatsApp karegi. Urgent ho toh direct 1800 833 0233 par call kariye.</p>
+            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">धन्यवाद! MESSAGE मिल गया।</h2>
+            <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik">आप का message हम तक पहुँच गया। 4 business hours में हमारी team आप को call या WhatsApp करेगी। Urgent हो तो direct 1800 833 0233 पर call करिए।</p>
           </div>
         </div>
       </section>
@@ -188,7 +188,7 @@ export default function SurakshaContactPage() {
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">Aapke area ka nearest Suraksha centre find karne ke liye:</p>
+            <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">आपके area का nearest Suraksha centre find करने के लिए:</p>
             <div className="pt-2">
               <Link href="/suraksha/centres" className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider transition-all shadow-md bg-[#DC2626] text-white hover:bg-[#B91C1C]">
                 Nearest Centre <ArrowRight className="w-4 h-4" />
@@ -201,10 +201,10 @@ export default function SurakshaContactPage() {
       <section className="py-16 bg-[#FEF3C7]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">Sabse fastest — WhatsApp par direct message kariye.</p>
+            <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">सबसे fastest — WhatsApp पर direct message करिए।</p>
             <div className="pt-2">
               <Link href="/suraksha/whatsapp" className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider transition-all shadow-md bg-[#25D366] text-white hover:bg-[#1EBE5D]">
-                WhatsApp Kariye <ArrowRight className="w-4 h-4" />
+                WhatsApp करिए <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>

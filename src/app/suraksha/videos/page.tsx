@@ -35,10 +35,10 @@ export default function SurakshaVideosPage() {
               VIDEOS
             </div>
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
-              DEKHIYE. <span className="italic text-[#DC2626]">SAMJHIYE.</span>
+              देखिए। <span className="italic text-[#DC2626]">समझिए।</span>
             </h1>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik max-w-3xl font-medium">
-              Suraksha ke baare mein sab kuch — installation, testimonials, product overview, how-to guides. Videos Hindi aur regional languages mein.
+              Suraksha के बारे में सब कुछ — installation, testimonials, product overview, how-to guides. Videos Hindi और regional languages में।
             </p>
           </div>
         </div>
@@ -97,11 +97,11 @@ export default function SurakshaVideosPage() {
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                  <span>"15-minute Installation Guide — Hindi mein"</span>
+                  <span>"15-minute Installation Guide — Hindi में"</span>
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                  <span>"Puncture Shop Par Suraksha Kaise Fit Karein"</span>
+                  <span>"Puncture Shop पर Suraksha कैसे Fit करें"</span>
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
@@ -109,7 +109,7 @@ export default function SurakshaVideosPage() {
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                  <span>"Narender Kirar ki Highway Story" (from `/suraksha/testimonials`)</span>
+                  <span>"Narender Kirar की Highway Story" (from `/suraksha/testimonials`)</span>
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
@@ -125,19 +125,19 @@ export default function SurakshaVideosPage() {
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                  <span>"Display Screen Ka Tour"</span>
+                  <span>"Display Screen का Tour"</span>
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                  <span>"Battery Kab Replace Karni Hai — Warning Signs"</span>
+                  <span>"Battery कब Replace करनी है — Warning Signs"</span>
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                  <span>"Alert Kaise Read Karein"</span>
+                  <span>"Alert कैसे Read करें"</span>
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                  <span>"Tyre Rotation Ke Baad Kya Karein"</span>
+                  <span>"Tyre Rotation के बाद क्या करें"</span>
                 </li>
               </ul>
             </div>
@@ -148,7 +148,7 @@ export default function SurakshaVideosPage() {
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">Aur bhi videos ke liye YouTube pe subscribe kariye.</p>
+            <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">और भी videos के लिए YouTube पे subscribe करिए।</p>
             <div className="pt-2">
               <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider transition-all shadow-md bg-[#DC2626] text-white hover:bg-[#B91C1C]">
                 Subscribe to @jktreel <ArrowRight className="w-4 h-4" />

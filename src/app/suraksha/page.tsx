@@ -34,15 +34,15 @@ const pillars = [
   {
     number: "01 · SAFETY",
     title: "FRONT-TYRE BLOWOUTS, PREVENTED.",
-    desc: "Real-time tyre pressure and temperature on the cabin display. See the warning before the blowout. Aapke parivar ke liye — kyunki har trip ghar wapas aana zaroori hai.",
+    desc: "Real-time tyre pressure and temperature on the cabin display. See the warning before the blowout. आपके परिवार के लिए — क्योंकि हर trip घर वापस आना ज़रूरी है।",
     color: "#DC2626",
     badgeBg: "bg-[#DC2626]/10 text-[#DC2626] border-[#DC2626]/30",
     icon: Shield,
   },
   {
     number: "02 · SAVINGS",
-    title: "NINE MONTHS MEIN POORI KIMAT WAPAS.",
-    desc: "Five to six percent fuel savings. Five to seven percent tyre-life extension. Roadside towing fees gone. Kit paisa nine months mein wapas de deti hai.",
+    title: "NINE MONTHS में पूरी कीमत वापस।",
+    desc: "Five to six percent fuel savings. Five to seven percent tyre-life extension. Roadside towing fees gone. Kit पैसा nine months में वापस दे देती है।",
     accent: "पैसा वसूल",
     color: "#EA580C",
     badgeBg: "bg-[#EA580C]/10 text-[#EA580C] border-[#EA580C]/30",
@@ -50,8 +50,8 @@ const pillars = [
   },
   {
     number: "03 · SIMPLICITY",
-    title: "PUNCTURE SHOP PE FIT KARO, CABIN MEIN DEKHO.",
-    desc: "Fifteen-minute install at any Truck Wheels centre ya roadside puncture shop. No app to download.",
+    title: "PUNCTURE SHOP पे FIT करो, CABIN में देखो।",
+    desc: "Fifteen-minute install at any Truck Wheels centre या roadside puncture shop. No app to download.",
     badge: "No monthly fee. No subscription.",
     color: "#0891B2",
     badgeBg: "bg-[#0891B2]/10 text-[#0891B2] border-[#0891B2]/30",
@@ -101,7 +101,7 @@ export default function SurakshaPage() {
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
                 <Truck className="w-3.5 h-3.5" />
-                INDIA KE DRIVERS KE LIYE
+                INDIA के DRIVERS के लिए
               </div>
 
               <div className="space-y-2">
@@ -116,7 +116,7 @@ export default function SurakshaPage() {
               </div>
 
               <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-2xl">
-                Tyre pressure dikhata hai. Nine months mein poori kimat wapas. Fifteen minute mein install ho jata hai. Fits any truck. Anywhere in India.
+                Tyre pressure दिखाता है. Nine months में पूरी कीमत वापस. Fifteen minute में install हो जाता है. Fits any truck. Anywhere in India.
               </p>
 
               {/* Value Statement Pill */}
@@ -141,7 +141,7 @@ export default function SurakshaPage() {
                   href="/suraksha/whatsapp"
                   className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all border-2 border-[#DC2626] text-[#DC2626] bg-[#FEF3C7] hover:bg-[#DC2626]/10 active:scale-[0.98]"
                 >
-                  <MessageCircle className="w-5 h-5 text-[#DC2626]" /> WhatsApp Kariye
+                  <MessageCircle className="w-5 h-5 text-[#DC2626]" /> WhatsApp करिए
                 </Link>
               </div>
             </div>
@@ -295,11 +295,11 @@ export default function SurakshaPage() {
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h2 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#FEF3C7] leading-[0.95] uppercase">
               NINE MONTHS.<br />
-              POORI KIMAT WAPAS.
+              पूरी कीमत वापस।
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl leading-relaxed font-medium max-w-2xl mx-auto">
-              Suraksha ka safety kit. EMI available on Bajaj Finance at every Truck Wheels centre. Fifteen minute mein install ho jata hai.
+              Suraksha का safety kit. EMI available on Bajaj Finance at every Truck Wheels centre. Fifteen minute में install हो जाता है।
             </p>
 
             {/* Two Contact Cards */}
@@ -332,7 +332,7 @@ export default function SurakshaPage() {
                   <QrCode className="w-10 h-10" />
                 </div>
                 <div className="text-xs font-semibold text-[#78350F] flex items-center justify-center gap-1">
-                  <MessageCircle className="w-4 h-4 text-[#10B981]" /> Ya WhatsApp par likhiye
+                  <MessageCircle className="w-4 h-4 text-[#10B981]" /> या WhatsApp पर लिखिए
                 </div>
               </Link>
             </div>

@@ -104,7 +104,7 @@ export default function SurakshaPricingPage() {
             </div>
 
             <h1 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95] uppercase">
-              SEEDHI BAAT.<br />
+              सीधी बात.<br />
               <span className="italic text-[#DC2626]">NO HIDDEN FEES.</span>
             </h1>
 
@@ -113,7 +113,7 @@ export default function SurakshaPricingPage() {
             </p>
 
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              ₹17,500 for a 10-wheeler truck. Wheel configuration ke hisaab se pricing thodi alag hoti hai. Sab kuch neeche hai — dekhiye aur nirnay lijiye.
+              ₹17,500 for a 10-wheeler truck. Wheel configuration के हिसाब से pricing थोड़ी अलग होती है। सब कुछ नीचे है — देखिए और निर्णय लीजिए।
             </p>
           </div>
         </div>
@@ -193,11 +193,11 @@ export default function SurakshaPricingPage() {
 
             <h2 className="font-anton text-4xl sm:text-5xl font-normal text-[#451A03] uppercase leading-tight">
               ₹16 PER DAY PER TRUCK.<br />
-              <span className="italic text-[#EA580C]">EK CUP CHAI JAISA.</span>
+              <span className="italic text-[#EA580C]">एक कप चाय जैसा।</span>
             </h2>
 
             <p className="text-[#78350F] text-lg leading-relaxed font-medium">
-              10-wheeler configuration ₹17,500 mein. Three-year warranty ke hisaab se calculate kariye — approximately ₹16 per day. Ek cup chai jitna.
+              10-wheeler configuration ₹17,500 में। Three-year warranty के हिसाब से calculate करिए — approximately ₹16 per day. एक कप चाय जितना।
             </p>
 
             <div className="font-baloo text-3xl font-extrabold text-[#DC2626]">
@@ -216,7 +216,7 @@ export default function SurakshaPricingPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              SAB KUCH INCLUDED
+              सब कुछ INCLUDED
             </h2>
             <p className="text-[#DC2626] font-rubik text-lg font-bold mt-2">
               Everything's in the price
@@ -279,7 +279,7 @@ export default function SurakshaPricingPage() {
                 Option 1 · Full payment
               </h3>
               <p className="text-[#78350F] text-sm leading-relaxed">
-                Cash, UPI, card, or net banking. Full payment se ₹500 ka discount milta hai.
+                Cash, UPI, card, or net banking. Full payment से ₹500 का discount मिलता है।
               </p>
             </div>
 
@@ -298,7 +298,7 @@ export default function SurakshaPricingPage() {
                   href="/suraksha/emi"
                   className="font-rubik text-xs font-bold text-[#DC2626] hover:underline flex items-center gap-1"
                 >
-                  EMI Options dekhiye <ArrowRight className="w-3.5 h-3.5" />
+                  EMI Options देखिए <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
             </div>
@@ -311,7 +311,7 @@ export default function SurakshaPricingPage() {
                 Option 3 · Truck financing
               </h3>
               <p className="text-[#78350F] text-sm leading-relaxed">
-                Truck financing ke saath bundle karwa sakte hai. Financier se baat kariye.
+                Truck financing के साथ bundle करवा सकते हैं। Financier से बात करिए।
               </p>
             </div>
           </div>
@@ -323,16 +323,16 @@ export default function SurakshaPricingPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="p-8 sm:p-12 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/20 max-w-4xl space-y-6">
             <h2 className="font-anton text-3xl sm:text-4xl font-normal text-[#451A03] uppercase">
-              FLEET OPERATORS KE LIYE?
+              FLEET OPERATORS के लिए?
             </h2>
 
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-medium">
-              5+ trucks ke liye bulk discount available. WhatsApp par baat kijiye ya call kariye — customized quote milega.
+              5+ trucks के लिए bulk discount available. WhatsApp पर बात कीजिए या call करिए — customized quote मिलेगा।
             </p>
 
             <div className="p-4 rounded-[4px] bg-[#FEF3C7] border border-[#451A03]/10 text-sm text-[#451A03] flex items-center justify-between flex-wrap gap-4">
               <span>
-                10+ trucks ke fleet operators ke liye TMIP enterprise platform bhi consider kariye — bahut zyada features milte hai.
+                10+ trucks के fleet operators के लिए TMIP enterprise platform भी consider करिए — बहुत ज़्यादा features मिलते हैं।
               </span>
               <Link
                 href="/tmip"
@@ -354,7 +354,7 @@ export default function SurakshaPricingPage() {
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto">
-              Nearest Truck Wheels centre find kariye ya flexible EMI options dekhiye.
+              Nearest Truck Wheels centre find करिए या flexible EMI options देखिए।
             </p>
 
             <div className="pt-4 flex flex-wrap justify-center gap-4">

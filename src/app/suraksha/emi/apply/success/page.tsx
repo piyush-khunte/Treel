@@ -37,11 +37,11 @@ export default function SurakshaEmiApplySuccessPage() {
               APPLICATION SUBMITTED
             </div>
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
-              DHANYAWAAD!<br />
-              <span className="italic text-[#DC2626]">*APPLICATION SUBMIT HO GAYI.*</span>
+              धन्यवाद!<br />
+              <span className="italic text-[#DC2626]">*APPLICATION SUBMIT हो गई।*</span>
             </h1>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik max-w-3xl font-medium">
-              Aap ki EMI application successfully submit ho gayi. Reference number aur next steps neeche hai.
+              आप की EMI application successfully submit हो गई। Reference number और next steps नीचे हैं।
             </p>
           </div>
         </div>
@@ -86,23 +86,23 @@ export default function SurakshaEmiApplySuccessPage() {
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">AAGE KYA HOGA?</h2>
+            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">आगे क्या होगा?</h2>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Numbered steps:</p>
             <div className="space-y-4">
               <div className="p-5 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15">
-                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">1. <strong>Confirmation SMS + WhatsApp aayega</strong> — Registered mobile number pe abhi thodi der mein.</p>
+                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">1. <strong>Confirmation SMS + WhatsApp आएगा</strong> — Registered mobile number पे अभी थोड़ी देर में।</p>
               </div>
               <div className="p-5 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15">
-                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">2. <strong>Bajaj Finance verification (24-48 hours)</strong> — Bajaj Finance team documents verify karegi aur credit check karegi.</p>
+                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">2. <strong>Bajaj Finance verification (24-48 hours)</strong> — Bajaj Finance team documents verify करेगी और credit check करेगी।</p>
               </div>
               <div className="p-5 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15">
-                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">3. <strong>Approval decision</strong> — Approval ya rejection ka SMS aayega. Approval mein loan agreement bhi share hoga.</p>
+                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">3. <strong>Approval decision</strong> — Approval या rejection का SMS आएगा। Approval में loan agreement भी share होगा।</p>
               </div>
               <div className="p-5 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15">
-                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">4. <strong>Kit collection</strong> — Approval ke baad Truck Wheels centre se kit collect kariye ya home delivery ke liye WhatsApp kariye.</p>
+                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">4. <strong>Kit collection</strong> — Approval के बाद Truck Wheels centre से kit collect करिए या home delivery के लिए WhatsApp करिए।</p>
               </div>
               <div className="p-5 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15">
-                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">5. <strong>Installation</strong> — 15-minute installation kisi bhi centre par ya puncture shop par.</p>
+                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">5. <strong>Installation</strong> — 15-minute installation किसी भी centre पर या puncture shop पर।</p>
               </div>
             </div>
           </div>
@@ -112,7 +112,7 @@ export default function SurakshaEmiApplySuccessPage() {
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">Reference number <code className="font-mono bg-[#FFFBEB] px-2 py-0.5 rounded border border-[#451A03]/20 font-bold">SRK-EMI-[NUMBER]</code> ko save kar lijiye — future queries ke liye zaroori hoga.</p>
+            <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">Reference number <code className="font-mono bg-[#FFFBEB] px-2 py-0.5 rounded border border-[#451A03]/20 font-bold">SRK-EMI-[NUMBER]</code> को save कर लीजिए — future queries के लिए ज़रूरी होगा।</p>
             <div className="bg-[#FFFBEB] border-2 border-[#451A03]/15 rounded-lg p-6 shadow-sm">
               <ul className="space-y-3">
                 <li className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3 font-bold">
@@ -140,7 +140,7 @@ export default function SurakshaEmiApplySuccessPage() {
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">Application ke baare mein koi bhi doubt ho toh WhatsApp par baat kijiye. Aap ki application ki status bhi WhatsApp par check kar sakte hai.</p>
+            <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">Application के बारे में कोई भी doubt हो तो WhatsApp पर बात कीजिए। आप की application की status भी WhatsApp पर check कर सकते हैं।</p>
             <ul className="space-y-3 pt-2">
               <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                 <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
@@ -149,7 +149,7 @@ export default function SurakshaEmiApplySuccessPage() {
             </ul>
             <div className="pt-4">
               <Link href="/suraksha/whatsapp" className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider transition-all shadow-md bg-[#25D366] text-white hover:bg-[#1EBE5D]">
-                WhatsApp Kariye <ArrowRight className="w-4 h-4" />
+                WhatsApp करिए <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>

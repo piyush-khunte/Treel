@@ -19,25 +19,25 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { SurakshaEmiCalculator } from "./emi-calculator";
 
 export const metadata: Metadata = {
-  title: "Suraksha EMI · Bajaj Finance · ₹1,500/Month se Shuru",
+  title: "Suraksha EMI · Bajaj Finance · ₹1,500/Month से शुरू",
   description:
-    "Suraksha kit EMI on Bajaj Finance. EMI ₹1,500 per month se shuru. 3, 6, 9, 12, 18, 24-month tenures. Zero-cost EMI available. Quick approval.",
+    "Suraksha kit EMI on Bajaj Finance. EMI ₹1,500 per month से शुरू। 3, 6, 9, 12, 18, 24-month tenures. Zero-cost EMI available. Quick approval.",
   alternates: {
     canonical: "https://treel.in/suraksha/emi",
   },
   openGraph: {
-    title: "Suraksha EMI · Bajaj Finance · ₹1,500/Month se Shuru",
+    title: "Suraksha EMI · Bajaj Finance · ₹1,500/Month से शुरू",
     description:
-      "Suraksha kit EMI on Bajaj Finance. EMI ₹1,500 per month se shuru. 3, 6, 9, 12, 18, 24-month tenures. Zero-cost EMI available. Quick approval.",
+      "Suraksha kit EMI on Bajaj Finance. EMI ₹1,500 per month से शुरू। 3, 6, 9, 12, 18, 24-month tenures. Zero-cost EMI available. Quick approval.",
     url: "https://treel.in/suraksha/emi",
   },
 };
 
 const eligibilityCriteria = [
   { label: "Age", value: "21–65 years" },
-  { label: "Employment", value: "Self-employed (truck owner) ya salaried" },
-  { label: "Truck ownership", value: "RC card ke saath registered owner" },
-  { label: "Income proof", value: "Bank statement (last 6 months) ya ITR" },
+  { label: "Employment", value: "Self-employed (truck owner) या salaried" },
+  { label: "Truck ownership", value: "RC card के साथ registered owner" },
+  { label: "Income proof", value: "Bank statement (last 6 months) या ITR" },
   { label: "CIBIL score", value: "700+ preferred, lower scores considered case-by-case" },
   { label: "KYC", value: "Aadhar + PAN mandatory" },
 ];
@@ -46,7 +46,7 @@ const requiredDocuments = [
   "Aadhar card (front + back photo)",
   "PAN card (photo)",
   "Truck RC (photo)",
-  "Bank statement (last 6 months) ya ITR (last 2 years)",
+  "Bank statement (last 6 months) या ITR (last 2 years)",
   "Recent passport-size photo",
   "Address proof (if different from Aadhar)",
 ];
@@ -54,50 +54,50 @@ const requiredDocuments = [
 const steps = [
   {
     num: "1",
-    title: "Documents ready rakhiye",
+    title: "Documents ready रखिए",
     desc: "Aadhar, PAN, RC, bank statement.",
   },
   {
     num: "2",
-    title: "Application form bhariye",
-    desc: "Online form ya Truck Wheels centre par assist milegi.",
+    title: "Application form भरिए",
+    desc: "Online form या Truck Wheels centre पर assist मिलेगी।",
   },
   {
     num: "3",
-    title: "Documents upload kariye",
-    desc: "Photos bhi WhatsApp par send kar sakte hai.",
+    title: "Documents upload करिए",
+    desc: "Photos भी WhatsApp पर send कर सकते हैं।",
   },
   {
     num: "4",
     title: "Bajaj Finance review",
-    desc: "24-48 hours mein result.",
+    desc: "24-48 hours में result.",
   },
   {
     num: "5",
-    title: "Approval ke baad kit collect kariye",
-    desc: "Truck Wheels centre se pickup ya home delivery.",
+    title: "Approval के बाद kit collect करिए",
+    desc: "Truck Wheels centre से pickup या home delivery.",
   },
 ];
 
 const faqs = [
   {
-    q: "Kya CIBIL score kam hai toh EMI milega?",
-    a: "Haan, Bajaj Finance case-by-case consider karta hai. Application submit kar ke dekhiye.",
+    q: "क्या CIBIL score कम है तो EMI मिलेगा?",
+    a: "हाँ, Bajaj Finance case-by-case consider करता है। Application submit कर के देखिए।",
   },
   {
-    q: "Down payment kitna dena hoga?",
-    a: "Zero down payment options available for eligible applicants. Standard mein 10-20% down payment beneficial hota hai.",
+    q: "Down payment कितना देना होगा?",
+    a: "Zero down payment options available for eligible applicants. Standard में 10-20% down payment beneficial होता है।",
   },
   {
-    q: "Kitne dinon mein approval milta hai?",
-    a: "Usually 24-48 hours mein. Complete documents diye toh same-day approval bhi possible hai.",
+    q: "कितने दिनों में approval मिलता है?",
+    a: "Usually 24-48 hours में। Complete documents दिए तो same-day approval भी possible है।",
   },
   {
-    q: "EMI miss ho jaye toh?",
-    a: "Standard Bajaj Finance late payment fees apply. WhatsApp par contact kariye — hum help kar sakte hai.",
+    q: "EMI miss हो जाए तो?",
+    a: "Standard Bajaj Finance late payment fees apply. WhatsApp पर contact करिए — हम help कर सकते हैं।",
   },
   {
-    q: "Kya EMI foreclose kar sakte hai?",
+    q: "क्या EMI foreclose कर सकते हैं?",
     a: "Haan. Foreclosure charges as per Bajaj Finance terms, usually 3-5%.",
   },
 ];
@@ -146,7 +146,7 @@ export default function SurakshaEmiPage() {
 
             <h1 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95] uppercase">
               EMI ₹1,500/MONTH<br />
-              <span className="italic text-[#EA580C]">SE SHURU.</span>
+              <span className="italic text-[#EA580C]">से शुरू।</span>
             </h1>
 
             <p className="text-[#DC2626] font-rubik text-xl sm:text-2xl font-bold">
@@ -154,7 +154,7 @@ export default function SurakshaEmiPage() {
             </p>
 
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Suraksha kit ko EMI par lena bahut asaan hai. Bajaj Finance ke saath partnership hai — quick approval, minimal documentation.
+              Suraksha kit को EMI पर लेना बहुत आसान है। Bajaj Finance के साथ partnership है — quick approval, minimal documentation.
             </p>
           </div>
         </div>
@@ -176,11 +176,11 @@ export default function SurakshaEmiPage() {
             </div>
 
             <h2 className="font-anton text-3xl sm:text-4xl font-normal text-[#451A03] uppercase">
-              ZERO-COST EMI KAB MILTA HAI?
+              ZERO-COST EMI कब मिलता है?
             </h2>
 
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-medium">
-              9-month tenure ke liye zero-cost EMI available hai — matlab total amount payable equal to kit price, koi interest nahi. Yeh limited-time offer hai, terms apply.
+              9-month tenure के लिए zero-cost EMI available है — मतलब total amount payable equal to kit price, कोई interest नहीं। यह limited-time offer है, terms apply.
             </p>
           </div>
         </div>
@@ -211,14 +211,14 @@ export default function SurakshaEmiPage() {
               </div>
 
               <p className="text-xs font-semibold text-[#78350F] pt-2 border-t border-[#451A03]/10">
-                Note: Final eligibility Bajaj Finance ke discretion par hai. Approval usually 24-48 hours mein ho jati hai.
+                Note: Final eligibility Bajaj Finance के discretion पर है। Approval usually 24-48 hours में हो जाती है।
               </p>
             </div>
 
             {/* Documents */}
             <div className="p-8 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 space-y-6 shadow-sm">
               <h2 className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase">
-                DOCUMENTS JO CHAHIYE
+                DOCUMENTS जो चाहिए
               </h2>
 
               <ul className="space-y-3">
@@ -241,7 +241,7 @@ export default function SurakshaEmiPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              APPLY KAISE KAREIN?
+              APPLY कैसे करें?
             </h2>
           </div>
 

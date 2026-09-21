@@ -58,12 +58,12 @@ export default function SurakshaCallbackPage() {
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label className="block text-xs font-rubik uppercase tracking-wider font-bold text-[#78350F] mb-2">
-                  Aapka Naam *
+                  आपका नाम *
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="Naam darj karein"
+                  placeholder="नाम दर्ज करें"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full px-4 py-3 bg-white border-2 border-[#451A03]/20 rounded-[4px] text-[#451A03] placeholder-[#78350F]/50 focus:outline-none focus:border-[#DC2626] text-sm font-medium shadow-sm"

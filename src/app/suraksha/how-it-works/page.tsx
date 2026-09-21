@@ -5,14 +5,14 @@ import { ArrowRight, CheckCircle2, ShieldCheck, Activity, HelpCircle, ChevronRig
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
-  title: "Suraksha Kaise Install Karein  \u00b7  How Suraksha Works",
-  description: "Suraksha safety kit install karne mein 15 minute lagte hai. Puncture shop ya Truck Wheels centre par install ho jata hai. Full step-by-step guide.",
+  title: "Suraksha कैसे Install करें  ·  How Suraksha Works",
+  description: "Suraksha safety kit install करने में 15 minute लगते हैं। Puncture shop या Truck Wheels centre पर install हो जाता है। Full step-by-step guide.",
   alternates: {
     canonical: "https://treel.in/suraksha/how-it-works",
   },
   openGraph: {
-    title: "Suraksha Kaise Install Karein  \u00b7  How Suraksha Works",
-    description: "Suraksha safety kit install karne mein 15 minute lagte hai. Puncture shop ya Truck Wheels centre par install ho jata hai. Full step-by-step guide.",
+    title: "Suraksha कैसे Install करें  ·  How Suraksha Works",
+    description: "Suraksha safety kit install करने में 15 minute लगते हैं। Puncture shop या Truck Wheels centre पर install हो जाता है। Full step-by-step guide.",
     url: "https://treel.in/suraksha/how-it-works",
   },
 };
@@ -32,13 +32,13 @@ export default function SurakshaHowItWorksPage() {
               ]}
             />
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
-              KAISE KAAM KARTA HAI
+              कैसे काम करता है
             </div>
             <h1 className="font-anton uppercase tracking-wide text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95]">
-              PANDRAH MINUTE.<br /><span className="italic text-[#DC2626]">BAS ITNA HI.</span>
+              पंद्रह MINUTE.<br /><span className="italic text-[#DC2626]">बस इतना ही।</span>
             </h1>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Suraksha ka install hona bahut simple hai. Koi mechanic nahi chahiye. Sirf ek puncture shop ya Truck Wheels centre chalein aur pandrah minute mein kaam ho jayega.
+              Suraksha का install होना बहुत simple है। कोई mechanic नहीं चाहिए। सिर्फ एक puncture shop या Truck Wheels centre चलें और पंद्रह minute में काम हो जाएगा।
             </p>
           </div>
         </div>
@@ -55,7 +55,7 @@ export default function SurakshaHowItWorksPage() {
               </li>
               <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                 <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                <span>Video caption (Hinglish): 3-minute installation walkthrough — Hindi mein narrated</span>
+                <span>Video caption: 3-minute installation walkthrough — Hindi में narrated</span>
               </li>
             </ul>
           </div>
@@ -71,7 +71,7 @@ export default function SurakshaHowItWorksPage() {
                 INSTALLATION PROCESS
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                TEEN STEPS. TEEN MINUTE. FIT.
+                तीन STEPS. तीन MINUTE. FIT.
               </h2>
             </div>
 
@@ -86,9 +86,9 @@ export default function SurakshaHowItWorksPage() {
               <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm flex flex-col justify-between space-y-4">
                 <div className="space-y-3">
                   <div className="font-anton text-3xl text-[#DC2626]">01</div>
-                  <div className="font-anton text-xl uppercase text-[#451A03]">KIT KHARIDIYE</div>
+                  <div className="font-anton text-xl uppercase text-[#451A03]">KIT खरीदिए</div>
                   <p className="text-[#78350F] text-sm leading-relaxed">
-                    Truck Wheels centre par jaakar kit uthaiye. Ya WhatsApp par order kariye — home delivery ho jayegi. EMI available on Bajaj Finance.
+                    Truck Wheels centre पर जाकर kit उठाइए। या WhatsApp पर order करिए — home delivery हो जाएगी। EMI available on Bajaj Finance।
                   </p>
                 </div>
                 <div className="pt-3 border-t border-[#451A03]/10 text-xs font-bold text-[#DC2626] uppercase">
@@ -100,9 +100,9 @@ export default function SurakshaHowItWorksPage() {
               <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm flex flex-col justify-between space-y-4">
                 <div className="space-y-3">
                   <div className="font-anton text-3xl text-[#EA580C]">02</div>
-                  <div className="font-anton text-xl uppercase text-[#451A03]">FIT KARWAIYE</div>
+                  <div className="font-anton text-xl uppercase text-[#451A03]">FIT करवाइए</div>
                   <p className="text-[#78350F] text-sm leading-relaxed">
-                    Kisi bhi puncture shop ya Truck Wheels centre par le jaiye. Fifteen minute mein: display cabin mein install, four sensors tyres pe fit, wiring done. Bas.
+                    किसी भी puncture shop या Truck Wheels centre पर ले जाइए। Fifteen minute में: display cabin में install, four sensors tyres पे fit, wiring done. बस।
                   </p>
                 </div>
                 <div className="pt-3 border-t border-[#451A03]/10 text-xs font-bold text-[#EA580C] uppercase">
@@ -114,13 +114,13 @@ export default function SurakshaHowItWorksPage() {
               <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm flex flex-col justify-between space-y-4">
                 <div className="space-y-3">
                   <div className="font-anton text-3xl text-[#0891B2]">03</div>
-                  <div className="font-anton text-xl uppercase text-[#451A03]">DEKHTE RAHIYE</div>
+                  <div className="font-anton text-xl uppercase text-[#451A03]">देखते रहिए</div>
                   <p className="text-[#78350F] text-sm leading-relaxed">
-                    Display cabin mein aapko har tyre ka pressure aur temperature dikhata rahega. Koi problem ho toh display beep karega. That's it — koi app nahi, koi subscription nahi.
+                    Display cabin में आपको हर tyre का pressure और temperature दिखाता रहेगा। कोई problem हो तो display beep करेगा। That's it — कोई app नहीं, कोई subscription नहीं।
                   </p>
                 </div>
                 <div className="pt-3 border-t border-[#451A03]/10 text-xs font-bold text-[#0891B2] uppercase">
-                  Time: Har drive
+                  Time: हर drive
                 </div>
               </div>
             </div>
@@ -137,7 +137,7 @@ export default function SurakshaHowItWorksPage() {
                 IN-CAB EXPERIENCE
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                DISPLAY MEIN KYA DIKHTA HAI?
+                DISPLAY में क्या दिखता है?
               </h2>
               <p className="text-[#78350F] text-lg mt-2 font-medium">
                 What the in-cab display shows you.
@@ -151,7 +151,7 @@ export default function SurakshaHowItWorksPage() {
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <li className="p-4 rounded-[4px] bg-[#FEF3C7] border border-[#451A03]/10 text-sm text-[#451A03]">
                   <span className="font-bold text-[#DC2626] block mb-1">Top row:</span>
-                  `ALL OK` (green) ya alert message (red)
+                  `ALL OK` (green) या alert message (red)
                 </li>
                 <li className="p-4 rounded-[4px] bg-[#FEF3C7] border border-[#451A03]/10 text-sm text-[#451A03]">
                   <span className="font-bold text-[#EA580C] block mb-1">Center:</span>
@@ -180,7 +180,7 @@ export default function SurakshaHowItWorksPage() {
                 ALERT SYSTEM
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                ALERTS JO AAYENGE
+                ALERTS जो आएंगे
               </h2>
             </div>
 
@@ -193,7 +193,7 @@ export default function SurakshaHowItWorksPage() {
                 <div className="space-y-2 text-sm">
                   <div className="text-[#451A03]"><strong>Trigger:</strong> Tyre pressure drops below safe threshold</div>
                   <div className="text-[#78350F]"><strong>Display shows:</strong> Red flashing on affected tyre + beep sound</div>
-                  <div className="pt-2 border-t border-[#451A03]/10 font-bold text-[#DC2626]">Action: Ruk kar tyre check kariye</div>
+                  <div className="pt-2 border-t border-[#451A03]/10 font-bold text-[#DC2626]">Action: रुक कर tyre check करिए</div>
                 </div>
               </div>
 
@@ -205,7 +205,7 @@ export default function SurakshaHowItWorksPage() {
                 <div className="space-y-2 text-sm">
                   <div className="text-[#451A03]"><strong>Trigger:</strong> Tyre temperature exceeds safe range (usually 85°C+)</div>
                   <div className="text-[#78350F]"><strong>Display shows:</strong> Orange flashing + tone</div>
-                  <div className="pt-2 border-t border-[#451A03]/10 font-bold text-[#EA580C]">Action: Speed kam kariye. Next stop pe inspect kariye</div>
+                  <div className="pt-2 border-t border-[#451A03]/10 font-bold text-[#EA580C]">Action: Speed कम करिए। Next stop पे inspect करिए</div>
                 </div>
               </div>
 
@@ -217,7 +217,7 @@ export default function SurakshaHowItWorksPage() {
                 <div className="space-y-2 text-sm">
                   <div className="text-[#451A03]"><strong>Trigger:</strong> Pressure drops rapidly (puncture indicator)</div>
                   <div className="text-[#78350F]"><strong>Display shows:</strong> Red flashing + continuous alarm</div>
-                  <div className="pt-2 border-t border-[#451A03]/10 font-bold text-[#DC2626]">Action: Turant ruk kar side mein le jaiye</div>
+                  <div className="pt-2 border-t border-[#451A03]/10 font-bold text-[#DC2626]">Action: तुरंत रुक कर side में ले जाइए</div>
                 </div>
               </div>
             </div>
@@ -234,7 +234,7 @@ export default function SurakshaHowItWorksPage() {
                 CARE & MAINTENANCE
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                DHYAAN RAKHNE KI BAATEIN
+                ध्यान रखने की बातें
               </h2>
               <p className="text-[#78350F] text-lg mt-2 font-medium">
                 Simple maintenance tips
@@ -245,23 +245,23 @@ export default function SurakshaHowItWorksPage() {
               <ul className="space-y-4">
                 <li className="flex items-start gap-3 text-base text-[#451A03]">
                   <span className="text-[#DC2626] font-bold mt-0.5">•</span>
-                  <span>Har tyre rotation ke saath sensors ko wapas correct position mein assign kariye</span>
+                  <span>हर tyre rotation के साथ sensors को वापस correct position में assign करिए</span>
                 </li>
                 <li className="flex items-start gap-3 text-base text-[#451A03]">
                   <span className="text-[#DC2626] font-bold mt-0.5">•</span>
-                  <span>Sensor par mud accumulate ho jaye toh wet cloth se saaf kariye</span>
+                  <span>Sensor पर mud accumulate हो जाए तो wet cloth से साफ़ करिए</span>
                 </li>
                 <li className="flex items-start gap-3 text-base text-[#451A03]">
                   <span className="text-[#DC2626] font-bold mt-0.5">•</span>
-                  <span>Display screen ko direct sunlight se protect kariye jab possible ho</span>
+                  <span>Display screen को direct sunlight से protect करिए जब possible हो</span>
                 </li>
                 <li className="flex items-start gap-3 text-base text-[#451A03]">
                   <span className="text-[#DC2626] font-bold mt-0.5">•</span>
-                  <span>Battery kharaab hone se pehle 3 saal wale replacement window mein sensor replace karwaiye</span>
+                  <span>Battery ख़राब होने से पहले 3 साल वाले replacement window में sensor replace करवाइए</span>
                 </li>
                 <li className="flex items-start gap-3 text-base text-[#451A03]">
                   <span className="text-[#DC2626] font-bold mt-0.5">•</span>
-                  <span>Koi problem ho toh WhatsApp par photo bhejiye — hum guide kar denge</span>
+                  <span>कोई problem हो तो WhatsApp पर photo भेजिए — हम guide कर देंगे</span>
                 </li>
               </ul>
             </div>
@@ -285,46 +285,46 @@ export default function SurakshaHowItWorksPage() {
             <div className="space-y-4 pt-2">
               <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-2">
                 <div className="font-rubik font-bold text-base text-[#451A03]">
-                  Kya koi bhi tyre brand ke saath kaam karta hai?
+                  क्या कोई भी tyre brand के साथ काम करता है?
                 </div>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  Haan. Suraksha kisi bhi tyre brand ke saath kaam karta hai. JK, MRF, Apollo, CEAT, Bridgestone, Michelin — sab supported.
+                  हाँ। Suraksha किसी भी tyre brand के साथ काम करता है। JK, MRF, Apollo, CEAT, Bridgestone, Michelin — सब supported।
                 </p>
               </div>
 
               <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-2">
                 <div className="font-rubik font-bold text-base text-[#451A03]">
-                  Kya rotation ke baad sensors dobara install karne hoge?
+                  क्या rotation के बाद sensors दोबारा install करने होंगे?
                 </div>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  Nahi. Sensors wahi rehte hai, sirf tyre ki position badalti hai. Display mein position update kar dijiye.
+                  नहीं। Sensors वही रहते हैं, सिर्फ tyre की position बदलती है। Display में position update कर दीजिए।
                 </p>
               </div>
 
               <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-2">
                 <div className="font-rubik font-bold text-base text-[#451A03]">
-                  Kya WhatsApp par bhi support milta hai?
+                  क्या WhatsApp पर भी support मिलता है?
                 </div>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  Haan. WhatsApp par 24 hours support available. Toll-free bhi hai for business hours.
+                  हाँ। WhatsApp पर 24 hours support available. Toll-free भी है for business hours।
                 </p>
               </div>
 
               <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-2">
                 <div className="font-rubik font-bold text-base text-[#451A03]">
-                  Kitne trucks pe ek kit use kar sakte hai?
+                  कितने trucks पे एक kit use कर सकते हैं?
                 </div>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  Ek kit ek truck ke liye hai. Multiple trucks ke liye multiple kits chahiye. Bulk discount available — WhatsApp kariye.
+                  एक kit एक truck के लिए है। Multiple trucks के लिए multiple kits चाहिए। Bulk discount available — WhatsApp करिए।
                 </p>
               </div>
 
               <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-2">
                 <div className="font-rubik font-bold text-base text-[#451A03]">
-                  Kya sensor gum ho jaye toh replacement milta hai?
+                  क्या sensor गुम हो जाए तो replacement मिलता है?
                 </div>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  Warranty period mein manufacturing defect ke liye haan. Physical loss ya theft ke liye replacement kit alag purchase karni hoti hai.
+                  Warranty period में manufacturing defect के लिए हाँ। Physical loss या theft के लिए replacement kit अलग purchase करनी होती है।
                 </p>
               </div>
             </div>
@@ -334,7 +334,7 @@ export default function SurakshaHowItWorksPage() {
                 href="/suraksha/faqs"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all shadow-md bg-[#DC2626] text-[#FEF3C7] hover:bg-[#B91C1C]"
               >
-                Full FAQs padhiye <ArrowRight className="w-4 h-4" />
+                Full FAQs पढ़िए <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>

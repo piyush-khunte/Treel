@@ -35,10 +35,10 @@ export default function SurakshaTestimonialsPage() {
               TESTIMONIALS
             </div>
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
-              DRIVERS KYA <span className="italic text-[#DC2626]">KEHTE HAI.</span>
+              DRIVERS क्या <span className="italic text-[#DC2626]">कहते हैं।</span>
             </h1>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik max-w-3xl font-medium">
-              Suraksha use karne wale drivers ki real stories. Har cluster se, har truck type se, har region se.
+              Suraksha use करने वाले drivers की real stories. हर cluster से, हर truck type से, हर region से।
             </p>
           </div>
         </div>
@@ -152,7 +152,7 @@ export default function SurakshaTestimonialsPage() {
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                  <span>Quote: "Customer support really cares. Family ki peace of mind ke liye best investment..."</span>
+                  <span>Quote: "Customer support really cares. Family की peace of mind के लिए best investment..."</span>
                 </li>
               </ul>
             </div>
@@ -201,8 +201,8 @@ export default function SurakshaTestimonialsPage() {
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">APNI STORY SHARE KIJIYE</h2>
-            <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-medium">Aap Suraksha use kar rahe hai aur experience share karna chahte hai? WhatsApp par video ya written testimonial bhejiye. Selected stories site pe feature ki jayegi.</p>
+            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">अपनी STORY SHARE कीजिए</h2>
+            <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-medium">आप Suraksha use कर रहे हैं और experience share करना चाहते हैं? WhatsApp पर video या written testimonial भेजिए। Selected stories site पे feature की जाएगी।</p>
             <div className="pt-2">
               <Link href="/suraksha/whatsapp" className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider transition-all shadow-md bg-[#25D366] text-white hover:bg-[#1EBE5D]">
                 Share via WhatsApp <ArrowRight className="w-4 h-4" />
@@ -215,7 +215,7 @@ export default function SurakshaTestimonialsPage() {
       <section className="py-16 bg-[#FEF3C7]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">AAP BHI EK STORY BAN JAAO.</h2>
+            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">आप भी एक STORY बन जाओ।</h2>
             <div className="pt-2">
               <Link href="/suraksha/centres" className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider transition-all shadow-md bg-[#DC2626] text-white hover:bg-[#B91C1C]">
                 Nearest Centre <ArrowRight className="w-4 h-4" />

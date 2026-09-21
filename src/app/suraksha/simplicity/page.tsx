@@ -35,10 +35,10 @@ export default function SurakshaSimplicityPage() {
               SIMPLICITY
             </div>
             <h1 className="font-anton uppercase tracking-wide text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95]">
-              PUNCTURE SHOP PE FIT.<br /><span className="italic text-[#DC2626]">CABIN MEIN DEKHO.</span>
+              PUNCTURE SHOP पे FIT.<br /><span className="italic text-[#DC2626]">CABIN में देखो।</span>
             </h1>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Suraksha ka design driver-first hai. Koi app nahi. Koi subscription nahi. Koi mechanic nahi. Just — fit, drive, watch.
+              Suraksha का design driver-first है। कोई app नहीं। कोई subscription नहीं। कोई mechanic नहीं। Just — fit, drive, watch.
             </p>
           </div>
         </div>
@@ -53,7 +53,7 @@ export default function SurakshaSimplicityPage() {
                 HASSLE-FREE PROMISE
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                SURAKSHA KYA NAHI CHAHATA
+                SURAKSHA क्या नहीं चाहता
               </h2>
               <p className="text-[#78350F] text-base mt-2 font-medium">
                 Simple grid of what's NOT needed (with strikethrough visual):
@@ -66,7 +66,7 @@ export default function SurakshaSimplicityPage() {
                   Item 1: Smartphone app
                 </div>
                 <p className="text-sm text-[#451A03] leading-relaxed">
-                  In-cab display standalone hai. Phone ki zaroorat nahi. Older drivers, non-tech users ke liye perfect.
+                  In-cab display standalone है। Phone की ज़रूरत नहीं। Older drivers, non-tech users के लिए perfect.
                 </p>
               </div>
 
@@ -75,16 +75,16 @@ export default function SurakshaSimplicityPage() {
                   Item 2: Internet connection
                 </div>
                 <p className="text-sm text-[#451A03] leading-relaxed">
-                  Sensors aur display RF-based communication use karte hai. WiFi ya mobile data ki zaroorat nahi.
+                  Sensors और display RF-based communication use करते हैं। WiFi या mobile data की ज़रूरत नहीं।
                 </p>
               </div>
 
               <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm space-y-2">
                 <div className="font-anton text-lg uppercase text-[#DC2626] line-through">
-                  Item 3: Subscription ya monthly fee
+                  Item 3: Subscription या monthly fee
                 </div>
                 <p className="text-sm text-[#451A03] leading-relaxed">
-                  Ek baar kharidiye. Done. No recurring costs.
+                  एक बार खरीदिए। Done. No recurring costs.
                 </p>
               </div>
 
@@ -93,7 +93,7 @@ export default function SurakshaSimplicityPage() {
                   Item 4: Certified mechanic
                 </div>
                 <p className="text-sm text-[#451A03] leading-relaxed">
-                  Kisi bhi puncture shop wala fit kar deta hai. Truck Wheels centres, JK dealers, roadside puncture shops — sab jaghon installation possible.
+                  किसी भी puncture shop वाला fit कर देता है। Truck Wheels centres, JK dealers, roadside puncture shops — सब जगह installation possible.
                 </p>
               </div>
 
@@ -102,7 +102,7 @@ export default function SurakshaSimplicityPage() {
                   Item 5: Specific tyre brand
                 </div>
                 <p className="text-sm text-[#451A03] leading-relaxed">
-                  Kisi bhi tyre ke saath kaam karta hai. JK, MRF, Apollo, CEAT, Bridgestone, Michelin, Chinese brands — sab supported.
+                  किसी भी tyre के साथ काम करता है। JK, MRF, Apollo, CEAT, Bridgestone, Michelin, Chinese brands — सब supported.
                 </p>
               </div>
 
@@ -111,7 +111,7 @@ export default function SurakshaSimplicityPage() {
                   Item 6: Truck downtime for installation
                 </div>
                 <p className="text-sm text-[#451A03] leading-relaxed">
-                  15 minute mein install ho jata hai. Bahut short window mein fit ho jayega.
+                  15 minute में install हो जाता है। बहुत short window में fit हो जाएगा।
                 </p>
               </div>
             </div>
@@ -142,7 +142,7 @@ export default function SurakshaSimplicityPage() {
                   Step 1 (5 min): Display installation
                 </div>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  Display cabin dashboard ya windshield pe mount karo. Wiring truck battery se connect karo. Done.
+                  Display cabin dashboard या windshield पे mount करो। Wiring truck battery से connect करो। Done.
                 </p>
                 <div className="pt-2 text-xs font-semibold text-[#DC2626]">
                   Image: Display mounted in cabin
@@ -155,7 +155,7 @@ export default function SurakshaSimplicityPage() {
                   Step 2 (7 min): Sensor installation
                 </div>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  Har tyre pe ek sensor. Wheel-nut style secure mount. Anti-theft locking. 4 tyres = ~7 minute.
+                  हर tyre पे एक sensor. Wheel-nut style secure mount. Anti-theft locking. 4 tyres = ~7 minute.
                 </p>
                 <div className="pt-2 text-xs font-semibold text-[#EA580C]">
                   Image: Sensor being mounted on wheel
@@ -168,7 +168,7 @@ export default function SurakshaSimplicityPage() {
                   Step 3 (3 min): Pairing + testing
                 </div>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  Display automatically sensors detect karta hai. Har tyre ka pressure check karo. Baseline set ho gaya. Fit hai.
+                  Display automatically sensors detect करता है। हर tyre का pressure check करो। Baseline set हो गया। Fit है।
                 </p>
                 <div className="pt-2 text-xs font-semibold text-[#0891B2]">
                   Image: Display showing all 4 tyres green
@@ -240,37 +240,37 @@ export default function SurakshaSimplicityPage() {
             <div className="space-y-4 pt-2">
               <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-2">
                 <div className="font-rubik font-bold text-base text-[#451A03]">
-                  Kya sach mein koi app download nahi karni?
+                  क्या सच में कोई app download नहीं करनी?
                 </div>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  Haan, sach mein nahi. Display standalone hai — sab kuch cabin mein dikhta hai.
+                  हाँ, सच में नहीं। Display standalone है — सब कुछ cabin में दिखता है।
                 </p>
               </div>
 
               <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-2">
                 <div className="font-rubik font-bold text-base text-[#451A03]">
-                  Kya WhatsApp ke bina bhi kaam karega?
+                  क्या WhatsApp के बिना भी काम करेगा?
                 </div>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  Haan. Product operation ke liye WhatsApp nahi chahiye. WhatsApp sirf support ke liye hai (agar aap chahein toh).
+                  हाँ। Product operation के लिए WhatsApp नहीं चाहिए। WhatsApp सिर्फ support के लिए है (अगर आप चाहें तो)।
                 </p>
               </div>
 
               <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-2">
                 <div className="font-rubik font-bold text-base text-[#451A03]">
-                  Puncture shop wala install kar dega?
+                  Puncture shop वाला install कर देगा?
                 </div>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  Haan. Video guide hai, phone support hai. Ek page ka installation manual bhi kit mein aata hai — sab kuch clear hai.
+                  हाँ। Video guide है, phone support है। एक page का installation manual भी kit में आता है — सब कुछ clear है।
                 </p>
               </div>
 
               <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-2">
                 <div className="font-rubik font-bold text-base text-[#451A03]">
-                  Agar 3 saal baad problem aayi toh?
+                  अगर 3 साल बाद problem आई तो?
                 </div>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  Warranty 3 saal ki hai — free replacement. Uske baad new kit affordable price mein available hai.
+                  Warranty 3 साल की है — free replacement. उसके बाद new kit affordable price में available है।
                 </p>
               </div>
             </div>
@@ -283,10 +283,10 @@ export default function SurakshaSimplicityPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FEF3C7]">
-              SIMPLICITY MATLAB YAHI HAI.
+              SIMPLICITY मतलब यही है।
             </h2>
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
-              Kit kharidiye, fit karwaiye, drive kariye. Bas.
+              Kit खरीदिए, fit करवाइए, drive करिए। बस।
             </p>
             <div className="pt-2 flex flex-wrap justify-center gap-4">
               <Link

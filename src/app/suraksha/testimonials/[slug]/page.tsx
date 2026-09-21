@@ -87,7 +87,7 @@ export default function SurakshaTestimonialsSlugPage() {
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">Suraksha ka impact</h2>
+            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">Suraksha का impact</h2>
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Story structure:</p>
             <div className="space-y-4">
               <div className="bg-[#FFFBEB] border-2 border-[#451A03]/15 rounded-lg p-6 shadow-sm space-y-2">
@@ -165,7 +165,7 @@ export default function SurakshaTestimonialsSlugPage() {
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">Aur bhi drivers ki stories</h2>
+            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">और भी drivers की stories</h2>
             <div className="bg-[#FEF3C7] border-2 border-[#451A03]/15 rounded-lg p-6 shadow-sm">
               <ul className="space-y-3">
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
@@ -181,7 +181,7 @@ export default function SurakshaTestimonialsSlugPage() {
       <section className="py-16 bg-[#FEF3C7]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">[DRIVER] KI TARAH<br /><span className="italic text-[#DC2626]">SURAKSHA INSTALL KARO.</span></h2>
+            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">[DRIVER] की तरह<br /><span className="italic text-[#DC2626]">SURAKSHA INSTALL करो।</span></h2>
             <div className="pt-2">
               <Link href="/suraksha/centres" className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider transition-all shadow-md bg-[#DC2626] text-white hover:bg-[#B91C1C]">
                 Nearest Centre <ArrowRight className="w-4 h-4" />

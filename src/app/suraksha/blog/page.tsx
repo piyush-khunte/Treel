@@ -33,10 +33,10 @@ export default function SurakshaBlogPage() {
               BLOG
             </div>
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
-              DRIVERS KA BLOG.
+              DRIVERS का BLOG.
             </h1>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik max-w-3xl">
-              Truck driving community ke liye practical content — fuel efficiency, monsoon safety, route planning, GST for owner-drivers, aur industry updates. Sab kuch Hinglish mein, aap ke liye.
+              Truck driving community के लिए practical content — fuel efficiency, monsoon safety, route planning, GST for owner-drivers, और industry updates। सब कुछ Hinglish में, आप के लिए।
             </p>
           </div>
         </div>
@@ -77,7 +77,7 @@ export default function SurakshaBlogPage() {
             </ul>
             <div className="pt-4">
               <Link href="/suraksha/blog/[slug" className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider transition-all shadow-sm bg-[#DC2626] text-white hover:bg-[#B91C1C]">
-                Padhiye <ArrowRight className="w-4 h-4" />
+                पढ़िए <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -121,43 +121,43 @@ export default function SurakshaBlogPage() {
               </li>
               <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                 <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                <span>&quot;Fuel Efficiency Ke 10 Simple Tips Jo Har Driver Ko Pata Hone Chahiye&quot;</span>
+                <span>&quot;Fuel Efficiency के 10 Simple Tips जो हर Driver को पता होने चाहिए&quot;</span>
               </li>
               <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                 <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                <span>&quot;Kya Aap Ka Truck Zyada Fuel Kha Raha Hai? 5 Warning Signs&quot;</span>
+                <span>&quot;क्या आप का Truck ज़्यादा Fuel खा रहा है? 5 Warning Signs&quot;</span>
               </li>
               <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                 <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                <span>&quot;Right Tyre Pressure Se Fuel Kaise Bachaayein&quot;</span>
+                <span>&quot;Right Tyre Pressure से Fuel कैसे बचाएं&quot;</span>
               </li>
               <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                 <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                <span>&quot;Monsoon Season Mein Truck Safety — Must-Know Tips&quot;</span>
+                <span>&quot;Monsoon Season में Truck Safety — Must-Know Tips&quot;</span>
               </li>
               <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                 <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                <span>&quot;Front Tyre Blowout Se Kaise Bachein&quot;</span>
+                <span>&quot;Front Tyre Blowout से कैसे बचें&quot;</span>
               </li>
               <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                 <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                <span>&quot;Highway Driving — 7 Safety Rules Jo Life Bachate Hai&quot;</span>
+                <span>&quot;Highway Driving — 7 Safety Rules जो Life बचाते हैं&quot;</span>
               </li>
               <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                 <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                <span>&quot;Owner-Drivers Ke Liye GST Basics — 2026 Update&quot;</span>
+                <span>&quot;Owner-Drivers के लिए GST Basics — 2026 Update&quot;</span>
               </li>
               <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                 <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                <span>&quot;Truck Insurance — Kya Cover Hota Hai Aur Kya Nahi&quot;</span>
+                <span>&quot;Truck Insurance — क्या Cover होता है और क्या नहीं&quot;</span>
               </li>
               <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                 <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                <span>&quot;Fastag Aur Toll — Complete Guide&quot;</span>
+                <span>&quot;Fastag और Toll — Complete Guide&quot;</span>
               </li>
               <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                 <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                <span>&quot;India Ke Best Truck Stops — Cluster-wise Guide&quot;</span>
+                <span>&quot;India के Best Truck Stops — Cluster-wise Guide&quot;</span>
               </li>
               <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                 <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
@@ -165,16 +165,16 @@ export default function SurakshaBlogPage() {
               </li>
               <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                 <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                <span>&quot;New Vehicle Scrappage Policy — Owner-Drivers Ke Liye Kya Matlab&quot;</span>
+                <span>&quot;New Vehicle Scrappage Policy — Owner-Drivers के लिए क्या मतलब&quot;</span>
               </li>
               <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                 <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                <span>&quot;Diesel Prices — 2026 Trends aur Impact&quot;</span>
+                <span>&quot;Diesel Prices — 2026 Trends और Impact&quot;</span>
               </li>
             </ul>
             <div className="pt-4">
               <Link href="#" className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider transition-all shadow-sm bg-[#DC2626] text-white hover:bg-[#B91C1C]">
-                Padhiye <ArrowRight className="w-4 h-4" />
+                पढ़िए <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -185,17 +185,17 @@ export default function SurakshaBlogPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">
-              Blog updates chahiye?
+              Blog updates चाहिए?
             </h2>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik">
-              WhatsApp par new articles ka notification chahiye toh subscribe kariye. No spam, sirf useful content.
+              WhatsApp पर new articles का notification चाहिए तो subscribe करिए। No spam, सिर्फ useful content।
             </p>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik">
               **RSS link:** Available via RSS: <Link href="/suraksha/blog/rss.xml" className="text-[#DC2626] underline font-medium hover:text-[#B91C1C] transition-colors">/suraksha/blog/rss.xml</Link>
             </p>
             <div className="pt-4">
               <Link href="/suraksha/whatsapp" className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider transition-all shadow-sm bg-[#DC2626] text-white hover:bg-[#B91C1C]">
-                WhatsApp par subscribe <ArrowRight className="w-4 h-4" />
+                WhatsApp पर subscribe <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>

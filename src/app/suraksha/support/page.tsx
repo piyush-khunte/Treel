@@ -35,11 +35,11 @@ export default function SurakshaSupportPage() {
               SUPPORT
             </div>
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
-              HELP CHAHIYE?<br />
-              <span className="italic text-[#DC2626]">*HUM HAI YAHAN.*</span>
+              HELP चाहिए?<br />
+              <span className="italic text-[#DC2626]">*हम हैं यहाँ।*</span>
             </h1>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik max-w-3xl font-medium">
-              Suraksha ka support driver-first hai. Toll-free, WhatsApp, aur FAQs. Jo aap ke liye convenient ho, wahi use kariye.
+              Suraksha का support driver-first है। Toll-free, WhatsApp, और FAQs। जो आप के लिए convenient हो, वही use करिए।
             </p>
           </div>
         </div>
@@ -52,7 +52,7 @@ export default function SurakshaSupportPage() {
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Card 1 · Toll-Free (largest):</p>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Card 2 · WhatsApp:</p>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Card 3 · Callback request:</p>
-            <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik">Hum aap ko call kar sakte hai. Preferred time aur language mention kariye.</p>
+            <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik">हम आप को call कर सकते हैं। Preferred time और language mention करिए।</p>
             <div className="bg-[#FFFBEB] border-2 border-[#451A03]/15 rounded-lg p-6 sm:p-8 shadow-sm">
               <ul className="space-y-3">
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
@@ -101,7 +101,7 @@ export default function SurakshaSupportPage() {
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                  <span>Note: Fastest response. Photos aur videos bhi bhej sakte hai.</span>
+                  <span>Note: Fastest response. Photos और videos भी भेज सकते हैं।</span>
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
@@ -126,7 +126,7 @@ export default function SurakshaSupportPage() {
           <div className="max-w-4xl space-y-6">
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-bold">Category card grid (6 categories):</p>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Category 1 · Installation help:</p>
-            <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik">15-minute installation guide, video, aur puncture shop guidance</p>
+            <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik">15-minute installation guide, video, और puncture shop guidance</p>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Category 2 · Product questions:</p>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik">How Suraksha works, specifications, compatibility</p>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Category 3 · Warranty & claims:</p>
@@ -134,9 +134,9 @@ export default function SurakshaSupportPage() {
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Category 4 · EMI & payment:</p>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik">Bajaj Finance EMI, payment options, billing questions</p>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Category 5 · Centres near you:</p>
-            <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik">Truck Wheels centres, dealers, aur puncture shops</p>
+            <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik">Truck Wheels centres, dealers, और puncture shops</p>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Category 6 · FAQs:</p>
-            <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik">30+ common questions aur answers</p>
+            <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik">30+ common questions और answers</p>
             <div className="bg-[#FEF3C7] border-2 border-[#451A03]/15 rounded-lg p-6 sm:p-8 shadow-sm">
               <ul className="space-y-3">
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
@@ -212,7 +212,7 @@ export default function SurakshaSupportPage() {
             </div>
             <div className="pt-2">
               <Link href="/suraksha/faqs" className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider transition-all shadow-md bg-[#DC2626] text-white hover:bg-[#B91C1C]">
-                All FAQs padhiye <ArrowRight className="w-4 h-4" />
+                All FAQs पढ़िए <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -223,7 +223,7 @@ export default function SurakshaSupportPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">WARRANTY CLAIM</h2>
-            <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">Sensor ya display mein problem? WhatsApp par yeh 3 cheezein bhejiye aur hum turant help karenge:</p>
+            <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">Sensor या display में problem? WhatsApp पर यह 3 चीजें भेजिए और हम तुरंत help करेंगे:</p>
             <div className="bg-[#FEF3C7] border-2 border-[#451A03]/15 rounded-lg p-6 shadow-sm">
               <ul className="space-y-3">
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
@@ -236,13 +236,13 @@ export default function SurakshaSupportPage() {
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                  <span>Description of the problem (Hindi/English/regional — jo comfortable ho)</span>
+                  <span>Description of the problem (Hindi/English/regional — जो comfortable हो)</span>
                 </li>
               </ul>
             </div>
             <div className="pt-2">
               <Link href="/suraksha/whatsapp" className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider transition-all shadow-md bg-[#25D366] text-white hover:bg-[#1EBE5D]">
-                WhatsApp par claim submit kariye <ArrowRight className="w-4 h-4" />
+                WhatsApp पर claim submit करिए <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -253,10 +253,10 @@ export default function SurakshaSupportPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">PROBLEM SOLVED IN MINUTES.</h2>
-            <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-medium">WhatsApp par baat kijiye — fastest response.</p>
+            <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-medium">WhatsApp पर बात कीजिए — fastest response.</p>
             <div className="pt-2">
               <Link href="/suraksha/whatsapp" className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider transition-all shadow-md bg-[#25D366] text-white hover:bg-[#1EBE5D]">
-                WhatsApp Kariye <ArrowRight className="w-4 h-4" />
+                WhatsApp करिए <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>

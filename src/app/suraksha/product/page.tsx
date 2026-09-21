@@ -37,12 +37,12 @@ export const metadata: Metadata = {
 const kitContents = [
   {
     title: "1 In-cab display",
-    desc: "Cabin mein mount hota hai · Real-time pressure aur temperature dikhata hai · No smartphone needed",
+    desc: "Cabin में mount होता है · Real-time pressure और temperature दिखाता है · No smartphone needed",
     icon: Tv,
   },
   {
     title: "4 Tyre sensors",
-    desc: "Har tyre par ek · ARAI certified · 3-year warranty",
+    desc: "हर tyre पर एक · ARAI certified · 3-year warranty",
     icon: Radio,
   },
   {
@@ -52,22 +52,22 @@ const kitContents = [
   },
   {
     title: "Display mounting bracket",
-    desc: "Cabin dashboard ya windshield mount ke liye",
+    desc: "Cabin dashboard या windshield mount के लिए",
     icon: Compass,
   },
   {
     title: "Wiring harness",
-    desc: "Direct 12V truck battery se connect",
+    desc: "Direct 12V truck battery से connect",
     icon: Cable,
   },
   {
     title: "Quick-start guide",
-    desc: "Hindi aur English mein",
+    desc: "Hindi और English में",
     icon: BookOpen,
   },
   {
     title: "Warranty card",
-    desc: "Serial numbers aur activation details",
+    desc: "Serial numbers और activation details",
     icon: Award,
   },
 ];
@@ -136,7 +136,7 @@ export default function SurakshaProductPage() {
             </div>
 
             <h1 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95] uppercase">
-              BOX MEIN KYA HAI?
+              BOX में क्या है?
             </h1>
 
             <p className="text-[#DC2626] font-rubik text-xl sm:text-2xl font-bold">
@@ -144,7 +144,7 @@ export default function SurakshaProductPage() {
             </p>
 
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Har kit mein ek in-cab display aur four tyre sensors hote hai. That's it. Kuch aur download nahi karna. Kuch aur subscribe nahi karna. Bas install kariye aur drive kijiye.
+              हर kit में एक in-cab display और four tyre sensors होते हैं। That's it. कुछ और download नहीं करना। कुछ और subscribe नहीं करना। बस install करिए और drive कीजिए।
             </p>
           </div>
         </div>
@@ -155,7 +155,7 @@ export default function SurakshaProductPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              KIT MEIN AATA HAI
+              KIT में आता है
             </h2>
             <p className="text-[#DC2626] font-rubik text-lg font-bold mt-2">
               What ships in the box
@@ -235,7 +235,7 @@ export default function SurakshaProductPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              SURAKSHA KYA ALAG KARTA HAI?
+              SURAKSHA क्या अलग करता है?
             </h2>
             <p className="text-[#DC2626] font-rubik text-lg font-bold mt-2">
               What Suraksha does that others don't.
@@ -274,7 +274,7 @@ export default function SurakshaProductPage() {
             </div>
 
             <h2 className="font-anton text-4xl sm:text-5xl font-normal text-[#451A03] uppercase">
-              3-SAAL KI WARRANTY
+              3-साल की WARRANTY
             </h2>
 
             <p className="text-[#DC2626] font-rubik text-lg font-bold">
@@ -282,7 +282,7 @@ export default function SurakshaProductPage() {
             </p>
 
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-medium">
-              Har sensor par teen saal ki full replacement warranty. Agar sensor kharaab ho jaye toh naya bhej denge. Display aur upgrade kit par ek saal ki warranty.
+              हर sensor पर तीन साल की full replacement warranty. अगर sensor ख़राब हो जाए तो नया भेज देंगे। Display और upgrade kit पर एक साल की warranty.
             </p>
 
             <div className="pt-4 border-t-2 border-[#DC2626]/20 text-xs font-semibold text-[#78350F]">
@@ -301,7 +301,7 @@ export default function SurakshaProductPage() {
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto">
-              Nearest Truck Wheels centre find kariye ya WhatsApp par baat kariye.
+              Nearest Truck Wheels centre find करिए या WhatsApp पर बात करिए।
             </p>
 
             <div className="pt-4 flex flex-wrap justify-center gap-4">
@@ -315,7 +315,7 @@ export default function SurakshaProductPage() {
                 href="/suraksha/whatsapp"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all border-2 border-[#FEF3C7] text-[#FEF3C7] hover:bg-white/10 active:scale-[0.98]"
               >
-                <MessageCircle className="w-5 h-5" /> WhatsApp Kariye
+                <MessageCircle className="w-5 h-5" /> WhatsApp करिए
               </Link>
             </div>
           </div>

@@ -35,10 +35,10 @@ export default function SurakshaSafetyPage() {
               SAFETY
             </div>
             <h1 className="font-anton uppercase tracking-wide text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95]">
-              BLOWOUT SE PEHLE<br /><span className="italic text-[#DC2626]">WARNING MILTI HAI.</span>
+              BLOWOUT से पहले<br /><span className="italic text-[#DC2626]">WARNING मिलती है।</span>
             </h1>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Highway pe front-tyre blowout — yeh accident nahi hota, yeh tragedy hoti hai. Suraksha ka job usse rokna hai. Warning aati hai, aap ruk sakte hai, safe reh sakte hai.
+              Highway पे front-tyre blowout — यह accident नहीं होता, यह tragedy होती है। Suraksha का job उसे रोकना है। Warning आती है, आप रुक सकते हैं, safe रह सकते हैं।
             </p>
           </div>
         </div>
@@ -53,7 +53,7 @@ export default function SurakshaSafetyPage() {
                 DETECTION SYSTEM
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                SURAKSHA KYA DETECT KARTA HAI?
+                SURAKSHA क्या DETECT करता है?
               </h2>
               <p className="text-[#78350F] text-base mt-2 font-medium">
                 Three categories with examples:
@@ -120,7 +120,7 @@ export default function SurakshaSafetyPage() {
                   Story 1: Driver: Narender K. · North India route
                 </div>
                 <p className="text-base text-[#451A03] italic font-medium leading-relaxed">
-                  "Highway drive from Pune to Mumbai, mujhe slow leak warning aayi front-right tyre par. Pull kar ke ruka, aur wahaan nail lag gaya tha. Agar mai chalta rehta toh 100 km/h par blowout ho jata. Suraksha ne family ke saath ghar wapas laane mein help kiya."
+                  "Highway drive from Pune to Mumbai, मुझे slow leak warning आई front-right tyre पर। Pull कर के रुका, और वहाँ nail लग गया था। अगर मैं चलता रहता तो 100 km/h पर blowout हो जाता। Suraksha ने family के साथ घर वापस लाने में help किया।"
                 </p>
               </div>
 
@@ -149,7 +149,7 @@ export default function SurakshaSafetyPage() {
                 STATISTICS
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                NUMBERS JO IMPORTANT HAI
+                NUMBERS जो IMPORTANT हैं
               </h2>
               <p className="text-[#78350F] text-base mt-2 font-medium">
                 Data cards (English for clarity in citation):
@@ -198,7 +198,7 @@ export default function SurakshaSafetyPage() {
             </div>
 
             <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl font-normal text-[#451A03]">
-              AAPKE PARIVAR KE LIYE
+              आपके परिवार के लिए
             </h2>
 
             <div className="text-xs font-bold uppercase tracking-wider text-[#78350F]">
@@ -206,11 +206,11 @@ export default function SurakshaSafetyPage() {
             </div>
 
             <p className="text-[#451A03] text-lg sm:text-xl leading-relaxed font-medium">
-              Har driver ke ghar mein koi wait kar raha hota hai. Wife, bachche, budhe maa-baap. Har trip ka matlab hota hai unke liye ghar wapas aana. Suraksha ka core purpose yahi hai — aapko ghar wapas laana.
+              हर driver के घर में कोई wait कर रहा होता है। Wife, बच्चे, बूढ़े माँ-बाप। हर trip का मतलब होता है उनके लिए घर वापस आना। Suraksha का core purpose यही है — आपको घर वापस लाना।
             </p>
 
             <p className="text-[#78350F] text-base leading-relaxed">
-              Product features baad mein aati hai. Pehle yeh baat — Suraksha aapke parivar ke liye hai.
+              Product features बाद में आती हैं। पहले यह बात — Suraksha आपके परिवार के लिए है।
             </p>
 
             <div className="pt-4 border-t-2 border-[#DC2626]/20">
@@ -228,7 +228,7 @@ export default function SurakshaSafetyPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FEF3C7]">
-              APNE PARIVAR KE LIYE INSTALL KARO.
+              अपने परिवार के लिए INSTALL करो।
             </h2>
             <div className="pt-2 flex flex-wrap justify-center gap-4">
               <Link
