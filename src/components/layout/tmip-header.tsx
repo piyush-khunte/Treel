@@ -63,9 +63,6 @@ export function TmipHeader() {
             <Link href="/tmip/insights" className="hover:text-[#3B82F6] transition-colors">
               Insights
             </Link>
-            <Link href="/tmip/api" className="hover:text-[#3B82F6] transition-colors">
-              Docs
-            </Link>
           </nav>
 
           {/* CTA Button */}
@@ -122,13 +119,6 @@ export function TmipHeader() {
               className="block py-2 hover:text-[#3B82F6] transition-colors"
             >
               Insights
-            </Link>
-            <Link 
-              href="/tmip/api" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 hover:text-[#3B82F6] transition-colors"
-            >
-              Docs
             </Link>
           </div>
 

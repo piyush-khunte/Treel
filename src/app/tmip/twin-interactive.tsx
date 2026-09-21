@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
@@ -316,179 +316,72 @@ export function TwinInteractive() {
 
   return (
     <div className="rounded-[6px] border border-[rgba(59,130,246,0.15)] bg-[rgba(59,130,246,0.03)] p-6 lg:p-8 shadow-2xl overflow-hidden">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        {/* Sidebar system selector */}
-        <div className="lg:col-span-3 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-400/10 pb-6 lg:pb-0 lg:pr-6">
-          <div>
-            <div className="text-[10px] font-jetbrains tracking-[0.1em] text-[#64748B] uppercase font-semibold mb-3 flex items-center justify-between">
-              <span>System View</span>
-              <span className="inline-flex items-center gap-1 text-[#10B981] text-[10px] font-jetbrains">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse"></span>
-                LIVE
-              </span>
-            </div>
-            <div className="space-y-1 max-h-[420px] lg:max-h-[460px] overflow-y-auto pr-1">
-              {views.map((v, idx) => {
-                const Icon = v.icon;
-                const isActive = activeIndex === idx;
-                return (
-                  <button
-                    key={v.id}
-                    onClick={() => handleViewClick(idx)}
-                    className={`w-full text-left px-3 py-2 rounded-[3px] text-xs font-ibm-plex flex items-center justify-between transition-all ${
-                      isActive
-                        ? "bg-[#3B82F6]/15 border border-[#3B82F6]/40 text-[#3B82F6] font-semibold shadow-sm"
-                        : "text-[#94A3B8] hover:text-[#F1F5F9] hover:bg-white/[0.03] border border-transparent"
-                    }`}
-                  >
-                    <span className="flex items-center gap-2 min-w-0">
-                      <span
-                        className={`w-1.5 h-1.5 rounded-full flex-shrink-0 transition-colors ${
-                          isActive ? "bg-[#3B82F6] shadow-[0_0_8px_#3B82F6]" : "bg-white/20"
-                        }`}
-                      />
-                      <Icon className={`w-3.5 h-3.5 flex-shrink-0 ${isActive ? "text-[#3B82F6]" : "text-[#64748B]"}`} />
-                      <span className="truncate">{v.name}</span>
-                    </span>
-                    <span className="font-jetbrains text-[10px] text-[#64748B] flex-shrink-0 ml-2">{v.count}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="mt-4 pt-3 border-t border-slate-400/10 text-[11px] text-[#64748B] font-jetbrains">
-            Telemetry latency: <span className="text-[#10B981]">180ms</span> · 5G Edge
-          </div>
-        </div>
-
-        {/* Central visualization (real TMIP image viewer with telemetry status) */}
+      {/* Central visualization (real TMIP image viewer with telemetry status) */}
+      <div
+        className="max-w-[720px] mx-auto flex flex-col items-center justify-center relative min-h-[340px] sm:min-h-[420px] bg-[#050A17]/80 rounded-[4px] border border-slate-400/10 p-4 sm:p-8"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {/* Subtle grid background */}
         <div
-          className="lg:col-span-6 flex flex-col items-center justify-center relative min-h-[300px] lg:min-h-[360px] bg-[#050A17]/80 rounded-[4px] border border-slate-400/10 p-4 sm:p-8"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          {/* Subtle grid background */}
-          <div
-            className="absolute inset-0 opacity-[0.05] pointer-events-none"
-            style={{
-              backgroundImage: "radial-gradient(circle at 1px 1px, #3B82F6 1px, transparent 0)",
-              backgroundSize: "20px 20px",
-            }}
-          />
+          className="absolute inset-0 opacity-[0.05] pointer-events-none"
+          style={{
+            backgroundImage: "radial-gradient(circle at 1px 1px, #3B82F6 1px, transparent 0)",
+            backgroundSize: "20px 20px",
+          }}
+        />
 
-          <div className="w-full max-w-[480px] relative flex flex-col items-center">
-            {/* Real Image Display Frame */}
-            <div className="relative w-full h-[220px] sm:h-[250px] flex items-center justify-center overflow-hidden rounded-[3px]">
-              <Image
-                src={currentView.image}
-                alt={currentView.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 480px"
-                priority
-                className="object-contain drop-shadow-md transition-opacity duration-300"
-              />
+        <div className="w-full max-w-[560px] relative flex flex-col items-center">
+          {/* Real Image Display Frame */}
+          <div className="relative w-full h-[260px] sm:h-[340px] flex items-center justify-center overflow-hidden rounded-[3px]">
+            <Image
+              src={currentView.image}
+              alt={currentView.alt}
+              fill
+              sizes="(max-width: 768px) 100vw, 560px"
+              priority
+              className="object-contain drop-shadow-md transition-opacity duration-300"
+            />
 
-              {/* Subtle navigation arrows */}
-              <button
-                onClick={handlePrev}
-                aria-label="Previous view"
-                className="absolute left-1 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-[#050A17]/75 hover:bg-[#3B82F6]/30 border border-white/10 hover:border-[#3B82F6]/50 text-slate-400 hover:text-white flex items-center justify-center transition-all z-10"
-              >
-                <ChevronLeft className="w-3.5 h-3.5" />
-              </button>
-              <button
-                onClick={handleNext}
-                aria-label="Next view"
-                className="absolute right-1 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-[#050A17]/75 hover:bg-[#3B82F6]/30 border border-white/10 hover:border-[#3B82F6]/50 text-slate-400 hover:text-white flex items-center justify-center transition-all z-10"
-              >
-                <ChevronRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-
-            {/* Subtle View Indicator Dots */}
-            <div className="flex items-center justify-center gap-1.5 mt-2.5">
-              {views.map((v, idx) => (
-                <button
-                  key={v.id}
-                  onClick={() => handleViewClick(idx)}
-                  className={`h-1 transition-all rounded-full ${
-                    idx === activeIndex
-                      ? "w-5 bg-[#3B82F6] shadow-[0_0_6px_#3B82F6]"
-                      : "w-1.5 bg-slate-700/60 hover:bg-slate-500"
-                  }`}
-                  aria-label={v.name}
-                  title={v.name}
-                />
-              ))}
-            </div>
-
-            {/* Existing Metadata Row */}
-            <div className="w-full mt-3 flex items-center justify-between px-2 text-[11px] font-jetbrains text-[#94A3B8]">
-              <span>VIN: <strong className="text-[#F1F5F9]">MH-12-TR-9418</strong></span>
-              <span className="text-[#3B82F6]">{currentView.name.toUpperCase()}</span>
-              <span className="text-[#10B981]">OPERATIONAL</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Right legend (Status label + dynamic authoritative metrics matching current real image) */}
-        <div className="lg:col-span-3 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-slate-400/10 pt-6 lg:pt-0 lg:pl-6">
-          <div>
-            <div className="text-[10px] font-jetbrains tracking-[0.1em] text-[#64748B] uppercase font-semibold mb-4">
-              {currentView.statusTitle}
-            </div>
-
-            <div className="space-y-3">
-              {currentView.metrics.map((m, i) => {
-                const dotColor =
-                  m.color === "green"
-                    ? "bg-[#10B981] shadow-[0_0_8px_#10B981]"
-                    : m.color === "yellow"
-                    ? "bg-[#F59E0B] shadow-[0_0_8px_#F59E0B]"
-                    : m.color === "red"
-                    ? "bg-[#EF4444] shadow-[0_0_8px_#EF4444]"
-                    : "bg-[#3B82F6] shadow-[0_0_8px_#3B82F6]";
-                const valColor =
-                  m.color === "yellow"
-                    ? "text-[#F59E0B]"
-                    : m.color === "red"
-                    ? "text-[#EF4444]"
-                    : m.color === "blue"
-                    ? "text-[#3B82F6]"
-                    : "text-[#F1F5F9]";
-
-                return (
-                  <div
-                    key={i}
-                    className="p-3 rounded-[3px] bg-white/[0.02] border border-white/5 flex items-center justify-between"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <span className={`w-2.5 h-2.5 rounded-full ${dotColor}`} />
-                      <span className="text-xs text-[#F1F5F9] font-ibm-plex font-medium">
-                        {m.label}
-                      </span>
-                    </div>
-                    <span className={`font-jetbrains text-sm font-semibold ${valColor}`}>
-                      {m.value}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+            {/* Subtle navigation arrows */}
+            <button
+              onClick={handlePrev}
+              aria-label="Previous view"
+              className="absolute left-1 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-[#050A17]/75 hover:bg-[#3B82F6]/30 border border-white/10 hover:border-[#3B82F6]/50 text-slate-400 hover:text-white flex items-center justify-center transition-all z-10"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={handleNext}
+              aria-label="Next view"
+              className="absolute right-1 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-[#050A17]/75 hover:bg-[#3B82F6]/30 border border-white/10 hover:border-[#3B82F6]/50 text-slate-400 hover:text-white flex items-center justify-center transition-all z-10"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-slate-400/10 space-y-2">
-            <div className="text-[11px] font-ibm-plex text-[#94A3B8] flex justify-between">
-              <span>{currentView.bottom.label}</span>
-              <strong className="text-[#F1F5F9] font-jetbrains">{currentView.bottom.value}</strong>
-            </div>
-            <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
-              <div
-                className="bg-[#3B82F6] h-full rounded-full transition-all duration-500"
-                style={{ width: currentView.bottom.progress }}
+          {/* Subtle View Indicator Dots */}
+          <div className="flex items-center justify-center gap-1.5 mt-3">
+            {views.map((v, idx) => (
+              <button
+                key={v.id}
+                onClick={() => handleViewClick(idx)}
+                className={`h-1 transition-all rounded-full ${
+                  idx === activeIndex
+                    ? "w-5 bg-[#3B82F6] shadow-[0_0_6px_#3B82F6]"
+                    : "w-1.5 bg-slate-700/60 hover:bg-slate-500"
+                }`}
+                aria-label={v.name}
+                title={v.name}
               />
-            </div>
+            ))}
+          </div>
+
+          {/* Existing Metadata Row */}
+          <div className="w-full mt-3 flex items-center justify-between px-2 text-[11px] font-jetbrains text-[#94A3B8]">
+            <span>VIN: <strong className="text-[#F1F5F9]">MH-12-TR-9418</strong></span>
+            <span className="text-[#3B82F6]">{currentView.name.toUpperCase()}</span>
+            <span className="text-[#10B981]">OPERATIONAL</span>
           </div>
         </div>
       </div>
