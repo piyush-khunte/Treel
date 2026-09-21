@@ -34,7 +34,7 @@ export function TmipHeader() {
 
             {/* TMIP Brand Logo (3-bar mark + TMIP) */}
             <Link href="/tmip" className="flex items-center gap-2.5 group">
-              <div className="flex items-center">
+              <div className="flex items-center -translate-y-1">
                 <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg" className="h-[22px] sm:h-[27px] w-auto">
                   <g fill="#3B82F6">
                     <rect x="5" y="4" width="90" height="9" rx="1.5" opacity="0.55" />

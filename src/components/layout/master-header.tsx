@@ -11,7 +11,8 @@ import {
   Activity, 
   Truck, 
   Car, 
-  ArrowRight 
+  ArrowRight,
+  HardHat 
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -107,15 +108,35 @@ export function MasterHeader() {
                 <div className="pt-2 mt-1 border-t border-slate-100">
                   <Link 
                     href="#" 
-                    className="flex items-center px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-colors text-sm font-semibold text-slate-900"
+                    className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"
                   >
-                    Commercial Vehicle TPMS
+                    <div className="w-9 h-9 rounded-lg bg-[#D5573B]/10 flex items-center justify-center text-[#D5573B] shrink-0 mt-0.5">
+                      <Truck className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold text-slate-900">
+                        Commercial Vehicle TPMS
+                      </div>
+                      <p className="text-xs text-slate-500 mt-0.5">
+                        TMIP platform sits as a subset of this.
+                      </p>
+                    </div>
                   </Link>
                   <Link 
                     href="#" 
-                    className="flex items-center px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-colors text-sm font-semibold text-slate-900 mt-0.5"
+                    className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors mt-1"
                   >
-                    OTR TPMS
+                    <div className="w-9 h-9 rounded-lg bg-amber-50 flex items-center justify-center text-amber-700 shrink-0 mt-0.5">
+                      <HardHat className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold text-slate-900">
+                        OTR TPMS
+                      </div>
+                      <p className="text-xs text-slate-500 mt-0.5">
+                        Off-The-Road TPMS for mining dumpers and heavy utility vehicles.
+                      </p>
+                    </div>
                   </Link>
                 </div>
               </div>
