@@ -3,18 +3,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import {
-  Activity,
   Cpu,
   Disc,
   Sliders,
   ChevronLeft,
   ChevronRight,
-  Clock,
-  UserCheck,
-  Wrench,
-  DollarSign,
-  BarChart3,
-  Dna,
   Layers,
   TrendingUp,
 } from "lucide-react";
@@ -45,8 +38,8 @@ const views: ViewItem[] = [
   {
     id: "vehicle-digital-twin",
     name: "Vehicle Digital Twin",
-    image: "/images/vehicle-digital_twin.png",
-    alt: "Vehicle Digital Twin",
+    image: "/images/Vehicle_Status_Engine.png",
+    alt: "Vehicle Status Engine",
     icon: Sliders,
     count: "1,847 nodes",
     statusTitle: "Status",
@@ -65,8 +58,8 @@ const views: ViewItem[] = [
   {
     id: "3d-interactive-twin",
     name: "3D Interactive Twin",
-    image: "/images/3D_Interactive_twin.png",
-    alt: "3D Interactive Twin",
+    image: "/images/dashboard_3.png",
+    alt: "dashboard_3",
     icon: Layers,
     count: "Active",
     statusTitle: "Status",
@@ -85,8 +78,8 @@ const views: ViewItem[] = [
   {
     id: "engine-digital-twin",
     name: "Engine Digital Twin",
-    image: "/images/engine-digital_twin.png",
-    alt: "Engine Digital Twin",
+    image: "/images/Vehicle_Status_Engine_TPMS_TrendView_Temp_1.png",
+    alt: "Vehicle Status Engine TPMS Trend View Temp 1",
     icon: Cpu,
     count: "91 / 100",
     statusTitle: "Engine Status",
@@ -105,8 +98,8 @@ const views: ViewItem[] = [
   {
     id: "tyre-digital-twin",
     name: "Tyre Digital Twin",
-    image: "/images/Tyre-digital_twin.png",
-    alt: "Tyre Digital Twin",
+    image: "/images/Vehicle_Status_Engine_TPMS_View.png",
+    alt: "Vehicle Status Engine TPMS View",
     icon: Disc,
     count: "92% health",
     statusTitle: "Tyre Status",
@@ -125,8 +118,8 @@ const views: ViewItem[] = [
   {
     id: "ai-prediction-rul",
     name: "AI Prediction & RUL",
-    image: "/images/AI-prediction_RUL.png",
-    alt: "AI Prediction & RUL",
+    image: "/images/Vehicle_Status_Engine_TPMS_TrendView_Temp.png",
+    alt: "Vehicle Status Engine TPMS Trend View Temp",
     icon: TrendingUp,
     count: "4% risk",
     statusTitle: "AI Prediction",
@@ -140,146 +133,6 @@ const views: ViewItem[] = [
       label: "RUL Trend (Engine):",
       value: "6,200 Hours",
       progress: "78%",
-    },
-  },
-  {
-    id: "health-score-breakdown",
-    name: "Health Score Breakdown",
-    image: "/images/Health_score-breakdown.png",
-    alt: "Health Score Breakdown",
-    icon: Activity,
-    count: "84 avg",
-    statusTitle: "Health Scores",
-    metrics: [
-      { label: "Engine", value: "91 / 100", color: "green" },
-      { label: "Electrical", value: "90 / 100", color: "blue" },
-      { label: "Tyres", value: "85 / 100", color: "blue" },
-      { label: "Fuel", value: "82 / 100", color: "yellow" },
-    ],
-    bottom: {
-      label: "Operations · Safety:",
-      value: "84 · 78",
-      progress: "84%",
-    },
-  },
-  {
-    id: "event-timeline",
-    name: "Event Timeline",
-    image: "/images/event-timeline.png",
-    alt: "Event Timeline",
-    icon: Clock,
-    count: "5 events",
-    statusTitle: "Event Timeline",
-    metrics: [
-      { label: "10:18 AM Coolant", value: "Warning", color: "yellow" },
-      { label: "10:05 AM Pressure", value: "Warning", color: "yellow" },
-      { label: "09:50 AM Harsh Brake", value: "Info", color: "blue" },
-      { label: "09:32 AM Fuel Effic.", value: "Info", color: "blue" },
-    ],
-    bottom: {
-      label: "09:18 AM Tyre Pressure:",
-      value: "Corrected",
-      progress: "100%",
-    },
-  },
-  {
-    id: "driver-behavior",
-    name: "Driver Behavior",
-    image: "/images/driver-behavior.png",
-    alt: "Driver Behavior",
-    icon: UserCheck,
-    count: "91 / 100",
-    statusTitle: "Driver Score",
-    metrics: [
-      { label: "Driver Score", value: "91 / 100", color: "green" },
-      { label: "Seatbelt", value: "100%", color: "green" },
-      { label: "Harsh Brake / Accel", value: "0 / 2", color: "blue" },
-      { label: "Idle Time", value: "4%", color: "green" },
-    ],
-    bottom: {
-      label: "Driving Time · Overspeed:",
-      value: "06h 24m · 1",
-      progress: "91%",
-    },
-  },
-  {
-    id: "maintenance-rul",
-    name: "Maintenance & RUL",
-    image: "/images/maintenance-RUL.png",
-    alt: "Maintenance & RUL",
-    icon: Wrench,
-    count: "17 days",
-    statusTitle: "Maintenance & RUL",
-    metrics: [
-      { label: "Engine Oil (Good)", value: "17 Days", color: "green" },
-      { label: "Air Filter (Good)", value: "40 Days", color: "green" },
-      { label: "Fuel Filter (Good)", value: "28 Days", color: "green" },
-      { label: "Brake Lining (Mod.)", value: "16,000 km", color: "yellow" },
-    ],
-    bottom: {
-      label: "Battery Monitor (Good):",
-      value: "83 Days",
-      progress: "83%",
-    },
-  },
-  {
-    id: "cost-impact",
-    name: "Cost Impact",
-    image: "/images/cost-impacr.png",
-    alt: "Cost Impact",
-    icon: DollarSign,
-    count: "₹1.65L",
-    statusTitle: "Cost Impact (30D)",
-    metrics: [
-      { label: "Fuel Savings", value: "₹ 18,400", color: "green" },
-      { label: "Tyre Savings", value: "₹ 46,000", color: "green" },
-      { label: "Maintenance Savings", value: "₹ 21,000", color: "blue" },
-      { label: "Downtime Savings", value: "₹ 80,000", color: "green" },
-    ],
-    bottom: {
-      label: "Total Potential Savings:",
-      value: "₹ 1,65,400 (+12.5%)",
-      progress: "85%",
-    },
-  },
-  {
-    id: "fleet-benchmark",
-    name: "Fleet Benchmark",
-    image: "/images/fleet-benchmark.png",
-    alt: "Fleet Benchmark",
-    icon: BarChart3,
-    count: "5 metrics",
-    statusTitle: "Fleet Benchmark",
-    metrics: [
-      { label: "Fuel Efficiency", value: "4.8 vs 5.6 km/l", color: "blue" },
-      { label: "Engine Utilization", value: "72% vs 68%", color: "green" },
-      { label: "Vehicle Availability", value: "91% vs 93%", color: "green" },
-      { label: "Maintenance Cost", value: "₹2.8 vs ₹2.3 /km", color: "yellow" },
-    ],
-    bottom: {
-      label: "Tyre Life (Fleet vs Bench):",
-      value: "38,000 / 42,000 km",
-      progress: "90%",
-    },
-  },
-  {
-    id: "vehicle-dna",
-    name: "Vehicle DNA",
-    image: "/images/vehicle_DNA.png",
-    alt: "Vehicle DNA Normal Behavior Pattern",
-    icon: Dna,
-    count: "Normal",
-    statusTitle: "Vehicle DNA",
-    metrics: [
-      { label: "RPM Pattern", value: "600–1600 rpm", color: "green" },
-      { label: "Fuel Usage", value: "3.5–5.5 km/l", color: "green" },
-      { label: "Engine Load", value: "40–80 %", color: "blue" },
-      { label: "Temp Pattern", value: "75–95 °C", color: "green" },
-    ],
-    bottom: {
-      label: "Normal Brake Usage:",
-      value: "0–15 events/100km",
-      progress: "75%",
     },
   },
 ];
@@ -315,10 +168,10 @@ export function TwinInteractive() {
   };
 
   return (
-    <div className="rounded-[6px] border border-[rgba(59,130,246,0.15)] bg-[rgba(59,130,246,0.03)] p-6 lg:p-8 shadow-2xl overflow-hidden">
+    <div className="rounded-[6px] border border-[rgba(59,130,246,0.15)] bg-[rgba(59,130,246,0.03)] p-4 sm:p-6 lg:p-8 shadow-2xl overflow-hidden">
       {/* Central visualization (real TMIP image viewer with telemetry status) */}
       <div
-        className="max-w-[720px] mx-auto flex flex-col items-center justify-center relative min-h-[340px] sm:min-h-[420px] bg-[#050A17]/80 rounded-[4px] border border-slate-400/10 p-4 sm:p-8"
+        className="w-full max-w-[1080px] mx-auto flex flex-col items-center justify-center relative bg-[#050A17]/80 rounded-[4px] border border-slate-400/10 p-3 sm:p-5 lg:p-6"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
@@ -331,14 +184,14 @@ export function TwinInteractive() {
           }}
         />
 
-        <div className="w-full max-w-[560px] relative flex flex-col items-center">
+        <div className="w-full relative flex flex-col items-center">
           {/* Real Image Display Frame */}
-          <div className="relative w-full h-[260px] sm:h-[340px] flex items-center justify-center overflow-hidden rounded-[3px]">
+          <div className="relative w-full aspect-[1920/911] flex items-center justify-center overflow-hidden rounded-[3px]">
             <Image
               src={currentView.image}
               alt={currentView.alt}
               fill
-              sizes="(max-width: 768px) 100vw, 560px"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1080px"
               priority
               className="object-contain drop-shadow-md transition-opacity duration-300"
             />
@@ -347,21 +200,21 @@ export function TwinInteractive() {
             <button
               onClick={handlePrev}
               aria-label="Previous view"
-              className="absolute left-1 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-[#050A17]/75 hover:bg-[#3B82F6]/30 border border-white/10 hover:border-[#3B82F6]/50 text-slate-400 hover:text-white flex items-center justify-center transition-all z-10"
+              className="absolute left-1 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#050A17]/75 hover:bg-[#3B82F6]/30 border border-white/10 hover:border-[#3B82F6]/50 text-slate-400 hover:text-white flex items-center justify-center transition-all z-10"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={handleNext}
               aria-label="Next view"
-              className="absolute right-1 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-[#050A17]/75 hover:bg-[#3B82F6]/30 border border-white/10 hover:border-[#3B82F6]/50 text-slate-400 hover:text-white flex items-center justify-center transition-all z-10"
+              className="absolute right-1 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#050A17]/75 hover:bg-[#3B82F6]/30 border border-white/10 hover:border-[#3B82F6]/50 text-slate-400 hover:text-white flex items-center justify-center transition-all z-10"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
 
           {/* Subtle View Indicator Dots */}
-          <div className="flex items-center justify-center gap-1.5 mt-3">
+          <div className="flex items-center justify-center gap-1.5 mt-3 sm:mt-4">
             {views.map((v, idx) => (
               <button
                 key={v.id}
@@ -375,13 +228,6 @@ export function TwinInteractive() {
                 title={v.name}
               />
             ))}
-          </div>
-
-          {/* Existing Metadata Row */}
-          <div className="w-full mt-3 flex items-center justify-between px-2 text-[11px] font-jetbrains text-[#94A3B8]">
-            <span>VIN: <strong className="text-[#F1F5F9]">MH-12-TR-9418</strong></span>
-            <span className="text-[#3B82F6]">{currentView.name.toUpperCase()}</span>
-            <span className="text-[#10B981]">OPERATIONAL</span>
           </div>
         </div>
       </div>
