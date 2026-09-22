@@ -255,7 +255,7 @@ export function Footer({ variant, className }: FooterProps) {
           <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
             <span>© {new Date().getFullYear()} Treel Mobility Solutions Private Limited. All rights reserved.</span>
           </div>
-          <div className="flex flex-wrap items-center gap-6 text-xs">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs">
             <Link href="/privacy" className={theme.bottomLink}>
               Privacy Policy
             </Link>
@@ -270,6 +270,15 @@ export function Footer({ variant, className }: FooterProps) {
             </Link>
             <Link href="/gdpr" className={theme.bottomLink}>
               GDPR Compliance
+            </Link>
+            <Link href="/personal/returns" className={theme.bottomLink}>
+              Returns Policy
+            </Link>
+            <Link href="/personal/shipping" className={theme.bottomLink}>
+              Shipping Policy
+            </Link>
+            <Link href="/personal/refunds" className={theme.bottomLink}>
+              Refunds Policy
             </Link>
           </div>
         </div>

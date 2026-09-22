@@ -20,7 +20,7 @@ export function EcosystemBar() {
 
   return (
     <div className="bg-[#0B0F14] text-[#FAF7F2] text-xs py-1.5 border-b border-white/10 select-none z-50">
-      <div className="max-w-[1320px] mx-auto px-6 sm:px-10 flex items-center justify-between">
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Left: Ecosystem Links */}
         <div className="flex items-center space-x-4 sm:space-x-6 overflow-x-auto no-scrollbar py-0.5">
           {/* Treel Corporate */}
@@ -76,6 +76,20 @@ export function EcosystemBar() {
           >
             <Car className="w-3.5 h-3.5 text-[#60A5FA]" /> Personal TPMS
           </Link>
+
+          <span className="text-slate-600">•</span>
+
+          {/* Commercial TPMS (Pending in Sitemap Brief) */}
+          <span className="text-slate-500 italic whitespace-nowrap text-xs cursor-default" title="Pending roadmap item">
+            Commercial TPMS
+          </span>
+
+          <span className="text-slate-600">•</span>
+
+          {/* OTR TPMS (Pending in Sitemap Brief) */}
+          <span className="text-slate-500 italic whitespace-nowrap text-xs cursor-default" title="Pending roadmap item">
+            OTR TPMS
+          </span>
         </div>
 
         {/* Right: Parent Company & Support */}

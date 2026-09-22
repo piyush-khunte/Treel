@@ -595,7 +595,7 @@ body {
   color: #E5E7EB;
   font-family: var(--font-inter), sans-serif;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
   min-height: 100vh;
 }
 
@@ -611,9 +611,15 @@ body {
   opacity: 0.6;
 }
 
-.tmip-page > * {
+.tmip-page > *:not(header) {
   position: relative;
   z-index: 1;
+}
+
+.tmip-page > header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
 .tmip-nav {
@@ -1094,7 +1100,7 @@ body {
   color: #451A03;
   font-family: var(--font-rubik), sans-serif;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
   min-height: 100vh;
 }
 
@@ -1120,9 +1126,15 @@ body {
   pointer-events: none;
 }
 
-.suraksha-page > * {
+.suraksha-page > *:not(header) {
   position: relative;
   z-index: 1;
+}
+
+.suraksha-page > header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
 /* Suraksha Navigation */
@@ -1172,25 +1184,7 @@ body {
   margin-top: 1px;
 }
 
-.suraksha-nav-links {
-  display: flex;
-  gap: 32px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #451A03;
-  font-family: var(--font-rubik), sans-serif;
-}
-
-.suraksha-nav-links a {
-  color: #451A03;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.suraksha-nav-links a:hover,
-.suraksha-nav-links a.active {
-  color: #DC2626;
-}
+/* Suraksha Navigation links handled via Tailwind classes */
 
 
 

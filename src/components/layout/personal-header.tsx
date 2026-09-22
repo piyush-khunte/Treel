@@ -4,14 +4,27 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { ShoppingCart, Smartphone, Package, Menu, X, ArrowRight } from "lucide-react";
+import { ShoppingCart, Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import { useCart } from "@/lib/commerce/cart-context";
 import { EcosystemBar } from "./ecosystem-bar";
 
 export function PersonalHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileFeaturesOpen, setMobileFeaturesOpen] = useState(false);
+  const [mobileSupportOpen, setMobileSupportOpen] = useState(false);
+  const [mobileAppOpen, setMobileAppOpen] = useState(false);
+
   const pathname = usePathname();
   const { totalItems } = useCart();
+
+  const isProductActive = pathname === "/personal/product";
+  const isFeaturesActive = pathname.startsWith("/personal/features");
+  const isSpecsActive = pathname === "/personal/specs";
+  const isReviewsActive = pathname === "/personal/reviews";
+  const isFaqsActive = pathname === "/personal/faqs";
+  const isSupportActive = pathname.startsWith("/personal/support") || pathname === "/personal/track-order";
+  const isBlogActive = pathname.startsWith("/personal/blog");
+  const isAppActive = pathname.startsWith("/personal/app");
 
   return (
     <header className="sticky top-0 z-50 w-full transition-all">
@@ -20,9 +33,9 @@ export function PersonalHeader() {
 
       {/* Main Nav */}
       <div className="border-b border-black/[0.06] bg-white/95 backdrop-blur-md font-manrope">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
-          {/* Brand Area: Official Treel Logo + Separator + Personal TPMS Brand */}
-          <div className="flex items-center gap-4 sm:gap-6 shrink-0">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          {/* Brand Area */}
+          <div className="flex items-center gap-4 sm:gap-6 shrink-0 mr-4">
             <Link href="/" className="flex items-center group">
               <Image
                 src="/images/logo.png"
@@ -58,23 +71,144 @@ export function PersonalHeader() {
             </Link>
           </div>
 
-          {/* Desktop Links */}
-          <nav className="hidden lg:flex items-center gap-5 xl:gap-8 text-sm font-semibold text-[#4B5563] font-manrope">
-            <Link href="/personal/buy" className={`hover:text-[#2563EB] transition-colors whitespace-nowrap ${pathname === '/personal/buy' ? 'text-[#2563EB] font-bold' : ''}`}>
-              Shop TPMS Kits
+          {/* Desktop Links — Strictly Treel Sitemap Tree V 1.3 */}
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6 text-sm font-semibold text-[#4B5563] font-manrope">
+            {/* PRODUCT */}
+            <Link 
+              href="/personal/product" 
+              className={`hover:text-[#2563EB] transition-colors whitespace-nowrap py-2 ${
+                isProductActive ? "text-[#2563EB] font-bold" : ""
+              }`}
+            >
+              Product
             </Link>
-            <Link href="/personal/features" className={`hover:text-[#2563EB] transition-colors whitespace-nowrap ${pathname === '/personal/features' ? 'text-[#2563EB] font-bold' : ''}`}>
-              Features
+
+            {/* FEATURES */}
+            <div className="relative group">
+              <Link
+                href="/personal/features"
+                className={`flex items-center gap-1 py-2 hover:text-[#2563EB] transition-colors whitespace-nowrap ${
+                  isFeaturesActive ? "text-[#2563EB] font-bold" : ""
+                }`}
+              >
+                <span>Features</span>
+                <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform" />
+              </Link>
+              <div className="absolute top-full left-0 w-56 p-2 bg-white rounded-xl shadow-xl border border-slate-200/80 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                <Link href="/personal/features" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#2563EB] transition-colors">
+                  Features Overview
+                </Link>
+                <Link href="/personal/features/monitoring" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#2563EB] transition-colors">
+                  Continuous Monitoring
+                </Link>
+                <Link href="/personal/features/alerts" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#2563EB] transition-colors">
+                  Smart Audio Alerts
+                </Link>
+                <Link href="/personal/features/app" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#2563EB] transition-colors">
+                  Mobile App Sync
+                </Link>
+                <Link href="/personal/features/battery" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#2563EB] transition-colors">
+                  5-Year Battery Life
+                </Link>
+              </div>
+            </div>
+
+            {/* SPECS */}
+            <Link 
+              href="/personal/specs" 
+              className={`hover:text-[#2563EB] transition-colors whitespace-nowrap py-2 ${
+                isSpecsActive ? "text-[#2563EB] font-bold" : ""
+              }`}
+            >
+              Specs
             </Link>
-            <Link href="/personal/specs" className={`hover:text-[#2563EB] transition-colors whitespace-nowrap ${pathname === '/personal/specs' ? 'text-[#2563EB] font-bold' : ''}`}>
-              Tech Specs
+
+            {/* REVIEWS */}
+            <Link 
+              href="/personal/reviews" 
+              className={`hover:text-[#2563EB] transition-colors whitespace-nowrap py-2 ${
+                isReviewsActive ? "text-[#2563EB] font-bold" : ""
+              }`}
+            >
+              Reviews
             </Link>
-            <Link href="/personal/app" className={`hover:text-[#2563EB] transition-colors whitespace-nowrap flex items-center gap-1.5 ${pathname === '/personal/app' ? 'text-[#2563EB] font-bold' : ''}`}>
-              <Smartphone className="w-4 h-4 text-[#2563EB]" /> Treel Care App
+
+            {/* FAQS */}
+            <Link 
+              href="/personal/faqs" 
+              className={`hover:text-[#2563EB] transition-colors whitespace-nowrap py-2 ${
+                isFaqsActive ? "text-[#2563EB] font-bold" : ""
+              }`}
+            >
+              FAQs
             </Link>
-            <Link href="/personal/support/warranty" className="hover:text-[#2563EB] transition-colors whitespace-nowrap">
-              Warranty
+
+            {/* SUPPORT */}
+            <div className="relative group">
+              <Link
+                href="/personal/support"
+                className={`flex items-center gap-1 py-2 hover:text-[#2563EB] transition-colors whitespace-nowrap ${
+                  isSupportActive ? "text-[#2563EB] font-bold" : ""
+                }`}
+              >
+                <span>Support</span>
+                <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform" />
+              </Link>
+              <div className="absolute top-full left-0 w-56 p-2 bg-white rounded-xl shadow-xl border border-slate-200/80 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                <Link href="/personal/support" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#2563EB] transition-colors">
+                  Support Center
+                </Link>
+                <Link href="/personal/support/setup" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#2563EB] transition-colors">
+                  Setup &amp; Installation
+                </Link>
+                <Link href="/personal/support/troubleshooting" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#2563EB] transition-colors">
+                  Troubleshooting
+                </Link>
+                <Link href="/personal/support/warranty" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#2563EB] transition-colors">
+                  Warranty &amp; Claims
+                </Link>
+                <Link href="/personal/support/contact" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#2563EB] transition-colors">
+                  Contact Support
+                </Link>
+                <Link href="/personal/track-order" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#2563EB] transition-colors">
+                  Track Order
+                </Link>
+              </div>
+            </div>
+
+            {/* RESOURCES */}
+            <Link 
+              href="/personal/blog" 
+              className={`hover:text-[#2563EB] transition-colors whitespace-nowrap py-2 ${
+                isBlogActive ? "text-[#2563EB] font-bold" : ""
+              }`}
+            >
+              Blog
             </Link>
+
+            {/* APP */}
+            <div className="relative group">
+              <Link
+                href="/personal/app"
+                className={`flex items-center gap-1 py-2 hover:text-[#2563EB] transition-colors whitespace-nowrap ${
+                  isAppActive ? "text-[#2563EB] font-bold" : ""
+                }`}
+              >
+                <span>App</span>
+                <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform" />
+              </Link>
+              <div className="absolute top-full left-0 w-48 p-2 bg-white rounded-xl shadow-xl border border-slate-200/80 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                <Link href="/personal/app" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#2563EB] transition-colors">
+                  Treel Care App
+                </Link>
+                <Link href="/personal/app/ios" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#2563EB] transition-colors">
+                  Download for iOS
+                </Link>
+                <Link href="/personal/app/android" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#2563EB] transition-colors">
+                  Download for Android
+                </Link>
+              </div>
+            </div>
           </nav>
 
           {/* Cart & Shop CTAs */}
@@ -86,13 +220,6 @@ export function PersonalHeader() {
                   {totalItems}
                 </span>
               )}
-            </Link>
-
-            <Link
-              href="/personal/track-order"
-              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-[#4B5563] hover:text-[#2563EB] transition-colors px-3 py-2 rounded-full hover:bg-[#F3F4F6] whitespace-nowrap shrink-0"
-            >
-              <Package className="w-3.5 h-3.5 text-[#2563EB]" /> Track Order
             </Link>
 
             <Link href="/personal/buy" className="hidden sm:inline-block shrink-0">
@@ -114,13 +241,86 @@ export function PersonalHeader() {
 
         {/* Mobile Drawer */}
         {mobileOpen && (
-          <div className="lg:hidden border-t border-black/[0.06] bg-white px-6 py-6 space-y-4 text-sm font-semibold shadow-2xl font-manrope">
-            <Link href="/personal/buy" onClick={() => setMobileOpen(false)} className="block py-2 text-[#2563EB] font-bold">Shop Car & Bike Kits</Link>
-            <Link href="/personal/features" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">Features & App</Link>
-            <Link href="/personal/specs" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">Technical Specs</Link>
-            <Link href="/personal/track-order" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">Track Order</Link>
-            <Link href="/personal/app" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">Treel Care Mobile App</Link>
-            <Link href="/personal/support/warranty" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">Warranty Registration</Link>
+          <div className="lg:hidden border-t border-black/[0.06] bg-white px-6 py-6 space-y-3 text-sm font-semibold shadow-2xl font-manrope max-h-[calc(100vh-120px)] overflow-y-auto">
+            <Link href="/personal/product" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">
+              Product Overview
+            </Link>
+
+            {/* Features Accordion */}
+            <div>
+              <button
+                onClick={() => setMobileFeaturesOpen(!mobileFeaturesOpen)}
+                className="w-full flex items-center justify-between py-2 text-[#111827]"
+              >
+                <span>Features</span>
+                <ChevronDown className={`w-4 h-4 transition-transform ${mobileFeaturesOpen ? "rotate-180" : ""}`} />
+              </button>
+              {mobileFeaturesOpen && (
+                <div className="pl-3 pb-2 space-y-1 text-xs text-slate-600 border-l-2 border-slate-100 ml-1">
+                  <Link href="/personal/features" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#2563EB]">Features Overview</Link>
+                  <Link href="/personal/features/monitoring" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#2563EB]">Continuous Monitoring</Link>
+                  <Link href="/personal/features/alerts" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#2563EB]">Smart Audio Alerts</Link>
+                  <Link href="/personal/features/app" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#2563EB]">Mobile App Sync</Link>
+                  <Link href="/personal/features/battery" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#2563EB]">5-Year Battery Life</Link>
+                </div>
+              )}
+            </div>
+
+            <Link href="/personal/specs" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">
+              Specs
+            </Link>
+
+            <Link href="/personal/reviews" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">
+              Reviews
+            </Link>
+
+            <Link href="/personal/faqs" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">
+              FAQs
+            </Link>
+
+            {/* Support Accordion */}
+            <div>
+              <button
+                onClick={() => setMobileSupportOpen(!mobileSupportOpen)}
+                className="w-full flex items-center justify-between py-2 text-[#111827]"
+              >
+                <span>Support</span>
+                <ChevronDown className={`w-4 h-4 transition-transform ${mobileSupportOpen ? "rotate-180" : ""}`} />
+              </button>
+              {mobileSupportOpen && (
+                <div className="pl-3 pb-2 space-y-1 text-xs text-slate-600 border-l-2 border-slate-100 ml-1">
+                  <Link href="/personal/support" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#2563EB]">Support Center</Link>
+                  <Link href="/personal/support/setup" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#2563EB]">Setup &amp; Installation</Link>
+                  <Link href="/personal/support/troubleshooting" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#2563EB]">Troubleshooting</Link>
+                  <Link href="/personal/support/warranty" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#2563EB]">Warranty &amp; Claims</Link>
+                  <Link href="/personal/support/contact" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#2563EB]">Contact Support</Link>
+                  <Link href="/personal/track-order" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#2563EB]">Track Order</Link>
+                </div>
+              )}
+            </div>
+
+            <Link href="/personal/blog" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">
+              Blog
+            </Link>
+
+            {/* App Accordion */}
+            <div>
+              <button
+                onClick={() => setMobileAppOpen(!mobileAppOpen)}
+                className="w-full flex items-center justify-between py-2 text-[#111827]"
+              >
+                <span>App</span>
+                <ChevronDown className={`w-4 h-4 transition-transform ${mobileAppOpen ? "rotate-180" : ""}`} />
+              </button>
+              {mobileAppOpen && (
+                <div className="pl-3 pb-2 space-y-1 text-xs text-slate-600 border-l-2 border-slate-100 ml-1">
+                  <Link href="/personal/app" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#2563EB]">Treel Care App</Link>
+                  <Link href="/personal/app/ios" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#2563EB]">iOS App</Link>
+                  <Link href="/personal/app/android" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#2563EB]">Android App</Link>
+                </div>
+              )}
+            </div>
+
             <div className="pt-2">
               <Link href="/personal/buy" onClick={() => setMobileOpen(false)}>
                 <button className="w-full justify-center font-manrope font-bold text-xs uppercase tracking-wider py-3 rounded-full bg-[#2563EB] text-white hover:bg-[#1D4ED8] transition-all shadow-sm">
