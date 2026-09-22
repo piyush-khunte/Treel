@@ -155,6 +155,12 @@ export function MasterHeader() {
               Digital Twin
             </Link>
             <Link 
+              href="#" 
+              className="transition-colors py-2 hover:text-[#D5573B]"
+            >
+              OEM
+            </Link>
+            <Link 
               href="/insights" 
               className={`transition-colors py-2 ${isInsightsActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"}`}
             >
@@ -244,6 +250,7 @@ export function MasterHeader() {
           <div className="border-t border-slate-100 pt-4 space-y-3 text-sm font-medium text-slate-800 font-inter">
             <Link href="/technology" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#D5573B]">Technology & IoT</Link>
             <Link href="/vehicle-digital-twin" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#D5573B]">Vehicle Digital Twin</Link>
+            <Link href="#" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#D5573B]">OEM</Link>
             <Link href="/insights" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#D5573B]">Insights & Research</Link>
             <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#D5573B]">About & Leadership</Link>
             <Link href="/careers" onClick={() => setMobileMenuOpen(false)} className="block py-1 hover:text-[#D5573B]">Careers</Link>

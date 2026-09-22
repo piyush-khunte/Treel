@@ -201,6 +201,11 @@ export function Footer({ variant, className }: FooterProps) {
                   Annual Reports
                 </Link>
               </li>
+              <li>
+                <Link href="/notices" className={theme.link}>
+                  Notice Board
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -223,6 +228,11 @@ export function Footer({ variant, className }: FooterProps) {
               <li>
                 <Link href="/why-treel" className={theme.link}>
                   Why Treel
+                </Link>
+              </li>
+              <li>
+                <Link href="/global-presence" className={theme.link}>
+                  Global Presence / Export
                 </Link>
               </li>
 

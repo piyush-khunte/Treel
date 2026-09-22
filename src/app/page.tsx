@@ -53,8 +53,7 @@ export default function HomePage() {
               </div>
 
               <h1 className="font-fraunces text-5xl sm:text-7xl lg:text-[80px] xl:text-[88px] font-medium tracking-[-0.03em] text-[#FAF7F2] leading-[0.98] mb-6 sm:mb-8">
-                Every vehicle <span className="italic text-[#D5573B] font-normal" style={{ fontVariationSettings: '"opsz" 144' }}>a signal</span>.<br />
-                Every signal an insight.
+                Turn Every Vehicle into <span className="italic text-[#D5573B] font-normal" style={{ fontVariationSettings: '"opsz" 144' }}>Operating Intelligence</span>
               </h1>
 
               <p className="font-fraunces text-lg sm:text-[22px] font-normal leading-[1.45] text-[#94A3B8] mb-8 sm:mb-10 max-w-[560px]">

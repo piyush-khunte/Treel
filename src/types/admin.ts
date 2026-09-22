@@ -103,3 +103,15 @@ export interface MongoAnnualReturn {
   date: string;
   __v?: number;
 }
+
+export interface NoticeItem {
+  _id: string;
+  title: string;
+  description: string;
+  publishedDate?: string;
+  status: "Published" | "Draft";
+  category?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  __v?: number;
+}
