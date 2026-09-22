@@ -67,7 +67,7 @@ export default function SurakshaEmiApplySuccessPage() {
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                  <span>Kit price: ₹[amount]</span>
+                  <span>Down payment: Zero Down Payment Plan</span>
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
@@ -75,7 +75,7 @@ export default function SurakshaEmiApplySuccessPage() {
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                  <span>Monthly EMI: ₹[amount]</span>
+                  <span>Financing Partner: Bajaj Finance</span>
                 </li>
               </ul>
             </div>

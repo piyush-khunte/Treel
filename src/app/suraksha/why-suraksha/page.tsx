@@ -132,7 +132,7 @@ export default function SurakshaWhySurakshaPage() {
             </div>
 
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-medium">
-              Business perspective से देखें, तो Suraksha का ROI simple है। 10-wheeler truck configuration में ₹17,500 लगते हैं। Nine months में पूरी कीमत वापस।
+              Business perspective से देखें, तो Suraksha का ROI simple है। Nine months में operational savings से पूरी कीमत वापस आ जाती है।
             </p>
 
             <p className="text-[#78350F] text-base font-semibold">
@@ -147,7 +147,7 @@ export default function SurakshaWhySurakshaPage() {
                 <strong>Tyre life extension (5-7%):</strong> Correct pressure पे tyres 5-7% ज़्यादा चलते हैं। एक set tyres की cost ₹2,00,000-₹3,50,000 होती है। 5-7% extension मतलब thousands की savings हर tyre cycle में।
               </p>
               <p>
-                <strong>Roadside towing (per event ₹5,000-₹15,000):</strong> हर blowout मतलब towing charge, downtime, missed delivery. एक roadside event save करना मतलब kit का half cost recover.
+                <strong>Roadside towing (per event ₹5,000-₹15,000):</strong> हर blowout मतलब towing charge, downtime, missed delivery. एक roadside event save करना मतलब substantial operational cost recover.
               </p>
             </div>
 
@@ -172,7 +172,7 @@ export default function SurakshaWhySurakshaPage() {
             </div>
 
             <p className="text-sm font-semibold text-[#451A03]">
-              Total 9-month savings: Typically ₹40,000-₹70,000 vs kit cost of ₹17,500.
+              Total 9-month savings: Typically ₹40,000-₹70,000, easily exceeding initial kit investment.
             </p>
 
             <div className="pt-4 border-t-2 border-[#EA580C]/20 flex items-center justify-between flex-wrap gap-4">
@@ -273,7 +273,7 @@ export default function SurakshaWhySurakshaPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FEF3C7]">
-              तीन REASONS. एक KIT.<br />सिर्फ ₹17,500.
+              तीन REASONS. एक COMPLETE KIT.<br />पूरी सुरक्षा.
             </h2>
             <div className="pt-2 flex flex-wrap justify-center gap-4">
               <Link

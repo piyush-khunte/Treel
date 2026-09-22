@@ -259,7 +259,7 @@ export default function SurakshaPage() {
               INDIA-WIDE. CLUSTER-TUNED.
             </h2>
             <p className="text-[#78350F] text-lg mt-3 font-medium">
-              Suraksha ships in the vernacular of each cluster. Same product, same price, six voices. Language of the driver, wherever the driver runs.
+              Suraksha ships in the vernacular of each cluster. Same product, same protection, six voices. Language of the driver, wherever the driver runs.
             </p>
           </div>
 

@@ -38,7 +38,7 @@ export default function SurakshaSavingsPage() {
               NINE MONTHS.<br /><span className="italic text-[#DC2626]">पूरी कीमत वापस।</span>
             </h1>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              ₹17,500 का kit nine months में पूरा पैसा वापस दे देता है। कैसे? Fuel, tyre life, और roadside events — तीनों जगहों से savings आती है। Calculator use करिए अपने truck के लिए।
+              Suraksha kit nine months में पूरा निवेश वापस दे देता है। कैसे? Fuel, tyre life, और roadside events — तीनों जगहों से savings आती है। Calculator use करिए अपने truck के लिए।
             </p>
           </div>
         </div>
@@ -177,8 +177,8 @@ export default function SurakshaSavingsPage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 shadow-sm space-y-2">
-                  <h3 className="font-anton uppercase tracking-wide text-lg text-[#451A03]">Kit price for your configuration</h3>
-                  <p className="font-anton text-2xl text-[#DC2626]">₹[amount]</p>
+                  <h3 className="font-anton uppercase tracking-wide text-lg text-[#451A03]">Kit Configuration</h3>
+                  <p className="font-anton text-2xl text-[#DC2626]">[Selected Axle Plan]</p>
                   <div className="pt-2 font-bold text-xs text-[#DC2626] flex items-center gap-1">
                     Learn more <ChevronRight className="w-3.5 h-3.5" />
                   </div>
@@ -255,7 +255,7 @@ export default function SurakshaSavingsPage() {
             <ul className="space-y-2.5 pt-2 text-sm text-[#451A03]">
               <li className="flex items-start gap-2">
                 <span className="text-[#DC2626] font-bold">•</span>
-                <span><strong>Month 0:</strong> Buy kit (₹17,500)</span>
+                <span><strong>Month 0:</strong> Fit Suraksha kit</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#EA580C] font-bold">•</span>
@@ -279,10 +279,10 @@ export default function SurakshaSavingsPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FEF3C7]">
-              ₹16 PER DAY. एक कप चाय जैसा।
+              9 MONTHS PAYBACK · एक कप चाय से भी कम चिंता
             </h2>
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
-              3-year warranty के हिसाब से, Suraksha का effective cost ₹16 per day है — एक कप चाय जितना। और वह भी 9 months के बाद savings में बदल जाता है।
+              3-year warranty और zero monthly subscription के साथ, Suraksha का operational impact एक कप चाय के दैनिक खर्च से भी कम महसूस होता है — और 9 months में fuel व tyre savings से पूरा निवेश वापस आ जाता है।
             </p>
             <div className="pt-2 flex flex-wrap justify-center gap-4">
               <Link

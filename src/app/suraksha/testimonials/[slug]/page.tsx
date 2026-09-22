@@ -154,7 +154,7 @@ export default function SurakshaTestimonialsSlugPage() {
                 </li>
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
                   <span className="text-[#DC2626] mt-1.5 font-bold">•</span>
-                  <span>Total savings to date: [Estimated ₹ amount if driver willing to share]</span>
+                  <span>Total savings to date: [Estimated savings if driver willing to share]</span>
                 </li>
               </ul>
             </div>

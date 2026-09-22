@@ -19,14 +19,14 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 export const metadata: Metadata = {
   title: "WhatsApp Suraksha · Direct Chat with Support",
   description:
-    "WhatsApp Suraksha directly. 24/7 automated responses, business hours human support. Product info, pricing, EMI, installation, warranty — सब कुछ WhatsApp पर।",
+    "WhatsApp Suraksha directly. 24/7 automated responses, business hours human support. Product info, configuration quotes, EMI, installation, warranty — सब कुछ WhatsApp पर।",
   alternates: {
     canonical: "https://treel.in/suraksha/whatsapp",
   },
   openGraph: {
     title: "WhatsApp Suraksha · Direct Chat with Support",
     description:
-      "WhatsApp Suraksha directly. 24/7 automated responses, business hours human support. Product info, pricing, EMI, installation, warranty — सब कुछ WhatsApp पर।",
+      "WhatsApp Suraksha directly. 24/7 automated responses, business hours human support. Product info, configuration quotes, EMI, installation, warranty — सब कुछ WhatsApp पर।",
     url: "https://treel.in/suraksha/whatsapp",
   },
 };
@@ -38,8 +38,8 @@ const capabilities = [
     icon: Package,
   },
   {
-    title: "Price check",
-    desc: "Configuration wise pricing तुरंत मिलेगा",
+    title: "Kit quote & enquiry",
+    desc: "Configuration-wise details और quote तुरंत मिलेगा",
     icon: Zap,
   },
   {
@@ -78,7 +78,7 @@ const responseTimes = [
   {
     label: "Automated responses",
     time: "तुरंत (24/7)",
-    detail: "Instant bot replies for prices, nearby centres, and FAQs",
+    detail: "Instant bot replies for quotes, nearby centres, and FAQs",
     icon: Zap,
   },
   {
@@ -127,7 +127,7 @@ export default function SurakshaWhatsappPage() {
             </p>
 
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-medium max-w-2xl mx-auto">
-              Suraksha के बारे में कुछ भी पूछना हो — product, price, EMI, installation, warranty — WhatsApp पर direct बात कीजिए। 24/7 automated response + business hours human support।
+              Suraksha के बारे में कुछ भी पूछना हो — product, kit quotes, EMI, installation, warranty — WhatsApp पर direct बात कीजिए। 24/7 automated response + business hours human support।
             </p>
 
             {/* Huge WhatsApp Primary CTA */}

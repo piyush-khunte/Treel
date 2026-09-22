@@ -270,7 +270,7 @@ export default function SurakshaSimplicityPage() {
                   अगर 3 साल बाद problem आई तो?
                 </div>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  Warranty 3 साल की है — free replacement. उसके बाद new kit affordable price में available है।
+                  Warranty 3 साल की है — free replacement. उसके बाद new kit replacement centres पर directly available है।
                 </p>
               </div>
             </div>

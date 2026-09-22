@@ -12,7 +12,7 @@ export default function SurakshaEMIApplyPage() {
     ownerName: "",
     phone: "",
     vehicleReg: "",
-    tyreCount: "6 Tyres (₹1,199/mo)",
+    tyreCount: "6 Tyres",
     tenure: "12 Months",
     state: "Maharashtra"
   });
@@ -47,7 +47,7 @@ export default function SurakshaEMIApplyPage() {
               Apply for Suraksha Kit EMI.
             </h1>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Zero downpayment. Easy monthly instalments starting at ₹1,199/month. Instant approval at any of our 400+ highway Suraksha centres across India.
+              Zero downpayment. Easy monthly instalments with flexible tenures. Instant approval at any of our 400+ highway Suraksha centres across India.
             </p>
           </div>
         </div>
@@ -116,10 +116,10 @@ export default function SurakshaEMIApplyPage() {
                     onChange={(e) => setFormData({ ...formData, tyreCount: e.target.value })}
                     className="w-full px-4 py-3 bg-[#FEF3C7]/60 border border-[#451A03]/20 rounded-lg text-[#451A03] focus:outline-none focus:border-[#DC2626] text-sm font-medium"
                   >
-                    <option>6 Tyres (₹1,199/mo)</option>
-                    <option>10 Tyres (₹1,899/mo)</option>
-                    <option>12 Tyres (₹2,299/mo)</option>
-                    <option>18+ Tyres (₹3,199/mo)</option>
+                    <option>6 Tyres</option>
+                    <option>10 Tyres (Most Popular)</option>
+                    <option>12 Tyres</option>
+                    <option>18+ Tyres</option>
                   </select>
                 </div>
 

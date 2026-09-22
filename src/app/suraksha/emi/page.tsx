@@ -19,16 +19,16 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { SurakshaEmiCalculator } from "./emi-calculator";
 
 export const metadata: Metadata = {
-  title: "Suraksha EMI · Bajaj Finance · ₹1,500/Month से शुरू",
+  title: "Suraksha EMI Plans · Bajaj Finance Partnership · Zero-Cost Options",
   description:
-    "Suraksha kit EMI on Bajaj Finance. EMI ₹1,500 per month से शुरू। 3, 6, 9, 12, 18, 24-month tenures. Zero-cost EMI available. Quick approval.",
+    "Suraksha kit EMI on Bajaj Finance. Flexible 3, 6, 9, 12, 18, 24-month tenures. Zero-cost EMI available. Minimal documentation with quick approval.",
   alternates: {
     canonical: "https://treel.in/suraksha/emi",
   },
   openGraph: {
-    title: "Suraksha EMI · Bajaj Finance · ₹1,500/Month से शुरू",
+    title: "Suraksha EMI Plans · Bajaj Finance Partnership · Zero-Cost Options",
     description:
-      "Suraksha kit EMI on Bajaj Finance. EMI ₹1,500 per month से शुरू। 3, 6, 9, 12, 18, 24-month tenures. Zero-cost EMI available. Quick approval.",
+      "Suraksha kit EMI on Bajaj Finance. Flexible 3, 6, 9, 12, 18, 24-month tenures. Zero-cost EMI available. Minimal documentation with quick approval.",
     url: "https://treel.in/suraksha/emi",
   },
 };
@@ -145,16 +145,16 @@ export default function SurakshaEmiPage() {
             </div>
 
             <h1 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95] uppercase">
-              EMI ₹1,500/MONTH<br />
-              <span className="italic text-[#EA580C]">से शुरू।</span>
+              FLEXIBLE EMI PLANS<br />
+              <span className="italic text-[#EA580C]">BAJAJ FINANCE PARTNERSHIP.</span>
             </h1>
 
             <p className="text-[#DC2626] font-rubik text-xl sm:text-2xl font-bold">
-              EMI starts from ₹1,500 per month.
+              Zero downpayment options with instant pre-approval.
             </p>
 
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Suraksha kit को EMI पर लेना बहुत आसान है। Bajaj Finance के साथ partnership है — quick approval, minimal documentation.
+              Suraksha kit को EMI पर लेना बहुत आसान है। Bajaj Finance के साथ partnership है — flexible tenures, minimal documentation, और quick approval.
             </p>
           </div>
         </div>

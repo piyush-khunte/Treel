@@ -16,16 +16,16 @@ import {
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
-  title: "Suraksha Price · ₹17,500 for 10-Wheeler · EMI Available",
+  title: "Suraksha Kit · Configurations & Inclusions · EMI Available",
   description:
-    "Suraksha kit price: ₹17,500 for 10-wheeler truck. Pricing for 6-wheeler, 10-wheeler, 12-wheeler, and 14-wheeler configurations. No hidden fees. EMI on Bajaj Finance.",
+    "Suraksha safety kit configurations for 6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, 16-wheeler, and 18-wheeler trucks. Zero-cost EMI available on Bajaj Finance. No hidden fees.",
   alternates: {
     canonical: "https://treel.in/suraksha/pricing",
   },
   openGraph: {
-    title: "Suraksha Price · ₹17,500 for 10-Wheeler · EMI Available",
+    title: "Suraksha Kit · Configurations & Inclusions · EMI Available",
     description:
-      "Suraksha kit price: ₹17,500 for 10-wheeler truck. Pricing for 6-wheeler, 10-wheeler, 12-wheeler, and 14-wheeler configurations. No hidden fees. EMI on Bajaj Finance.",
+      "Suraksha safety kit configurations for 6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, 16-wheeler, and 18-wheeler trucks. Zero-cost EMI available on Bajaj Finance. No hidden fees.",
     url: "https://treel.in/suraksha/pricing",
   },
 };
@@ -33,38 +33,38 @@ export const metadata: Metadata = {
 const configurations = [
   {
     type: "6-wheeler",
-    price: "₹10,500",
-    included: "1 in-cab display + 6 tyre sensors + mounting + wiring",
+    axleSetup: "2 Axles · Steer & Drive",
+    included: "1 in-cab display + 6 tyre sensors + mounting kit + wiring harness",
     popular: false,
   },
   {
     type: "10-wheeler",
-    price: "₹17,500",
-    included: "1 in-cab display + 10 tyre sensors + mounting + wiring",
+    axleSetup: "3 Axles · Multi-Axle Haulage",
+    included: "1 in-cab display + 10 tyre sensors + mounting kit + wiring harness",
     popular: true,
   },
   {
     type: "12-wheeler",
-    price: "₹21,000",
-    included: "1 in-cab display + 12 tyre sensors + mounting + wiring",
+    axleSetup: "4 Axles · Heavy Commercial",
+    included: "1 in-cab display + 12 tyre sensors + mounting kit + wiring harness",
     popular: false,
   },
   {
     type: "14-wheeler",
-    price: "₹24,500",
-    included: "1 in-cab display + 14 tyre sensors + mounting + wiring",
+    axleSetup: "4-5 Axles · Multi-Axle Goods",
+    included: "1 in-cab display + 14 tyre sensors + mounting kit + wiring harness",
     popular: false,
   },
   {
     type: "16-wheeler",
-    price: "₹28,000",
-    included: "1 in-cab display + 16 tyre sensors + mounting + wiring",
+    axleSetup: "5 Axles · Heavy Haulage",
+    included: "1 in-cab display + 16 tyre sensors + mounting kit + wiring harness",
     popular: false,
   },
   {
     type: "18-wheeler",
-    price: "₹31,500",
-    included: "1 in-cab display + 18 tyre sensors + mounting + wiring",
+    axleSetup: "Prime Mover + Multi-Axle Trailer",
+    included: "1 in-cab display + 18 tyre sensors + mounting kit + wiring harness",
     popular: false,
   },
 ];
@@ -79,7 +79,7 @@ const includedList = [
 ];
 
 const notIncludedList = [
-  "Installation labour at puncture shop (typically ₹200-500, paid to installer directly)",
+  "Installation labour at puncture shop (paid to installer directly)",
   "GST (applicable at checkout — will be shown transparently)",
   "Delivery charges for home delivery (free at Truck Wheels centres)",
 ];
@@ -100,34 +100,34 @@ export default function SurakshaPricingPage() {
             />
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
               <Truck className="w-3.5 h-3.5" />
-              PRICING
+              CONFIGURATIONS
             </div>
 
             <h1 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95] uppercase">
               सीधी बात.<br />
-              <span className="italic text-[#DC2626]">NO HIDDEN FEES.</span>
+              <span className="italic text-[#DC2626]">COMPLETE PROTECTION.</span>
             </h1>
 
             <p className="text-[#DC2626] font-rubik text-xl sm:text-2xl font-bold">
-              Simple pricing. No hidden fees.
+              Complete kit for every truck configuration. No hidden fees.
             </p>
 
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              ₹17,500 for a 10-wheeler truck. Wheel configuration के हिसाब से pricing थोड़ी अलग होती है। सब कुछ नीचे है — देखिए और निर्णय लीजिए।
+              Wheel configuration के हिसाब से complete Suraksha kit उपलब्ध है — 6-wheeler से लेकर 18-wheeler trailers तक। सब कुछ नीचे है — अपनी गाड़ी की configuration चुनिए और नजदीकी Truck Wheels centre पर सम्पर्क कीजिए।
             </p>
           </div>
         </div>
       </section>
 
-      {/* Pricing by Truck Configuration */}
+      {/* Configurations by Truck Setup */}
       <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              PRICING BY TRUCK CONFIGURATION
+              CONFIGURATIONS BY TRUCK SETUP
             </h2>
             <p className="text-[#78350F] text-base mt-2 font-medium">
-              Transparent per-truck pricing across standard Indian commercial configurations.
+              Standard Indian commercial vehicle kit options for all axle setups.
             </p>
           </div>
 
@@ -152,24 +152,39 @@ export default function SurakshaPricingPage() {
                     {item.type}
                   </div>
 
-                  <div className="font-anton text-4xl sm:text-5xl font-normal text-[#DC2626]">
-                    {item.price}
+                  <div className="inline-block px-3 py-1 rounded bg-[#FEF3C7] border border-[#451A03]/15 text-[#78350F] font-rubik text-xs font-bold">
+                    {item.axleSetup}
                   </div>
 
                   <p className="text-[#78350F] text-sm leading-relaxed">
                     {item.included}
                   </p>
+
+                  <div className="space-y-1.5 pt-2 text-xs font-semibold text-[#451A03]">
+                    <div className="flex items-center gap-2 text-[#047857]">
+                      <Check className="w-3.5 h-3.5" /> 3-Year Sensor Warranty
+                    </div>
+                    <div className="flex items-center gap-2 text-[#047857]">
+                      <Check className="w-3.5 h-3.5" /> Zero Monthly Subscription
+                    </div>
+                    <div className="flex items-center gap-2 text-[#047857]">
+                      <Check className="w-3.5 h-3.5" /> Zero-Downpayment EMI Available
+                    </div>
+                  </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#451A03]/10 flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#78350F]">
-                    EMI from ₹1,500/mo
-                  </span>
+                <div className="pt-4 border-t border-[#451A03]/10 flex items-center justify-between gap-3">
                   <Link
                     href="/suraksha/centres"
-                    className="font-rubik text-xs font-bold text-[#DC2626] hover:underline flex items-center gap-1"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-[4px] font-rubik text-xs font-bold bg-[#DC2626] text-[#FEF3C7] hover:bg-[#B91C1C] transition-all shadow-sm"
                   >
-                    Find Centre <ChevronRight className="w-3.5 h-3.5" />
+                    Get Suraksha <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                  <Link
+                    href="/suraksha/emi"
+                    className="font-rubik text-xs font-bold text-[#78350F] hover:text-[#DC2626] hover:underline flex items-center gap-1"
+                  >
+                    EMI Plans <ChevronRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>
@@ -192,12 +207,12 @@ export default function SurakshaPricingPage() {
             </div>
 
             <h2 className="font-anton text-4xl sm:text-5xl font-normal text-[#451A03] uppercase leading-tight">
-              ₹16 PER DAY PER TRUCK.<br />
-              <span className="italic text-[#EA580C]">एक कप चाय जैसा।</span>
+              9 MONTHS PAYBACK.<br />
+              <span className="italic text-[#EA580C]">एक कप चाय से भी कम चिंता।</span>
             </h2>
 
             <p className="text-[#78350F] text-lg leading-relaxed font-medium">
-              10-wheeler configuration ₹17,500 में। Three-year warranty के हिसाब से calculate करिए — approximately ₹16 per day. एक कप चाय जितना।
+              Three-year sensor warranty और continuous diesel bachat के साथ, Suraksha पहले ही 9 महीनों में पूरा पैसा वसूल करा देता है। Highway blowouts और roadside towing का कोई डर नहीं।
             </p>
 
             <div className="font-baloo text-3xl font-extrabold text-[#DC2626]">
@@ -205,7 +220,7 @@ export default function SurakshaPricingPage() {
             </div>
 
             <div className="pt-4 border-t-2 border-[#EA580C]/20 text-xs font-semibold text-[#78350F]">
-              Calculation: ₹17,500 ÷ (3 years × 365 days) ≈ ₹16 per day per truck
+              5-6% diesel savings + 5-7% extended tyre life + 100% roadside blowout prevention
             </div>
           </div>
         </div>
@@ -219,7 +234,7 @@ export default function SurakshaPricingPage() {
               सब कुछ INCLUDED
             </h2>
             <p className="text-[#DC2626] font-rubik text-lg font-bold mt-2">
-              Everything's in the price
+              Everything included in the kit
             </p>
           </div>
 
@@ -279,7 +294,7 @@ export default function SurakshaPricingPage() {
                 Option 1 · Full payment
               </h3>
               <p className="text-[#78350F] text-sm leading-relaxed">
-                Cash, UPI, card, or net banking. Full payment से ₹500 का discount मिलता है।
+                Cash, UPI, card, or net banking. Instant bill and warranty activation at Truck Wheels centres.
               </p>
             </div>
 
@@ -291,7 +306,7 @@ export default function SurakshaPricingPage() {
                 Option 2 · EMI (Bajaj Finance)
               </h3>
               <p className="text-[#78350F] text-sm leading-relaxed">
-                EMI starts from ~₹1,500 per month on 12-month tenure. Zero-cost EMI available at select Truck Wheels centres.
+                Flexible 3, 6, 9, 12, 18, 24-month tenures. Zero-cost EMI options available at select Truck Wheels centres.
               </p>
               <div className="pt-2">
                 <Link
@@ -327,7 +342,7 @@ export default function SurakshaPricingPage() {
             </h2>
 
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-medium">
-              5+ trucks के लिए bulk discount available. WhatsApp पर बात कीजिए या call करिए — customized quote मिलेगा।
+              5+ trucks के लिए special fleet solutions and custom deployment available. WhatsApp पर बात कीजिए या call करिए — customized quote मिलेगा।
             </p>
 
             <div className="p-4 rounded-[4px] bg-[#FEF3C7] border border-[#451A03]/10 text-sm text-[#451A03] flex items-center justify-between flex-wrap gap-4">

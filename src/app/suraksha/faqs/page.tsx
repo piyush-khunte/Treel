@@ -22,18 +22,18 @@ export default function SurakshaFAQsPage() {
     },
     {
       cat: "Pricing",
-      q: "Suraksha kit की क्या कीमत है?",
-      a: "Standard 10-wheeler truck के लिए ₹17,500 है। 6-wheeler के लिए ₹10,500, 12-wheeler के लिए ₹21,000, 14-wheeler के लिए ₹24,500, और 18-wheeler trailer के लिए ₹31,500। Price में display, sensors, mounting kit, official JK Tyre warranty, और helpline support सब शामिल है।"
+      q: "Suraksha kit किन configurations में आती है और क्या शामिल है?",
+      a: "Suraksha kit 6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, 16-wheeler और 18-wheeler trailer सभी configurations के लिए उपलब्ध है। हर kit में in-cab solar display, high-precision wheel sensors, anti-theft mounting kit, official JK Tyre warranty, और 24x7 helpline support शामिल है। सटीक quote और dealer offers के लिए नजदीकी Truck Wheels centre पर visit करें या WhatsApp पर contact करें।"
     },
     {
       cat: "Pricing",
       q: "क्या कोई monthly subscription या renewal fee है?",
-      a: "बिल्कुल नहीं! Suraksha zero-subscription product है। एक बार kit खरीद ली, उसके बाद कोई monthly app fee या SIM recharge charge नहीं होता।"
+      a: "बिल्कुल नहीं! Suraksha zero-subscription product है। एक बार kit ले ली, उसके बाद कोई monthly app fee या SIM recharge charge नहीं होता।"
     },
     {
       cat: "EMI",
       q: "क्या Suraksha पर easy EMI मिल सकती है?",
-      a: "हाँ। Bajaj Finance के साथ zero-downpayment easy EMI available है। Monthly instalment ₹1,199/month से शुरू होती है। सिर्फ Aadhar और RC book पर तुरंत approval मिल जाता है।"
+      a: "हाँ। Bajaj Finance के साथ zero-downpayment easy EMI available है। Flexible 3, 6, 9, 12, 18, और 24-month tenures उपलब्ध हैं। सिर्फ Aadhar और RC book पर तुरंत approval मिल जाता है।"
     },
     {
       cat: "Warranty",
