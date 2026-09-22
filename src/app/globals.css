@@ -115,7 +115,14 @@ body {
   background: #94A3B8;
 }
 
-
+/* Utility to hide scrollbars while keeping overflow scrollable on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 /* ============================================================
    TREEL MASTER BRAND DESIGN SYSTEM (Dark Ink #0F1419 + Treel Red #D5573B + Cream #FAF7F2)
    ============================================================ */

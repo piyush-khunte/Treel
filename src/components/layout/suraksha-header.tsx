@@ -33,21 +33,21 @@ export function SurakshaHeader() {
 
       {/* Main Suraksha Nav */}
       <div className="bg-[#FEF3C7]/95 backdrop-blur-md border-b-2 border-[#451A03]/10">
-        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between relative">
+        <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between relative">
           {/* Brand Area */}
           <div className="flex items-center gap-3 sm:gap-4 shrink-0 z-10 mr-2 xl:mr-4">
             <Link href="/" className="flex items-center group">
               <Image
                 src="/images/logo.png"
                 alt="Treel"
-                width={140}
-                height={38}
-                className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                width={180}
+                height={50}
+                className="h-9 sm:h-10 lg:h-11 xl:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
                 priority
               />
             </Link>
 
-            <div className="h-6 w-[1px] bg-[#451A03]/20 hidden sm:block" />
+            <div className="h-7 sm:h-8 w-[1px] bg-[#451A03]/20 hidden sm:block" />
 
             {/* Brand Logo & Motion Mark */}
             <Link href="/suraksha" className="suraksha-nav-brand group">
@@ -68,7 +68,7 @@ export function SurakshaHeader() {
           {/* Desktop Nav Links — Strictly Treel Sitemap Tree V 1.3 */}
           <nav
             aria-label="Suraksha Navigation"
-            className="hidden lg:flex items-center gap-2 xl:gap-3 2xl:gap-4 z-10 font-rubik text-[11px] xl:text-[11.5px] 2xl:text-xs font-bold text-[#451A03]"
+            className="hidden lg:flex items-center gap-1.5 xl:gap-2.5 2xl:gap-3.5 z-10 font-rubik text-[10.5px] xl:text-[11px] 2xl:text-[11.5px] font-bold text-[#451A03]"
           >
             {/* WHY SURAKSHA */}
             <div className="relative group">
@@ -208,13 +208,13 @@ export function SurakshaHeader() {
           <div className="hidden md:flex items-center gap-1.5 xl:gap-2 shrink-0 ml-1.5 xl:ml-3">
             <Link
               href="/suraksha/callback"
-              className="px-2.5 xl:px-3 py-1.5 xl:py-2 rounded font-rubik text-[11px] xl:text-xs font-bold bg-[#DC2626] text-white hover:bg-[#B91C1C] transition-all shadow-sm whitespace-nowrap"
+              className="px-2 xl:px-3 py-1.5 xl:py-2 rounded font-rubik text-[10.5px] xl:text-xs font-bold bg-[#DC2626] text-white hover:bg-[#B91C1C] transition-all shadow-sm whitespace-nowrap"
             >
               Get Suraksha
             </Link>
             <Link
               href="/suraksha/whatsapp"
-              className="px-2.5 xl:px-3 py-1.5 xl:py-2 rounded font-rubik text-[11px] xl:text-xs font-bold bg-[#16A34A] text-white hover:bg-[#15803D] transition-all shadow-sm whitespace-nowrap"
+              className="px-2 xl:px-3 py-1.5 xl:py-2 rounded font-rubik text-[10.5px] xl:text-xs font-bold bg-[#16A34A] text-white hover:bg-[#15803D] transition-all shadow-sm whitespace-nowrap"
             >
               WhatsApp
             </Link>

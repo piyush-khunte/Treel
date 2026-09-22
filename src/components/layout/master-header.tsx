@@ -9,15 +9,20 @@ import {
   X, 
   ChevronDown, 
   ArrowRight,
-  ChevronRight
+  Activity,
+  Truck,
+  Car,
+  HardHat
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { EcosystemBar } from "./ecosystem-bar";
 
 export function MasterHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [mobileTechOpen, setMobileTechOpen] = useState(false);
+  const [mobileBrandsOpen, setMobileBrandsOpen] = useState(false);
   const [mobileOemOpen, setMobileOemOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
 
@@ -46,7 +51,11 @@ export function MasterHeader() {
     pathname.startsWith("/mobility-intelligence") ||
     pathname.startsWith("/data-infrastructure");
 
-  const isProductsActive = pathname === "/products";
+  const isBrandsActive = 
+    pathname === "/products" ||
+    pathname.startsWith("/tmip") ||
+    pathname.startsWith("/suraksha") ||
+    pathname.startsWith("/personal");
 
   const isOemActive = pathname.startsWith("/oem");
 
@@ -59,7 +68,6 @@ export function MasterHeader() {
     pathname.startsWith("/media-kit");
 
   const isGlobalActive = pathname.startsWith("/global-presence");
-  const isCareersActive = pathname.startsWith("/careers");
   const isContactActive = pathname.startsWith("/contact");
 
   return (
@@ -69,21 +77,21 @@ export function MasterHeader() {
 
       {/* 2. MAIN PRODUCTION NAVIGATION BAR */}
       <div className="bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#E5DFD7]">
-        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-5 lg:px-6 xl:px-8 h-20 flex items-center justify-between">
+        <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
           {/* Brand Logo */}
           <Link href="/" className="flex items-center group shrink-0 mr-2 xl:mr-5">
             <Image
               src="/images/logo.png"
               alt="Treel Mobility Solutions"
-              width={160}
-              height={44}
-              className="h-7 sm:h-8 xl:h-9 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+              width={180}
+              height={50}
+              className="h-9 sm:h-10 lg:h-11 xl:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
               priority
             />
           </Link>
 
-          {/* Desktop Navigation Links — Strictly Treel Sitemap Tree V 1.3 */}
-          <nav className="hidden lg:flex items-center space-x-1.5 xl:space-x-3.5 2xl:space-x-5 text-[11px] xl:text-[12.5px] 2xl:text-sm font-medium text-slate-800 font-inter">
+          {/* Desktop Navigation Links */}
+          <nav className="hidden lg:flex items-center space-x-1.5 xl:space-x-3.5 2xl:space-x-4 text-[11px] xl:text-[12.5px] 2xl:text-[13px] font-medium text-slate-800 font-inter">
             {/* ABOUT TREEL */}
             <div className="relative group">
               <Link
@@ -141,13 +149,87 @@ export function MasterHeader() {
               </div>
             </div>
 
-            {/* PRODUCTS & SOLUTIONS */}
-            <Link 
-              href="/products" 
-              className={`transition-colors py-2 whitespace-nowrap ${isProductsActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"}`}
-            >
-              Products &amp; Solutions
-            </Link>
+            {/* BRANDS & SOLUTIONS */}
+            <div className="relative group">
+              <Link 
+                href="/products" 
+                className={`flex items-center gap-1 py-2 transition-colors whitespace-nowrap ${
+                  isBrandsActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"
+                }`}
+              >
+                <span>Brands &amp; Solutions</span>
+                <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform shrink-0" />
+              </Link>
+              <div className="absolute top-full left-0 w-80 p-2 bg-white rounded-2xl shadow-xl border border-slate-200/80 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                <Link href="/tmip" className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors">
+                  <div className="w-9 h-9 rounded-lg bg-[#0A0F1A] flex items-center justify-center text-[#00E5FF] shrink-0 mt-0.5">
+                    <Activity className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-slate-900 flex items-center gap-2">
+                      TMIP Platform <Badge variant="tmip" className="text-[10px] px-1.5 py-0 font-medium">Enterprise</Badge>
+                    </div>
+                    <p className="text-xs text-slate-500 mt-0.5 leading-snug">Vehicle Digital Twin &amp; predictive fleet analytics.</p>
+                  </div>
+                </Link>
+                <Link href="/suraksha" className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors mt-0.5">
+                  <div className="w-9 h-9 rounded-lg bg-[#F59E0B]/20 flex items-center justify-center text-[#B45309] shrink-0 mt-0.5">
+                    <Truck className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-slate-900 flex items-center gap-2">
+                      Suraksha <Badge variant="suraksha" className="text-[10px] px-1.5 py-0 font-medium uppercase">Commercial</Badge>
+                    </div>
+                    <p className="text-xs text-slate-500 mt-0.5 leading-snug">Blowout prevention &amp; 9-month ROI for trucks.</p>
+                  </div>
+                </Link>
+                <Link href="/personal" className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors mt-0.5">
+                  <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0 mt-0.5">
+                    <Car className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-slate-900 flex items-center gap-2">
+                      Personal TPMS <Badge variant="personal" className="text-[10px] px-1.5 py-0 font-medium">Consumer</Badge>
+                    </div>
+                    <p className="text-xs text-slate-500 mt-0.5 leading-snug">Smart tyre sensor kits for cars and 2-wheelers.</p>
+                  </div>
+                </Link>
+                <div className="pt-2 mt-1 border-t border-slate-100">
+                  <Link 
+                    href="/oem/commercial-vehicle" 
+                    className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"
+                  >
+                    <div className="w-9 h-9 rounded-lg bg-[#D5573B]/10 flex items-center justify-center text-[#D5573B] shrink-0 mt-0.5">
+                      <Truck className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold text-slate-900">
+                        Commercial Vehicle TPMS
+                      </div>
+                      <p className="text-xs text-slate-500 mt-0.5 leading-snug">
+                        TMIP platform sits as a subset of this.
+                      </p>
+                    </div>
+                  </Link>
+                  <Link 
+                    href="/oem/mining" 
+                    className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors mt-0.5"
+                  >
+                    <div className="w-9 h-9 rounded-lg bg-amber-50 flex items-center justify-center text-amber-700 shrink-0 mt-0.5">
+                      <HardHat className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold text-slate-900">
+                        OTR TPMS
+                      </div>
+                      <p className="text-xs text-slate-500 mt-0.5 leading-snug">
+                        Off-The-Road TPMS for mining dumpers and heavy utility vehicles.
+                      </p>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </div>
 
             {/* OEM */}
             <div className="relative group">
@@ -228,14 +310,6 @@ export function MasterHeader() {
               Global Presence
             </Link>
 
-            {/* CAREERS */}
-            <Link 
-              href="/careers" 
-              className={`transition-colors py-2 whitespace-nowrap ${isCareersActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"}`}
-            >
-              Careers
-            </Link>
-
             {/* CONTACT */}
             <Link 
               href="/contact" 
@@ -245,15 +319,10 @@ export function MasterHeader() {
             </Link>
           </nav>
 
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-1.5 xl:space-x-2.5 font-inter shrink-0 ml-1.5 xl:ml-3">
-            <Link href="/personal/buy">
-              <Button variant="outline" size="sm" className="border-slate-300 bg-white/80 text-slate-800 hover:bg-slate-100 font-medium px-2 xl:px-3 py-1.5 xl:py-2 text-[11px] xl:text-xs 2xl:text-sm whitespace-nowrap">
-                Buy Personal TPMS
-              </Button>
-            </Link>
+          {/* CTA Button */}
+          <div className="hidden md:flex items-center font-inter shrink-0 ml-2 xl:ml-4">
             <Link href="/tmip/demo">
-              <Button variant="emerald" size="sm" className="font-medium shadow-sm flex items-center gap-1 xl:gap-1.5 px-2.5 xl:px-3.5 py-1.5 xl:py-2 text-[11px] xl:text-xs 2xl:text-sm whitespace-nowrap">
+              <Button variant="emerald" size="sm" className="font-medium shadow-sm flex items-center gap-1 xl:gap-1.5 px-3 xl:px-4 py-1.5 xl:py-2 text-[11px] xl:text-xs whitespace-nowrap">
                 <span>Book Enterprise Demo</span> <ArrowRight className="w-3.5 h-3.5 shrink-0" />
               </Button>
             </Link>
@@ -315,14 +384,25 @@ export function MasterHeader() {
               )}
             </div>
 
-            {/* Products & Solutions */}
-            <Link 
-              href="/products" 
-              onClick={() => setMobileMenuOpen(false)} 
-              className="block py-2 text-slate-900 font-semibold hover:text-[#D5573B]"
-            >
-              Products &amp; Solutions
-            </Link>
+            {/* Brands & Solutions Mobile Accordion */}
+            <div>
+              <button 
+                onClick={() => setMobileBrandsOpen(!mobileBrandsOpen)}
+                className="w-full flex items-center justify-between py-2 text-slate-900 font-semibold"
+              >
+                <span>Brands &amp; Solutions</span>
+                <ChevronDown className={`w-4 h-4 transition-transform ${mobileBrandsOpen ? "rotate-180" : ""}`} />
+              </button>
+              {mobileBrandsOpen && (
+                <div className="pl-3 pb-2 space-y-1 text-xs text-slate-600 border-l-2 border-slate-100 ml-1">
+                  <Link href="/tmip" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">TMIP Platform (Enterprise)</Link>
+                  <Link href="/suraksha" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Suraksha (Commercial)</Link>
+                  <Link href="/personal" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Personal TPMS (Consumer)</Link>
+                  <Link href="/oem/commercial-vehicle" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Commercial Vehicle TPMS</Link>
+                  <Link href="/oem/mining" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">OTR TPMS</Link>
+                </div>
+              )}
+            </div>
 
             {/* OEM Mobile Accordion */}
             <div>
@@ -377,15 +457,6 @@ export function MasterHeader() {
               Global Presence
             </Link>
 
-            {/* Careers */}
-            <Link 
-              href="/careers" 
-              onClick={() => setMobileMenuOpen(false)} 
-              className="block py-2 text-slate-900 font-semibold hover:text-[#D5573B]"
-            >
-              Careers
-            </Link>
-
             {/* Contact */}
             <Link 
               href="/contact" 
@@ -400,11 +471,6 @@ export function MasterHeader() {
             <Link href="/tmip/demo" onClick={() => setMobileMenuOpen(false)}>
               <Button variant="emerald" className="w-full justify-center">
                 Book Enterprise Demo
-              </Button>
-            </Link>
-            <Link href="/personal/buy" onClick={() => setMobileMenuOpen(false)}>
-              <Button variant="outline" className="w-full justify-center">
-                Shop Personal TPMS
               </Button>
             </Link>
           </div>

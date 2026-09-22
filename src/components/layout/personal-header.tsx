@@ -33,24 +33,24 @@ export function PersonalHeader() {
 
       {/* Main Nav */}
       <div className="border-b border-black/[0.06] bg-white/95 backdrop-blur-md font-manrope">
-        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
           {/* Brand Area */}
-          <div className="flex items-center gap-4 sm:gap-6 shrink-0 mr-4">
+          <div className="flex items-center gap-3 sm:gap-5 shrink-0 mr-3 xl:mr-5">
             <Link href="/" className="flex items-center group">
               <Image
                 src="/images/logo.png"
                 alt="Treel"
-                width={140}
-                height={38}
-                className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                width={180}
+                height={50}
+                className="h-9 sm:h-10 lg:h-11 xl:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
                 priority
               />
             </Link>
 
-            <div className="h-6 w-[1px] bg-black/[0.08] hidden sm:block" />
+            <div className="h-7 sm:h-8 w-[1px] bg-black/[0.08] hidden sm:block" />
 
             {/* Personal TPMS Logo & Brand Mark */}
-            <Link href="/personal" className="flex items-center gap-3 group">
+            <Link href="/personal" className="flex items-center gap-2.5 sm:gap-3 group">
               <div className="flex items-center group-hover:scale-105 transition-transform">
                 <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg" className="h-7 w-auto">
                   <g fill="#2563EB">
@@ -72,7 +72,7 @@ export function PersonalHeader() {
           </div>
 
           {/* Desktop Links — Strictly Treel Sitemap Tree V 1.3 */}
-          <nav className="hidden lg:flex items-center gap-4 xl:gap-6 text-sm font-semibold text-[#4B5563] font-manrope">
+          <nav className="hidden lg:flex items-center gap-2.5 xl:gap-4 2xl:gap-5 text-[12.5px] xl:text-[13px] 2xl:text-sm font-semibold text-[#4B5563] font-manrope">
             {/* PRODUCT */}
             <Link 
               href="/personal/product" 
@@ -227,11 +227,13 @@ export function PersonalHeader() {
                 Buy Now <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </Link>
+          </div>
 
-            {/* Mobile toggle */}
+          {/* Mobile toggle */}
+          <div className="lg:hidden flex items-center">
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2.5 rounded-full border border-black/[0.08] text-[#111827]"
+              className="p-2.5 rounded-full border border-black/[0.08] text-[#111827]"
               aria-label="Toggle mobile menu"
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

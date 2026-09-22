@@ -14,6 +14,7 @@ import {
   QrCode,
   Truck,
 } from "lucide-react";
+import RegionalIndiaMap from "@/components/suraksha/regional-india-map";
 
 export const metadata: Metadata = {
   title: "Suraksha · Truck TPMS Safety Kit · Nine-Month Payback",
@@ -57,15 +58,6 @@ const pillars = [
     badgeBg: "bg-[#0891B2]/10 text-[#0891B2] border-[#0891B2]/30",
     icon: Wrench,
   },
-];
-
-const clusters = [
-  { region: "North", languages: "Hindi · English" },
-  { region: "West", languages: "Marathi · Gujarati · Hindi" },
-  { region: "South 1", languages: "Tamil · Kannada · English" },
-  { region: "South 2", languages: "Telugu · Malayalam · English" },
-  { region: "Central", languages: "Hindi · English" },
-  { region: "East", languages: "Hindi · Bengali · Oriya" },
 ];
 
 export default function SurakshaPage() {
@@ -271,21 +263,7 @@ export default function SurakshaPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {clusters.map((cluster) => (
-              <div
-                key={cluster.region}
-                className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all space-y-2"
-              >
-                <div className="font-anton text-2xl font-normal text-[#451A03] uppercase">
-                  {cluster.region}
-                </div>
-                <div className="text-[#78350F] font-rubik text-sm font-semibold">
-                  {cluster.languages}
-                </div>
-              </div>
-            ))}
-          </div>
+          <RegionalIndiaMap />
         </div>
       </section>
 

@@ -32,21 +32,21 @@ export function TmipHeader() {
 
       {/* 2. TMIP NAVBAR */}
       <div className="bg-[#050A17]/95 backdrop-blur-md border-b border-blue-900/30">
-        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-5 lg:px-6 xl:px-8 h-20 flex items-center justify-between">
+        <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
           {/* Brand Area: Official Treel Logo + Separator + TMIP Logo */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0 mr-2 xl:mr-5">
             <Link href="/" className="flex items-center group">
               <Image
                 src="/images/logo.png"
                 alt="Treel"
-                width={160}
-                height={44}
-                className="h-7 sm:h-8 xl:h-9 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                width={180}
+                height={50}
+                className="h-9 sm:h-10 lg:h-11 xl:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
                 priority
               />
             </Link>
 
-            <div className="h-[20px] sm:h-[24px] w-[1px] bg-blue-900/60 hidden sm:block" />
+            <div className="h-6 sm:h-7 w-[1px] bg-blue-900/60 hidden sm:block" />
 
             {/* TMIP Brand Logo (3-bar mark + TMIP) */}
             <Link href="/tmip" className="flex items-center gap-1.5 sm:gap-2 group">
@@ -66,7 +66,7 @@ export function TmipHeader() {
           </div>
 
           {/* Desktop Navigation Links — Strictly Treel Sitemap Tree V 1.3 */}
-          <nav className="hidden lg:flex items-center space-x-1.5 xl:space-x-3.5 2xl:space-x-5 font-ibm-plex text-[10.5px] xl:text-[12px] 2xl:text-[13px] font-medium uppercase tracking-[0.03em] text-[#94A3B8]">
+          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-3 2xl:space-x-4 font-ibm-plex text-[10.5px] xl:text-[11.5px] 2xl:text-[12px] font-medium uppercase tracking-[0.03em] text-[#94A3B8]">
             {/* PLATFORM */}
             <div className="relative group">
               <Link
@@ -216,7 +216,7 @@ export function TmipHeader() {
           <div className="hidden md:flex items-center shrink-0 ml-1.5 xl:ml-3">
             <Link 
               href="/tmip/demo"
-              className="px-2.5 xl:px-4 py-1.5 xl:py-2 rounded-[3px] font-space-grotesk text-[10.5px] xl:text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-wider bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-md flex items-center gap-1.5 transition-all whitespace-nowrap"
+              className="px-2.5 xl:px-4 py-1.5 xl:py-2 rounded-[3px] font-space-grotesk text-[10.5px] xl:text-[11.5px] 2xl:text-[12px] font-semibold uppercase tracking-wider bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-md flex items-center gap-1.5 transition-all whitespace-nowrap"
             >
               <span>Book a demo</span> <span className="text-sm leading-none">→</span>
             </Link>
