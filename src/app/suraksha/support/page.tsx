@@ -22,7 +22,7 @@ import {
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 // WhatsApp inline SVG icon
-function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
+function WhatsAppIcon({ className = "w-5 h-5 text-[#25D366]" }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -105,7 +105,7 @@ const FAQS = [
     id: "faq-1",
     question: "Support kaise contact karein?",
     answer:
-      "3 aasaan tareeke hain: WhatsApp +91 91120 00174 (24/7 automated + business hours human agent), Toll-free 1800 833 0233 (Monday to Friday, 9:00 AM - 6:00 PM IST), aur /suraksha/contact par direct form bharke callback request kar sakte hain."
+      "3 aasaan tareeke hain: WhatsApp +91 91120 00174 (24/7 automated + business hours human agent), Toll-free 1800 833 0233 (Monday to Friday, 8:00 AM - 8:00 PM IST), aur /suraksha/contact par direct form bharke callback request kar sakte hain."
   },
   {
     id: "faq-2",
@@ -227,7 +227,7 @@ export default function SurakshaSupportPage() {
 
                 <div className="flex items-center gap-2 text-xs font-semibold text-[#78350F]">
                   <Clock className="w-4 h-4 text-[#DC2626] shrink-0" />
-                  <span>Monday to Friday · 9:00 AM - 6:00 PM IST</span>
+                  <span>Monday to Friday · 8:00 AM - 8:00 PM IST</span>
                 </div>
 
                 <p className="text-xs text-[#78350F] leading-relaxed pt-2 border-t border-[#451A03]/10 font-medium">
@@ -250,8 +250,8 @@ export default function SurakshaSupportPage() {
               </div>
 
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-lg bg-[#0891B2]/10 text-[#0891B2] flex items-center justify-center">
-                  <WhatsAppIcon className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-lg bg-[#25D366]/10 text-[#25D366] flex items-center justify-center">
+                  <WhatsAppIcon className="w-6 h-6 text-[#25D366]" />
                 </div>
 
                 <div>
@@ -517,7 +517,7 @@ export default function SurakshaSupportPage() {
                 href="/suraksha/whatsapp"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-[4px] bg-[#0891B2] text-white font-rubik font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-[#0E7490] transition-all shadow-md"
               >
-                <WhatsAppIcon className="w-4 h-4" />
+                <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
                 WhatsApp par claim submit kariye →
               </Link>
             </div>
@@ -540,7 +540,7 @@ export default function SurakshaSupportPage() {
                 href="/suraksha/whatsapp"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-[4px] bg-[#FFFBEB] text-[#451A03] font-rubik font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-white transition-all shadow-xl"
               >
-                <WhatsAppIcon className="w-4 h-4 text-[#0891B2]" />
+                <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
                 WhatsApp Kariye →
               </Link>
             </div>

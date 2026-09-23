@@ -77,7 +77,7 @@ export default function TmipPage() {
               </div>
               <h1 className="font-space-grotesk text-4xl sm:text-6xl lg:text-[72px] xl:text-[84px] font-semibold tracking-[-0.03em] text-[#F1F5F9] leading-[1.02] mb-6 sm:mb-8">
                 From tyre monitoring to{" "}
-                <span className="text-[#3B82F6]">mobility intelligence</span>.
+                <span className="text-[#3B82F6] italic">mobility intelligence</span>.
               </h1>
               <p className="font-ibm-plex text-lg sm:text-[20px] leading-[1.55] text-[#94A3B8] max-w-[580px] mb-8 sm:mb-10">
                 The Vehicle Digital Twin platform for enterprise fleets that treat data as operating capital. API-first

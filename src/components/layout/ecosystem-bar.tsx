@@ -11,10 +11,11 @@ export function EcosystemBar() {
   const isCorporate =
     pathname === "/" ||
     (!pathname.startsWith("/tmip") &&
+      !pathname.startsWith("/timp") &&
       !pathname.startsWith("/suraksha") &&
       !pathname.startsWith("/personal") &&
       !pathname.startsWith("/admin"));
-  const isTmip = pathname.startsWith("/tmip");
+  const isTmip = pathname.startsWith("/tmip") || pathname.startsWith("/timp");
   const isSuraksha = pathname.startsWith("/suraksha");
   const isPersonal = pathname.startsWith("/personal");
 
@@ -76,13 +77,6 @@ export function EcosystemBar() {
           >
             <Car className="w-3.5 h-3.5 text-[#60A5FA]" /> Personal TPMS
           </Link>
-
-          <span className="text-slate-600">•</span>
-
-          {/* Commercial TPMS (Pending in Sitemap Brief) */}
-          <span className="text-slate-500 italic whitespace-nowrap text-xs cursor-default" title="Pending roadmap item">
-            Commercial TPMS
-          </span>
 
           <span className="text-slate-600">•</span>
 

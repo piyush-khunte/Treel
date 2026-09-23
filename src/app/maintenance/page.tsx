@@ -105,7 +105,7 @@ export default function MaintenancePage() {
                 </div>
                 <div className="text-xs uppercase font-mono tracking-wider text-[#94A3B8]">Toll-Free (India)</div>
                 <div className="text-base font-semibold text-[#FAF7F2]">1800 833 0233</div>
-                <div className="text-xs text-[#94A3B8]">Mon–Fri, 9 AM – 6 PM IST</div>
+                <div className="text-xs text-[#94A3B8]">Mon–Fri, 8 AM – 8 PM IST</div>
               </div>
 
               <div className="p-6 rounded-xl border border-white/10 bg-white/[0.02] space-y-2">

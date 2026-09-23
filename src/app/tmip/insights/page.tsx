@@ -159,13 +159,16 @@ export default function TmipInsightsPage() {
                 Prefer RSS? Subscribe to TMIP platform updates and research releases.
               </span>
             </div>
-            <Link
+            <a
               href="/tmip/insights/rss.xml"
-              className="px-4 py-2 rounded-[3px] bg-white/[0.04] border border-slate-400/20 text-xs font-jetbrains text-[#F1F5F9] hover:bg-[#3B82F6] hover:border-[#3B82F6] transition-all flex items-center gap-1.5"
+              target="_blank"
+              rel="alternate"
+              type="application/rss+xml"
+              className="px-4 py-2 rounded-[3px] bg-white/[0.04] border border-slate-400/20 text-xs font-jetbrains text-[#F1F5F9] hover:bg-[#3B82F6] hover:border-[#3B82F6] transition-all flex items-center gap-1.5 shrink-0"
             >
               <span>Subscribe via RSS</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+            </a>
           </div>
         </div>
       </section>

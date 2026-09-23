@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const isTmip = pathname.startsWith("/tmip");
+  const isTmip = pathname.startsWith("/tmip") || pathname.startsWith("/timp");
 
   const [messages, setMessages] = useState<Array<{ sender: "bot" | "user"; text: string }>>([
     {

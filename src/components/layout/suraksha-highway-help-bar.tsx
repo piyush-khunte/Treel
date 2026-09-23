@@ -21,7 +21,7 @@ export function SurakshaHighwayHelpBar() {
               href="/suraksha/whatsapp"
               className="hover:text-white inline-flex items-center gap-2 text-[#FEF3C7] font-bold bg-[#EA580C] hover:bg-[#D97706] px-6 py-3 rounded-[4px] text-sm sm:text-base transition-colors shadow-sm"
             >
-              <MessageCircle className="w-4 h-4 text-[#FEF3C7]" /> WhatsApp पे बात करें
+              <MessageCircle className="w-4 h-4 text-[#25D366]" /> WhatsApp पे बात करें
             </Link>
           </div>
         </div>

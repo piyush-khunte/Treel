@@ -127,7 +127,7 @@ export default function SurakshaContactPage() {
                 </div>
 
                 <p className="text-xs sm:text-sm text-[#78350F] font-semibold flex items-center gap-1.5">
-                  <Clock className="w-4 h-4 text-[#DC2626]" /> Monday to Friday · 9 AM to 6 PM IST
+                  <Clock className="w-4 h-4 text-[#DC2626]" /> Monday to Friday · 8 AM to 8 PM IST
                 </p>
               </div>
 
@@ -144,8 +144,8 @@ export default function SurakshaContactPage() {
             {/* Tile 2 · WhatsApp */}
             <div className="bg-[#FFFBEB] border-3 border-[#0891B2] rounded-2xl p-8 sm:p-10 shadow-md flex flex-col justify-between space-y-6 hover:shadow-lg transition-all group">
               <div className="space-y-4">
-                <div className="w-14 h-14 rounded-xl bg-[#0891B2]/10 border-2 border-[#0891B2] flex items-center justify-center text-[#0891B2] group-hover:scale-105 transition-transform">
-                  <MessageCircle className="w-7 h-7" />
+                <div className="w-14 h-14 rounded-xl bg-[#25D366]/10 border-2 border-[#25D366] flex items-center justify-center text-[#25D366] group-hover:scale-105 transition-transform">
+                  <MessageCircle className="w-7 h-7 text-[#25D366]" />
                 </div>
 
                 <div className="space-y-1">
@@ -169,7 +169,7 @@ export default function SurakshaContactPage() {
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider bg-[#0891B2] text-white hover:bg-[#0E7490] transition-all shadow-md active:scale-[0.98]"
                 >
-                  <MessageCircle className="w-4 h-4" /> WhatsApp Chat Open Karein
+                  <MessageCircle className="w-4 h-4 text-[#25D366]" /> WhatsApp Chat Open Karein
                 </a>
               </div>
             </div>
@@ -419,8 +419,8 @@ export default function SurakshaContactPage() {
             {/* WhatsApp Shortcut Card */}
             <div className="p-6 sm:p-8 bg-[#FFFBEB] border-2 border-[#451A03]/15 rounded-xl flex flex-col justify-between space-y-4">
               <div className="space-y-2">
-                <div className="w-10 h-10 rounded-lg bg-[#0891B2]/10 border border-[#0891B2]/30 flex items-center justify-center text-[#0891B2]">
-                  <MessageCircle className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-lg bg-[#25D366]/10 border border-[#25D366]/30 flex items-center justify-center text-[#25D366]">
+                  <MessageCircle className="w-5 h-5 text-[#25D366]" />
                 </div>
                 <h3 className="font-anton text-2xl uppercase tracking-normal text-[#451A03]">
                   WHATSAPP SHORTCUT

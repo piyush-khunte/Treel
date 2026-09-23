@@ -358,7 +358,7 @@ export default function PressPage() {
                 </div>
               </div>
               <div className="pt-4 border-t border-white/10 text-xs text-[#64748B]">
-                Operating hours: Monday – Friday, 09:00 – 18:00 IST
+                Operating hours: Monday – Friday, 08:00 – 20:00 IST
               </div>
             </div>
           </div>

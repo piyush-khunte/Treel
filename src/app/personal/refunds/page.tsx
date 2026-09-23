@@ -162,7 +162,7 @@ export default function PersonalRefundsPage() {
             <div className="p-8 sm:p-10 rounded-3xl bg-[#111827] text-white space-y-4 border border-white/10 shadow-xl">
               <h3 className="text-xl sm:text-2xl font-bold text-white">Need Status on a Specific Refund?</h3>
               <p className="text-sm text-[#94A3B8] leading-relaxed">
-                Reach out to our finance team at <strong>hello@treel.in</strong> with your Order ID and Razorpay reference, or contact our customer support hotline at <strong>1800 833 0233</strong> (Monday to Friday, 9:00 AM to 6:00 PM IST).
+                Reach out to our finance team at <strong>hello@treel.in</strong> with your Order ID and Razorpay reference, or contact our customer support hotline at <strong>1800 833 0233</strong> (Monday to Friday, 8:00 AM to 8:00 PM IST).
               </p>
             </div>
           </div>

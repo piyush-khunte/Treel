@@ -151,7 +151,7 @@ export default function SurakshaFAQsPage() {
                 href="/suraksha/whatsapp"
                 className="px-6 py-3 rounded-[4px] bg-[#EA580C] text-white font-rubik font-bold text-xs uppercase tracking-wider hover:bg-[#DC2626] transition-all flex items-center gap-2 whitespace-nowrap shadow-sm"
               >
-                <MessageCircle className="w-4 h-4" /> WhatsApp पे बात करें
+                <MessageCircle className="w-4 h-4 text-[#25D366]" /> WhatsApp पे बात करें
               </Link>
             </div>
           </div>

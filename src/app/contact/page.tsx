@@ -164,7 +164,7 @@ export default function ContactPage() {
                   </h3>
                 </div>
                 <p className="text-[#94A3B8] text-sm leading-relaxed font-inter">
-                  Monday to Friday, 9:00 AM to 6:00 PM IST. Emergency support for enterprise customers is available 24/7 through the support portal.
+                  Monday to Friday, 8:00 AM to 8:00 PM IST.
                 </p>
               </div>
             </div>

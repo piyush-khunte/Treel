@@ -193,7 +193,7 @@ export default function PersonalSupportPage() {
                 Prefer to talk to someone? Call our toll-free line during business hours:
               </p>
               <div className="pt-2 text-sm text-[#94A3B8] font-medium">
-                Toll-free 1800 833 0233 · Monday to Friday, 9:00 AM to 6:00 PM IST
+                Toll-free 1800 833 0233 · Monday to Friday, 8:00 AM to 8:00 PM IST
               </div>
             </div>
 

@@ -19,6 +19,7 @@ export function TmipHeader() {
 
   const isPlatformActive = pathname.startsWith("/tmip/platform");
   const isSolutionsActive = pathname.startsWith("/tmip/solutions");
+  const isTpmsActive = pathname === "/timp/tpms";
   const isCustomersActive = pathname.startsWith("/tmip/customers");
   const isRoiActive = pathname === "/tmip/roi-calculator";
   const isResourcesActive = pathname.startsWith("/tmip/whitepapers") || pathname.startsWith("/tmip/insights");
@@ -129,6 +130,16 @@ export function TmipHeader() {
                 </Link>
               </div>
             </div>
+
+            {/* TPMS */}
+            <Link
+              href="/timp/tpms"
+              className={`py-2 transition-colors whitespace-nowrap ${
+                isTpmsActive ? "text-[#3B82F6] font-semibold" : "hover:text-[#3B82F6]"
+              }`}
+            >
+              TPMS
+            </Link>
 
             {/* CUSTOMERS */}
             <div className="relative group">
@@ -279,6 +290,17 @@ export function TmipHeader() {
                 </div>
               )}
             </div>
+
+            {/* TPMS */}
+            <Link 
+              href="/timp/tpms" 
+              onClick={() => setMobileMenuOpen(false)}
+              className={`block py-2 font-semibold uppercase tracking-wider text-xs transition-colors ${
+                isTpmsActive ? "text-[#3B82F6]" : "text-white hover:text-[#3B82F6]"
+              }`}
+            >
+              TPMS
+            </Link>
 
             {/* Customers Accordion */}
             <div>

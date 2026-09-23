@@ -1,6 +1,7 @@
 import React from "react";
 import { SurakshaHeader } from "@/components/layout/suraksha-header";
 import { SurakshaHighwayHelpBar } from "@/components/layout/suraksha-highway-help-bar";
+import { SurakshaFloatingWhatsApp } from "@/components/suraksha/suraksha-floating-whatsapp";
 
 export default function SurakshaLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -8,6 +9,7 @@ export default function SurakshaLayout({ children }: { children: React.ReactNode
       <SurakshaHeader />
       <main id="suraksha-main">{children}</main>
       <SurakshaHighwayHelpBar />
+      <SurakshaFloatingWhatsApp />
     </div>
   );
 }

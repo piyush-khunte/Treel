@@ -31,6 +31,7 @@ export function MasterHeader() {
   // If on TMIP, Suraksha, Personal TPMS, or Admin, their dedicated headers handle main nav
   if (
     pathname.startsWith("/tmip") ||
+    pathname.startsWith("/timp") ||
     pathname.startsWith("/suraksha") ||
     pathname.startsWith("/personal") ||
     pathname.startsWith("/admin")
@@ -54,6 +55,7 @@ export function MasterHeader() {
   const isBrandsActive = 
     pathname === "/products" ||
     pathname.startsWith("/tmip") ||
+    pathname.startsWith("/timp") ||
     pathname.startsWith("/suraksha") ||
     pathname.startsWith("/personal");
 
@@ -196,7 +198,7 @@ export function MasterHeader() {
                 </Link>
                 <div className="pt-2 mt-1 border-t border-slate-100">
                   <Link 
-                    href="/oem/commercial-vehicle" 
+                    href="/timp/tpms" 
                     className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"
                   >
                     <div className="w-9 h-9 rounded-lg bg-[#D5573B]/10 flex items-center justify-center text-[#D5573B] shrink-0 mt-0.5">
@@ -398,7 +400,7 @@ export function MasterHeader() {
                   <Link href="/tmip" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">TMIP Platform (Enterprise)</Link>
                   <Link href="/suraksha" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Suraksha (Commercial)</Link>
                   <Link href="/personal" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Personal TPMS (Consumer)</Link>
-                  <Link href="/oem/commercial-vehicle" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Commercial Vehicle TPMS</Link>
+                  <Link href="/timp/tpms" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Commercial Vehicle TPMS</Link>
                   <Link href="/oem/mining" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">OTR TPMS</Link>
                 </div>
               )}

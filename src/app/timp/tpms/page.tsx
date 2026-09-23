@@ -15,11 +15,17 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Commercial Vehicle TPMS · Treel Mobility Solutions",
+  title: "Commercial Vehicle TPMS · TMIP · Treel Mobility Solutions",
   description:
     "Heavy commercial vehicle tyre telematics, multi-axle pressure and temperature monitoring, and digital twin systems for commercial vehicle fleets and manufacturers.",
   alternates: {
-    canonical: "https://treel.in/oem/commercial-vehicle",
+    canonical: "https://treel.in/timp/tpms",
+  },
+  openGraph: {
+    title: "Commercial Vehicle TPMS · TMIP · Treel Mobility Solutions",
+    description:
+      "Heavy commercial vehicle tyre telematics, multi-axle pressure and temperature monitoring, and digital twin systems for commercial vehicle fleets and manufacturers.",
+    url: "https://treel.in/timp/tpms",
   },
 };
 
@@ -93,7 +99,7 @@ const architectureSteps = [
   },
 ];
 
-export default function OemCommercialVehiclePage() {
+export default function CommercialVehicleTpmsPage() {
   return (
     <div className="relative bg-[#050A17] text-[#F1F5F9] font-ibm-plex overflow-x-hidden min-h-screen">
       {/* Subtle Blueprint Grid Background: 60px x 60px rgba(59,130,246,0.04) */}
@@ -118,8 +124,8 @@ export default function OemCommercialVehiclePage() {
                 Home
               </Link>
               <span>/</span>
-              <Link href="/oem" className="hover:text-white transition-colors">
-                OEM
+              <Link href="/tmip" className="hover:text-white transition-colors">
+                TMIP
               </Link>
               <span>/</span>
               <span className="text-[#3B82F6]">Commercial Vehicle TPMS</span>

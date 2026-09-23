@@ -133,7 +133,7 @@ export default function SurakshaPage() {
                   href="/suraksha/whatsapp"
                   className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all border-2 border-[#DC2626] text-[#DC2626] bg-[#FEF3C7] hover:bg-[#DC2626]/10 active:scale-[0.98]"
                 >
-                  <MessageCircle className="w-5 h-5 text-[#DC2626]" /> WhatsApp करिए
+                  <MessageCircle className="w-5 h-5 text-[#25D366]" /> WhatsApp करिए
                 </Link>
               </div>
             </div>
@@ -310,7 +310,7 @@ export default function SurakshaPage() {
                   <QrCode className="w-10 h-10" />
                 </div>
                 <div className="text-xs font-semibold text-[#78350F] flex items-center justify-center gap-1">
-                  <MessageCircle className="w-4 h-4 text-[#10B981]" /> या WhatsApp पर लिखिए
+                  <MessageCircle className="w-4 h-4 text-[#25D366]" /> या WhatsApp पर लिखिए
                 </div>
               </Link>
             </div>

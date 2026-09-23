@@ -84,7 +84,7 @@ const responseTimes = [
   {
     label: "Human agent responses",
     time: "Within 30 minutes",
-    detail: "Mon–Fri, 9 AM – 6 PM during active business hours",
+    detail: "Mon–Fri, 8 AM – 8 PM during active business hours",
     icon: Clock,
   },
   {
@@ -113,7 +113,7 @@ export default function SurakshaWhatsappPage() {
               className="flex justify-center"
             />
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#10B981] bg-[#10B981]/10 text-[#047857] font-rubik text-xs font-bold uppercase tracking-wider">
-              <MessageCircle className="w-3.5 h-3.5" />
+              <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
               WHATSAPP
             </div>
 

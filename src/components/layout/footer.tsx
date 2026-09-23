@@ -18,7 +18,7 @@ export function Footer({ variant, className }: FooterProps) {
   // Determine variant automatically if not explicitly provided
   let activeVariant: FooterVariant = (variant === "suraksha" ? "master" : variant) || "master";
   if (!variant && pathname) {
-    if (pathname.startsWith("/tmip")) {
+    if (pathname.startsWith("/tmip") || pathname.startsWith("/timp")) {
       activeVariant = "tmip";
     } else if (pathname.startsWith("/personal")) {
       activeVariant = "personal";

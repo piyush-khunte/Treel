@@ -54,7 +54,7 @@ export default function PersonalSupportContactPage() {
       icon: Phone,
       title: "Toll-free",
       desc: "1800 833 0233",
-      timing: "Monday to Friday, 9:00 AM to 6:00 PM IST",
+      timing: "Monday to Friday, 8:00 AM to 8:00 PM IST",
       badge: "Direct Phone"
     },
     {

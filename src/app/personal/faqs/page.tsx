@@ -144,7 +144,7 @@ export default function PersonalFaqsPage() {
     {
       cat: "Support",
       q: "What are your business hours?",
-      a: "Monday to Friday, 9:00 AM to 6:00 PM IST."
+      a: "Monday to Friday, 8:00 AM to 8:00 PM IST."
     },
     {
       cat: "Support",
