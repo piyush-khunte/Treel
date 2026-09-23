@@ -117,7 +117,7 @@ export default function PersonalFeaturesAppPage() {
       name: "Karthik M.",
       role: "Tata Nexon EV Owner",
       title: "Accurate to the decimal",
-      body: "Checked against a certified digital gauge at the JK Tyre service hub and it matched within 0.2 PSI. Highly recommended.",
+      body: "Checked against a certified digital gauge at an authorized service hub and it matched within 0.2 PSI. Highly recommended.",
       stars: 5
     }
   ];

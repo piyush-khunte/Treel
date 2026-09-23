@@ -524,7 +524,7 @@ export default function SurakshaBlogPage() {
               </div>
 
               <p className="text-xs text-[#78350F]/80 italic">
-                * Seed editorial topic from content.md. Full long-form publication body will be syndicated from JK Treel editorial desk.
+                * Seed editorial topic from content.md. Full long-form publication body will be syndicated from Treel editorial desk.
               </p>
             </div>
 

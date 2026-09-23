@@ -321,7 +321,7 @@ export default function SurakshaVideosPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider bg-red-600 text-white hover:bg-red-700 transition-all shadow-md shrink-0 active:scale-[0.98]"
             >
-              Subscribe to @jktreel <ExternalLink className="w-4 h-4" />
+              Subscribe on YouTube <ExternalLink className="w-4 h-4" />
             </a>
           </div>
         </div>
