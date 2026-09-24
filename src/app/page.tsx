@@ -288,11 +288,7 @@ export default function HomePage() {
       </section>
 
       {/* 5. CORPORATE DISCLOSURE STRIP */}
-      <section className="py-6 bg-[#0B0F14] border-b border-white/10 text-center font-jetbrains font-mono text-xs uppercase tracking-[0.1em] text-[#64748B]">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          Treel Mobility Solutions Pvt. Ltd.
-        </div>
-      </section>
+      
     </div>
   );
 }

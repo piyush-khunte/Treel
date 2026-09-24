@@ -17,7 +17,7 @@ export function PersonalHeader() {
   const pathname = usePathname();
   const { totalItems } = useCart();
 
-  const isProductActive = pathname === "/personal/product";
+  const isProductActive = pathname === "/personal/buy" || pathname.startsWith("/personal/product");
   const isFeaturesActive = pathname.startsWith("/personal/features");
   const isSpecsActive = pathname === "/personal/specs";
   const isReviewsActive = pathname === "/personal/reviews";
@@ -75,7 +75,7 @@ export function PersonalHeader() {
           <nav className="hidden lg:flex items-center gap-2.5 xl:gap-4 2xl:gap-5 text-[12.5px] xl:text-[13px] 2xl:text-sm font-semibold text-[#4B5563] font-manrope">
             {/* PRODUCT */}
             <Link 
-              href="/personal/product" 
+              href="/personal/buy" 
               className={`hover:text-[#2563EB] transition-colors whitespace-nowrap py-2 ${
                 isProductActive ? "text-[#2563EB] font-bold" : ""
               }`}
@@ -244,8 +244,8 @@ export function PersonalHeader() {
         {/* Mobile Drawer */}
         {mobileOpen && (
           <div className="lg:hidden border-t border-black/[0.06] bg-white px-6 py-6 space-y-3 text-sm font-semibold shadow-2xl font-manrope max-h-[calc(100vh-120px)] overflow-y-auto">
-            <Link href="/personal/product" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">
-              Product Overview
+            <Link href="/personal/buy" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">
+              Product Store
             </Link>
 
             {/* Features Accordion */}

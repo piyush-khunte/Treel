@@ -3,7 +3,7 @@
 import React, { useState, useMemo, Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter, redirect } from "next/navigation";
 import { 
   CheckCircle2, 
   ShoppingCart, 
@@ -22,19 +22,9 @@ import {
 import { useCart } from "@/lib/commerce/cart-context";
 import { PERSONAL_PRODUCTS, PersonalProduct, getPersonalProductBySlug } from "@/lib/data/personal-products";
 
-function ProductDetailContent() {
+function ProductDetailContent({ product }: { product: PersonalProduct }) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const slugParam = searchParams.get("slug");
   const { addItem } = useCart();
-
-  const product: PersonalProduct = useMemo(() => {
-    if (slugParam) {
-      const found = getPersonalProductBySlug(slugParam);
-      if (found) return found;
-    }
-    return PERSONAL_PRODUCTS[0];
-  }, [slugParam]);
 
   // Gather all valid gallery images
   const images = useMemo(() => {
@@ -453,6 +443,22 @@ function ProductDetailContent() {
   );
 }
 
+function ProductDetailWrapper() {
+  const searchParams = useSearchParams();
+  const slugParam = searchParams.get("slug");
+
+  if (!slugParam) {
+    redirect("/personal/buy");
+  }
+
+  const product = getPersonalProductBySlug(slugParam);
+  if (!product) {
+    redirect("/personal/buy");
+  }
+
+  return <ProductDetailContent product={product} />;
+}
+
 export default function PersonalProductPage() {
   return (
     <Suspense fallback={
@@ -460,7 +466,7 @@ export default function PersonalProductPage() {
         Loading product details...
       </div>
     }>
-      <ProductDetailContent />
+      <ProductDetailWrapper />
     </Suspense>
   );
 }
