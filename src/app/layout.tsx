@@ -13,7 +13,6 @@ import {
 import "./globals.css";
 import { MasterHeader } from "@/components/layout/master-header";
 import { MasterFooter } from "@/components/layout/master-footer";
-import { ChatWidget } from "@/components/layout/chat-widget";
 import { CookieBanner } from "@/components/layout/cookie-banner";
 import { CartProvider } from "@/lib/commerce/cart-context";
 
@@ -91,7 +90,6 @@ export default function RootLayout({
             {children}
           </main>
           <MasterFooter />
-          <ChatWidget />
           <CookieBanner />
         </CartProvider>
       </body>

@@ -17,7 +17,6 @@ Database: Supabase (PostgreSQL)
 Hosting: Vercel Pro
 Payments: Razorpay
 Shipping: Shiprocket
-Chatbot: Magic Flow AI
 
 # BUILT WITH
 Love from Pune, Bengaluru & New Delhi, India

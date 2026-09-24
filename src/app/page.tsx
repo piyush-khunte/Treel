@@ -178,7 +178,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <p className="text-[#CBD5E1] text-sm leading-[1.6] font-inter">
-                  A ₹17,500 DIY tyre safety kit for India's owner-drivers. Safety, savings, simplicity. Six regional clusters, vernacular first, on the ground.
+                  A DIY tyre safety kit for India's owner-drivers. Safety, savings, simplicity. Six regional clusters, vernacular first, on the ground.
                 </p>
               </div>
               <div className="pt-8 font-inter text-[13px] font-semibold text-[#D5573B] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
