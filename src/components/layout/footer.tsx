@@ -32,7 +32,7 @@ export function Footer({ variant, className }: FooterProps) {
   // Variant styling configurations
   const themes = {
     master: {
-      footer: "bg-[#0F1419] text-[#FAF7F2] border-t border-white/10 pt-16 pb-12 px-6 sm:px-10 font-inter",
+      footer: "bg-[#0F1419] text-[#FAF7F2] border-t border-white/10 pt-16 pb-12 font-inter",
       gridBorder: "border-b border-white/10",
       tagline: "font-fraunces italic text-[15px] text-[#94A3B8] leading-relaxed max-w-sm",
       subtext: "text-xs text-[#64748B] font-mono pt-2",
@@ -46,7 +46,7 @@ export function Footer({ variant, className }: FooterProps) {
       bottomLink: "hover:text-[#FAF7F2] transition-colors",
     },
     tmip: {
-      footer: "bg-[#050A17] text-[#E5E7EB] border-t border-[#3B82F6]/20 pt-16 pb-10 px-6 sm:px-10 font-ibm-plex relative z-10",
+      footer: "bg-[#050A17] text-[#E5E7EB] border-t border-[#3B82F6]/20 pt-16 pb-10 font-ibm-plex relative z-10",
       gridBorder: "border-b border-white/5",
       tagline: "font-ibm-plex text-[15px] text-[#94A3B8] leading-relaxed max-w-sm",
       subtext: "text-xs text-[#64748B] font-jetbrains pt-2",
@@ -60,7 +60,7 @@ export function Footer({ variant, className }: FooterProps) {
       bottomLink: "hover:text-[#3B82F6] transition-colors",
     },
     suraksha: {
-      footer: "bg-[#FEF3C7] text-[#451A03] border-t-2 border-[#451A03]/10 pt-16 pb-10 px-6 sm:px-10 font-rubik relative z-10",
+      footer: "bg-[#FEF3C7] text-[#451A03] border-t-2 border-[#451A03]/10 pt-16 pb-10 font-rubik relative z-10",
       gridBorder: "border-b border-[#451A03]/10",
       tagline: "font-rubik text-[15px] text-[#78350F] font-medium leading-relaxed max-w-sm",
       subtext: "text-xs text-[#92400E] font-semibold font-rubik pt-2",
@@ -74,7 +74,7 @@ export function Footer({ variant, className }: FooterProps) {
       bottomLink: "hover:text-[#DC2626] transition-colors",
     },
     personal: {
-      footer: "bg-[#0B132B] text-slate-100 border-t border-blue-500/20 pt-16 pb-10 px-6 sm:px-10 font-manrope relative z-10",
+      footer: "bg-[#0B132B] text-slate-100 border-t border-blue-500/20 pt-16 pb-10 font-manrope relative z-10",
       gridBorder: "border-b border-slate-800",
       tagline: "font-manrope text-[15px] text-slate-400 leading-relaxed max-w-sm",
       subtext: "text-xs text-slate-500 font-manrope pt-2",
@@ -93,7 +93,7 @@ export function Footer({ variant, className }: FooterProps) {
 
   return (
     <footer className={`${theme.footer} ${className || ""}`}>
-      <div className="max-w-[1320px] mx-auto">
+      <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10">
         <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 pb-12 ${theme.gridBorder}`}>
           {/* Brand & Tagline */}
           <div className="lg:col-span-2 space-y-4">
