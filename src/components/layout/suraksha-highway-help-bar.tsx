@@ -8,7 +8,7 @@ export function SurakshaHighwayHelpBar() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-4 text-base sm:text-lg font-semibold text-center md:text-left">
             <span className="text-[#FEF3C7]">
-              सुरक्षा हेल्पलाइन: <strong>1800 258 4567</strong> (Toll-Free, 8 AM – 8 PM)
+              Suraksha Helpline: <strong>1800 258 4567</strong> (Toll-Free, 8 AM – 8 PM)
             </span>
             <span className="hidden sm:inline text-[#EA580C]">•</span>
             <span className="text-[#FEF3C7]/90 font-medium">
@@ -19,8 +19,8 @@ export function SurakshaHighwayHelpBar() {
             <WhatsAppCtaButton
               href="/suraksha/whatsapp"
               size="md"
-              title="WhatsApp पे बात करें"
-              ariaLabel="WhatsApp"
+              title="Chat on WhatsApp"
+              ariaLabel="Chat on WhatsApp"
             />
           </div>
         </div>

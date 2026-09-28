@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { SurakshaEmiCalculator } from "./emi-calculator";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 export const metadata: Metadata = {
   title: "Suraksha EMI Plans · Bajaj Finance Partnership · Zero-Cost Options",
@@ -34,70 +35,70 @@ export const metadata: Metadata = {
 
 const eligibilityCriteria = [
   { label: "Age", value: "21–65 years" },
-  { label: "Employment", value: "Self-employed (truck owner) या salaried" },
-  { label: "Truck ownership", value: "RC card के साथ registered owner" },
-  { label: "Income proof", value: "Bank statement (last 6 months) या ITR" },
+  { label: "Employment", value: "Self-employed (truck owner) or salaried" },
+  { label: "Truck ownership", value: "Registered owner with valid RC" },
+  { label: "Income proof", value: "Bank statement (last 6 months) or ITR" },
   { label: "CIBIL score", value: "700+ preferred, lower scores considered case-by-case" },
-  { label: "KYC", value: "Aadhar + PAN mandatory" },
+  { label: "KYC", value: "Aadhaar + PAN mandatory" },
 ];
 
 const requiredDocuments = [
-  "Aadhar card (front + back photo)",
-  "PAN card (photo)",
-  "Truck RC (photo)",
-  "Bank statement (last 6 months) या ITR (last 2 years)",
+  "Aadhaar card (front and back)",
+  "PAN card",
+  "Truck Registration Certificate (RC)",
+  "Bank statement (last 6 months) or ITR (last 2 years)",
   "Recent passport-size photo",
-  "Address proof (if different from Aadhar)",
+  "Address proof (if different from Aadhaar)",
 ];
 
 const steps = [
   {
     num: "1",
-    title: "Documents ready रखिए",
-    desc: "Aadhar, PAN, RC, bank statement.",
+    title: "Keep Documents Ready",
+    desc: "Aadhaar, PAN, RC, and 6-month bank statement.",
   },
   {
     num: "2",
-    title: "Application form भरिए",
-    desc: "Online form या Truck Wheels centre पर assist मिलेगी।",
+    title: "Complete Application",
+    desc: "Fill our quick online form or get assisted at any Truck Wheels centre.",
   },
   {
     num: "3",
-    title: "Documents upload करिए",
-    desc: "Photos भी WhatsApp पर send कर सकते हैं।",
+    title: "Submit Documents",
+    desc: "Upload photos online or share directly via WhatsApp.",
   },
   {
     num: "4",
-    title: "Bajaj Finance review",
-    desc: "24-48 hours में result.",
+    title: "Finance Verification",
+    desc: "Approval decision in 24–48 hours.",
   },
   {
     num: "5",
-    title: "Approval के बाद kit collect करिए",
-    desc: "Truck Wheels centre से pickup या home delivery.",
+    title: "Collect and Fit Kit",
+    desc: "Pickup and 15-minute fitment at your nearest centre.",
   },
 ];
 
 const faqs = [
   {
-    q: "क्या CIBIL score कम है तो EMI मिलेगा?",
-    a: "हाँ, Bajaj Finance case-by-case consider करता है। Application submit कर के देखिए।",
+    q: "Can I get EMI approval with a lower CIBIL score?",
+    a: "Yes. Financing applications are reviewed on a holistic case-by-case basis including vehicle profile and bank statements. Submit your application to check eligibility.",
   },
   {
-    q: "Down payment कितना देना होगा?",
-    a: "Zero down payment options available for eligible applicants. Standard में 10-20% down payment beneficial होता है।",
+    q: "How much down payment is required?",
+    a: "Zero down payment options are available for eligible applicants. Standard plans typically require 10–20% down payment.",
   },
   {
-    q: "कितने दिनों में approval मिलता है?",
-    a: "Usually 24-48 hours में। Complete documents दिए तो same-day approval भी possible है।",
+    q: "How long does approval take?",
+    a: "Usually within 24–48 hours. When all clear documents are submitted upfront, same-day approval is often possible.",
   },
   {
-    q: "EMI miss हो जाए तो?",
-    a: "Standard Bajaj Finance late payment fees apply. WhatsApp पर contact करिए — हम help कर सकते हैं।",
+    q: "What happens if an EMI payment is missed?",
+    a: "Standard finance partner late charges apply. If you foresee any payment delays, contact our helpline on WhatsApp so our team can assist you.",
   },
   {
-    q: "क्या EMI foreclose कर सकते हैं?",
-    a: "Haan. Foreclosure charges as per Bajaj Finance terms, usually 3-5%.",
+    q: "Can I foreclose or prepay the EMI loan early?",
+    a: "Yes. Early foreclosure is available under standard finance terms with minimal processing charges.",
   },
 ];
 
@@ -144,16 +145,19 @@ export default function SurakshaEmiPage() {
             </div>
 
             <h1 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95] uppercase">
-              FLEXIBLE EMI PLANS<br />
-              <span className="italic text-[#EA580C]">BAJAJ FINANCE PARTNERSHIP.</span>
+              EMI STARTS AT<br />
+              <span className="italic text-[#EA580C]">₹1,500 A MONTH.</span>
             </h1>
 
-            <p className="text-[#DC2626] font-rubik text-xl sm:text-2xl font-bold">
-              Zero downpayment options with instant pre-approval.
-            </p>
+            <SurakshaRotator
+              page="5.5"
+              className="font-baloo text-xl sm:text-2xl font-bold text-[#DC2626] tracking-wide"
+            >
+              आसान किस्तों में आज ही सुरक्षा लगवाइए।
+            </SurakshaRotator>
 
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Suraksha kit को EMI पर लेना बहुत आसान है। Bajaj Finance के साथ partnership है — flexible tenures, minimal documentation, और quick approval.
+              Get your Suraksha kit fitted now and pay in easy monthly instalments, with quick approval and minimal paperwork. Use the calculator below to find a plan that suits you.
             </p>
           </div>
         </div>
@@ -175,11 +179,11 @@ export default function SurakshaEmiPage() {
             </div>
 
             <h2 className="font-anton text-3xl sm:text-4xl font-normal text-[#451A03] uppercase">
-              ZERO-COST EMI कब मिलता है?
+              WHEN IS ZERO-COST EMI AVAILABLE?
             </h2>
 
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-medium">
-              9-month tenure के लिए zero-cost EMI available है — मतलब total amount payable equal to kit price, कोई interest नहीं। यह limited-time offer है, terms apply.
+              Zero-cost EMI is available on selected 9-month plans, meaning the total amount payable equals the kit price with zero interest charges. Limited-time offer, terms apply.
             </p>
           </div>
         </div>
@@ -210,14 +214,14 @@ export default function SurakshaEmiPage() {
               </div>
 
               <p className="text-xs font-semibold text-[#78350F] pt-2 border-t border-[#451A03]/10">
-                Note: Final eligibility Bajaj Finance के discretion पर है। Approval usually 24-48 hours में हो जाती है।
+                Note: Final eligibility is subject to partner finance approval. Verifications are typically completed within 24–48 hours.
               </p>
             </div>
 
             {/* Documents */}
             <div className="p-8 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 space-y-6 shadow-sm">
               <h2 className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase">
-                DOCUMENTS जो चाहिए
+                DOCUMENTS REQUIRED
               </h2>
 
               <ul className="space-y-3">
@@ -240,7 +244,7 @@ export default function SurakshaEmiPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              APPLY कैसे करें?
+              HOW TO APPLY
             </h2>
           </div>
 

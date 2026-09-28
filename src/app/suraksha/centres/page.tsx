@@ -6,6 +6,7 @@ import { MapPin, Phone, Clock, Search } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import IndiaCentresMap from "@/components/suraksha/india-centres-map";
 import { SURAKSHA_CENTRES, SurakshaCentre } from "@/components/suraksha/india-map-data";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 export default function SurakshaCentresPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -51,13 +52,19 @@ export default function SurakshaCentresPage() {
             />
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
               <MapPin className="w-3.5 h-3.5" />
-              NEAREST CENTRE
+              INSTALLATION CENTRES
             </div>
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
-              करीब का <span className="italic text-[#DC2626]">Suraksha Centre</span> ढूंढिए.
+              FIND YOUR <span className="italic text-[#DC2626]">NEAREST CENTRE.</span>
             </h1>
+            <SurakshaRotator
+              page="5.12"
+              className="font-baloo text-xl sm:text-2xl font-bold text-[#DC2626] tracking-wide pt-2"
+            >
+              आपके रूट पर, आपके पास।
+            </SurakshaRotator>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Truck Wheels centres, JK tyre dealers, और 400+ certified highway service points across India. 15-minute quick installation, instant warranty setup, and easy EMI approval.
+              Get Suraksha fitted at Truck Wheels centres, authorised dealers and select puncture shops across India. Search by pincode or city below to find one on your route.
             </p>
           </div>
         </div>
@@ -78,7 +85,7 @@ export default function SurakshaCentresPage() {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#78350F]" />
               <input
                 type="text"
-                placeholder="Pincode, city, state, या highway number search करें..."
+                placeholder="Search by pincode, city, state, or highway number..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-12 pr-4 py-3.5 bg-white border-2 border-[#451A03]/20 rounded-[4px] text-[#451A03] font-medium text-base focus:outline-none focus:border-[#DC2626] shadow-sm"

@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 interface TestimonialVideo {
   id: string;
@@ -216,15 +217,18 @@ export default function SurakshaTestimonialsPage() {
             </div>
 
             <h1 className="font-anton uppercase tracking-normal text-5xl sm:text-6xl lg:text-7xl text-[#451A03] leading-[0.95]">
-              DRIVERS KYA <span className="italic text-[#DC2626]">KEHTE HAI.</span>
+              WHAT DRIVERS <span className="italic text-[#DC2626]">SAY.</span>
             </h1>
 
-            <p className="text-[#DC2626] font-rubik text-xl sm:text-2xl font-bold">
-              What drivers actually say.
-            </p>
+            <SurakshaRotator
+              page="5.13"
+              className="font-baloo text-xl sm:text-2xl font-bold text-[#DC2626] tracking-wide"
+            >
+              ड्राइवरों की ज़ुबानी, सुरक्षा की कहानी।
+            </SurakshaRotator>
 
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Suraksha use karne wale drivers ki real stories. Har cluster se, har truck type se, har region se.
+              Real stories from drivers who use Suraksha every day, across every region and truck type. Filter by region or truck type below.
             </p>
           </div>
         </div>
@@ -501,11 +505,11 @@ export default function SurakshaTestimonialsPage() {
             </div>
 
             <h2 className="font-anton text-4xl sm:text-5xl uppercase tracking-tight text-[#451A03]">
-              APNI STORY SHARE KIJIYE
+              SHARE YOUR STORY
             </h2>
 
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-medium">
-              Aap Suraksha use kar rahe hai aur experience share karna chahte hai? WhatsApp par video ya written testimonial bhejiye. Selected stories site pe feature ki jayegi.
+              Are you using Suraksha and want to share your experience? Send your video or written testimonial via WhatsApp. Selected stories will be featured on our website.
             </p>
 
             <div className="pt-2">
@@ -525,11 +529,11 @@ export default function SurakshaTestimonialsPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton text-5xl sm:text-6xl font-normal tracking-tight text-[#FEF3C7] uppercase">
-              AAP BHI EK STORY BAN JAAO.
+              WRITE YOUR OWN SUCCESS STORY.
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto">
-              Suraksha kit lagao, highway blowouts se bacho aur har mahine fuel aur tyre cost save karo.
+              Fit Suraksha on your truck, prevent highway blowouts, and save on fuel and tyres every month.
             </p>
 
             <div className="pt-4 flex flex-wrap justify-center gap-4">
@@ -542,8 +546,8 @@ export default function SurakshaTestimonialsPage() {
               <WhatsAppCircularIcon
                 href="/suraksha/whatsapp"
                 size="lg"
-                title="WhatsApp Kariye"
-                ariaLabel="WhatsApp Kariye"
+                title="Chat on WhatsApp"
+                ariaLabel="Chat on WhatsApp"
               />
             </div>
           </div>

@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 interface Article {
   id: string;
@@ -35,9 +36,9 @@ const articlesData: Article[] = [
   // Fuel Efficiency
   {
     id: "fuel-10-tips",
-    title: "Fuel Efficiency Ke 10 Simple Tips Jo Har Driver Ko Pata Hone Chahiye",
+    title: "10 Simple Fuel-Saving Tips Every Driver Should Know",
     category: "Fuel efficiency",
-    excerpt: "Sahi tyre pressure maintain karne aur linear throttle input se diesel consumption 8-12% tak reduce ho sakta hai.",
+    excerpt: "Maintaining proper tyre pressure and smooth throttle control can cut your diesel consumption by 8–12%.",
     author: "Suraksha Fleet Team",
     date: "October 2026",
     readTime: "5 min read",
@@ -45,9 +46,9 @@ const articlesData: Article[] = [
   },
   {
     id: "fuel-warning-signs",
-    title: "Kya Aap Ka Truck Zyada Fuel Kha Raha Hai? 5 Warning Signs",
+    title: "Is Your Truck Consuming Too Much Fuel? 5 Warning Signs",
     category: "Fuel efficiency",
-    excerpt: "Agar truck pull kar raha hai ya tyre shoulders jaldi wear ho rahe hai, toh under-inflation fuel waste kar raha hai.",
+    excerpt: "If your truck pulls to one side or tyre shoulders show rapid wear, under-inflation is wasting fuel.",
     author: "Technical Desk",
     date: "October 2026",
     readTime: "4 min read",
@@ -55,9 +56,9 @@ const articlesData: Article[] = [
   },
   {
     id: "fuel-right-pressure",
-    title: "Right Tyre Pressure Se Fuel Kaise Bachaayein",
+    title: "How Proper Tyre Pressure Saves Fuel",
     category: "Fuel efficiency",
-    excerpt: "Rolling resistance ka direct relation tyre pressure se hai. Har 10 PSI drop par 1.5% zyada fuel burn hota hai.",
+    excerpt: "Rolling resistance is directly tied to tyre pressure. Every 10 PSI drop increases diesel consumption by 1.5%.",
     author: "Engineering Team",
     date: "September 2026",
     readTime: "6 min read",
@@ -67,9 +68,9 @@ const articlesData: Article[] = [
   // Safety
   {
     id: "safety-monsoon",
-    title: "Monsoon Season Mein Truck Safety — Must-Know Tips",
+    title: "Monsoon Truck Safety — Essential Tips for Highway Drivers",
     category: "Safety",
-    excerpt: "Barish ke mausam mein aquaplaning aur wet braking distance 40% tak badh jata hai. Tread depth aur pressure check zaroori hai.",
+    excerpt: "Wet road surfaces increase braking distance by up to 40%. Checking tread depth and tyre pressure is critical.",
     author: "Safety Operations",
     date: "September 2026",
     readTime: "6 min read",
@@ -77,9 +78,9 @@ const articlesData: Article[] = [
   },
   {
     id: "safety-highway-rules",
-    title: "Highway Driving — 7 Safety Rules Jo Life Bachate Hai",
+    title: "Highway Driving — 7 Essential Safety Rules That Save Lives",
     category: "Safety",
-    excerpt: "Long haul trips par driver fatigue aur night blindness se bachne ke certified tips aur roadside safety protocol.",
+    excerpt: "Proven fatigue-management guidelines, night driving precautions, and roadside emergency protocols for long-haul routes.",
     author: "Driver Welfare Cell",
     date: "September 2026",
     readTime: "5 min read",
@@ -87,9 +88,9 @@ const articlesData: Article[] = [
   },
   {
     id: "safety-front-blowout",
-    title: "Front Tyre Blowout Se Kaise Bachein — Highway Survival Guide",
+    title: "How to Prevent Front Tyre Blowouts — A Highway Survival Guide",
     category: "Safety",
-    excerpt: "Steer axle par blowout hone par steering control aur emergency deceleration technique ka full safety manual.",
+    excerpt: "Step-by-step steering control and emergency deceleration techniques if a front tyre loses pressure at highway speed.",
     author: "Accident Prevention Unit",
     date: "August 2026",
     readTime: "6 min read",
@@ -99,9 +100,9 @@ const articlesData: Article[] = [
   // Business & GST
   {
     id: "business-gst-basics",
-    title: "Owner-Drivers Ke Liye GST Basics — 2026 Update",
+    title: "GST Basics for Owner-Drivers — 2026 Guide",
     category: "Business & GST",
-    excerpt: "RCM (Reverse Charge Mechanism), e-way bill compliance aur GTA rules jo single truck owners ko samajhna zaroori hai.",
+    excerpt: "Reverse Charge Mechanism (RCM), e-way bill compliance, and GTA rules simplified for single-truck operators.",
     author: "Transport Legal Advisor",
     date: "October 2026",
     readTime: "7 min read",
@@ -109,9 +110,9 @@ const articlesData: Article[] = [
   },
   {
     id: "business-truck-insurance",
-    title: "Truck Insurance — Kya Cover Hota Hai Aur Kya Nahi",
+    title: "Commercial Truck Insurance — What Is Covered and What Isn't",
     category: "Business & GST",
-    excerpt: "Third party vs comprehensive insurance, tyre damage riders, aur accidental claims file karne ka asaan process.",
+    excerpt: "Third-party vs comprehensive insurance, tyre damage riders, and how to file accident claims without delays.",
     author: "Insurance Guidance Desk",
     date: "September 2026",
     readTime: "5 min read",
@@ -119,9 +120,9 @@ const articlesData: Article[] = [
   },
   {
     id: "business-fastag-toll",
-    title: "Fastag Aur Toll — Complete Guide",
+    title: "FASTag and Toll Management — A Complete Guide",
     category: "Business & GST",
-    excerpt: "Blacklisted tag issues, toll dispute resolutions aur monthly pass benefits for commercial vehicle routes.",
+    excerpt: "Resolving blacklisted tag disputes, toll charge reconciliation, and monthly pass benefits on commercial freight routes.",
     author: "Highway Logistics Desk",
     date: "August 2026",
     readTime: "4 min read",
@@ -131,9 +132,9 @@ const articlesData: Article[] = [
   // Route Planning
   {
     id: "route-truck-stops",
-    title: "India Ke Best Truck Stops — Cluster-wise Guide",
+    title: "Best Truck Stops Across India — Corridor Guide",
     category: "Route planning",
-    excerpt: "NH44, NH48 aur Golden Quadrilateral par secure parking, hygienic dhabas aur clean rest facilities ki verified list.",
+    excerpt: "Verified secure parking, hygienic dhabas, and clean rest facilities along NH44, NH48, and the Golden Quadrilateral.",
     author: "Corridor Survey Team",
     date: "October 2026",
     readTime: "8 min read",
@@ -141,9 +142,9 @@ const articlesData: Article[] = [
   },
   {
     id: "route-trip-planning",
-    title: "Long-Haul Trip Planning — Fatigue Management Tips",
+    title: "Long-Haul Trip Planning — Driver Fatigue Management",
     category: "Route planning",
-    excerpt: "12-hour shifts mein 3-step micro-rest schedule jo highway hypnosis aur sleep deprivation se bachata hai.",
+    excerpt: "A structured 3-step micro-rest schedule for 12-hour shifts to prevent highway hypnosis and sleep deprivation.",
     author: "Driver Health Cell",
     date: "September 2026",
     readTime: "5 min read",
@@ -153,9 +154,9 @@ const articlesData: Article[] = [
   // Industry News & Maintenance
   {
     id: "industry-scrappage",
-    title: "New Vehicle Scrappage Policy — Owner-Drivers Ke Liye Kya Matlab",
+    title: "New Vehicle Scrappage Policy — What It Means for Owner-Drivers",
     category: "Industry news",
-    excerpt: "15-year commercial vehicle fitness test rules, registration renewal fees aur green tax impact on fleet economics.",
+    excerpt: "15-year fitness test rules, renewal fees, and how green tax regulations affect commercial fleet economics.",
     author: "Policy Research Group",
     date: "October 2026",
     readTime: "6 min read",
@@ -163,9 +164,9 @@ const articlesData: Article[] = [
   },
   {
     id: "industry-diesel-trends",
-    title: "Diesel Prices — 2026 Trends aur Impact",
+    title: "Diesel Price Trends and Protecting Freight Margins",
     category: "Industry news",
-    excerpt: "Fuel price fluctuations ke dauraan per-kilometer freight pricing calculate karne aur margins protect karne ka model.",
+    excerpt: "How to calculate per-kilometre operational costs and protect freight margins during diesel price swings.",
     author: "Freight Economics Team",
     date: "September 2026",
     readTime: "4 min read",
@@ -173,9 +174,9 @@ const articlesData: Article[] = [
   },
   {
     id: "maint-seasonal-calibration",
-    title: "Summer Heat Mein Tyre Pressure Kitna Rakhein? Maintenance Guide",
+    title: "Tyre Pressure in Summer Heat — Highway Maintenance Guide",
     category: "Maintenance",
-    excerpt: "Garmiyon mein hot road bitumen temperature 60°C cross karne par cold inflation vs hot inflation balancing rule.",
+    excerpt: "How hot tarmac temperatures above 60°C affect tyre pressure, and the golden rules of cold vs hot inflation.",
     author: "Tyre Technical Team",
     date: "August 2026",
     readTime: "5 min read",
@@ -235,15 +236,18 @@ export default function SurakshaBlogPage() {
             </div>
 
             <h1 className="font-anton uppercase tracking-normal text-5xl sm:text-6xl lg:text-7xl text-[#451A03] leading-[0.95]">
-              DRIVERS KA <span className="italic text-[#DC2626]">BLOG.</span>
+              THE DRIVERS' <span className="italic text-[#DC2626]">BLOG.</span>
             </h1>
 
-            <p className="text-[#DC2626] font-rubik text-xl sm:text-2xl font-bold">
-              A blog for drivers, by drivers.
-            </p>
+            <SurakshaRotator
+              page="5.22"
+              className="font-baloo text-xl sm:text-2xl font-bold text-[#DC2626] tracking-wide"
+            >
+              सड़क, ट्रक और कमाई की काम की बातें।
+            </SurakshaRotator>
 
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Truck driving community ke liye practical content — fuel efficiency, monsoon safety, route planning, GST for owner-drivers, aur industry updates. Sab kuch Hinglish mein, aap ke liye.
+              Practical tips on fuel efficiency, monsoon safety, route planning, GST for owner-drivers and industry updates, written in simple language for the trucking community.
             </p>
           </div>
         </div>
@@ -293,11 +297,11 @@ export default function SurakshaBlogPage() {
               </div>
 
               <h2 className="font-anton text-3xl sm:text-4xl lg:text-5xl uppercase tracking-normal text-[#451A03] leading-tight">
-                Front Tyre Blowout Se Kaise Bachein — Highway Survival Guide
+                How to Prevent Front Tyre Blowouts — A Highway Survival Guide
               </h2>
 
               <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-medium">
-                Highway par high-speed driving karte waqt front tyre blowout sabse bada risk hota hai. Suraksha real-time pressure & temperature alert se slow leaks pehle hi detect kar leta hai.
+                Front tyre blowouts are among the greatest risks at highway speeds. Suraksha gives real-time pressure and temperature alerts to catch slow leaks long before a dangerous failure.
               </p>
 
               <div className="pt-2 flex items-center gap-4 text-xs font-semibold text-[#78350F] flex-wrap">
@@ -319,7 +323,7 @@ export default function SurakshaBlogPage() {
                   onClick={() => setActiveArticle(articlesData[5])}
                   className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider bg-[#DC2626] text-white hover:bg-[#B91C1C] transition-all shadow-md cursor-pointer"
                 >
-                  Padhiye <ArrowRight className="w-4 h-4" />
+                  Read article <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -375,7 +379,7 @@ export default function SurakshaBlogPage() {
                     onClick={() => setActiveArticle(article)}
                     className="font-rubik font-bold text-xs uppercase tracking-wider text-[#DC2626] hover:text-[#B91C1C] flex items-center gap-1 cursor-pointer"
                   >
-                    Padhiye <ArrowRight className="w-3.5 h-3.5" />
+                    Read article <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
@@ -433,18 +437,18 @@ export default function SurakshaBlogPage() {
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="space-y-2 max-w-2xl">
                 <h3 className="font-anton text-3xl sm:text-4xl uppercase tracking-normal text-[#451A03]">
-                  BLOG UPDATES CHAHIYE?
+                  WANT BLOG UPDATES?
                 </h3>
                 <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-medium">
-                  WhatsApp par new articles ka notification chahiye toh subscribe kariye. No spam, sirf useful content.
+                  Get new articles sent directly to WhatsApp. No spam, just practical trucking guidance.
                 </p>
               </div>
 
               <WhatsAppCircularIcon
                 href="/suraksha/whatsapp"
                 size="md"
-                title="WhatsApp par subscribe"
-                ariaLabel="WhatsApp par subscribe"
+                title="Subscribe on WhatsApp"
+                ariaLabel="Subscribe on WhatsApp"
               />
             </div>
 
@@ -461,11 +465,11 @@ export default function SurakshaBlogPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton text-5xl sm:text-6xl font-normal tracking-tight text-[#FEF3C7] uppercase">
-              SAFETY AUR SAVINGS SATH CHALTE HAI.
+              SAFETY AND SAVINGS GO HAND IN HAND.
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto">
-              Suraksha TPMS se har truck par saal ka ₹25,000+ diesel aur tyre bachat shuru karein.
+              Save ₹25,000+ per truck every year on diesel and tyre wear with Suraksha TPMS.
             </p>
 
             <div className="pt-4 flex flex-wrap justify-center gap-4">
@@ -478,8 +482,8 @@ export default function SurakshaBlogPage() {
               <WhatsAppCircularIcon
                 href="/suraksha/whatsapp"
                 size="lg"
-                title="WhatsApp Kariye"
-                ariaLabel="WhatsApp Kariye"
+                title="Chat on WhatsApp"
+                ariaLabel="Chat on WhatsApp"
               />
             </div>
           </div>
@@ -520,7 +524,7 @@ export default function SurakshaBlogPage() {
                   Key Takeaway for Indian Highway Drivers:
                 </div>
                 <p className="text-xs leading-relaxed text-[#78350F]">
-                  Suraksha digital tyre pressure telemetry monitor continuous readings deliver karta hai. High-speed highway runs par early warning blowout prevention aur optimum fuel economy ensure karti hai.
+                  Suraksha delivers continuous tyre pressure and temperature telemetry to your cab. Early leak warnings prevent blowouts on high-speed runs and protect fuel economy.
                 </p>
               </div>
 

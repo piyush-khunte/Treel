@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/our-story`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/why-treel`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/products`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/products/otr-tpms`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/technology`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/data-infrastructure`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
 

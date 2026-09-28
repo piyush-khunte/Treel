@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight, CheckCircle2, ShieldCheck, PhoneCall } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 export default function SurakshaEMIApplyPage() {
   const router = useRouter();
@@ -41,13 +42,19 @@ export default function SurakshaEMIApplyPage() {
               ]}
             />
             <div className="border text-[#DC2626] bg-[#DC2626]/10 border-[#DC2626]/20 font-rubik text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full inline-block">
-              SURAKSHA EMI
+              EMI APPLICATION
             </div>
-            <h1 className="font-anton text-4xl sm:text-5xl lg:text-6xl uppercase tracking-wider text-[#DC2626] leading-[1.15]">
-              Apply for Suraksha Kit EMI.
+            <h1 className="font-anton text-4xl sm:text-5xl lg:text-6xl uppercase tracking-wider text-[#451A03] leading-[1.15]">
+              APPLY IN <span className="italic text-[#EA580C]">4 STEPS.</span>
             </h1>
+            <SurakshaRotator
+              page="5.6"
+              className="font-baloo text-xl sm:text-2xl font-bold text-[#DC2626] tracking-wide pt-2"
+            >
+              लगभग 10 मिनट में आपकी एप्लिकेशन पूरी।
+            </SurakshaRotator>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Zero downpayment. Easy monthly instalments with flexible tenures. Instant approval at any of our 400+ highway Suraksha centres across India.
+              Share your personal and truck details, upload your Aadhaar, PAN and bank statement, then review and submit. Keep these documents ready before you start.
             </p>
           </div>
         </div>
@@ -69,7 +76,7 @@ export default function SurakshaEMIApplyPage() {
                 <input
                   type="text"
                   required
-                  placeholder="अपना पूरा नाम लिखें"
+                  placeholder="Enter your full name"
                   value={formData.ownerName}
                   onChange={(e) => setFormData({ ...formData, ownerName: e.target.value })}
                   className="w-full px-4 py-3 bg-[#FEF3C7]/60 border border-[#451A03]/20 rounded-lg text-[#451A03] placeholder-[#78350F]/50 focus:outline-none focus:border-[#DC2626] text-sm font-medium"

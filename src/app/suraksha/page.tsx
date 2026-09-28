@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import RegionalIndiaMap from "@/components/suraksha/regional-india-map";
 import { WhatsAppCtaButton } from "@/components/ui/whatsapp-cta-button";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 export const metadata: Metadata = {
   title: "Suraksha · Truck TPMS Safety Kit · Nine-Month Payback",
@@ -35,24 +36,24 @@ const pillars = [
   {
     number: "01 · SAFETY",
     title: "FRONT-TYRE BLOWOUTS, PREVENTED.",
-    desc: "Real-time tyre pressure and temperature on the cabin display. See the warning before the blowout. आपके परिवार के लिए — क्योंकि हर trip घर वापस आना ज़रूरी है।",
+    desc: "Real-time tyre pressure and temperature on the cabin display. See the warning before the blowout. Built for your family — because returning home safely from every trip matters.",
     color: "#DC2626",
     badgeBg: "bg-[#DC2626]/10 text-[#DC2626] border-[#DC2626]/30",
     icon: Shield,
   },
   {
     number: "02 · SAVINGS",
-    title: "NINE MONTHS में पूरी कीमत वापस।",
-    desc: "Five to six percent fuel savings. Five to seven percent tyre-life extension. Roadside towing fees gone. Kit पैसा nine months में वापस दे देती है।",
-    accent: "पैसा वसूल",
+    title: "NINE MONTHS. FULL PAYBACK.",
+    desc: "Five to six percent fuel savings. Five to seven percent tyre-life extension. Zero roadside towing fees. The kit pays for itself in nine to twelve months.",
+    accent: "FULL PAYBACK",
     color: "#EA580C",
     badgeBg: "bg-[#EA580C]/10 text-[#EA580C] border-[#EA580C]/30",
     icon: Fuel,
   },
   {
     number: "03 · SIMPLICITY",
-    title: "PUNCTURE SHOP पे FIT करो, CABIN में देखो।",
-    desc: "Fifteen-minute install at any Truck Wheels centre या roadside puncture shop. No app to download.",
+    title: "FIT AT ANY PUNCTURE SHOP. WATCH IN YOUR CABIN.",
+    desc: "Fifteen-minute installation at any Truck Wheels centre or roadside puncture shop. No app to download.",
     badge: "No monthly fee. No subscription.",
     color: "#0891B2",
     badgeBg: "bg-[#0891B2]/10 text-[#0891B2] border-[#0891B2]/30",
@@ -93,7 +94,7 @@ export default function SurakshaPage() {
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
                 <Truck className="w-3.5 h-3.5" />
-                INDIA के DRIVERS के लिए
+                FOR INDIA'S TRUCK DRIVERS
               </div>
 
               <div className="space-y-2">
@@ -102,13 +103,16 @@ export default function SurakshaPage() {
                   FITS <span className="italic text-[#DC2626]">ANY</span> <br />
                   TRUCK.
                 </h1>
-                <p className="font-baloo text-2xl sm:text-3xl font-bold text-[#DC2626] tracking-wide pt-1">
+                <SurakshaRotator
+                  page="5.1"
+                  className="font-baloo text-2xl sm:text-3xl font-bold text-[#DC2626] tracking-wide pt-1"
+                >
                   आपके परिवार की सुरक्षा।
-                </p>
+                </SurakshaRotator>
               </div>
 
               <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-2xl">
-                Tyre pressure दिखाता है. Nine months में पूरी कीमत वापस. Fifteen minute में install हो जाता है. Fits any truck. Anywhere in India.
+                Shows tyre pressure. Pays for itself in nine months. Installs in fifteen minutes. Fits any truck, anywhere in India.
               </p>
 
               {/* Value Statement Pill */}
@@ -273,11 +277,11 @@ export default function SurakshaPage() {
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h2 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#FEF3C7] leading-[0.95] uppercase">
               NINE MONTHS.<br />
-              पूरी कीमत वापस।
+              FULL PAYBACK.
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl leading-relaxed font-medium max-w-2xl mx-auto">
-              Suraksha का safety kit. EMI available on Bajaj Finance at every Truck Wheels centre. Fifteen minute में install हो जाता है।
+              Suraksha truck safety kit. Easy EMI available through Bajaj Finance at every Truck Wheels centre. Installation takes fifteen minutes.
             </p>
 
             {/* Two Contact Cards */}
@@ -313,7 +317,7 @@ export default function SurakshaPage() {
                   <svg className="w-4 h-4 fill-[#25D366] shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.476-.15-.677.15-.2.301-.777.978-.953 1.179-.176.2-.351.226-.652.075-.301-.15-1.272-.469-2.424-1.496-.895-.798-1.5-1.784-1.675-2.085-.176-.301-.019-.464.132-.614.135-.135.301-.351.451-.527.15-.176.201-.301.301-.501.101-.2.05-.376-.025-.527-.075-.15-.677-1.631-.928-2.233-.244-.585-.492-.505-.677-.515-.176-.01-.376-.01-.577-.01-.2 0-.526.075-.802.376-.276.301-1.053 1.029-1.053 2.509 0 1.48 1.078 2.909 1.229 3.109.15.2 2.122 3.24 5.141 4.544.718.31 1.279.495 1.716.634.721.23 1.378.197 1.897.12.578-.087 1.78-.727 2.031-1.43.25-.703.25-1.305.176-1.43-.075-.125-.276-.201-.577-.351zM12.04 21.786h-.005a9.832 9.832 0 0 1-5.01-1.377l-.36-.214-3.725.976.994-3.63-.235-.374a9.858 9.858 0 0 1-1.512-5.263c0-5.446 4.435-9.879 9.886-9.879 2.639 0 5.118 1.028 6.982 2.894a9.824 9.824 0 0 1 2.891 6.985c0 5.448-4.434 9.882-9.886 9.882zm0-18.286c-4.636 0-8.406 3.768-8.406 8.404a8.38 8.38 0 0 0 1.29 4.474l.199.317-.588 2.148 2.2-.577.308.183a8.356 8.356 0 0 0 4.997 1.459h.004c4.636 0 8.406-3.769 8.406-8.405a8.344 8.344 0 0 0-2.463-5.942 8.345 8.345 0 0 0-5.947-2.461z" />
                   </svg>
-                  या WhatsApp पर लिखिए
+                  Or Chat on WhatsApp
                 </div>
               </Link>
             </div>

@@ -13,6 +13,7 @@ import {
   PhoneCall,
 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 export const metadata: Metadata = {
   title: "Suraksha Kit · Configurations & Inclusions · EMI Available",
@@ -99,20 +100,23 @@ export default function SurakshaPricingPage() {
             />
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
               <Truck className="w-3.5 h-3.5" />
-              CONFIGURATIONS
+              PRICING
             </div>
 
             <h1 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95] uppercase">
-              सीधी बात.<br />
-              <span className="italic text-[#DC2626]">COMPLETE PROTECTION.</span>
+              PRICED FOR YOUR TRUCK.<br />
+              <span className="italic text-[#DC2626]">NO HIDDEN FEES.</span>
             </h1>
 
-            <p className="text-[#DC2626] font-rubik text-xl sm:text-2xl font-bold">
-              Complete kit for every truck configuration. No hidden fees.
-            </p>
+            <SurakshaRotator
+              page="5.4"
+              className="font-baloo text-xl sm:text-2xl font-bold text-[#DC2626] tracking-wide"
+            >
+              आपके ट्रक के पहियों के हिसाब से सही कीमत।
+            </SurakshaRotator>
 
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Wheel configuration के हिसाब से complete Suraksha kit उपलब्ध है — 6-wheeler से लेकर 18-wheeler trailers तक। सब कुछ नीचे है — अपनी गाड़ी की configuration चुनिए और नजदीकी Truck Wheels centre पर सम्पर्क कीजिए।
+              Your price depends on how many wheels your truck has. Find your configuration below to see what&apos;s included, then contact us for your price. EMI is available on every kit.
             </p>
           </div>
         </div>
@@ -207,19 +211,19 @@ export default function SurakshaPricingPage() {
 
             <h2 className="font-anton text-4xl sm:text-5xl font-normal text-[#451A03] uppercase leading-tight">
               9 MONTHS PAYBACK.<br />
-              <span className="italic text-[#EA580C]">एक कप चाय से भी कम चिंता।</span>
+              <span className="italic text-[#EA580C]">LESS THAN A DAILY CUP OF TEA.</span>
             </h2>
 
             <p className="text-[#78350F] text-lg leading-relaxed font-medium">
-              Three-year sensor warranty और continuous diesel bachat के साथ, Suraksha पहले ही 9 महीनों में पूरा पैसा वसूल करा देता है। Highway blowouts और roadside towing का कोई डर नहीं।
+              With a three-year sensor warranty and continuous fuel savings, Suraksha pays for itself in the first 9–12 months. Drive with complete confidence on every highway.
             </p>
 
-            <div className="font-baloo text-3xl font-extrabold text-[#DC2626]">
-              पैसा वसूल
+            <div className="font-anton text-2xl uppercase tracking-wider text-[#DC2626]">
+              FULL VALUE RECOVERY
             </div>
 
             <div className="pt-4 border-t-2 border-[#EA580C]/20 text-xs font-semibold text-[#78350F]">
-              5-6% diesel savings + 5-7% extended tyre life + 100% roadside blowout prevention
+              5–6% diesel savings + 5–7% extended tyre life + 100% roadside blowout prevention
             </div>
           </div>
         </div>
@@ -230,7 +234,7 @@ export default function SurakshaPricingPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              सब कुछ INCLUDED
+              EVERYTHING INCLUDED
             </h2>
             <p className="text-[#DC2626] font-rubik text-lg font-bold mt-2">
               Everything included in the kit
@@ -312,7 +316,7 @@ export default function SurakshaPricingPage() {
                   href="/suraksha/emi"
                   className="font-rubik text-xs font-bold text-[#DC2626] hover:underline flex items-center gap-1"
                 >
-                  EMI Options देखिए <ArrowRight className="w-3.5 h-3.5" />
+                  Explore EMI Plans <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
             </div>
@@ -325,7 +329,7 @@ export default function SurakshaPricingPage() {
                 Option 3 · Truck financing
               </h3>
               <p className="text-[#78350F] text-sm leading-relaxed">
-                Truck financing के साथ bundle करवा सकते हैं। Financier से बात करिए।
+                Can be bundled directly with your commercial truck loan. Consult your vehicle financier.
               </p>
             </div>
           </div>
@@ -337,16 +341,16 @@ export default function SurakshaPricingPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="p-8 sm:p-12 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/20 max-w-4xl space-y-6">
             <h2 className="font-anton text-3xl sm:text-4xl font-normal text-[#451A03] uppercase">
-              FLEET OPERATORS के लिए?
+              FOR FLEET OPERATORS
             </h2>
 
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-medium">
-              5+ trucks के लिए special fleet solutions and custom deployment available. WhatsApp पर बात कीजिए या call करिए — customized quote मिलेगा।
+              Fleet pricing and dedicated deployment support are available for operators with 5 or more trucks. Contact our team via WhatsApp or phone for a tailored quote.
             </p>
 
             <div className="p-4 rounded-[4px] bg-[#FEF3C7] border border-[#451A03]/10 text-sm text-[#451A03] flex items-center justify-between flex-wrap gap-4">
               <span>
-                10+ trucks के fleet operators के लिए TMIP enterprise platform भी consider करिए — बहुत ज़्यादा features मिलते हैं।
+                For fleets with 10 or more commercial vehicles, explore our TMIP enterprise mobility intelligence platform.
               </span>
               <Link
                 href="/tmip"
@@ -368,7 +372,7 @@ export default function SurakshaPricingPage() {
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto">
-              Nearest Truck Wheels centre find करिए या flexible EMI options देखिए।
+              Find your nearest Truck Wheels centre or explore flexible EMI plans.
             </p>
 
             <div className="pt-4 flex flex-wrap justify-center gap-4">

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle2, ShieldCheck, Activity, HelpCircle, ChevronRight, MessageSquare, PhoneCall, Check } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 export const metadata: Metadata = {
   title: "Why Suraksha  \u00b7  Safety, Savings, Simplicity for Truck Owner-Drivers",
@@ -32,13 +33,19 @@ export default function SurakshaWhySurakshaPage() {
               ]}
             />
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
-              क्यों SURAKSHA?
+              WHY SURAKSHA?
             </div>
             <h1 className="font-anton uppercase tracking-wide text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95]">
-              तीन PROMISES.<br /><span className="italic text-[#DC2626]">THREE PILLARS.</span>
+              SAFETY. SAVINGS.<br /><span className="italic text-[#DC2626]">SIMPLICITY.</span>
             </h1>
+            <SurakshaRotator
+              page="5.8"
+              className="font-baloo text-xl sm:text-2xl font-bold text-[#DC2626] tracking-wide pt-2"
+            >
+              तीन वजह, क्यों ड्राइवर सुरक्षा लगवाते हैं।
+            </SurakshaRotator>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Safety, savings, simplicity. हर pillar deep detail में नीचे है। पढ़िए, देखिए, decide कीजिए।
+              Safety, savings, and simplicity. Each pillar is explained in detail below. Read, explore, and decide.
             </p>
           </div>
         </div>
@@ -52,28 +59,24 @@ export default function SurakshaWhySurakshaPage() {
               <span className="font-rubik text-xs font-bold px-3 py-1 rounded-full border border-[#DC2626]/30 bg-[#DC2626]/10 text-[#DC2626]">
                 01 · SAFETY
               </span>
-              <span className="text-xs font-semibold text-[#78350F]">Colour bar: Suraksha Red</span>
+              <span className="text-xs font-semibold text-[#78350F]">Pillar 1: Suraksha Red</span>
             </div>
 
             <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal text-[#451A03]">
               FRONT-TYRE BLOWOUTS, PREVENTED.
             </h2>
 
-            <div className="text-xs font-bold uppercase tracking-wider text-[#78350F]">
-              Pillar header: Body (Hinglish narrative):
-            </div>
-
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-medium">
-              Highway पे front-tyre blowout का मतलब क्या होता है, यह हर truck driver जानता है। Truck का control चला जाता है। Loaded truck 60 km/h पर भी manage करना मुश्किल होता है। और worst-case scenario में — परिवार को सिर्फ phone call से पता चलता है।
+              Every truck driver knows what a front-tyre blowout on the highway means. You lose control of the vehicle. Managing a loaded truck even at 60 km/h becomes nearly impossible. In the worst-case scenario, the driver&apos;s family only finds out through an emergency phone call.
             </p>
 
             <p className="text-[#78350F] text-base leading-relaxed">
-              Suraksha का job simple है: blowout होने से पहले warn करना। Cabin display हर tyre का pressure और temperature दिखाता है continuously. जब किसी tyre में slow leak होती है या temperature spike करता है — display red flash करता है, beep करता है। आप रुक सकते हैं, tyre check कर सकते हैं, safe रह सकते हैं।
+              Suraksha&apos;s purpose is simple: warn you before a blowout happens. The cabin display continuously shows the pressure and temperature of every tyre. When a slow leak begins or temperature spikes, the display flashes red and beeps. You can pull over, check the tyre in time, and stay safe.
             </p>
 
             <div className="pt-2 border-t border-[#451A03]/10">
               <div className="text-xs font-bold uppercase tracking-wider text-[#78350F] mb-3">
-                Statistics that matter (English for clarity):
+                Key safety facts:
               </div>
               <ul className="space-y-2.5 text-sm text-[#451A03]">
                 <li className="flex items-start gap-2">
@@ -93,19 +96,19 @@ export default function SurakshaWhySurakshaPage() {
 
             <div className="pt-2">
               <p className="text-[#451A03] text-sm font-semibold">
-                The Suraksha promise: आपको warning मिलेगी 24-48 hours पहले। बस।
+                The Suraksha promise: You receive early warning 24 to 48 hours before failure occurs.
               </p>
             </div>
 
             <div className="pt-4 border-t-2 border-[#DC2626]/20 flex items-center justify-between flex-wrap gap-4">
-              <div className="font-baloo text-2xl font-extrabold text-[#DC2626]">
-                आपके परिवार की सुरक्षा
+              <div className="font-anton text-2xl tracking-wide uppercase text-[#DC2626]">
+                SAFETY FOR YOUR FAMILY
               </div>
               <Link
                 href="/suraksha/safety"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-sm bg-[#DC2626] text-[#FEF3C7] hover:bg-[#B91C1C] transition-all shadow-md"
               >
-                Safety details full में → <ArrowRight className="w-4 h-4" />
+                Explore Safety In Detail → <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -120,34 +123,30 @@ export default function SurakshaWhySurakshaPage() {
               <span className="font-rubik text-xs font-bold px-3 py-1 rounded-full border border-[#EA580C]/30 bg-[#EA580C]/10 text-[#EA580C]">
                 02 · SAVINGS
               </span>
-              <span className="text-xs font-semibold text-[#78350F]">Colour bar: Marigold</span>
+              <span className="text-xs font-semibold text-[#78350F]">Pillar 2: Marigold</span>
             </div>
 
             <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal text-[#451A03]">
-              NINE MONTHS में पूरी कीमत वापस।
+              NINE MONTHS. FULL PAYBACK.
             </h2>
 
-            <div className="text-xs font-bold uppercase tracking-wider text-[#78350F]">
-              Pillar header: Body (Hinglish narrative):
-            </div>
-
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-medium">
-              Business perspective से देखें, तो Suraksha का ROI simple है। Nine months में operational savings से पूरी कीमत वापस आ जाती है।
+              From a business perspective, Suraksha&apos;s return on investment is straightforward. Operational savings recover the full cost of the kit within 9 to 12 months.
             </p>
 
             <p className="text-[#78350F] text-base font-semibold">
-              यह पैसा आता कहाँ से है?
+              Where do these savings come from?
             </p>
 
             <div className="space-y-3 text-sm text-[#451A03]">
               <p>
-                <strong>Fuel savings (5-6%):</strong> Underinflated tyres 5-6% extra fuel consume करते हैं। Suraksha के साथ tyres हमेशा optimal pressure पे रहते हैं। एक 10-wheeler truck में monthly fuel expense ₹80,000-₹1,20,000 होता है — 5% savings मतलब ₹4,000-₹6,000 per month.
+                <strong>Fuel savings (5–6%):</strong> Underinflated tyres consume 5–6% extra diesel. With Suraksha, tyres stay at optimal operating pressure. For a typical 10-wheeler truck with a monthly fuel bill of ₹80,000–₹1,20,000, a 5% saving delivers ₹4,000–₹6,000 back every month.
               </p>
               <p>
-                <strong>Tyre life extension (5-7%):</strong> Correct pressure पे tyres 5-7% ज़्यादा चलते हैं। एक set tyres की cost ₹2,00,000-₹3,50,000 होती है। 5-7% extension मतलब thousands की savings हर tyre cycle में।
+                <strong>Tyre life extension (5–7%):</strong> Properly inflated tyres last 5–7% longer. With a fresh set of truck tyres costing ₹2,00,000–₹3,50,000, extending tyre life saves thousands across every tyre cycle.
               </p>
               <p>
-                <strong>Roadside towing (per event ₹5,000-₹15,000):</strong> हर blowout मतलब towing charge, downtime, missed delivery. एक roadside event save करना मतलब substantial operational cost recover.
+                <strong>Zero roadside breakdown costs (₹5,000–₹15,000 per event):</strong> Every blowout leads to towing charges, vehicle downtime, and missed delivery penalties. Preventing even a single roadside event recovers substantial operational expense.
               </p>
             </div>
 
@@ -158,32 +157,32 @@ export default function SurakshaWhySurakshaPage() {
               <ul className="space-y-2 text-sm text-[#451A03]">
                 <li className="flex items-start gap-2">
                   <span className="text-[#EA580C] font-bold">•</span>
-                  <span>Fuel savings: ₹4,000-₹6,000 per month × 9 = ₹36,000-₹54,000</span>
+                  <span>Fuel savings: ₹4,000–₹6,000 per month × 9 months = ₹36,000–₹54,000</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#EA580C] font-bold">•</span>
-                  <span>Tyre life extension: Proportional to km driven, typically ₹1,500-₹3,000 per month</span>
+                  <span>Tyre life extension: Proportional to km driven, typically ₹1,500–₹3,000 per month</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#EA580C] font-bold">•</span>
-                  <span>Downtime avoidance: Variable, but 1-2 events per year is realistic</span>
+                  <span>Downtime avoidance: Prevents costly highway emergency callouts</span>
                 </li>
               </ul>
             </div>
 
             <p className="text-sm font-semibold text-[#451A03]">
-              Total 9-month savings: Typically ₹40,000-₹70,000, easily exceeding initial kit investment.
+              Total 9-month savings: Typically ₹40,000–₹70,000, easily exceeding initial kit investment.
             </p>
 
             <div className="pt-4 border-t-2 border-[#EA580C]/20 flex items-center justify-between flex-wrap gap-4">
-              <div className="font-baloo text-3xl font-extrabold text-[#DC2626]">
-                पैसा वसूल
+              <div className="font-anton text-2xl tracking-wide uppercase text-[#DC2626]">
+                FULL PAYBACK
               </div>
               <Link
                 href="/suraksha/savings"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-sm bg-[#EA580C] text-[#FEF3C7] hover:bg-[#C2410C] transition-all shadow-md"
               >
-                Savings details full में → <ArrowRight className="w-4 h-4" />
+                Explore Savings In Detail → <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -198,49 +197,45 @@ export default function SurakshaWhySurakshaPage() {
               <span className="font-rubik text-xs font-bold px-3 py-1 rounded-full border border-[#0891B2]/30 bg-[#0891B2]/10 text-[#0891B2]">
                 03 · SIMPLICITY
               </span>
-              <span className="text-xs font-semibold text-[#78350F]">Colour bar: Ganga Teal</span>
+              <span className="text-xs font-semibold text-[#78350F]">Pillar 3: Ganga Teal</span>
             </div>
 
             <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal text-[#451A03]">
-              PUNCTURE SHOP पे FIT करो, CABIN में देखो।
+              FIT AT ANY PUNCTURE SHOP. WATCH IN YOUR CABIN.
             </h2>
 
-            <div className="text-xs font-bold uppercase tracking-wider text-[#78350F]">
-              Pillar header: Body (Hinglish narrative):
-            </div>
-
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-medium">
-              सबसे बड़ी बात: Suraksha simple है। कोई app नहीं। कोई subscription नहीं। कोई monthly fee नहीं। किसी mechanic की ज़रूरत नहीं।
+              Above all, Suraksha is simple: no app required, no subscriptions, no monthly fees, and no certified mechanic needed.
             </p>
 
             <p className="text-[#78350F] text-base leading-relaxed">
-              Kit खरीदिए — Truck Wheels centre या WhatsApp पर। Fit करवाइए — किसी भी puncture shop पे, 15 minute में। देखते रहिए — cabin display हर drive पे pressure और temperature दिखाता है।
+              Get your kit at any Truck Wheels centre or via WhatsApp. Fit it in 15 minutes at any puncture shop. Monitor tyre pressure and temperature directly on your in-cabin display during every trip.
             </p>
 
             <div className="pt-2 border-t border-[#451A03]/10">
               <div className="text-xs font-bold uppercase tracking-wider text-[#78350F] mb-3">
-                क्या नहीं करना:
+                What you never need to do:
               </div>
               <ul className="space-y-2 text-sm text-[#451A03]">
                 <li className="flex items-start gap-2">
                   <span className="text-[#0891B2] font-bold">•</span>
-                  <span><strong>कोई app download नहीं करना</strong> — cabin display standalone है</span>
+                  <span><strong>No app to download</strong> — the in-cabin display is fully standalone</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#0891B2] font-bold">•</span>
-                  <span><strong>कोई WiFi connection नहीं चाहिए</strong> — RF-based communication use होती है</span>
+                  <span><strong>No WiFi or mobile data needed</strong> — sensors communicate directly via wireless RF</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#0891B2] font-bold">•</span>
-                  <span><strong>कोई mechanic नहीं चाहिए</strong> — puncture shop वाला भी fit कर देता है</span>
+                  <span><strong>No mechanic needed</strong> — any roadside puncture shop can complete the fitment</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#0891B2] font-bold">•</span>
-                  <span><strong>कोई tyre brand restriction नहीं</strong> — किसी भी tyre के साथ काम करता है</span>
+                  <span><strong>No tyre brand restrictions</strong> — works seamlessly with any tyre brand</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#0891B2] font-bold">•</span>
-                  <span><strong>कोई monthly fee नहीं</strong> — one-time purchase, done</span>
+                  <span><strong>No monthly fees</strong> — one-time purchase with zero recurring cost</span>
                 </li>
               </ul>
             </div>
@@ -250,7 +245,7 @@ export default function SurakshaWhySurakshaPage() {
             </div>
 
             <p className="text-[#78350F] text-sm leading-relaxed">
-              Real drivers का experience: हर महीने hundreds of trucks पे Suraksha install हो रहा है India के different clusters में। सभी installations puncture shops या Truck Wheels centres पे। Zero training required. Zero complications.
+              Real driver experience: Hundreds of trucks install Suraksha every month across transport clusters in India at puncture shops and Truck Wheels centres. Zero training required, zero complications.
             </p>
 
             <div className="pt-4 border-t-2 border-[#0891B2]/20 flex items-center justify-between flex-wrap gap-4">
@@ -261,7 +256,7 @@ export default function SurakshaWhySurakshaPage() {
                 href="/suraksha/simplicity"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-sm bg-[#0891B2] text-[#FEF3C7] hover:bg-[#0E7490] transition-all shadow-md"
               >
-                Simplicity details full में → <ArrowRight className="w-4 h-4" />
+                Explore Simplicity In Detail → <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -273,7 +268,7 @@ export default function SurakshaWhySurakshaPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FEF3C7]">
-              तीन REASONS. एक COMPLETE KIT.<br />पूरी सुरक्षा.
+              THREE PROMISES. ONE COMPLETE KIT.<br />COMPLETE SAFETY.
             </h2>
             <div className="pt-2 flex flex-wrap justify-center gap-4">
               <Link

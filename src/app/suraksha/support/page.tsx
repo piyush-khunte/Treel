@@ -20,6 +20,7 @@ import {
   AlertCircle
 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 // WhatsApp inline SVG icon
 function WhatsAppIcon({ className = "w-5 h-5 text-[#25D366]" }: { className?: string }) {
@@ -40,7 +41,7 @@ const HELP_CATEGORIES = [
   {
     id: "installation",
     title: "INSTALLATION",
-    desc: "15-minute installation guide, video, aur puncture shop guidance.",
+    desc: "15-minute installation guides, step-by-step videos, and puncture shop fitment instructions.",
     cta: "Installation guide →",
     href: "/suraksha/how-it-works",
     icon: Wrench,
@@ -50,7 +51,7 @@ const HELP_CATEGORIES = [
   {
     id: "product",
     title: "PRODUCT INFO",
-    desc: "How Suraksha works, specifications, compatibility.",
+    desc: "How Suraksha works, technical specifications, vehicle compatibility.",
     cta: "Product details →",
     href: "/suraksha/product",
     icon: HelpCircle,
@@ -60,7 +61,7 @@ const HELP_CATEGORIES = [
   {
     id: "warranty",
     title: "WARRANTY",
-    desc: "3-year sensor warranty. Claim submission process.",
+    desc: "3-year replacement warranty. Rapid claim submission process.",
     cta: "Warranty details →",
     href: "#warranty-claim",
     icon: ShieldCheck,
@@ -70,7 +71,7 @@ const HELP_CATEGORIES = [
   {
     id: "emi",
     title: "EMI & PAYMENT",
-    desc: "Bajaj Finance EMI, payment options, billing questions.",
+    desc: "Bajaj Finance financing plans, payment options, zero-cost EMI terms.",
     cta: "EMI info →",
     href: "/suraksha/emi",
     icon: CreditCard,
@@ -80,7 +81,7 @@ const HELP_CATEGORIES = [
   {
     id: "centres",
     title: "FIND CENTRE",
-    desc: "Truck Wheels centres, dealers, aur puncture shops.",
+    desc: "Find authorized Truck Wheels centres, dealers, and roadside fitment points.",
     cta: "Find nearest centre →",
     href: "/suraksha/centres",
     icon: MapPin,
@@ -90,7 +91,7 @@ const HELP_CATEGORIES = [
   {
     id: "faqs",
     title: "COMMON QUESTIONS",
-    desc: "30+ common questions aur answers.",
+    desc: "30+ common driver questions and detailed answers.",
     cta: "All FAQs →",
     href: "/suraksha/faqs",
     icon: MessageSquare,
@@ -103,39 +104,39 @@ const HELP_CATEGORIES = [
 const FAQS = [
   {
     id: "faq-1",
-    question: "Support kaise contact karein?",
+    question: "How do I contact customer support?",
     answer:
-      "3 aasaan tareeke hain: WhatsApp +91 91120 00174 (24/7 automated + business hours human agent), Toll-free 1800 833 0233 (Monday to Friday, 8:00 AM - 8:00 PM IST), aur /suraksha/contact par direct form bharke callback request kar sakte hain."
+      "There are three easy options: WhatsApp us at +91 91120 00174 (24/7 automated assistance with live specialist support during business hours), Call our toll-free helpline at 1800 833 0233 (Monday to Friday, 8:00 AM - 8:00 PM IST), or request a callback directly through our contact page."
   },
   {
     id: "faq-2",
-    question: "Support kis language mein milta hai?",
+    question: "What languages is driver support available in?",
     answer:
-      "Humari driver support team Hindi aur English ke alawa select regional languages provide karti hai: Marathi, Gujarati, Tamil, Kannada, Telugu, Malayalam aur Bengali. Call ya WhatsApp karte waqt aap apni preferred boli mein baat kar sakte hain."
+      "Our customer support team assists in English, Hindi, Marathi, Gujarati, Tamil, Kannada, Telugu, Malayalam, and Bengali. Speak or text in your preferred language anytime you call or message."
   },
   {
     id: "faq-3",
-    question: "Kya installation ke liye video guide hai?",
+    question: "Is there a step-by-step video installation guide?",
     answer:
-      "Haan! Complete step-by-step installation video Hindi mein narrated hai. Aap /suraksha/videos par jaakar 15-minute cabin display mounting aur tyre sensor fitment ka detailed practical video dekh sakte hain."
+      "Yes. Comprehensive step-by-step video demonstrations are available. Visit our videos page to watch complete 15-minute cabin display mounting and tyre sensor installation guides."
   },
   {
     id: "faq-4",
-    question: "Problem aaye toh kaha jaana chahiye?",
+    question: "Where can I get in-person technical assistance?",
     answer:
-      "Aapke area ke kisi bhi official Truck Wheels centre par direct physical inspection aur support milti hai. Highway par emergency guidance ke liye WhatsApp (+91 91120 00174) par photo ya query bhejiye, humari team turant assistance degi."
+      "Visit any of our 400+ authorized JK Truck Wheels centres across major highway corridors for direct physical inspection. For highway emergency support, share a photo on WhatsApp (+91 91120 00174) for immediate guidance."
   },
   {
     id: "faq-5",
-    question: "Sensor ya display mein problem aaye toh warranty claim kaise karein?",
+    question: "How do I submit a warranty claim for a sensor or display?",
     answer:
-      "Claim process bilkul simple aur fast hai: WhatsApp par (1) Defective unit ki photo jismein serial number saaf dikhe, (2) Truck registration number, aur (3) Problem ka chhota description bhejiye. Hum turant verify karke nearest centre se replacement initiate karenge."
+      "The claim process is straightforward and fast: Message our WhatsApp helpline with (1) A photo of the defective unit showing its serial number, (2) Your truck registration number, and (3) A brief description of the issue. We will verify your warranty and dispatch a replacement promptly."
   },
   {
     id: "faq-6",
-    question: "Display screen chalna band ho jaye toh kya karein?",
+    question: "What should I do if the cabin display does not turn on?",
     answer:
-      "Pehle 12V/24V power cord aur dashboard socket check karein. Agar fuse intact hai aur screen fir bhi nahi jal rahi, toh toll-free 1800 833 0233 par call karein ya WhatsApp par connect karein. Hum free diagnostic aur quick replacement support provide karenge."
+      "First check the 12V/24V power cord and dashboard socket connection. If power is confirmed and the display still does not illuminate, call our toll-free helpline at 1800 833 0233 or message WhatsApp support for quick diagnostic assistance and replacement."
   }
 ];
 
@@ -166,16 +167,19 @@ export default function SurakshaSupportPage() {
             </div>
 
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
-              HELP CHAHIYE?<br />
-              <span className="italic text-[#0891B2]">HUM HAI YAHAN.</span>
+              NEED HELP?<br />
+              <span className="italic text-[#0891B2]">WE'RE HERE.</span>
             </h1>
 
             <div className="space-y-2 max-w-3xl">
-              <p className="text-xl sm:text-2xl font-anton text-[#EA580C] uppercase tracking-wide">
-                Need help? We&apos;re here.
-              </p>
+              <SurakshaRotator
+              page="5.16"
+              className="font-baloo text-xl sm:text-2xl font-bold text-[#DC2626] tracking-wide"
+            >
+              कॉल कीजिए, व्हाट्सऐप कीजिए या जवाब पढ़िए।
+            </SurakshaRotator>
               <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium">
-                Suraksha ka support driver-first hai. Toll-free, WhatsApp, aur FAQs. Jo aap ke liye convenient ho, wahi use kariye.
+                Suraksha support is built for drivers. Call toll-free, chat on WhatsApp or browse the FAQs below. Choose whatever works best for you.
               </p>
             </div>
           </div>
@@ -276,7 +280,7 @@ export default function SurakshaSupportPage() {
                 </div>
 
                 <p className="text-xs text-[#78350F] leading-relaxed pt-2 border-t border-[#451A03]/10 font-medium">
-                  Fastest response. Photos aur videos bhi bhej sakte hai.
+                  Fastest response. Send photos and videos directly for instant help.
                 </p>
               </div>
 
@@ -309,7 +313,7 @@ export default function SurakshaSupportPage() {
                 </div>
 
                 <p className="text-base sm:text-lg text-[#451A03] font-medium leading-snug">
-                  Hum aap ko call kar sakte hai. Preferred time aur language mention kariye.
+                  We will call you back. Mention your convenient time and preferred language.
                 </p>
 
                 <div className="flex items-center gap-2 text-xs font-semibold text-[#78350F]">
@@ -446,7 +450,7 @@ export default function SurakshaSupportPage() {
                 href="/suraksha/faqs"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] bg-[#DC2626] text-white font-rubik font-bold text-xs uppercase tracking-wider hover:bg-[#B91C1C] transition-all shadow-md"
               >
-                All FAQs padhiye <ArrowRight className="w-4 h-4" />
+                Browse All FAQs <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -469,7 +473,7 @@ export default function SurakshaSupportPage() {
                 WARRANTY CLAIM
               </h2>
               <p className="text-[#451A03] text-base sm:text-lg font-medium leading-relaxed max-w-2xl mx-auto">
-                Sensor ya display mein problem? WhatsApp par yeh 3 cheezein bhejiye aur hum turant help karenge:
+                Experiencing an issue with a sensor or display? Send these 3 details on WhatsApp for immediate replacement assistance:
               </p>
             </div>
 
@@ -495,7 +499,7 @@ export default function SurakshaSupportPage() {
                   Truck Number
                 </h3>
                 <p className="text-[#78350F] text-sm leading-relaxed font-medium">
-                  Truck registration number taaki aapki warranty validity system mein check ho sake.
+                  Truck registration number so our team can verify your warranty validity in the system.
                 </p>
               </div>
 
@@ -507,7 +511,7 @@ export default function SurakshaSupportPage() {
                   Problem Description
                 </h3>
                 <p className="text-[#78350F] text-sm leading-relaxed font-medium">
-                  Description of the problem — Hindi/English/regional, jo comfortable ho.
+                  Brief description of the problem in English, Hindi, or your preferred regional language.
                 </p>
               </div>
             </div>
@@ -518,7 +522,7 @@ export default function SurakshaSupportPage() {
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-[4px] bg-[#0891B2] text-white font-rubik font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-[#0E7490] transition-all shadow-md"
               >
                 <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
-                WhatsApp par claim submit kariye →
+                Submit Warranty Claim on WhatsApp →
               </Link>
             </div>
           </div>
@@ -533,7 +537,7 @@ export default function SurakshaSupportPage() {
               PROBLEM SOLVED IN MINUTES.
             </h2>
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium">
-              WhatsApp par baat kijiye — fastest response.
+              Chat on WhatsApp for our fastest response.
             </p>
             <div className="pt-2">
               <Link
@@ -541,7 +545,7 @@ export default function SurakshaSupportPage() {
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-[4px] bg-[#FFFBEB] text-[#451A03] font-rubik font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-white transition-all shadow-xl"
               >
                 <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
-                WhatsApp Kariye →
+                Chat on WhatsApp →
               </Link>
             </div>
           </div>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle2, ShieldCheck, Activity, HelpCircle, ChevronRight, MessageSquare, PhoneCall, Check } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 export const metadata: Metadata = {
   title: "Savings  \u00b7  Nine-Month Payback on Suraksha Kit  \u00b7  ROI Calculator",
@@ -35,10 +36,16 @@ export default function SurakshaSavingsPage() {
               SAVINGS
             </div>
             <h1 className="font-anton uppercase tracking-wide text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95]">
-              NINE MONTHS.<br /><span className="italic text-[#DC2626]">पूरी कीमत वापस।</span>
+              9–12 MONTHS.<br /><span className="italic text-[#DC2626]">FULL PAYBACK.</span>
             </h1>
+            <SurakshaRotator
+              page="5.10"
+              className="font-baloo text-xl sm:text-2xl font-bold text-[#DC2626] tracking-wide pt-2"
+            >
+              डीज़ल, टायर और सड़क पर होने वाले खर्च में बचत।
+            </SurakshaRotator>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Suraksha kit nine months में पूरा निवेश वापस दे देता है। कैसे? Fuel, tyre life, और roadside events — तीनों जगहों से savings आती है। Calculator use करिए अपने truck के लिए।
+              Suraksha pays for itself in 9–12 months through fuel savings, longer tyre life and fewer roadside breakdowns. Payback varies by application and fleet operation. Use the calculator below to see the savings for your truck.
             </p>
           </div>
         </div>
@@ -53,7 +60,7 @@ export default function SurakshaSavingsPage() {
                 SAVINGS BREAKDOWN
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                पैसा कहाँ से आता है?
+                WHERE THE SAVINGS COME FROM
               </h2>
               <p className="text-[#78350F] text-base mt-2 font-medium">
                 Three savings buckets with detailed explanations:
@@ -67,14 +74,14 @@ export default function SurakshaSavingsPage() {
                   Bucket 1 · Fuel savings (5-6%)
                 </div>
                 <p className="text-[#451A03] text-sm leading-relaxed">
-                  Underinflated tyres 5-6% extra fuel burn करते हैं। यह most drivers को पता ही नहीं होता — क्योंकि eye से check करना मुश्किल है, especially heavy load पर।
+                  Underinflated tyres burn 5-6% extra fuel. Most drivers never notice this, because judging tyre pressure by eye is nearly impossible—especially under heavy loads.
                 </p>
                 <div className="pt-3 border-t border-[#451A03]/10 space-y-2 text-xs text-[#78350F]">
                   <div className="font-bold text-[#451A03]">Numbers:</div>
                   <div>• 10-wheeler monthly fuel expense: ₹80,000-₹1,20,000 (typical, varies by route)</div>
                   <div>• 5% savings = ₹4,000-₹6,000 per month</div>
                   <div className="font-bold text-[#DC2626]">• Annual savings = ₹48,000-₹72,000</div>
-                  <div className="pt-1 text-[#451A03]">Explanation: Suraksha के साथ आपको हर trip पे correct pressure का confirmation मिलता है। Long-run में this is the biggest savings bucket।</div>
+                  <div className="pt-1 text-[#451A03]">Explanation: With Suraksha, you get confirmed correct pressure on every single trip. In the long run, this is the single largest savings contributor.</div>
                 </div>
               </div>
 
@@ -84,7 +91,7 @@ export default function SurakshaSavingsPage() {
                   Bucket 2 · Tyre life extension (5-7%)
                 </div>
                 <p className="text-[#451A03] text-sm leading-relaxed">
-                  Correct pressure पे tyres uniform wear करते हैं। Uneven wear (जो underinflation या overinflation से होती है) tyre life 5-7% कम कर देती है।
+                  Tyres wear evenly when maintained at the correct pressure. Uneven wear caused by under- or over-inflation reduces total tyre life by 5-7%.
                 </p>
                 <div className="pt-3 border-t border-[#451A03]/10 space-y-2 text-xs text-[#78350F]">
                   <div className="font-bold text-[#451A03]">Numbers:</div>
@@ -101,11 +108,11 @@ export default function SurakshaSavingsPage() {
                   Bucket 3 · Roadside downtime avoidance
                 </div>
                 <p className="text-[#451A03] text-sm leading-relaxed">
-                  एक blowout या major puncture में direct costs (towing, repair) + indirect costs (delayed delivery, driver time, customer complaints) होते हैं।
+                  A roadside blowout or major puncture incurs direct costs (towing, repair) plus indirect costs (delivery delays, driver lost time, customer penalties).
                 </p>
                 <div className="pt-3 border-t border-[#451A03]/10 space-y-2 text-xs text-[#78350F]">
                   <div className="font-bold text-[#451A03]">Numbers per event:</div>
-                  <div>• Towing charges: ₹5,00,0-₹15,000</div>
+                  <div>• Towing charges: ₹5,000-₹15,000</div>
                   <div>• Emergency repair: ₹3,000-₹8,000</div>
                   <div>• Delivery delay penalty (contract-based): Variable, often ₹5,000-₹25,000</div>
                   <div>• Driver overtime + waiting cost: ₹1,000-₹3,000</div>
@@ -247,10 +254,10 @@ export default function SurakshaSavingsPage() {
               TIMELINE VISUALIZATION
             </div>
             <p className="text-base text-[#451A03] font-medium leading-relaxed">
-              यह graph typical 10-wheeler के लिए है। आपके truck के exact numbers calculator में try करिए।
+              This timeline illustrates payback for a typical 10-wheeler truck. Use the calculator above to see exact figures for your truck.
             </p>
             <div className="text-xs font-bold uppercase tracking-wider text-[#78350F]">
-              Body (Hinglish):
+              Payback Milestones:
             </div>
             <ul className="space-y-2.5 pt-2 text-sm text-[#451A03]">
               <li className="flex items-start gap-2">
@@ -259,15 +266,15 @@ export default function SurakshaSavingsPage() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#EA580C] font-bold">•</span>
-                <span><strong>Month 1-9:</strong> Monthly savings accumulate</span>
+                <span><strong>Months 1–9:</strong> Fuel and tyre savings accumulate</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#10B981] font-bold">•</span>
-                <span><strong>Month 9:</strong> Payback point reached</span>
+                <span><strong>Month 9:</strong> Full investment recovered</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#0891B2] font-bold">•</span>
-                <span><strong>Month 10-36 (3-year warranty period):</strong> Pure profit</span>
+                <span><strong>Months 10–36 (3-year warranty period):</strong> Pure profit</span>
               </li>
             </ul>
           </div>
@@ -279,10 +286,10 @@ export default function SurakshaSavingsPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FEF3C7]">
-              9 MONTHS PAYBACK · एक कप चाय से भी कम चिंता
+              9-MONTH PAYBACK · PEACE OF MIND FOR LESS THAN A DAILY CUP OF TEA
             </h2>
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
-              3-year warranty और zero monthly subscription के साथ, Suraksha का operational impact एक कप चाय के दैनिक खर्च से भी कम महसूस होता है — और 9 months में fuel व tyre savings से पूरा निवेश वापस आ जाता है।
+              With a 3-year warranty and zero monthly subscriptions, Suraksha's daily operational cost is less than a cup of roadside tea—and within 9 to 12 months, fuel and tyre savings recover your entire investment.
             </p>
             <div className="pt-2 flex flex-wrap justify-center gap-4">
               <Link

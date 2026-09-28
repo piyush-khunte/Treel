@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight, PhoneCall, CheckCircle2, ShieldCheck } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 export default function SurakshaCallbackPage() {
   const router = useRouter();
@@ -38,10 +39,16 @@ export default function SurakshaCallbackPage() {
               CALLBACK REQUEST
             </div>
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
-              Request a <span className="italic text-[#DC2626]">Driver Helpline</span> Callback.
+              WE'LL <span className="italic text-[#0891B2]">CALL YOU.</span>
             </h1>
+            <SurakshaRotator
+              page="5.19"
+              className="font-baloo text-xl sm:text-2xl font-bold text-[#DC2626] tracking-wide pt-2"
+            >
+              अपना समय और अपनी भाषा चुनिए।
+            </SurakshaRotator>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Enter your mobile number. A Suraksha support advisor will call you back within 15 minutes in Hindi, Punjabi, Tamil, Telugu, or Marathi.
+              Share your number, preferred time and language, and our team will call you back. Prefer WhatsApp? Let us know in the form below.
             </p>
           </div>
         </div>
@@ -58,12 +65,12 @@ export default function SurakshaCallbackPage() {
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label className="block text-xs font-rubik uppercase tracking-wider font-bold text-[#78350F] mb-2">
-                  आपका नाम *
+                  Your Name *
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="नाम दर्ज करें"
+                  placeholder="Enter your full name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full px-4 py-3 bg-white border-2 border-[#451A03]/20 rounded-[4px] text-[#451A03] placeholder-[#78350F]/50 focus:outline-none focus:border-[#DC2626] text-sm font-medium shadow-sm"

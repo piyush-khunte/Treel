@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle2, ShieldCheck, Activity, HelpCircle, ChevronRight, MessageSquare, PhoneCall, Check } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 export const metadata: Metadata = {
   title: "Truck Safety  \u00b7  Front-Tyre Blowouts Prevented  \u00b7  Suraksha",
@@ -35,10 +36,16 @@ export default function SurakshaSafetyPage() {
               SAFETY
             </div>
             <h1 className="font-anton uppercase tracking-wide text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95]">
-              BLOWOUT से पहले<br /><span className="italic text-[#DC2626]">WARNING मिलती है।</span>
+              THE WARNING<br /><span className="italic text-[#DC2626]">BEFORE THE BLOWOUT.</span>
             </h1>
+            <SurakshaRotator
+              page="5.9"
+              className="font-baloo text-xl sm:text-2xl font-bold text-[#DC2626] tracking-wide pt-2"
+            >
+              हर टायर पर नज़र, हर सफ़र सुरक्षित।
+            </SurakshaRotator>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Highway पे front-tyre blowout — यह accident नहीं होता, यह tragedy होती है। Suraksha का job उसे रोकना है। Warning आती है, आप रुक सकते हैं, safe रह सकते हैं।
+              A front-tyre blowout on the highway can cost a life. Suraksha watches the pressure and temperature of every tyre and warns you early, so you can stop in time.
             </p>
           </div>
         </div>
@@ -53,7 +60,7 @@ export default function SurakshaSafetyPage() {
                 DETECTION SYSTEM
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                SURAKSHA क्या DETECT करता है?
+                WHAT SURAKSHA DETECTS
               </h2>
               <p className="text-[#78350F] text-base mt-2 font-medium">
                 Three categories with examples:
@@ -149,10 +156,10 @@ export default function SurakshaSafetyPage() {
                 STATISTICS
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                NUMBERS जो IMPORTANT हैं
+                KEY SAFETY METRICS
               </h2>
               <p className="text-[#78350F] text-base mt-2 font-medium">
-                Data cards (English for clarity in citation):
+                Critical highway data that every commercial vehicle operator should know:
               </p>
             </div>
 
@@ -198,25 +205,20 @@ export default function SurakshaSafetyPage() {
             </div>
 
             <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl font-normal text-[#451A03]">
-              आपके परिवार के लिए
+              BUILT FOR YOUR FAMILY
             </h2>
 
-            <div className="text-xs font-bold uppercase tracking-wider text-[#78350F]">
-              Body (Hinglish, emotional register):
-            </div>
-
             <p className="text-[#451A03] text-lg sm:text-xl leading-relaxed font-medium">
-              हर driver के घर में कोई wait कर रहा होता है। Wife, बच्चे, बूढ़े माँ-बाप। हर trip का मतलब होता है उनके लिए घर वापस आना। Suraksha का core purpose यही है — आपको घर वापस लाना।
+              Every truck driver has family waiting at home—spouses, children, and parents. The true measure of every highway journey is returning home safely. That is the core mission of Suraksha: ensuring you get home safely every time.
             </p>
 
             <p className="text-[#78350F] text-base leading-relaxed">
-              Product features बाद में आती हैं। पहले यह बात — Suraksha आपके परिवार के लिए है।
+              Beyond product specifications and hardware, Suraksha is fundamentally built for your family&apos;s peace of mind.
             </p>
 
             <div className="pt-4 border-t-2 border-[#DC2626]/20">
-              <div className="text-xs font-semibold text-[#78350F] mb-1">Devanagari accent:</div>
-              <div className="font-baloo text-3xl font-extrabold text-[#DC2626]">
-                हर ट्रिप घर वापस आना।
+              <div className="font-anton text-2xl tracking-wide uppercase text-[#DC2626]">
+                SAFE RETURN ON EVERY TRIP
               </div>
             </div>
           </div>
@@ -228,7 +230,7 @@ export default function SurakshaSafetyPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FEF3C7]">
-              अपने परिवार के लिए INSTALL करो।
+              INSTALL SURAKSHA FOR YOUR FAMILY
             </h2>
             <div className="pt-2 flex flex-wrap justify-center gap-4">
               <Link

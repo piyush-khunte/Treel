@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 interface VideoItem {
   id: string;
@@ -32,22 +33,22 @@ const videoData: VideoItem[] = [
   // Installation
   {
     id: "install-15min",
-    title: "15-minute Installation Guide — Hindi mein",
+    title: "15-Minute Installation Guide — In Hindi",
     category: "Installation",
     duration: "14:48",
     language: "Hindi",
     views: "12.4k views",
-    description: "Cabin display mounting, sensor pairing, aur pressure calibration 3 simple steps mein complete karein.",
+    description: "Mount the cabin display, pair sensors, and calibrate pressure in 3 simple steps.",
     featured: true
   },
   {
     id: "install-puncture-shop",
-    title: "Puncture Shop Par Suraksha Kaise Fit Karein",
+    title: "Fitting Suraksha at a Puncture Shop",
     category: "Installation",
     duration: "8:30",
     language: "Hindi",
     views: "8.1k views",
-    description: "Highway puncture shop mechanics ke liye practical step-by-step fitment aur sensor nut tightening demonstration."
+    description: "Step-by-step practical fitment and sensor locking demonstration for highway puncture shop mechanics."
   },
   {
     id: "install-first-setup",
@@ -56,18 +57,18 @@ const videoData: VideoItem[] = [
     duration: "6:15",
     language: "Hindi",
     views: "5.7k views",
-    description: "Unboxing aur initial system connection setup guide for owner-drivers aur light commercial vehicles."
+    description: "Unboxing and initial system setup guide for owner-drivers and commercial vehicles."
   },
 
   // Testimonials
   {
     id: "test-narender",
-    title: "Narender Kirar ki Highway Story",
+    title: "Narender K.'s Highway Story",
     category: "Testimonials",
     duration: "3:20",
     language: "Hindi",
     views: "18.9k views",
-    description: "Pune-Mumbai expressway ghats par slow leak warning aane par roadside blowout se bachne ka real ground experience.",
+    description: "Real driver experience on how a slow leak warning on the expressway prevented a dangerous roadside blowout.",
     featured: true
   },
   {
@@ -77,18 +78,18 @@ const videoData: VideoItem[] = [
     duration: "12:40",
     language: "Hindi / Regional",
     views: "9.2k views",
-    description: "North, West, aur South Indian transport corridors ke multiple truck drivers ka collective feedback."
+    description: "Collective feedback from commercial truck drivers across North, West, and South Indian freight corridors."
   },
 
   // Product overview
   {
     id: "prod-60sec",
-    title: "Suraksha 60-Second Introduction — Hindi",
+    title: "Suraksha 60-Second Overview",
     category: "Product overview",
     duration: "1:00",
     language: "Hindi",
     views: "24.5k views",
-    description: "Suraksha kit hardware architecture, tyre temperature telemetry, aur 3-year sensor warranty in one minute.",
+    description: "Suraksha kit hardware architecture, tyre temperature telemetry, and 3-year warranty in one minute.",
     featured: true
   },
   {
@@ -98,45 +99,45 @@ const videoData: VideoItem[] = [
     duration: "4:15",
     language: "Hindi",
     views: "6.8k views",
-    description: "In-cab display, wireless wheel sensors, anti-theft hex lock nuts, aur wiring accessories ka full physical walkthrough."
+    description: "Complete unboxing and walkthrough of the in-cab display, wireless sensors, anti-theft locking hardware, and wiring accessories."
   },
   {
     id: "prod-display-tour",
-    title: "Display Screen Ka Tour",
+    title: "In-Cab Display Screen Tour",
     category: "Product overview",
     duration: "5:00",
     language: "Hindi",
     views: "7.3k views",
-    description: "High-pressure, slow leak, overheating temperature indicators aur battery level symbol reading ka guide."
+    description: "Guide to reading high-pressure, slow leak, overheating temperature indicators and battery status symbols."
   },
 
   // How-to guides
   {
     id: "howto-battery",
-    title: "Battery Kab Replace Karni Hai — Warning Signs",
+    title: "When to Replace Sensor Batteries — Warning Signs",
     category: "How-to guides",
     duration: "3:45",
     language: "Hindi",
     views: "4.9k views",
-    description: "Low-voltage indicator flashing pattern samajhiye aur 3-year engineered battery lifespan ke details jaaniye."
+    description: "Understand low-voltage indicator flashing patterns and 5-year engineered battery lifespan details."
   },
   {
     id: "howto-alerts",
-    title: "Alert Kaise Read Karein",
+    title: "How to Read Warning Alerts",
     category: "How-to guides",
     duration: "4:10",
     language: "Hindi",
     views: "11.2k views",
-    description: "Flashing red light, high-tone audible buzzer alert aur yellow cautionary indicator ka practical difference."
+    description: "Understand the practical difference between flashing red alarms, high-tone audible buzzers, and yellow cautionary alerts."
   },
   {
     id: "howto-rotation",
-    title: "Tyre Rotation Ke Baad Kya Karein",
+    title: "What to Do After Tyre Rotation",
     category: "How-to guides",
     duration: "5:30",
     language: "Hindi",
     views: "5.4k views",
-    description: "Truck axle tyres rotate ya swap karte waqt display monitor par sensor positions re-assign karne ka tareeka."
+    description: "How to reassign wheel sensor positions on the cabin display when rotating or swapping truck tyres."
   }
 ];
 
@@ -171,15 +172,18 @@ export default function SurakshaVideosPage() {
             </div>
 
             <h1 className="font-anton uppercase tracking-normal text-5xl sm:text-6xl lg:text-7xl text-[#451A03] leading-[0.95]">
-              DEKHIYE. <span className="italic text-[#DC2626]">SAMJHIYE.</span>
+              SEE SURAKSHA <span className="italic text-[#DC2626]">IN ACTION.</span>
             </h1>
 
-            <p className="text-[#DC2626] font-rubik text-xl sm:text-2xl font-bold">
-              Watch and understand.
-            </p>
+            <SurakshaRotator
+              page="5.21"
+              className="font-baloo text-xl sm:text-2xl font-bold text-[#DC2626] tracking-wide"
+            >
+              आपकी भाषा में वीडियो।
+            </SurakshaRotator>
 
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Suraksha ke baare mein sab kuch — installation, testimonials, product overview, how-to guides. Videos Hindi aur regional languages mein.
+              Watch installation guides, product walkthroughs and real driver stories. Filter by category below to find what you need.
             </p>
           </div>
         </div>
@@ -311,7 +315,7 @@ export default function SurakshaVideosPage() {
                   YOUTUBE CHANNEL
                 </h3>
                 <p className="text-[#78350F] text-base font-medium">
-                  Aur bhi videos ke liye YouTube pe subscribe kariye.
+                  Subscribe to our YouTube channel for more product demos and guides.
                 </p>
               </div>
             </div>
@@ -333,11 +337,11 @@ export default function SurakshaVideosPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton text-5xl sm:text-6xl font-normal tracking-tight text-[#FEF3C7] uppercase">
-              DEKH LIYA? AB SURAKSHA LAGAO.
+              READY TO PROTECT YOUR TRUCK?
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto">
-              Nearest Truck Wheels centre visit kariye ya direct WhatsApp par kit order karein.
+              Visit your nearest Truck Wheels centre or order your kit directly on WhatsApp.
             </p>
 
             <div className="pt-4 flex flex-wrap justify-center gap-4">
@@ -350,8 +354,8 @@ export default function SurakshaVideosPage() {
               <WhatsAppCircularIcon
                 href="/suraksha/whatsapp"
                 size="lg"
-                title="WhatsApp Kariye"
-                ariaLabel="WhatsApp Kariye"
+                title="Chat on WhatsApp"
+                ariaLabel="Chat on WhatsApp"
               />
             </div>
           </div>

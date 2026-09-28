@@ -28,13 +28,14 @@ export function MasterHeader() {
 
   const pathname = usePathname();
 
-  // If on TMIP, Suraksha, Personal TPMS, or Admin, their dedicated headers handle main nav
+  // If on TMIP, Suraksha, Personal TPMS, Admin, or OTR TPMS, their dedicated headers handle main nav
   if (
     pathname.startsWith("/tmip") ||
     pathname.startsWith("/timp") ||
     pathname.startsWith("/suraksha") ||
     pathname.startsWith("/personal") ||
-    pathname.startsWith("/admin")
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/products/otr-tpms")
   ) {
     return null;
   }
@@ -83,9 +84,9 @@ export function MasterHeader() {
           {/* Brand Logo */}
           <Link href="/" className="flex items-center group shrink-0 mr-2 xl:mr-5">
             <Image
-              src="/images/logo.png"
+              src="/images/treel main logo.jpg"
               alt="Treel Mobility Solutions"
-              width={180}
+              width={160}
               height={50}
               className="h-9 sm:h-10 lg:h-11 xl:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
               priority
@@ -214,7 +215,7 @@ export function MasterHeader() {
                     </div>
                   </Link>
                   <Link 
-                    href="/oem/mining" 
+                    href="/products/otr-tpms" 
                     className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors mt-0.5"
                   >
                     <div className="w-9 h-9 rounded-lg bg-amber-50 flex items-center justify-center text-amber-700 shrink-0 mt-0.5">
@@ -401,7 +402,7 @@ export function MasterHeader() {
                   <Link href="/suraksha" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Suraksha (Commercial)</Link>
                   <Link href="/personal" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Personal TPMS (Consumer)</Link>
                   <Link href="/timp/tpms" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Commercial Vehicle TPMS</Link>
-                  <Link href="/oem/mining" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">OTR TPMS</Link>
+                  <Link href="/products/otr-tpms" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">OTR TPMS</Link>
                 </div>
               )}
             </div>

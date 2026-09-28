@@ -37,7 +37,7 @@ export default function FounderNotePage() {
       "name": "Treel",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://treel.in/images/logo.png"
+        "url": "https://treel.in/images/treel%20main%20logo.jpg"
       }
     },
     "datePublished": "2026-09-01",

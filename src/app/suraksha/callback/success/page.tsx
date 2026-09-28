@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle2, ShieldCheck, Activity, HelpCircle, ChevronRight, MessageSquare, PhoneCall, Check } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 export const metadata: Metadata = {
   title: "Callback Request Received  \u00b7  Suraksha",
@@ -36,11 +37,17 @@ export default function SurakshaCallbackSuccessPage() {
               CALLBACK CONFIRMED
             </div>
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
-              धन्यवाद!<br />
-              <span className="italic text-[#DC2626]">*हम CALL करेंगे।*</span>
+              THANK YOU!<br />
+              <span className="italic text-[#0891B2]">WE'LL CALL YOU.</span>
             </h1>
+            <SurakshaRotator
+              page="5.20"
+              className="font-baloo text-xl sm:text-2xl font-bold text-[#DC2626] tracking-wide pt-2"
+            >
+              आपके चुने हुए समय पर हम कॉल करेंगे।
+            </SurakshaRotator>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik max-w-3xl font-medium">
-              आप का callback request received हो गया है। Confirmation नीचे है।
+              Your callback request has been received and your request details are below. Need help sooner? Call our toll-free number or chat on WhatsApp.
             </p>
           </div>
         </div>
@@ -49,7 +56,7 @@ export default function SurakshaCallbackSuccessPage() {
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-bold">Request confirmation card:</p>
+            <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-bold">Request Details:</p>
             <div className="bg-[#FFFBEB] border-2 border-[#451A03]/15 rounded-lg p-6 sm:p-8 shadow-sm">
               <ul className="space-y-3">
                 <li className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik flex items-start gap-3">
@@ -89,20 +96,20 @@ export default function SurakshaCallbackSuccessPage() {
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">आगे क्या होगा?</h2>
-            <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Numbered steps:</p>
+            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">WHAT HAPPENS NEXT</h2>
+            <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold">Follow-up timeline:</p>
             <div className="space-y-4">
               <div className="p-5 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15">
-                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">1. <strong>Confirmation SMS आएगा</strong> — अभी थोड़ी देर में आप के number पे</p>
+                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">1. <strong>Confirmation SMS sent</strong> — Delivered to your mobile number shortly.</p>
               </div>
               <div className="p-5 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15">
-                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">2. <strong>Callback in preferred time slot</strong> — हमारी team preferred time पे call करेगी</p>
+                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">2. <strong>Callback in selected time slot</strong> — Our support team will call you at your preferred time.</p>
               </div>
               <div className="p-5 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15">
-                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">3. <strong>Language preference honor</strong> — आप की preferred language में ही बात होगी</p>
+                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">3. <strong>Language preference honored</strong> — You will be assisted in your chosen regional language.</p>
               </div>
               <div className="p-5 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15">
-                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">4. <strong>Full assistance</strong> — जो topic select किया, उस पर complete information मिलेगी</p>
+                <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik">4. <strong>Comprehensive assistance</strong> — Detailed guidance on your selected topic and kit configuration.</p>
               </div>
             </div>
           </div>
@@ -112,10 +119,10 @@ export default function SurakshaCallbackSuccessPage() {
       <section className="py-16 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">अगर आप इंतज़ार नहीं करना चाहते, WhatsApp पर direct बात कर सकते हैं। Immediate response मिलता है।</p>
+            <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">Need immediate assistance without waiting? Chat with our team directly on WhatsApp for an instant response.</p>
             <div className="pt-2">
               <Link href="/suraksha/whatsapp" className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider transition-all shadow-md bg-[#25D366] text-white hover:bg-[#1EBE5D]">
-                WhatsApp करिए Now <ArrowRight className="w-4 h-4" />
+                Chat on WhatsApp Now <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>

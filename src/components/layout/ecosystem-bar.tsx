@@ -8,16 +8,18 @@ import { Activity, Truck, Car } from "lucide-react";
 export function EcosystemBar() {
   const pathname = usePathname();
 
+  const isOtr = pathname?.startsWith("/products/otr-tpms");
   const isCorporate =
     pathname === "/" ||
-    (!pathname.startsWith("/tmip") &&
-      !pathname.startsWith("/timp") &&
-      !pathname.startsWith("/suraksha") &&
-      !pathname.startsWith("/personal") &&
-      !pathname.startsWith("/admin"));
-  const isTmip = pathname.startsWith("/tmip") || pathname.startsWith("/timp");
-  const isSuraksha = pathname.startsWith("/suraksha");
-  const isPersonal = pathname.startsWith("/personal");
+    (!pathname?.startsWith("/tmip") &&
+      !pathname?.startsWith("/timp") &&
+      !pathname?.startsWith("/suraksha") &&
+      !pathname?.startsWith("/personal") &&
+      !pathname?.startsWith("/admin") &&
+      !isOtr);
+  const isTmip = pathname?.startsWith("/tmip") || pathname?.startsWith("/timp");
+  const isSuraksha = pathname?.startsWith("/suraksha");
+  const isPersonal = pathname?.startsWith("/personal");
 
   return (
     <div className="bg-[#0B0F14] text-[#FAF7F2] text-xs py-1.5 border-b border-white/10 select-none z-50">
@@ -80,10 +82,17 @@ export function EcosystemBar() {
 
           <span className="text-slate-600">•</span>
 
-          {/* OTR TPMS (Pending in Sitemap Brief) */}
-          <span className="text-slate-500 italic whitespace-nowrap text-xs cursor-default" title="Pending roadmap item">
+          {/* OTR TPMS */}
+          <Link
+            href="/products/otr-tpms"
+            className={`transition-colors whitespace-nowrap flex items-center gap-1.5 font-medium text-xs ${
+              isOtr
+                ? "text-[#3B82F6] font-semibold"
+                : "text-slate-300 hover:text-[#3B82F6]"
+            }`}
+          >
             OTR TPMS
-          </span>
+          </Link>
         </div>
 
         {/* Right: Parent Company & Support */}

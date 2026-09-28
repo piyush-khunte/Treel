@@ -16,6 +16,7 @@ import {
   AlertCircle
 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 export default function SurakshaContactPage() {
   const [formData, setFormData] = useState({
@@ -40,12 +41,12 @@ export default function SurakshaContactPage() {
     // Validate 10-digit phone
     const cleanedPhone = formData.mobileNumber.replace(/\D/g, "");
     if (cleanedPhone.length < 10) {
-      setErrorMsg("Kripya 10-digit valid mobile number enter karein.");
+      setErrorMsg("Please enter a valid 10-digit mobile number.");
       return;
     }
 
     if (!formData.consent) {
-      setErrorMsg("Kripya contact permission checkbox par tick karein.");
+      setErrorMsg("Please accept the contact permission to proceed.");
       return;
     }
 
@@ -92,15 +93,18 @@ export default function SurakshaContactPage() {
             </div>
 
             <h1 className="font-anton uppercase tracking-normal text-5xl sm:text-6xl lg:text-7xl text-[#451A03] leading-[0.95]">
-              HUM SE <span className="italic text-[#DC2626]">BAAT KIJIYE.</span>
+              TALK TO US.
             </h1>
 
-            <p className="text-[#DC2626] font-rubik text-xl sm:text-2xl font-bold">
-              Get in touch with Suraksha team.
-            </p>
+            <SurakshaRotator
+              page="5.17"
+              className="font-baloo text-xl sm:text-2xl font-bold text-[#DC2626] tracking-wide"
+            >
+              कोई भी सवाल हो, हमसे पूछिए।
+            </SurakshaRotator>
 
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Suraksha ke baare mein koi bhi baat — product query, pricing, installation, warranty, ya just general question. Neeche kisi bhi channel se contact kijiye.
+              Questions about the product, pricing, installation or warranty? Reach the Suraksha team through any of the channels below.
             </p>
           </div>
         </div>
@@ -169,7 +173,7 @@ export default function SurakshaContactPage() {
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider bg-[#0891B2] text-white hover:bg-[#0E7490] transition-all shadow-md active:scale-[0.98]"
                 >
-                  <MessageCircle className="w-4 h-4 text-[#25D366]" /> WhatsApp Chat Open Karein
+                  <MessageCircle className="w-4 h-4 text-[#25D366]" /> Open WhatsApp Chat
                 </a>
               </div>
             </div>
@@ -190,10 +194,10 @@ export default function SurakshaContactPage() {
 
                 <div className="space-y-2">
                   <h2 className="font-anton text-3xl sm:text-4xl uppercase tracking-normal text-[#451A03]">
-                    DHANYAWAAD! MESSAGE MIL GAYA.
+                    THANK YOU! MESSAGE RECEIVED.
                   </h2>
                   <p className="text-[#78350F] text-base leading-relaxed font-medium max-w-lg mx-auto">
-                    Aap ka message hum tak pahunch gaya. 4 business hours mein humari team aap ko call ya WhatsApp karegi. Urgent ho toh direct 1800 833 0233 par call kariye.
+                    Your message has reached our support team. We will call or message you on WhatsApp within 4 business hours. For urgent highway assistance, call toll-free at 1800 833 0233.
                   </p>
                 </div>
 
@@ -202,13 +206,13 @@ export default function SurakshaContactPage() {
                     onClick={handleReset}
                     className="w-full sm:w-auto px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider bg-[#451A03] text-white hover:bg-[#5C2304] transition-all cursor-pointer"
                   >
-                    Dusra Message Bhejein
+                    Send Another Message
                   </button>
                   <Link
                     href="/suraksha/centres"
                     className="w-full sm:w-auto px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider bg-[#DC2626] text-white hover:bg-[#B91C1C] transition-all"
                   >
-                    Nearest Centre Dekhein
+                    Find Nearest Centre
                   </Link>
                 </div>
               </div>
@@ -217,10 +221,10 @@ export default function SurakshaContactPage() {
               <>
                 <div className="space-y-2 border-b border-[#451A03]/10 pb-4">
                   <h2 className="font-anton text-3xl sm:text-4xl uppercase tracking-normal text-[#451A03]">
-                    FORM BHARIYE — HUM CALL KARENGE
+                    SEND A MESSAGE — WE WILL CALL YOU
                   </h2>
                   <p className="text-[#78350F] text-sm font-medium">
-                    Aapki contact details aur requirement fill kijiye, humari team preferred language mein call karegi.
+                    Fill in your contact details and inquiry below, and our team will get in touch in your preferred language.
                   </p>
                 </div>
 
@@ -240,7 +244,7 @@ export default function SurakshaContactPage() {
                     <input
                       type="text"
                       required
-                      placeholder="Aap ka pura naam"
+                      placeholder="Enter your full name"
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                       className="w-full px-4 py-3 bg-white border-2 border-[#451A03]/20 rounded-[4px] text-[#451A03] placeholder-[#78350F]/50 focus:outline-none focus:border-[#DC2626] text-sm font-medium shadow-xs"
@@ -353,7 +357,7 @@ export default function SurakshaContactPage() {
                       required
                       rows={4}
                       maxLength={1000}
-                      placeholder="Aap ka sawaal ya baat jo aapko puchni hai..."
+                      placeholder="Your question, message, or vehicle details..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full px-4 py-3 bg-white border-2 border-[#451A03]/20 rounded-[4px] text-[#451A03] placeholder-[#78350F]/50 focus:outline-none focus:border-[#DC2626] text-sm font-medium shadow-xs"
@@ -371,7 +375,7 @@ export default function SurakshaContactPage() {
                       className="mt-1 w-4 h-4 accent-[#DC2626] cursor-pointer"
                     />
                     <label htmlFor="consent" className="text-xs text-[#78350F] leading-snug cursor-pointer">
-                      Mai aap ke saath contact kar sakte hai iski permission deta hoon. Privacy policy padhi. *
+                      I agree to be contacted regarding my inquiry via phone, SMS, or WhatsApp. *
                     </label>
                   </div>
 
@@ -381,7 +385,7 @@ export default function SurakshaContactPage() {
                     disabled={isSubmitting}
                     className="w-full py-4 rounded-[4px] font-rubik font-bold uppercase tracking-wider text-sm bg-[#DC2626] text-white hover:bg-[#B91C1C] transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 active:scale-[0.99]"
                   >
-                    <Send className="w-4 h-4" /> {isSubmitting ? "Sending Message..." : "Send  →"}
+                    <Send className="w-4 h-4" /> {isSubmitting ? "Sending Message..." : "Send Message  →"}
                   </button>
                 </form>
               </>
@@ -404,7 +408,7 @@ export default function SurakshaContactPage() {
                   NEAREST CENTRE FINDER
                 </h3>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  Aapke area ka nearest Suraksha centre find karne ke liye:
+                  Locate an authorized fitment hub or Truck Wheels centre near you:
                 </p>
               </div>
 
@@ -426,7 +430,7 @@ export default function SurakshaContactPage() {
                   WHATSAPP SHORTCUT
                 </h3>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  Sabse fastest — WhatsApp par direct message kariye.
+                  For our fastest response, send us a direct message on WhatsApp.
                 </p>
               </div>
 
@@ -434,7 +438,7 @@ export default function SurakshaContactPage() {
                 href="/suraksha/whatsapp"
                 className="inline-flex items-center gap-1.5 font-rubik font-bold text-xs uppercase tracking-wider text-[#0891B2] hover:underline"
               >
-                WhatsApp Kariye <ArrowRight className="w-3.5 h-3.5" />
+                Chat on WhatsApp <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </div>
@@ -446,11 +450,11 @@ export default function SurakshaContactPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton text-5xl sm:text-6xl font-normal tracking-tight text-[#FEF3C7] uppercase">
-              SURAKSHA TEAM AAPKE SAATH HAI.
+              THE SURAKSHA TEAM IS HERE FOR YOU.
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto">
-              Hardware warranty, tyre telemetry query, ya highway assistance ke liye hum hamesha available hai.
+              Whether you need hardware warranty support, tyre telemetry guidance, or highway assistance, our team is always ready to help.
             </p>
 
             <div className="pt-4 flex flex-wrap justify-center gap-4">
@@ -464,7 +468,7 @@ export default function SurakshaContactPage() {
                 href="/suraksha/whatsapp"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all border-2 border-[#FEF3C7] text-[#FEF3C7] hover:bg-white/10 active:scale-[0.98]"
               >
-                WhatsApp Kariye
+                Chat on WhatsApp
               </Link>
             </div>
           </div>

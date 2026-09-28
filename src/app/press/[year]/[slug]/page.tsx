@@ -187,7 +187,7 @@ export default async function PressReleasePage({ params }: { params: Promise<{ y
       "name": "Treel Mobility Solutions",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://treel.in/images/logo.png"
+        "url": "https://treel.in/images/treel%20main%20logo.jpg"
       }
     }
   };

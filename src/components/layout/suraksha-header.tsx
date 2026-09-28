@@ -38,9 +38,9 @@ export function SurakshaHeader() {
           <div className="flex items-center gap-3 sm:gap-4 shrink-0 z-10 mr-2 xl:mr-4">
             <Link href="/" className="flex items-center group">
               <Image
-                src="/images/logo.png"
+                src="/images/treel main logo.jpg"
                 alt="Treel"
-                width={180}
+                width={160}
                 height={50}
                 className="h-9 sm:h-10 lg:h-11 xl:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
                 priority
@@ -354,7 +354,7 @@ export function SurakshaHeader() {
                 onClick={() => setMobileOpen(false)}
                 className="w-full py-2.5 text-center rounded font-rubik text-xs font-bold bg-[#16A34A] text-white hover:bg-[#15803D] transition-all"
               >
-                WhatsApp पर बात करें
+                Chat on WhatsApp
               </Link>
             </div>
           </div>

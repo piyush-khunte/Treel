@@ -98,10 +98,10 @@ export function Footer({ variant, className }: FooterProps) {
           {/* Brand & Tagline */}
           <div className="lg:col-span-2 space-y-4">
             <Image
-              src="/images/logo.png"
+              src="/images/treel main logo.jpg"
               alt="Treel"
               width={140}
-              height={38}
+              height={44}
               className="h-9 w-auto object-contain brightness-100"
             />
             <p className={theme.tagline}>
