@@ -179,7 +179,7 @@ export function TmipHeader() {
                   isResourcesActive ? "text-[#3B82F6] font-semibold" : "hover:text-[#3B82F6]"
                 }`}
               >
-                <span>Resources</span>
+                <span>RESOURCES</span>
                 <ChevronDown className="w-3.5 h-3.5 text-slate-500 group-hover:rotate-180 transition-transform" />
               </button>
               <div className="absolute top-full left-0 w-60 p-2 bg-[#0B1220] rounded-xl shadow-2xl border border-blue-900/40 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
@@ -199,7 +199,7 @@ export function TmipHeader() {
                   isSecurityActive ? "text-[#3B82F6] font-semibold" : "hover:text-[#3B82F6]"
                 }`}
               >
-                <span>Security &amp; Compliance</span>
+                <span>SECURITY &amp; COMPLIANCE</span>
                 <ChevronDown className="w-3.5 h-3.5 text-slate-500 group-hover:rotate-180 transition-transform" />
               </button>
               <div className="absolute top-full right-0 xl:left-0 w-60 p-2 bg-[#0B1220] rounded-xl shadow-2xl border border-blue-900/40 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
@@ -351,7 +351,7 @@ export function TmipHeader() {
                 onClick={() => setMobileSecurityOpen(!mobileSecurityOpen)}
                 className="w-full flex items-center justify-between py-2 text-white font-semibold uppercase tracking-wider text-xs"
               >
-                <span>Security &amp; Compliance</span>
+                <span>SECURITY &amp; COMPLIANCE</span>
                 <ChevronDown className={`w-4 h-4 transition-transform ${mobileSecurityOpen ? "rotate-180" : ""}`} />
               </button>
               {mobileSecurityOpen && (
