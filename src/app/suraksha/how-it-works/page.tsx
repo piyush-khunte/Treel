@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Play, Clock, ShieldCheck, CheckCircle2, Wrench, AlertTriangle, MessageSquare } from "lucide-react";
+import { ArrowRight, Play, Clock, ShieldCheck, CheckCircle2, Wrench, AlertTriangle } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
 
 export const metadata: Metadata = {
   title: "Suraksha कैसे Install करें  ·  How Suraksha Works",
@@ -483,13 +484,12 @@ export default function SurakshaHowItWorksPage() {
               >
                 Nearest Centre <ArrowRight className="w-4 h-4 text-[#DC2626]" />
               </Link>
-              <Link
+              <WhatsAppCircularIcon
                 href="/suraksha/whatsapp"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all shadow-md border-2 border-[#FEF3C7] text-[#FEF3C7] hover:bg-[#FEF3C7]/15 active:scale-[0.98]"
-              >
-                <MessageSquare className="w-4 h-4" />
-                WhatsApp करिए
-              </Link>
+                size="lg"
+                title="WhatsApp करिए"
+                ariaLabel="WhatsApp करिए"
+              />
             </div>
           </div>
         </div>

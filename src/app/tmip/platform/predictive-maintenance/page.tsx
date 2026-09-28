@@ -127,7 +127,7 @@ export default function TmipPlatformPredictiveMaintenancePage() {
               <span className="text-[#3B82F6]">Predictive Maintenance</span>
             </nav>
 
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[3px] bg-[#3B82F6]/10 border border-[#3B82F6]/30 text-[#3B82F6] font-jetbrains text-xs tracking-wider uppercase font-semibold">
+            <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
               PLATFORM · PREDICTIVE MAINTENANCE
             </div>
 

@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, HelpCircle, ChevronDown, ChevronUp, MessageCircle } from "lucide-react";
+import { ArrowRight, HelpCircle, ChevronDown, ChevronUp } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
 
 export default function SurakshaFAQsPage() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
@@ -147,12 +148,12 @@ export default function SurakshaFAQsPage() {
                 </p>
               </div>
 
-              <Link
+              <WhatsAppCircularIcon
                 href="/suraksha/whatsapp"
-                className="px-6 py-3 rounded-[4px] bg-[#EA580C] text-white font-rubik font-bold text-xs uppercase tracking-wider hover:bg-[#DC2626] transition-all flex items-center gap-2 whitespace-nowrap shadow-sm"
-              >
-                <MessageCircle className="w-4 h-4 text-[#25D366]" /> WhatsApp पे बात करें
-              </Link>
+                size="md"
+                title="WhatsApp पे बात करें"
+                ariaLabel="WhatsApp पे बात करें"
+              />
             </div>
           </div>
         </div>

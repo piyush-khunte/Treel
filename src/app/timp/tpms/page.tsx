@@ -131,12 +131,9 @@ export default function CommercialVehicleTpmsPage() {
               <span className="text-[#3B82F6]">Commercial Vehicle TPMS</span>
             </div>
 
-            {/* Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[2px] bg-[#3B82F6]/10 border border-[#3B82F6]/30">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
-              <span className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
-                COMMERCIAL VEHICLE TPMS · FLEET &amp; OEM
-              </span>
+            {/* Eyebrow */}
+            <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
+              COMMERCIAL VEHICLE TPMS · FLEET &amp; OEM
             </div>
 
             {/* Headline */}

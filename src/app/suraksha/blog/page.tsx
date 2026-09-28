@@ -18,6 +18,7 @@ import {
   Sparkles
 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
 
 interface Article {
   id: string;
@@ -439,12 +440,12 @@ export default function SurakshaBlogPage() {
                 </p>
               </div>
 
-              <Link
+              <WhatsAppCircularIcon
                 href="/suraksha/whatsapp"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider bg-[#EA580C] text-white hover:bg-[#C2410C] transition-all shadow-md shrink-0 active:scale-[0.98]"
-              >
-                WhatsApp par subscribe <ArrowRight className="w-4 h-4" />
-              </Link>
+                size="md"
+                title="WhatsApp par subscribe"
+                ariaLabel="WhatsApp par subscribe"
+              />
             </div>
 
             <div className="pt-4 border-t border-[#451A03]/10 flex items-center gap-2 text-xs font-mono text-[#78350F]">
@@ -474,12 +475,12 @@ export default function SurakshaBlogPage() {
               >
                 Nearest Centre <ArrowRight className="w-5 h-5 text-[#DC2626]" />
               </Link>
-              <Link
+              <WhatsAppCircularIcon
                 href="/suraksha/whatsapp"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all border-2 border-[#FEF3C7] text-[#FEF3C7] hover:bg-white/10 active:scale-[0.98]"
-              >
-                WhatsApp Kariye
-              </Link>
+                size="lg"
+                title="WhatsApp Kariye"
+                ariaLabel="WhatsApp Kariye"
+              />
             </div>
           </div>
         </div>

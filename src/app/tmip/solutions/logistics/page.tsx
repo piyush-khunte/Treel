@@ -114,7 +114,7 @@ export default function TmipSolutionsLogisticsPage() {
               <span className="text-[#3B82F6]">Logistics</span>
             </nav>
 
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[3px] bg-[#3B82F6]/10 border border-[#3B82F6]/30 text-[#3B82F6] font-jetbrains text-xs tracking-wider uppercase font-semibold">
+            <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
               SOLUTIONS · LOGISTICS
             </div>
 
@@ -200,7 +200,7 @@ export default function TmipSolutionsLogisticsPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[3px] bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981] font-jetbrains text-xs tracking-wider uppercase font-semibold">
+              <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
                 PLATFORM FIT
               </div>
               <h2 className="font-space-grotesk text-2xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">

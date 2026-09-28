@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
-  MessageCircle,
   ShieldCheck,
   CheckCircle2,
   Tv,
@@ -18,6 +17,7 @@ import {
   Check,
 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
 
 export const metadata: Metadata = {
   title: "Suraksha Kit · Product Details · In-Cab Display + 4 Tyre Sensors",
@@ -311,12 +311,12 @@ export default function SurakshaProductPage() {
               >
                 Nearest Centre <ArrowRight className="w-5 h-5 text-[#DC2626]" />
               </Link>
-              <Link
+              <WhatsAppCircularIcon
                 href="/suraksha/whatsapp"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all border-2 border-[#FEF3C7] text-[#FEF3C7] hover:bg-white/10 active:scale-[0.98]"
-              >
-                <MessageCircle className="w-5 h-5 text-[#25D366]" /> WhatsApp करिए
-              </Link>
+                size="lg"
+                title="WhatsApp करिए"
+                ariaLabel="WhatsApp करिए"
+              />
             </div>
           </div>
         </div>

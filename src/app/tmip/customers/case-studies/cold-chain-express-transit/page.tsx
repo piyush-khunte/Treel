@@ -90,7 +90,7 @@ export default function ColdChainCaseStudyPage() {
 
           <div className="max-w-4xl space-y-4">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="border border-[#3B82F6]/30 bg-[#3B82F6]/10 px-3 py-1 rounded-[2px] text-xs font-jetbrains tracking-widest text-[#3B82F6] uppercase font-semibold">
+              <span className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
                 LOGISTICS · COLD CHAIN
               </span>
               <span className="border border-slate-400/10 bg-white/[0.03] px-3 py-1 rounded-[2px] text-xs font-jetbrains text-[#94A3B8]">

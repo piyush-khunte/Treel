@@ -50,7 +50,7 @@ export default function RoiFleetIntelligencePage() {
 
           <div className="max-w-4xl space-y-4">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="border border-blue-500/20 bg-blue-500/10 px-2.5 py-0.5 rounded-[2px] text-xs font-jetbrains tracking-widest text-blue-400 uppercase font-semibold">
+              <span className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
                 ROI & PAYBACK
               </span>
               <span className="border border-slate-400/20 bg-white/[0.03] px-2.5 py-0.5 rounded-[2px] text-xs font-jetbrains text-[#94A3B8]">

@@ -45,7 +45,7 @@ export default function TmipWhitepapersPage() {
               <span className="text-[#3B82F6]">Whitepapers</span>
             </nav>
 
-            <div className="inline-flex items-center gap-2 rounded-[2px] font-jetbrains text-xs uppercase tracking-wider font-semibold px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20">
+            <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
               WHITEPAPERS
             </div>
 

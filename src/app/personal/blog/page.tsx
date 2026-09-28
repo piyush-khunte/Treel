@@ -4,13 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { 
-  BookOpen, 
-  Calendar, 
-  Clock, 
   ArrowRight, 
-  Rss, 
   Search,
-  CheckCircle2,
   ShoppingCart
 } from "lucide-react";
 
@@ -116,9 +111,9 @@ export default function PersonalBlogPage() {
               Practical tyre care tips, road safety insights, product updates, and consumer vehicle maintenance advice.
             </p>
 
-            {/* Search Input & RSS */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4 max-w-2xl">
-              <div className="relative flex-1">
+            {/* Search Input */}
+            <div className="pt-4 max-w-xl">
+              <div className="relative">
                 <Search className="w-5 h-5 text-[#6B7280] absolute left-4 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
@@ -127,10 +122,6 @@ export default function PersonalBlogPage() {
                   placeholder="Search articles by topic…"
                   className="w-full pl-12 pr-4 py-3.5 rounded-full bg-white border border-black/[0.12] text-sm text-[#111827] placeholder:text-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#2563EB] shadow-sm"
                 />
-              </div>
-              <div className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-white border border-black/[0.12] text-xs font-bold text-[#4B5563] shadow-sm shrink-0">
-                <Rss className="w-4 h-4 text-[#F59E0B]" />
-                <span>RSS feed ready</span>
               </div>
             </div>
           </div>

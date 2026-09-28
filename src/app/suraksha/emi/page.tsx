@@ -12,7 +12,6 @@ import {
   Building,
   CreditCard,
   MapPin,
-  MessageCircle,
   Truck,
 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";

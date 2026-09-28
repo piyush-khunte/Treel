@@ -11,7 +11,6 @@ import {
   Truck,
   Sparkles,
   PhoneCall,
-  MessageCircle,
 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
