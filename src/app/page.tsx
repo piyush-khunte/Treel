@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Radio, Cpu, ShieldCheck, BarChart3 } from "lucide-react";
-import { TreelSignature } from "@/components/corporate/treel-signature";
+import { TreelHeroVisual } from "@/components/home/treel-hero-visual";
 
 export const metadata: Metadata = {
   title: "Treel · The Mobility Intelligence Company",
@@ -76,9 +76,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Column: Treel Signature Visual */}
-            <div className="hidden lg:flex justify-center items-center lg:self-start lg:pt-14 xl:pt-16 p-6 xl:p-10">
-              <TreelSignature variant="hero" />
+            {/* Right Column: Treel Product Ecosystem Motion Visual */}
+            <div className="w-full flex justify-center items-center mt-6 lg:mt-0">
+              <TreelHeroVisual />
             </div>
           </div>
         </div>
