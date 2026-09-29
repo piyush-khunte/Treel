@@ -100,6 +100,7 @@ export function PersonalCampaignPage() {
   const [formData, setFormData] = useState({
     full_name: "",
     mobile: "",
+    email: "",
     city: "",
     kit_interest: "not_sure",
     vehicle_model: "",
@@ -455,10 +456,17 @@ export function PersonalCampaignPage() {
               <div className="cta-row">
                 <a
                   className="btn btn-primary"
-                  href="#kits"
-                  onClick={() => handleCtaClick("hero_shop_kit")}
+                  href="#callback"
+                  onClick={(e) => {
+                    handleCtaClick("hero_request_callback");
+                    const el = document.getElementById("callback");
+                    if (el) {
+                      e.preventDefault();
+                      el.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
                 >
-                  Shop the bike kit <Icon id="i-arrow-right" />
+                  Request a callback <Icon id="i-arrow-right" />
                 </a>
                 <a className="btn btn-secondary" href="#how" onClick={() => handleCtaClick("hero_see_how")}>
                   See how it works
@@ -597,6 +605,182 @@ export function PersonalCampaignPage() {
                 </div>
               </div>
               <span className="illus-note">Illustrative app screen</span>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            SECTION: REQUEST A CALLBACK (DIRECTLY BELOW HERO)
+            ========================================================================= */}
+        <section id="callback" className="bg-mist" aria-labelledby="callback-title" style={{ scrollMarginTop: "80px" }}>
+          <div className="wrap">
+            <div className="final-grid" style={{ alignItems: "center" }}>
+              <div>
+                <div className="divider" aria-hidden="true"></div>
+                <p className="eyebrow">Expert Two-Wheeler Advice</p>
+                <h2 id="callback-title">Request a Call Back</h2>
+                <p className="sec-sub">
+                  Tell us about your bike or scooter. Our tyre pressure specialists will call you back to help you choose the right sensor kit and arrange quick doorstep delivery or local fitment.
+                </p>
+                <ul className="benefits" style={{ marginTop: "24px" }}>
+                  <li>
+                    <Icon id="i-shield-check" /> 3-year sensor warranty
+                  </li>
+                  <li>
+                    <Icon id="i-circle-check" /> ARAI certified · Made in India
+                  </li>
+                  <li>
+                    <Icon id="i-phone" /> Fast callback from specialists
+                  </li>
+                  <li>
+                    <Icon id="i-motorbike" /> Motorbike &amp; scooter kits
+                  </li>
+                </ul>
+                <p className="help-line" style={{ color: "var(--fog)", marginTop: "24px" }}>
+                  In a hurry? Call toll-free:{" "}
+                  <a href="tel:+18008330233" style={{ color: "var(--blue)", fontWeight: "700" }}>
+                    1800 833 0233
+                  </a>
+                </p>
+              </div>
+
+              <div className="form-card">
+                <form
+                  id="heroCallbackForm"
+                  method="POST"
+                  action="/api/personal/lead"
+                  ref={inPageFormRef}
+                  noValidate
+                  onSubmit={handleSubmit}
+                  onFocus={handleFocus}
+                >
+                  {!isSuccess ? (
+                    <div>
+                      <h3>Request a Call Back</h3>
+                      <p className="sub">Leave your details and we&apos;ll confirm the right kit for your ride.</p>
+
+                      <div className="field">
+                        <label htmlFor="f-name">Full name *</label>
+                        <input
+                          id="f-name"
+                          name="full_name"
+                          type="text"
+                          autoComplete="name"
+                          placeholder="Rahul Sharma"
+                          required
+                          value={formData.full_name}
+                          onChange={handleInputChange}
+                          aria-invalid={formErrors.full_name ? "true" : "false"}
+                        />
+                        {formErrors.full_name && <span className="err">Please enter your full name.</span>}
+                      </div>
+
+                      <div className="field">
+                        <label htmlFor="f-phone">Mobile number *</label>
+                        <div className="tel">
+                          <span>+91</span>
+                          <input
+                            id="f-phone"
+                            name="mobile"
+                            type="tel"
+                            inputMode="numeric"
+                            autoComplete="tel-national"
+                            maxLength={10}
+                            placeholder="98765 43210"
+                            required
+                            value={formData.mobile}
+                            onChange={handleInputChange}
+                            aria-invalid={formErrors.mobile ? "true" : "false"}
+                          />
+                        </div>
+                        {formErrors.mobile && <span className="err">Please enter a valid 10-digit mobile number.</span>}
+                      </div>
+
+                      <div className="field">
+                        <label htmlFor="f-email">Email address</label>
+                        <input
+                          id="f-email"
+                          name="email"
+                          type="email"
+                          autoComplete="email"
+                          placeholder="rahul@example.com"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+
+                      <div className="row2">
+                        <div className="field">
+                          <label htmlFor="f-city">City</label>
+                          <input
+                            id="f-city"
+                            name="city"
+                            type="text"
+                            placeholder="e.g. Pune"
+                            autoComplete="address-level2"
+                            value={formData.city}
+                            onChange={handleInputChange}
+                          />
+                        </div>
+                        <div className="field">
+                          <label htmlFor="f-kit">I&apos;m looking at</label>
+                          <select
+                            id="f-kit"
+                            name="kit_interest"
+                            required
+                            value={formData.kit_interest}
+                            onChange={handleInputChange}
+                          >
+                            <option value="motorbike_kit">Motorbike kit</option>
+                            <option value="scooter_kit">Scooter kit</option>
+                            <option value="not_sure">Not sure yet</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="field">
+                        <label htmlFor="f-model">Your bike or scooter</label>
+                        <input
+                          id="f-model"
+                          name="vehicle_model"
+                          type="text"
+                          placeholder="Make and model, e.g. Royal Enfield Hunter 350"
+                          value={formData.vehicle_model}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+
+                      {submitError && (
+                        <div
+                          role="alert"
+                          style={{
+                            background: "#FEE2E2",
+                            border: "1px solid #EF4444",
+                            borderRadius: "8px",
+                            padding: "10px 14px",
+                            marginBottom: "12px",
+                            fontSize: "0.85rem",
+                            color: "#991B1B",
+                          }}
+                        >
+                          {submitError}
+                        </div>
+                      )}
+
+                      <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
+                        {isSubmitting ? "Submitting…" : "Request a call back"}
+                      </button>
+                      <p className="form-note">We&apos;ll only use your details to answer your inquiry.</p>
+                    </div>
+                  ) : (
+                    <div className="thanks" id="formThanks">
+                      <Icon id="i-circle-check" />
+                      <h3>Thanks. We&apos;ll call you soon.</h3>
+                      <p>In a hurry? Call us toll-free on 1800 833 0233.</p>
+                    </div>
+                  )}
+                </form>
+              </div>
             </div>
           </div>
         </section>
@@ -1437,154 +1621,42 @@ export function PersonalCampaignPage() {
         </section>
 
         {/* =========================================================================
-            SECTION 11: FINAL CTA + LEAD CALLBACK FORM
+            SECTION 11: READY TO RIDE / FINAL CTA
             ========================================================================= */}
-        <section id="callback" className="bg-blue final" aria-labelledby="final-title">
-          <div className="wrap final-grid">
-            <div>
-              <div className="divider" aria-hidden="true"></div>
-              <p className="eyebrow">Ready when you are</p>
-              <h2 id="final-title">Know before you ride.</h2>
-              <p className="sec-sub">
-                Choose your kit, have it fitted at a Treel tyre shop, and pair it with the free app. That&apos;s it.
-              </p>
-              <div className="cta-row">
-                <a
-                  className="btn btn-white"
-                  href="#kits"
-                  onClick={() => handleCtaClick("final_shop_kit")}
-                >
-                  Shop the bike kit <Icon id="i-arrow-right" />
-                </a>
-                <a
-                  className="btn btn-ghost-white"
-                  href="tel:+18008330233"
-                  onClick={() => handleCtaClick("final_toll_free")}
-                >
-                  <Icon id="i-phone" /> 1800 833 0233
-                </a>
-              </div>
-              <p className="help-line">
-                Toll-free support. Or write to <a href="mailto:hello@treel.in">hello@treel.in</a>
-              </p>
+        <section className="bg-blue final" aria-labelledby="final-title">
+          <div className="wrap" style={{ textAlign: "center", maxWidth: "780px" }}>
+            <div className="divider" style={{ margin: "0 auto 20px" }} aria-hidden="true"></div>
+            <p className="eyebrow" style={{ color: "rgba(255, 255, 255, 0.85)" }}>Ready when you are</p>
+            <h2 id="final-title">Know before you ride.</h2>
+            <p className="sec-sub" style={{ color: "rgba(255, 255, 255, 0.9)", margin: "0 auto 32px" }}>
+              Have questions about compatibility or fitment? Speak with our 2W TPMS experts today or request a callback.
+            </p>
+            <div className="cta-row" style={{ justifyContent: "center", marginBottom: "20px" }}>
+              <a
+                className="btn btn-white"
+                href="#callback"
+                onClick={(e) => {
+                  handleCtaClick("final_request_callback");
+                  const el = document.getElementById("callback");
+                  if (el) {
+                    e.preventDefault();
+                    el.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+              >
+                Request a callback <Icon id="i-arrow-right" />
+              </a>
+              <a
+                className="btn btn-ghost-white"
+                href="tel:+18008330233"
+                onClick={() => handleCtaClick("final_toll_free")}
+              >
+                <Icon id="i-phone" /> 1800 833 0233
+              </a>
             </div>
-
-            <div className="form-card">
-              <form id="callbackForm" ref={inPageFormRef} noValidate onSubmit={handleSubmit} onFocus={handleFocus}>
-                {!isSuccess ? (
-                  <div>
-                    <h3>Have a question first?</h3>
-                    <p className="sub">Leave your number and we&apos;ll call you back.</p>
-
-                    <div className="field">
-                      <label htmlFor="f-name">Full name</label>
-                      <input
-                        id="f-name"
-                        name="full_name"
-                        type="text"
-                        autoComplete="name"
-                        placeholder="Rahul Sharma"
-                        required
-                        value={formData.full_name}
-                        onChange={handleInputChange}
-                        aria-invalid={formErrors.full_name ? "true" : "false"}
-                      />
-                      {formErrors.full_name && <span className="err">Please enter your full name.</span>}
-                    </div>
-
-                    <div className="field">
-                      <label htmlFor="f-phone">Mobile number</label>
-                      <div className="tel">
-                        <span>+91</span>
-                        <input
-                          id="f-phone"
-                          name="mobile"
-                          type="tel"
-                          inputMode="numeric"
-                          autoComplete="tel-national"
-                          maxLength={10}
-                          placeholder="98765 43210"
-                          required
-                          value={formData.mobile}
-                          onChange={handleInputChange}
-                          aria-invalid={formErrors.mobile ? "true" : "false"}
-                        />
-                      </div>
-                      {formErrors.mobile && <span className="err">Please enter a valid 10-digit mobile number.</span>}
-                    </div>
-
-                    <div className="row2">
-                      <div className="field">
-                        <label htmlFor="f-city">City</label>
-                        <input
-                          id="f-city"
-                          name="city"
-                          type="text"
-                          placeholder="e.g. Pune"
-                          autoComplete="address-level2"
-                          value={formData.city}
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                      <div className="field">
-                        <label htmlFor="f-kit">I&apos;m looking at</label>
-                        <select
-                          id="f-kit"
-                          name="kit_interest"
-                          required
-                          value={formData.kit_interest}
-                          onChange={handleInputChange}
-                        >
-                          <option value="motorbike_kit">Motorbike kit</option>
-                          <option value="scooter_kit">Scooter kit</option>
-                          <option value="not_sure">Not sure yet</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="field">
-                      <label htmlFor="f-model">Your bike or scooter</label>
-                      <input
-                        id="f-model"
-                        name="vehicle_model"
-                        type="text"
-                        placeholder="Make and model, e.g. Royal Enfield Hunter 350"
-                        value={formData.vehicle_model}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-
-                    {submitError && (
-                      <div
-                        role="alert"
-                        style={{
-                          background: "#FEE2E2",
-                          border: "1px solid #EF4444",
-                          borderRadius: "8px",
-                          padding: "10px 14px",
-                          marginBottom: "12px",
-                          fontSize: "0.85rem",
-                          color: "#991B1B",
-                        }}
-                      >
-                        {submitError}
-                      </div>
-                    )}
-
-                    <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
-                      {isSubmitting ? "Submitting…" : "Request a call back"}
-                    </button>
-                    <p className="form-note">We&apos;ll only use your number to answer your question.</p>
-                  </div>
-                ) : (
-                  <div className="thanks" id="formThanks">
-                    <Icon id="i-circle-check" />
-                    <h3>Thanks. We&apos;ll call you soon.</h3>
-                    <p>In a hurry? Call us toll-free on 1800 833 0233.</p>
-                  </div>
-                )}
-              </form>
-            </div>
+            <p className="help-line" style={{ marginTop: "16px", color: "rgba(255, 255, 255, 0.75)" }}>
+              Toll-free support · ARAI Certified · 3-Year Warranty · Made in India
+            </p>
           </div>
         </section>
 
@@ -1724,10 +1796,17 @@ export function PersonalCampaignPage() {
         </div>
         <a
           className="btn btn-primary btn-sm"
-          href="#kits"
-          onClick={() => handleCtaClick("mobile_bar_shop")}
+          href="#callback"
+          onClick={(e) => {
+            handleCtaClick("mobile_bar_callback");
+            const el = document.getElementById("callback");
+            if (el) {
+              e.preventDefault();
+              el.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
         >
-          Shop now
+          Request callback
         </a>
       </div>
 
@@ -1757,14 +1836,21 @@ export function PersonalCampaignPage() {
               </svg>
             </button>
 
-            <form ref={modalFormRef} noValidate onSubmit={handleSubmit} onFocus={handleFocus}>
+            <form
+              ref={modalFormRef}
+              method="POST"
+              action="/api/personal/lead"
+              noValidate
+              onSubmit={handleSubmit}
+              onFocus={handleFocus}
+            >
               {!isSuccess ? (
                 <div>
                   <h3 id="modalTitle">Request a call back</h3>
                   <p className="sub">Tell us your two-wheeler model and we&apos;ll confirm the right kit.</p>
 
                   <div className="field">
-                    <label htmlFor="m-f-name">Full name</label>
+                    <label htmlFor="m-f-name">Full name *</label>
                     <input
                       id="m-f-name"
                       name="full_name"
@@ -1780,7 +1866,7 @@ export function PersonalCampaignPage() {
                   </div>
 
                   <div className="field">
-                    <label htmlFor="m-f-phone">Mobile number</label>
+                    <label htmlFor="m-f-phone">Mobile number *</label>
                     <div className="tel">
                       <span>+91</span>
                       <input
@@ -1798,6 +1884,19 @@ export function PersonalCampaignPage() {
                       />
                     </div>
                     {formErrors.mobile && <span className="err">Please enter a valid 10-digit mobile number.</span>}
+                  </div>
+
+                  <div className="field">
+                    <label htmlFor="m-f-email">Email address</label>
+                    <input
+                      id="m-f-email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      placeholder="rahul@example.com"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                    />
                   </div>
 
                   <div className="row2">
@@ -1861,7 +1960,7 @@ export function PersonalCampaignPage() {
                   <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
                     {isSubmitting ? "Submitting…" : "Request a call back"}
                   </button>
-                  <p className="form-note">We&apos;ll only use your number to answer your question.</p>
+                  <p className="form-note">We&apos;ll only use your details to answer your question.</p>
                 </div>
               ) : (
                 <div className="thanks">
