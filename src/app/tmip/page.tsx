@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   title: "TMIP  ·  The Mobility Intelligence Platform  ·  Treel",
   description:
     "TMIP is Treel's Vehicle Digital Twin platform for enterprise fleets. Real-time telemetry, predictive maintenance, cost per kilometre. 68,000+ vehicles under management. 9-month median payback.",
+  robots: {
+    index: true,
+    follow: true,
+  },
   alternates: {
     canonical: "https://treel.in/tmip",
   },

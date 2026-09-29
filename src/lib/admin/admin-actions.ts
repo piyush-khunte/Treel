@@ -501,3 +501,88 @@ export async function togglePublishAdminNotice(id: string, currentStatus: "Publi
   return updateAdminNotice(id, { status: newStatus });
 }
 
+// ============================================================================
+// LEADS CRM
+// ============================================================================
+export interface AdminLeadItem {
+  id: string;
+  name: string;
+  company: string;
+  phone: string;
+  email: string;
+  source: string;
+  vehicles: string;
+  status: "New" | "Contacted" | "Qualified" | "Closed";
+  time: string;
+}
+
+export async function getAdminLeads(): Promise<{ success: boolean; data?: AdminLeadItem[]; error?: string }> {
+  const supabase = getAdminClient();
+  try {
+    const { data, error } = await supabase
+      .from('leads')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      return { success: false, error: error.message };
+    }
+
+    if (!data || data.length === 0) {
+      return { success: true, data: [] };
+    }
+
+    const formatted: AdminLeadItem[] = data.map((item: any) => {
+      let relativeTime = "Recently";
+      if (item.created_at) {
+        const diffMs = Date.now() - new Date(item.created_at).getTime();
+        const diffMins = Math.floor(diffMs / 60000);
+        if (diffMins < 60) relativeTime = `${Math.max(1, diffMins)} mins ago`;
+        else if (diffMins < 1440) relativeTime = `${Math.floor(diffMins / 60)} hours ago`;
+        else relativeTime = `${Math.floor(diffMins / 1440)} days ago`;
+      }
+
+      let source = "TMIP Enterprise Demo";
+      if (item.type === "tmip_campaign_lead") source = "TMIP Campaign Lead";
+      else if (item.type === "suraksha_emi") source = "Suraksha EMI Apply";
+      else if (item.type === "express_callback") source = "30s Express Callback";
+
+      const rawStatus = (item.status || "New").toLowerCase();
+      let status: AdminLeadItem["status"] = "New";
+      if (rawStatus === "contacted") status = "Contacted";
+      else if (rawStatus === "qualified") status = "Qualified";
+      else if (rawStatus === "closed") status = "Closed";
+
+      return {
+        id: item.id ? (item.id.length > 8 ? `LD-${item.id.slice(-6).toUpperCase()}` : item.id) : `LD-${Math.floor(Math.random() * 1000)}`,
+        name: item.full_name || item.name || "Anonymous",
+        company: item.company_name || item.company || "Independent Operator",
+        phone: item.phone || "N/A",
+        email: item.email || "N/A",
+        source,
+        vehicles: item.fleet_size ? `${item.fleet_size} Vehicles` : "1-5",
+        status,
+        time: relativeTime,
+      };
+    });
+
+    return { success: true, data: formatted };
+  } catch (error: any) {
+    return { success: false, error: error.message || 'Failed to fetch leads' };
+  }
+}
+
+export async function updateAdminLeadStatus(id: string, newStatus: string): Promise<{ success: boolean; error?: string }> {
+  const supabase = getAdminClient();
+  try {
+    await supabase
+      .from('leads')
+      .update({ status: newStatus.toLowerCase() })
+      .or(`id.eq.${id}`);
+    revalidatePath('/admin/leads');
+    return { success: true };
+  } catch (error: any) {
+    return { success: false, error: error.message };
+  }
+}
+
