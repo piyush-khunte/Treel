@@ -543,7 +543,9 @@ export async function getAdminLeads(): Promise<{ success: boolean; data?: AdminL
       }
 
       let source = "TMIP Enterprise Demo";
-      if (item.type === "tmip_campaign_lead") source = "TMIP Campaign Lead";
+      if (item.form_id === "tmip_footer_demo") source = "TMIP Footer Demo";
+      else if (item.form_id === "tmip_demo" || item.campaign_type === "tmip_campaign" || item.type === "tmip_campaign_lead") source = "TMIP Campaign Lead";
+      else if (item.type === "personal_tpms_2w" || item.campaign_type === "personal_tpms_2w_campaign") source = "Personal TPMS 2W Campaign";
       else if (item.type === "suraksha_emi") source = "Suraksha EMI Apply";
       else if (item.type === "express_callback") source = "30s Express Callback";
 
@@ -553,14 +555,33 @@ export async function getAdminLeads(): Promise<{ success: boolean; data?: AdminL
       else if (rawStatus === "qualified") status = "Qualified";
       else if (rawStatus === "closed") status = "Closed";
 
+      let vehiclesDisplay = "1-5";
+      if (item.fleet_size) {
+        vehiclesDisplay = `${item.fleet_size} Vehicles`;
+      } else if (item.type === "personal_tpms_2w" || item.campaign_type === "personal_tpms_2w_campaign") {
+        try {
+          const meta =
+            item.attribution_metadata ||
+            (typeof item.message === "string" ? JSON.parse(item.message) : item.message);
+          vehiclesDisplay =
+            meta?.kit_interest === "motorbike_kit"
+              ? "Motorbike"
+              : meta?.kit_interest === "scooter_kit"
+              ? "Scooter"
+              : (meta?.vehicle_model || "2-Wheeler");
+        } catch {
+          vehiclesDisplay = "2-Wheeler";
+        }
+      }
+
       return {
         id: item.id ? (item.id.length > 8 ? `LD-${item.id.slice(-6).toUpperCase()}` : item.id) : `LD-${Math.floor(Math.random() * 1000)}`,
         name: item.full_name || item.name || "Anonymous",
-        company: item.company_name || item.company || "Independent Operator",
-        phone: item.phone || "N/A",
-        email: item.email || "N/A",
+        company: item.company || item.company_name || "Personal Vehicle Owner",
+        phone: item.mobile_number || item.phone || "N/A",
+        email: item.work_email || item.email || "N/A",
         source,
-        vehicles: item.fleet_size ? `${item.fleet_size} Vehicles` : "1-5",
+        vehicles: vehiclesDisplay,
         status,
         time: relativeTime,
       };

@@ -18,7 +18,9 @@ export function Footer({ variant, className }: FooterProps) {
   // Determine variant automatically if not explicitly provided
   let activeVariant: FooterVariant = (variant === "suraksha" ? "master" : variant) || "master";
   if (!variant && pathname) {
-    if (pathname.startsWith("/tmip") || pathname.startsWith("/timp")) {
+    if (pathname.startsWith("/personal/campaign")) {
+      return null;
+    } else if (pathname.startsWith("/tmip") || pathname.startsWith("/timp")) {
       activeVariant = "tmip";
     } else if (pathname.startsWith("/personal")) {
       activeVariant = "personal";
@@ -100,9 +102,9 @@ export function Footer({ variant, className }: FooterProps) {
             <Image
               src="/images/treel main logo.jpg"
               alt="Treel"
-              width={140}
-              height={44}
-              className="h-9 w-auto object-contain brightness-100"
+              width={200}
+              height={60}
+              className="h-12 md:h-14 w-auto object-contain brightness-100"
             />
             <p className={theme.tagline}>
               The mobility intelligence company. Every vehicle a signal, every signal an insight.

@@ -53,10 +53,18 @@ export async function POST(req: NextRequest) {
 
     const {
       name,
+      full_name,
       phone,
+      mobile,
+      mobile_number,
       email,
+      work_email,
       company,
       fleet_size,
+      fleetSize,
+      lead_source,
+      campaign_type,
+      form_id,
       utm_source,
       utm_medium,
       utm_campaign,
@@ -68,10 +76,14 @@ export async function POST(req: NextRequest) {
       landing_page,
       first_landing_page,
       referrer,
+      page_path,
     } = body;
 
     // 1. SERVER-SIDE VALIDATION & NORMALIZATION
-    const normalizedName = typeof name === "string" ? name.trim() : "";
+    // full_name (required NOT NULL in public.leads)
+    const normalizedName = (
+      typeof full_name === "string" ? full_name : typeof name === "string" ? name : ""
+    ).trim();
     if (!normalizedName || normalizedName.length < 2) {
       return NextResponse.json(
         { success: false, error: "Please provide a valid full name." },
@@ -79,9 +91,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const rawPhone = typeof phone === "string" ? phone.trim() : "";
+    // mobile_number (required NOT NULL in public.leads)
+    const rawPhone = (
+      typeof mobile_number === "string"
+        ? mobile_number
+        : typeof mobile === "string"
+        ? mobile
+        : typeof phone === "string"
+        ? phone
+        : ""
+    ).trim();
     const cleanDigits = rawPhone.replace(/\D/g, "");
-    // Extract last 10 digits for Indian standard
     const last10 = cleanDigits.slice(-10);
     if (last10.length !== 10 || !/^[6-9]\d{9}$/.test(last10)) {
       return NextResponse.json(
@@ -91,7 +111,10 @@ export async function POST(req: NextRequest) {
     }
     const normalizedPhone = `+91${last10}`;
 
-    const rawEmail = typeof email === "string" ? email.trim().toLowerCase() : "";
+    // work_email (required NOT NULL in public.leads)
+    const rawEmail = (
+      typeof work_email === "string" ? work_email : typeof email === "string" ? email : ""
+    ).trim().toLowerCase();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!rawEmail || !emailRegex.test(rawEmail)) {
       return NextResponse.json(
@@ -101,22 +124,23 @@ export async function POST(req: NextRequest) {
     }
     const normalizedEmail = rawEmail;
 
+    // company (required NOT NULL in public.leads)
     const normalizedCompany = typeof company === "string" ? company.trim() : "";
-    if (!normalizedCompany) {
+    if (!normalizedCompany || normalizedCompany.length < 2) {
       return NextResponse.json(
         { success: false, error: "Please provide your company or fleet name." },
         { status: 400 }
       );
     }
 
-    const rawFleet = typeof fleet_size === "string" || typeof fleet_size === "number" ? String(fleet_size).trim() : "";
-    if (!rawFleet) {
-      return NextResponse.json(
-        { success: false, error: "Please select your fleet size." },
-        { status: 400 }
-      );
-    }
-    const parsedFleetSize = parseInt(rawFleet.replace(/\D/g, ""), 10) || null;
+    // fleet_size (nullable in public.leads)
+    const rawFleet =
+      typeof fleet_size === "string" || typeof fleet_size === "number"
+        ? String(fleet_size).trim()
+        : typeof fleetSize === "string" || typeof fleetSize === "number"
+        ? String(fleetSize).trim()
+        : "";
+    const parsedFleetSize = rawFleet ? parseInt(rawFleet.replace(/\D/g, ""), 10) || null : null;
 
     // 2. IDEMPOTENCY / RAPID DUPLICATE SUBMISSION CHECK
     const idempotencyKey = `${normalizedEmail}_${last10}`;
@@ -130,7 +154,7 @@ export async function POST(req: NextRequest) {
     const timestamp = new Date().toISOString();
     const userAgent = req.headers.get("user-agent") || undefined;
 
-    // 3. DATABASE PERSISTENCE (Source of Truth)
+    // 3. DATABASE PERSISTENCE (Source of Truth - Exact verified public.leads schema)
     const supabase = getSupabaseClient();
     if (!supabase) {
       console.error(
@@ -139,123 +163,94 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: "Something went wrong while submitting your request. Please try again.",
+          error: "Something went wrong while submitting your request. Please try again or call 1800 833 0233.",
         },
         { status: 500 }
       );
     }
 
-    let insertedLeadId: string | null = null;
+    const finalFormId =
+      typeof form_id === "string" && form_id.trim()
+        ? form_id.trim()
+        : "tmip_demo";
 
-    // Primary attempt: full attribution columns (003_create_leads_table schema)
-    const fullPayload = {
-      type: "tmip_campaign_lead",
+    const insertPayload = {
       full_name: normalizedName,
-      phone: normalizedPhone,
-      email: normalizedEmail,
-      company_name: normalizedCompany,
+      mobile_number: normalizedPhone,
+      work_email: normalizedEmail,
+      company: normalizedCompany,
       fleet_size: parsedFleetSize,
-      lead_source: "tmip_campaign",
-      campaign_type: "paid_marketing",
-      ad_group: ad_group || null,
-      utm_source: utm_source || null,
-      utm_medium: utm_medium || null,
-      utm_campaign: utm_campaign || null,
-      utm_term: utm_term || null,
-      utm_content: utm_content || null,
-      gclid: gclid || null,
-      fbclid: fbclid || null,
-      landing_page: landing_page || null,
-      first_landing_page: first_landing_page || null,
-      referrer: referrer || null,
-      user_agent: userAgent || null,
-      message: `Ad Group: ${ad_group || "default"} | UTM: ${[utm_source, utm_medium, utm_campaign].filter(Boolean).join("/")} | GCLID: ${gclid || "none"}`,
+
+      lead_source:
+        typeof lead_source === "string" && lead_source.trim() ? lead_source.trim() : "website",
+      campaign_type:
+        typeof campaign_type === "string" && campaign_type.trim()
+          ? campaign_type.trim()
+          : "tmip_campaign",
+      form_id: finalFormId,
       status: "new",
+
+      utm_source: typeof utm_source === "string" && utm_source.trim() ? utm_source.trim() : null,
+      utm_medium: typeof utm_medium === "string" && utm_medium.trim() ? utm_medium.trim() : null,
+      utm_campaign:
+        typeof utm_campaign === "string" && utm_campaign.trim() ? utm_campaign.trim() : null,
+      utm_term: typeof utm_term === "string" && utm_term.trim() ? utm_term.trim() : null,
+      utm_content:
+        typeof utm_content === "string" && utm_content.trim() ? utm_content.trim() : null,
+
+      gclid: typeof gclid === "string" && gclid.trim() ? gclid.trim() : null,
+      fbclid: typeof fbclid === "string" && fbclid.trim() ? fbclid.trim() : null,
+      ad_group: typeof ad_group === "string" && ad_group.trim() ? ad_group.trim() : null,
+
+      landing_page:
+        typeof landing_page === "string" && landing_page.trim()
+          ? landing_page.trim()
+          : "https://treel.in/tmip/campaign",
+      first_landing_page:
+        typeof first_landing_page === "string" && first_landing_page.trim()
+          ? first_landing_page.trim()
+          : null,
+      referrer: typeof referrer === "string" && referrer.trim() ? referrer.trim() : null,
+      page_path:
+        typeof page_path === "string" && page_path.trim() ? page_path.trim() : "/tmip/campaign",
+      user_agent: userAgent || null,
+
+      attribution_metadata: {
+        raw_fleet_size: rawFleet || null,
+        product_line: "tmip_enterprise",
+        form_id: finalFormId,
+      },
+      email_notification_status: isSesConfigured() ? "pending" : "skipped",
     };
 
-    const { data: primaryData, error: primaryError } = await supabase
+    const { data: insertData, error: insertError } = await supabase
       .from("leads")
-      .insert([fullPayload])
-      .select("id");
+      .insert([insertPayload])
+      .select("id")
+      .single();
 
-    if (primaryError) {
-      // Check if failure is due to missing optional columns (legacy/minimal schema fallback)
-      console.warn(
-        "[TMIP Lead Ingestion] Full column insert warning:",
-        primaryError.message
+    if (insertError) {
+      console.error(
+        "[TMIP Lead Ingestion Critical] Database insertion failed:",
+        insertError.message,
+        insertError
       );
-
-      const minimalPayload = {
-        type: "tmip_campaign_lead",
-        full_name: normalizedName,
-        phone: normalizedPhone,
-        email: normalizedEmail,
-        company_name: normalizedCompany,
-        fleet_size: parsedFleetSize,
-        message: JSON.stringify({
-          ad_group,
-          utm_source,
-          utm_medium,
-          utm_campaign,
-          utm_term,
-          utm_content,
-          gclid,
-          fbclid,
-          landing_page,
-          first_landing_page,
-          referrer,
-          user_agent: userAgent,
-          submitted_at: timestamp,
-        }),
-        status: "new",
-      };
-
-      const { data: fallbackData, error: fallbackError } = await supabase
-        .from("leads")
-        .insert([minimalPayload])
-        .select("id");
-
-      if (fallbackError) {
-        // Database persistence genuinely FAILED!
-        console.error(
-          "[TMIP Lead Ingestion Critical] Database insertion failed:",
-          fallbackError.message,
-          fallbackError.details
-        );
-        // CRITICAL: Return HTTP 500. Never return HTTP 200 when persistence failed!
-        return NextResponse.json(
-          {
-            success: false,
-            error: "Something went wrong while submitting your request. Please try again.",
-          },
-          { status: 500 }
-        );
-      }
-
-      if (fallbackData && fallbackData.length > 0) {
-        insertedLeadId = fallbackData[0].id;
-      }
-    } else if (primaryData && primaryData.length > 0) {
-      insertedLeadId = primaryData[0].id;
-    }
-
-    if (!insertedLeadId) {
-      console.error("[TMIP Lead Ingestion Critical] Database returned empty response on insert.");
       return NextResponse.json(
         {
           success: false,
-          error: "Something went wrong while submitting your request. Please try again.",
+          error: "Database insertion error. Please retry or call toll-free 1800 833 0233.",
         },
         { status: 500 }
       );
     }
 
-    // 4. AMAZON SES / SMTP NOTIFICATION (Only after successful persistence)
+    const insertedLeadId = insertData?.id || `TL-${Date.now()}`;
+
+    // 4. AMAZON SES NOTIFICATION (Only after successful persistence)
     if (isSesConfigured()) {
       try {
         const primaryRecipient =
           process.env.SES_LEADS_EMAIL || process.env.SES_FROM_EMAIL || "sales@treel.in";
-        // Support second recipient through TMIP_CAMPAIGN_SECOND_EMAIL or configured fallbacks
         const secondRecipient =
           process.env.TMIP_CAMPAIGN_SECOND_EMAIL ||
           process.env.TMIP_LEADS_SECONDARY_EMAIL ||
@@ -266,6 +261,11 @@ export async function POST(req: NextRequest) {
         if (secondRecipient && secondRecipient.trim() && secondRecipient.trim() !== primaryRecipient) {
           ccAddresses.push(secondRecipient.trim());
         }
+
+        const formDisplayName =
+          finalFormId === "tmip_footer_demo" ? "TMIP Footer Demo" : "TMIP Campaign Demo";
+
+        const emailSubject = `[${formDisplayName}] ${normalizedName} — ${normalizedCompany} (${parsedFleetSize ? `${parsedFleetSize} Trucks` : rawFleet || "Enterprise"})`;
 
         const emailHtml = `
 <!DOCTYPE html>
@@ -278,18 +278,18 @@ export async function POST(req: NextRequest) {
     <div style="max-width: 620px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
       <div style="background: #050a17; padding: 24px; border-bottom: 3px solid #3b82f6;">
         <h2 style="margin: 0; font-size: 20px; color: #ffffff; letter-spacing: -0.02em;">Treel Mobility — New TMIP Campaign Lead</h2>
-        <p style="margin: 4px 0 0 0; font-size: 13px; color: #94a3b8; font-family: monospace;">Source: Paid Ads Campaign (/tmip/campaign)</p>
+        <p style="margin: 4px 0 0 0; font-size: 13px; color: #94a3b8; font-family: monospace;">Form: ${formDisplayName} · /tmip/campaign</p>
       </div>
       
       <div style="padding: 24px;">
-        <h3 style="margin: 0 0 16px 0; font-size: 16px; color: #0f172a; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">Contact & Fleet Details</h3>
+        <h3 style="margin: 0 0 16px 0; font-size: 16px; color: #0f172a; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">Contact &amp; Fleet Details</h3>
         <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 24px;">
           <tr>
             <td style="padding: 8px 0; width: 140px; color: #64748b; font-weight: 500;">Lead Name:</td>
             <td style="padding: 8px 0; color: #0f172a; font-weight: 600;">${normalizedName}</td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Phone:</td>
+            <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Mobile:</td>
             <td style="padding: 8px 0; color: #2563eb; font-weight: 600;"><a href="tel:${normalizedPhone}" style="color: #2563eb; text-decoration: none;">${normalizedPhone}</a></td>
           </tr>
           <tr>
@@ -298,11 +298,11 @@ export async function POST(req: NextRequest) {
           </tr>
           <tr>
             <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Company:</td>
-            <td style="padding: 8px 0; color: #0f172a; font-weight: 500;">${normalizedCompany}</td>
+            <td style="padding: 8px 0; color: #0f172a; font-weight: 600;">${normalizedCompany}</td>
           </tr>
           <tr>
             <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Fleet Scale:</td>
-            <td style="padding: 8px 0; color: #059669; font-weight: 700;">${parsedFleetSize ? `${parsedFleetSize} Vehicles` : rawFleet}</td>
+            <td style="padding: 8px 0; color: #059669; font-weight: 700;">${parsedFleetSize ? `${parsedFleetSize} Vehicles` : rawFleet || "Not specified"}</td>
           </tr>
           <tr>
             <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Lead Record ID:</td>
@@ -310,10 +310,14 @@ export async function POST(req: NextRequest) {
           </tr>
         </table>
 
-        <h3 style="margin: 0 0 16px 0; font-size: 16px; color: #0f172a; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">Marketing & Attribution</h3>
+        <h3 style="margin: 0 0 16px 0; font-size: 16px; color: #0f172a; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">Marketing &amp; Attribution</h3>
         <table style="width: 100%; border-collapse: collapse; font-size: 13px; font-family: monospace; background: #f8fafc; border-radius: 6px; padding: 12px;">
           <tr>
-            <td style="padding: 6px 12px; color: #64748b; width: 140px;">Ad Group:</td>
+            <td style="padding: 6px 12px; color: #64748b; width: 140px;">Form ID:</td>
+            <td style="padding: 6px 12px; color: #0f172a; font-weight: 600;">${finalFormId}</td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 12px; color: #64748b;">Ad Group:</td>
             <td style="padding: 6px 12px; color: #0f172a; font-weight: 600;">${ad_group || "default"}</td>
           </tr>
           <tr>
@@ -370,14 +374,29 @@ export async function POST(req: NextRequest) {
         await sendEmail({
           to: recipients,
           cc: ccAddresses.length > 0 ? ccAddresses : undefined,
-          subject: `[TMIP Campaign Lead] ${normalizedName} — ${normalizedCompany} (${parsedFleetSize ? `${parsedFleetSize} Trucks` : rawFleet})`,
+          subject: emailSubject,
           html: emailHtml,
-          text: `New TMIP Campaign Lead:\nName: ${normalizedName}\nPhone: ${normalizedPhone}\nEmail: ${normalizedEmail}\nCompany: ${normalizedCompany}\nFleet: ${rawFleet}\nAd Group: ${ad_group || "default"}\nUTM: ${utm_source || "none"}/${utm_medium || "none"}/${utm_campaign || "none"}\nGCLID: ${gclid || "none"}\nLead ID: ${insertedLeadId}`,
           replyTo: normalizedEmail,
         });
-      } catch (emailErr) {
-        // Notification failure is logged, but does not invalidate the persisted lead
+
+        // Update email_notification_status to sent
+        if (insertedLeadId && typeof insertedLeadId === "string" && !insertedLeadId.startsWith("TL-")) {
+          await supabase
+            .from("leads")
+            .update({ email_notification_status: "sent" })
+            .eq("id", insertedLeadId);
+        }
+      } catch (emailErr: any) {
         console.error("[TMIP Lead Ingestion] Amazon SES notification failed:", emailErr);
+        if (insertedLeadId && typeof insertedLeadId === "string" && !insertedLeadId.startsWith("TL-")) {
+          await supabase
+            .from("leads")
+            .update({
+              email_notification_status: "failed",
+              email_notification_error: emailErr?.message || "SES send failure",
+            })
+            .eq("id", insertedLeadId);
+        }
       }
     }
 
@@ -396,7 +415,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: "Something went wrong while submitting your request. Please try again.",
+        error: "Something went wrong while submitting your request. Please try again or call 1800 833 0233.",
       },
       { status: 500 }
     );

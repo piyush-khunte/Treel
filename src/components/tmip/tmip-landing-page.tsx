@@ -86,6 +86,51 @@ const TABS = [
   },
 ];
 
+const SLIDES = [
+  {
+    src: "/images/Approved Images timp landing page/Vehicle_Status_Engine - New.png",
+    alt: "TMIP live Vehicle Digital Twin: Engine and overall vehicle health dashboard showing commercial truck status with 4% breakdown probability",
+    caption: "The live Vehicle Digital Twin: one view per vehicle, per fleet, per region.",
+    badge: "Health 87/100 · Breakdown risk 4%",
+  },
+  {
+    src: "/images/Approved Images timp landing page/Vehicle_Status_Engine_TPMS_View - New.png",
+    alt: "TMIP Tyre Pressure Monitoring System view per wheel showing pressure, temperature and remaining useful life",
+    caption: "Per-wheel telemetry: real-time pressure, thermal signatures and remaining useful life.",
+    badge: "Tyre Life +7% · Median Payback 9 mo",
+  },
+  {
+    src: "/images/Approved Images timp landing page/Vehicle_Status_Engine_TPMS_TrendView_Temp - New.png",
+    alt: "TMIP Predictive Maintenance trend view and service window forecasting",
+    caption: "Predictive intelligence: machine-learning wear models and service due windows.",
+    badge: "Next Service: 17 Days · 0 Highway Stops",
+  },
+  {
+    src: "/images/Approved Images timp landing page/fleet-overview_Grid - New.png",
+    alt: "TMIP Multi-Fleet Overview Grid across national routes, depots and vehicle categories",
+    caption: "Fleet-wide visibility: aggregate uptime, active alerts and driver safety scores.",
+    badge: "68,000+ Vehicles Under Management",
+  },
+  {
+    src: "/images/Approved Images timp landing page/AlertStatus_Status_Performance - New.png",
+    alt: "TMIP Real-Time Alert Feed and Fleet Performance Dashboard",
+    caption: "Severity-ranked alert feed: sub-second updates from roadside and highway sensors.",
+    badge: "Sub-Second Telemetry · 99.7% Uptime",
+  },
+  {
+    src: "/images/Approved Images timp landing page/dashboard_3.png",
+    alt: "TMIP Executive Operations Dashboard showing total cost per kilometre and ROI metrics",
+    caption: "Executive mobility intelligence: true cost per kilometre by vehicle, route and driver.",
+    badge: "Median Payback 9 Months",
+  },
+  {
+    src: "/images/Approved Images timp landing page/Vehicle_Status_Engine_TPMS_TrendView_Temp_1 - New.png",
+    alt: "TMIP Thermal and Pressure Analytics view for commercial long-haul fleet vehicles",
+    caption: "Component lifecycle analytics: highway blowout prevention before heat build-up spreads.",
+    badge: "100% Carcass Salvage Rate",
+  },
+];
+
 export function TmipLandingPage() {
   const searchParams = useSearchParams();
 
@@ -191,16 +236,16 @@ export function TmipLandingPage() {
       setErrors((prev) => ({ ...prev, [field]: !isValid }));
     }
   };
-
   const handleFocus = () => {
     if (!formStartedRef.current) {
       formStartedRef.current = true;
-      pushDataLayer({ event: "form_start", form_id: "tmip_demo" });
+      pushDataLayer({ event: "form_start", form_id: activeFormId || "tmip_demo" });
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent, submitFormId?: "tmip_demo" | "tmip_footer_demo") => {
     e.preventDefault();
+    const currentFormId = submitFormId || activeFormId || "tmip_demo";
 
     const fields = ["name", "phone", "email", "company", "fleet_size"];
     const newErrors: Record<string, boolean> = {};
@@ -237,6 +282,9 @@ export function TmipLandingPage() {
           email: formData.email,
           company: formData.company,
           fleet_size: formData.fleet_size,
+          form_id: currentFormId,
+          campaign_type: "tmip_campaign",
+          lead_source: "website",
           ...attribution,
         }),
       });
@@ -255,7 +303,7 @@ export function TmipLandingPage() {
       // Success confirmed by database persistence
       pushDataLayer({
         event: "generate_lead",
-        form_id: "tmip_demo",
+        form_id: currentFormId,
         lead_id: result.leadId,
         fleet_size: formData.fleet_size,
         ad_group: attribution.ad_group,
@@ -277,16 +325,97 @@ export function TmipLandingPage() {
     }
   };
 
-  // CTA Click handler
-  const handleCtaClick = useCallback((location: string) => {
-    pushDataLayer({ event: "cta_click", cta_location: location });
-    setTimeout(() => {
-      const nameInput = document.getElementById("f-name");
-      if (nameInput) {
-        nameInput.focus({ preventScroll: true });
+  // Hero Image Slider State
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isSliderPaused, setIsSliderPaused] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      if (mediaQuery.matches) return;
+    }
+
+    if (isSliderPaused) return;
+
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
+    }, 4500);
+
+    return () => clearInterval(timer);
+  }, [isSliderPaused]);
+
+  const handleNextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
+  };
+
+  const handlePrevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
+  };
+
+  const handleGoToSlide = (idx: number) => {
+    setCurrentSlide(idx);
+  };
+
+  // Full-Page Demo Modal State
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeFormId, setActiveFormId] = useState<"tmip_demo" | "tmip_footer_demo">("tmip_demo");
+  const modalCloseBtnRef = useRef<HTMLButtonElement>(null);
+  const lastTriggerRef = useRef<HTMLElement | null>(null);
+
+  const openModal = useCallback((location: string, e?: React.MouseEvent, formId: "tmip_demo" | "tmip_footer_demo" = "tmip_demo") => {
+    if (e) {
+      e.preventDefault();
+      lastTriggerRef.current = e.currentTarget as HTMLElement;
+    }
+    setActiveFormId(formId);
+    pushDataLayer({ event: "cta_click", cta_location: location, form_id: formId });
+    setIsModalOpen(true);
+  }, [setActiveFormId, setIsModalOpen]);
+
+  const closeModal = useCallback(() => {
+    setIsModalOpen(false);
+    if (lastTriggerRef.current) {
+      lastTriggerRef.current.focus();
+    }
+  }, [setIsModalOpen]);
+
+  useEffect(() => {
+    if (!isModalOpen) {
+      document.body.style.overflow = "";
+      return;
+    }
+
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeModal();
       }
-    }, 600);
-  }, []);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    const timeout = setTimeout(() => {
+      modalCloseBtnRef.current?.focus();
+    }, 50);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+      clearTimeout(timeout);
+    };
+  }, [isModalOpen, closeModal]);
+
+  // CTA Click handler: opens full-page demo modal for demo CTAs with attribution intact
+  const handleCtaClick = useCallback(
+    (location: string, e?: React.MouseEvent) => {
+      if (location === "final-compare") {
+        pushDataLayer({ event: "cta_click", cta_location: location });
+        return;
+      }
+      openModal(location, e);
+    },
+    [openModal]
+  );
 
   // Explorer Tab State
   const [activeTab, setActiveTab] = useState<string>("t-tyre");
@@ -440,7 +569,15 @@ export function TmipLandingPage() {
           {/* Right Column: Lead Form Card */}
           <div id="demo" ref={demoRef}>
             <div className="form-card">
-              <form id="leadForm" ref={formRef} noValidate onSubmit={handleSubmit} onFocus={handleFocus}>
+              <form
+                id="leadForm"
+                ref={formRef}
+                method="POST"
+                action="/api/tmip/lead"
+                noValidate
+                onSubmit={(e) => handleSubmit(e, "tmip_demo")}
+                onFocus={handleFocus}
+              >
                 {!isSuccess ? (
                   <div id="formBody">
                     <h2>See TMIP on your fleet</h2>
@@ -636,24 +773,80 @@ export function TmipLandingPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 5: HERO SCREEN BAND
+          SECTION 5: HERO SCREEN BAND — APPROVED IMAGE SLIDER
           ========================================================================= */}
-      <section aria-label="TMIP dashboard" className="screen-band">
+      <section aria-label="TMIP dashboard gallery" className="screen-band">
         <div className="wrap">
-          <figure className="screen" style={{ margin: 0 }}>
-            <Image
-              alt="TMIP Vehicle Digital Twin dashboard showing a tractor-trailer with health scores for engine 91%, electrical 90%, fuel 82%, tyres 85%, brakes 80% and driveline 88%, an overall health score of 87 and 4% breakdown probability"
-              src="/images/tmip/hero-screen.png"
-              width={1920}
-              height={895}
-              priority
-              className="w-full h-auto"
-            />
-          </figure>
+          <div
+            className="slider-container"
+            onMouseEnter={() => setIsSliderPaused(true)}
+            onMouseLeave={() => setIsSliderPaused(false)}
+            onFocus={() => setIsSliderPaused(true)}
+            onBlur={() => setIsSliderPaused(false)}
+          >
+            <figure className="screen" style={{ margin: 0, position: "relative" }}>
+              {SLIDES.map((slide, idx) => (
+                <div
+                  key={slide.src}
+                  className={`slide-item ${idx === currentSlide ? "active" : ""}`}
+                  aria-hidden={idx !== currentSlide}
+                >
+                  <Image
+                    alt={slide.alt}
+                    src={slide.src}
+                    width={1920}
+                    height={911}
+                    priority={idx === 0}
+                    loading={idx === 0 ? "eager" : "lazy"}
+                    className="w-full h-auto"
+                    style={{ objectFit: "contain" }}
+                  />
+                </div>
+              ))}
+
+              {/* Slider Navigation Arrows */}
+              <button
+                type="button"
+                className="slider-arrow slider-prev"
+                onClick={handlePrevSlide}
+                aria-label="Previous dashboard screen"
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                className="slider-arrow slider-next"
+                onClick={handleNextSlide}
+                aria-label="Next dashboard screen"
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+
+              {/* Pagination Dots */}
+              <div className="slider-dots" role="tablist" aria-label="Dashboard slides">
+                {SLIDES.map((slide, idx) => (
+                  <button
+                    key={slide.src}
+                    type="button"
+                    role="tab"
+                    aria-selected={idx === currentSlide}
+                    aria-label={`Slide ${idx + 1}: ${slide.badge}`}
+                    className={`slider-dot ${idx === currentSlide ? "active" : ""}`}
+                    onClick={() => handleGoToSlide(idx)}
+                  />
+                ))}
+              </div>
+            </figure>
+          </div>
+
           <div className="screen-cap">
-            <span>The live Vehicle Digital Twin: one view per vehicle, per fleet, per region.</span>
+            <span>{SLIDES[currentSlide].caption}</span>
             <span>
-              <b>Health 87/100 · Breakdown risk 4%</b>
+              <b>{SLIDES[currentSlide].badge}</b>
             </span>
           </div>
         </div>
@@ -664,7 +857,7 @@ export function TmipLandingPage() {
           ========================================================================= */}
       <section aria-label="Certifications" className="trust">
         <div className="wrap">
-          <p>Built by Treel, a JK Tyre product</p>
+          <p>Built by Treel</p>
           <ul>
             <li>ARAI certified</li>
             <li>ISO 9001:2015</li>
@@ -771,10 +964,11 @@ export function TmipLandingPage() {
               <figure className="fade">
                 <Image
                   alt="TMIP tyre digital twin with four wheel cards showing pressure in bar, temperature, health percentage and remaining useful life in kilometres"
-                  src="/images/tmip/tab-tyre.png"
-                  width={540}
-                  height={426}
+                  src="/images/Approved Images timp landing page/Vehicle_Status_Engine_TPMS_View - New.png"
+                  width={1920}
+                  height={911}
                   loading="lazy"
+                  className="w-full h-auto"
                 />
               </figure>
               <div className="fade">
@@ -807,10 +1001,11 @@ export function TmipLandingPage() {
               <figure className="fade">
                 <Image
                   alt="TMIP AI prediction screen: breakdown probability 4%, next service in 17 days, tyre rotation at 3,200 km, battery failure in 83 days, with an engine remaining-useful-life trend"
-                  src="/images/tmip/tab-prediction.jpeg"
-                  width={562}
-                  height={428}
+                  src="/images/Approved Images timp landing page/Vehicle_Status_Engine_TPMS_TrendView_Temp - New.png"
+                  width={1920}
+                  height={911}
                   loading="lazy"
+                  className="w-full h-auto"
                 />
               </figure>
               <div className="fade">
@@ -843,10 +1038,11 @@ export function TmipLandingPage() {
               <figure className="fade">
                 <Image
                   alt="TMIP event timeline with coolant temperature warning, rapid pressure loss on rear right tyre, harsh braking event and tyre pressure correction"
-                  src="/images/tmip/tab-timeline.jpeg"
-                  width={390}
-                  height={354}
+                  src="/images/Approved Images timp landing page/AlertStatus_Status_Performance - New.png"
+                  width={1920}
+                  height={911}
                   loading="lazy"
+                  className="w-full h-auto"
                 />
               </figure>
               <div className="fade">
@@ -880,9 +1076,10 @@ export function TmipLandingPage() {
                 <Image
                   alt="TMIP driver behaviour screen with a driver score of 91 out of 100 and metrics for overspeed, harsh braking, harsh acceleration, idle time, seatbelt use and driving time"
                   src="/images/tmip/tab-driver.jpeg"
-                  width={502}
-                  height={354}
+                  width={960}
+                  height={678}
                   loading="lazy"
+                  className="w-full h-auto"
                 />
               </figure>
               <div className="fade">
@@ -915,10 +1112,11 @@ export function TmipLandingPage() {
               <figure className="fade">
                 <Image
                   alt="TMIP maintenance table listing engine oil, air filter, fuel filter, brake lining and battery with health, remaining life and a recommended action for each"
-                  src="/images/tmip/tab-maintenance.jpeg"
-                  width={478}
-                  height={402}
+                  src="/images/Approved Images timp landing page/dashboard_3.png"
+                  width={1920}
+                  height={911}
                   loading="lazy"
+                  className="w-full h-auto"
                 />
               </figure>
               <div className="fade">
@@ -951,10 +1149,11 @@ export function TmipLandingPage() {
               <figure className="fade">
                 <Image
                   alt="TMIP cost impact card for a 30-day window: fuel ₹18,400, tyre ₹46,000, maintenance ₹21,000, downtime ₹80,000, total potential savings ₹1,65,400"
-                  src="/images/tmip/tab-cost.jpeg"
-                  width={592}
-                  height={398}
+                  src="/images/Approved Images timp landing page/fleet-overview_Grid - New.png"
+                  width={1920}
+                  height={911}
                   loading="lazy"
+                  className="w-full h-auto"
                 />
               </figure>
               <div className="fade">
@@ -1219,7 +1418,7 @@ export function TmipLandingPage() {
               className="btn btn-primary"
               data-cta="compare"
               href="#demo"
-              onClick={() => handleCtaClick("compare")}
+              onClick={(e) => handleCtaClick("compare", e)}
             >
               Book a demo
             </a>
@@ -1397,7 +1596,7 @@ export function TmipLandingPage() {
                 className="btn btn-primary"
                 data-cta="final"
                 href="#demo"
-                onClick={() => handleCtaClick("final")}
+                onClick={(e) => handleCtaClick("final", e)}
               >
                 Book a demo
               </a>
@@ -1431,11 +1630,237 @@ export function TmipLandingPage() {
           className="btn btn-primary"
           data-cta="mobile-sticky"
           href="#demo"
-          onClick={() => handleCtaClick("mobile-sticky")}
+          onClick={(e) => handleCtaClick("mobile-sticky", e)}
         >
           Book a demo
         </a>
       </div>
+
+      {/* =========================================================================
+          FULL-PAGE DEMO POPUP MODAL
+          ========================================================================= */}
+      {isModalOpen && (
+        <div
+          className="tmip-modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modalTitle"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeModal();
+          }}
+        >
+          <div className="tmip-modal-card">
+            <button
+              ref={modalCloseBtnRef}
+              type="button"
+              className="tmip-modal-close"
+              onClick={closeModal}
+              aria-label="Close demo booking modal"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+
+            <h2 id="modalTitle">Book a 30-minute TMIP demo</h2>
+            <p className="sub">
+              See TMIP on live commercial vehicles. We&apos;ll calculate payback for your fleet before you leave the call.
+            </p>
+
+            <form
+              id="modalDemoForm"
+              method="POST"
+              action="/api/tmip/lead"
+              noValidate
+              onSubmit={(e) => handleSubmit(e, activeFormId)}
+              className={isSuccess ? "is-success" : ""}
+            >
+              {!isSuccess ? (
+                <div id="modalFormFields">
+                  <div className="field">
+                    <label htmlFor="m-f-name">Full name</label>
+                    <input
+                      autoComplete="name"
+                      id="m-f-name"
+                      name="name"
+                      placeholder="e.g. Rajesh Sharma"
+                      required
+                      type="text"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur("name")}
+                      onFocus={handleFocus}
+                      aria-invalid={errors.name ? "true" : "false"}
+                    />
+                    <span className="err">Enter your full name.</span>
+                  </div>
+
+                  <div className="row">
+                    <div className="field">
+                      <label htmlFor="m-f-phone">Mobile number</label>
+                      <div className="input-group">
+                        <span className="addon">+91</span>
+                        <input
+                          autoComplete="tel-national"
+                          id="m-f-phone"
+                          inputMode="numeric"
+                          maxLength={10}
+                          name="phone"
+                          placeholder="98765 43210"
+                          required
+                          type="tel"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          onBlur={() => handleBlur("phone")}
+                          onFocus={handleFocus}
+                          aria-invalid={errors.phone ? "true" : "false"}
+                        />
+                      </div>
+                      <span className="err">Enter a valid 10-digit Indian mobile.</span>
+                    </div>
+
+                    <div className="field">
+                      <label htmlFor="m-f-email">Work email</label>
+                      <input
+                        autoComplete="email"
+                        id="m-f-email"
+                        name="email"
+                        placeholder="rajesh@company.com"
+                        required
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        onBlur={() => handleBlur("email")}
+                        onFocus={handleFocus}
+                        aria-invalid={errors.email ? "true" : "false"}
+                      />
+                      <span className="err">Enter a valid work email.</span>
+                    </div>
+                  </div>
+
+                  <div className="row">
+                    <div className="field">
+                      <label htmlFor="m-f-company">Company name</label>
+                      <input
+                        autoComplete="organization"
+                        id="m-f-company"
+                        name="company"
+                        placeholder="e.g. Sharma Logistics"
+                        required
+                        type="text"
+                        value={formData.company}
+                        onChange={handleInputChange}
+                        onBlur={() => handleBlur("company")}
+                        onFocus={handleFocus}
+                        aria-invalid={errors.company ? "true" : "false"}
+                      />
+                      <span className="err">Enter company or fleet name.</span>
+                    </div>
+
+                    <div className="field">
+                      <label htmlFor="m-f-fleet">Fleet size</label>
+                      <select
+                        id="m-f-fleet"
+                        name="fleet_size"
+                        required
+                        value={formData.fleet_size}
+                        onChange={handleInputChange}
+                        onBlur={() => handleBlur("fleet_size")}
+                        aria-invalid={errors.fleet_size ? "true" : "false"}
+                      >
+                        <option value="">Select</option>
+                        <option value="1-9">1 to 9 vehicles</option>
+                        <option value="10-25">10 to 25 vehicles</option>
+                        <option value="26-100">26 to 100 vehicles</option>
+                        <option value="101-500">101 to 500 vehicles</option>
+                        <option value="500+">500+ vehicles</option>
+                      </select>
+                      <span className="err">Select your fleet size.</span>
+                    </div>
+                  </div>
+
+                  {/* Small Fleet Nudge */}
+                  <p className={`note-small ${formData.fleet_size === "1-9" ? "show" : ""}`}>
+                    TMIP is built for fleets of 10 or more vehicles. For 1 to 9 trucks,{" "}
+                    <Link href="/suraksha">Suraksha</Link> is the better fit at ₹17,500 per truck. You can still send
+                    this form and we&apos;ll point you the right way.
+                  </p>
+
+                  {/* Attribution Hidden Inputs */}
+                  <input name="gclid" type="hidden" value={attribution.gclid} />
+                  <input name="utm_source" type="hidden" value={attribution.utm_source} />
+                  <input name="utm_medium" type="hidden" value={attribution.utm_medium} />
+                  <input name="utm_campaign" type="hidden" value={attribution.utm_campaign} />
+                  <input name="utm_term" type="hidden" value={attribution.utm_term} />
+                  <input name="utm_content" type="hidden" value={attribution.utm_content} />
+                  <input name="ad_group" type="hidden" value={attribution.ad_group} />
+                  <input name="landing_page" type="hidden" value={attribution.landing_page} />
+
+                  {submitError && (
+                    <div
+                      role="alert"
+                      aria-live="assertive"
+                      style={{
+                        background: "rgba(239, 68, 68, 0.12)",
+                        border: "1px solid var(--red, #EF4444)",
+                        borderRadius: "4px",
+                        padding: "10px 14px",
+                        marginTop: "14px",
+                        marginBottom: "4px",
+                        fontSize: "0.85rem",
+                        color: "#FCA5A5",
+                        lineHeight: "1.4",
+                      }}
+                    >
+                      {submitError}
+                    </div>
+                  )}
+
+                  <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? "Booking…" : "Book my demo"}
+                  </button>
+
+                  <p className="consent">
+                    By booking, you agree to be contacted by Treel on phone, email or WhatsApp about TMIP. See our{" "}
+                    <Link href="/privacy-policy">privacy policy</Link>.
+                  </p>
+
+                  <div className="form-assure">
+                    <span>
+                      <i></i> Reply within 1 business day
+                    </span>
+                    <span>
+                      <i></i> No hardware commitment for the demo
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                <div
+                  aria-live="polite"
+                  className="success show"
+                  role="status"
+                >
+                  <div className="ok">
+                    <svg aria-hidden="true" height="24" viewBox="0 0 24 24" width="24">
+                      <path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#10B981" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                  <h2>Demo request received</h2>
+                  <p className="sub">
+                    Thanks, {firstName}. A Treel solutions engineer will call you on +91 {formData.phone} within one
+                    business day. Need us sooner? Call toll-free 1800 833 0233.
+                  </p>
+                  <ol>
+                    <li>We confirm your fleet mix and the systems you already run.</li>
+                    <li>You get a 30-minute walkthrough on vehicles like yours.</li>
+                    <li>We scope a 14-day pilot and the payback math for your fleet.</li>
+                  </ol>
+                </div>
+              )}
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
