@@ -38,7 +38,7 @@ export function PersonalHeader() {
           <div className="flex items-center gap-3 sm:gap-5 shrink-0 mr-3 xl:mr-5">
             <Link href="/" className="flex items-center group">
               <Image
-                src="/images/treel main logo.jpg"
+                src="/images/Treel New Logo Final With Favicon & Tagline.png"
                 alt="Treel"
                 width={160}
                 height={50}

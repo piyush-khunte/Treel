@@ -38,7 +38,7 @@ export function SurakshaHeader() {
           <div className="flex items-center gap-3 sm:gap-4 shrink-0 z-10 mr-2 xl:mr-4">
             <Link href="/" className="flex items-center group">
               <Image
-                src="/images/treel main logo.jpg"
+                src="/images/Treel New Logo Final With Favicon & Tagline.png"
                 alt="Treel"
                 width={160}
                 height={50}
