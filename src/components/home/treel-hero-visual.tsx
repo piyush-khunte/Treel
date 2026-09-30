@@ -46,7 +46,7 @@ const SLIDES: SlideData[] = [
 
 const BAR_COLORS = ["#8A3F30", "#B04A34", "#D4573A"];
 const INTERVAL_MS = 6000;
-const STAGGER_MS = 80;
+const STAGGER_MS = 90;
 const EASING = "cubic-bezier(0.7, 0, 0.3, 1)";
 
 export function TreelHeroVisual() {
@@ -56,6 +56,7 @@ export function TreelHeroVisual() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   const containerRef = useRef<HTMLAnchorElement>(null);
+  const backdropRef = useRef<HTMLDivElement | null>(null);
   const barRefs = useRef<(HTMLDivElement | null)[]>([]);
   const isBusyRef = useRef(false);
   const currentRef = useRef(0);
@@ -78,39 +79,48 @@ export function TreelHeroVisual() {
     return () => mediaQuery.removeEventListener("change", handleMediaChange);
   }, []);
 
-  // Web Animations API helper for the 3 thin motion lines
-  const animateBars = useCallback(
-    (from: string, to: string, duration: number): Promise<void[]> => {
+  // Web Animations API helper for the backdrop and 3 thin motion lines
+  // Coming in: backdrop leads with bar 0 so gaps show #11151A, not the image underneath.
+  // Going out: backdrop trails the last bar so new image is revealed only after all bars pass.
+  const sweep = useCallback(
+    (from: string, to: string, duration: number, leaving = false): Promise<void[]> => {
       if (prefersReducedMotion) return Promise.resolve([]);
 
-      const promises = barRefs.current.map((bar, i) => {
-        if (!bar) return Promise.resolve();
-        const animation = bar.animate(
+      const move = (el: HTMLElement | null, delay: number) => {
+        if (!el) return Promise.resolve();
+        const anim = el.animate(
           [
             { transform: `translateX(${from})` },
             { transform: `translateX(${to})` },
           ],
           {
             duration,
-            delay: i * STAGGER_MS,
+            delay,
             easing: EASING,
             fill: "forwards",
           }
         );
-        return animation.finished.then(() => {});
-      });
+        return anim.finished.then(() => {});
+      };
+
+      const backdropDelay = leaving ? (BAR_COLORS.length - 1) * STAGGER_MS : 0;
+
+      const promises = [
+        move(backdropRef.current, backdropDelay),
+        ...barRefs.current.map((bar, i) => move(bar, i * STAGGER_MS)),
+      ];
 
       return Promise.all(promises);
     },
     [prefersReducedMotion]
   );
 
-  const parkBars = useCallback(() => {
-    barRefs.current.forEach((bar) => {
-      if (bar) {
-        bar.style.transform = "translateX(-120%)";
+  const park = useCallback(() => {
+    [backdropRef.current, ...barRefs.current].forEach((el) => {
+      if (el) {
+        el.style.transform = "translateX(-120%)";
         try {
-          bar.getAnimations().forEach((anim) => anim.cancel());
+          el.getAnimations().forEach((anim) => anim.cancel());
         } catch {
           // fallback
         }
@@ -118,7 +128,7 @@ export function TreelHeroVisual() {
     });
   }, []);
 
-  // Perform slide transition with thin motion lines sweeping across
+  // Perform slide transition with dark backdrop + thin motion lines sweeping across
   const goToSlide = useCallback(
     async (nextIndex: number) => {
       if (isBusyRef.current || nextIndex === currentRef.current) return;
@@ -131,25 +141,25 @@ export function TreelHeroVisual() {
       }
 
       try {
-        // Step 1: Thin motion lines sweep in from left across the image
-        await animateBars("-120%", "0%", 500);
+        // Step 1: Backdrop + motion lines sweep in from left (backdrop leads with bar 0)
+        await sweep("-120%", "0%", 560, false);
 
-        // Step 2: Switch image underneath while lines pass across
+        // Step 2: Switch image underneath while dark backdrop covers the entire visual
         setCurrent(nextIndex);
-        await new Promise((r) => setTimeout(r, 260));
+        await new Promise((r) => setTimeout(r, 380));
 
-        // Step 3: Lines sweep out to the right, leaving the new image 100% visible
-        await animateBars("0%", "120%", 540);
+        // Step 3: Backdrop + motion lines sweep out to the right (backdrop trails bar 2)
+        await sweep("0%", "120%", 620, true);
 
-        // Step 4: Park lines back off to the left for next transition
-        parkBars();
+        // Step 4: Park backdrop & bars back off to the left
+        park();
       } catch {
-        parkBars();
+        park();
       } finally {
         isBusyRef.current = false;
       }
     },
-    [animateBars, parkBars, prefersReducedMotion]
+    [sweep, park, prefersReducedMotion]
   );
 
   const nextSlide = useCallback(() => {
@@ -233,6 +243,18 @@ export function TreelHeroVisual() {
             </div>
           );
         })}
+
+        {/* Dark Backdrop Layer (Travels with the motion lines to prevent image showing through gaps) */}
+        {!prefersReducedMotion && (
+          <div
+            ref={backdropRef}
+            className="absolute inset-0 bg-[#11151A] pointer-events-none z-[8] will-change-transform"
+            style={{
+              transform: "translateX(-120%)",
+            }}
+            aria-hidden="true"
+          />
+        )}
 
         {/* Three Thin Treel Motion Lines (Overlay Layer - Visually Refined) */}
         {!prefersReducedMotion && (
