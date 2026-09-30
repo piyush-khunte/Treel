@@ -25,9 +25,24 @@ export default function TMIPDemoPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    if (typeof window !== "undefined") {
+      try {
+        sessionStorage.setItem("tmip_demo_submission", JSON.stringify(formData));
+      } catch {
+        // sessionStorage unavailable
+      }
+    }
+    const params = new URLSearchParams({
+      name: formData.fullName,
+      email: formData.workEmail,
+      company: formData.company,
+      fleet: formData.fleetSize,
+      vehicle: formData.vehicleType,
+      slot: formData.timeSlot,
+    });
     setTimeout(() => {
-      router.push("/tmip/demo/scheduled");
-    }, 600);
+      router.push(`/tmip/demo/scheduled?${params.toString()}`);
+    }, 400);
   };
 
   return (

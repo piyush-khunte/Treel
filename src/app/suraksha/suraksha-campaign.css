@@ -1,0 +1,1355 @@
+/* ==========================================================================
+   TREEL SURAKSHA — CAMPAIGN LANDING PAGE STYLES
+   Design Tokens:
+     --red: #DC2626; --marigold: #EA580C; --teal: #0891B2;
+     --cream: #FEF3C7; --brown: #451A03; --sindoor: #EF4444;
+     --wa-green: #25D366; --wa-green-hover: #1EBE5D;
+   ========================================================================== */
+
+:root {
+  --red: #DC2626;
+  --marigold: #EA580C;
+  --teal: #0891B2;
+  --cream: #FEF3C7;
+  --brown: #451A03;
+  --sindoor: #EF4444;
+  --card: #FFFBEB;
+  --brown-2: #78350F;
+  --brown-3: #92400E;
+  --line: rgba(69, 26, 3, 0.14);
+  --line-2: rgba(69, 26, 3, 0.26);
+  --wa-green: #25D366;
+  --wa-green-hover: #1EBE5D;
+  --font: 'Rubik', 'Baloo 2', 'Baloo Bhai 2', 'Baloo Paaji 2', 'Baloo Da 2', 'Baloo Thambi 2', 'Baloo Tamma 2', 'Baloo Tammudu 2', 'Baloo Chettan 2', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --wrap: 1200px;
+  --radius: 22px;
+}
+
+.suraksha-campaign-root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: var(--cream);
+  color: var(--brown);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  position: relative;
+  min-height: 100vh;
+}
+
+.suraksha-campaign-root *,
+.suraksha-campaign-root *::before,
+.suraksha-campaign-root *::after {
+  box-sizing: inherit;
+}
+
+.suraksha-campaign-root img,
+.suraksha-campaign-root svg {
+  max-width: 100%;
+}
+
+.suraksha-campaign-root a {
+  color: inherit;
+}
+
+.suraksha-campaign-root .ic {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.suraksha-campaign-root .wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.suraksha-campaign-root .skip {
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  z-index: 100;
+  background: var(--brown);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+
+.suraksha-campaign-root .skip:focus {
+  left: 12px;
+}
+
+.suraksha-campaign-root :focus-visible {
+  outline: 3px solid var(--marigold);
+  outline-offset: 3px;
+}
+
+.suraksha-campaign-root section {
+  padding: 88px 0;
+  position: relative;
+}
+
+/* Typography */
+.suraksha-campaign-root h1,
+.suraksha-campaign-root h2,
+.suraksha-campaign-root h3 {
+  margin: 0;
+  color: var(--brown);
+}
+
+.suraksha-campaign-root h1 {
+  font-size: clamp(42px, 6.4vw, 78px);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+.suraksha-campaign-root h2 {
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.08;
+  margin-bottom: 14px;
+}
+
+.suraksha-campaign-root h3 {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.suraksha-campaign-root.lang-en h1,
+.suraksha-campaign-root.lang-en h2,
+.suraksha-campaign-root.lang-en .card h3,
+.suraksha-campaign-root.lang-en .up {
+  text-transform: uppercase;
+}
+
+.suraksha-campaign-root:not(.lang-en) h1 {
+  font-size: clamp(34px, 5.2vw, 62px);
+  line-height: 1.22;
+  font-weight: 800;
+}
+
+.suraksha-campaign-root:not(.lang-en) h2 {
+  line-height: 1.28;
+  font-weight: 800;
+}
+
+.suraksha-campaign-root:not(.lang-en) h3 {
+  line-height: 1.35;
+  font-weight: 800;
+}
+
+.suraksha-campaign-root:not(.lang-en) {
+  line-height: 1.7;
+}
+
+.suraksha-campaign-root .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--red);
+  text-transform: uppercase;
+}
+
+.suraksha-campaign-root.lang-en .eyebrow {
+  letter-spacing: 0.16em;
+}
+
+.suraksha-campaign-root:not(.lang-en) .eyebrow {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.suraksha-campaign-root .divider {
+  width: 56px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--red);
+  margin-bottom: 18px;
+}
+
+.suraksha-campaign-root .sec-head {
+  max-width: 760px;
+  margin-bottom: 44px;
+}
+
+.suraksha-campaign-root .sec-head.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.suraksha-campaign-root .sec-head.center .divider {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.suraksha-campaign-root .sec-sub {
+  margin: 0;
+  font-size: 19px;
+  color: var(--brown-2);
+}
+
+.suraksha-campaign-root .glow::before,
+.suraksha-campaign-root .glow::after {
+  content: "";
+  position: absolute;
+  width: 560px;
+  height: 560px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.suraksha-campaign-root .glow::before {
+  top: -160px;
+  right: -140px;
+  background: radial-gradient(circle, rgba(220, 38, 38, 0.12) 0%, transparent 65%);
+}
+
+.suraksha-campaign-root .glow::after {
+  bottom: -180px;
+  left: -160px;
+  background: radial-gradient(circle, rgba(8, 145, 178, 0.10) 0%, transparent 65%);
+}
+
+.suraksha-campaign-root .glow {
+  overflow: hidden;
+}
+
+.suraksha-campaign-root .glow > .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+/* Buttons */
+.suraksha-campaign-root .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 24px;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  line-height: 1.2;
+}
+
+.suraksha-campaign-root .btn:active {
+  transform: translateY(1px);
+}
+
+.suraksha-campaign-root .btn-red {
+  background: var(--red);
+  color: #fff;
+  box-shadow: 0 12px 24px -12px rgba(220, 38, 38, 0.7);
+}
+
+.suraksha-campaign-root .btn-red:hover {
+  background: #B91C1C;
+}
+
+.suraksha-campaign-root .btn-mari {
+  background: var(--marigold);
+  color: #fff;
+}
+
+.suraksha-campaign-root .btn-mari:hover {
+  background: #C2410C;
+}
+
+/* WhatsApp Green Button Token */
+.suraksha-campaign-root .btn-wa {
+  background: var(--wa-green) !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 22px -8px rgba(37, 211, 102, 0.65);
+}
+
+.suraksha-campaign-root .btn-wa:hover {
+  background: var(--wa-green-hover) !important;
+}
+
+.suraksha-campaign-root .btn-line {
+  background: transparent;
+  color: var(--brown);
+  border-color: var(--line-2);
+}
+
+.suraksha-campaign-root .btn-line:hover {
+  border-color: var(--brown);
+}
+
+.suraksha-campaign-root .btn-cream {
+  background: var(--cream);
+  color: var(--red);
+}
+
+.suraksha-campaign-root .btn-ghost {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.suraksha-campaign-root .btn-sm {
+  min-height: 44px;
+  padding: 0 16px;
+  font-size: 15px;
+  border-radius: 12px;
+}
+
+.suraksha-campaign-root .btn-block {
+  width: 100%;
+}
+
+.suraksha-campaign-root .btn .num {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.suraksha-campaign-root .btn-call {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  padding: 8px 22px;
+}
+
+.suraksha-campaign-root .btn-call small {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.suraksha-campaign-root .btn-call b {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+}
+
+/* Header */
+.suraksha-campaign-root .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(254, 243, 199, 0.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.suraksha-campaign-root .hdr {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  height: 74px;
+}
+
+.suraksha-campaign-root .brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.suraksha-campaign-root .brand img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+
+.suraksha-campaign-root .bdiv {
+  width: 1px;
+  height: 28px;
+  background: var(--line-2);
+}
+
+.suraksha-campaign-root .sur-lock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--brown);
+}
+
+.suraksha-campaign-root .marks {
+  width: 30px;
+  height: auto;
+  display: block;
+}
+
+.suraksha-campaign-root .nav {
+  display: flex;
+  gap: 26px;
+  margin-left: auto;
+}
+
+.suraksha-campaign-root .nav a {
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--brown-2);
+  transition: color 0.15s ease;
+}
+
+.suraksha-campaign-root .nav a:hover {
+  color: var(--red);
+}
+
+.suraksha-campaign-root .hdr-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.suraksha-campaign-root .nav + .hdr-actions {
+  margin-left: 10px;
+}
+
+.suraksha-campaign-root .langbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 2px solid var(--marigold);
+  background: #fff;
+  color: var(--brown);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.suraksha-campaign-root .langbtn:hover {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.15);
+}
+
+.suraksha-campaign-root .langbtn .ic {
+  color: var(--marigold);
+}
+
+@media (max-width: 1060px) {
+  .suraksha-campaign-root .nav {
+    display: none;
+  }
+  .suraksha-campaign-root .hdr-actions {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .suraksha-campaign-root .hdr {
+    height: 64px;
+    gap: 8px;
+  }
+  .suraksha-campaign-root .brand img {
+    height: 19px;
+  }
+  .suraksha-campaign-root .brand {
+    gap: 8px;
+  }
+  .suraksha-campaign-root .bdiv {
+    display: none;
+  }
+  .suraksha-campaign-root .sur-lock {
+    font-size: 17px;
+    gap: 6px;
+  }
+  .suraksha-campaign-root .marks {
+    width: 22px;
+  }
+  .suraksha-campaign-root .hdr-call span {
+    display: none;
+  }
+  .suraksha-campaign-root .hdr-call {
+    width: 44px;
+    padding: 0;
+  }
+  .suraksha-campaign-root .hdr-actions {
+    gap: 8px;
+  }
+  .suraksha-campaign-root .langbtn {
+    padding: 0 10px;
+    gap: 6px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .suraksha-campaign-root .brand img {
+    display: none;
+  }
+}
+
+/* Hero */
+.suraksha-campaign-root .hero {
+  padding: 56px 0 64px;
+}
+
+.suraksha-campaign-root .hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 44px;
+  align-items: center;
+}
+
+.suraksha-campaign-root .hero h1 {
+  margin: 0 0 16px;
+}
+
+.suraksha-campaign-root .lede {
+  margin: 0 0 24px;
+  font-size: 19px;
+  color: var(--brown-2);
+  max-width: 40em;
+}
+
+.suraksha-campaign-root .cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.suraksha-campaign-root .trust {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 22px;
+  max-width: 560px;
+}
+
+.suraksha-campaign-root .trust li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.suraksha-campaign-root .trust .ic {
+  color: var(--red);
+}
+
+.suraksha-campaign-root .hero-art {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.suraksha-campaign-root .hero-art .disp {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  display: block;
+}
+
+.suraksha-campaign-root .kitchip {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--line);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.suraksha-campaign-root .kitchip .ic {
+  color: var(--teal);
+}
+
+.suraksha-campaign-root .illus {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--brown-3);
+}
+
+.suraksha-campaign-root .blink {
+  animation: blink 1.2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .suraksha-campaign-root .blink {
+    animation: none;
+  }
+}
+
+/* Cards */
+.suraksha-campaign-root .grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.suraksha-campaign-root .card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 30px;
+}
+
+.suraksha-campaign-root .card .ic-lg {
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(220, 38, 38, 0.1);
+  color: var(--red);
+  margin-bottom: 18px;
+}
+
+.suraksha-campaign-root .card p {
+  margin: 10px 0 0;
+  color: var(--brown-2);
+}
+
+.suraksha-campaign-root .notch {
+  clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 0 100%);
+}
+
+.suraksha-campaign-root .pillar .tag {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--red);
+  text-transform: uppercase;
+}
+
+.suraksha-campaign-root.lang-en .pillar .tag {
+  letter-spacing: 0.14em;
+}
+
+.suraksha-campaign-root .hook {
+  margin: 20px 0 0;
+  padding: 14px 16px;
+  border-left: 5px solid var(--marigold);
+  background: rgba(234, 88, 12, 0.08);
+  border-radius: 0 12px 12px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--brown);
+  line-height: 1.45;
+}
+
+.suraksha-campaign-root .hook::before {
+  content: "“";
+  color: var(--marigold);
+  margin-right: 2px;
+}
+
+.suraksha-campaign-root .hook::after {
+  content: "”";
+  color: var(--marigold);
+  margin-left: 2px;
+}
+
+/* Kit */
+.suraksha-campaign-root .split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: center;
+}
+
+.suraksha-campaign-root .kitart {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 30px 26px 22px;
+}
+
+.suraksha-campaign-root .kitart .disp {
+  width: 100%;
+  max-width: 420px;
+  display: block;
+  margin: 0 auto;
+}
+
+.suraksha-campaign-root .sensors {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 10px;
+}
+
+.suraksha-campaign-root .s-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--brown-3);
+}
+
+.suraksha-campaign-root .sensor {
+  width: 46px;
+  height: auto;
+}
+
+.suraksha-campaign-root .kitlabels {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.suraksha-campaign-root .kitlabels span {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--cream);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.suraksha-campaign-root .ticks {
+  list-style: none;
+  margin: 24px 0 28px;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.suraksha-campaign-root .ticks li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.suraksha-campaign-root .ticks .ic {
+  width: 24px;
+  height: 24px;
+  padding: 3px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  margin-top: 1px;
+}
+
+/* Steps */
+.suraksha-campaign-root .steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.suraksha-campaign-root .numblock {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 6px;
+  background: var(--red);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+
+/* Fleet */
+.suraksha-campaign-root .fleet {
+  background: #fff;
+}
+
+.suraksha-campaign-root .trucks {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  align-items: end;
+}
+
+.suraksha-campaign-root .truck {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.suraksha-campaign-root .more {
+  margin-top: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--brown-3);
+  text-align: center;
+}
+
+/* Payback Band */
+.suraksha-campaign-root .band {
+  background: var(--red);
+  color: #fff;
+  padding: 64px 0;
+}
+
+.suraksha-campaign-root .band h2 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.suraksha-campaign-root .band p {
+  margin: 0;
+  font-size: 19px;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 640px;
+}
+
+.suraksha-campaign-root .band-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.suraksha-campaign-root .band .cta-row {
+  flex-shrink: 0;
+}
+
+/* Centres */
+.suraksha-campaign-root .clusters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0 0 30px;
+}
+
+.suraksha-campaign-root .cluster {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--marigold);
+}
+
+.suraksha-campaign-root .cluster b {
+  font-size: 18px;
+}
+
+.suraksha-campaign-root .cluster span {
+  font-size: 15px;
+  color: var(--brown-2);
+}
+
+/* Form */
+.suraksha-campaign-root .enquire {
+  background: var(--card);
+}
+
+.suraksha-campaign-root .form-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  padding: 30px;
+  box-shadow: 0 30px 60px -40px rgba(69, 26, 3, 0.45);
+}
+
+.suraksha-campaign-root .field {
+  margin-bottom: 16px;
+}
+
+.suraksha-campaign-root .field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.suraksha-campaign-root .field input,
+.suraksha-campaign-root .field select {
+  width: 100%;
+  height: 54px;
+  padding: 0 14px;
+  border: 2px solid var(--line-2);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--brown);
+  font: inherit;
+  font-size: 17px;
+}
+
+.suraksha-campaign-root .field input:focus,
+.suraksha-campaign-root .field select:focus {
+  border-color: var(--marigold);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.15);
+}
+
+.suraksha-campaign-root .tel {
+  display: flex;
+}
+
+.suraksha-campaign-root .tel span {
+  display: grid;
+  place-items: center;
+  padding: 0 14px;
+  border: 2px solid var(--line-2);
+  border-right: 0;
+  border-radius: 12px 0 0 12px;
+  background: var(--cream);
+  font-weight: 700;
+}
+
+.suraksha-campaign-root .tel input {
+  border-radius: 0 12px 12px 0;
+}
+
+.suraksha-campaign-root .row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 520px) {
+  .suraksha-campaign-root .row2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.suraksha-campaign-root .form-note {
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: var(--brown-3);
+}
+
+.suraksha-campaign-root .thanks {
+  text-align: center;
+  padding: 30px 10px;
+}
+
+.suraksha-campaign-root .thanks .ic {
+  width: 56px;
+  height: 56px;
+  color: var(--teal);
+}
+
+.suraksha-campaign-root .thanks h3 {
+  margin: 12px 0 8px;
+}
+
+.suraksha-campaign-root .thanks p {
+  margin: 0 0 18px;
+  color: var(--brown-2);
+}
+
+.suraksha-campaign-root .alt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+/* FAQ */
+.suraksha-campaign-root .faq {
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.suraksha-campaign-root .faq details {
+  border-bottom: 1px solid var(--line-2);
+}
+
+.suraksha-campaign-root .faq details:first-child {
+  border-top: 1px solid var(--line-2);
+}
+
+.suraksha-campaign-root .faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 0;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.suraksha-campaign-root .faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.suraksha-campaign-root .pm {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(220, 38, 38, 0.1);
+  color: var(--red);
+  transition: transform 0.2s;
+}
+
+.suraksha-campaign-root .faq details[open] .pm {
+  transform: rotate(45deg);
+}
+
+.suraksha-campaign-root .faq details p {
+  margin: 0 0 22px;
+  color: var(--brown-2);
+}
+
+/* Mobile Bar */
+.suraksha-campaign-root .mbar {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .suraksha-campaign-root .mbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 45;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.15fr;
+    gap: 8px;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: rgba(254, 243, 199, 0.97);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line);
+    transition: transform 0.25s ease;
+  }
+  .suraksha-campaign-root .mbar .btn {
+    min-height: 50px;
+    padding: 0 10px;
+    font-size: 15px;
+    gap: 7px;
+  }
+  .suraksha-campaign-root .mbar.is-hidden {
+    transform: translateY(110%);
+  }
+}
+
+/* Modal Dialogs */
+.suraksha-campaign-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(69, 26, 3, 0.65);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow-y: auto;
+  animation: dlgBackdropIn 0.2s ease-out;
+}
+
+@keyframes dlgBackdropIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.suraksha-campaign-root .dlg-card {
+  position: relative;
+  background: var(--cream);
+  border-radius: 26px;
+  padding: 34px 28px 28px;
+  max-height: calc(100dvh - 24px);
+  overflow: auto;
+  box-shadow: 0 24px 48px -12px rgba(69, 26, 3, 0.6);
+  animation: dlgIn 0.22s ease-out;
+}
+
+@keyframes dlgIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .suraksha-campaign-root .dlg-card,
+  .suraksha-campaign-modal-backdrop {
+    animation: none;
+  }
+}
+
+.suraksha-campaign-root .x {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 12px;
+  background: rgba(69, 26, 3, 0.08);
+  color: var(--brown);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.suraksha-campaign-root .x:hover {
+  background: rgba(69, 26, 3, 0.16);
+}
+
+.suraksha-campaign-root .langdlg {
+  width: 760px;
+  max-width: 100%;
+}
+
+.suraksha-campaign-root .langdlg.first-visit .x {
+  display: none;
+}
+
+.suraksha-campaign-root .lang-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+
+.suraksha-campaign-root .lang-head .marks {
+  width: 40px;
+}
+
+.suraksha-campaign-root .lang-title {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.suraksha-campaign-root .lang-title small {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--marigold);
+}
+
+.suraksha-campaign-root .lang-sub {
+  margin: 4px 0 22px;
+  color: var(--brown-2);
+}
+
+.suraksha-campaign-root .lang-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.suraksha-campaign-root .lang-opt {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  min-height: 84px;
+  padding: 14px 16px;
+  border: 2px solid var(--line-2);
+  border-radius: 16px;
+  background: #fff;
+  color: var(--brown);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+.suraksha-campaign-root .lang-opt b {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.suraksha-campaign-root .lang-opt span {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--brown-3);
+}
+
+.suraksha-campaign-root .lang-opt:hover,
+.suraksha-campaign-root .lang-opt.on {
+  border-color: var(--red);
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.12);
+}
+
+.suraksha-campaign-root .lang-opt.on {
+  background: #FFF7ED;
+}
+
+.suraksha-campaign-root .cbdlg {
+  width: 520px;
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  .suraksha-campaign-root .langdlg,
+  .suraksha-campaign-root .cbdlg {
+    width: 100%;
+    max-width: 100%;
+    margin: auto 0 0;
+    max-height: 94dvh;
+  }
+  .suraksha-campaign-root .dlg-card {
+    border-radius: 24px 24px 0 0;
+    max-height: 94dvh;
+    padding: 28px 18px calc(22px + env(safe-area-inset-bottom, 0px));
+  }
+  .suraksha-campaign-root .lang-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .suraksha-campaign-root .lang-opt {
+    min-height: 74px;
+    padding: 12px;
+  }
+  .suraksha-campaign-root .lang-opt b {
+    font-size: 21px;
+  }
+  .suraksha-campaign-root .lang-title {
+    font-size: 23px;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 980px) {
+  .suraksha-campaign-root .hero-grid,
+  .suraksha-campaign-root .split {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+  .suraksha-campaign-root .hero-copy {
+    display: contents;
+  }
+  .suraksha-campaign-root .hero-grid {
+    row-gap: 0;
+  }
+  .suraksha-campaign-root .hero-copy > .eyebrow { order: 1; }
+  .suraksha-campaign-root .hero-copy > h1 { order: 2; }
+  .suraksha-campaign-root .hero-copy > .family { order: 3; }
+  .suraksha-campaign-root .hero-copy > .lede { order: 4; }
+  .suraksha-campaign-root .hero-copy > .cta-row { order: 5; }
+  .suraksha-campaign-root .hero-grid > .hero-art {
+    order: 6;
+    margin: 28px 0 8px;
+  }
+  .suraksha-campaign-root .hero-copy > .trust { order: 7; }
+  .suraksha-campaign-root .grid3,
+  .suraksha-campaign-root .steps {
+    grid-template-columns: 1fr;
+  }
+  .suraksha-campaign-root .clusters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .suraksha-campaign-root section {
+    padding: 56px 0;
+  }
+  .suraksha-campaign-root .hero {
+    padding: 26px 0 40px;
+  }
+  .suraksha-campaign-root .sec-head {
+    margin-bottom: 26px;
+  }
+  .suraksha-campaign-root h2 {
+    font-size: 28px;
+  }
+  .suraksha-campaign-root .lede,
+  .suraksha-campaign-root .sec-sub {
+    font-size: 17px;
+  }
+  .suraksha-campaign-root .family {
+    font-size: 23px;
+    margin: 10px 0 12px;
+  }
+  .suraksha-campaign-root .cta-row .btn {
+    flex: 1 1 100%;
+  }
+  .suraksha-campaign-root .btn-call {
+    align-items: center;
+  }
+  .suraksha-campaign-root .trust {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 12px;
+  }
+  .suraksha-campaign-root .trust li {
+    font-size: 13.5px;
+    align-items: flex-start;
+  }
+  .suraksha-campaign-root .card {
+    padding: 22px;
+  }
+  .suraksha-campaign-root .hook {
+    font-size: 17px;
+  }
+  .suraksha-campaign-root .kitart {
+    padding: 22px 16px 16px;
+  }
+  .suraksha-campaign-root .sensors {
+    gap: 10px;
+  }
+  .suraksha-campaign-root .sensor {
+    width: 38px;
+  }
+  .suraksha-campaign-root .clusters {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .suraksha-campaign-root .cluster {
+    padding: 14px;
+  }
+  .suraksha-campaign-root .cluster b {
+    font-size: 16px;
+  }
+  .suraksha-campaign-root .cluster span {
+    font-size: 13px;
+  }
+  .suraksha-campaign-root .band {
+    padding: 48px 0;
+  }
+  .suraksha-campaign-root .band .cta-row {
+    width: 100%;
+  }
+  .suraksha-campaign-root .form-card {
+    padding: 22px 18px;
+  }
+  .suraksha-campaign-root .faq summary {
+    font-size: 17px;
+    padding: 18px 0;
+  }
+}

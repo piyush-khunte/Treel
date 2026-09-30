@@ -1,7 +1,16 @@
+"use client";
+
 import React from "react";
+import { usePathname } from "next/navigation";
 import { WhatsAppCtaButton } from "@/components/ui/whatsapp-cta-button";
 
 export function SurakshaHighwayHelpBar() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/suraksha/campaign")) {
+    return null;
+  }
+
   return (
     <section className="py-10 sm:py-12 border-b-2 border-[#451A03]/10 bg-[#451A03] text-[#FEF3C7] relative z-10 font-rubik">
       <div className="max-w-[1320px] mx-auto px-6 sm:px-10">

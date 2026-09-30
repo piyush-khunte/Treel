@@ -27,14 +27,15 @@ export function MasterHeader() {
 
   const pathname = usePathname();
 
-  // If on TMIP, Suraksha, Personal TPMS, Admin, or OTR TPMS, their dedicated headers handle main nav
+  // If on TMIP, Suraksha, Personal TPMS, Admin, OTR TPMS, or /lp landing pages, their dedicated headers handle main nav
   if (
     pathname.startsWith("/tmip") ||
     pathname.startsWith("/timp") ||
     pathname.startsWith("/suraksha") ||
     pathname.startsWith("/personal") ||
     pathname.startsWith("/admin") ||
-    pathname.startsWith("/products/otr-tpms")
+    pathname.startsWith("/products/otr-tpms") ||
+    pathname.startsWith("/lp")
   ) {
     return null;
   }

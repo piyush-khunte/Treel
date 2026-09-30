@@ -1,8 +1,15 @@
 "use client";
 
 import React from "react";
+import { usePathname } from "next/navigation";
 
 export function SurakshaFloatingWhatsApp() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/suraksha/campaign")) {
+    return null;
+  }
+
   const whatsappUrl = "https://wa.me/919112000174?text=Suraksha%20info%20chahiye";
 
   return (

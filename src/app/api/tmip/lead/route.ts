@@ -42,7 +42,42 @@ function getSupabaseClient() {
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json().catch(() => null);
+    let body: Record<string, unknown> | null = null;
+    const contentType = req.headers.get("content-type") || "";
+
+    if (contentType.includes("application/json")) {
+      body = await req.json().catch(() => null);
+    } else if (
+      contentType.includes("application/x-www-form-urlencoded") ||
+      contentType.includes("multipart/form-data")
+    ) {
+      try {
+        const formData = await req.formData();
+        const parsed: Record<string, unknown> = {};
+        formData.forEach((val, key) => {
+          parsed[key] = typeof val === "string" ? val : val.name;
+        });
+        body = parsed;
+      } catch {
+        body = null;
+      }
+    } else {
+      // Fallback try JSON, then URLSearchParams text
+      body = await req.json().catch(async () => {
+        try {
+          const text = await req.text();
+          if (!text) return null;
+          const params = new URLSearchParams(text);
+          const parsed: Record<string, unknown> = {};
+          params.forEach((val, key) => {
+            parsed[key] = val;
+          });
+          return Object.keys(parsed).length > 0 ? parsed : null;
+        } catch {
+          return null;
+        }
+      });
+    }
 
     if (!body || typeof body !== "object") {
       return NextResponse.json(
@@ -205,14 +240,14 @@ export async function POST(req: NextRequest) {
       landing_page:
         typeof landing_page === "string" && landing_page.trim()
           ? landing_page.trim()
-          : "https://treel.in/tmip/campaign",
+          : "https://treel.in/lp/tmip",
       first_landing_page:
         typeof first_landing_page === "string" && first_landing_page.trim()
           ? first_landing_page.trim()
           : null,
       referrer: typeof referrer === "string" && referrer.trim() ? referrer.trim() : null,
       page_path:
-        typeof page_path === "string" && page_path.trim() ? page_path.trim() : "/tmip/campaign",
+        typeof page_path === "string" && page_path.trim() ? page_path.trim() : "/lp/tmip",
       user_agent: userAgent || null,
 
       attribution_metadata: {
@@ -278,7 +313,7 @@ export async function POST(req: NextRequest) {
     <div style="max-width: 620px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
       <div style="background: #050a17; padding: 24px; border-bottom: 3px solid #3b82f6;">
         <h2 style="margin: 0; font-size: 20px; color: #ffffff; letter-spacing: -0.02em;">Treel Mobility — New TMIP Campaign Lead</h2>
-        <p style="margin: 4px 0 0 0; font-size: 13px; color: #94a3b8; font-family: monospace;">Form: ${formDisplayName} · /tmip/campaign</p>
+        <p style="margin: 4px 0 0 0; font-size: 13px; color: #94a3b8; font-family: monospace;">Form: ${formDisplayName} · /lp/tmip</p>
       </div>
       
       <div style="padding: 24px;">
@@ -350,7 +385,7 @@ export async function POST(req: NextRequest) {
           </tr>
           <tr>
             <td style="padding: 6px 12px; color: #64748b;">Landing URL:</td>
-            <td style="padding: 6px 12px; color: #0f172a; word-break: break-all;">${landing_page || "https://treel.in/tmip/campaign"}</td>
+            <td style="padding: 6px 12px; color: #0f172a; word-break: break-all;">${landing_page || "https://treel.in/lp/tmip"}</td>
           </tr>
           <tr>
             <td style="padding: 6px 12px; color: #64748b;">First Page:</td>

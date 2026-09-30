@@ -18,6 +18,10 @@ export function SurakshaHeader() {
 
   const pathname = usePathname();
 
+  if (pathname?.startsWith("/suraksha/campaign")) {
+    return null;
+  }
+
   const isWhyActive = pathname.startsWith("/suraksha/why-suraksha") || pathname.startsWith("/suraksha/safety") || pathname.startsWith("/suraksha/savings") || pathname.startsWith("/suraksha/simplicity");
   const isProductActive = pathname === "/suraksha/product" || pathname.startsWith("/suraksha/how-it-works");
   const isPricingActive = pathname === "/suraksha/pricing" || pathname.startsWith("/suraksha/emi");

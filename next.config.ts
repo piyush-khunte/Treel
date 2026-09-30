@@ -5,7 +5,22 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/timp/campaign",
-        destination: "/tmip/campaign",
+        destination: "/lp/tmip",
+        permanent: true,
+      },
+      {
+        source: "/tmip/campaign",
+        destination: "/lp/tmip",
+        permanent: true,
+      },
+      {
+        source: "/suraksha/campaign",
+        destination: "/lp/suraksha",
+        permanent: true,
+      },
+      {
+        source: "/personal/campaign",
+        destination: "/lp/tpms/bike",
         permanent: true,
       },
     ];

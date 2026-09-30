@@ -26,6 +26,16 @@ export function TmipHeader() {
   const isSecurityActive = pathname.startsWith("/tmip/security") || pathname.startsWith("/tmip/compliance");
   const isSupportActive = pathname.startsWith("/tmip/support");
 
+  const demoHref = pathname === "/tmip/demo/scheduled" ? "/tmip/campaign?open=demo" : "/tmip/demo";
+
+  const handleDemoClick = (e: React.MouseEvent) => {
+    if (pathname === "/tmip/campaign") {
+      e.preventDefault();
+      setMobileMenuOpen(false);
+      window.dispatchEvent(new CustomEvent("open-tmip-demo-modal", { detail: { location: "header" } }));
+    }
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full transition-all shadow-md">
       {/* 1. TOP PRODUCTION ECOSYSTEM BAR */}
@@ -226,7 +236,8 @@ export function TmipHeader() {
           {/* CTA Button */}
           <div className="hidden md:flex items-center shrink-0 ml-1.5 xl:ml-3">
             <Link 
-              href="/tmip/demo"
+              href={demoHref}
+              onClick={handleDemoClick}
               className="px-2.5 xl:px-4 py-1.5 xl:py-2 rounded-[3px] font-space-grotesk text-[10.5px] xl:text-[11.5px] 2xl:text-[12px] font-semibold uppercase tracking-wider bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-md flex items-center gap-1.5 transition-all whitespace-nowrap"
             >
               <span>Book a demo</span> <span className="text-sm leading-none">→</span>
@@ -374,8 +385,11 @@ export function TmipHeader() {
 
           <div className="pt-4 border-t border-white/10">
             <Link 
-              href="/tmip/demo" 
-              onClick={() => setMobileMenuOpen(false)}
+              href={demoHref} 
+              onClick={(e) => {
+                handleDemoClick(e);
+                setMobileMenuOpen(false);
+              }}
               className="w-full text-center py-2.5 rounded-[3px] font-space-grotesk text-[13px] font-semibold uppercase tracking-wider bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-md flex items-center justify-center gap-1.5 transition-all"
             >
               Book a demo <span>→</span>

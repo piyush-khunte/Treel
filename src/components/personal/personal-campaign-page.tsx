@@ -91,7 +91,7 @@ export function PersonalCampaignPage() {
     // Initial page_view event
     pushDataLayer({
       event: "page_view",
-      page_path: "/personal/campaign",
+      page_path: typeof window !== "undefined" ? window.location.pathname : "/lp/tpms/bike",
       product_line: "personal_tpms_2w",
     });
   }, [searchParams]);

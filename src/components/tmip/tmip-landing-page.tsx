@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import "@/app/tmip/tmip-landing.css";
 
 function pushDataLayer(eventData: Record<string, unknown>) {
@@ -132,6 +132,7 @@ const SLIDES = [
 ];
 
 export function TmipLandingPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
 
   // Dynamic ad-group message matching
@@ -141,6 +142,7 @@ export function TmipLandingPage() {
   // Attribution capture state
   const [attribution, setAttribution] = useState({
     gclid: "",
+    fbclid: "",
     utm_source: "",
     utm_medium: "",
     utm_campaign: "",
@@ -151,7 +153,7 @@ export function TmipLandingPage() {
   });
 
   useEffect(() => {
-    const keys = ["gclid", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"] as const;
+    const keys = ["gclid", "fbclid", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"] as const;
     const captured: Record<string, string> = {};
 
     keys.forEach((k) => {
@@ -188,10 +190,8 @@ export function TmipLandingPage() {
   const [errors, setErrors] = useState<Record<string, boolean>>({});
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const formStartedRef = useRef(false);
   const formRef = useRef<HTMLFormElement>(null);
-  const successRef = useRef<HTMLDivElement>(null);
 
   // Validation rules
   const validateField = (field: string, value: string): boolean => {
@@ -313,11 +313,23 @@ export function TmipLandingPage() {
         },
       });
 
+      // Close modal and redirect directly to /tmip/demo/scheduled with attribution query params
+      setIsModalOpen(false);
       setIsSubmitting(false);
-      setIsSuccess(true);
-      setTimeout(() => {
-        successRef.current?.focus();
-      }, 100);
+
+      const queryParams = new URLSearchParams();
+      if (attribution.utm_source) queryParams.set("utm_source", attribution.utm_source);
+      if (attribution.utm_medium) queryParams.set("utm_medium", attribution.utm_medium);
+      if (attribution.utm_campaign) queryParams.set("utm_campaign", attribution.utm_campaign);
+      if (attribution.utm_term) queryParams.set("utm_term", attribution.utm_term);
+      if (attribution.utm_content) queryParams.set("utm_content", attribution.utm_content);
+      if (attribution.gclid) queryParams.set("gclid", attribution.gclid);
+      if (attribution.fbclid) queryParams.set("fbclid", attribution.fbclid);
+      if (attribution.ad_group) queryParams.set("ad_group", attribution.ad_group);
+
+      const queryString = queryParams.toString();
+      const redirectUrl = `/tmip/demo/scheduled${queryString ? `?${queryString}` : ""}`;
+      router.push(redirectUrl);
     } catch (err) {
       console.error("Lead submission network error:", err);
       setSubmitError("Network connection error. Please check your internet and try again.");
@@ -354,6 +366,27 @@ export function TmipLandingPage() {
 
   const handleGoToSlide = (idx: number) => {
     setCurrentSlide(idx);
+  };
+
+  // Section 11 Image Card Carousel State
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [isCarouselHovered, setIsCarouselHovered] = useState(false);
+  const touchStartXRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (isCarouselHovered) return;
+    const timer = setInterval(() => {
+      setCarouselIndex((prev) => (prev + 1) % SLIDES.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isCarouselHovered]);
+
+  const handleNextCarousel = () => {
+    setCarouselIndex((prev) => (prev + 1) % SLIDES.length);
+  };
+
+  const handlePrevCarousel = () => {
+    setCarouselIndex((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
   };
 
   // Full-Page Demo Modal State
@@ -404,6 +437,24 @@ export function TmipLandingPage() {
       clearTimeout(timeout);
     };
   }, [isModalOpen, closeModal]);
+
+  useEffect(() => {
+    const handleOpenModalEvent = (e: Event) => {
+      const customEvent = e as CustomEvent<{ location?: string }>;
+      openModal(customEvent?.detail?.location || "header");
+    };
+
+    window.addEventListener("open-tmip-demo-modal", handleOpenModalEvent);
+    return () => {
+      window.removeEventListener("open-tmip-demo-modal", handleOpenModalEvent);
+    };
+  }, [openModal]);
+
+  useEffect(() => {
+    if (searchParams?.get("open") === "demo") {
+      openModal("url_param");
+    }
+  }, [searchParams, openModal]);
 
   // CTA Click handler: opens full-page demo modal for demo CTAs with attribution intact
   const handleCtaClick = useCallback(
@@ -488,8 +539,6 @@ export function TmipLandingPage() {
     };
   }, []);
 
-  const firstName = formData.name.trim().split(/\s+/)[0] || "there";
-
   return (
     <div className="tmip-landing">
       {/* Skip Link */}
@@ -572,209 +621,60 @@ export function TmipLandingPage() {
                 <span>Platform uptime, trailing 90 days</span>
               </div>
             </div>
+
+            <div style={{ marginTop: "32px", display: "flex", flexWrap: "wrap", gap: "14px", alignItems: "center" }}>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={(e) => handleCtaClick("hero_primary", e)}
+              >
+                Book a demo
+              </button>
+              <a className="btn btn-ghost" href="#platform">
+                Explore platform
+              </a>
+            </div>
           </div>
 
-          {/* Right Column: Lead Form Card */}
+          {/* Right Column: Live Platform Hero Preview Card */}
           <div id="demo" ref={demoRef}>
-            <div className="form-card">
-              <form
-                id="leadForm"
-                ref={formRef}
-                method="POST"
-                action="/api/tmip/lead"
-                noValidate
-                onSubmit={(e) => handleSubmit(e, "tmip_demo")}
-                onFocus={handleFocus}
+            <div className="hero-preview-card">
+              <div className="hero-preview-header">
+                <h2>Live Vehicle Digital Twin</h2>
+                <span className="hero-preview-badge">
+                  <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#10B981", display: "inline-block" }} />
+                  Live Platform
+                </span>
+              </div>
+
+              <div
+                className="hero-preview-img-wrap"
+                onClick={(e) => handleCtaClick("hero_preview_img", e)}
+                role="button"
+                tabIndex={0}
+                aria-label="Open TMIP demo booking popup"
               >
-                {!isSuccess ? (
-                  <div id="formBody">
-                    <h2>See TMIP on your fleet</h2>
-                    <p className="sub">
-                      30-minute demo with a Treel solutions engineer, then a 14-day pilot on a few of your vehicles.
-                    </p>
+                <Image
+                  src="/images/Approved Images timp landing page/Vehicle_Status_Engine - New.png"
+                  alt="TMIP Live Vehicle Digital Twin dashboard interface"
+                  width={560}
+                  height={350}
+                  priority
+                />
+              </div>
 
-                    <div className="fields">
-                      {/* Full Name */}
-                      <div className={`field full ${errors.name ? "invalid" : ""}`}>
-                        <label htmlFor="f-name">Full name</label>
-                        <input
-                          autoComplete="name"
-                          id="f-name"
-                          name="name"
-                          placeholder="Rahul Sharma"
-                          required
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          onBlur={() => handleBlur("name")}
-                          aria-invalid={errors.name ? "true" : "false"}
-                        />
-                        <span className="err">Enter your name.</span>
-                      </div>
+              <p className="sub">
+                Sub-second telemetry, predictive breakdown forecasting, and cost-per-km analytics on your actual fleet.
+              </p>
 
-                      {/* Mobile Number */}
-                      <div className={`field ${errors.phone ? "invalid" : ""}`}>
-                        <label htmlFor="f-phone">Mobile number</label>
-                        <div className="phone">
-                          <span>+91</span>
-                          <input
-                            autoComplete="tel-national"
-                            id="f-phone"
-                            inputMode="numeric"
-                            maxLength={10}
-                            name="phone"
-                            placeholder="98XXXXXXXX"
-                            required
-                            type="tel"
-                            value={formData.phone}
-                            onChange={handleInputChange}
-                            onBlur={() => handleBlur("phone")}
-                            aria-invalid={errors.phone ? "true" : "false"}
-                          />
-                        </div>
-                        <span className="err">Enter a 10-digit mobile number.</span>
-                      </div>
-
-                      {/* Work Email */}
-                      <div className={`field ${errors.email ? "invalid" : ""}`}>
-                        <label htmlFor="f-email">Work email</label>
-                        <input
-                          autoComplete="email"
-                          id="f-email"
-                          name="email"
-                          placeholder="you@company.com"
-                          required
-                          type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          onBlur={() => handleBlur("email")}
-                          aria-invalid={errors.email ? "true" : "false"}
-                        />
-                        <span className="err">Enter a valid email address.</span>
-                      </div>
-
-                      {/* Company */}
-                      <div className={`field ${errors.company ? "invalid" : ""}`}>
-                        <label htmlFor="f-company">Company</label>
-                        <input
-                          autoComplete="organization"
-                          id="f-company"
-                          name="company"
-                          placeholder="Company name"
-                          required
-                          value={formData.company}
-                          onChange={handleInputChange}
-                          onBlur={() => handleBlur("company")}
-                          aria-invalid={errors.company ? "true" : "false"}
-                        />
-                        <span className="err">Enter your company name.</span>
-                      </div>
-
-                      {/* Fleet Size */}
-                      <div className={`field ${errors.fleet_size ? "invalid" : ""}`}>
-                        <label htmlFor="f-fleet">Fleet size</label>
-                        <select
-                          id="f-fleet"
-                          name="fleet_size"
-                          required
-                          value={formData.fleet_size}
-                          onChange={handleInputChange}
-                          onBlur={() => handleBlur("fleet_size")}
-                          aria-invalid={errors.fleet_size ? "true" : "false"}
-                        >
-                          <option value="">Select</option>
-                          <option value="1-9">1 to 9 vehicles</option>
-                          <option value="10-25">10 to 25 vehicles</option>
-                          <option value="26-100">26 to 100 vehicles</option>
-                          <option value="101-500">101 to 500 vehicles</option>
-                          <option value="500+">500+ vehicles</option>
-                        </select>
-                        <span className="err">Select your fleet size.</span>
-                      </div>
-                    </div>
-
-                    {/* Small Fleet Nudge */}
-                    <p className={`note-small ${formData.fleet_size === "1-9" ? "show" : ""}`} id="smallFleet">
-                      TMIP is built for fleets of 10 or more vehicles. For 1 to 9 trucks,{" "}
-                      <Link href="/suraksha">Suraksha</Link> is the better fit at ₹17,500 per truck. You can still send
-                      this form and we&apos;ll point you the right way.
-                    </p>
-
-                    {/* Attribution Hidden Inputs */}
-                    <input name="gclid" type="hidden" value={attribution.gclid} />
-                    <input name="utm_source" type="hidden" value={attribution.utm_source} />
-                    <input name="utm_medium" type="hidden" value={attribution.utm_medium} />
-                    <input name="utm_campaign" type="hidden" value={attribution.utm_campaign} />
-                    <input name="utm_term" type="hidden" value={attribution.utm_term} />
-                    <input name="utm_content" type="hidden" value={attribution.utm_content} />
-                    <input name="ad_group" type="hidden" value={attribution.ad_group} />
-                    <input name="landing_page" type="hidden" value={attribution.landing_page} />
-
-                    {submitError && (
-                      <div
-                        role="alert"
-                        aria-live="assertive"
-                        style={{
-                          background: "rgba(239, 68, 68, 0.12)",
-                          border: "1px solid var(--red, #EF4444)",
-                          borderRadius: "4px",
-                          padding: "10px 14px",
-                          marginTop: "14px",
-                          marginBottom: "4px",
-                          fontSize: "0.85rem",
-                          color: "#FCA5A5",
-                          lineHeight: "1.4",
-                        }}
-                      >
-                        {submitError}
-                      </div>
-                    )}
-
-                    <button className="btn btn-primary" id="submitBtn" type="submit" disabled={isSubmitting}>
-                      {isSubmitting ? "Booking…" : "Book my demo"}
-                    </button>
-
-                    <p className="consent">
-                      By booking, you agree to be contacted by Treel on phone, email or WhatsApp about TMIP. See our{" "}
-                      <Link href="/privacy-policy">privacy policy</Link>.
-                    </p>
-
-                    <div className="form-assure">
-                      <span>
-                        <i></i> Reply within 1 business day
-                      </span>
-                      <span>
-                        <i></i> No hardware commitment for the demo
-                      </span>
-                    </div>
-                  </div>
-                ) : (
-                  /* Success State */
-                  <div
-                    aria-live="polite"
-                    className="success show"
-                    id="formSuccess"
-                    ref={successRef}
-                    role="status"
-                    tabIndex={-1}
-                  >
-                    <div className="ok">
-                      <svg aria-hidden="true" height="24" viewBox="0 0 24 24" width="24">
-                        <path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#10B981" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </div>
-                    <h2>Demo request received</h2>
-                    <p className="sub" id="successName">
-                      Thanks, {firstName}. A Treel solutions engineer will call you on +91 {formData.phone} within one
-                      business day. Need us sooner? Call toll-free 1800 833 0233.
-                    </p>
-                    <ol>
-                      <li>We confirm your fleet mix and the systems you already run.</li>
-                      <li>You get a 30-minute walkthrough on vehicles like yours.</li>
-                      <li>We scope a 14-day pilot and the payback math for your fleet.</li>
-                    </ol>
-                  </div>
-                )}
-              </form>
+              <button
+                type="button"
+                className="btn btn-primary"
+                style={{ width: "100%" }}
+                onClick={(e) => handleCtaClick("hero_preview_card", e)}
+              >
+                Book a 30-minute demo
+              </button>
             </div>
           </div>
         </div>
@@ -876,49 +776,193 @@ export function TmipLandingPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 7: FLEET PROBLEM SECTION (LIGHT BACKGROUND)
+          SECTION 7: ONE PLATFORM. FIVE WAYS TO RUN A LEANER FLEET
           ========================================================================= */}
-      <section className="sec light">
+      <section className="sec light" id="features" aria-labelledby="features-title">
         <div className="wrap">
           <div className="sec-head">
             <div aria-hidden="true" className="divider"></div>
-            <h2>Most fleet losses are visible days before they happen.</h2>
+            <h2 id="features-title">One platform. Five ways to run a leaner fleet.</h2>
             <p>
-              A slow leak, a hot tyre, a tired battery. The signal is there. Without a system reading it, you find out
-              on the highway.
+              Fleet management, live telematics, predictive maintenance, fuel efficiency and mobility intelligence, all
+              built on the Vehicle Digital Twin. Start with the problem that costs you most.
             </p>
           </div>
-          <div className="leaks">
-            <div className="leak">
-              <span className="tag">
-                <i style={{ background: "var(--red)" }}></i> Critical
-              </span>
-              <h3>Roadside breakdowns</h3>
+          <nav className="fjump" aria-label="Jump to a feature">
+            <a href="#fleet-management-software" data-cta="feature-jump-fms">
+              <b>01</b>Fleet management software
+            </a>
+            <a href="#fleet-telematics-gps" data-cta="feature-jump-telematics">
+              <b>02</b>Fleet telematics &amp; GPS
+            </a>
+            <a href="#predictive-maintenance" data-cta="feature-jump-predictive">
+              <b>03</b>Predictive maintenance
+            </a>
+            <a href="#fuel-efficiency" data-cta="feature-jump-fuel">
+              <b>04</b>Fuel efficiency
+            </a>
+            <a href="#mobility-intelligence" data-cta="feature-jump-mi">
+              <b>05</b>Mobility intelligence
+            </a>
+          </nav>
+          <div className="feats">
+            {/* Card 01 */}
+            <article className="feat w4" id="fleet-management-software">
+              <div className="feat-top">
+                <span className="fnum" aria-hidden="true">01</span>
+                <span className="tag">Fleet management software</span>
+              </div>
+              <h3>Your whole fleet on one screen.</h3>
               <p>
-                A single stranded truck means a missed delivery, a recovery bill and a customer asking questions. TMIP
-                scores breakdown probability for every vehicle, every day.
+                One dashboard for every vehicle: which are active, which are idle, what is alerting and what is due,
+                filtered by depot.
               </p>
-            </div>
-            <div className="leak">
-              <span className="tag">
-                <i style={{ background: "var(--amber)" }}></i> Warning
-              </span>
-              <h3>Tyres replaced too early, or too late</h3>
+              <ul className="fl">
+                <li>Fleet overview in list, grid and map views</li>
+                <li>Active, inactive and in-progress vehicles at a glance</li>
+                <li>Alert, inspection and tyre-life summaries</li>
+              </ul>
+              <figure className="shot cover top">
+                <Image
+                  src="/images/tmip-features/fleet-management-software.jpg"
+                  alt="TMIP fleet dashboard showing total, active, inactive and in-progress vehicles, distance and turnaround charts, active alerts and an inactive vehicles summary"
+                  width={738}
+                  height={552}
+                  loading="lazy"
+                />
+              </figure>
+            </article>
+
+            {/* Card 02 */}
+            <article className="feat w4" id="fleet-telematics-gps">
+              <div className="feat-top">
+                <span className="fnum" aria-hidden="true">02</span>
+                <span className="tag">Fleet telematics &amp; GPS</span>
+              </div>
+              <h3>Live location and telemetry, every truck.</h3>
               <p>
-                Under-inflation quietly eats tread and fuel. TMIP tracks pressure, temperature and remaining life per
-                wheel, so rotations and replacements happen on data.
+                Sub-second updates across the fleet, on a live map, with engine and tyre data in the same view.
               </p>
-            </div>
-            <div className="leak">
-              <span className="tag">
-                <i style={{ background: "var(--blue)" }}></i> Blind spot
-              </span>
-              <h3>No true cost per kilometre</h3>
+              <ul className="fl">
+                <li>Live map with vehicle clusters by region</li>
+                <li>Speed, RPM, engine load, fuel, DEF/AdBlue, battery and coolant</li>
+                <li>Native integration with Fleetx, Locus, LogiNext and custom TMS</li>
+              </ul>
+              <figure className="shot cover">
+                <Image
+                  src="/images/tmip-features/fleet-telematics-gps.jpg"
+                  alt="TMIP live map of the fleet across South India, with vehicle clusters by region"
+                  width={1043}
+                  height={545}
+                  loading="lazy"
+                />
+              </figure>
+            </article>
+
+            {/* Card 03 */}
+            <article className="feat w4" id="predictive-maintenance">
+              <div className="feat-top">
+                <span className="fnum" aria-hidden="true">03</span>
+                <span className="tag">Predictive maintenance</span>
+              </div>
+              <h3>Fix it before it fails.</h3>
               <p>
-                Fuel, tyres, maintenance and downtime sit in different sheets. TMIP brings them into one cost-per-km
-                number your finance team can act on.
+                Machine-learning models flag component wear before failure, so a roadside breakdown becomes a scheduled service.
               </p>
-            </div>
+              <ul className="fl">
+                <li>A health score out of 100 for every vehicle</li>
+                <li>Breakdown probability, per vehicle, every day</li>
+                <li>Remaining useful life of each tyre, in km</li>
+              </ul>
+              <figure className="shot contain">
+                <Image
+                  src="/images/tmip-features/predictive-maintenance.jpg"
+                  alt="TMIP vehicle health score of 75 out of 100 and a low breakdown risk of 6 percent"
+                  width={524}
+                  height={230}
+                  loading="lazy"
+                />
+              </figure>
+            </article>
+
+            {/* Card 04 */}
+            <article className="feat w6" id="fuel-efficiency">
+              <div className="feat-top">
+                <span className="fnum" aria-hidden="true">04</span>
+                <span className="tag">Fuel efficiency for fleets</span>
+              </div>
+              <h3>Stop losing fuel and tread to bad pressure.</h3>
+              <p>
+                Under-inflation quietly eats tread and fuel. TMIP puts fuel use, mileage and tyre pressure side by side, so you can see where it is going.
+              </p>
+              <ul className="fl">
+                <li>Fuel consumption, distance and km/L, compared with yesterday</li>
+                <li>Average pressure, temperature and pressure difference across the fleet</li>
+                <li>5–7% tyre-life extension, fleet median</li>
+              </ul>
+              <figure className="shot contain">
+                <Image
+                  src="/images/tmip-features/fuel-efficiency.jpg"
+                  alt="TMIP fleet tiles: fuel consumption, distance travelled and mileage, with average pressure, temperature, pressure difference and pressure-to-temperature ratio"
+                  width={682}
+                  height={468}
+                  loading="lazy"
+                />
+              </figure>
+            </article>
+
+            {/* Card 05 */}
+            <article className="feat w6" id="mobility-intelligence">
+              <div className="feat-top">
+                <span className="fnum" aria-hidden="true">05</span>
+                <span className="tag">Mobility intelligence</span>
+              </div>
+              <h3>From tyre monitoring to mobility intelligence.</h3>
+              <p>
+                Every truck becomes a Vehicle Digital Twin: a live record of component health, tyre state, fuel and driver behaviour, turned into the number your CFO asks for, true cost per kilometre by vehicle class, route, driver and region.
+              </p>
+              <div className="mstats">
+                <div>
+                  <b>68,412</b>
+                  <span>Vehicles under management</span>
+                </div>
+                <div>
+                  <b>99.7%</b>
+                  <span>Platform uptime</span>
+                </div>
+                <div>
+                  <b>9 mo</b>
+                  <span>Median payback</span>
+                </div>
+              </div>
+              <figure className="shot cover">
+                <Image
+                  src="/images/tmip-features/mobility-intelligence.jpg"
+                  alt="TMIP Vehicle Digital Twin: a 3D truck showing battery, engine, tyres, brakes, fuel and driveline health"
+                  width={858}
+                  height={547}
+                  loading="lazy"
+                />
+              </figure>
+            </article>
+          </div>
+          <div className="feats-cta">
+            <a
+              className="btn btn-primary"
+              href="#demo"
+              data-cta="features-demo"
+              onClick={(e) => handleCtaClick("features-demo", e)}
+            >
+              Book a demo
+            </a>
+            <a
+              className="btn btn-ghost"
+              href="#platform"
+              data-cta="features-platform"
+              onClick={() => handleCtaClick("features-platform")}
+            >
+              Explore the platform
+            </a>
           </div>
         </div>
       </section>
@@ -1435,42 +1479,118 @@ export function TmipLandingPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 11: 14-DAY PILOT FLOW (LIGHT BACKGROUND)
+          SECTION 11: LIVE PLATFORM CAROUSEL (DARK THEME)
           ========================================================================= */}
-      <section className="sec light" id="pilot">
+      <section
+        className="tmip-carousel-section"
+        id="platform-screens"
+        onMouseEnter={() => setIsCarouselHovered(true)}
+        onMouseLeave={() => setIsCarouselHovered(false)}
+        onTouchStart={(e) => {
+          touchStartXRef.current = e.touches[0].clientX;
+        }}
+        onTouchEnd={(e) => {
+          if (touchStartXRef.current !== null) {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartXRef.current - touchEndX;
+            if (diff > 50) {
+              handleNextCarousel();
+            } else if (diff < -50) {
+              handlePrevCarousel();
+            }
+            touchStartXRef.current = null;
+          }
+        }}
+      >
         <div className="wrap">
-          <div className="sec-head">
+          <div className="tmip-carousel-header">
             <div aria-hidden="true" className="divider"></div>
-            <h2>From first call to proven payback in three steps.</h2>
-            <p>You see the numbers on your own vehicles before you commit to a rollout.</p>
+            <span className="eyebrow">Platform in action</span>
+            <h2>See TMIP on live commercial vehicles.</h2>
+            <p style={{ color: "var(--silver)", maxWidth: "58ch", marginTop: "10px" }}>
+              Real-time digital twins, predictive wear models, and cost intelligence across national corridors.
+            </p>
           </div>
-          <div className="steps">
-            <div className="step">
-              <span className="num">1</span>
-              <span className="when">Day 1 · 30 minutes</span>
-              <h3>Demo on vehicles like yours</h3>
-              <p>
-                A Treel solutions engineer walks through TMIP using your fleet mix, routes and the systems you already run.
-              </p>
+
+          <div className="tmip-carousel-container">
+            <div className="tmip-carousel-viewport">
+              <div
+                className="tmip-carousel-track"
+                style={{
+                  ["--slide-index" as string]: carouselIndex,
+                }}
+              >
+                {SLIDES.map((slide, idx) => (
+                  <div key={idx} className="tmip-carousel-card">
+                    <div className="tmip-carousel-img-wrap">
+                      <Image
+                        src={slide.src}
+                        alt={slide.alt}
+                        width={600}
+                        height={375}
+                        className="object-cover"
+                        loading="lazy"
+                      />
+                      {slide.badge && (
+                        <div className="tmip-carousel-badge">{slide.badge}</div>
+                      )}
+                    </div>
+                    <div className="tmip-carousel-body">
+                      <h3 className="tmip-carousel-title">{slide.caption.split(":")[0] || "Live Telemetry"}</h3>
+                      <p className="tmip-carousel-caption">{slide.caption}</p>
+                      <div style={{ marginTop: "auto", paddingTop: "16px" }}>
+                        <button
+                          type="button"
+                          className="btn btn-ghost"
+                          style={{ width: "100%", padding: "10px 14px", minHeight: "42px", fontSize: "0.88rem" }}
+                          onClick={(e) => handleCtaClick(`carousel_${idx}`, e)}
+                        >
+                          Book a demo on this module
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="step">
-              <span className="num">2</span>
-              <span className="when">Days 2–15 · 14-day pilot</span>
-              <h3>Pilot on part of your fleet</h3>
-              <p>
-                TMIP goes live on a subset of your vehicles. Your team uses the dashboard and alerts in real operations.
-              </p>
-            </div>
-            <div className="step">
-              <span className="num">3</span>
-              <span className="when">End of pilot</span>
-              <h3>Payback review</h3>
-              <p>
-                We compare pilot data with your baseline and share the payback math for a full rollout, vehicle by vehicle.
-              </p>
+
+            {/* Carousel Controls */}
+            <div className="tmip-carousel-nav">
+              <button
+                type="button"
+                className="tmip-carousel-btn"
+                onClick={handlePrevCarousel}
+                aria-label="Previous slide"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+
+              <div className="tmip-carousel-dots">
+                {SLIDES.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    className={`tmip-carousel-dot ${carouselIndex === idx ? "active" : ""}`}
+                    onClick={() => setCarouselIndex(idx)}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                className="tmip-carousel-btn"
+                onClick={handleNextCarousel}
+                aria-label="Next slide"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
             </div>
           </div>
-          <p className="promise">If the payback math does not work for your fleet, we do not sell into it.</p>
         </div>
       </section>
 
@@ -1677,198 +1797,176 @@ export function TmipLandingPage() {
 
             <form
               id="modalDemoForm"
-              method="POST"
-              action="/api/tmip/lead"
+              ref={formRef}
               noValidate
               onSubmit={(e) => handleSubmit(e, activeFormId)}
-              className={isSuccess ? "is-success" : ""}
             >
-              {!isSuccess ? (
-                <div id="modalFormFields">
-                  <div className="field">
-                    <label htmlFor="m-f-name">Full name</label>
+              <div className="fields">
+                {/* Full Name (full width) */}
+                <div className={`field full ${errors.name ? "invalid" : ""}`}>
+                  <label htmlFor="m-f-name">Full name</label>
+                  <input
+                    autoComplete="name"
+                    id="m-f-name"
+                    name="name"
+                    placeholder="e.g. Rajesh Sharma"
+                    required
+                    type="text"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    onBlur={() => handleBlur("name")}
+                    onFocus={handleFocus}
+                    aria-invalid={errors.name ? "true" : "false"}
+                  />
+                  <span className="err">Enter your full name.</span>
+                </div>
+
+                {/* Row 1: Mobile + Email */}
+                <div className="row">
+                  {/* Mobile Number */}
+                  <div className={`field ${errors.phone ? "invalid" : ""}`}>
+                    <label htmlFor="m-f-phone">Mobile number</label>
+                    <div className="phone">
+                      <span>+91</span>
+                      <input
+                        autoComplete="tel-national"
+                        id="m-f-phone"
+                        inputMode="numeric"
+                        maxLength={10}
+                        name="phone"
+                        placeholder="98XXXXXXXX"
+                        required
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        onBlur={() => handleBlur("phone")}
+                        onFocus={handleFocus}
+                        aria-invalid={errors.phone ? "true" : "false"}
+                      />
+                    </div>
+                    <span className="err">Enter 10-digit mobile.</span>
+                  </div>
+
+                  {/* Work Email */}
+                  <div className={`field ${errors.email ? "invalid" : ""}`}>
+                    <label htmlFor="m-f-email">Work email</label>
                     <input
-                      autoComplete="name"
-                      id="m-f-name"
-                      name="name"
-                      placeholder="e.g. Rajesh Sharma"
+                      autoComplete="email"
+                      id="m-f-email"
+                      name="email"
+                      placeholder="rajesh@company.com"
+                      required
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur("email")}
+                      onFocus={handleFocus}
+                      aria-invalid={errors.email ? "true" : "false"}
+                    />
+                    <span className="err">Enter a valid work email.</span>
+                  </div>
+                </div>
+
+                {/* Row 2: Company + Fleet Size */}
+                <div className="row">
+                  {/* Company Name */}
+                  <div className={`field ${errors.company ? "invalid" : ""}`}>
+                    <label htmlFor="m-f-company">Company name</label>
+                    <input
+                      autoComplete="organization"
+                      id="m-f-company"
+                      name="company"
+                      placeholder="e.g. Sharma Logistics"
                       required
                       type="text"
-                      value={formData.name}
+                      value={formData.company}
                       onChange={handleInputChange}
-                      onBlur={() => handleBlur("name")}
+                      onBlur={() => handleBlur("company")}
                       onFocus={handleFocus}
-                      aria-invalid={errors.name ? "true" : "false"}
+                      aria-invalid={errors.company ? "true" : "false"}
                     />
-                    <span className="err">Enter your full name.</span>
+                    <span className="err">Enter company name.</span>
                   </div>
 
-                  <div className="row">
-                    <div className="field">
-                      <label htmlFor="m-f-phone">Mobile number</label>
-                      <div className="input-group">
-                        <span className="addon">+91</span>
-                        <input
-                          autoComplete="tel-national"
-                          id="m-f-phone"
-                          inputMode="numeric"
-                          maxLength={10}
-                          name="phone"
-                          placeholder="98765 43210"
-                          required
-                          type="tel"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          onBlur={() => handleBlur("phone")}
-                          onFocus={handleFocus}
-                          aria-invalid={errors.phone ? "true" : "false"}
-                        />
-                      </div>
-                      <span className="err">Enter a valid 10-digit Indian mobile.</span>
-                    </div>
-
-                    <div className="field">
-                      <label htmlFor="m-f-email">Work email</label>
-                      <input
-                        autoComplete="email"
-                        id="m-f-email"
-                        name="email"
-                        placeholder="rajesh@company.com"
-                        required
-                        type="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        onBlur={() => handleBlur("email")}
-                        onFocus={handleFocus}
-                        aria-invalid={errors.email ? "true" : "false"}
-                      />
-                      <span className="err">Enter a valid work email.</span>
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="field">
-                      <label htmlFor="m-f-company">Company name</label>
-                      <input
-                        autoComplete="organization"
-                        id="m-f-company"
-                        name="company"
-                        placeholder="e.g. Sharma Logistics"
-                        required
-                        type="text"
-                        value={formData.company}
-                        onChange={handleInputChange}
-                        onBlur={() => handleBlur("company")}
-                        onFocus={handleFocus}
-                        aria-invalid={errors.company ? "true" : "false"}
-                      />
-                      <span className="err">Enter company or fleet name.</span>
-                    </div>
-
-                    <div className="field">
-                      <label htmlFor="m-f-fleet">Fleet size</label>
-                      <select
-                        id="m-f-fleet"
-                        name="fleet_size"
-                        required
-                        value={formData.fleet_size}
-                        onChange={handleInputChange}
-                        onBlur={() => handleBlur("fleet_size")}
-                        aria-invalid={errors.fleet_size ? "true" : "false"}
-                      >
-                        <option value="">Select</option>
-                        <option value="1-9">1 to 9 vehicles</option>
-                        <option value="10-25">10 to 25 vehicles</option>
-                        <option value="26-100">26 to 100 vehicles</option>
-                        <option value="101-500">101 to 500 vehicles</option>
-                        <option value="500+">500+ vehicles</option>
-                      </select>
-                      <span className="err">Select your fleet size.</span>
-                    </div>
-                  </div>
-
-                  {/* Small Fleet Nudge */}
-                  <p className={`note-small ${formData.fleet_size === "1-9" ? "show" : ""}`}>
-                    TMIP is built for fleets of 10 or more vehicles. For 1 to 9 trucks,{" "}
-                    <Link href="/suraksha">Suraksha</Link> is the better fit at ₹17,500 per truck. You can still send
-                    this form and we&apos;ll point you the right way.
-                  </p>
-
-                  {/* Attribution Hidden Inputs */}
-                  <input name="gclid" type="hidden" value={attribution.gclid} />
-                  <input name="utm_source" type="hidden" value={attribution.utm_source} />
-                  <input name="utm_medium" type="hidden" value={attribution.utm_medium} />
-                  <input name="utm_campaign" type="hidden" value={attribution.utm_campaign} />
-                  <input name="utm_term" type="hidden" value={attribution.utm_term} />
-                  <input name="utm_content" type="hidden" value={attribution.utm_content} />
-                  <input name="ad_group" type="hidden" value={attribution.ad_group} />
-                  <input name="landing_page" type="hidden" value={attribution.landing_page} />
-
-                  {submitError && (
-                    <div
-                      role="alert"
-                      aria-live="assertive"
-                      style={{
-                        background: "rgba(239, 68, 68, 0.12)",
-                        border: "1px solid var(--red, #EF4444)",
-                        borderRadius: "4px",
-                        padding: "10px 14px",
-                        marginTop: "14px",
-                        marginBottom: "4px",
-                        fontSize: "0.85rem",
-                        color: "#FCA5A5",
-                        lineHeight: "1.4",
-                      }}
+                  {/* Fleet Size */}
+                  <div className={`field ${errors.fleet_size ? "invalid" : ""}`}>
+                    <label htmlFor="m-f-fleet">Fleet size</label>
+                    <select
+                      id="m-f-fleet"
+                      name="fleet_size"
+                      required
+                      value={formData.fleet_size}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur("fleet_size")}
+                      aria-invalid={errors.fleet_size ? "true" : "false"}
                     >
-                      {submitError}
-                    </div>
-                  )}
-
-                  <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? "Booking…" : "Book my demo"}
-                  </button>
-
-                  <p className="consent">
-                    By booking, you agree to be contacted by Treel on phone, email or WhatsApp about TMIP. See our{" "}
-                    <Link href="/privacy-policy">privacy policy</Link>.
-                  </p>
-
-                  <div className="form-assure">
-                    <span>
-                      <i></i> Reply within 1 business day
-                    </span>
-                    <span>
-                      <i></i> No hardware commitment for the demo
-                    </span>
+                      <option value="">Select</option>
+                      <option value="1-9">1 to 9 vehicles</option>
+                      <option value="10-25">10 to 25 vehicles</option>
+                      <option value="26-100">26 to 100 vehicles</option>
+                      <option value="101-500">101 to 500 vehicles</option>
+                      <option value="500+">500+ vehicles</option>
+                    </select>
+                    <span className="err">Select fleet size.</span>
                   </div>
                 </div>
-              ) : (
+              </div>
+
+              {/* Small Fleet Nudge */}
+              <p className={`note-small ${formData.fleet_size === "1-9" ? "show" : ""}`} style={{ marginTop: "12px" }}>
+                TMIP is built for fleets of 10+ vehicles. For 1 to 9 trucks,{" "}
+                <Link href="/suraksha">Suraksha</Link> is the better fit at ₹17,500 per truck.
+              </p>
+
+              {/* Attribution Hidden Inputs */}
+              <input name="gclid" type="hidden" value={attribution.gclid} />
+              <input name="fbclid" type="hidden" value={attribution.fbclid} />
+              <input name="utm_source" type="hidden" value={attribution.utm_source} />
+              <input name="utm_medium" type="hidden" value={attribution.utm_medium} />
+              <input name="utm_campaign" type="hidden" value={attribution.utm_campaign} />
+              <input name="utm_term" type="hidden" value={attribution.utm_term} />
+              <input name="utm_content" type="hidden" value={attribution.utm_content} />
+              <input name="ad_group" type="hidden" value={attribution.ad_group} />
+              <input name="landing_page" type="hidden" value={attribution.landing_page} />
+
+              {submitError && (
                 <div
-                  aria-live="polite"
-                  className="success show"
-                  role="status"
+                  role="alert"
+                  aria-live="assertive"
+                  style={{
+                    background: "rgba(239, 68, 68, 0.12)",
+                    border: "1px solid #EF4444",
+                    borderRadius: "4px",
+                    padding: "10px 14px",
+                    marginTop: "14px",
+                    marginBottom: "4px",
+                    fontSize: "0.85rem",
+                    color: "#FCA5A5",
+                    lineHeight: "1.4",
+                  }}
                 >
-                  <div className="ok">
-                    <svg aria-hidden="true" height="24" viewBox="0 0 24 24" width="24">
-                      <path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#10B981" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                  <h2>Demo request received</h2>
-                  <p className="sub">
-                    Thanks, {firstName}. A Treel solutions engineer will call you on +91 {formData.phone} within one
-                    business day. Need us sooner? Call toll-free 1800 833 0233.
-                  </p>
-                  <ol>
-                    <li>We confirm your fleet mix and the systems you already run.</li>
-                    <li>You get a 30-minute walkthrough on vehicles like yours.</li>
-                    <li>We scope a 14-day pilot and the payback math for your fleet.</li>
-                  </ol>
+                  {submitError}
                 </div>
               )}
+
+              <button className="btn btn-primary" type="submit" disabled={isSubmitting} style={{ width: "100%", marginTop: "16px" }}>
+                {isSubmitting ? "Booking…" : "Book my demo"}
+              </button>
+
+              <p className="consent" style={{ fontSize: "0.78rem", color: "var(--silver)", marginTop: "12px", lineHeight: "1.35", textAlign: "center" }}>
+                By booking, you agree to be contacted by Treel on phone, email or WhatsApp about TMIP. See our{" "}
+                <Link href="/privacy-policy" style={{ color: "var(--blue)", textDecoration: "underline" }}>privacy policy</Link>.
+              </p>
+
+              <div className="form-assure" style={{ display: "flex", justifyContent: "center", gap: "18px", marginTop: "14px", fontSize: "0.78rem", color: "var(--silver)" }}>
+                <span>Reply within 1 business day</span>
+                <span>•</span>
+                <span>No hardware commitment</span>
+              </div>
             </form>
           </div>
         </div>
       )}
-    </div>
-  );
-}
+        </div>
+      );
+    }

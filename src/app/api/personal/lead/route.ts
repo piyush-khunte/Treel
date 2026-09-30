@@ -203,14 +203,14 @@ export async function POST(req: NextRequest) {
       landing_page:
         typeof landing_page === "string" && landing_page.trim()
           ? landing_page.trim()
-          : "https://treel.in/personal/campaign",
+          : "https://treel.in/lp/tpms/bike",
       first_landing_page:
         typeof first_landing_page === "string" && first_landing_page.trim()
           ? first_landing_page.trim()
           : null,
       referrer: typeof referrer === "string" && referrer.trim() ? referrer.trim() : null,
       page_path:
-        typeof page_path === "string" && page_path.trim() ? page_path.trim() : "/personal/campaign",
+        typeof page_path === "string" && page_path.trim() ? page_path.trim() : "/lp/tpms/bike",
       user_agent: userAgent || null,
 
       attribution_metadata: {
@@ -343,7 +343,7 @@ export async function POST(req: NextRequest) {
         ${fbclid ? `<div class="item full-width"><div class="item-label">Facebook Click ID (FBCLID)</div><div class="item-value">${fbclid}</div></div>` : ""}
         <div class="item full-width">
           <div class="item-label">Landing Page</div>
-          <div class="item-value">${landing_page || "https://treel.in/personal/campaign"}</div>
+          <div class="item-value">${landing_page || "https://treel.in/lp/tpms/bike"}</div>
         </div>
       </div>
     </div>
