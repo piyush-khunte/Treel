@@ -16,14 +16,15 @@ interface SlideData {
 
 const SLIDES: SlideData[] = [
   {
-    id: "suraksha",
-    name: "Suraksha Fleet",
-    category: "Commercial Trucks",
-    src: "/images/hero/suraksha.webp",
-    alt: "Treel Suraksha — DIY Fleet & Truck Safety for India's Owner-Drivers",
-    href: "/suraksha",
-    tagline: "Safety that fits in a driver's hands",
+    id: "tmip",
+    name: "TMIP Enterprise",
+    category: "Fleet Intelligence",
+    src: "/images/hero/tmip.webp",
+    alt: "Treel TMIP — Enterprise Fleet Intelligence & Live Vehicle Digital Twin",
+    href: "/tmip",
+    tagline: "Every truck. A live Digital Twin.",
   },
+  
   {
     id: "tpms",
     name: "Personal TPMS",
@@ -34,14 +35,15 @@ const SLIDES: SlideData[] = [
     tagline: "Real-time pressure & temperature alerts",
   },
   {
-    id: "tmip",
-    name: "TMIP Enterprise",
-    category: "Fleet Intelligence",
-    src: "/images/hero/tmip.webp",
-    alt: "Treel TMIP — Enterprise Fleet Intelligence & Live Vehicle Digital Twin",
-    href: "/tmip",
-    tagline: "Every truck. A live Digital Twin.",
+    id: "suraksha",
+    name: "Suraksha Fleet",
+    category: "Commercial Trucks",
+    src: "/images/hero/suraksha.webp",
+    alt: "Treel Suraksha — DIY Fleet & Truck Safety for India's Owner-Drivers",
+    href: "/suraksha",
+    tagline: "Safety that fits in a driver's hands",
   },
+  
 ];
 
 const BAR_COLORS = ["#8A3F30", "#B04A34", "#D4573A"];

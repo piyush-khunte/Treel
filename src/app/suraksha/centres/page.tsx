@@ -44,12 +44,6 @@ export default function SurakshaCentresPage() {
 
   const handleSelectFromMap = (centre: SurakshaCentre) => {
     setSelectedCentreId(centre.id);
-    setTimeout(() => {
-      const element = document.getElementById(centre.id);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    }, 100);
   };
 
   return (

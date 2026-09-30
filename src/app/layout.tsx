@@ -23,9 +23,9 @@ export const metadata: Metadata = {
     template: "%s | Treel",
   },
   icons: {
-    icon: "/images/webicon.jpg",
-    shortcut: "/images/webicon.jpg",
-    apple: "/images/webicon.jpg",
+    icon: "/images/Final Treel New Logo Favicon.png",
+    shortcut: "/images/Final Treel New Logo Favicon.png",
+    apple: "/images/Final Treel New Logo Favicon.png",
   },
   description:
     "Treel transforms dynamic tyre physics and vehicle telemetry into predictive mobility intelligence. Solutions for Enterprise Fleets (TMIP), Commercial Trucks (Suraksha), and Consumer TPMS.",

@@ -11,8 +11,7 @@ import {
   ArrowRight,
   Activity,
   Truck,
-  Car,
-  HardHat
+  Car
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -218,8 +217,14 @@ export function MasterHeader() {
                     href="/products/otr-tpms" 
                     className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors mt-0.5"
                   >
-                    <div className="w-9 h-9 rounded-lg bg-amber-50 flex items-center justify-center text-amber-700 shrink-0 mt-0.5">
-                      <HardHat className="w-5 h-5" />
+                    <div className="w-9 h-9 rounded-lg bg-amber-50 flex items-center justify-center p-1 shrink-0 mt-0.5">
+                      <Image
+                        src="/images/otr-excavator-icon.png"
+                        alt="OTR TPMS"
+                        width={28}
+                        height={28}
+                        className="w-6 h-6 object-contain"
+                      />
                     </div>
                     <div>
                       <div className="text-sm font-semibold text-slate-900">

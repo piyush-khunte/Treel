@@ -2,14 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { TmipHeader } from "@/components/layout/tmip-header";
-import {
-  ArrowRight,
-  Shield,
-  Radio,
-  Cpu,
-  Activity,
-  ChevronDown,
-} from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "OTR TPMS for Mining, Construction and Ports | Treel",
@@ -90,7 +83,7 @@ export default function OtrTpmsPage() {
       {/* TMIP Standard Header */}
       <TmipHeader />
 
-      {/* Blueprint Grid Background Pattern */}
+      {/* Background blueprint grid pattern */}
       <div
         className="fixed inset-0 pointer-events-none opacity-40 z-0"
         style={{
@@ -106,19 +99,19 @@ export default function OtrTpmsPage() {
         {/* ============================================================== */}
         {/* 01 HERO                                                        */}
         {/* ============================================================== */}
-        <section className="relative pt-12 sm:pt-16 pb-20 sm:pb-24 border-b border-slate-400/15 overflow-hidden">
+        <section className="relative pt-10 sm:pt-12 pb-16 sm:pb-20 border-b border-slate-400/15 overflow-hidden">
           {/* Subtle radial blueprint glow */}
           <div
             className="absolute top-0 right-0 w-[600px] h-[500px] pointer-events-none opacity-20"
             style={{
               background:
-                "radial-gradient(60% 70% at 70% 35%, rgba(59,130,246,0.3), transparent 70%)",
+                "radial-gradient(60% 70% at 78% 40%, rgba(59,130,246,0.3), transparent 70%)",
             }}
           />
 
-          <div className="max-w-[1200px] mx-auto px-6">
+          <div className="max-w-[1240px] mx-auto px-6">
             {/* Breadcrumb */}
-            <nav className="font-jetbrains text-xs text-[#94A3B8] mb-8" aria-label="Breadcrumb">
+            <nav className="font-jetbrains text-xs text-[#94A3B8] mb-6 sm:mb-8" aria-label="Breadcrumb">
               <Link href="/products" className="hover:text-white transition-colors">
                 Products
               </Link>
@@ -126,90 +119,93 @@ export default function OtrTpmsPage() {
               <span className="text-[#3B82F6]">OTR TPMS</span>
             </nav>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-              {/* Left Column: Copy */}
-              <div className="lg:col-span-6 space-y-6">
-                <div className="inline-flex items-center gap-2 font-jetbrains text-xs px-3 py-1 rounded-full bg-[#3B82F6]/15 text-[#9CC2FF] border border-[#3B82F6]/30">
-                  <span className="font-semibold text-white">OTR TPMS</span>
+            {/* 2-Column Main Hero: Left = Badge + Headline, Right = Paragraph + CTAs */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+              {/* Left Column: Badge and Headline */}
+              <div className="lg:col-span-6 space-y-4">
+                <span className="inline-flex items-center gap-2 font-jetbrains text-xs px-3 py-1 rounded-full bg-[#3B82F6]/15 text-[#9CC2FF] border border-[#3B82F6]/30">
+                  <strong className="text-white font-medium">OTR TPMS</strong>
                   <span className="text-slate-400">|</span>
                   <span>Powered by TMIP</span>
-                </div>
+                </span>
 
-                <h1 className="font-space-grotesk text-4xl sm:text-5xl lg:text-[54px] font-semibold tracking-[-0.03em] text-[#F1F5F9] leading-[1.08]">
+                <h1 className="font-space-grotesk text-4xl sm:text-5xl lg:text-[54px] xl:text-[58px] font-bold tracking-[-0.02em] text-[#F1F5F9] leading-[1.08] max-w-[14ch]">
                   Where the road ends, the intelligence doesn&apos;t.
                 </h1>
+              </div>
 
-                <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed max-w-2xl font-ibm-plex">
+              {/* Right Column: Description Copy and CTAs */}
+              <div className="lg:col-span-6 lg:pt-7 space-y-6">
+                <p className="text-[#94A3B8] text-base sm:text-[17px] lg:text-[18px] leading-relaxed font-ibm-plex max-w-[48ch]">
                   Mining haulers, earthmovers and port equipment work under loads and heat that
                   road fleets never see. OTR TPMS puts a sensor on every tyre, and TMIP turns those
                   readings into predictions, so failures don&apos;t stop the shift.
                 </p>
 
-                <div className="flex flex-wrap items-center gap-4 pt-2">
+                <div className="flex flex-wrap items-center gap-3.5 pt-1">
                   <Link
                     href="/tmip/demo"
-                    className="bg-[#3B82F6] hover:bg-[#2563EB] text-white font-ibm-plex font-semibold text-sm px-6 py-3.5 rounded-[4px] inline-flex items-center gap-2 shadow-lg shadow-[#3B82F6]/20 transition-all duration-200"
+                    className="bg-[#3B82F6] hover:bg-[#2563EB] text-white font-ibm-plex font-semibold text-[15px] px-6 py-3 rounded-[6px] inline-flex items-center gap-2.5 shadow-lg shadow-[#3B82F6]/20 transition-all duration-200"
                   >
                     Book a site assessment
-                    <ArrowRight className="w-4 h-4" />
                   </Link>
                   <a
                     href="#how"
-                    className="border border-[#3B82F6]/40 hover:border-[#3B82F6] hover:bg-[#3B82F6]/10 text-[#E6ECF5] font-ibm-plex font-medium text-sm px-6 py-3.5 rounded-[4px] inline-flex items-center gap-2 transition-all duration-200"
+                    className="border border-[#3B82F6]/30 hover:border-[#3B82F6] hover:bg-[#3B82F6]/10 text-[#E6ECF5] font-ibm-plex font-medium text-[15px] px-6 py-3 rounded-[6px] inline-flex items-center gap-2.5 transition-all duration-200"
                   >
                     See how it works
                   </a>
                 </div>
-
-                {/* Hero Metadata Segments */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-400/15 text-sm text-[#94A3B8]">
-                  <div>
-                    <strong className="block font-jetbrains text-xs sm:text-[13px] font-medium text-[#F59E0B]">
-                      Mining
-                    </strong>
-                    <span className="text-xs text-[#94A3B8]">Haul fleets</span>
-                  </div>
-                  <div>
-                    <strong className="block font-jetbrains text-xs sm:text-[13px] font-medium text-[#F59E0B]">
-                      Construction
-                    </strong>
-                    <span className="text-xs text-[#94A3B8]">Earthmoving</span>
-                  </div>
-                  <div>
-                    <strong className="block font-jetbrains text-xs sm:text-[13px] font-medium text-[#F59E0B]">
-                      Quarries
-                    </strong>
-                    <span className="text-xs text-[#94A3B8]">Loaders, dumpers</span>
-                  </div>
-                  <div>
-                    <strong className="block font-jetbrains text-xs sm:text-[13px] font-medium text-[#F59E0B]">
-                      Ports
-                    </strong>
-                    <span className="text-xs text-[#94A3B8]">Terminal equipment</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column: OTR Haul-Truck Digital-Twin Visual */}
-              <div className="lg:col-span-6">
-                <figure
-                  className="relative p-2 bg-[#0F1729] border border-[#3B82F6]/40 shadow-2xl overflow-hidden"
-                  style={{
-                    clipPath:
-                      "polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%)",
-                  }}
-                >
-                  <Image
-                    src="/images/otr-haul-truck-digital-twin.jpg"
-                    alt="TMIP Vehicle Digital Twin for a mining haul truck, showing health score, breakdown risk, component health and live status"
-                    width={1486}
-                    height={704}
-                    className="w-full h-auto object-contain rounded-[2px]"
-                    priority
-                  />
-                </figure>
               </div>
             </div>
+
+            {/* Industry Strip Spanning Full Width Immediately Below Hero Copy */}
+            <div className="mt-10 sm:mt-12 pt-6 border-t border-slate-400/15">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-sm text-[#94A3B8]">
+                <div>
+                  <strong className="block font-jetbrains text-[15px] font-medium text-[#F59E0B]">
+                    Mining
+                  </strong>
+                  <span className="text-xs sm:text-sm text-[#94A3B8]">Haul fleets</span>
+                </div>
+                <div>
+                  <strong className="block font-jetbrains text-[15px] font-medium text-[#F59E0B]">
+                    Construction
+                  </strong>
+                  <span className="text-xs sm:text-sm text-[#94A3B8]">Earthmoving</span>
+                </div>
+                <div>
+                  <strong className="block font-jetbrains text-[15px] font-medium text-[#F59E0B]">
+                    Quarries
+                  </strong>
+                  <span className="text-xs sm:text-sm text-[#94A3B8]">Loaders, dumpers</span>
+                </div>
+                <div>
+                  <strong className="block font-jetbrains text-[15px] font-medium text-[#F59E0B]">
+                    Ports
+                  </strong>
+                  <span className="text-xs sm:text-sm text-[#94A3B8]">Terminal equipment</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Large OTR/TMIP Dashboard / Truck Visual Immediately Below Industry Strip */}
+            <figure
+              className="mt-8 sm:mt-10 relative bg-[#0F1729] p-2.5 border border-[#3B82F6]/30 shadow-2xl overflow-hidden rounded-[2px]"
+              style={{
+                clipPath:
+                  "polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%)",
+              }}
+            >
+              <Image
+                src="/images/otr-haul-truck-digital-twin.jpg"
+                alt="TMIP Vehicle Digital Twin for a mining haul truck, showing health score, breakdown risk, component health and live status"
+                width={1486}
+                height={704}
+                className="w-full h-auto object-contain rounded-[2px]"
+                priority
+              />
+            </figure>
           </div>
         </section>
 
@@ -225,7 +221,7 @@ export default function OtrTpmsPage() {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Card 1 */}
               <article
                 className="bg-[#0F1729] p-7 border-t-2 border-[#3B82F6] rounded-b-[4px] space-y-3"
@@ -240,7 +236,7 @@ export default function OtrTpmsPage() {
                 <h3 className="font-space-grotesk text-xl font-semibold text-white">
                   Heat and load
                 </h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">
+                <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                   Heavy payloads, long haul cycles and steep ramps build heat inside the tyre faster
                   than any manual check can catch.
                 </p>
@@ -260,7 +256,7 @@ export default function OtrTpmsPage() {
                 <h3 className="font-space-grotesk text-xl font-semibold text-white">
                   Harsh ground
                 </h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">
+                <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                   Rock cuts, impacts and underinflation cause sudden sidewall and casing failures
                   that end a tyre&apos;s life early.
                 </p>
@@ -280,7 +276,7 @@ export default function OtrTpmsPage() {
                 <h3 className="font-space-grotesk text-xl font-semibold text-white">
                   Downtime costs production
                 </h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">
+                <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                   When a hauler stops, the loader, the crusher and the schedule stop with it.
                 </p>
               </article>
@@ -299,7 +295,7 @@ export default function OtrTpmsPage() {
                 <h3 className="font-space-grotesk text-xl font-semibold text-white">
                   Safety at the machine
                 </h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">
+                <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                   Failures on large OTR tyres put operators and ground crew at serious risk.
                   Catching them early is a safety outcome, not only a cost outcome.
                 </p>
@@ -349,7 +345,7 @@ export default function OtrTpmsPage() {
               </div>
 
               {/* Column 2: With OTR TPMS */}
-              <div className="p-8 sm:p-10 bg-[#0F1729] border-t md:border-t-0 md:border-l border-[#3B82F6]/30 bg-[#3B82F6]/[0.05]">
+              <div className="p-8 sm:p-10 bg-[#0F1729] border-t md:border-t-0 md:border-l border-[#3B82F6]/30 bg-[#3B82F6]/[0.06]">
                 <h3 className="font-jetbrains text-sm uppercase text-[#9CC2FF] font-medium tracking-wide mb-6">
                   With OTR TPMS and TMIP
                 </h3>
@@ -377,12 +373,12 @@ export default function OtrTpmsPage() {
         {/* ============================================================== */}
         <section id="sensors" className="py-20 sm:py-24 border-b border-slate-400/15">
           <div className="max-w-[1200px] mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.25fr] gap-12 lg:gap-14 items-start">
               {/* Left Column: Heading and Flow */}
-              <div className="lg:col-span-5 space-y-5">
+              <div className="space-y-5">
                 <div className="w-[60px] h-[3px] bg-[#3B82F6] mb-5" />
                 <span className="inline-flex items-center gap-2 font-jetbrains text-xs px-3 py-1 rounded-full bg-[#3B82F6]/15 text-[#9CC2FF] border border-[#3B82F6]/30">
-                  <span className="font-semibold text-white">OTR TPMS</span>
+                  <strong className="text-white font-medium">OTR TPMS</strong>
                   <span className="text-slate-400">|</span>
                   <span>The hardware</span>
                 </span>
@@ -395,16 +391,13 @@ export default function OtrTpmsPage() {
                 </p>
 
                 {/* Sensor Flow Architecture */}
-                <div className="pt-3">
-                  <div className="text-xs font-jetbrains text-slate-400 mb-2 uppercase tracking-wider">
-                    Data flow architecture
-                  </div>
-                  <div className="flex flex-wrap items-center gap-2 font-jetbrains text-xs">
-                    <span className="px-3 py-2 rounded bg-[#0F1729] border border-blue-900/40 text-slate-300">
+                <div className="pt-4">
+                  <div className="flex flex-wrap items-center gap-2.5 font-jetbrains text-[12.5px]">
+                    <span className="px-3 py-2 rounded bg-[#0F1729] border border-[#3B82F6]/30 text-slate-300">
                       Tyre sensor
                     </span>
                     <span className="text-[#3B82F6] font-bold">→</span>
-                    <span className="px-3 py-2 rounded bg-[#0F1729] border border-blue-900/40 text-slate-300">
+                    <span className="px-3 py-2 rounded bg-[#0F1729] border border-[#3B82F6]/30 text-slate-300">
                       On-machine gateway
                     </span>
                     <span className="text-[#3B82F6] font-bold">→</span>
@@ -416,17 +409,17 @@ export default function OtrTpmsPage() {
               </div>
 
               {/* Right Column: Confirmed Specs */}
-              <div className="lg:col-span-7">
-                <ol className="divide-y divide-slate-400/15 border-t border-b border-slate-400/15">
+              <div>
+                <ol className="divide-y divide-slate-400/15 border-t border-b border-[#3B82F6]/30 list-none p-0 m-0">
                   <li className="py-6 grid grid-cols-[48px_1fr] gap-4 items-start">
-                    <span className="font-jetbrains text-sm font-semibold text-[#F59E0B]">
+                    <span className="font-jetbrains text-sm font-semibold text-[#F59E0B] pt-1">
                       01
                     </span>
                     <div>
                       <h3 className="font-space-grotesk text-lg font-semibold text-white mb-1.5">
                         Pressure and temperature
                       </h3>
-                      <p className="text-sm text-[#94A3B8] leading-relaxed">
+                      <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                         Continuous pressure and temperature at every tyre position, including inner
                         and outer rear duals.
                       </p>
@@ -434,14 +427,14 @@ export default function OtrTpmsPage() {
                   </li>
 
                   <li className="py-6 grid grid-cols-[48px_1fr] gap-4 items-start">
-                    <span className="font-jetbrains text-sm font-semibold text-[#F59E0B]">
+                    <span className="font-jetbrains text-sm font-semibold text-[#F59E0B] pt-1">
                       02
                     </span>
                     <div>
                       <h3 className="font-space-grotesk text-lg font-semibold text-white mb-1.5">
                         Built for OTR tyres
                       </h3>
-                      <p className="text-sm text-[#94A3B8] leading-relaxed">
+                      <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                         Sensors built for OTR tyre sizes and mounted to stay in place through impacts
                         and heat.
                       </p>
@@ -449,28 +442,28 @@ export default function OtrTpmsPage() {
                   </li>
 
                   <li className="py-6 grid grid-cols-[48px_1fr] gap-4 items-start">
-                    <span className="font-jetbrains text-sm font-semibold text-[#F59E0B]">
+                    <span className="font-jetbrains text-sm font-semibold text-[#F59E0B] pt-1">
                       03
                     </span>
                     <div>
                       <h3 className="font-space-grotesk text-lg font-semibold text-white mb-1.5">
                         On-machine gateway
                       </h3>
-                      <p className="text-sm text-[#94A3B8] leading-relaxed">
+                      <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                         A gateway on each machine collects every sensor reading and sends it to TMIP.
                       </p>
                     </div>
                   </li>
 
                   <li className="py-6 grid grid-cols-[48px_1fr] gap-4 items-start">
-                    <span className="font-jetbrains text-sm font-semibold text-[#F59E0B]">
+                    <span className="font-jetbrains text-sm font-semibold text-[#F59E0B] pt-1">
                       04
                     </span>
                     <div>
                       <h3 className="font-space-grotesk text-lg font-semibold text-white mb-1.5">
                         Alerts in the cab
                       </h3>
-                      <p className="text-sm text-[#94A3B8] leading-relaxed">
+                      <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                         Instant alerts for the operator when a tyre moves outside its safe range.
                       </p>
                     </div>
@@ -489,7 +482,7 @@ export default function OtrTpmsPage() {
             <div className="mb-12">
               <div className="w-[60px] h-[3px] bg-[#3B82F6] mb-5" />
               <span className="inline-flex items-center gap-2 font-jetbrains text-xs px-3 py-1 rounded-full bg-[#3B82F6]/15 text-[#9CC2FF] border border-[#3B82F6]/30 mb-3">
-                <span className="font-semibold text-white">TMIP</span>
+                <strong className="text-white font-medium">TMIP</strong>
                 <span className="text-slate-400">|</span>
                 <span>The platform</span>
               </span>
@@ -499,13 +492,13 @@ export default function OtrTpmsPage() {
             </div>
 
             {/* 6 Capabilities Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 divide-y md:divide-y-0 md:divide-x border-t border-b border-slate-400/15">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-slate-400/15">
               {/* Item 1 */}
-              <article className="p-7 sm:p-8 space-y-3">
+              <article className="p-7 sm:p-8 border-b border-slate-400/15 lg:border-r border-slate-400/15 space-y-3">
                 <h3 className="font-space-grotesk text-xl font-semibold text-white">
                   Live site view
                 </h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">
+                <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                   Every sensor reading on one live view, with alerts to the supervisor and the
                   operator cab.
                 </p>
@@ -513,64 +506,64 @@ export default function OtrTpmsPage() {
                   href="/tmip/features/tyres"
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#9CC2FF] hover:text-white hover:underline transition-colors pt-2"
                 >
-                  Explore live site view <ArrowRight className="w-3.5 h-3.5" />
+                  Explore live site view →
                 </Link>
               </article>
 
               {/* Item 2 */}
-              <article className="p-7 sm:p-8 space-y-3">
+              <article className="p-7 sm:p-8 border-b border-slate-400/15 lg:border-r border-slate-400/15 space-y-3">
                 <h3 className="font-space-grotesk text-xl font-semibold text-white">
                   Predictive failure alerts
                 </h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">
+                <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                   Remaining useful life and breakdown probability for every tyre and component.
                 </p>
                 <Link
                   href="/tmip/features/predictive-intelligence"
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#9CC2FF] hover:text-white hover:underline transition-colors pt-2"
                 >
-                  Explore predictive failure alerts <ArrowRight className="w-3.5 h-3.5" />
+                  Explore predictive failure alerts →
                 </Link>
               </article>
 
               {/* Item 3 */}
-              <article className="p-7 sm:p-8 space-y-3">
+              <article className="p-7 sm:p-8 border-b border-slate-400/15 space-y-3">
                 <h3 className="font-space-grotesk text-xl font-semibold text-white">
                   Fleet health score
                 </h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">
+                <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                   One view of which machines are fit for the next shift.
                 </p>
                 <Link
                   href="/tmip/features/health-score"
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#9CC2FF] hover:text-white hover:underline transition-colors pt-2"
                 >
-                  Explore fleet health score <ArrowRight className="w-3.5 h-3.5" />
+                  Explore fleet health score →
                 </Link>
               </article>
 
               {/* Item 4 */}
-              <article className="p-7 sm:p-8 space-y-3 border-t border-slate-400/15">
+              <article className="p-7 sm:p-8 border-b border-slate-400/15 lg:border-r border-slate-400/15 space-y-3">
                 <h3 className="font-space-grotesk text-xl font-semibold text-white">
                   Operator behaviour
                 </h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">
+                <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                   Driver score covering overloading, overspeed on ramps and harsh operation.
                 </p>
                 <Link
                   href="/tmip/features/driver-management"
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#9CC2FF] hover:text-white hover:underline transition-colors pt-2"
                 >
-                  Explore operator behaviour <ArrowRight className="w-3.5 h-3.5" />
+                  Explore operator behaviour →
                 </Link>
               </article>
 
               {/* Item 5 */}
-              <article className="p-7 sm:p-8 space-y-3 border-t border-slate-400/15">
+              <article className="p-7 sm:p-8 border-b border-slate-400/15 lg:border-r border-slate-400/15 space-y-3">
                 <h3 className="font-space-grotesk text-xl font-semibold text-white">
                   Maintenance planning
                 </h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">
+                <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                   A component-level view for the workshop, so tyre rotation and replacement are
                   planned, not reactive.
                 </p>
@@ -578,23 +571,23 @@ export default function OtrTpmsPage() {
                   href="/tmip/features/maintenance"
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#9CC2FF] hover:text-white hover:underline transition-colors pt-2"
                 >
-                  Explore maintenance planning <ArrowRight className="w-3.5 h-3.5" />
+                  Explore maintenance planning →
                 </Link>
               </article>
 
               {/* Item 6 */}
-              <article className="p-7 sm:p-8 space-y-3 border-t border-slate-400/15">
+              <article className="p-7 sm:p-8 border-b border-slate-400/15 space-y-3">
                 <h3 className="font-space-grotesk text-xl font-semibold text-white">
                   Machine baselines
                 </h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">
+                <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                   TMIP learns each vehicle&apos;s normal pattern and flags anomalies early.
                 </p>
                 <Link
                   href="/tmip/features/how-it-learns"
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#9CC2FF] hover:text-white hover:underline transition-colors pt-2"
                 >
-                  Explore machine baselines <ArrowRight className="w-3.5 h-3.5" />
+                  Explore machine baselines →
                 </Link>
               </article>
             </div>
@@ -613,62 +606,84 @@ export default function OtrTpmsPage() {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-400/15 border border-slate-400/15 rounded-[4px] overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2 border-t border-slate-400/15">
               {/* Item 1 */}
-              <div className="p-8 bg-[#0F1729] flex items-start gap-5">
-                <div className="w-10 h-10 rounded-lg bg-[#3B82F6]/10 flex items-center justify-center text-[#3B82F6] shrink-0 mt-0.5">
-                  <Shield className="w-5 h-5" />
-                </div>
+              <div className="p-7 sm:p-8 border-b md:border-r border-slate-400/15 grid grid-cols-[48px_1fr] gap-5 items-start">
+                <svg
+                  viewBox="0 0 40 40"
+                  className="w-10 h-10 stroke-[#3B82F6] fill-none stroke-[1.6]"
+                  aria-hidden="true"
+                >
+                  <path d="M20 4 34 10v10c0 8-6 14-14 16C12 34 6 28 6 20V10z" />
+                  <path d="m14 20 4 4 8-8" />
+                </svg>
                 <div className="space-y-1.5">
-                  <h3 className="font-space-grotesk text-lg font-semibold text-white">
+                  <h3 className="font-space-grotesk text-xl font-semibold text-white">
                     Sensor durability
                   </h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed">
+                  <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                     Sensors rated for OTR tyre sizes and the dust, heat and vibration of active sites.
                   </p>
                 </div>
               </div>
 
               {/* Item 2 */}
-              <div className="p-8 bg-[#0F1729] flex items-start gap-5">
-                <div className="w-10 h-10 rounded-lg bg-[#3B82F6]/10 flex items-center justify-center text-[#3B82F6] shrink-0 mt-0.5">
-                  <Radio className="w-5 h-5" />
-                </div>
+              <div className="p-7 sm:p-8 border-b border-slate-400/15 grid grid-cols-[48px_1fr] gap-5 items-start">
+                <svg
+                  viewBox="0 0 40 40"
+                  className="w-10 h-10 stroke-[#3B82F6] fill-none stroke-[1.6]"
+                  aria-hidden="true"
+                >
+                  <path d="M6 16a20 20 0 0 1 28 0M11 21a13 13 0 0 1 18 0M16 26a6 6 0 0 1 8 0" />
+                  <circle cx="20" cy="31" r="1.6" fill="#3B82F6" />
+                  <path d="M5 5l30 30" />
+                </svg>
                 <div className="space-y-1.5">
-                  <h3 className="font-space-grotesk text-lg font-semibold text-white">
+                  <h3 className="font-space-grotesk text-xl font-semibold text-white">
                     Works offline
                   </h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed">
+                  <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                     Data is stored on the machine when the network drops and syncs when it returns.
                   </p>
                 </div>
               </div>
 
               {/* Item 3 */}
-              <div className="p-8 bg-[#0F1729] flex items-start gap-5">
-                <div className="w-10 h-10 rounded-lg bg-[#3B82F6]/10 flex items-center justify-center text-[#3B82F6] shrink-0 mt-0.5">
-                  <Activity className="w-5 h-5" />
-                </div>
+              <div className="p-7 sm:p-8 border-b md:border-r border-slate-400/15 grid grid-cols-[48px_1fr] gap-5 items-start">
+                <svg
+                  viewBox="0 0 40 40"
+                  className="w-10 h-10 stroke-[#3B82F6] fill-none stroke-[1.6]"
+                  aria-hidden="true"
+                >
+                  <circle cx="20" cy="22" r="13" />
+                  <path d="M20 22 28 14M8 22h3M29 22h3M20 10v3" />
+                </svg>
                 <div className="space-y-1.5">
-                  <h3 className="font-space-grotesk text-lg font-semibold text-white">
+                  <h3 className="font-space-grotesk text-xl font-semibold text-white">
                     Load-cycle monitoring
                   </h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed">
+                  <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                     Tonne-kilometre-per-hour tracking against each tyre&apos;s working limit.
                   </p>
                 </div>
               </div>
 
               {/* Item 4 */}
-              <div className="p-8 bg-[#0F1729] flex items-start gap-5">
-                <div className="w-10 h-10 rounded-lg bg-[#3B82F6]/10 flex items-center justify-center text-[#3B82F6] shrink-0 mt-0.5">
-                  <Cpu className="w-5 h-5" />
-                </div>
+              <div className="p-7 sm:p-8 border-b border-slate-400/15 grid grid-cols-[48px_1fr] gap-5 items-start">
+                <svg
+                  viewBox="0 0 40 40"
+                  className="w-10 h-10 stroke-[#3B82F6] fill-none stroke-[1.6]"
+                  aria-hidden="true"
+                >
+                  <rect x="5" y="8" width="12" height="10" rx="1" />
+                  <rect x="23" y="22" width="12" height="10" rx="1" />
+                  <path d="M17 13h6a4 4 0 0 1 4 4v5M23 27h-6a4 4 0 0 1-4-4v-5" />
+                </svg>
                 <div className="space-y-1.5">
-                  <h3 className="font-space-grotesk text-lg font-semibold text-white">
+                  <h3 className="font-space-grotesk text-xl font-semibold text-white">
                     Fits your site systems
                   </h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed">
+                  <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                     Works alongside the dispatch and ERP systems already running your site.
                   </p>
                 </div>
@@ -678,7 +693,7 @@ export default function OtrTpmsPage() {
         </section>
 
         {/* ============================================================== */}
-        {/* 07 WHO IT'S FOR                                                */}
+        {/* 07 WHO IT'S FOR (Operating Segments)                           */}
         {/* ============================================================== */}
         <section className="py-20 sm:py-24 border-b border-slate-400/15">
           <div className="max-w-[1200px] mx-auto px-6">
@@ -691,8 +706,8 @@ export default function OtrTpmsPage() {
 
             <div className="divide-y divide-slate-400/15 border-t border-b border-[#3B82F6]/30">
               {/* Mining */}
-              <div className="py-7 grid grid-cols-1 md:grid-cols-[240px_1fr_220px] gap-4 md:gap-8 items-baseline">
-                <h3 className="font-space-grotesk text-2xl font-semibold text-white">
+              <div className="py-7 grid grid-cols-1 md:grid-cols-[260px_1fr_240px] gap-4 md:gap-6 items-baseline">
+                <h3 className="font-space-grotesk text-[22px] font-semibold text-white">
                   Mining
                 </h3>
                 <p className="text-[#94A3B8] text-base">
@@ -705,8 +720,8 @@ export default function OtrTpmsPage() {
               </div>
 
               {/* Construction */}
-              <div className="py-7 grid grid-cols-1 md:grid-cols-[240px_1fr_220px] gap-4 md:gap-8 items-baseline">
-                <h3 className="font-space-grotesk text-2xl font-semibold text-white">
+              <div className="py-7 grid grid-cols-1 md:grid-cols-[260px_1fr_240px] gap-4 md:gap-6 items-baseline">
+                <h3 className="font-space-grotesk text-[22px] font-semibold text-white">
                   Construction and infrastructure
                 </h3>
                 <p className="text-[#94A3B8] text-base">
@@ -719,8 +734,8 @@ export default function OtrTpmsPage() {
               </div>
 
               {/* Quarries */}
-              <div className="py-7 grid grid-cols-1 md:grid-cols-[240px_1fr_220px] gap-4 md:gap-8 items-baseline">
-                <h3 className="font-space-grotesk text-2xl font-semibold text-white">
+              <div className="py-7 grid grid-cols-1 md:grid-cols-[260px_1fr_240px] gap-4 md:gap-6 items-baseline">
+                <h3 className="font-space-grotesk text-[22px] font-semibold text-white">
                   Quarries and aggregates
                 </h3>
                 <p className="text-[#94A3B8] text-base">
@@ -733,8 +748,8 @@ export default function OtrTpmsPage() {
               </div>
 
               {/* Ports */}
-              <div className="py-7 grid grid-cols-1 md:grid-cols-[240px_1fr_220px] gap-4 md:gap-8 items-baseline">
-                <h3 className="font-space-grotesk text-2xl font-semibold text-white">
+              <div className="py-7 grid grid-cols-1 md:grid-cols-[260px_1fr_240px] gap-4 md:gap-6 items-baseline">
+                <h3 className="font-space-grotesk text-[22px] font-semibold text-white">
                   Ports and terminals
                 </h3>
                 <p className="text-[#94A3B8] text-base">
@@ -747,8 +762,8 @@ export default function OtrTpmsPage() {
               </div>
 
               {/* Cement and steel */}
-              <div className="py-7 grid grid-cols-1 md:grid-cols-[240px_1fr_220px] gap-4 md:gap-8 items-baseline">
-                <h3 className="font-space-grotesk text-2xl font-semibold text-white">
+              <div className="py-7 grid grid-cols-1 md:grid-cols-[260px_1fr_240px] gap-4 md:gap-6 items-baseline">
+                <h3 className="font-space-grotesk text-[22px] font-semibold text-white">
                   Cement and steel plants
                 </h3>
                 <p className="text-[#94A3B8] text-base">
@@ -775,10 +790,10 @@ export default function OtrTpmsPage() {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(3,1fr)_1.3fr] gap-4">
               {/* Stat 1 */}
               <div className="bg-[#0F1729] p-7 border border-slate-400/15 rounded-[4px] flex flex-col justify-between">
-                <div className="font-jetbrains text-4xl sm:text-5xl font-semibold text-[#F59E0B] tracking-tight">
+                <div className="font-jetbrains text-4xl sm:text-[44px] font-semibold text-[#F59E0B] tracking-tight leading-none">
                   TBC
                 </div>
                 <div className="mt-4 text-sm text-[#94A3B8]">
@@ -788,7 +803,7 @@ export default function OtrTpmsPage() {
 
               {/* Stat 2 */}
               <div className="bg-[#0F1729] p-7 border border-slate-400/15 rounded-[4px] flex flex-col justify-between">
-                <div className="font-jetbrains text-4xl sm:text-5xl font-semibold text-[#F59E0B] tracking-tight">
+                <div className="font-jetbrains text-4xl sm:text-[44px] font-semibold text-[#F59E0B] tracking-tight leading-none">
                   TBC
                 </div>
                 <div className="mt-4 text-sm text-[#94A3B8]">
@@ -798,7 +813,7 @@ export default function OtrTpmsPage() {
 
               {/* Stat 3 */}
               <div className="bg-[#0F1729] p-7 border border-slate-400/15 rounded-[4px] flex flex-col justify-between">
-                <div className="font-jetbrains text-4xl sm:text-5xl font-semibold text-[#F59E0B] tracking-tight">
+                <div className="font-jetbrains text-4xl sm:text-[44px] font-semibold text-[#F59E0B] tracking-tight leading-none">
                   TBC
                 </div>
                 <div className="mt-4 text-sm text-[#94A3B8]">
@@ -818,7 +833,7 @@ export default function OtrTpmsPage() {
                   <span className="inline-flex items-center gap-1.5 font-jetbrains text-[11px] px-2.5 py-0.5 rounded-full bg-[#3B82F6]/15 text-[#9CC2FF] border border-[#3B82F6]/30 mb-4">
                     Case study · Coming soon
                   </span>
-                  <h3 className="font-space-grotesk text-xl font-semibold text-white leading-snug">
+                  <h3 className="font-space-grotesk text-xl sm:text-[22px] font-semibold text-white leading-snug">
                     An OTR deployment, in the operator&apos;s numbers.
                   </h3>
                 </div>
@@ -844,7 +859,7 @@ export default function OtrTpmsPage() {
 
             {/* OTR System-Flow Visual */}
             <figure
-              className="mb-14 p-2.5 bg-[#0F1729] border border-[#3B82F6]/30 shadow-2xl overflow-hidden"
+              className="mb-14 p-2.5 bg-[#0F1729] border border-[#3B82F6]/30 shadow-2xl overflow-hidden rounded-[2px]"
               style={{
                 clipPath:
                   "polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%)",
@@ -919,10 +934,9 @@ export default function OtrTpmsPage() {
               <div>
                 <Link
                   href="/tmip/roi-calculator"
-                  className="bg-[#3B82F6] hover:bg-[#2563EB] text-white font-ibm-plex font-semibold text-sm px-7 py-3.5 rounded-[4px] inline-flex items-center gap-2 whitespace-nowrap shadow-lg shadow-[#3B82F6]/20 transition-all duration-200"
+                  className="bg-[#3B82F6] hover:bg-[#2563EB] text-white font-ibm-plex font-semibold text-[15px] px-7 py-3.5 rounded-[6px] inline-flex items-center gap-2 whitespace-nowrap shadow-lg shadow-[#3B82F6]/20 transition-all duration-200"
                 >
                   Open the ROI calculator
-                  <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
@@ -941,20 +955,20 @@ export default function OtrTpmsPage() {
               </h2>
             </div>
 
-            <div className="max-w-3xl divide-y divide-slate-400/15 border-t border-b border-slate-400/15">
+            <div className="max-w-[860px] divide-y divide-slate-400/15 border-t border-b border-slate-400/15">
               {faqItems.map((item, idx) => (
                 <details
                   key={idx}
                   className="group py-6 cursor-pointer"
                   open={idx === 2 ? true : undefined}
                 >
-                  <summary className="list-none flex items-center justify-between gap-4 font-space-grotesk text-lg sm:text-xl font-medium text-white hover:text-[#9CC2FF] transition-colors focus:outline-none">
+                  <summary className="list-none flex items-center justify-between gap-4 font-space-grotesk text-lg sm:text-[19px] font-medium text-white hover:text-[#9CC2FF] transition-colors focus:outline-none">
                     <span>{item.q}</span>
                     <span className="shrink-0 w-5 h-5 rounded-full border border-blue-500/40 flex items-center justify-center text-blue-400 group-open:rotate-180 transition-transform">
                       <ChevronDown className="w-3.5 h-3.5" />
                     </span>
                   </summary>
-                  <div className="pt-4 text-base text-[#94A3B8] leading-relaxed pr-8">
+                  <div className="pt-4 text-base text-[#94A3B8] leading-relaxed pr-8 max-w-[70ch]">
                     {item.a}
                   </div>
                 </details>
@@ -973,7 +987,7 @@ export default function OtrTpmsPage() {
               <div className="shrink-0">
                 <svg
                   viewBox="0 0 100 40"
-                  className="w-16 h-7 sm:w-20 sm:h-9"
+                  className="w-16 h-7 sm:w-[72px] sm:h-[30px]"
                   fill="#3B82F6"
                   aria-hidden="true"
                 >
@@ -985,7 +999,7 @@ export default function OtrTpmsPage() {
 
               {/* Headline */}
               <div>
-                <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-semibold text-white leading-tight">
+                <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-[34px] font-semibold text-white leading-tight">
                   Every machine on your site is already generating signals. Start reading them.
                 </h2>
               </div>
@@ -994,10 +1008,9 @@ export default function OtrTpmsPage() {
               <div className="shrink-0">
                 <Link
                   href="/tmip/demo"
-                  className="bg-[#3B82F6] hover:bg-[#2563EB] text-white font-ibm-plex font-semibold text-sm px-7 py-4 rounded-[4px] inline-flex items-center gap-2 whitespace-nowrap shadow-lg shadow-[#3B82F6]/25 transition-all duration-200"
+                  className="bg-[#3B82F6] hover:bg-[#2563EB] text-white font-ibm-plex font-semibold text-[15px] px-7 py-4 rounded-[6px] inline-flex items-center gap-2 whitespace-nowrap shadow-lg shadow-[#3B82F6]/25 transition-all duration-200"
                 >
                   Book a site assessment
-                  <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>

@@ -505,11 +505,19 @@ export function TmipLandingPage() {
           {/* Left Column: Hero Content */}
           <div className="hero-copy">
             <div className="kicker">
-              <span aria-hidden="true" className="marks">
-                <i></i>
-                <i></i>
-                <i></i>
-              </span>
+              <svg
+                viewBox="0 0 100 40"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-3.5 w-auto shrink-0 -translate-y-px"
+                aria-hidden="true"
+              >
+                <g fill="#3B82F6">
+                  <rect x="5" y="4" width="90" height="8.5" rx="1.5" opacity="0.6" />
+                  <rect x="5" y="16" width="90" height="8.5" rx="1.5" opacity="0.85" />
+                  <rect x="5" y="28" width="90" height="8.5" rx="1.5" />
+                </g>
+              </svg>
               <span>
                 <b>Vehicle Digital Twin</b> for enterprise fleets
               </span>

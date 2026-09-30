@@ -134,14 +134,17 @@
 
 .tmip-landing .marks i:nth-child(1) {
   width: 100%;
+  opacity: 0.6;
 }
 
 .tmip-landing .marks i:nth-child(2) {
-  width: 84%;
+  width: 100%;
+  opacity: 0.85;
 }
 
 .tmip-landing .marks i:nth-child(3) {
-  width: 68%;
+  width: 100%;
+  opacity: 1;
 }
 
 .tmip-landing .divider {

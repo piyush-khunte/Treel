@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Activity, Truck, Car } from "lucide-react";
 
@@ -91,7 +92,14 @@ export function EcosystemBar() {
                 : "text-slate-300 hover:text-[#3B82F6]"
             }`}
           >
-            OTR TPMS
+            <Image
+              src="/images/otr-excavator-icon.png"
+              alt="OTR TPMS"
+              width={16}
+              height={16}
+              className="w-4 h-4 object-contain inline-block -translate-y-px"
+            />
+            <span>OTR TPMS</span>
           </Link>
         </div>
 
