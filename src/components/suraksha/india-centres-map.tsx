@@ -4,7 +4,9 @@ import React, { useState, useMemo, useEffect } from "react";
 import {
   MapPin,
   Phone,
+  Clock,
   ShieldCheck,
+  CheckCircle2,
   Layers,
   ChevronRight,
   Info
@@ -108,21 +110,21 @@ export default function IndiaCentresMap({
               NATIONWIDE FITMENT NETWORK
             </div>
             <h2 className="font-anton uppercase tracking-normal text-3xl sm:text-4xl text-[#451A03] leading-[1.1]">
-              India Network Map — <span className="text-[#DC2626]">{SURAKSHA_CENTRES.length} Authorized Centres</span>
+              India Network Map — <span className="text-[#DC2626]">29 Authorized Centres</span>
             </h2>
             <p className="text-[#78350F] text-sm sm:text-base font-rubik font-medium mt-2 max-w-2xl">
-              Map of India showing all {SURAKSHA_CENTRES.length} official JK Truck Wheels Centres with calibrated GPS coordinates. Click any pin or cluster to view location specifications and contact details.
+              Map of India showing all 29 official JK Truck Wheels Centres with calibrated GPS coordinates. Click any pin or cluster to view location specifications and contact details.
             </p>
           </div>
 
           <div className="flex items-center gap-3 bg-[#FEF3C7] border-2 border-[#451A03]/15 rounded-lg p-3 self-start md:self-auto shrink-0 shadow-sm">
             <div className="text-center px-2">
-              <div className="font-anton text-2xl text-[#DC2626]">{SURAKSHA_CENTRES.length}</div>
+              <div className="font-anton text-2xl text-[#DC2626]">29</div>
               <div className="text-[10px] uppercase font-bold text-[#78350F] tracking-wider">Centres</div>
             </div>
             <div className="h-8 w-[1px] bg-[#451A03]/20" />
             <div className="text-center px-2">
-              <div className="font-anton text-2xl text-[#451A03]">{stateList.length - 1}</div>
+              <div className="font-anton text-2xl text-[#451A03]">11</div>
               <div className="text-[10px] uppercase font-bold text-[#78350F] tracking-wider">States / UTs</div>
             </div>
             <div className="h-8 w-[1px] bg-[#451A03]/20" />
@@ -281,9 +283,9 @@ export default function IndiaCentresMap({
             <div className="mt-3 flex items-center justify-between text-[11px] text-[#78350F] font-medium border-t border-[#451A03]/10 pt-2">
               <span className="flex items-center gap-1">
                 <Info className="w-3.5 h-3.5 text-[#0891B2]" />
-                All {SURAKSHA_CENTRES.length} coordinates loaded directly from JK Truck Wheels Centre network directory.
+                All 29 coordinates loaded directly from JK Steel Wheels inventory database.
               </span>
-              <span className="font-bold text-[#451A03]">Source: Authoritative Centre List</span>
+              <span className="font-bold text-[#451A03]">Source: TWC Client File</span>
             </div>
           </div>
 
@@ -292,22 +294,29 @@ export default function IndiaCentresMap({
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[4px] bg-[#DC2626]/10 text-[#DC2626] font-bold text-xs uppercase tracking-wider border border-[#DC2626]/25">
                   <ShieldCheck className="w-4 h-4 text-[#DC2626]" />
-                  <span>TRUCK WHEELS CENTRE</span>
+                  <span>{activeCentre.category}</span>
                 </div>
                 <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-[4px] bg-[#EA580C]/10 text-[#EA580C] font-bold text-xs uppercase tracking-wider">
-                  <span>Record #{activeCentre.srNo}</span>
+                  <span>Subtype: {activeCentre.subtype}</span>
                 </div>
               </div>
 
               <div>
+                <div className="text-xs font-bold uppercase tracking-wider text-[#0891B2] mb-1">
+                  Record #{activeCentre.srNo} • Hub Code: {activeCentre.hubcode}
+                </div>
                 <h3 className="font-anton text-2xl sm:text-3xl text-[#451A03] uppercase tracking-normal leading-tight">
-                  {activeCentre.name}
+                  JK Truck Wheels — {activeCentre.city}
                 </h3>
                 <div className="flex items-center gap-2 mt-2 text-sm font-bold text-[#EA580C] uppercase tracking-wider">
                   <MapPin className="w-4 h-4 text-[#DC2626] shrink-0" />
                   <span>
                     {activeCentre.city}, {activeCentre.state}
                   </span>
+                </div>
+                <div className="flex items-center gap-2 mt-1.5 text-xs text-[#78350F] font-semibold">
+                  <Clock className="w-3.5 h-3.5 text-[#0891B2]" />
+                  <span>{activeCentre.hours}</span>
                 </div>
               </div>
 
@@ -331,30 +340,12 @@ export default function IndiaCentresMap({
                             : "bg-[#FFFBEB] text-[#78350F] border border-[#451A03]/15 hover:bg-white"
                         }`}
                       >
-                        #{c.srNo} {c.name.length > 20 ? c.name.slice(0, 18) + "…" : c.name}
+                        Centre #{c.srNo} ({c.city})
                       </button>
                     ))}
                   </div>
                 </div>
               )}
-
-              <div className="space-y-3 text-xs text-[#78350F] font-medium bg-[#FEF3C7]/40 p-3.5 rounded-lg border border-[#451A03]/10">
-                <div className="flex items-start gap-2">
-                  <MapPin className="w-4 h-4 text-[#DC2626] shrink-0 mt-0.5" />
-                  <span className="leading-relaxed text-[#451A03]">
-                    {activeCentre.address}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-[#DC2626] shrink-0" />
-                  <span className="font-bold text-[#451A03]">
-                    Phone:{" "}
-                    <a href={`tel:${activeCentre.phone}`} className="text-[#DC2626] hover:underline font-mono">
-                      {activeCentre.phone}
-                    </a>
-                  </span>
-                </div>
-              </div>
 
               <div className="grid grid-cols-2 gap-3 pt-1 text-xs">
                 <div className="bg-[#FEF3C7]/60 border border-[#451A03]/10 rounded-lg p-3">
@@ -371,13 +362,30 @@ export default function IndiaCentresMap({
                 </div>
               </div>
 
+              <div className="space-y-2">
+                <div className="text-xs font-bold uppercase tracking-wider text-[#78350F]">
+                  Services Available at this Hub:
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  {activeCentre.services.map((svc, sIdx) => (
+                    <div
+                      key={sIdx}
+                      className="flex items-center gap-1.5 text-xs font-medium text-[#451A03] bg-[#FEF3C7]/40 p-2 rounded border border-[#451A03]/10"
+                    >
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#059669] shrink-0" />
+                      <span>{svc}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               <div className="pt-4 border-t-2 border-[#451A03]/10 flex flex-col sm:flex-row gap-3">
                 <a
                   href={`tel:${activeCentre.phone}`}
-                  className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-4 bg-[#DC2626] text-white font-anton uppercase text-sm tracking-wider rounded-[4px] hover:bg-[#B91C1C] transition-colors shadow-sm text-center"
+                  className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-4 bg-[#DC2626] text-white font-anton uppercase text-sm tracking-wider rounded-[4px] hover:bg-[#B91C1C] transition-colors shadow-sm"
                 >
                   <Phone className="w-4 h-4" />
-                  <span>Call Centre</span>
+                  <span>Call Toll-Free</span>
                 </a>
                 <a
                   href="https://api.whatsapp.com/send/?phone=919112000174&text=Suraksha+info+chahiye&type=phone_number&app_absent=0"
@@ -413,7 +421,7 @@ export default function IndiaCentresMap({
                 </span>
                 <span className="text-[#0891B2] text-[11px]">Click to inspect</span>
               </div>
-              <div className="max-h-[220px] overflow-y-auto space-y-1.5 pr-1 text-xs">
+              <div className="max-h-[200px] overflow-y-auto space-y-1.5 pr-1 text-xs">
                 {filteredClusters.map((cl) => {
                   const isCurrent = cl.id === currentCluster.id;
                   return (
