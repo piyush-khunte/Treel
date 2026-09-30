@@ -131,6 +131,100 @@ const SLIDES = [
   },
 ];
 
+const FEATURE_SLIDES = [
+  {
+    num: "01",
+    tag: "Fleet management software",
+    headline: "Your whole fleet on one screen.",
+    description:
+      "One dashboard for every vehicle: which are active, which are idle, what is alerting and what is due, filtered by depot.",
+    bullets: [
+      "Fleet overview in list, grid and map views",
+      "Active, inactive and in-progress vehicles at a glance",
+      "Alert, inspection and tyre-life summaries",
+    ],
+    image: {
+      src: "/images/tmip-features/fleet-management-software.jpg",
+      alt: "TMIP fleet dashboard showing total, active, inactive and in-progress vehicles, distance and turnaround charts, active alerts and an inactive vehicles summary",
+      width: 738,
+      height: 552,
+    },
+  },
+  {
+    num: "02",
+    tag: "Fleet telematics & GPS",
+    headline: "Live location and telemetry, every truck.",
+    description:
+      "Sub-second updates across the fleet, on a live map, with engine and tyre data in the same view.",
+    bullets: [
+      "Live map with vehicle clusters by region",
+      "Speed, RPM, engine load, fuel, DEF/AdBlue, battery and coolant",
+      "Native integration with Fleetx, Locus, LogiNext and custom TMS",
+    ],
+    image: {
+      src: "/images/tmip-features/fleet-telematics-gps.jpg",
+      alt: "TMIP live map of the fleet across South India, with vehicle clusters by region",
+      width: 1043,
+      height: 545,
+    },
+  },
+  {
+    num: "03",
+    tag: "Predictive maintenance",
+    headline: "Fix it before it fails.",
+    description:
+      "Machine-learning models flag component wear before failure, so a roadside breakdown becomes a scheduled service.",
+    bullets: [
+      "A health score out of 100 for every vehicle",
+      "Breakdown probability, per vehicle, every day",
+      "Remaining useful life of each tyre, in km",
+    ],
+    image: {
+      src: "/images/tmip-features/predictive-maintenance.jpg",
+      alt: "TMIP vehicle health score of 75 out of 100 and a low breakdown risk of 6 percent",
+      width: 524,
+      height: 230,
+    },
+  },
+  {
+    num: "04",
+    tag: "Fuel efficiency for fleets",
+    navLabel: "Fuel efficiency",
+    headline: "Stop losing fuel and tread to bad pressure.",
+    description:
+      "Under-inflation quietly eats tread and fuel. TMIP puts fuel use, mileage and tyre pressure side by side, so you can see where it is going.",
+    bullets: [
+      "Fuel consumption, distance and km/L, compared with yesterday",
+      "Average pressure, temperature and pressure difference across the fleet",
+      "5–7% tyre-life extension, fleet median",
+    ],
+    image: {
+      src: "/images/tmip-features/fuel-efficiency.jpg",
+      alt: "TMIP fleet tiles: fuel consumption, distance travelled and mileage, with average pressure, temperature, pressure difference and pressure-to-temperature ratio",
+      width: 682,
+      height: 468,
+    },
+  },
+  {
+    num: "05",
+    tag: "Mobility intelligence",
+    headline: "From tyre monitoring to mobility intelligence.",
+    description:
+      "Every truck becomes a Vehicle Digital Twin: a live record of component health, tyre state, fuel and driver behaviour, turned into the number your CFO asks for, true cost per kilometre by vehicle class, route, driver and region.",
+    mstats: [
+      { value: "68,412", label: "Vehicles under management" },
+      { value: "99.7%", label: "Platform uptime" },
+      { value: "9 mo", label: "Median payback" },
+    ],
+    image: {
+      src: "/images/tmip-features/mobility-intelligence.jpg",
+      alt: "TMIP Vehicle Digital Twin: a 3D truck showing battery, engine, tyres, brakes, fuel and driveline health",
+      width: 858,
+      height: 547,
+    },
+  },
+];
+
 export function TmipLandingPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -368,6 +462,55 @@ export function TmipLandingPage() {
     setCurrentSlide(idx);
   };
 
+  // Feature Showcase Carousel State (Section 7)
+  const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
+  const [isFeaturePaused, setIsFeaturePaused] = useState(false);
+  const featureTabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const handleFeatureSelect = (index: number, focus = false) => {
+    setActiveFeatureIndex(index);
+    if (focus && featureTabRefs.current[index]) {
+      featureTabRefs.current[index]?.focus();
+    }
+  };
+
+  const handlePrevFeature = () => {
+    setActiveFeatureIndex((prev) => (prev === 0 ? FEATURE_SLIDES.length - 1 : prev - 1));
+  };
+
+  const handleNextFeature = () => {
+    setActiveFeatureIndex((prev) => (prev === FEATURE_SLIDES.length - 1 ? 0 : prev + 1));
+  };
+
+  const handleFeatureKeyDown = (e: React.KeyboardEvent, index: number) => {
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+      e.preventDefault();
+      const next = (index + 1) % FEATURE_SLIDES.length;
+      handleFeatureSelect(next, true);
+    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+      e.preventDefault();
+      const prev = (index - 1 + FEATURE_SLIDES.length) % FEATURE_SLIDES.length;
+      handleFeatureSelect(prev, true);
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      handleFeatureSelect(0, true);
+    } else if (e.key === "End") {
+      e.preventDefault();
+      handleFeatureSelect(FEATURE_SLIDES.length - 1, true);
+    }
+  };
+
+  useEffect(() => {
+    if (isFeaturePaused) return;
+    if (typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+    const timer = setInterval(() => {
+      setActiveFeatureIndex((prev) => (prev === FEATURE_SLIDES.length - 1 ? 0 : prev + 1));
+    }, 5500);
+    return () => clearInterval(timer);
+  }, [isFeaturePaused]);
+
   // Section 11 Image Card Carousel State
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [isCarouselHovered, setIsCarouselHovered] = useState(false);
@@ -403,14 +546,14 @@ export function TmipLandingPage() {
     setActiveFormId(formId);
     pushDataLayer({ event: "cta_click", cta_location: location, form_id: formId });
     setIsModalOpen(true);
-  }, [setActiveFormId, setIsModalOpen]);
+  }, []);
 
   const closeModal = useCallback(() => {
     setIsModalOpen(false);
     if (lastTriggerRef.current) {
       lastTriggerRef.current.focus();
     }
-  }, [setIsModalOpen]);
+  }, []);
 
   useEffect(() => {
     if (!isModalOpen) {
@@ -788,181 +931,151 @@ export function TmipLandingPage() {
               built on the Vehicle Digital Twin. Start with the problem that costs you most.
             </p>
           </div>
-          <nav className="fjump" aria-label="Jump to a feature">
-            <a href="#fleet-management-software" data-cta="feature-jump-fms">
-              <b>01</b>Fleet management software
-            </a>
-            <a href="#fleet-telematics-gps" data-cta="feature-jump-telematics">
-              <b>02</b>Fleet telematics &amp; GPS
-            </a>
-            <a href="#predictive-maintenance" data-cta="feature-jump-predictive">
-              <b>03</b>Predictive maintenance
-            </a>
-            <a href="#fuel-efficiency" data-cta="feature-jump-fuel">
-              <b>04</b>Fuel efficiency
-            </a>
-            <a href="#mobility-intelligence" data-cta="feature-jump-mi">
-              <b>05</b>Mobility intelligence
-            </a>
-          </nav>
-          <div className="feats">
-            {/* Card 01 */}
-            <article className="feat w4" id="fleet-management-software">
-              <div className="feat-top">
-                <span className="fnum" aria-hidden="true">01</span>
-                <span className="tag">Fleet management software</span>
-              </div>
-              <h3>Your whole fleet on one screen.</h3>
-              <p>
-                One dashboard for every vehicle: which are active, which are idle, what is alerting and what is due,
-                filtered by depot.
-              </p>
-              <ul className="fl">
-                <li>Fleet overview in list, grid and map views</li>
-                <li>Active, inactive and in-progress vehicles at a glance</li>
-                <li>Alert, inspection and tyre-life summaries</li>
-              </ul>
-              <figure className="shot cover top">
-                <Image
-                  src="/images/tmip-features/fleet-management-software.jpg"
-                  alt="TMIP fleet dashboard showing total, active, inactive and in-progress vehicles, distance and turnaround charts, active alerts and an inactive vehicles summary"
-                  width={738}
-                  height={552}
-                  loading="lazy"
-                />
-              </figure>
-            </article>
+          <div
+            className="feat-showcase"
+            onMouseEnter={() => setIsFeaturePaused(true)}
+            onMouseLeave={() => setIsFeaturePaused(false)}
+            onFocus={() => setIsFeaturePaused(true)}
+            onBlur={() => setIsFeaturePaused(false)}
+          >
+            {/* Feature Selectors / Jump Tabs */}
+            <div className="feat-tabs" role="tablist" aria-label="TMIP platform capabilities">
+              {FEATURE_SLIDES.map((f, idx) => {
+                const isActive = idx === activeFeatureIndex;
+                return (
+                  <button
+                    key={f.num}
+                    ref={(el) => {
+                      featureTabRefs.current[idx] = el;
+                    }}
+                    type="button"
+                    role="tab"
+                    id={`feat-tab-${f.num}`}
+                    aria-selected={isActive}
+                    aria-controls={`feat-panel-${f.num}`}
+                    tabIndex={isActive ? 0 : -1}
+                    className={`feat-tab ${isActive ? "active" : ""}`}
+                    onClick={() => handleFeatureSelect(idx)}
+                    onKeyDown={(e) => handleFeatureKeyDown(e, idx)}
+                  >
+                    <span className="feat-tab-num">{f.num}</span>
+                    <span className="feat-tab-label">{f.navLabel || f.tag}</span>
+                  </button>
+                );
+              })}
+            </div>
 
-            {/* Card 02 */}
-            <article className="feat w4" id="fleet-telematics-gps">
-              <div className="feat-top">
-                <span className="fnum" aria-hidden="true">02</span>
-                <span className="tag">Fleet telematics &amp; GPS</span>
-              </div>
-              <h3>Live location and telemetry, every truck.</h3>
-              <p>
-                Sub-second updates across the fleet, on a live map, with engine and tyre data in the same view.
-              </p>
-              <ul className="fl">
-                <li>Live map with vehicle clusters by region</li>
-                <li>Speed, RPM, engine load, fuel, DEF/AdBlue, battery and coolant</li>
-                <li>Native integration with Fleetx, Locus, LogiNext and custom TMS</li>
-              </ul>
-              <figure className="shot cover">
-                <Image
-                  src="/images/tmip-features/fleet-telematics-gps.jpg"
-                  alt="TMIP live map of the fleet across South India, with vehicle clusters by region"
-                  width={1043}
-                  height={545}
-                  loading="lazy"
-                />
-              </figure>
-            </article>
+            {/* Slides Viewport - Only active slide visible */}
+            <div className="feat-viewport">
+              {FEATURE_SLIDES.map((f, idx) => {
+                const isActive = idx === activeFeatureIndex;
+                return (
+                  <div
+                    key={f.num}
+                    id={`feat-panel-${f.num}`}
+                    role="tabpanel"
+                    aria-labelledby={`feat-tab-${f.num}`}
+                    aria-hidden={!isActive}
+                    className={`feat-slide ${isActive ? "active" : ""}`}
+                  >
+                    {/* Consistent Presentation Frame with Natural Proportions (Object-Fit: Contain) */}
+                    <div className="feat-img-stage">
+                      <div className="feat-img-frame">
+                        <Image
+                          src={f.image.src}
+                          alt={f.image.alt}
+                          width={f.image.width}
+                          height={f.image.height}
+                          priority={idx === 0}
+                          loading={idx === 0 ? "eager" : "lazy"}
+                          className="feat-showcase-img"
+                        />
+                      </div>
+                    </div>
 
-            {/* Card 03 */}
-            <article className="feat w4" id="predictive-maintenance">
-              <div className="feat-top">
-                <span className="fnum" aria-hidden="true">03</span>
-                <span className="tag">Predictive maintenance</span>
-              </div>
-              <h3>Fix it before it fails.</h3>
-              <p>
-                Machine-learning models flag component wear before failure, so a roadside breakdown becomes a scheduled service.
-              </p>
-              <ul className="fl">
-                <li>A health score out of 100 for every vehicle</li>
-                <li>Breakdown probability, per vehicle, every day</li>
-                <li>Remaining useful life of each tyre, in km</li>
-              </ul>
-              <figure className="shot contain">
-                <Image
-                  src="/images/tmip-features/predictive-maintenance.jpg"
-                  alt="TMIP vehicle health score of 75 out of 100 and a low breakdown risk of 6 percent"
-                  width={524}
-                  height={230}
-                  loading="lazy"
-                />
-              </figure>
-            </article>
+                    {/* Feature Details */}
+                    <div className="feat-content">
+                      <div className="feat-top">
+                        <span className="fnum" aria-hidden="true">
+                          {f.num}
+                        </span>
+                        <span className="tag">{f.tag}</span>
+                      </div>
 
-            {/* Card 04 */}
-            <article className="feat w6" id="fuel-efficiency">
-              <div className="feat-top">
-                <span className="fnum" aria-hidden="true">04</span>
-                <span className="tag">Fuel efficiency for fleets</span>
-              </div>
-              <h3>Stop losing fuel and tread to bad pressure.</h3>
-              <p>
-                Under-inflation quietly eats tread and fuel. TMIP puts fuel use, mileage and tyre pressure side by side, so you can see where it is going.
-              </p>
-              <ul className="fl">
-                <li>Fuel consumption, distance and km/L, compared with yesterday</li>
-                <li>Average pressure, temperature and pressure difference across the fleet</li>
-                <li>5–7% tyre-life extension, fleet median</li>
-              </ul>
-              <figure className="shot contain">
-                <Image
-                  src="/images/tmip-features/fuel-efficiency.jpg"
-                  alt="TMIP fleet tiles: fuel consumption, distance travelled and mileage, with average pressure, temperature, pressure difference and pressure-to-temperature ratio"
-                  width={682}
-                  height={468}
-                  loading="lazy"
-                />
-              </figure>
-            </article>
+                      <h3 className="feat-headline">{f.headline}</h3>
+                      <p className="feat-desc">{f.description}</p>
 
-            {/* Card 05 */}
-            <article className="feat w6" id="mobility-intelligence">
-              <div className="feat-top">
-                <span className="fnum" aria-hidden="true">05</span>
-                <span className="tag">Mobility intelligence</span>
-              </div>
-              <h3>From tyre monitoring to mobility intelligence.</h3>
-              <p>
-                Every truck becomes a Vehicle Digital Twin: a live record of component health, tyre state, fuel and driver behaviour, turned into the number your CFO asks for, true cost per kilometre by vehicle class, route, driver and region.
-              </p>
-              <div className="mstats">
-                <div>
-                  <b>68,412</b>
-                  <span>Vehicles under management</span>
+                      {f.bullets && (
+                        <ul className="fl">
+                          {f.bullets.map((b, bIdx) => (
+                            <li key={bIdx}>{b}</li>
+                          ))}
+                        </ul>
+                      )}
+
+                      {f.mstats && (
+                        <div className="mstats">
+                          {f.mstats.map((st, sIdx) => (
+                            <div key={sIdx}>
+                              <b>{st.value}</b>
+                              <span>{st.label}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Carousel Navigation Bar */}
+            <div className="feat-nav-bar">
+              <div className="feat-arrows">
+                <button
+                  type="button"
+                  className="feat-arrow-btn"
+                  onClick={handlePrevFeature}
+                  aria-label="Previous feature slide"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span>Previous</span>
+                </button>
+
+                <div className="feat-counter" aria-live="polite">
+                  <b>{FEATURE_SLIDES[activeFeatureIndex].num}</b>
+                  <span className="feat-counter-sep">/</span>
+                  <span>05</span>
                 </div>
-                <div>
-                  <b>99.7%</b>
-                  <span>Platform uptime</span>
-                </div>
-                <div>
-                  <b>9 mo</b>
-                  <span>Median payback</span>
-                </div>
+
+                <button
+                  type="button"
+                  className="feat-arrow-btn"
+                  onClick={handleNextFeature}
+                  aria-label="Next feature slide"
+                >
+                  <span>Next</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
               </div>
-              <figure className="shot cover">
-                <Image
-                  src="/images/tmip-features/mobility-intelligence.jpg"
-                  alt="TMIP Vehicle Digital Twin: a 3D truck showing battery, engine, tyres, brakes, fuel and driveline health"
-                  width={858}
-                  height={547}
-                  loading="lazy"
-                />
-              </figure>
-            </article>
-          </div>
-          <div className="feats-cta">
-            <a
-              className="btn btn-primary"
-              href="#demo"
-              data-cta="features-demo"
-              onClick={(e) => handleCtaClick("features-demo", e)}
-            >
-              Book a demo
-            </a>
-            <a
-              className="btn btn-ghost"
-              href="#platform"
-              data-cta="features-platform"
-              onClick={() => handleCtaClick("features-platform")}
-            >
-              Explore the platform
-            </a>
+
+              <div className="feat-cta-wrap">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={(e) => handleCtaClick("features_carousel_demo", e)}
+                >
+                  Book a demo
+                </button>
+                <a className="btn btn-ghost" href="#platform">
+                  Explore platform
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
