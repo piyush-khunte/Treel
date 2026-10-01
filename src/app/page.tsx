@@ -4,13 +4,13 @@ import { ArrowRight, Radio, Cpu, ShieldCheck, BarChart3 } from "lucide-react";
 import { TreelHeroVisual } from "@/components/home/treel-hero-visual";
 
 export const metadata: Metadata = {
-  title: "Treel · The Mobility Intelligence Company",
+  title: "Treel — Mobility Intelligence & Vehicle Digital Twin",
   description: "Treel operates India's largest connected commercial vehicle dataset. Three product families, one Vehicle Digital Twin architecture. Turn raw motion into operating intelligence.",
   alternates: {
     canonical: "https://treel.in/",
   },
   openGraph: {
-    title: "Treel · The Mobility Intelligence Company",
+    title: "Treel — Mobility Intelligence & Vehicle Digital Twin",
     description: "Treel operates India's largest connected commercial vehicle dataset. Three product families, one Vehicle Digital Twin architecture. Turn raw motion into operating intelligence.",
     url: "https://treel.in/",
     images: [{ url: "/images/og/treel-og.jpg", width: 1200, height: 630, alt: "Treel Mobility Intelligence" }],
@@ -101,8 +101,8 @@ export default function HomePage() {
               <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Platform uptime, trailing 90 days</div>
             </div>
             <div className="border-l-2 border-[#D5573B] pl-5">
-              <div className="font-fraunces text-4xl sm:text-5xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-[-0.03em] leading-none mb-2.5">9mo</div>
-              <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Median payback across fleet class</div>
+              <div className="font-fraunces text-4xl sm:text-5xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-[-0.03em] leading-none mb-2.5">9–12 mo</div>
+              <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Median payback (varies by application &amp; fleet operation)</div>
             </div>
           </div>
         </div>
@@ -210,7 +210,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <p className="text-[#CBD5E1] text-sm leading-[1.6] font-inter">
-                  Real-time tyre pressure on your phone. Alerts before a puncture. Peace of mind before every drive. Fits any car or SUV.
+                  Real-time tyre pressure on your phone, vehicle infotainment screen, or dedicated display. Alerts before a puncture. Peace of mind before every drive. Fits any car or SUV.
                 </p>
               </div>
               <div className="pt-8 font-inter text-[13px] font-semibold text-[#D5573B] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">

@@ -14,14 +14,14 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Personal TPMS · Know Before You Go · Treel",
+  title: "Personal TPMS — Bluetooth Tyre Pressure Monitoring | Treel",
   description:
     "Real-time tyre pressure on your phone. Alerts before a puncture. ±0.5 PSI accuracy, 2-year battery, 10-minute setup. Fits any car or SUV. ₹8,999.",
   alternates: {
     canonical: "https://treel.in/personal",
   },
   openGraph: {
-    title: "Personal TPMS · Know Before You Go · Treel",
+    title: "Personal TPMS — Bluetooth Tyre Pressure Monitoring | Treel",
     description:
       "Real-time tyre pressure on your phone. Alerts before a puncture. ±0.5 PSI accuracy, 2-year battery, 10-minute setup. Fits any car or SUV. ₹8,999.",
     url: "https://treel.in/personal",

@@ -4,7 +4,7 @@ import { ArrowRight, Activity, Clock, Layers, BarChart3, Box, Globe } from "luci
 import { TwinInteractive } from "./twin-interactive";
 
 export const metadata: Metadata = {
-  title: "TMIP  ·  The Mobility Intelligence Platform  ·  Treel",
+  title: "TMIP Fleet Telematics & Vehicle Digital Twin | Treel",
   description:
     "TMIP is Treel's Vehicle Digital Twin platform for enterprise fleets. Real-time telemetry, predictive maintenance, cost per kilometre. 68,000+ vehicles under management. 9-month median payback.",
   robots: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip",
   },
   openGraph: {
-    title: "TMIP  ·  The Mobility Intelligence Platform  ·  Treel",
+    title: "TMIP Fleet Telematics & Vehicle Digital Twin | Treel",
     description:
       "TMIP is Treel's Vehicle Digital Twin platform for enterprise fleets. Real-time telemetry, predictive maintenance, cost per kilometre. 68,000+ vehicles under management. 9-month median payback.",
     url: "https://treel.in/tmip",
@@ -77,28 +77,26 @@ export default function TmipPage() {
             {/* Left Column: Headline & Value Proposition */}
             <div>
               <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] mb-6 sm:mb-8 font-medium">
-                TREEL MOBILITY INTELLIGENCE PLATFORM
+                ENTERPRISE FLEET INTELLIGENCE
               </div>
               <h1 className="font-space-grotesk text-4xl sm:text-6xl lg:text-[72px] xl:text-[84px] font-semibold tracking-[-0.03em] text-[#F1F5F9] leading-[1.02] mb-6 sm:mb-8">
-                From tyre monitoring to{" "}
-                <span className="text-[#3B82F6] italic">mobility intelligence</span>.
+                The Vehicle Digital Twin for <span className="text-[#3B82F6] italic">enterprise fleets</span>.
               </h1>
               <p className="font-ibm-plex text-lg sm:text-[20px] leading-[1.55] text-[#94A3B8] max-w-[580px] mb-8 sm:mb-10">
-                The Vehicle Digital Twin platform for enterprise fleets that treat data as operating capital. API-first
-                architecture. Native integration with Fleetx, Locus, LogiNext, and custom TMS stacks.
+                Live telemetry, predictive breakdown forecasting, and cost-per-kilometre analytics across sixty-eight thousand commercial vehicles. Built for fleet operators who measure in rupees, not dashboards.
               </p>
               <div className="flex flex-wrap items-center gap-4">
                 <Link
                   href="/tmip/demo"
                   className="px-7 py-3.5 rounded-[3px] font-space-grotesk font-semibold text-sm bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-lg shadow-[#3B82F6]/20 inline-flex items-center gap-2 transition-all duration-200"
                 >
-                  Book a demo <ArrowRight className="w-4 h-4" />
+                  Book a 30-minute demo <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
-                  href="/tmip/whitepapers/roi-fleet-intelligence"
+                  href="/tmip/roi-calculator"
                   className="px-7 py-3.5 rounded-[3px] font-ibm-plex font-medium text-sm text-[#F1F5F9] border border-[rgba(59,130,246,0.3)] hover:border-[#3B82F6] hover:bg-[#3B82F6]/[0.08] inline-flex items-center transition-all duration-200"
                 >
-                  Read the whitepaper
+                  Calculate your ROI
                 </Link>
               </div>
             </div>

@@ -18,14 +18,14 @@ import { WhatsAppCtaButton } from "@/components/ui/whatsapp-cta-button";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 export const metadata: Metadata = {
-  title: "Suraksha · Truck TPMS Safety Kit · Nine-Month Payback",
+  title: "Project Suraksha — Truck Tyre Safety & Savings Kit | Treel",
   description:
     "Suraksha safety kit for Indian trucks. Real-time tyre pressure display in cabin. Fifteen-minute install at any Truck Wheels centre. Nine-month payback. Made by Treel.",
   alternates: {
     canonical: "https://treel.in/suraksha",
   },
   openGraph: {
-    title: "Suraksha · Truck TPMS Safety Kit · Nine-Month Payback",
+    title: "Project Suraksha — Truck Tyre Safety & Savings Kit | Treel",
     description:
       "Suraksha safety kit for Indian trucks. Real-time tyre pressure display in cabin. Fifteen-minute install at any Truck Wheels centre. Nine-month payback. Made by Treel.",
     url: "https://treel.in/suraksha",

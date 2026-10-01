@@ -15,13 +15,13 @@ import {
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
-  title: "About Treel  ·  The Mobility Intelligence Company",
+  title: "About Treel — Building the Mobility Intelligence Category",
   description: "Treel Mobility Solutions is India's mobility intelligence company. Founded 2018 by Manish Ingale. Headquartered in Pune. 200+ enterprise customers, 68K vehicles under management.",
   alternates: {
     canonical: "https://treel.in/about",
   },
   openGraph: {
-    title: "About Treel  ·  The Mobility Intelligence Company",
+    title: "About Treel — Building the Mobility Intelligence Category",
     description: "Treel Mobility Solutions is India's mobility intelligence company. Founded 2018 by Manish Ingale. Headquartered in Pune. 200+ enterprise customers, 68K vehicles under management.",
     url: "https://treel.in/about",
   },
