@@ -601,12 +601,23 @@ export function TmipLandingPage() {
     }
   }, [searchParams, openModal]);
 
-  // CTA Click handler: opens full-page demo modal for demo CTAs with attribution intact
+  // CTA Click handler: scrolls smoothly to inline demo form or opens demo modal with attribution intact
   const handleCtaClick = useCallback(
     (location: string, e?: React.MouseEvent) => {
       if (location === "final-compare") {
         pushDataLayer({ event: "cta_click", cta_location: location });
         return;
+      }
+      if (location === "hero_primary" || location === "navbar" || location === "mobile-sticky" || location === "final") {
+        if (e) e.preventDefault();
+        const demoEl = document.getElementById("demo");
+        if (demoEl) {
+          demoEl.scrollIntoView({ behavior: "smooth", block: "center" });
+          const nameInput = demoEl.querySelector("input[name='name']") as HTMLInputElement | null;
+          setTimeout(() => nameInput?.focus(), 350);
+          pushDataLayer({ event: "cta_click", cta_location: location, form_id: "tmip_demo" });
+          return;
+        }
       }
       openModal(location, e);
     },
@@ -784,45 +795,155 @@ export function TmipLandingPage() {
             </div>
           </div>
 
-          {/* Right Column: Live Platform Hero Preview Card */}
+          {/* Right Column: TMIP Demo Enquiry Form */}
           <div id="demo" ref={demoRef}>
-            <div className="hero-preview-card">
-              <div className="hero-preview-header">
-                <h2>Live Vehicle Digital Twin</h2>
-                <span className="hero-preview-badge">
-                  <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#10B981", display: "inline-block" }} />
-                  Live Platform
-                </span>
-              </div>
-
-              <div
-                className="hero-preview-img-wrap"
-                onClick={(e) => handleCtaClick("hero_preview_img", e)}
-                role="button"
-                tabIndex={0}
-                aria-label="Open TMIP demo booking popup"
-              >
-                <Image
-                  src="/images/Approved Images timp landing page/Vehicle_Status_Engine - New.png"
-                  alt="TMIP Live Vehicle Digital Twin dashboard interface"
-                  width={560}
-                  height={350}
-                  priority
-                />
-              </div>
-
+            <div className="form-card">
+              <h2>Book a 30-minute TMIP demo</h2>
               <p className="sub">
-                Sub-second telemetry, predictive breakdown forecasting, and cost-per-km analytics on your actual fleet.
+                See TMIP on live commercial vehicles. We&apos;ll calculate payback for your fleet before you leave the call.
               </p>
 
-              <button
-                type="button"
-                className="btn btn-primary"
-                style={{ width: "100%" }}
-                onClick={(e) => handleCtaClick("hero_preview_card", e)}
+              <form
+                id="heroDemoForm"
+                ref={formRef}
+                noValidate
+                onSubmit={(e) => handleSubmit(e, "tmip_demo")}
               >
-                Book a 30-minute demo
-              </button>
+                <div className="fields">
+                  {/* Full Name */}
+                  <div className={`field full ${errors.name ? "invalid" : ""}`}>
+                    <label htmlFor="hero-name">Full name</label>
+                    <input
+                      autoComplete="name"
+                      id="hero-name"
+                      name="name"
+                      placeholder="e.g. Rajesh Sharma"
+                      required
+                      type="text"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur("name")}
+                      onFocus={handleFocus}
+                      aria-invalid={errors.name ? "true" : "false"}
+                    />
+                    <span className="err">Enter your full name.</span>
+                  </div>
+
+                  {/* Mobile Number */}
+                  <div className={`field ${errors.phone ? "invalid" : ""}`}>
+                    <label htmlFor="hero-phone">Mobile number</label>
+                    <div className="phone">
+                      <span>+91</span>
+                      <input
+                        autoComplete="tel-national"
+                        id="hero-phone"
+                        inputMode="numeric"
+                        maxLength={10}
+                        name="phone"
+                        placeholder="98XXXXXXXX"
+                        required
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        onBlur={() => handleBlur("phone")}
+                        onFocus={handleFocus}
+                        aria-invalid={errors.phone ? "true" : "false"}
+                      />
+                    </div>
+                    <span className="err">Enter 10-digit mobile.</span>
+                  </div>
+
+                  {/* Work Email */}
+                  <div className={`field ${errors.email ? "invalid" : ""}`}>
+                    <label htmlFor="hero-email">Work email</label>
+                    <input
+                      autoComplete="email"
+                      id="hero-email"
+                      name="email"
+                      placeholder="rajesh@company.com"
+                      required
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur("email")}
+                      onFocus={handleFocus}
+                      aria-invalid={errors.email ? "true" : "false"}
+                    />
+                    <span className="err">Enter a valid work email.</span>
+                  </div>
+
+                  {/* Company */}
+                  <div className={`field ${errors.company ? "invalid" : ""}`}>
+                    <label htmlFor="hero-company">Company</label>
+                    <input
+                      autoComplete="organization"
+                      id="hero-company"
+                      name="company"
+                      placeholder="e.g. Sharma Logistics"
+                      required
+                      type="text"
+                      value={formData.company}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur("company")}
+                      onFocus={handleFocus}
+                      aria-invalid={errors.company ? "true" : "false"}
+                    />
+                    <span className="err">Enter company name.</span>
+                  </div>
+
+                  {/* Fleet Size */}
+                  <div className={`field ${errors.fleet_size ? "invalid" : ""}`}>
+                    <label htmlFor="hero-fleet">Fleet size</label>
+                    <select
+                      id="hero-fleet"
+                      name="fleet_size"
+                      required
+                      value={formData.fleet_size}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur("fleet_size")}
+                      aria-invalid={errors.fleet_size ? "true" : "false"}
+                    >
+                      <option value="">Select</option>
+                      <option value="1-9">1 to 9 vehicles</option>
+                      <option value="10-25">10 to 25 vehicles</option>
+                      <option value="26-100">26 to 100 vehicles</option>
+                      <option value="101-500">101 to 500 vehicles</option>
+                      <option value="500+">500+ vehicles</option>
+                    </select>
+                    <span className="err">Select fleet size.</span>
+                  </div>
+                </div>
+
+                {/* Small Fleet Nudge */}
+                <p className={`note-small ${formData.fleet_size === "1-9" ? "show" : ""}`}>
+                  TMIP is built for fleets of 10+ vehicles. For 1 to 9 trucks,{" "}
+                  <Link href="/suraksha">Suraksha</Link> is the better fit at ₹17,500 per truck.
+                </p>
+
+                {submitError && (
+                  <div style={{ color: "#F87171", fontSize: "0.82rem", marginTop: "10px", background: "rgba(239, 68, 68, 0.1)", border: "1px solid rgba(239, 68, 68, 0.3)", padding: "8px 12px", borderRadius: "4px" }}>
+                    {submitError}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={isSubmitting}
+                  style={{ width: "100%", marginTop: "18px" }}
+                >
+                  {isSubmitting ? "Booking demo..." : "Book my demo"}
+                </button>
+
+                <p className="consent">
+                  By submitting, you agree to receive product updates and demo coordination from Treel. Privacy protected under ISO 27001.
+                </p>
+
+                <div className="form-assure">
+                  <span><i></i> No credit card required</span>
+                  <span><i></i> 14-day live fleet pilot</span>
+                </div>
+              </form>
             </div>
           </div>
         </div>
