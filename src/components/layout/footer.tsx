@@ -15,6 +15,10 @@ export interface FooterProps {
 export function Footer({ variant, className }: FooterProps) {
   const pathname = usePathname();
 
+  if (pathname?.startsWith("/lp/") || pathname === "/lp/tpms" || pathname === "/admin" || pathname?.startsWith("/admin/")) {
+    return null;
+  }
+
   // Determine variant automatically if not explicitly provided
   let activeVariant: FooterVariant = (variant === "suraksha" ? "master" : variant) || "master";
   if (!variant && pathname) {
@@ -22,8 +26,6 @@ export function Footer({ variant, className }: FooterProps) {
       activeVariant = "tmip";
     } else if (pathname.startsWith("/personal") || pathname.startsWith("/lp/tpms")) {
       activeVariant = "personal";
-    } else if (pathname.startsWith("/admin")) {
-      return null;
     } else {
       activeVariant = "master";
     }

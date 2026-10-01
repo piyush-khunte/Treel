@@ -65,6 +65,7 @@ export async function POST(req: NextRequest) {
       city,
       kit_interest,
       vehicle_model,
+      product_line,
       lead_source,
       campaign_type,
       form_id,
@@ -120,6 +121,22 @@ export async function POST(req: NextRequest) {
     ).trim().toLowerCase();
     const finalWorkEmail = rawEmail || `${last10}@lead.treel.in`;
 
+    // Determine 2W vs 4W vs Generic
+    const rawProductLine = typeof product_line === "string" && product_line.trim() ? product_line.trim() : "personal_tpms_2w";
+    const isGeneric =
+      rawProductLine.includes("generic") ||
+      (typeof page_path === "string" && (page_path === "/lp/tpms" || page_path === "/lp/tpms/")) ||
+      (typeof lead_source === "string" && lead_source.toLowerCase().includes("generic"));
+    const isCar =
+      !isGeneric &&
+      (rawProductLine.includes("4w") ||
+        rawProductLine.includes("car") ||
+        (typeof page_path === "string" && page_path.includes("car")) ||
+        (typeof lead_source === "string" && lead_source.toLowerCase().includes("car")));
+    const finalProductLine = isGeneric ? "personal_tpms_generic" : isCar ? "personal_tpms_4w" : "personal_tpms_2w";
+    const defaultSegment = isGeneric ? "Personal Vehicle Owner" : isCar ? "Car Owner" : "Rider";
+    const defaultCompany = isGeneric ? "Personal TPMS (Car & Bike)" : isCar ? "Personal Four-Wheeler" : "Personal Two-Wheeler";
+
     // company (required NOT NULL in public.leads)
     const rawCompany = typeof company === "string" ? company.trim() : "";
     const normalizedCity = typeof city === "string" ? city.trim() : "";
@@ -129,10 +146,10 @@ export async function POST(req: NextRequest) {
       (normalizedVehicle
         ? `${normalizedVehicle}${normalizedCity ? ` (${normalizedCity})` : ""}`
         : normalizedCity
-        ? `Rider (${normalizedCity})`
-        : "Personal Two-Wheeler");
+        ? `${defaultSegment} (${normalizedCity})`
+        : defaultCompany);
 
-    // fleet_size (nullable - omit or store null for 2W)
+    // fleet_size (nullable - omit or store null for Personal)
     const rawFleet =
       typeof fleet_size === "string" || typeof fleet_size === "number"
         ? String(fleet_size).trim()
@@ -142,9 +159,10 @@ export async function POST(req: NextRequest) {
     const parsedFleetSize = rawFleet ? parseInt(rawFleet.replace(/\D/g, ""), 10) || null : null;
 
     const normalizedKit = typeof kit_interest === "string" ? kit_interest.trim() : "not_sure";
+    const rawVehicleType = typeof body.vehicle_type === "string" ? body.vehicle_type.trim() : "";
 
     // 2. IDEMPOTENCY / RAPID DUPLICATE SUBMISSION CHECK
-    const idempotencyKey = `personal_2w_${last10}`;
+    const idempotencyKey = `${finalProductLine}_${last10}`;
     if (isDuplicateSubmission(idempotencyKey)) {
       return NextResponse.json(
         { success: false, error: "A submission with these details was already received. Please wait a moment." },
@@ -159,7 +177,7 @@ export async function POST(req: NextRequest) {
     const supabase = getSupabaseClient();
     if (!supabase) {
       console.error(
-        "[Personal 2W Lead Ingestion] Database configuration missing: SUPABASE_URL or SUPABASE_SECRET_KEY not set."
+        "[Personal Lead Ingestion] Database configuration missing: SUPABASE_URL or SUPABASE_SECRET_KEY not set."
       );
       return NextResponse.json(
         {
@@ -179,13 +197,29 @@ export async function POST(req: NextRequest) {
       fleet_size: parsedFleetSize,
 
       lead_source:
-        typeof lead_source === "string" && lead_source.trim() ? lead_source.trim() : "website",
+        typeof lead_source === "string" && lead_source.trim()
+          ? lead_source.trim()
+          : (isGeneric
+              ? "Personal TPMS Generic Landing Page"
+              : isCar
+              ? "Personal TPMS Car Landing Page"
+              : "website"),
       campaign_type:
         typeof campaign_type === "string" && campaign_type.trim()
           ? campaign_type.trim()
-          : "personal_tpms_2w_campaign",
+          : (isGeneric
+              ? "personal_tpms_generic_campaign"
+              : isCar
+              ? "personal_tpms_4w_campaign"
+              : "personal_tpms_2w_campaign"),
       form_id:
-        typeof form_id === "string" && form_id.trim() ? form_id.trim() : "bike_tpms_callback",
+        typeof form_id === "string" && form_id.trim()
+          ? form_id.trim()
+          : (isGeneric
+              ? "generic_tpms_callback"
+              : isCar
+              ? "car_tpms_callback"
+              : "bike_tpms_callback"),
       status: "new",
 
       utm_source: typeof utm_source === "string" && utm_source.trim() ? utm_source.trim() : null,
@@ -203,21 +237,32 @@ export async function POST(req: NextRequest) {
       landing_page:
         typeof landing_page === "string" && landing_page.trim()
           ? landing_page.trim()
-          : "https://treel.in/lp/tpms/bike",
+          : (isGeneric
+              ? "https://treel.in/lp/tpms"
+              : isCar
+              ? "https://treel.in/lp/tpms/car"
+              : "https://treel.in/lp/tpms/bike"),
       first_landing_page:
         typeof first_landing_page === "string" && first_landing_page.trim()
           ? first_landing_page.trim()
           : null,
       referrer: typeof referrer === "string" && referrer.trim() ? referrer.trim() : null,
       page_path:
-        typeof page_path === "string" && page_path.trim() ? page_path.trim() : "/lp/tpms/bike",
+        typeof page_path === "string" && page_path.trim()
+          ? page_path.trim()
+          : (isGeneric
+              ? "/lp/tpms"
+              : isCar
+              ? "/lp/tpms/car"
+              : "/lp/tpms/bike"),
       user_agent: userAgent || null,
 
       attribution_metadata: {
         city: normalizedCity,
         kit_interest: normalizedKit,
         vehicle_model: normalizedVehicle,
-        product_line: "personal_tpms_2w",
+        vehicle_type: rawVehicleType,
+        product_line: finalProductLine,
       },
       email_notification_status: isSesConfigured() ? "pending" : "skipped",
     };

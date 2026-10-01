@@ -92,13 +92,16 @@ export function EcosystemBar() {
                 : "text-slate-300 hover:text-[#3B82F6]"
             }`}
           >
-            <Image
-              src="/images/otr-excavator-icon.png"
-              alt="OTR TPMS"
-              width={16}
-              height={16}
-              className="w-4 h-4 object-contain inline-block -translate-y-px"
-            />
+            <span className="w-4 h-4 inline-flex items-center justify-center shrink-0 overflow-hidden -translate-y-px">
+              <Image
+                src="/images/otr-excavator-icon.png"
+                alt="OTR TPMS"
+                width={20}
+                height={20}
+                unoptimized
+                className="w-5 h-5 max-w-none scale-125 object-contain"
+              />
+            </span>
             <span>OTR TPMS</span>
           </Link>
         </div>

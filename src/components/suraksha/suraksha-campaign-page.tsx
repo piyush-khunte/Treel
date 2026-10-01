@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { SurakshaLandingFooter } from "@/components/suraksha/suraksha-landing-footer";
 import "@/app/suraksha/suraksha-campaign.css";
 
 // --- 9-LANGUAGE TRANSLATION DICTIONARY ---
@@ -1381,7 +1382,7 @@ export function SurakshaCampaignPage() {
 
       setInlineSubmitted(true);
     } catch {
-      setInlineError("Network error. Please try again or call 1800 833 0233.");
+      setInlineError("Network error. Please try again.");
     } finally {
       setInlineLoading(false);
     }
@@ -1453,7 +1454,7 @@ export function SurakshaCampaignPage() {
 
       setPopupSubmitted(true);
     } catch {
-      setPopupError("Network error. Please try again or call 1800 833 0233.");
+      setPopupError("Network error. Please try again.");
     } finally {
       setPopupLoading(false);
     }
@@ -1743,41 +1744,6 @@ export function SurakshaCampaignPage() {
               </p>
               <h2 id="form-title">{t("form_h2")}</h2>
               <p className="sec-sub">{t("form_p")}</p>
-              <div className="alt">
-                {/* MANDATORY REQUIREMENT 5: WhatsApp Green */}
-                <a
-                  className="btn btn-wa"
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() =>
-                    pushDataLayer({
-                      event: "whatsapp_click",
-                      link_label: "form_whatsapp",
-                      language: currentLang,
-                      product_line: "suraksha",
-                    })
-                  }
-                >
-                  <Icon id="i-brand-whatsapp" />
-                  <span>{t("f_wa")}</span>
-                </a>
-                <a
-                  className="btn btn-line"
-                  href="tel:18008330233"
-                  onClick={() =>
-                    pushDataLayer({
-                      event: "call_click",
-                      link_label: "form_call",
-                      language: currentLang,
-                      product_line: "suraksha",
-                    })
-                  }
-                >
-                  <Icon id="i-phone" />
-                  <span className="num">1800 833 0233</span>
-                </a>
-              </div>
             </div>
 
             <div className="form-card">
@@ -1898,7 +1864,7 @@ export function SurakshaCampaignPage() {
 
                   <p className="form-note">
                     <span>{t("f_note")}</span>{" "}
-                    <Link href="/privacy-policy">{t("f_privacy")}</Link>
+                    <Link href="/privacy">{t("f_privacy")}</Link>
                   </p>
                 </form>
               ) : (
@@ -1906,21 +1872,6 @@ export function SurakshaCampaignPage() {
                   <Icon id="i-circle-check" />
                   <h3>{t("f_thanks_h")}</h3>
                   <p>{t("f_thanks_p")}</p>
-                  <a
-                    className="btn btn-red"
-                    href="tel:18008330233"
-                    onClick={() =>
-                      pushDataLayer({
-                        event: "call_click",
-                        link_label: "thanks_call",
-                        language: currentLang,
-                        product_line: "suraksha",
-                      })
-                    }
-                  >
-                    <Icon id="i-phone" />
-                    <span className="num">1800 833 0233</span>
-                  </a>
                 </div>
               )}
             </div>
@@ -2117,25 +2068,6 @@ export function SurakshaCampaignPage() {
                   <span>{t("cta_cb")}</span>
                   <Icon id="i-arrow-right" />
                 </button>
-
-                {/* MANDATORY REQUIREMENT 5: WhatsApp Green */}
-                <a
-                  className="btn btn-wa"
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() =>
-                    pushDataLayer({
-                      event: "whatsapp_click",
-                      link_label: "kit_whatsapp",
-                      language: currentLang,
-                      product_line: "suraksha",
-                    })
-                  }
-                >
-                  <Icon id="i-brand-whatsapp" />
-                  <span>{t("cta_wa")}</span>
-                </a>
               </div>
             </div>
           </div>
@@ -2238,42 +2170,14 @@ export function SurakshaCampaignPage() {
               <p>{t("pay_p")}</p>
             </div>
             <div className="cta-row">
-              <a
-                className="btn btn-cream btn-call"
-                href="tel:18008330233"
-                onClick={() =>
-                  pushDataLayer({
-                    event: "call_click",
-                    link_label: "band_call",
-                    language: currentLang,
-                    product_line: "suraksha",
-                  })
-                }
+              <button
+                className="btn btn-cream"
+                type="button"
+                onClick={() => openCallbackModal("band_callback")}
               >
-                <small>{t("cta_call")}</small>
-                <b>
-                  <Icon id="i-phone" />
-                  <span className="num">1800 833 0233</span>
-                </b>
-              </a>
-              {/* MANDATORY REQUIREMENT 5: WhatsApp Green */}
-              <a
-                className="btn btn-wa"
-                href={whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() =>
-                  pushDataLayer({
-                    event: "whatsapp_click",
-                    link_label: "band_whatsapp",
-                    language: currentLang,
-                    product_line: "suraksha",
-                  })
-                }
-              >
-                <Icon id="i-brand-whatsapp" />
-                <span>{t("cta_wa")}</span>
-              </a>
+                <span>{t("cta_cb")}</span>
+                <Icon id="i-arrow-right" />
+              </button>
             </div>
           </div>
         </section>
@@ -2315,21 +2219,14 @@ export function SurakshaCampaignPage() {
                 <span>हिन्दी · বাংলা · ଓଡ଼ିଆ</span>
               </div>
             </div>
-            <a
+            <button
               className="btn btn-red"
-              href="tel:18008330233"
-              onClick={() =>
-                pushDataLayer({
-                  event: "call_click",
-                  link_label: "centres_call",
-                  language: currentLang,
-                  product_line: "suraksha",
-                })
-              }
+              type="button"
+              onClick={() => openCallbackModal("centres_callback")}
             >
               <Icon id="i-map-pin" />
               <span>{t("cen_cta")}</span>
-            </a>
+            </button>
           </div>
         </section>
 
@@ -2403,47 +2300,13 @@ export function SurakshaCampaignPage() {
         </section>
       </main>
 
+      {/* APPROVED SURAKSHA FOOTER */}
+      <SurakshaLandingFooter />
+
       {/* STICKY MOBILE BAR (<=980px) */}
       <div className={`mbar ${mbarHidden ? "is-hidden" : ""}`}>
-        <a
-          className="btn btn-red"
-          href="tel:18008330233"
-          onClick={() =>
-            pushDataLayer({
-              event: "call_click",
-              link_label: "mbar_call",
-              language: currentLang,
-              product_line: "suraksha",
-            })
-          }
-        >
-          <Icon id="i-phone" />
-          <span>{t("mb_call")}</span>
-        </a>
-
-        {/* MANDATORY REQUIREMENT 5: WhatsApp Green */}
-        <a
-          className="btn btn-wa"
-          href={whatsappLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() =>
-            pushDataLayer({
-              event: "whatsapp_click",
-              link_label: "mbar_whatsapp",
-              language: currentLang,
-              product_line: "suraksha",
-            })
-          }
-        >
-          <Icon id="i-brand-whatsapp" />
-          <span>{t("mb_wa")}</span>
-        </a>
-
-        {/* MANDATORY REQUIREMENT 2 & 3: Callback Modal Trigger */}
         <button
-          className="btn btn-line"
-          style={{ background: "#fff" }}
+          className="btn btn-red btn-block"
           type="button"
           onClick={() => openCallbackModal("mbar_callback")}
         >
@@ -2540,18 +2403,15 @@ export function SurakshaCampaignPage() {
                 <p className="eyebrow">
                   <span>{t("form_eyebrow")}</span>
                 </p>
-                <h3
-                  id="cb-modal-title"
-                  style={{ fontSize: "26px", marginBottom: "8px", paddingRight: "44px" }}
-                >
+                <h3 id="cb-modal-title" className="cbdlg-title">
                   {t("form_h2")}
                 </h3>
-                <p style={{ margin: "0 0 18px", color: "var(--brown-2)" }}>
+                <p className="cbdlg-desc">
                   {t("form_p")}
                 </p>
 
                 {popupError && (
-                  <div className="mb-4 p-3 bg-red-100 border border-red-400 text-[#DC2626] rounded-xl text-sm font-semibold">
+                  <div className="mb-3 p-2.5 bg-red-100 border border-red-400 text-[#DC2626] rounded-xl text-xs font-semibold">
                     {popupError}
                   </div>
                 )}
@@ -2611,51 +2471,49 @@ export function SurakshaCampaignPage() {
                   />
                 </div>
 
-                <div className="row2">
-                  <div className="field">
-                    <label htmlFor="m-trucks">{t("f_trucks")}</label>
-                    <select
-                      id="m-trucks"
-                      name="truck_count"
-                      value={popupFormData.truck_count}
-                      onChange={(e) =>
-                        setPopupFormData({ ...popupFormData, truck_count: e.target.value })
-                      }
-                      required
-                    >
-                      <option value="" disabled>
-                        {t("f_select")}
-                      </option>
-                      <option value="1">{t("f_t1")}</option>
-                      <option value="2-5">{t("f_t2")}</option>
-                      <option value="6-10">{t("f_t3")}</option>
-                      <option value="11-25">{t("f_t4")}</option>
-                      <option value="25+">{t("f_t5")}</option>
-                    </select>
-                  </div>
+                <div className="field">
+                  <label htmlFor="m-trucks">{t("f_trucks")}</label>
+                  <select
+                    id="m-trucks"
+                    name="truck_count"
+                    value={popupFormData.truck_count}
+                    onChange={(e) =>
+                      setPopupFormData({ ...popupFormData, truck_count: e.target.value })
+                    }
+                    required
+                  >
+                    <option value="" disabled>
+                      {t("f_select")}
+                    </option>
+                    <option value="1">{t("f_t1")}</option>
+                    <option value="2-5">{t("f_t2")}</option>
+                    <option value="6-10">{t("f_t3")}</option>
+                    <option value="11-25">{t("f_t4")}</option>
+                    <option value="25+">{t("f_t5")}</option>
+                  </select>
+                </div>
 
-                  <div className="field">
-                    <label htmlFor="m-lang">{t("f_lang")}</label>
-                    <select
-                      id="m-lang"
-                      name="call_language"
-                      className="js-call-lang"
-                      value={popupFormData.call_language}
-                      onChange={(e) =>
-                        setPopupFormData({ ...popupFormData, call_language: e.target.value })
-                      }
-                    >
-                      <option value="en">English</option>
-                      <option value="hi">हिन्दी</option>
-                      <option value="gu">ગુજરાતી</option>
-                      <option value="pa">ਪੰਜਾਬੀ</option>
-                      <option value="bn">বাংলা</option>
-                      <option value="ta">தமிழ்</option>
-                      <option value="kn">ಕನ್ನಡ</option>
-                      <option value="te">తెలుగు</option>
-                      <option value="ml">മലയാളം</option>
-                    </select>
-                  </div>
+                <div className="field">
+                  <label htmlFor="m-lang">{t("f_lang")}</label>
+                  <select
+                    id="m-lang"
+                    name="call_language"
+                    className="js-call-lang"
+                    value={popupFormData.call_language}
+                    onChange={(e) =>
+                      setPopupFormData({ ...popupFormData, call_language: e.target.value })
+                    }
+                  >
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी</option>
+                    <option value="gu">ગુજરાતી</option>
+                    <option value="pa">ਪੰਜਾਬੀ</option>
+                    <option value="bn">বাংলা</option>
+                    <option value="ta">தமிழ்</option>
+                    <option value="kn">ಕನ್ನಡ</option>
+                    <option value="te">తెలుగు</option>
+                    <option value="ml">മലയാളം</option>
+                  </select>
                 </div>
 
                 <button className="btn btn-red btn-block" type="submit" disabled={popupLoading}>
@@ -2665,7 +2523,7 @@ export function SurakshaCampaignPage() {
 
                 <p className="form-note">
                   <span>{t("f_note")}</span>{" "}
-                  <Link href="/privacy-policy">{t("f_privacy")}</Link>
+                  <Link href="/privacy">{t("f_privacy")}</Link>
                 </p>
               </form>
             ) : (
@@ -2673,21 +2531,6 @@ export function SurakshaCampaignPage() {
                 <Icon id="i-circle-check" />
                 <h3>{t("f_thanks_h")}</h3>
                 <p>{t("f_thanks_p")}</p>
-                <a
-                  className="btn btn-red"
-                  href="tel:18008330233"
-                  onClick={() =>
-                    pushDataLayer({
-                      event: "call_click",
-                      link_label: "popup_thanks_call",
-                      language: currentLang,
-                      product_line: "suraksha",
-                    })
-                  }
-                >
-                  <Icon id="i-phone" />
-                  <span className="num">1800 833 0233</span>
-                </a>
               </div>
             )}
           </div>

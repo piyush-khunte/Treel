@@ -260,6 +260,17 @@
   background: var(--mist);
 }
 
+.personal-campaign .btn-wa {
+  background: #25D366;
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+}
+
+.personal-campaign .btn-wa:hover {
+  background: #20BD5A;
+  color: #FFFFFF;
+}
+
 .personal-campaign .btn-ghost-white {
   color: #fff;
   border-color: rgba(255, 255, 255, 0.5);
@@ -1306,6 +1317,119 @@
   color: var(--fog);
 }
 
+/* ---------- Sensor section ---------- */
+.personal-campaign .sensor-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 64px;
+  align-items: center;
+}
+
+@media (max-width: 980px) {
+  .personal-campaign .sensor-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.personal-campaign .sensor-panel {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 44px 32px 28px;
+}
+
+.personal-campaign .sensor-panel svg {
+  display: block;
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.personal-campaign .sensor-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.personal-campaign .sensor-tags span {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--blue-tint);
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.personal-campaign .spoints {
+  list-style: none;
+  margin: 28px 0 24px;
+  padding: 0;
+  display: grid;
+  gap: 22px;
+}
+
+.personal-campaign .spoints li {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.personal-campaign .spoints .numblock {
+  margin: 0;
+}
+
+.personal-campaign .spoints h3 {
+  margin: 2px 0 4px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.personal-campaign .spoints p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--fog);
+}
+
+.personal-campaign .sensor-trust {
+  margin: 0 0 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.personal-campaign .wave {
+  animation: wave 2.4s ease-in-out infinite;
+}
+
+.personal-campaign .wave.w1 {
+  animation-delay: 0.3s;
+}
+
+.personal-campaign .wave.w2 {
+  animation-delay: 0.6s;
+}
+
+@keyframes wave {
+  0%, 100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .personal-campaign .wave {
+    animation: none;
+  }
+}
+
 /* ---------- App section ---------- */
 .personal-campaign .app-grid {
   display: grid;
@@ -1990,144 +2114,6 @@
   color: var(--fog);
 }
 
-/* ---------- Footer ---------- */
-.personal-campaign footer {
-  background: var(--charcoal);
-  color: var(--on-dark);
-  padding: 64px 0 28px;
-  font-size: 14px;
-}
-
-.personal-campaign .f-top {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1.5fr 1.1fr;
-  gap: 32px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-@media (max-width: 1000px) {
-  .personal-campaign .f-top {
-    grid-template-columns: 1fr 1fr;
-  }
-  .personal-campaign .f-brand {
-    grid-column: 1 / -1;
-  }
-}
-
-@media (max-width: 520px) {
-  .personal-campaign .f-top {
-    grid-template-columns: 1fr;
-  }
-}
-
-.personal-campaign .f-lockup {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.personal-campaign .f-lockup img {
-  height: 28px;
-  width: auto;
-  display: block;
-}
-
-.personal-campaign .f-lockup .brand-divider {
-  background: rgba(255, 255, 255, 0.22);
-}
-
-.personal-campaign .f-lockup .lockup {
-  color: #fff;
-}
-
-.personal-campaign .f-tag {
-  margin: 18px 0 8px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #fff;
-}
-
-.personal-campaign .f-cert {
-  margin: 0;
-  font-size: 12px;
-  color: var(--on-dark-soft);
-}
-
-.personal-campaign footer h4 {
-  margin: 0 0 14px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: #fff;
-}
-
-.personal-campaign footer ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 10px;
-}
-
-.personal-campaign footer a {
-  color: var(--on-dark);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.personal-campaign footer a:hover {
-  color: #fff;
-}
-
-.personal-campaign .f-contact a {
-  color: #fff;
-  font-weight: 600;
-}
-
-.personal-campaign .f-contact address {
-  font-style: normal;
-  line-height: 1.6;
-}
-
-.personal-campaign .socials {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 18px;
-}
-
-.personal-campaign .socials a {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.08);
-  display: grid;
-  place-items: center;
-}
-
-.personal-campaign .socials a:hover {
-  background: rgba(255, 255, 255, 0.16);
-}
-
-.personal-campaign .socials .ic {
-  width: 20px;
-  height: 20px;
-  color: #fff;
-}
-
-.personal-campaign .f-bottom {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-  padding-top: 24px;
-  font-size: 13px;
-}
-
-.personal-campaign .f-bottom nav {
-  display: flex;
-  gap: 20px;
-}
 
 /* ---------- Mobile sticky bar ---------- */
 .personal-campaign .mbar {
@@ -2193,6 +2179,143 @@
   padding: 32px 28px 24px;
   border-radius: 20px;
   margin: auto;
+}
+
+.personal-campaign .personal-modal-card.modal-compact {
+  width: min(92vw, 440px);
+  max-width: 460px;
+  padding: 24px 22px 18px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+}
+
+.personal-campaign .personal-modal-card.modal-compact .modal-eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--blue);
+  margin: 0 0 4px 0;
+}
+
+.personal-campaign .personal-modal-card.modal-compact h3 {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  font-weight: 800;
+  color: var(--charcoal);
+  margin: 0 0 4px 0;
+  padding-right: 32px;
+}
+
+.personal-campaign .personal-modal-card.modal-compact .sub {
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: var(--fog);
+  margin: 0 0 14px 0;
+}
+
+.personal-campaign .personal-modal-card.modal-compact .field {
+  margin-bottom: 10px;
+}
+
+.personal-campaign .personal-modal-card.modal-compact .field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin-bottom: 4px;
+}
+
+.personal-campaign .personal-modal-card.modal-compact .field input,
+.personal-campaign .personal-modal-card.modal-compact .field select {
+  height: 42px;
+  font-size: 0.9rem;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line-strong);
+  width: 100%;
+}
+
+.personal-campaign .personal-modal-card.modal-compact .field input:focus,
+.personal-campaign .personal-modal-card.modal-compact .field select:focus {
+  border-color: var(--blue);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--blue-tint-2);
+}
+
+.personal-campaign .personal-modal-card.modal-compact .tel {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.personal-campaign .personal-modal-card.modal-compact .tel span {
+  padding: 0 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--fog);
+  background: var(--mist);
+  border-right: 1px solid var(--line);
+  height: 42px;
+  display: flex;
+  align-items: center;
+}
+
+.personal-campaign .personal-modal-card.modal-compact .tel input {
+  border: none;
+  border-radius: 0;
+  height: 42px;
+  padding: 0 12px;
+  flex: 1;
+}
+
+.personal-campaign .personal-modal-card.modal-compact .tel input:focus {
+  box-shadow: none;
+}
+
+.personal-campaign .personal-modal-card.modal-compact .tel:focus-within {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-tint-2);
+}
+
+.personal-campaign .personal-modal-card.modal-compact .btn {
+  width: 100%;
+  height: 44px;
+  margin-top: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 10px;
+}
+
+.personal-campaign .personal-modal-card.modal-compact .form-note {
+  font-size: 11px;
+  color: var(--fog);
+  margin-top: 10px;
+  margin-bottom: 0;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.personal-campaign .personal-modal-card.modal-compact .form-note a {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.personal-campaign .personal-modal-card.modal-compact .personal-modal-close {
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+}
+
+.personal-campaign .personal-modal-card.modal-compact .personal-modal-close .ic {
+  width: 16px;
+  height: 16px;
 }
 
 .personal-campaign .personal-modal-close {
@@ -2274,3 +2397,662 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ==========================================================================
+   CAR (4W) TPMS SPECIFIC CAMPAIGN STYLES
+   ========================================================================== */
+
+/* Hero: helper line under the buttons */
+.personal-campaign .hero-alt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 18px;
+  margin: 16px 0 24px;
+  font-size: 14px;
+  color: var(--fog);
+}
+.personal-campaign .hero-alt a {
+  color: var(--charcoal);
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.personal-campaign .hero-alt .ic {
+  width: 16px;
+  height: 16px;
+  color: var(--blue);
+}
+
+/* Compact Pop-up Enquiry Modal */
+.personal-campaign .personal-modal-card.modal-compact {
+  width: min(92vw, 440px);
+  max-width: 450px;
+  max-height: min(90vh, 640px);
+  padding: 24px 22px 20px;
+  border-radius: 20px;
+}
+.personal-campaign .modal-compact .modal-eyebrow {
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.personal-campaign .modal-compact h3 {
+  font-size: 1.3rem;
+  line-height: 1.2;
+  margin: 0 0 4px;
+  padding-right: 32px;
+}
+.personal-campaign .modal-compact .sub {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin: 0 0 14px;
+  color: var(--fog);
+}
+.personal-campaign .modal-compact .field {
+  margin-bottom: 10px;
+}
+.personal-campaign .modal-compact .field label {
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.personal-campaign .modal-compact .field input,
+.personal-campaign .modal-compact .field select {
+  height: 42px;
+  font-size: 14px;
+  padding: 0 12px;
+  border-radius: 10px;
+}
+.personal-campaign .modal-compact .row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+@media (max-width: 480px) {
+  .personal-campaign .modal-compact .row2 {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+.personal-campaign .modal-compact .btn {
+  height: 44px;
+  margin-top: 4px;
+  font-size: 14px;
+  border-radius: 10px;
+}
+.personal-campaign .modal-compact .form-note {
+  margin: 8px 0 0;
+  font-size: 11px;
+}
+
+/* Car hero stage */
+.personal-campaign .car-stage {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 580px;
+  padding: 24px 0 96px;
+}
+.personal-campaign .car-stage > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+@media (max-width: 980px) {
+  .personal-campaign .car-stage {
+    margin: 0 auto;
+    padding: 8px 0 100px;
+  }
+}
+
+/* Car hero composition */
+.personal-campaign .hero-visual .reading {
+  right: auto;
+  left: 0;
+  top: 24px;
+}
+.personal-campaign .hero-visual .toast {
+  left: 0;
+  right: auto;
+  bottom: 46px;
+  width: 292px;
+}
+@media (max-width: 980px) {
+  .personal-campaign .hero-visual .toast {
+    left: 50%;
+    right: auto;
+    bottom: 10px;
+    transform: translateX(-50%);
+    width: 292px;
+  }
+}
+@media (max-width: 380px) {
+  .personal-campaign .hero-visual .toast {
+    width: 280px;
+  }
+}
+
+/* Hero 4-tyre readout */
+.personal-campaign .r-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 4px 18px;
+  margin: 8px 0 6px;
+}
+.personal-campaign .r-grid div {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.personal-campaign .r-grid span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--fog);
+}
+.personal-campaign .r-grid b {
+  font-size: 21px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--charcoal);
+}
+.personal-campaign .r-grid .low span,
+.personal-campaign .r-grid .low b {
+  color: var(--blue);
+}
+
+/* Phone: car top view with four tyres */
+.personal-campaign .car4 {
+  display: grid;
+  grid-template-columns: 1fr 46px 1fr;
+  grid-template-rows: auto auto;
+  gap: 10px 6px;
+  padding: 14px 14px 0;
+  align-items: stretch;
+}
+.personal-campaign .car4 .tyre {
+  padding: 10px;
+}
+.personal-campaign .car4 .tyre-label {
+  letter-spacing: 0.04em;
+}
+.personal-campaign .car4 .tyre-psi {
+  font-size: 24px;
+}
+.personal-campaign .car4 .tyre-state {
+  font-size: 10px;
+  margin-top: 6px;
+  gap: 4px;
+  white-space: nowrap;
+}
+.personal-campaign .car4 .car-top {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.personal-campaign .car4 .car-top svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.personal-campaign .car4 .t-fl {
+  grid-column: 1;
+  grid-row: 1;
+}
+.personal-campaign .car4 .t-fr {
+  grid-column: 3;
+  grid-row: 1;
+}
+.personal-campaign .car4 .t-rl {
+  grid-column: 1;
+  grid-row: 2;
+}
+.personal-campaign .car4 .t-rr {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+/* Kits: four cards */
+.personal-campaign .kits.four {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 820px) {
+  .personal-campaign .kits.four {
+    grid-template-columns: 1fr;
+  }
+}
+.personal-campaign .kit-art .ic {
+  width: 40px;
+  height: 40px;
+  stroke-width: 1.6;
+  color: var(--blue);
+}
+.personal-campaign .kit-tag {
+  align-self: flex-start;
+  margin: -8px 0 14px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--blue-tint);
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Notch */
+.personal-campaign .notch {
+  margin-top: 24px;
+  padding: 26px 32px;
+  background: var(--blue);
+  color: #fff;
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+.personal-campaign .notch p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.personal-campaign .notch p span {
+  display: block;
+  margin-top: 2px;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.86);
+  letter-spacing: 0;
+}
+
+/* Explainer (SEO) */
+.personal-campaign .explain {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .personal-campaign .explain {
+    grid-template-columns: 1fr;
+  }
+}
+.personal-campaign .explain article {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+.personal-campaign .explain h3 {
+  margin: 0 0 10px;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.personal-campaign .explain p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--fog);
+}
+
+/* Full enquiry bullet points */
+.personal-campaign .gets {
+  list-style: none;
+  margin: 22px 0 26px;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.personal-campaign .gets li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 16px;
+  font-weight: 500;
+}
+.personal-campaign .gets .ic {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #fff;
+}
+.personal-campaign .help-line {
+  margin: 22px 0 0;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.86);
+}
+.personal-campaign .help-line a {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   GENERIC CAR + BIKE TPMS ADDITIONS (MATCHING REFERENCE HTML)
+   ========================================================================== */
+
+/* Desktop hero adjustments */
+@media (min-width: 641px) {
+  .personal-campaign .hero h1 {
+    font-size: clamp(38px, 4.3vw, 54px);
+  }
+}
+@media (min-width: 981px) {
+  .personal-campaign .hero-visual .toast {
+    width: 318px;
+  }
+}
+
+/* Desktop 'choose your vehicle' split */
+.personal-campaign .vpick {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.personal-campaign .vbig {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 34px 30px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.personal-campaign .vbig:hover {
+  border-color: var(--blue);
+  box-shadow: 0 28px 56px -34px rgba(37, 99, 235, 0.5);
+  transform: translateY(-2px);
+}
+.personal-campaign .vart {
+  height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 24px;
+  border-radius: 20px;
+  background: radial-gradient(60% 65% at 50% 58%, var(--blue-tint), rgba(255, 255, 255, 0) 72%);
+}
+.personal-campaign .vart svg {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+}
+.personal-campaign .vtag {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.personal-campaign .vbig h3 {
+  margin: 0 0 16px;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.personal-campaign .vbig ul {
+  list-style: none;
+  margin: 0 0 26px;
+  padding: 0;
+  display: grid;
+  gap: 11px;
+}
+.personal-campaign .vbig li {
+  display: flex;
+  gap: 10px;
+  font-size: 16px;
+  line-height: 1.45;
+}
+.personal-campaign .vbig li .ic {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--blue);
+}
+.personal-campaign .vfoot {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 22px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .personal-campaign .vbig,
+  .personal-campaign .vbig:hover {
+    transition: none;
+    transform: none;
+  }
+}
+@media (max-width: 860px) {
+  .personal-campaign .vpick {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .personal-campaign #vehicles {
+    display: none;
+  }
+}
+
+/* Hero Vehicle Selection Pills */
+.personal-campaign .pick {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0 22px;
+}
+.personal-campaign .pick > span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fog);
+}
+.personal-campaign .pick-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 16px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--charcoal);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background-color 0.15s;
+}
+.personal-campaign .pick-chip .ic {
+  width: 18px;
+  height: 18px;
+  color: var(--blue);
+}
+.personal-campaign .pick-chip:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+.personal-campaign .hero .hero-alt {
+  margin: 0 0 26px;
+}
+
+/* Phone: Car + Bike in one app */
+.personal-campaign .screen .vcard {
+  margin: 10px 14px 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+}
+.personal-campaign .screen .vcard.attn {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-tint);
+}
+.personal-campaign .vh {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.personal-campaign .vh > div {
+  flex: 1;
+  min-width: 0;
+}
+.personal-campaign .vh b {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+}
+.personal-campaign .vh > div > span {
+  font-size: 11px;
+  color: var(--fog);
+}
+.personal-campaign .vstate {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue);
+  white-space: nowrap;
+}
+.personal-campaign .vstate.ok {
+  color: var(--charcoal);
+}
+.personal-campaign .vstate i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--blue);
+  display: inline-block;
+}
+.personal-campaign .vstate.ok i {
+  background: var(--green);
+}
+.personal-campaign .vt {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+}
+.personal-campaign .vt.four {
+  grid-template-columns: repeat(4, 1fr);
+}
+.personal-campaign .vt.two {
+  grid-template-columns: repeat(2, 1fr);
+}
+.personal-campaign .vt > div {
+  padding: 7px 4px;
+  border-radius: 10px;
+  background: var(--mist);
+  text-align: center;
+}
+.personal-campaign .vt span {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--fog);
+}
+.personal-campaign .vt b {
+  font-size: 18px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.personal-campaign .vt .low {
+  background: var(--blue-tint);
+}
+.personal-campaign .vt .low span,
+.personal-campaign .vt .low b {
+  color: var(--blue);
+}
+
+/* Vehicle Tabs for Kits */
+.personal-campaign .ktabs {
+  display: inline-flex;
+  gap: 6px;
+  padding: 6px;
+  margin: 0 0 28px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+.personal-campaign .ktab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--fog);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+.personal-campaign .ktab .ic {
+  width: 20px;
+  height: 20px;
+}
+.personal-campaign .ktab.on {
+  background: var(--blue);
+  color: #fff;
+}
+.personal-campaign .ktab:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+.personal-campaign .rgrid.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 980px) {
+  .personal-campaign .rgrid.three {
+    grid-template-columns: 1fr;
+  }
+  .personal-campaign .hero-copy > .pick {
+    order: 6;
+    margin: 0 0 16px;
+  }
+  .personal-campaign .hero-copy > .hero-alt {
+    order: 7;
+  }
+  .personal-campaign .hero-copy > .benefits {
+    order: 8;
+  }
+}
+@media (max-width: 640px) {
+  .personal-campaign .ktabs {
+    display: flex;
+  }
+  .personal-campaign .ktab {
+    flex: 1;
+    justify-content: center;
+    padding: 0 10px;
+  }
+  .personal-campaign .pick > span {
+    flex-basis: 100%;
+  }
+  .personal-campaign .pick-chip {
+    flex: 1;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 0 12px;
+  }
+}
+
+

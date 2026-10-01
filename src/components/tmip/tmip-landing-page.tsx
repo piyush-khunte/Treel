@@ -4,6 +4,8 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
+import { TmipLandingNavbar } from "@/components/tmip/tmip-landing-navbar";
+import { TmipLandingFooter } from "@/components/tmip/tmip-landing-footer";
 import "@/app/tmip/tmip-landing.css";
 
 function pushDataLayer(eventData: Record<string, unknown>) {
@@ -684,6 +686,9 @@ export function TmipLandingPage() {
 
   return (
     <div className="tmip-landing">
+      {/* TMIP APPROVED NAVBAR */}
+      <TmipLandingNavbar onDemoClick={handleCtaClick} />
+
       {/* Skip Link */}
       <a href="#demo" className="skip">
         Skip to demo booking
@@ -1863,6 +1868,9 @@ export function TmipLandingPage() {
         </div>
       </section>
 
+      {/* APPROVED TMIP FOOTER */}
+      <TmipLandingFooter />
+
       {/* =========================================================================
           SECTION 17: MOBILE STICKY CTA
           ========================================================================= */}
@@ -2068,7 +2076,7 @@ export function TmipLandingPage() {
 
               <p className="consent" style={{ fontSize: "0.78rem", color: "var(--silver)", marginTop: "12px", lineHeight: "1.35", textAlign: "center" }}>
                 By booking, you agree to be contacted by Treel on phone, email or WhatsApp about TMIP. See our{" "}
-                <Link href="/privacy-policy" style={{ color: "var(--blue)", textDecoration: "underline" }}>privacy policy</Link>.
+                <Link href="/privacy" style={{ color: "var(--blue)", textDecoration: "underline" }}>privacy policy</Link>.
               </p>
 
               <div className="form-assure" style={{ display: "flex", justifyContent: "center", gap: "18px", marginTop: "14px", fontSize: "0.78rem", color: "var(--silver)" }}>

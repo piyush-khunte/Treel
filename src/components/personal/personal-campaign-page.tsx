@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import "@/app/personal/personal-campaign.css";
+import { TpmsLandingFooter } from "./tpms-landing-footer";
 
 // SVG Icon Helper Component
 function Icon({ id, className = "ic" }: { id: string; className?: string }) {
@@ -165,6 +167,9 @@ export function PersonalCampaignPage() {
           ...formData,
           ...attribution,
           product_line: "personal_tpms_2w",
+          lead_source: "Personal TPMS Bike Landing Page",
+          page_path: "/lp/tpms/bike",
+          landing_page: "https://treel.in/lp/tpms/bike",
           form_id: "bike_tpms_callback",
           campaign_type: "personal_tpms_2w_campaign",
         }),
@@ -175,7 +180,7 @@ export function PersonalCampaignPage() {
       if (!res.ok || !result?.success) {
         const msg =
           result?.error ||
-          "Unable to submit your request at this time. Please check your details and try again, or call 1800 833 0233.";
+          "Unable to submit your request at this time. Please check your details and try again.";
         setSubmitError(msg);
         setIsSubmitting(false);
         return;
@@ -429,11 +434,57 @@ export function PersonalCampaignPage() {
           <path d="M16 16v-3a2 2 0 1 0 -4 0" />
           <path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4l0 -10" />
         </symbol>
+        <symbol id="i-x" viewBox="0 0 24 24">
+          <path d="M18 6l-12 12" />
+          <path d="M6 6l12 12" />
+        </symbol>
       </svg>
 
       <a className="skip" href="#main">
         Skip to content
       </a>
+
+      {/* HEADER */}
+      <header className="site-header">
+        <div className="wrap">
+          <Link className="brand" href="/" aria-label="Treel home">
+            <Image
+              src="/images/Treel New Logo Final With Favicon & Tagline.png"
+              alt="Treel"
+              width={160}
+              height={50}
+              className="h-8 sm:h-9 w-auto object-contain"
+              priority
+            />
+            <span className="brand-divider" aria-hidden="true"></span>
+            <span className="lockup">
+              <svg className="marks" viewBox="0 0 180 60" aria-hidden="true" focusable="false">
+                <g fill="#2563EB">
+                  <rect x="0" y="0" width="180" height="10" rx="2" />
+                  <rect x="0" y="25" width="180" height="10" rx="2" />
+                  <rect x="0" y="50" width="180" height="10" rx="2" />
+                </g>
+              </svg>
+              Personal
+            </span>
+          </Link>
+          <nav className="nav" aria-label="Page sections">
+            <a href="#sensor">The sensor</a>
+            <a href="#how">How it works</a>
+            <a href="#features">Benefits</a>
+            <a href="#kits">Bike kits</a>
+            <a href="#faq">FAQ</a>
+          </nav>
+          <a
+            href="tel:18008330233"
+            className="btn btn-primary btn-sm header-cta"
+            onClick={() => pushDataLayer({ event: "call_click", link_label: "header_phone" })}
+          >
+            <Icon id="i-phone" />
+            1800 833 0233
+          </a>
+        </div>
+      </header>
 
       <main id="main">
         {/* =========================================================================
@@ -454,20 +505,13 @@ export function PersonalCampaignPage() {
                 air starts to leak, you&apos;ll know early, long before the ride feels wrong.
               </p>
               <div className="cta-row">
-                <a
+                <button
+                  type="button"
                   className="btn btn-primary"
-                  href="#callback"
-                  onClick={(e) => {
-                    handleCtaClick("hero_request_callback");
-                    const el = document.getElementById("callback");
-                    if (el) {
-                      e.preventDefault();
-                      el.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
+                  onClick={(e) => openModal("hero_request_callback", e)}
                 >
                   Request a callback <Icon id="i-arrow-right" />
-                </a>
+                </button>
                 <a className="btn btn-secondary" href="#how" onClick={() => handleCtaClick("hero_see_how")}>
                   See how it works
                 </a>
@@ -637,9 +681,9 @@ export function PersonalCampaignPage() {
                   </li>
                 </ul>
                 <p className="help-line" style={{ color: "var(--fog)", marginTop: "24px" }}>
-                  In a hurry? Call toll-free:{" "}
-                  <a href="tel:+18008330233" style={{ color: "var(--blue)", fontWeight: "700" }}>
-                    1800 833 0233
+                  Have questions? Write to{" "}
+                  <a href="mailto:hello@treel.in" style={{ color: "var(--blue)", fontWeight: "700" }}>
+                    hello@treel.in
                   </a>
                 </p>
               </div>
@@ -776,7 +820,7 @@ export function PersonalCampaignPage() {
                     <div className="thanks" id="formThanks">
                       <Icon id="i-circle-check" />
                       <h3>Thanks. We&apos;ll call you soon.</h3>
-                      <p>In a hurry? Call us toll-free on 1800 833 0233.</p>
+                      <p>Our tyre specialist will get in touch with you shortly.</p>
                     </div>
                   )}
                 </form>
@@ -1514,7 +1558,6 @@ export function PersonalCampaignPage() {
                   >
                     Buy the motorbike kit <Icon id="i-arrow-right" />
                   </Link>
-                  <span className="kit-price">See today&apos;s price on treel.in</span>
                 </div>
               </article>
 
@@ -1556,7 +1599,6 @@ export function PersonalCampaignPage() {
                   >
                     Buy the scooter kit <Icon id="i-arrow-right" />
                   </Link>
-                  <span className="kit-price">See today&apos;s price on treel.in</span>
                 </div>
               </article>
             </div>
@@ -1632,30 +1674,16 @@ export function PersonalCampaignPage() {
               Have questions about compatibility or fitment? Speak with our 2W TPMS experts today or request a callback.
             </p>
             <div className="cta-row" style={{ justifyContent: "center", marginBottom: "20px" }}>
-              <a
+              <button
+                type="button"
                 className="btn btn-white"
-                href="#callback"
-                onClick={(e) => {
-                  handleCtaClick("final_request_callback");
-                  const el = document.getElementById("callback");
-                  if (el) {
-                    e.preventDefault();
-                    el.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
+                onClick={(e) => openModal("final_request_callback", e)}
               >
                 Request a callback <Icon id="i-arrow-right" />
-              </a>
-              <a
-                className="btn btn-ghost-white"
-                href="tel:+18008330233"
-                onClick={() => handleCtaClick("final_toll_free")}
-              >
-                <Icon id="i-phone" /> 1800 833 0233
-              </a>
+              </button>
             </div>
             <p className="help-line" style={{ marginTop: "16px", color: "rgba(255, 255, 255, 0.75)" }}>
-              Toll-free support · ARAI Certified · 3-Year Warranty · Made in India
+              ARAI Certified · 3-Year Warranty · Made in India
             </p>
           </div>
         </section>
@@ -1704,7 +1732,7 @@ export function PersonalCampaignPage() {
                 </summary>
                 <p>
                   Treel has separate kits for motorbikes and scooters. Share your make and model in the call-back form,
-                  or call 1800 833 0233, and we&apos;ll confirm the right kit before you buy.
+                  and we&apos;ll confirm the right kit before you buy.
                 </p>
               </details>
               <details>
@@ -1784,6 +1812,9 @@ export function PersonalCampaignPage() {
           </div>
         </section>
       </main>
+
+      {/* APPROVED PERSONAL TPMS FOOTER */}
+      <TpmsLandingFooter />
      
 
       {/* =========================================================================
@@ -1794,20 +1825,13 @@ export function PersonalCampaignPage() {
           <b>Treel TPMS for bikes</b>
           <span>3-year sensor warranty</span>
         </div>
-        <a
+        <button
+          type="button"
           className="btn btn-primary btn-sm"
-          href="#callback"
-          onClick={(e) => {
-            handleCtaClick("mobile_bar_callback");
-            const el = document.getElementById("callback");
-            if (el) {
-              e.preventDefault();
-              el.scrollIntoView({ behavior: "smooth" });
-            }
-          }}
+          onClick={(e) => openModal("mobile_bar_callback", e)}
         >
-          Request callback
-        </a>
+          Request a callback
+        </button>
       </div>
 
       {/* =========================================================================
@@ -1823,17 +1847,15 @@ export function PersonalCampaignPage() {
             if (e.target === e.currentTarget) closeModal();
           }}
         >
-          <div className="personal-modal-card">
+          <div className="personal-modal-card modal-compact">
             <button
               ref={modalCloseBtnRef}
               type="button"
               className="personal-modal-close"
               onClick={closeModal}
-              aria-label="Close callback modal"
+              aria-label="Close modal"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <Icon id="i-x" />
             </button>
 
             <form
@@ -1846,27 +1868,33 @@ export function PersonalCampaignPage() {
             >
               {!isSuccess ? (
                 <div>
-                  <h3 id="modalTitle">Request a call back</h3>
-                  <p className="sub">Tell us your two-wheeler model and we&apos;ll confirm the right kit.</p>
+                  <p className="modal-eyebrow">Free expert call back</p>
+                  <h3 id="modalTitle">Get a callback for your vehicle</h3>
+                  <p className="sub">Leave your details and a Treel expert will call you back.</p>
+
+                  {submitError && (
+                    <p className="text-red-500 text-xs font-semibold mb-2 p-2 bg-red-50 rounded border border-red-200">
+                      {submitError}
+                    </p>
+                  )}
 
                   <div className="field">
-                    <label htmlFor="m-f-name">Full name *</label>
+                    <label htmlFor="m-f-name">Your name</label>
                     <input
                       id="m-f-name"
                       name="full_name"
                       type="text"
                       autoComplete="name"
-                      placeholder="Rahul Sharma"
+                      placeholder="Enter your name"
                       required
                       value={formData.full_name}
                       onChange={handleInputChange}
-                      aria-invalid={formErrors.full_name ? "true" : "false"}
                     />
-                    {formErrors.full_name && <span className="err">Please enter your full name.</span>}
+                    {formErrors.full_name && <span className="err">Please enter your name.</span>}
                   </div>
 
                   <div className="field">
-                    <label htmlFor="m-f-phone">Mobile number *</label>
+                    <label htmlFor="m-f-phone">Mobile number</label>
                     <div className="tel">
                       <span>+91</span>
                       <input
@@ -1875,57 +1903,42 @@ export function PersonalCampaignPage() {
                         type="tel"
                         inputMode="numeric"
                         autoComplete="tel-national"
+                        pattern="[6-9][0-9]{9}"
                         maxLength={10}
-                        placeholder="98765 43210"
+                        placeholder="10-digit number"
                         required
                         value={formData.mobile}
                         onChange={handleInputChange}
-                        aria-invalid={formErrors.mobile ? "true" : "false"}
                       />
                     </div>
                     {formErrors.mobile && <span className="err">Please enter a valid 10-digit mobile number.</span>}
                   </div>
 
                   <div className="field">
-                    <label htmlFor="m-f-email">Email address</label>
+                    <label htmlFor="m-f-city">City / district</label>
                     <input
-                      id="m-f-email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      placeholder="rahul@example.com"
-                      value={formData.email}
+                      id="m-f-city"
+                      name="city"
+                      type="text"
+                      placeholder="Enter your city or district"
+                      autoComplete="address-level2"
+                      value={formData.city}
                       onChange={handleInputChange}
                     />
                   </div>
 
-                  <div className="row2">
-                    <div className="field">
-                      <label htmlFor="m-f-city">City</label>
-                      <input
-                        id="m-f-city"
-                        name="city"
-                        type="text"
-                        placeholder="e.g. Pune"
-                        autoComplete="address-level2"
-                        value={formData.city}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                    <div className="field">
-                      <label htmlFor="m-f-kit">I&apos;m looking at</label>
-                      <select
-                        id="m-f-kit"
-                        name="kit_interest"
-                        required
-                        value={formData.kit_interest}
-                        onChange={handleInputChange}
-                      >
-                        <option value="motorbike_kit">Motorbike kit</option>
-                        <option value="scooter_kit">Scooter kit</option>
-                        <option value="not_sure">Not sure yet</option>
-                      </select>
-                    </div>
+                  <div className="field">
+                    <label htmlFor="m-f-kit">Kit you&apos;re interested in</label>
+                    <select
+                      id="m-f-kit"
+                      name="kit_interest"
+                      value={formData.kit_interest}
+                      onChange={handleInputChange}
+                    >
+                      <option value="motorbike_kit">Motorbike kit</option>
+                      <option value="scooter_kit">Scooter kit</option>
+                      <option value="not_sure">Not sure yet</option>
+                    </select>
                   </div>
 
                   <div className="field">
@@ -1940,33 +1953,22 @@ export function PersonalCampaignPage() {
                     />
                   </div>
 
-                  {submitError && (
-                    <div
-                      role="alert"
-                      style={{
-                        background: "#FEE2E2",
-                        border: "1px solid #EF4444",
-                        borderRadius: "8px",
-                        padding: "10px 14px",
-                        marginBottom: "12px",
-                        fontSize: "0.85rem",
-                        color: "#991B1B",
-                      }}
-                    >
-                      {submitError}
-                    </div>
-                  )}
-
                   <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? "Submitting…" : "Request a call back"}
+                    {isSubmitting ? "Sending..." : "Request a callback"}
                   </button>
-                  <p className="form-note">We&apos;ll only use your details to answer your question.</p>
+                  <p className="form-note">
+                    By submitting, you agree to be contacted by Treel about this enquiry. See our{" "}
+                    <Link href="/privacy">Privacy Policy</Link>.
+                  </p>
                 </div>
               ) : (
                 <div className="thanks">
                   <Icon id="i-circle-check" />
                   <h3>Thanks. We&apos;ll call you soon.</h3>
-                  <p>In a hurry? Call us toll-free on 1800 833 0233.</p>
+                  <p>Our tyre specialist will get in touch with you shortly.</p>
+                  <button className="btn btn-secondary mt-4" type="button" onClick={closeModal}>
+                    Close
+                  </button>
                 </div>
               )}
             </form>

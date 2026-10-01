@@ -218,13 +218,14 @@ export function MasterHeader() {
                     href="/products/otr-tpms" 
                     className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors mt-0.5"
                   >
-                    <div className="w-9 h-9 rounded-lg bg-amber-50 flex items-center justify-center p-1 shrink-0 mt-0.5">
+                    <div className="w-9 h-9 rounded-lg bg-[#0B0F14] flex items-center justify-center shrink-0 mt-0.5 overflow-hidden">
                       <Image
                         src="/images/otr-excavator-icon.png"
                         alt="OTR TPMS"
                         width={28}
                         height={28}
-                        className="w-6 h-6 object-contain"
+                        unoptimized
+                        className="w-7 h-7 scale-125 object-contain"
                       />
                     </div>
                     <div>
