@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import "@/app/personal/personal-campaign.css";
 import { TpmsLandingFooter } from "./tpms-landing-footer";
 
@@ -25,6 +25,7 @@ function pushDataLayer(data: Record<string, any>) {
 }
 
 export function PersonalCarCampaignPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
 
   // 1. Marketing Attribution Capture
@@ -76,7 +77,7 @@ export function PersonalCarCampaignPage() {
 
     pushDataLayer({
       event: "page_view",
-      page_path: typeof window !== "undefined" ? window.location.pathname : "/lp/tpms/car",
+      page_path: typeof window !== "undefined" ? window.location.pathname : "/lp-tpms/car",
       product_line: "personal_tpms_4w",
     });
   }, [searchParams]);
@@ -202,6 +203,17 @@ export function PersonalCarCampaignPage() {
       });
 
       setSubmitSuccess(true);
+      const queryParams = new URLSearchParams();
+      if (attribution.utm_source) queryParams.set("utm_source", attribution.utm_source);
+      if (attribution.utm_medium) queryParams.set("utm_medium", attribution.utm_medium);
+      if (attribution.utm_campaign) queryParams.set("utm_campaign", attribution.utm_campaign);
+      if (attribution.utm_term) queryParams.set("utm_term", attribution.utm_term);
+      if (attribution.utm_content) queryParams.set("utm_content", attribution.utm_content);
+      if (attribution.gclid) queryParams.set("gclid", attribution.gclid);
+      if (attribution.fbclid) queryParams.set("fbclid", attribution.fbclid);
+      if ((attribution as any).ad_group) queryParams.set("ad_group", (attribution as any).ad_group);
+      const queryString = queryParams.toString();
+      router.push(`/thank-you${queryString ? `?${queryString}` : ""}`);
     } catch (err: any) {
       setSubmitError(err?.message || "Something went wrong. Please check your details and try again.");
     } finally {

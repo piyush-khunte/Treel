@@ -27,7 +27,7 @@ export function TmipLandingNavbar({ onDemoClick }: TmipLandingNavbarProps) {
 
           <div className="h-6 sm:h-7 w-[1px] bg-white/20" aria-hidden="true" />
 
-          <Link href="/lp/tmip" className="flex items-center gap-2">
+          <Link href="/lp-tmip" className="flex items-center gap-2">
             <div className="flex flex-col gap-[3px] w-[20px] sm:w-[22px]" aria-hidden="true">
               <span className="block h-[3px] w-full bg-[#3B82F6] rounded-[1px] opacity-60 shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
               <span className="block h-[3px] w-full bg-[#3B82F6] rounded-[1px] opacity-85 shadow-[0_0_8px_rgba(59,130,246,0.6)]" />

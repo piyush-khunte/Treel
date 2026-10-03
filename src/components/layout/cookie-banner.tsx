@@ -2,10 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Cookie } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function CookieBanner() {
+  const pathname = usePathname();
   const [accepted, setAccepted] = useState(true);
 
   useEffect(() => {
@@ -20,7 +22,7 @@ export function CookieBanner() {
     setAccepted(true);
   };
 
-  if (accepted) return null;
+  if (accepted || pathname === "/thank-you" || pathname?.startsWith("/thank-you")) return null;
 
   return (
     <div className="fixed bottom-6 left-6 right-6 sm:right-auto sm:max-w-md z-50 bg-[#0F1419] text-[#FAF7F2] p-5 rounded-2xl shadow-2xl border border-[#D5573B]/30 animate-in slide-in-from-bottom-5 duration-300">

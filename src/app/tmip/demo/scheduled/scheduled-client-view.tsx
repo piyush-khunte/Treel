@@ -112,7 +112,7 @@ export function ScheduledClientView() {
       {/* 6. Back to TMIP Campaign Link */}
       <div className="text-center">
         <Link
-          href="/lp/tmip"
+          href="/lp-tmip"
           className="inline-flex items-center gap-2 text-sm font-ibm-plex font-bold text-[#94A3B8] hover:text-[#3B82F6] transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />

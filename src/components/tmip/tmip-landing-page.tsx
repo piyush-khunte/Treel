@@ -424,7 +424,7 @@ export function TmipLandingPage() {
       if (attribution.ad_group) queryParams.set("ad_group", attribution.ad_group);
 
       const queryString = queryParams.toString();
-      const redirectUrl = `/tmip/demo/scheduled${queryString ? `?${queryString}` : ""}`;
+      const redirectUrl = `/thank-you${queryString ? `?${queryString}` : ""}`;
       router.push(redirectUrl);
     } catch (err) {
       console.error("Lead submission network error:", err);

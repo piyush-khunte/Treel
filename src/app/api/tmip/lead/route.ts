@@ -240,14 +240,14 @@ export async function POST(req: NextRequest) {
       landing_page:
         typeof landing_page === "string" && landing_page.trim()
           ? landing_page.trim()
-          : "https://treel.in/lp/tmip",
+          : "https://treel.in/lp-tmip",
       first_landing_page:
         typeof first_landing_page === "string" && first_landing_page.trim()
           ? first_landing_page.trim()
           : null,
       referrer: typeof referrer === "string" && referrer.trim() ? referrer.trim() : null,
       page_path:
-        typeof page_path === "string" && page_path.trim() ? page_path.trim() : "/lp/tmip",
+        typeof page_path === "string" && page_path.trim() ? page_path.trim() : "/lp-tmip",
       user_agent: userAgent || null,
 
       attribution_metadata: {
@@ -313,7 +313,7 @@ export async function POST(req: NextRequest) {
     <div style="max-width: 620px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
       <div style="background: #050a17; padding: 24px; border-bottom: 3px solid #3b82f6;">
         <h2 style="margin: 0; font-size: 20px; color: #ffffff; letter-spacing: -0.02em;">Treel Mobility — New TMIP Campaign Lead</h2>
-        <p style="margin: 4px 0 0 0; font-size: 13px; color: #94a3b8; font-family: monospace;">Form: ${formDisplayName} · /lp/tmip</p>
+        <p style="margin: 4px 0 0 0; font-size: 13px; color: #94a3b8; font-family: monospace;">Form: ${formDisplayName} · /lp-tmip</p>
       </div>
       
       <div style="padding: 24px;">
@@ -385,7 +385,7 @@ export async function POST(req: NextRequest) {
           </tr>
           <tr>
             <td style="padding: 6px 12px; color: #64748b;">Landing URL:</td>
-            <td style="padding: 6px 12px; color: #0f172a; word-break: break-all;">${landing_page || "https://treel.in/lp/tmip"}</td>
+            <td style="padding: 6px 12px; color: #0f172a; word-break: break-all;">${landing_page || "https://treel.in/lp-tmip"}</td>
           </tr>
           <tr>
             <td style="padding: 6px 12px; color: #64748b;">First Page:</td>

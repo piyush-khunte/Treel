@@ -35,7 +35,9 @@ export function MasterHeader() {
     pathname.startsWith("/personal") ||
     pathname.startsWith("/admin") ||
     pathname.startsWith("/products/otr-tpms") ||
-    pathname.startsWith("/lp")
+    pathname.startsWith("/lp") ||
+    pathname === "/thank-you" ||
+    pathname.startsWith("/thank-you")
   ) {
     return null;
   }

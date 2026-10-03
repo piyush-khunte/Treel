@@ -125,7 +125,7 @@ export async function POST(req: NextRequest) {
     const rawProductLine = typeof product_line === "string" && product_line.trim() ? product_line.trim() : "personal_tpms_2w";
     const isGeneric =
       rawProductLine.includes("generic") ||
-      (typeof page_path === "string" && (page_path === "/lp/tpms" || page_path === "/lp/tpms/")) ||
+      (typeof page_path === "string" && (page_path === "/lp-tpms" || page_path === "/lp-tpms/" || page_path === "/lp/tpms" || page_path === "/lp/tpms/")) ||
       (typeof lead_source === "string" && lead_source.toLowerCase().includes("generic"));
     const isCar =
       !isGeneric &&
@@ -238,10 +238,10 @@ export async function POST(req: NextRequest) {
         typeof landing_page === "string" && landing_page.trim()
           ? landing_page.trim()
           : (isGeneric
-              ? "https://treel.in/lp/tpms"
+              ? "https://treel.in/lp-tpms"
               : isCar
-              ? "https://treel.in/lp/tpms/car"
-              : "https://treel.in/lp/tpms/bike"),
+              ? "https://treel.in/lp-tpms/car"
+              : "https://treel.in/lp-tpms/bike"),
       first_landing_page:
         typeof first_landing_page === "string" && first_landing_page.trim()
           ? first_landing_page.trim()
@@ -251,10 +251,10 @@ export async function POST(req: NextRequest) {
         typeof page_path === "string" && page_path.trim()
           ? page_path.trim()
           : (isGeneric
-              ? "/lp/tpms"
+              ? "/lp-tpms"
               : isCar
-              ? "/lp/tpms/car"
-              : "/lp/tpms/bike"),
+              ? "/lp-tpms/car"
+              : "/lp-tpms/bike"),
       user_agent: userAgent || null,
 
       attribution_metadata: {
@@ -388,7 +388,7 @@ export async function POST(req: NextRequest) {
         ${fbclid ? `<div class="item full-width"><div class="item-label">Facebook Click ID (FBCLID)</div><div class="item-value">${fbclid}</div></div>` : ""}
         <div class="item full-width">
           <div class="item-label">Landing Page</div>
-          <div class="item-value">${landing_page || "https://treel.in/lp/tpms/bike"}</div>
+          <div class="item-value">${landing_page || "https://treel.in/lp-tpms/bike"}</div>
         </div>
       </div>
     </div>

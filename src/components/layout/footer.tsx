@@ -15,16 +15,25 @@ export interface FooterProps {
 export function Footer({ variant, className }: FooterProps) {
   const pathname = usePathname();
 
-  if (pathname?.startsWith("/lp/") || pathname === "/lp/tpms" || pathname === "/admin" || pathname?.startsWith("/admin/")) {
+  if (
+    pathname?.startsWith("/lp/") ||
+    pathname === "/lp/tpms" ||
+    pathname?.startsWith("/lp-") ||
+    pathname === "/lp-tpms" ||
+    pathname === "/admin" ||
+    pathname?.startsWith("/admin/") ||
+    pathname === "/thank-you" ||
+    pathname?.startsWith("/thank-you")
+  ) {
     return null;
   }
 
   // Determine variant automatically if not explicitly provided
   let activeVariant: FooterVariant = (variant === "suraksha" ? "master" : variant) || "master";
   if (!variant && pathname) {
-    if (pathname.startsWith("/tmip") || pathname.startsWith("/timp") || pathname.startsWith("/lp/tmip")) {
+    if (pathname.startsWith("/tmip") || pathname.startsWith("/timp") || pathname.startsWith("/lp/tmip") || pathname.startsWith("/lp-tmip")) {
       activeVariant = "tmip";
-    } else if (pathname.startsWith("/personal") || pathname.startsWith("/lp/tpms")) {
+    } else if (pathname.startsWith("/personal") || pathname.startsWith("/lp/tpms") || pathname.startsWith("/lp-tpms")) {
       activeVariant = "personal";
     } else {
       activeVariant = "master";
@@ -112,6 +121,9 @@ export function Footer({ variant, className }: FooterProps) {
             <p className="text-xs text-[#64748B]">
               ARAI &amp; ISO 9001:2015 Certified · Patents in India, US &amp; EU
             </p>
+            <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
+            <span>© {new Date().getFullYear()} Treel Mobility Solutions Private Limited. All rights reserved.</span>
+          </div>
           </div>
 
           {/* Solutions */}
@@ -255,14 +267,17 @@ export function Footer({ variant, className }: FooterProps) {
         {/* Bottom row */}
         <div className={`pt-8 flex flex-col sm:flex-row items-center justify-between ${theme.bottomText} gap-4`}>
           <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
-            <span>© {new Date().getFullYear()} Treel Mobility Solutions Private Limited. All rights reserved.</span>
+            <p>
+            Website developed by  
+  <a href="https://magicworksitsolutions.com" rel="nofollow" target="_blank"> MagicWorks</a>
+</p>
           </div>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs">
             <Link href="/privacy" className={theme.bottomLink}>
               Privacy Policy
             </Link>
             <Link href="/terms" className={theme.bottomLink}>
-              Terms of Service
+              Terms
             </Link>
             <Link href="/cookies" className={theme.bottomLink}>
               Cookie Policy

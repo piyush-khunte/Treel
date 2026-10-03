@@ -189,10 +189,10 @@ export async function POST(req: NextRequest) {
         gclid: typeof gclid === "string" && gclid.trim() ? gclid.trim() : null,
         fbclid: typeof fbclid === "string" && fbclid.trim() ? fbclid.trim() : null,
         ad_group: typeof ad_group === "string" && ad_group.trim() ? ad_group.trim() : null,
-        landing_page: typeof landing_page === "string" && landing_page.trim() ? landing_page.trim() : "/lp/suraksha",
+        landing_page: typeof landing_page === "string" && landing_page.trim() ? landing_page.trim() : "/lp-suraksha",
         first_landing_page: typeof first_landing_page === "string" && first_landing_page.trim() ? first_landing_page.trim() : null,
         referrer: typeof referrer === "string" && referrer.trim() ? referrer.trim() : null,
-        page_path: typeof page_path === "string" && page_path.trim() ? page_path.trim() : "/lp/suraksha",
+        page_path: typeof page_path === "string" && page_path.trim() ? page_path.trim() : "/lp-suraksha",
         notes: `Product: Suraksha | City: ${normalizedCity || "N/A"} | Trucks: ${rawTrucks || "N/A"} | Call Language: ${finalCallLang} | Page Language: ${finalPageLang}`,
         metadata: {
           product_line: "suraksha",

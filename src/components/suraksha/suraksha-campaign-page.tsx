@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { SurakshaLandingFooter } from "@/components/suraksha/suraksha-landing-footer";
 import "@/app/suraksha/suraksha-campaign.css";
 
@@ -1126,6 +1126,7 @@ function pushDataLayer(data: Record<string, unknown>) {
 }
 
 export function SurakshaCampaignPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
 
   const [currentLang, setCurrentLang] = useState<string>("en");
@@ -1195,7 +1196,7 @@ export function SurakshaCampaignPage() {
     ] as const;
 
     const captured: Record<string, string> = {
-      landing_page: typeof window !== "undefined" ? window.location.href.split("?")[0] : "/lp/suraksha",
+      landing_page: typeof window !== "undefined" ? window.location.href.split("?")[0] : "/lp-suraksha",
     };
 
     keys.forEach((k) => {
@@ -1381,6 +1382,17 @@ export function SurakshaCampaignPage() {
       });
 
       setInlineSubmitted(true);
+      const queryParams = new URLSearchParams();
+      if (attribution.utm_source) queryParams.set("utm_source", attribution.utm_source);
+      if (attribution.utm_medium) queryParams.set("utm_medium", attribution.utm_medium);
+      if (attribution.utm_campaign) queryParams.set("utm_campaign", attribution.utm_campaign);
+      if (attribution.utm_term) queryParams.set("utm_term", attribution.utm_term);
+      if (attribution.utm_content) queryParams.set("utm_content", attribution.utm_content);
+      if (attribution.gclid) queryParams.set("gclid", attribution.gclid);
+      if (attribution.fbclid) queryParams.set("fbclid", attribution.fbclid);
+      if ((attribution as any).ad_group) queryParams.set("ad_group", (attribution as any).ad_group);
+      const queryString = queryParams.toString();
+      router.push(`/thank-you${queryString ? `?${queryString}` : ""}`);
     } catch {
       setInlineError("Network error. Please try again.");
     } finally {
@@ -1453,6 +1465,17 @@ export function SurakshaCampaignPage() {
       });
 
       setPopupSubmitted(true);
+      const queryParams = new URLSearchParams();
+      if (attribution.utm_source) queryParams.set("utm_source", attribution.utm_source);
+      if (attribution.utm_medium) queryParams.set("utm_medium", attribution.utm_medium);
+      if (attribution.utm_campaign) queryParams.set("utm_campaign", attribution.utm_campaign);
+      if (attribution.utm_term) queryParams.set("utm_term", attribution.utm_term);
+      if (attribution.utm_content) queryParams.set("utm_content", attribution.utm_content);
+      if (attribution.gclid) queryParams.set("gclid", attribution.gclid);
+      if (attribution.fbclid) queryParams.set("fbclid", attribution.fbclid);
+      if ((attribution as any).ad_group) queryParams.set("ad_group", (attribution as any).ad_group);
+      const queryString = queryParams.toString();
+      router.push(`/thank-you${queryString ? `?${queryString}` : ""}`);
     } catch {
       setPopupError("Network error. Please try again.");
     } finally {
