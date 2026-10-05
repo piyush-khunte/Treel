@@ -13,7 +13,7 @@ import {
  * Never exposes credentials to client-side code.
  */
 export function isRazorpayConfigured(): boolean {
-  const keyId = process.env.RAZORPAY_KEY_ID;
+  const keyId = process.env.RAZORPAY_KEY_ID || process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
   const keySecret = process.env.RAZORPAY_KEY_SECRET;
   return Boolean(keyId && keySecret && keyId.trim().length > 0 && keySecret.trim().length > 0);
 }
@@ -44,7 +44,7 @@ export async function createRazorpayOrder(
     };
   }
 
-  const keyId = process.env.RAZORPAY_KEY_ID!;
+  const keyId = (process.env.RAZORPAY_KEY_ID || process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID)!;
   const keySecret = process.env.RAZORPAY_KEY_SECRET!;
 
   // Validate amount
@@ -93,7 +93,10 @@ export async function createRazorpayOrder(
     return {
       success: true,
       configured: true,
-      data: orderData,
+      data: {
+        ...orderData,
+        key_id: keyId,
+      },
     };
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : 'Unknown network error while contacting Razorpay';

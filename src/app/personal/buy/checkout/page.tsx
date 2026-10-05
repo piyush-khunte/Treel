@@ -3,13 +3,32 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, ShieldCheck, Lock, Truck, CreditCard } from "lucide-react";
+import { Lock, CreditCard, AlertCircle } from "lucide-react";
 import { useCart } from "@/lib/commerce/cart-context";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
+function loadRazorpayScript(): Promise<boolean> {
+  return new Promise((resolve) => {
+    if (typeof window === "undefined") {
+      resolve(false);
+      return;
+    }
+    if ((window as any).Razorpay) {
+      resolve(true);
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+}
+
 export default function CheckoutPage() {
   const router = useRouter();
-  const { items, totalInr, clearCart } = useCart();
+  const { items, subtotalInr, discountInr, totalInr, couponCode, clearCart } = useCart();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -18,17 +37,209 @@ export default function CheckoutPage() {
     city: "",
     state: "Maharashtra",
     pincode: "",
-    paymentMethod: "online"
+    paymentMethod: "online" as "online" | "cod",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handlePlaceOrder = (e: React.FormEvent) => {
+  const validateForm = (): boolean => {
+    if (!formData.fullName || formData.fullName.trim().length < 2) {
+      setErrorMessage("Please enter your full name.");
+      return false;
+    }
+    const phoneClean = formData.phone.replace(/\D/g, "");
+    if (phoneClean.length !== 10 || !/^[6-9]/.test(phoneClean)) {
+      setErrorMessage("Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.");
+      return false;
+    }
+    if (!formData.email || !formData.email.includes("@") || !formData.email.includes(".")) {
+      setErrorMessage("Please enter a valid email address for your order invoice and warranty.");
+      return false;
+    }
+    if (!formData.address || formData.address.trim().length < 5) {
+      setErrorMessage("Please enter your street address and landmark.");
+      return false;
+    }
+    if (!formData.city || formData.city.trim().length < 2) {
+      setErrorMessage("Please enter your city.");
+      return false;
+    }
+    const pinClean = formData.pincode.replace(/\D/g, "");
+    if (pinClean.length !== 6) {
+      setErrorMessage("Please enter a valid 6-digit Indian PIN code.");
+      return false;
+    }
+    return true;
+  };
+
+  const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
+    setErrorMessage(null);
+    if (!validateForm()) return;
+
+    if (items.length === 0) {
+      setErrorMessage("Your cart is empty. Please add items to checkout.");
+      return;
+    }
+
     setIsSubmitting(true);
-    setTimeout(() => {
-      clearCart();
-      router.push("/personal/buy/success");
-    }, 800);
+
+    try {
+      // -------------------------------------------------------------
+      // FLOW A: ONLINE PAYMENT VIA RAZORPAY CHECKOUT
+      // -------------------------------------------------------------
+      if (formData.paymentMethod === "online") {
+        const isLoaded = await loadRazorpayScript();
+        if (!isLoaded) {
+          setErrorMessage("Failed to load Razorpay payment gateway. Please check your internet connection and try again.");
+          setIsSubmitting(false);
+          return;
+        }
+
+        // 1. Create server-side Razorpay Order
+        const orderRes = await fetch("/api/payments/razorpay/order", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            items,
+            subtotalInr,
+            discountInr,
+            totalInr,
+            couponCode,
+            customer: formData,
+          }),
+        });
+
+        const orderResult = await orderRes.json();
+        if (!orderRes.ok || !orderResult.success || !orderResult.data?.id) {
+          setErrorMessage(
+            orderResult.error?.message || "Unable to initiate payment with gateway. Please try again or select Cash on Delivery."
+          );
+          setIsSubmitting(false);
+          return;
+        }
+
+        const razorpayOrder = orderResult.data;
+        const keyId = razorpayOrder.key_id || process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
+
+        // 2. Open Razorpay Checkout modal
+        const options = {
+          key: keyId,
+          amount: razorpayOrder.amount,
+          currency: razorpayOrder.currency || "INR",
+          name: "Treel Mobility Solutions",
+          description: "Personal Smart TPMS Kit",
+          image: "/images/Treel New Logo Final With Favicon & Tagline.png",
+          order_id: razorpayOrder.id,
+          prefill: {
+            name: formData.fullName.trim(),
+            email: formData.email.trim(),
+            contact: formData.phone.replace(/\D/g, ""),
+          },
+          notes: {
+            shipping_address: `${formData.address.trim()}, ${formData.city.trim()}, ${formData.state} - ${formData.pincode.trim()}`,
+          },
+          theme: {
+            color: "#2563EB",
+          },
+          handler: async function (response: {
+            razorpay_payment_id: string;
+            razorpay_order_id: string;
+            razorpay_signature: string;
+          }) {
+            try {
+              // 3. Verify Razorpay signature server-side & persist order to Supabase
+              const verifyRes = await fetch("/api/payments/razorpay/verify", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature,
+                  checkout: {
+                    ...formData,
+                    items,
+                    subtotalInr,
+                    discountInr,
+                    totalInr,
+                    couponCode,
+                  },
+                }),
+              });
+
+              const verifyData = await verifyRes.json();
+              if (verifyRes.ok && verifyData.success) {
+                clearCart();
+                router.push(
+                  `/personal/buy/success?order_id=${verifyData.data?.orderId || razorpayOrder.id}&payment_id=${response.razorpay_payment_id}`
+                );
+              } else {
+                router.push(
+                  `/personal/buy/failed?reason=verification_failed&message=${encodeURIComponent(
+                    verifyData.error?.message || "Payment signature verification failed."
+                  )}`
+                );
+              }
+            } catch (err: any) {
+              router.push(
+                `/personal/buy/failed?reason=network_error&message=${encodeURIComponent(
+                  err?.message || "Network error occurred while confirming payment."
+                )}`
+              );
+            } finally {
+              setIsSubmitting(false);
+            }
+          },
+          modal: {
+            ondismiss: function () {
+              setIsSubmitting(false);
+            },
+          },
+        };
+
+        const rzp = new (window as any).Razorpay(options);
+        rzp.on("payment.failed", function (failResponse: any) {
+          setIsSubmitting(false);
+          setErrorMessage(failResponse.error?.description || "Payment was declined or cancelled.");
+        });
+        rzp.open();
+        return;
+      }
+
+      // -------------------------------------------------------------
+      // FLOW B: CASH ON DELIVERY (COD)
+      // -------------------------------------------------------------
+      if (formData.paymentMethod === "cod") {
+        const codRes = await fetch("/api/payments/cod", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            checkout: {
+              ...formData,
+              items,
+              subtotalInr,
+              discountInr,
+              totalInr,
+              couponCode,
+            },
+          }),
+        });
+
+        const codData = await codRes.json();
+        if (codRes.ok && codData.success) {
+          clearCart();
+          router.push(`/personal/buy/success?order_id=${codData.data?.orderId}&method=cod`);
+        } else {
+          setErrorMessage(codData.error?.message || "Failed to place COD order. Please check your details and try again.");
+          setIsSubmitting(false);
+        }
+      }
+    } catch (err: any) {
+      setErrorMessage(err?.message || "An unexpected error occurred. Please try again.");
+      setIsSubmitting(false);
+    }
   };
 
   if (items.length === 0) {
@@ -73,6 +284,13 @@ export default function CheckoutPage() {
       {/* Main Checkout Grid */}
       <section className="py-16">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
+          {errorMessage && (
+            <div className="mb-8 p-4 rounded-2xl bg-red-50 border border-red-200 text-red-700 flex items-start gap-3 text-sm font-medium">
+              <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+              <div>{errorMessage}</div>
+            </div>
+          )}
+
           <form onSubmit={handlePlaceOrder} className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Form Column */}
             <div className="lg:col-span-7 space-y-8">
@@ -98,7 +316,8 @@ export default function CheckoutPage() {
                       required
                       placeholder="10-digit mobile number"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, "").slice(0, 10) })}
+                      maxLength={10}
                       className="w-full px-4 py-3 rounded-lg border border-black/[0.12] text-[#111827] focus:outline-none focus:border-blue-600 text-sm"
                     />
                   </div>
@@ -142,7 +361,8 @@ export default function CheckoutPage() {
                       required
                       placeholder="6-digit PIN code"
                       value={formData.pincode}
-                      onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
+                      onChange={(e) => setFormData({ ...formData, pincode: e.target.value.replace(/\D/g, "").slice(0, 6) })}
+                      maxLength={6}
                       className="w-full px-4 py-3 rounded-lg border border-black/[0.12] text-[#111827] focus:outline-none focus:border-blue-600 text-sm"
                     />
                   </div>
@@ -153,7 +373,9 @@ export default function CheckoutPage() {
               <div className="border border-black/[0.06] rounded-3xl p-8 space-y-6">
                 <h3 className="text-xl font-bold text-[#111827]">2. Payment Method</h3>
                 <div className="space-y-3">
-                  <label className="flex items-center gap-3 p-4 border border-blue-500 bg-blue-50/40 rounded-xl cursor-pointer">
+                  <label className={`flex items-center gap-3 p-4 border rounded-xl cursor-pointer transition-colors ${
+                    formData.paymentMethod === "online" ? "border-blue-500 bg-blue-50/40" : "border-black/[0.06] hover:bg-slate-50"
+                  }`}>
                     <input
                       type="radio"
                       name="payment"
@@ -164,13 +386,15 @@ export default function CheckoutPage() {
                     <div className="flex-1 flex justify-between items-center">
                       <div>
                         <div className="font-bold text-sm text-[#111827]">Online Payment (UPI, Credit/Debit Card, Net Banking)</div>
-                        <div className="text-xs text-[#6B7280]">Instant order confirmation with Razorpay / Treel Secure Gateway</div>
+                        <div className="text-xs text-[#6B7280]">Instant order confirmation via official Razorpay checkout</div>
                       </div>
                       <CreditCard className="w-5 h-5 text-[#2563EB]" />
                     </div>
                   </label>
 
-                  <label className="flex items-center gap-3 p-4 border border-black/[0.06] rounded-xl cursor-pointer">
+                  <label className={`flex items-center gap-3 p-4 border rounded-xl cursor-pointer transition-colors ${
+                    formData.paymentMethod === "cod" ? "border-blue-500 bg-blue-50/40" : "border-black/[0.06] hover:bg-slate-50"
+                  }`}>
                     <input
                       type="radio"
                       name="payment"
@@ -207,8 +431,14 @@ export default function CheckoutPage() {
                 <div className="space-y-2 pt-4 border-t border-black/[0.06] text-sm">
                   <div className="flex justify-between text-[#4B5563]">
                     <span>Subtotal:</span>
-                    <span className="font-bold text-[#111827]">₹{totalInr.toLocaleString()}</span>
+                    <span className="font-bold text-[#111827]">₹{subtotalInr.toLocaleString()}</span>
                   </div>
+                  {discountInr > 0 && (
+                    <div className="flex justify-between text-[#10B981]">
+                      <span>Discount ({couponCode}):</span>
+                      <span className="font-bold">-₹{discountInr.toLocaleString()}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between text-[#4B5563]">
                     <span>Express Shipping:</span>
                     <span className="font-bold text-green-600">FREE</span>
@@ -224,11 +454,18 @@ export default function CheckoutPage() {
                   disabled={isSubmitting}
                   className="w-full py-4 rounded-full bg-[#2563EB] text-white font-bold text-base hover:bg-[#1D4ED8] transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
-                  <Lock className="w-4 h-4" /> {isSubmitting ? "Processing Order..." : `Place Order (₹${totalInr.toLocaleString()})`}
+                  <Lock className="w-4 h-4" />{" "}
+                  {isSubmitting
+                    ? formData.paymentMethod === "online"
+                      ? "Opening Razorpay..."
+                      : "Placing Order..."
+                    : formData.paymentMethod === "online"
+                    ? `Pay with Razorpay (₹${totalInr.toLocaleString()})`
+                    : `Place COD Order (₹${totalInr.toLocaleString()})`}
                 </button>
 
                 <div className="text-center text-xs text-[#6B7280]">
-                  By clicking Place Order you agree to Treel's <Link href="/terms" className="underline">Terms of Service</Link> and <Link href="/personal/returns" className="underline">Returns Policy</Link>.
+                  By clicking Place Order you agree to Treel&apos;s <Link href="/terms" className="underline">Terms of Service</Link> and <Link href="/personal/returns" className="underline">Returns Policy</Link>.
                 </div>
               </div>
             </div>

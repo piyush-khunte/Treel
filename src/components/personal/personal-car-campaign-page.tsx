@@ -349,7 +349,7 @@ export function PersonalCarCampaignPage() {
                   className="btn btn-primary"
                   onClick={(e) => openModal(undefined, "hero_callback", e)}
                 >
-                  Get a callback <Icon id="i-arrow-right" />
+                  <span>Get a callback</span> <Icon id="i-arrow-right" />
                 </button>
                 <a className="btn btn-secondary" href="#kits">
                   See the car kits

@@ -533,7 +533,7 @@ export function PersonalCampaignPage() {
                   className="btn btn-primary"
                   onClick={(e) => openModal("hero_request_callback", e)}
                 >
-                  Request a callback <Icon id="i-arrow-right" />
+                  <span>Get a callback</span> <Icon id="i-arrow-right" />
                 </button>
                 <a className="btn btn-secondary" href="#how" onClick={() => handleCtaClick("hero_see_how")}>
                   See how it works

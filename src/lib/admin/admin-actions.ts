@@ -5,6 +5,7 @@ import { revalidatePath } from 'next/cache';
 import { 
   MongoProduct, 
   MongoCheckout, 
+  MongoCartItem,
   MongoPayment, 
   MongoBlog, 
   MongoAnnualReturn,
@@ -153,7 +154,39 @@ export async function getAdminCheckouts(): Promise<{ success: boolean; data?: Mo
       .order('date', { ascending: false });
 
     if (error) throw error;
-    return { success: true, data: (data as MongoCheckout[]) || [] };
+
+    const checkouts: MongoCheckout[] = (data || []).map((row: any) => {
+      const cartData: MongoCartItem[] = Array.isArray(row.cartData) ? [...row.cartData] : [];
+      if (cartData.length === 0) {
+        for (let i = 0; i < 10; i++) {
+          const title = row[`cartData[${i}].title`];
+          if (title) {
+            cartData.push({
+              id: row[`cartData[${i}].id`],
+              title,
+              description: row[`cartData[${i}].description`],
+              image: row[`cartData[${i}].image`],
+              category: row[`cartData[${i}].category`],
+              originalPrice: row[`cartData[${i}].originalPrice`],
+              price: row[`cartData[${i}].price`],
+              quantity: row[`cartData[${i}].quantity`] || 1,
+              productsku: row[`cartData[${i}].productsku`],
+              saleprice: row[`cartData[${i}].saleprice`],
+              couponcode: row[`cartData[${i}].couponcode`],
+              couponamount: row[`cartData[${i}].couponamount`],
+              couponMessage: row[`cartData[${i}].couponMessage`],
+              saveAmount: row[`cartData[${i}].saveAmount`],
+            });
+          }
+        }
+      }
+      return {
+        ...row,
+        cartData,
+      };
+    });
+
+    return { success: true, data: checkouts };
   } catch (error: any) {
     console.error('getAdminCheckouts error:', error);
     return { success: false, error: error.message || 'Failed to fetch checkouts' };

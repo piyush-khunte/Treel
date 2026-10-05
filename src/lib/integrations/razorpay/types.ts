@@ -19,6 +19,7 @@ export interface RazorpayOrder {
   attempts: number;
   notes: Record<string, string>;
   created_at: number;
+  key_id?: string;
 }
 
 export interface RazorpayPaymentVerificationInput {
