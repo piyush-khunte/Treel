@@ -166,7 +166,9 @@ export function TmipLandingFooter({ className = "" }: { className?: string }) {
         {/* Bottom row */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#64748B] font-ibm-plex gap-4">
           <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
-            <span>© 2026 Treel Mobility Solutions Private Limited. All rights reserved.</span>
+             <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
+            <span>© {new Date().getFullYear()} Treel Mobility Solutions Private Limited. All rights reserved.</span>
+          </div>
           </div>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs">
             <Link href="/privacy" className="hover:text-[#3B82F6] transition-colors">

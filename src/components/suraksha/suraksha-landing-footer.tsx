@@ -21,8 +21,13 @@ export function SurakshaLandingFooter({ className = "" }: { className?: string }
             <p className="font-fraunces italic text-[15px] text-[#94A3B8] leading-relaxed max-w-sm">
               The mobility intelligence company. Every vehicle a signal, every signal an insight.
             </p>
-            <p className="text-xs text-[#64748B] font-mono pt-2">
+           <p className="text-xs text-[#64748B] font-manrope pt-2">
               ARAI &amp; ISO 9001:2015 Certified · Patents in India, US &amp; EU
+              
+            <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
+            <span>© {new Date().getFullYear()} Treel Mobility Solutions Private Limited. All rights reserved.</span>
+          </div>
+          
             </p>
           </div>
 
@@ -166,14 +171,17 @@ export function SurakshaLandingFooter({ className = "" }: { className?: string }
         {/* Bottom row */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#64748B] font-inter gap-4">
           <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
-            <span>© 2026 Treel Mobility Solutions Private Limited. All rights reserved.</span>
+            <span> <p>
+            Website developed by  
+  <a href="https://magicworksitsolutions.com" rel="nofollow" target="_blank"> MagicWorks</a>
+</p></span>
           </div>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs">
             <Link href="/privacy" className="hover:text-[#FAF7F2] transition-colors">
               Privacy Policy
             </Link>
             <Link href="/terms" className="hover:text-[#FAF7F2] transition-colors">
-              Terms of Service
+              Terms 
             </Link>
             <Link href="/cookies" className="hover:text-[#FAF7F2] transition-colors">
               Cookie Policy

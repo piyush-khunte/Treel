@@ -574,6 +574,164 @@ export function PersonalGenericCampaignPage() {
           </div>
         </div>
 
+        {/* FULL ENQUIRY / FINAL CTA */}
+        <section id="enquire" className="bg-blue final" aria-labelledby="final-title">
+          <div className="wrap final-grid">
+            <div>
+              <div className="divider" aria-hidden="true" />
+              <p className="eyebrow">Free expert call back</p>
+              <h2 id="final-title">Find the right TPMS for your vehicle.</h2>
+              <p className="sec-sub">Tell us what you drive or ride and a Treel expert will call you back with the right kit for it.</p>
+              <ul className="gets">
+                <li>
+                  <Icon id="i-circle-check" />
+                  A kit recommendation for your car, bike or scooter
+                </li>
+                <li>
+                  <Icon id="i-circle-check" />
+                  Help finding a Treel tyre shop for fitment
+                </li>
+                <li>
+                  <Icon id="i-circle-check" />
+                  Straight answers on price, the app and warranty
+                </li>
+              </ul>
+              <div className="cta-row">
+                <button
+                  type="button"
+                  className="btn btn-ghost-white"
+                  onClick={(e) => openModal(undefined, undefined, "final_callback", e)}
+                >
+                  Get a free call back
+                </button>
+              </div>
+              <p className="help-line">
+                Toll-free support. Or write to <a href="mailto:hello@treel.in">hello@treel.in</a>
+              </p>
+            </div>
+            <div className="form-card">
+              {submitSuccess ? (
+                <div className="thanks">
+                  <Icon id="i-circle-check" />
+                  <h3>Thanks. We&apos;ll call you soon.</h3>
+                  <p>Our tyre specialist will get in touch with you shortly.</p>
+                </div>
+              ) : (
+                <form id="enquiryForm" onSubmit={(e) => handleSubmit(e, "inpage")} noValidate>
+                  <h3>Get a free call back</h3>
+                  <p className="sub">Takes under a minute.</p>
+                  {submitError && (
+                    <div className="mb-4 p-3 rounded-lg bg-red-50 text-red-700 text-sm font-medium border border-red-200">
+                      {submitError}
+                    </div>
+                  )}
+                  <div className="field">
+                    <label htmlFor="f-name">Full name</label>
+                    <input
+                      id="f-name"
+                      name="full_name"
+                      type="text"
+                      autoComplete="name"
+                      value={formData.full_name}
+                      onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
+                      required
+                    />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="f-phone">Mobile number</label>
+                    <div className="tel">
+                      <span>+91</span>
+                      <input
+                        id="f-phone"
+                        name="mobile"
+                        type="tel"
+                        inputMode="numeric"
+                        autoComplete="tel-national"
+                        pattern="[6-9][0-9]{9}"
+                        maxLength={10}
+                        placeholder="10-digit number"
+                        value={formData.mobile}
+                        onChange={(e) => setFormData({ ...formData, mobile: e.target.value.replace(/\D/g, "").slice(0, 10) })}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="row2">
+                    <div className="field">
+                      <label htmlFor="f-city">City</label>
+                      <input
+                        id="f-city"
+                        name="city"
+                        type="text"
+                        autoComplete="address-level2"
+                        value={formData.city}
+                        onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                        required
+                      />
+                    </div>
+                    <div className="field">
+                      <label htmlFor="f-model">Make and model</label>
+                      <input
+                        id="f-model"
+                        name="vehicle_model"
+                        type="text"
+                        placeholder="e.g. Creta, Activa"
+                        value={formData.vehicle_model}
+                        onChange={(e) => setFormData({ ...formData, vehicle_model: e.target.value })}
+                      />
+                    </div>
+                  </div>
+                  <div className="field">
+                    <label htmlFor="f-veh">What do you drive or ride?</label>
+                    <select
+                      id="f-veh"
+                      name="vehicle_type"
+                      value={formData.vehicle_type}
+                      onChange={(e) => setFormData({ ...formData, vehicle_type: e.target.value })}
+                      required
+                    >
+                      <option value="" disabled>Select your vehicle</option>
+                      <option value="car">Car / SUV / MPV</option>
+                      <option value="motorbike">Motorbike</option>
+                      <option value="scooter">Scooter</option>
+                      <option value="car_and_bike">Both a car and a bike</option>
+                    </select>
+                  </div>
+                  <div className="field">
+                    <label htmlFor="f-kit">Kit you&apos;re interested in</label>
+                    <select
+                      id="f-kit"
+                      name="kit_interest"
+                      value={formData.kit_interest}
+                      onChange={(e) => setFormData({ ...formData, kit_interest: e.target.value })}
+                      required
+                    >
+                      <option value="not_sure">Not sure, help me choose</option>
+                      <optgroup label="Car / SUV">
+                        <option value="car_4_sensors_app">Car: 4 sensors + free app</option>
+                        <option value="car_4_sensors_display">Car: 4 sensors + in-cabin display</option>
+                        <option value="car_5_sensors_display">Car: 5 sensors + display (covers the spare)</option>
+                        <option value="car_5_sensors_gps">Car: 5 sensors + GPS tracking</option>
+                      </optgroup>
+                      <optgroup label="Bike / scooter">
+                        <option value="bike_motorbike">Motorbike kit</option>
+                        <option value="bike_scooter">Scooter kit</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                  <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? "Submitting..." : "Request my free call back"}
+                  </button>
+                  <p className="form-note">
+                    By submitting, you agree to be contacted by Treel about this enquiry. See our{" "}
+                    <Link href="/privacy">Privacy Policy</Link>.
+                  </p>
+                </form>
+              )}
+            </div>
+          </div>
+        </section>
+
         {/* CHOOSE YOUR VEHICLE (desktop & tablet; phones use the hero chips) */}
         <section id="vehicles" className="bg-mist" aria-labelledby="vpick-title">
           <div className="wrap">
@@ -1746,164 +1904,6 @@ export function PersonalGenericCampaignPage() {
               </figure>
             </div>
             <p className="rev-note">Customer reviews as published on treel.in.</p>
-          </div>
-        </section>
-
-        {/* FULL ENQUIRY / FINAL CTA */}
-        <section id="enquire" className="bg-blue final" aria-labelledby="final-title">
-          <div className="wrap final-grid">
-            <div>
-              <div className="divider" aria-hidden="true" />
-              <p className="eyebrow">Free expert call back</p>
-              <h2 id="final-title">Find the right TPMS for your vehicle.</h2>
-              <p className="sec-sub">Tell us what you drive or ride and a Treel expert will call you back with the right kit for it.</p>
-              <ul className="gets">
-                <li>
-                  <Icon id="i-circle-check" />
-                  A kit recommendation for your car, bike or scooter
-                </li>
-                <li>
-                  <Icon id="i-circle-check" />
-                  Help finding a Treel tyre shop for fitment
-                </li>
-                <li>
-                  <Icon id="i-circle-check" />
-                  Straight answers on price, the app and warranty
-                </li>
-              </ul>
-              <div className="cta-row">
-                <button
-                  type="button"
-                  className="btn btn-ghost-white"
-                  onClick={(e) => openModal(undefined, undefined, "final_callback", e)}
-                >
-                  Get a free call back
-                </button>
-              </div>
-              <p className="help-line">
-                Toll-free support. Or write to <a href="mailto:hello@treel.in">hello@treel.in</a>
-              </p>
-            </div>
-            <div className="form-card">
-              {submitSuccess ? (
-                <div className="thanks">
-                  <Icon id="i-circle-check" />
-                  <h3>Thanks. We&apos;ll call you soon.</h3>
-                  <p>Our tyre specialist will get in touch with you shortly.</p>
-                </div>
-              ) : (
-                <form id="enquiryForm" onSubmit={(e) => handleSubmit(e, "inpage")} noValidate>
-                  <h3>Get a free call back</h3>
-                  <p className="sub">Takes under a minute.</p>
-                  {submitError && (
-                    <div className="mb-4 p-3 rounded-lg bg-red-50 text-red-700 text-sm font-medium border border-red-200">
-                      {submitError}
-                    </div>
-                  )}
-                  <div className="field">
-                    <label htmlFor="f-name">Full name</label>
-                    <input
-                      id="f-name"
-                      name="full_name"
-                      type="text"
-                      autoComplete="name"
-                      value={formData.full_name}
-                      onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                      required
-                    />
-                  </div>
-                  <div className="field">
-                    <label htmlFor="f-phone">Mobile number</label>
-                    <div className="tel">
-                      <span>+91</span>
-                      <input
-                        id="f-phone"
-                        name="mobile"
-                        type="tel"
-                        inputMode="numeric"
-                        autoComplete="tel-national"
-                        pattern="[6-9][0-9]{9}"
-                        maxLength={10}
-                        placeholder="10-digit number"
-                        value={formData.mobile}
-                        onChange={(e) => setFormData({ ...formData, mobile: e.target.value.replace(/\D/g, "").slice(0, 10) })}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="row2">
-                    <div className="field">
-                      <label htmlFor="f-city">City</label>
-                      <input
-                        id="f-city"
-                        name="city"
-                        type="text"
-                        autoComplete="address-level2"
-                        value={formData.city}
-                        onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                        required
-                      />
-                    </div>
-                    <div className="field">
-                      <label htmlFor="f-model">Make and model</label>
-                      <input
-                        id="f-model"
-                        name="vehicle_model"
-                        type="text"
-                        placeholder="e.g. Creta, Activa"
-                        value={formData.vehicle_model}
-                        onChange={(e) => setFormData({ ...formData, vehicle_model: e.target.value })}
-                      />
-                    </div>
-                  </div>
-                  <div className="field">
-                    <label htmlFor="f-veh">What do you drive or ride?</label>
-                    <select
-                      id="f-veh"
-                      name="vehicle_type"
-                      value={formData.vehicle_type}
-                      onChange={(e) => setFormData({ ...formData, vehicle_type: e.target.value })}
-                      required
-                    >
-                      <option value="" disabled>Select your vehicle</option>
-                      <option value="car">Car / SUV / MPV</option>
-                      <option value="motorbike">Motorbike</option>
-                      <option value="scooter">Scooter</option>
-                      <option value="car_and_bike">Both a car and a bike</option>
-                    </select>
-                  </div>
-                  <div className="field">
-                    <label htmlFor="f-kit">Kit you&apos;re interested in</label>
-                    <select
-                      id="f-kit"
-                      name="kit_interest"
-                      value={formData.kit_interest}
-                      onChange={(e) => setFormData({ ...formData, kit_interest: e.target.value })}
-                      required
-                    >
-                      <option value="not_sure">Not sure, help me choose</option>
-                      <optgroup label="Car / SUV">
-                        <option value="car_4_sensors_app">Car: 4 sensors + free app</option>
-                        <option value="car_4_sensors_display">Car: 4 sensors + in-cabin display</option>
-                        <option value="car_5_sensors_display">Car: 5 sensors + display (covers the spare)</option>
-                        <option value="car_5_sensors_gps">Car: 5 sensors + GPS tracking</option>
-                      </optgroup>
-                      <optgroup label="Bike / scooter">
-                        <option value="bike_motorbike">Motorbike kit</option>
-                        <option value="bike_scooter">Scooter kit</option>
-                      </optgroup>
-                    </select>
-                  </div>
-                  <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? "Submitting..." : "Request my free call back"}
-                  </button>
-                  <p className="form-note">
-                    By submitting, you agree to be contacted by Treel about this enquiry. See our{" "}
-                    <Link href="/privacy">Privacy Policy</Link>.
-                  </p>
-                </form>
-              )}
-            </div>
           </div>
         </section>
 

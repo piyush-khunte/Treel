@@ -669,174 +669,159 @@ export function PersonalCampaignPage() {
         {/* =========================================================================
             SECTION: REQUEST A CALLBACK (DIRECTLY BELOW HERO)
             ========================================================================= */}
-        <section id="callback" className="bg-mist" aria-labelledby="callback-title" style={{ scrollMarginTop: "80px" }}>
+        <section id="callback" className="bg-blue final" aria-labelledby="callback-title" style={{ scrollMarginTop: "80px" }}>
           <div className="wrap">
             <div className="final-grid" style={{ alignItems: "center" }}>
               <div>
-                <div className="divider" aria-hidden="true"></div>
-                <p className="eyebrow">Expert Two-Wheeler Advice</p>
-                <h2 id="callback-title">Request a Call Back</h2>
-                <p className="sec-sub">
-                  Tell us about your bike or scooter. Our tyre pressure specialists will call you back to help you choose the right sensor kit and arrange quick doorstep delivery or local fitment.
+                <div className="divider" aria-hidden="true" />
+                <p className="eyebrow" style={{ color: "rgba(255, 255, 255, 0.85)" }}>READY WHEN YOU ARE</p>
+                <h2 id="callback-title" style={{ color: "#ffffff" }}>Know before you ride.</h2>
+                <p className="sec-sub" style={{ color: "rgba(255, 255, 255, 0.9)", margin: "0 0 32px" }}>
+                  Choose your kit, have it fitted at a Treel tyre shop, and pair it with the free app. That’s it.
                 </p>
-                <ul className="benefits" style={{ marginTop: "24px" }}>
-                  <li>
-                    <Icon id="i-shield-check" /> 3-year sensor warranty
-                  </li>
-                  <li>
-                    <Icon id="i-circle-check" /> ARAI certified · Made in India
-                  </li>
-                  <li>
-                    <Icon id="i-phone" /> Fast callback from specialists
-                  </li>
-                  <li>
-                    <Icon id="i-motorbike" /> Motorbike &amp; scooter kits
-                  </li>
-                </ul>
-                <p className="help-line" style={{ color: "var(--fog)", marginTop: "24px" }}>
-                  Have questions? Write to{" "}
-                  <a href="mailto:hello@treel.in" style={{ color: "var(--blue)", fontWeight: "700" }}>
+                <div className="cta-row" style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center", marginBottom: "24px" }}>
+                  <a
+                    href="#kits"
+                    className="btn btn-white"
+                  >
+                    Shop the bike kit <span aria-hidden="true" style={{ marginLeft: "4px" }}>→</span>
+                  </a>
+                  <a
+                    href="tel:18008330233"
+                    className="btn btn-ghost-white"
+                  >
+                    <Icon id="i-phone" /> 1800 833 0233
+                  </a>
+                </div>
+                <p className="help-line" style={{ color: "rgba(255, 255, 255, 0.86)", margin: 0 }}>
+                  Toll-free support. Or write to{" "}
+                  <a href="mailto:hello@treel.in" style={{ color: "#ffffff", fontWeight: "700", textDecoration: "none" }}>
                     hello@treel.in
                   </a>
                 </p>
               </div>
 
               <div className="form-card">
-                <form
-                  id="heroCallbackForm"
-                  method="POST"
-                  action="/api/personal/lead"
-                  ref={inPageFormRef}
-                  noValidate
-                  onSubmit={handleSubmit}
-                  onFocus={handleFocus}
-                >
-                  {!isSuccess ? (
-                    <div>
-                      <h3>Request a Call Back</h3>
-                      <p className="sub">Leave your details and we&apos;ll confirm the right kit for your ride.</p>
+                {!isSuccess ? (
+                  <form
+                    id="heroCallbackForm"
+                    method="POST"
+                    action="/api/personal/lead"
+                    ref={inPageFormRef}
+                    noValidate
+                    onSubmit={handleSubmit}
+                    onFocus={handleFocus}
+                  >
+                    <h3>Have a question first?</h3>
+                    <p className="sub">Leave your number and we&apos;ll call you back.</p>
 
-                      <div className="field">
-                        <label htmlFor="f-name">Full name *</label>
+                    <div className="field">
+                      <label htmlFor="f-name">Full name</label>
+                      <input
+                        id="f-name"
+                        name="full_name"
+                        type="text"
+                        autoComplete="name"
+                        required
+                        value={formData.full_name}
+                        onChange={handleInputChange}
+                        aria-invalid={formErrors.full_name ? "true" : "false"}
+                      />
+                      {formErrors.full_name && <span className="err">Please enter your full name.</span>}
+                    </div>
+
+                    <div className="field">
+                      <label htmlFor="f-phone">Mobile number</label>
+                      <div className="tel">
+                        <span>+91</span>
                         <input
-                          id="f-name"
-                          name="full_name"
-                          type="text"
-                          autoComplete="name"
-                          placeholder="Rahul Sharma"
+                          id="f-phone"
+                          name="mobile"
+                          type="tel"
+                          inputMode="numeric"
+                          autoComplete="tel-national"
+                          pattern="[6-9][0-9]{9}"
+                          maxLength={10}
+                          placeholder="10-digit number"
                           required
-                          value={formData.full_name}
+                          value={formData.mobile}
                           onChange={handleInputChange}
-                          aria-invalid={formErrors.full_name ? "true" : "false"}
-                        />
-                        {formErrors.full_name && <span className="err">Please enter your full name.</span>}
-                      </div>
-
-                      <div className="field">
-                        <label htmlFor="f-phone">Mobile number *</label>
-                        <div className="tel">
-                          <span>+91</span>
-                          <input
-                            id="f-phone"
-                            name="mobile"
-                            type="tel"
-                            inputMode="numeric"
-                            autoComplete="tel-national"
-                            maxLength={10}
-                            placeholder="98765 43210"
-                            required
-                            value={formData.mobile}
-                            onChange={handleInputChange}
-                            aria-invalid={formErrors.mobile ? "true" : "false"}
-                          />
-                        </div>
-                        {formErrors.mobile && <span className="err">Please enter a valid 10-digit mobile number.</span>}
-                      </div>
-
-                      <div className="field">
-                        <label htmlFor="f-email">Email address</label>
-                        <input
-                          id="f-email"
-                          name="email"
-                          type="email"
-                          autoComplete="email"
-                          placeholder="rahul@example.com"
-                          value={formData.email}
-                          onChange={handleInputChange}
+                          aria-invalid={formErrors.mobile ? "true" : "false"}
                         />
                       </div>
+                      {formErrors.mobile && <span className="err">Please enter a valid 10-digit mobile number.</span>}
+                    </div>
 
-                      <div className="row2">
-                        <div className="field">
-                          <label htmlFor="f-city">City</label>
-                          <input
-                            id="f-city"
-                            name="city"
-                            type="text"
-                            placeholder="e.g. Pune"
-                            autoComplete="address-level2"
-                            value={formData.city}
-                            onChange={handleInputChange}
-                          />
-                        </div>
-                        <div className="field">
-                          <label htmlFor="f-kit">I&apos;m looking at</label>
-                          <select
-                            id="f-kit"
-                            name="kit_interest"
-                            required
-                            value={formData.kit_interest}
-                            onChange={handleInputChange}
-                          >
-                            <option value="motorbike_kit">Motorbike kit</option>
-                            <option value="scooter_kit">Scooter kit</option>
-                            <option value="not_sure">Not sure yet</option>
-                          </select>
-                        </div>
-                      </div>
-
+                    <div className="row2">
                       <div className="field">
-                        <label htmlFor="f-model">Your bike or scooter</label>
+                        <label htmlFor="f-city">City</label>
                         <input
-                          id="f-model"
-                          name="vehicle_model"
+                          id="f-city"
+                          name="city"
                           type="text"
-                          placeholder="Make and model, e.g. Royal Enfield Hunter 350"
-                          value={formData.vehicle_model}
+                          autoComplete="address-level2"
+                          value={formData.city}
                           onChange={handleInputChange}
                         />
                       </div>
-
-                      {submitError && (
-                        <div
-                          role="alert"
-                          style={{
-                            background: "#FEE2E2",
-                            border: "1px solid #EF4444",
-                            borderRadius: "8px",
-                            padding: "10px 14px",
-                            marginBottom: "12px",
-                            fontSize: "0.85rem",
-                            color: "#991B1B",
-                          }}
+                      <div className="field">
+                        <label htmlFor="f-kit">I’m looking at</label>
+                        <select
+                          id="f-kit"
+                          name="kit_interest"
+                          value={formData.kit_interest}
+                          onChange={handleInputChange}
                         >
-                          {submitError}
-                        </div>
-                      )}
+                          <option value="not_sure">Not sure yet</option>
+                          <option value="motorbike_kit">Motorbike kit</option>
+                          <option value="scooter_kit">Scooter kit</option>
+                        </select>
+                      </div>
+                    </div>
 
-                      <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
-                        {isSubmitting ? "Submitting…" : "Request a call back"}
-                      </button>
-                      <p className="form-note">We&apos;ll only use your details to answer your inquiry.</p>
+                    <div className="field">
+                      <label htmlFor="f-model">Your bike or scooter</label>
+                      <input
+                        id="f-model"
+                        name="vehicle_model"
+                        type="text"
+                        placeholder="Make and model"
+                        value={formData.vehicle_model}
+                        onChange={handleInputChange}
+                      />
                     </div>
-                  ) : (
-                    <div className="thanks" id="formThanks">
-                      <Icon id="i-circle-check" />
-                      <h3>Thanks. We&apos;ll call you soon.</h3>
-                      <p>Our tyre specialist will get in touch with you shortly.</p>
-                    </div>
-                  )}
-                </form>
+
+                    {submitError && (
+                      <div
+                        role="alert"
+                        style={{
+                          background: "#FEE2E2",
+                          border: "1px solid #EF4444",
+                          borderRadius: "8px",
+                          padding: "10px 14px",
+                          marginBottom: "12px",
+                          fontSize: "0.85rem",
+                          color: "#991B1B",
+                        }}
+                      >
+                        {submitError}
+                      </div>
+                    )}
+
+                    <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
+                      {isSubmitting ? "Submitting…" : "Request a call back"}
+                    </button>
+                    <p className="form-note">
+                      We&apos;ll only use your number to answer your question.
+                    </p>
+                  </form>
+                ) : (
+                  <div className="thanks" id="formThanks">
+                    <Icon id="i-circle-check" />
+                    <h3>Thanks. We&apos;ll call you soon.</h3>
+                    <p>Our tyre specialist will get in touch with you shortly.</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

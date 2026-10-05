@@ -16,14 +16,15 @@ export function Footer({ variant, className }: FooterProps) {
   const pathname = usePathname();
 
   if (
-    pathname?.startsWith("/lp/") ||
-    pathname === "/lp/tpms" ||
-    pathname?.startsWith("/lp-") ||
-    pathname === "/lp-tpms" ||
-    pathname === "/admin" ||
-    pathname?.startsWith("/admin/") ||
-    pathname === "/thank-you" ||
-    pathname?.startsWith("/thank-you")
+    !variant &&
+    (pathname?.startsWith("/lp/") ||
+      pathname === "/lp/tpms" ||
+      pathname?.startsWith("/lp-") ||
+      pathname === "/lp-tpms" ||
+      pathname === "/admin" ||
+      pathname?.startsWith("/admin/") ||
+      pathname === "/thank-you" ||
+      pathname?.startsWith("/thank-you"))
   ) {
     return null;
   }
