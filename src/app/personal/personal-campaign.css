@@ -175,28 +175,114 @@
   color: var(--charcoal);
 }
 
-.personal-campaign .header-cta {
-  margin-left: 4px;
+.personal-campaign .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.personal-campaign .header-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--charcoal);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+
+.personal-campaign .header-phone:hover {
+  color: var(--blue);
+}
+
+.personal-campaign .header-phone .ic {
+  width: 18px;
+  height: 18px;
+  color: var(--blue);
+}
+
+.personal-campaign .header-callback-btn {
+  white-space: nowrap;
 }
 
 @media (max-width: 940px) {
   .personal-campaign .nav {
     display: none;
   }
-  .personal-campaign .header-cta {
-    margin-left: auto;
+}
+
+@media (max-width: 640px) {
+  .personal-campaign .header-actions {
+    gap: 10px;
+  }
+  .personal-campaign .header-phone {
+    font-size: 13px;
+    gap: 5px;
+  }
+  .personal-campaign .header-phone .ic {
+    width: 15px;
+    height: 15px;
+  }
+  .personal-campaign .header-callback-btn {
+    min-height: 36px;
+    padding: 0 12px;
+    font-size: 13px;
+    border-radius: 8px;
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 440px) {
+  .personal-campaign .site-header .wrap {
+    gap: 8px;
+    padding: 0 12px;
+  }
+  .personal-campaign .brand {
+    gap: 6px;
+  }
   .personal-campaign .brand img {
     height: 22px;
   }
-  .personal-campaign .lockup {
-    font-size: 14px;
+  .personal-campaign .brand-divider {
+    height: 18px;
   }
-  .personal-campaign .brand {
-    gap: 10px;
+  .personal-campaign .lockup {
+    font-size: 13px;
+    gap: 4px;
+  }
+  .personal-campaign .lockup .marks {
+    width: 16px;
+  }
+  .personal-campaign .header-actions {
+    gap: 8px;
+  }
+  .personal-campaign .header-phone {
+    font-size: 12px;
+    gap: 4px;
+  }
+  .personal-campaign .header-phone .ic {
+    width: 14px;
+    height: 14px;
+  }
+  .personal-campaign .header-callback-btn {
+    min-height: 34px;
+    padding: 0 10px;
+    font-size: 12px;
+    border-radius: 6px;
+  }
+}
+
+@media (max-width: 360px) {
+  .personal-campaign .header-phone span {
+    display: none;
+  }
+  .personal-campaign .header-phone {
+    padding: 6px;
+    background: #f1f5f9;
+    border-radius: 6px;
   }
 }
 

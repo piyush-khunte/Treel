@@ -307,14 +307,24 @@ export function PersonalCarCampaignPage() {
             <a href="#kits">Car kits</a>
             <a href="#faq">FAQ</a>
           </nav>
-          <a
-            href="tel:18008330233"
-            className="btn btn-primary btn-sm header-cta"
-            onClick={() => pushDataLayer({ event: "call_click", link_label: "header_phone" })}
-          >
-            <Icon id="i-phone" />
-            1800 833 0233
-          </a>
+          <div className="header-actions">
+            <a
+              href="tel:18008330233"
+              className="header-phone"
+              onClick={() => pushDataLayer({ event: "call_click", link_label: "header_phone" })}
+              aria-label="Call toll-free 1800 833 0233"
+            >
+              <Icon id="i-phone" />
+              <span>1800 833 0233</span>
+            </a>
+            <button
+              type="button"
+              className="btn btn-primary btn-sm header-callback-btn"
+              onClick={(e) => openModal(undefined, "header_callback", e)}
+            >
+              Request a call back
+            </button>
+          </div>
         </div>
       </header>
 
@@ -528,6 +538,15 @@ export function PersonalCarCampaignPage() {
                   <Icon id="i-circle-check" /> Straight answers on the app, display and warranty
                 </li>
               </ul>
+              <div className="cta-row">
+                <button
+                  type="button"
+                  className="btn btn-ghost-white"
+                  onClick={(e) => openModal(undefined, "final_callback", e)}
+                >
+                  Get a free call back
+                </button>
+              </div>
               <p className="help-line">
                 Have questions? Write to <a href="mailto:hello@treel.in">hello@treel.in</a>
               </p>

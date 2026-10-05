@@ -39,6 +39,15 @@ export function TmipLandingNavbar({ onDemoClick }: TmipLandingNavbarProps) {
           </Link>
         </div>
 
+        {/* Center: Anchor Navigation Menu (Option A matching SS1) */}
+        <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300" aria-label="Page sections">
+          <a href="#features" className="hover:text-white transition-colors">Features</a>
+          <a href="#platform" className="hover:text-white transition-colors">Platform</a>
+          <a href="#compare" className="hover:text-white transition-colors">Before &amp; after</a>
+          <a href="#pilot" className="hover:text-white transition-colors">Pilot</a>
+          <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
+        </nav>
+
         {/* Right: Phone link + Book a demo button */}
         <div className="flex items-center gap-3 sm:gap-6">
           <a

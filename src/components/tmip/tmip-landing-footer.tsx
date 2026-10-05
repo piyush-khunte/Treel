@@ -28,27 +28,27 @@ export function TmipLandingFooter({ className = "" }: { className?: string }) {
 
           {/* Solutions */}
           <div className="space-y-3">
-            <h5 className="font-space-grotesk text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold">
+            <h5 >
               SOLUTIONS
             </h5>
             <ul className="space-y-2">
               <li>
-                <Link href="/tmip" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/tmip" >
                   TMIP Enterprise
                 </Link>
               </li>
               <li>
-                <Link href="/suraksha" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/suraksha">
                   Suraksha Fleet
                 </Link>
               </li>
               <li>
-                <Link href="/personal" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/personal">
                   Personal TPMS
                 </Link>
               </li>
               <li>
-                <Link href="/products" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/products">
                   Products Overview
                 </Link>
               </li>
@@ -57,27 +57,27 @@ export function TmipLandingFooter({ className = "" }: { className?: string }) {
 
           {/* Technology */}
           <div className="space-y-3">
-            <h5 className="font-space-grotesk text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold">
+            <h5 >
               TECHNOLOGY
             </h5>
             <ul className="space-y-2">
               <li>
-                <Link href="/technology" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/technology" >
                   Platform Architecture
                 </Link>
               </li>
               <li>
-                <Link href="/vehicle-digital-twin" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/vehicle-digital-twin" >
                   Vehicle Digital Twin
                 </Link>
               </li>
               <li>
-                <Link href="/data-infrastructure" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/data-infrastructure">
                   Data Infrastructure
                 </Link>
               </li>
               <li>
-                <Link href="/mobility-intelligence" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/mobility-intelligence">
                   Mobility Intelligence
                 </Link>
               </li>
@@ -86,37 +86,37 @@ export function TmipLandingFooter({ className = "" }: { className?: string }) {
 
           {/* Intelligence */}
           <div className="space-y-3">
-            <h5 className="font-space-grotesk text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold">
+            <h5>
               INTELLIGENCE
             </h5>
             <ul className="space-y-2">
               <li>
-                <Link href="/research" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/research">
                   Research Papers
                 </Link>
               </li>
               <li>
-                <Link href="/insights" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/insights">
                   Insights &amp; Articles
                 </Link>
               </li>
               <li>
-                <Link href="/press" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/press">
                   Press &amp; Media
                 </Link>
               </li>
               <li>
-                <Link href="/events" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/events" >
                   Events &amp; Keynotes
                 </Link>
               </li>
               <li>
-                <Link href="/annual-reports" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/annual-reports" >
                   Annual Reports
                 </Link>
               </li>
               <li>
-                <Link href="/notices" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/notices">
                   Notice Board
                 </Link>
               </li>
@@ -125,37 +125,37 @@ export function TmipLandingFooter({ className = "" }: { className?: string }) {
 
           {/* Company */}
           <div className="space-y-3">
-            <h5 className="font-space-grotesk text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold">
+            <h5 className="">
               COMPANY
             </h5>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/about" >
                   About Treel
                 </Link>
               </li>
               <li>
-                <Link href="/leadership" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/leadership" >
                   Leadership
                 </Link>
               </li>
               <li>
-                <Link href="/why-treel" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/why-treel" >
                   Why Treel
                 </Link>
               </li>
               <li>
-                <Link href="/global-presence" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/global-presence" >
                   Global Presence / Export
                 </Link>
               </li>
               <li>
-                <Link href="/careers" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/careers" >
                   Careers
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                <Link href="/contact">
                   Contact Us
                 </Link>
               </li>
@@ -171,28 +171,28 @@ export function TmipLandingFooter({ className = "" }: { className?: string }) {
           </div>
           </div>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs">
-            <Link href="/privacy" className="hover:text-[#3B82F6] transition-colors">
+            <Link href="/privacy" >
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-[#3B82F6] transition-colors">
+            <Link href="/terms">
               Terms of Service
             </Link>
-            <Link href="/cookies" className="hover:text-[#3B82F6] transition-colors">
+            <Link href="/cookies" >
               Cookie Policy
             </Link>
-            <Link href="/accessibility" className="hover:text-[#3B82F6] transition-colors">
+            <Link href="/accessibility">
               Accessibility
             </Link>
-            <Link href="/gdpr" className="hover:text-[#3B82F6] transition-colors">
+            <Link href="/gdpr">
               GDPR Compliance
             </Link>
-            <Link href="/personal/returns" className="hover:text-[#3B82F6] transition-colors">
+            <Link href="/personal/returns" >
               Returns Policy
             </Link>
-            <Link href="/personal/shipping" className="hover:text-[#3B82F6] transition-colors">
+            <Link href="/personal/shipping">
               Shipping Policy
             </Link>
-            <Link href="/personal/refunds" className="hover:text-[#3B82F6] transition-colors">
+            <Link href="/personal/refunds">
               Refunds Policy
             </Link>
           </div>

@@ -46,7 +46,7 @@ const VARIANTS: Record<string, AdVariant> = {
 
 const DEFAULT_VARIANT: AdVariant = {
   h1: "Predict breakdowns before they stop your fleet.",
-  lede: "TMIP builds a live digital twin of every vehicle, covering tyres, engine, fuel, brakes and driver behaviour, and flags component wear before it turns into a roadside failure.",
+  lede: "",
 };
 
 const TABS = [
@@ -851,7 +851,7 @@ export function TmipLandingPage() {
             </p>
 
             <ul className="checks">
-              <li>
+              <li className="check-highlight">
                 <svg
                   aria-hidden="true"
                   height="20"
@@ -859,16 +859,16 @@ export function TmipLandingPage() {
                   width="20"
                 >
                   <rect
-                    fill="rgba(16,185,129,.15)"
+                    fill="rgba(59,130,246,.22)"
                     height="20"
                     width="20"
-                    rx="2"
+                    rx="3"
                   />
                   <path
                     d="M5 10.5l3.2 3L15 7"
                     fill="none"
-                    stroke="#10B981"
-                    strokeWidth="2"
+                    stroke="#3B82F6"
+                    strokeWidth="2.2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
@@ -878,7 +878,7 @@ export function TmipLandingPage() {
                   useful life in km
                 </span>
               </li>
-              <li>
+              <li className="check-highlight">
                 <svg
                   aria-hidden="true"
                   height="20"
@@ -886,16 +886,16 @@ export function TmipLandingPage() {
                   width="20"
                 >
                   <rect
-                    fill="rgba(16,185,129,.15)"
+                    fill="rgba(59,130,246,.22)"
                     height="20"
                     width="20"
-                    rx="2"
+                    rx="3"
                   />
                   <path
                     d="M5 10.5l3.2 3L15 7"
                     fill="none"
-                    stroke="#10B981"
-                    strokeWidth="2"
+                    stroke="#3B82F6"
+                    strokeWidth="2.2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
@@ -904,7 +904,7 @@ export function TmipLandingPage() {
                   Breakdown probability and service due dates, per vehicle
                 </span>
               </li>
-              <li>
+              <li className="check-highlight">
                 <svg
                   aria-hidden="true"
                   height="20"
@@ -912,16 +912,16 @@ export function TmipLandingPage() {
                   width="20"
                 >
                   <rect
-                    fill="rgba(16,185,129,.15)"
+                    fill="rgba(59,130,246,.22)"
                     height="20"
                     width="20"
-                    rx="2"
+                    rx="3"
                   />
                   <path
                     d="M5 10.5l3.2 3L15 7"
                     fill="none"
-                    stroke="#10B981"
-                    strokeWidth="2"
+                    stroke="#3B82F6"
+                    strokeWidth="2.2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
@@ -2288,7 +2288,51 @@ export function TmipLandingPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 14: FAQ (LIGHT BACKGROUND)
+          SECTION 14: PILOT / LIVE DIGITAL TWIN (MATCHING SS2 - ABOVE FAQ)
+          ========================================================================= */}
+      <section className="final" id="pilot" ref={finalRef}>
+        <div className="wrap">
+          <div>
+            <div aria-hidden="true" className="divider"></div>
+            <h2>SEE YOUR FLEET AS A LIVE DIGITAL TWIN.</h2>
+            <p>
+              Book a 30-minute demo. If the numbers work, run a 14-day pilot on
+              your own vehicles before you decide.
+            </p>
+            <div className="actions">
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-cta="final"
+                onClick={(e) => handleCtaClick("final", e)}
+              >
+                Book a demo
+              </button>
+              <a
+                className="btn btn-ghost"
+                data-cta="final-compare"
+                href="#compare"
+                onClick={() => handleCtaClick("final-compare")}
+              >
+                See before vs after
+              </a>
+            </div>
+          </div>
+          <figure>
+            <Image
+              alt="TMIP Live Vehicle Digital Twin dashboard showing Alert Status, Average Pressure and Temperature, PSI Difference, and Pressure wise Performance charts"
+              src="/images/AlertStatus_Status_Performance.png"
+              width={1920}
+              height={911}
+              loading="lazy"
+              className="final-cta-img"
+            />
+          </figure>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 15: FAQ (LIGHT BACKGROUND - LAST MAJOR CONTENT SECTION BEFORE FOOTER)
           ========================================================================= */}
       <section className="sec light" id="faq">
         <div className="wrap">
@@ -2354,50 +2398,6 @@ export function TmipLandingPage() {
               </p>
             </details>
           </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 15: FINAL CTA
-          ========================================================================= */}
-      <section className="final" ref={finalRef}>
-        <div className="wrap">
-          <div>
-            <div aria-hidden="true" className="divider"></div>
-            <h2>See your fleet as a live digital twin.</h2>
-            <p>
-              Book a 30-minute demo. If the numbers work, run a 14-day pilot on
-              your own vehicles before you decide.
-            </p>
-            <div className="actions">
-              <button
-                type="button"
-                className="btn btn-primary"
-                data-cta="final"
-                onClick={(e) => handleCtaClick("final", e)}
-              >
-                Book a demo
-              </button>
-              <a
-                className="btn btn-ghost"
-                data-cta="final-compare"
-                href="#compare"
-                onClick={() => handleCtaClick("final-compare")}
-              >
-                See before vs after
-              </a>
-            </div>
-          </div>
-          <figure>
-            <Image
-              alt="TMIP health score radar chart: engine 91, tyres 85, fuel 82, electrical 90, safety 78, operations 84"
-              src="/images/tmip/final-cta.png"
-              width={640}
-              height={440}
-              loading="lazy"
-              className="final-cta-img"
-            />
-          </figure>
         </div>
       </section>
 
