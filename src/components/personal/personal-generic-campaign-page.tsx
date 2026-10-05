@@ -186,6 +186,19 @@ export function PersonalGenericCampaignPage() {
     };
   }, [isModalOpen, closeModal]);
 
+  // Mobile Navigation Drawer State
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileMenuOpen]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, source: "popup" | "inpage") => {
     e.preventDefault();
     const phoneClean = formData.mobile.replace(/\D/g, "");
@@ -360,8 +373,79 @@ export function PersonalGenericCampaignPage() {
             >
               Request a call back
             </button>
+            <button
+              type="button"
+              className="hamburger-btn"
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="generic-tpms-mobile-menu"
+            >
+              {isMobileMenuOpen ? (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Navigation Drawer */}
+        {isMobileMenuOpen && (
+          <div id="generic-tpms-mobile-menu" className="mobile-menu-drawer">
+            <nav className="mobile-nav-links" aria-label="Mobile sections">
+              <a href="#sensor" onClick={() => setIsMobileMenuOpen(false)}>
+                <span>The sensor</span>
+                <span className="nav-arrow" aria-hidden="true">→</span>
+              </a>
+              <a href="#how" onClick={() => setIsMobileMenuOpen(false)}>
+                <span>How it works</span>
+                <span className="nav-arrow" aria-hidden="true">→</span>
+              </a>
+              <a href="#app" onClick={() => setIsMobileMenuOpen(false)}>
+                <span>Free app</span>
+                <span className="nav-arrow" aria-hidden="true">→</span>
+              </a>
+              <a href="#kits" onClick={() => setIsMobileMenuOpen(false)}>
+                <span>Car &amp; bike kits</span>
+                <span className="nav-arrow" aria-hidden="true">→</span>
+              </a>
+              <a href="#faq" onClick={() => setIsMobileMenuOpen(false)}>
+                <span>FAQ</span>
+                <span className="nav-arrow" aria-hidden="true">→</span>
+              </a>
+
+              <div className="mobile-nav-actions">
+                <a
+                  href="tel:18008330233"
+                  className="mobile-call-row"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    pushDataLayer({ event: "call_click", link_label: "mobile_menu_phone" });
+                  }}
+                >
+                  <Icon id="i-phone" />
+                  <span>1800 833 0233</span>
+                </a>
+
+                <button
+                  type="button"
+                  className="btn btn-primary mobile-cb-btn"
+                  onClick={(e) => {
+                    setIsMobileMenuOpen(false);
+                    openModal(undefined, undefined, "mobile_menu_callback", e);
+                  }}
+                >
+                  Request a call back
+                </button>
+              </div>
+            </nav>
+          </div>
+        )}
       </header>
 
       <main id="main">

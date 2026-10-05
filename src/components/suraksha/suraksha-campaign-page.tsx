@@ -1277,12 +1277,16 @@ export function SurakshaCampaignPage() {
     });
   };
 
-  // Keyboard handler for closing modals (ESC key) and body scroll lock
+  // Mobile menu state
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Keyboard handler for closing modals & mobile menu (ESC key) and body scroll lock
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         if (!isFirstVisit && langModalOpen) setLangModalOpen(false);
         if (cbModalOpen) setCbModalOpen(false);
+        if (isMobileMenuOpen) setIsMobileMenuOpen(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -1297,7 +1301,7 @@ export function SurakshaCampaignPage() {
       window.removeEventListener("keydown", handleKeyDown);
       document.documentElement.classList.remove("dlg-open");
     };
-  }, [langModalOpen, cbModalOpen, isFirstVisit]);
+  }, [langModalOpen, cbModalOpen, isFirstVisit, isMobileMenuOpen]);
 
   // Track sticky mobile bar visibility using IntersectionObserver
   useEffect(() => {
@@ -1621,8 +1625,95 @@ export function SurakshaCampaignPage() {
               <Icon id="i-phone" />
               <span className="num">1800 833 0233</span>
             </a>
+            <button
+              type="button"
+              className="hamburger-btn"
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="suraksha-mobile-menu"
+            >
+              {isMobileMenuOpen ? (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Navigation Drawer */}
+        {isMobileMenuOpen && (
+          <div id="suraksha-mobile-menu" className="mobile-menu-drawer">
+            <nav className="mobile-nav-links" aria-label="Mobile sections">
+              <a href="#kit" onClick={() => setIsMobileMenuOpen(false)}>
+                <span>{t("nav_kit")}</span>
+                <span className="nav-arrow" aria-hidden="true">→</span>
+              </a>
+              <a href="#how" onClick={() => setIsMobileMenuOpen(false)}>
+                <span>{t("nav_how")}</span>
+                <span className="nav-arrow" aria-hidden="true">→</span>
+              </a>
+              <a href="#centres" onClick={() => setIsMobileMenuOpen(false)}>
+                <span>{t("nav_centres")}</span>
+                <span className="nav-arrow" aria-hidden="true">→</span>
+              </a>
+              <a href="#faq" onClick={() => setIsMobileMenuOpen(false)}>
+                <span>{t("nav_faq")}</span>
+                <span className="nav-arrow" aria-hidden="true">→</span>
+              </a>
+
+              <div className="mobile-nav-actions">
+                <button
+                  type="button"
+                  className="mobile-lang-row"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    setLangModalOpen(true);
+                  }}
+                >
+                  <span className="lang-left">
+                    <Icon id="i-world" />
+                    <span>{t("lang_change")}:</span>
+                  </span>
+                  <span className="lang-badge">{LANG_NAMES[currentLang] || "English"}</span>
+                </button>
+
+                <a
+                  href="tel:18008330233"
+                  className="mobile-call-row"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    pushDataLayer({
+                      event: "call_click",
+                      link_label: "mobile_menu_call",
+                      language: currentLang,
+                      product_line: "suraksha",
+                    });
+                  }}
+                >
+                  <Icon id="i-phone" />
+                  <span>1800 833 0233</span>
+                </a>
+
+                <button
+                  type="button"
+                  className="btn btn-red btn-block mobile-cb-btn"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    openCallbackModal("mobile_menu_callback");
+                  }}
+                >
+                  <span>{t("cta_cb")}</span>
+                </button>
+              </div>
+            </nav>
+          </div>
+        )}
       </header>
 
       <main id="main">
