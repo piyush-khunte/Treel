@@ -80,7 +80,7 @@ export function CookieBanner() {
               </h4>
               <p className="text-xs text-slate-300 leading-relaxed">
                 We use strictly necessary cookies to ensure site security and basic functions. With your consent, we also use optional telemetry and analytics cookies to optimize performance. Review our{" "}
-                <Link href="/cookies" className="text-[#D5573B] underline hover:text-[#FAF7F2]">
+                <Link href="/cookies" prefetch={false} className="text-[#D5573B] underline hover:text-[#FAF7F2]">
                   Cookie Policy
                 </Link>.
               </p>

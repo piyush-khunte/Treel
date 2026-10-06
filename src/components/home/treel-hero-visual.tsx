@@ -69,7 +69,6 @@ export function TreelHeroVisual() {
 
   // Track client hydration and reduced-motion preference
   useEffect(() => {
-    setIsClient(true);
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setPrefersReducedMotion(mediaQuery.matches);
 
@@ -78,7 +77,28 @@ export function TreelHeroVisual() {
     };
 
     mediaQuery.addEventListener("change", handleMediaChange);
-    return () => mediaQuery.removeEventListener("change", handleMediaChange);
+
+    // Defer mounting inactive slides and starting rotation until browser idle
+    let cancelTimer: (() => void) | undefined;
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      const idleId = (window as unknown as { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(
+        () => setIsClient(true),
+        { timeout: 3000 }
+      );
+      cancelTimer = () => {
+        if ("cancelIdleCallback" in window) {
+          (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(idleId);
+        }
+      };
+    } else {
+      const timer = setTimeout(() => setIsClient(true), 2500);
+      cancelTimer = () => clearTimeout(timer);
+    }
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaChange);
+      if (cancelTimer) cancelTimer();
+    };
   }, []);
 
   // Web Animations API helper for the backdrop and 3 thin motion lines
@@ -135,6 +155,7 @@ export function TreelHeroVisual() {
     async (nextIndex: number) => {
       if (isBusyRef.current || nextIndex === currentRef.current) return;
       isBusyRef.current = true;
+      setIsClient(true);
 
       if (prefersReducedMotion) {
         setCurrent(nextIndex);
@@ -203,6 +224,7 @@ export function TreelHeroVisual() {
       <Link
         ref={containerRef}
         href={currentSlide.href}
+        prefetch={false}
         aria-label={currentSlide.alt}
         className="group relative block w-full aspect-[1400/1180] overflow-hidden rounded-xl sm:rounded-2xl bg-[#11151A] border border-white/10 hover:border-[#D5573B]/50 transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_30px_rgba(213,87,59,0.06)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_40px_rgba(213,87,59,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5573B] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1419]"
         onMouseEnter={() => setIsPaused(true)}
@@ -223,6 +245,8 @@ export function TreelHeroVisual() {
         {/* Product Slides - Full Image Layer */}
         {SLIDES.map((slide, index) => {
           const isActive = index === current;
+          // Defer mounting inactive slides until client hydration so initial paint only loads the critical LCP image
+          if (index !== 0 && !isClient) return null;
           return (
             <div
               key={slide.id}
@@ -239,7 +263,8 @@ export function TreelHeroVisual() {
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 620px"
                 priority={index === 0}
-                decoding="async"
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding={index === 0 ? "sync" : "async"}
                 className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.012]"
               />
             </div>
@@ -250,7 +275,7 @@ export function TreelHeroVisual() {
         {!prefersReducedMotion && (
           <div
             ref={backdropRef}
-            className="absolute inset-0 bg-[#11151A] pointer-events-none z-[8] will-change-transform"
+            className="absolute inset-0 bg-[#11151A] pointer-events-none z-[8]"
             style={{
               transform: "translateX(-120%)",
             }}
@@ -270,7 +295,7 @@ export function TreelHeroVisual() {
                 ref={(el) => {
                   barRefs.current[index] = el;
                 }}
-                className="w-[76%] sm:w-[78%] xl:w-[80%] h-[32px] sm:h-[38px] xl:h-[42px] rounded-[4px] will-change-transform"
+                className="w-[76%] sm:w-[78%] xl:w-[80%] h-[32px] sm:h-[38px] xl:h-[42px] rounded-[4px]"
                 style={{
                   backgroundColor: color,
                   transform: "translateX(-120%)",

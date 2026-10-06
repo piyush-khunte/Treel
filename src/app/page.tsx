@@ -61,14 +61,12 @@ export default function HomePage() {
               </p>
 
               <div className="flex flex-wrap items-center gap-4">
-                <Link
-                  href="/vehicle-digital-twin"
+                <Link prefetch={false} href="/vehicle-digital-twin"
                   className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all group shadow-sm"
                 >
                   Explore the platform <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                 </Link>
-                <Link
-                  href="/research/roi-fleet-intelligence"
+                <Link prefetch={false} href="/research/roi-fleet-intelligence"
                   className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] border border-[#94A3B8]/30 hover:border-[#D5573B] text-[#FAF7F2] font-medium text-sm transition-all"
                 >
                   Read the ROI paper
@@ -125,8 +123,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {/* Card 1: TMIP */}
-            <Link
-              href="/tmip"
+            <Link prefetch={false} href="/tmip"
               className="group p-8 sm:p-10 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
             >
               <div className="space-y-6">
@@ -157,8 +154,7 @@ export default function HomePage() {
             </Link>
 
             {/* Card 2: Suraksha */}
-            <Link
-              href="/suraksha"
+            <Link prefetch={false} href="/suraksha"
               className="group p-8 sm:p-10 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
             >
               <div className="space-y-6">
@@ -187,8 +183,7 @@ export default function HomePage() {
             </Link>
 
             {/* Card 3: Personal TPMS */}
-            <Link
-              href="/personal"
+            <Link prefetch={false} href="/personal"
               className="group p-8 sm:p-10 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
             >
               <div className="space-y-6">
@@ -237,14 +232,12 @@ export default function HomePage() {
                 Treel started with a tyre sensor. Today the same architecture operates as a full Vehicle Digital Twin across two hundred enterprise customers. The category has moved from monitoring components to reasoning about the vehicle. Treel is the company that moved it.
               </p>
               <div className="flex flex-wrap items-center gap-4 pt-2">
-                <Link
-                  href="/founder-note"
+                <Link prefetch={false} href="/founder-note"
                   className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all group shadow-sm"
                 >
                   Read the founder note <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                 </Link>
-                <Link
-                  href="/leadership"
+                <Link prefetch={false} href="/leadership"
                   className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] border border-[#94A3B8]/30 hover:border-[#D5573B] text-[#FAF7F2] font-medium text-sm transition-all"
                 >
                   Meet the team

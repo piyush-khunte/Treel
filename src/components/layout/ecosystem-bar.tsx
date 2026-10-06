@@ -28,8 +28,7 @@ export function EcosystemBar() {
         {/* Left: Ecosystem Links */}
         <div className="flex items-center space-x-2.5 sm:space-x-3.5 xl:space-x-6 overflow-x-auto md:overflow-x-visible no-scrollbar py-0.5">
           {/* Treel Corporate */}
-          <Link
-            href="/"
+          <Link prefetch={false} href="/"
             className={`transition-colors whitespace-nowrap font-medium text-xs ${
               isCorporate
                 ? "text-[#D5573B] font-semibold"
@@ -42,8 +41,7 @@ export function EcosystemBar() {
           <span className="text-slate-600">•</span>
 
           {/* TMIP Enterprise */}
-          <Link
-            href="/tmip"
+          <Link prefetch={false} href="/tmip"
             className={`transition-colors whitespace-nowrap flex items-center gap-1.5 font-medium text-xs ${
               isTmip
                 ? "text-[#00E5FF] font-semibold"
@@ -56,8 +54,7 @@ export function EcosystemBar() {
           <span className="text-slate-600">•</span>
 
           {/* Suraksha Fleet */}
-          <Link
-            href="/suraksha"
+          <Link prefetch={false} href="/suraksha"
             className={`transition-colors whitespace-nowrap flex items-center gap-1.5 font-medium text-xs ${
               isSuraksha
                 ? "text-[#F59E0B] font-semibold"
@@ -70,8 +67,7 @@ export function EcosystemBar() {
           <span className="text-slate-600">•</span>
 
           {/* Personal TPMS */}
-          <Link
-            href="/personal"
+          <Link prefetch={false} href="/personal"
             className={`transition-colors whitespace-nowrap flex items-center gap-1.5 font-medium text-xs ${
               isPersonal
                 ? "text-[#60A5FA] font-semibold"
@@ -84,8 +80,7 @@ export function EcosystemBar() {
           <span className="text-slate-600">•</span>
 
           {/* OTR TPMS */}
-          <Link
-            href="/products/otr-tpms"
+          <Link prefetch={false} href="/products/otr-tpms"
             className={`transition-colors whitespace-nowrap flex items-center gap-1.5 font-medium text-xs ${
               isOtr
                 ? "text-[#3B82F6] font-semibold"
@@ -98,7 +93,6 @@ export function EcosystemBar() {
                 alt="OTR TPMS"
                 width={20}
                 height={20}
-                unoptimized
                 className="w-5 h-5 max-w-none scale-125 object-contain"
               />
             </span>
@@ -108,8 +102,7 @@ export function EcosystemBar() {
 
         {/* Right: Parent Company & Support */}
         <div className="hidden md:flex items-center text-slate-300 text-xs shrink-0">
-          <Link
-            href="/contact"
+          <Link prefetch={false} href="/contact"
             className="hover:text-[#D5573B] font-medium text-slate-300 transition-colors whitespace-nowrap"
           >
             Support & Inquiries

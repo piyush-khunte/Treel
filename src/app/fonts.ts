@@ -26,6 +26,7 @@ export const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
   display: "swap",
+  preload: false,
 });
 
 export const ibmPlexSans = IBM_Plex_Sans({
@@ -33,12 +34,14 @@ export const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
   variable: "--font-ibm-plex-sans",
   display: "swap",
+  preload: false,
 });
 
 export const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains-mono",
   display: "swap",
+  preload: false,
 });
 
 export const anton = Anton({
@@ -46,22 +49,26 @@ export const anton = Anton({
   subsets: ["latin"],
   variable: "--font-anton",
   display: "swap",
+  preload: false,
 });
 
 export const rubik = Rubik({
   subsets: ["latin"],
   variable: "--font-rubik",
   display: "swap",
+  preload: false,
 });
 
 export const baloo2 = Baloo_2({
   subsets: ["latin", "devanagari"],
   variable: "--font-baloo2",
   display: "swap",
+  preload: false,
 });
 
 export const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-manrope",
   display: "swap",
+  preload: false,
 });

@@ -140,22 +140,22 @@ export function Footer({ variant, className }: FooterProps) {
             </h5>
             <ul className="space-y-2">
               <li>
-                <Link href="/tmip" className={theme.link}>
+                <Link prefetch={false} href="/tmip" className={theme.link}>
                   TMIP Enterprise
                 </Link>
               </li>
               <li>
-                <Link href="/suraksha" className={theme.link}>
+                <Link prefetch={false} href="/suraksha" className={theme.link}>
                   Suraksha Fleet
                 </Link>
               </li>
               <li>
-                <Link href="/personal" className={theme.link}>
+                <Link prefetch={false} href="/personal" className={theme.link}>
                   Personal TPMS
                 </Link>
               </li>
               <li>
-                <Link href="/products" className={theme.link}>
+                <Link prefetch={false} href="/products" className={theme.link}>
                   Products Overview
                 </Link>
               </li>
@@ -169,22 +169,22 @@ export function Footer({ variant, className }: FooterProps) {
             </h5>
             <ul className="space-y-2">
               <li>
-                <Link href="/technology" className={theme.link}>
+                <Link prefetch={false} href="/technology" className={theme.link}>
                   Platform Architecture
                 </Link>
               </li>
               <li>
-                <Link href="/vehicle-digital-twin" className={theme.link}>
+                <Link prefetch={false} href="/vehicle-digital-twin" className={theme.link}>
                   Vehicle Digital Twin
                 </Link>
               </li>
               <li>
-                <Link href="/data-infrastructure" className={theme.link}>
+                <Link prefetch={false} href="/data-infrastructure" className={theme.link}>
                   Data Infrastructure
                 </Link>
               </li>
               <li>
-                <Link href="/mobility-intelligence" className={theme.link}>
+                <Link prefetch={false} href="/mobility-intelligence" className={theme.link}>
                   Mobility Intelligence
                 </Link>
               </li>
@@ -198,32 +198,32 @@ export function Footer({ variant, className }: FooterProps) {
             </h5>
             <ul className="space-y-2">
               <li>
-                <Link href="/research" className={theme.link}>
+                <Link prefetch={false} href="/research" className={theme.link}>
                   Research Papers
                 </Link>
               </li>
               <li>
-                <Link href="/insights" className={theme.link}>
+                <Link prefetch={false} href="/insights" className={theme.link}>
                   Insights &amp; Articles
                 </Link>
               </li>
               <li>
-                <Link href="/press" className={theme.link}>
+                <Link prefetch={false} href="/press" className={theme.link}>
                   Press &amp; Media
                 </Link>
               </li>
               <li>
-                <Link href="/events" className={theme.link}>
+                <Link prefetch={false} href="/events" className={theme.link}>
                   Events &amp; Keynotes
                 </Link>
               </li>
               <li>
-                <Link href="/annual-reports" className={theme.link}>
+                <Link prefetch={false} href="/annual-reports" className={theme.link}>
                   Annual Reports
                 </Link>
               </li>
               <li>
-                <Link href="/notices" className={theme.link}>
+                <Link prefetch={false} href="/notices" className={theme.link}>
                   Notice Board
                 </Link>
               </li>
@@ -237,33 +237,33 @@ export function Footer({ variant, className }: FooterProps) {
             </h5>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className={theme.link}>
+                <Link prefetch={false} href="/about" className={theme.link}>
                   About Treel
                 </Link>
               </li>
               <li>
-                <Link href="/leadership" className={theme.link}>
+                <Link prefetch={false} href="/leadership" className={theme.link}>
                   Leadership
                 </Link>
               </li>
               <li>
-                <Link href="/why-treel" className={theme.link}>
+                <Link prefetch={false} href="/why-treel" className={theme.link}>
                   Why Treel
                 </Link>
               </li>
               <li>
-                <Link href="/global-presence" className={theme.link}>
+                <Link prefetch={false} href="/global-presence" className={theme.link}>
                   Global Presence / Export
                 </Link>
               </li>
 
               <li>
-                <Link href="/careers" className={theme.link}>
+                <Link prefetch={false} href="/careers" className={theme.link}>
                   Careers
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className={theme.link}>
+                <Link prefetch={false} href="/contact" className={theme.link}>
                   Contact Us
                 </Link>
               </li>
@@ -280,28 +280,28 @@ export function Footer({ variant, className }: FooterProps) {
 </p>
           </div>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs">
-            <Link href="/privacy" className={theme.bottomLink}>
+            <Link prefetch={false} href="/privacy" className={theme.bottomLink}>
               Privacy Policy
             </Link>
-            <Link href="/terms" className={theme.bottomLink}>
+            <Link prefetch={false} href="/terms" className={theme.bottomLink}>
               Terms
             </Link>
-            <Link href="/cookies" className={theme.bottomLink}>
+            <Link prefetch={false} href="/cookies" className={theme.bottomLink}>
               Cookie Policy
             </Link>
-            <Link href="/accessibility" className={theme.bottomLink}>
+            <Link prefetch={false} href="/accessibility" className={theme.bottomLink}>
               Accessibility
             </Link>
-            <Link href="/gdpr" className={theme.bottomLink}>
+            <Link prefetch={false} href="/gdpr" className={theme.bottomLink}>
               GDPR Compliance
             </Link>
-            <Link href="/personal/returns" className={theme.bottomLink}>
+            <Link prefetch={false} href="/personal/returns" className={theme.bottomLink}>
               Returns Policy
             </Link>
-            <Link href="/personal/shipping" className={theme.bottomLink}>
+            <Link prefetch={false} href="/personal/shipping" className={theme.bottomLink}>
               Shipping Policy
             </Link>
-            <Link href="/personal/refunds" className={theme.bottomLink}>
+            <Link prefetch={false} href="/personal/refunds" className={theme.bottomLink}>
               Refunds Policy
             </Link>
           </div>

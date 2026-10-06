@@ -1,6 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  compress: true,
+  experimental: {
+    optimizePackageImports: ["lucide-react"],
+  },
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
   async redirects() {
     return [
       // Old landing page 301 permanent redirects to new canonical URLs
