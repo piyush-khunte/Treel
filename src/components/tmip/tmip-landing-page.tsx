@@ -2391,7 +2391,7 @@ export function TmipLandingPage() {
             <details>
               <summary>Who is behind TMIP?</summary>
               <p>
-                TMIP is built by Treel Mobility Solutions, a JK Tyre product.
+                TMIP is built by Treel Mobility Solutions.
                 Treel is ARAI and ISO 9001:2015 certified, holds patents in
                 India, the US and the EU, and has more than 68,000 vehicles
                 under management.
