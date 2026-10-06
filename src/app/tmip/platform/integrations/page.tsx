@@ -118,7 +118,7 @@ export default function TmipPlatformIntegrationsPage() {
             </div>
 
             <h1 className="font-space-grotesk text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F1F5F9] leading-[1.15]">
-              API-first architecture.
+               Architecture.
             </h1>
 
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-ibm-plex max-w-3xl">
@@ -131,12 +131,6 @@ export default function TmipPlatformIntegrationsPage() {
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[3px] font-semibold text-sm transition-all shadow-md bg-[#3B82F6] text-white hover:bg-[#2563EB]"
               >
                 Book a demo <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/tmip/api"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[3px] font-semibold text-sm transition-all border border-slate-400/20 text-[#F1F5F9] hover:bg-white/5 hover:border-slate-400/40"
-              >
-                See the API overview <Code className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -274,30 +268,7 @@ export default function TmipPlatformIntegrationsPage() {
         </div>
       </section>
 
-      {/* Section 4: API documentation */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#080E1E]/50">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <div className="font-jetbrains text-xs uppercase tracking-widest text-[#3B82F6] font-semibold mb-2">
-              DEVELOPER HUB
-            </div>
-            <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
-              For developer teams.
-            </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex">
-              If your team wants to evaluate the API before committing to a demo, see our public API introduction.
-            </p>
-            <div className="pt-2">
-              <Link
-                href="/tmip/api"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[3px] font-semibold text-sm transition-all border border-blue-500/30 text-[#3B82F6] bg-blue-500/10 hover:bg-blue-500/20"
-              >
-                See the API overview <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* CTA Band */}
       <section className="relative z-10 py-20 bg-[#080E1E]">

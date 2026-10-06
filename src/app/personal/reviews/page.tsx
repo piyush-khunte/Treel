@@ -15,10 +15,14 @@ import {
 
 export default function PersonalReviewsPage() {
   const [activeFilter, setActiveFilter] = useState("All");
-  const [helpfulVotes, setHelpfulVotes] = useState<Record<number, number>>({ 0: 42, 1: 29, 2: 38 });
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3;
+  const [helpfulVotes, setHelpfulVotes] = useState<Record<number, number>>({ 
+    0: 42, 1: 29, 2: 38, 3: 19, 4: 25, 5: 31, 6: 14, 7: 22, 8: 35 
+  });
   const [voted, setVoted] = useState<Record<number, boolean>>({});
 
-  const reviews = [
+  const allReviews = [
     {
       stars: 5,
       title: "Life saving tool for Indian roads",
@@ -45,6 +49,60 @@ export default function PersonalReviewsPage() {
       date: "Purchased January 2026",
       vehicle: "Hyundai Creta & Maruti Swift",
       verified: true
+    },
+    {
+      stars: 5,
+      title: "Saved our family trip from a dangerous tyre blowout",
+      body: "Driving on Samruddhi Expressway at 120 km/h during hot afternoon. The tyre temperature alert sounded in the cab. Stopped and found the rear left tyre was at 78°C due to underinflation. Saved us from a catastrophic tyre failure.",
+      name: "Suresh Menon",
+      date: "Purchased April 2026",
+      vehicle: "Tata Safari",
+      verified: true
+    },
+    {
+      stars: 4,
+      title: "Very accurate readings compared to calibrated gauges",
+      body: "Cross-checked the Treel BLE sensor readings with my German analogue tyre pressure gauge. Deviation is less than 0.5 PSI. The battery life indicator in the iOS app is very reassuring.",
+      name: "Vikram Sengupta",
+      date: "Purchased March 2026",
+      vehicle: "Skoda Kushaq",
+      verified: true
+    },
+    {
+      stars: 5,
+      title: "Seamless Apple Watch alerts while driving",
+      body: "Having tyre pressure notifications delivered directly as haptic taps on my wrist without glancing at my phone is a game changer for expressway driving. Highly recommended.",
+      name: "Ananya Deshmukh",
+      date: "Purchased February 2026",
+      vehicle: "Kia Seltos",
+      verified: true
+    },
+    {
+      stars: 5,
+      title: "Zero false alarms and quick pairing",
+      body: "Pairing the 4 valve sensors took barely 5 minutes in my garage. Zero Bluetooth dropouts even in heavy city signal interference. Excellent build quality.",
+      name: "Rohit Bansal",
+      date: "Purchased January 2026",
+      vehicle: "Toyota Fortuner",
+      verified: true
+    },
+    {
+      stars: 4,
+      title: "Worth the investment for highway commuters",
+      body: "I commute 80 km every day on Delhi-NCR expressways. The continuous pressure graphing in the app helps me track slow seepage over weeks. Very satisfied with customer service.",
+      name: "Gaurav Chopra",
+      date: "Purchased December 2025",
+      vehicle: "Volkswagen Virtus",
+      verified: true
+    },
+    {
+      stars: 5,
+      title: "Essential safety accessory for every car owner",
+      body: "Simple to fit with the anti-theft hex lock nuts provided in the box. Now I never have to trust unreliable petrol bunk air gauges ever again.",
+      name: "Kavita R.",
+      date: "Purchased November 2025",
+      vehicle: "Maruti Brezza",
+      verified: true
     }
   ];
 
@@ -54,6 +112,24 @@ export default function PersonalReviewsPage() {
       setVoted(prev => ({ ...prev, [idx]: true }));
     }
   };
+
+  const handleFilterChange = (chip: string) => {
+    setActiveFilter(chip);
+    setCurrentPage(1);
+  };
+
+  const filteredReviews = allReviews.filter((rev) => {
+    if (activeFilter === "5 stars") return rev.stars === 5;
+    if (activeFilter === "4 stars") return rev.stars === 4;
+    if (activeFilter === "Verified purchase") return rev.verified;
+    return true;
+  });
+
+  const totalPages = Math.ceil(filteredReviews.length / itemsPerPage) || 1;
+  const paginatedReviews = filteredReviews.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const filterChips = ["All", "5 stars", "4 stars", "Verified purchase", "Most helpful", "Most recent"];
 
@@ -153,7 +229,7 @@ export default function PersonalReviewsPage() {
             {filterChips.map((chip, idx) => (
               <button
                 key={idx}
-                onClick={() => setActiveFilter(chip)}
+                onClick={() => handleFilterChange(chip)}
                 className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all shrink-0 cursor-pointer ${
                   activeFilter === chip
                     ? "bg-[#2563EB] text-white shadow-sm"
@@ -167,58 +243,88 @@ export default function PersonalReviewsPage() {
 
           {/* Reviews Grid */}
           <div className="space-y-6">
-            {reviews.map((rev, idx) => (
-              <div key={idx} className="p-8 sm:p-10 rounded-3xl bg-white border border-black/[0.06] shadow-sm space-y-4 hover:border-[#2563EB]/30 transition-all">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <div className="flex items-center gap-3">
-                    <div className="flex text-[#F59E0B]">
-                      {[...Array(rev.stars)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-current" />
-                      ))}
+            {paginatedReviews.map((rev, idx) => {
+              const globalIdx = (currentPage - 1) * itemsPerPage + idx;
+              return (
+                <div key={globalIdx} className="p-8 sm:p-10 rounded-3xl bg-white border border-black/[0.06] shadow-sm space-y-4 hover:border-[#2563EB]/30 transition-all">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div className="flex items-center gap-3">
+                      <div className="flex text-[#F59E0B]">
+                        {[...Array(rev.stars)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-current" />
+                        ))}
+                      </div>
+                      {rev.verified && (
+                        <span className="text-[11px] font-bold text-[#10B981] bg-[#10B981]/10 border border-[#10B981]/20 px-3 py-0.5 rounded-full flex items-center gap-1">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981]" /> Verified Purchase
+                        </span>
+                      )}
                     </div>
-                    {rev.verified && (
-                      <span className="text-[11px] font-bold text-[#10B981] bg-[#10B981]/10 border border-[#10B981]/20 px-3 py-0.5 rounded-full flex items-center gap-1">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981]" /> Verified Purchase
-                      </span>
-                    )}
-                  </div>
-                  <div className="text-xs text-[#6B7280] font-medium">{rev.date}</div>
-                </div>
-
-                <h3 className="text-xl font-bold text-[#111827]">"{rev.title}"</h3>
-                <p className="text-sm text-[#4B5563] leading-relaxed">{rev.body}</p>
-
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-black/[0.06]">
-                  <div className="text-xs font-bold text-[#111827]">
-                    {rev.name} · <span className="font-normal text-[#6B7280]">{rev.vehicle}</span>
+                    <div className="text-xs text-[#6B7280] font-medium">{rev.date}</div>
                   </div>
 
-                  <div className="flex items-center gap-3 text-xs text-[#6B7280]">
-                    <span>Was this review helpful?</span>
-                    <button
-                      onClick={() => handleVote(idx)}
-                      className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
-                        voted[idx] 
-                          ? "bg-[#2563EB]/10 border-[#2563EB]/20 text-[#2563EB]" 
-                          : "border-black/[0.08] text-[#4B5563] hover:bg-[#F3F4F6]"
-                      }`}
-                    >
-                      <ThumbsUp className="w-3.5 h-3.5" />
-                      <span>{helpfulVotes[idx] || 0}</span>
-                    </button>
+                  <h3 className="text-xl font-bold text-[#111827]">"{rev.title}"</h3>
+                  <p className="text-sm text-[#4B5563] leading-relaxed">{rev.body}</p>
+
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-black/[0.06]">
+                    <div className="text-xs font-bold text-[#111827]">
+                      {rev.name} · <span className="font-normal text-[#6B7280]">{rev.vehicle}</span>
+                    </div>
+
+                    <div className="flex items-center gap-3 text-xs text-[#6B7280]">
+                      <span>Was this review helpful?</span>
+                      <button
+                        onClick={() => handleVote(globalIdx)}
+                        className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border text-xs font-bold transition-colors cursor-pointer ${
+                          voted[globalIdx] 
+                            ? "bg-[#2563EB]/10 border-[#2563EB]/20 text-[#2563EB]" 
+                            : "border-black/[0.08] text-[#4B5563] hover:bg-[#F3F4F6]"
+                        }`}
+                      >
+                        <ThumbsUp className="w-3.5 h-3.5" />
+                        <span>{helpfulVotes[globalIdx] || 0}</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Pagination */}
-          <div className="flex items-center justify-center gap-2 pt-6">
-            <button className="w-10 h-10 rounded-full bg-[#2563EB] text-white font-bold text-xs shadow-xs">1</button>
-            <button className="w-10 h-10 rounded-full bg-white border border-black/[0.08] text-[#4B5563] font-bold text-xs hover:bg-[#F3F4F6]">2</button>
-            <button className="w-10 h-10 rounded-full bg-white border border-black/[0.08] text-[#4B5563] font-bold text-xs hover:bg-[#F3F4F6]">3</button>
-            <button className="px-5 h-10 rounded-full bg-white border border-black/[0.08] text-[#4B5563] font-bold text-xs hover:bg-[#F3F4F6]">Next →</button>
-          </div>
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-2 pt-6">
+              <button
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                className="px-4 h-10 rounded-full bg-white border border-black/[0.08] text-[#4B5563] font-bold text-xs hover:bg-[#F3F4F6] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+              >
+                ← Prev
+              </button>
+
+              {[...Array(totalPages)].map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentPage(i + 1)}
+                  className={`w-10 h-10 rounded-full font-bold text-xs transition-all cursor-pointer ${
+                    currentPage === i + 1
+                      ? "bg-[#2563EB] text-white shadow-xs"
+                      : "bg-white border border-black/[0.08] text-[#4B5563] hover:bg-[#F3F4F6]"
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              ))}
+
+              <button
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                className="px-5 h-10 rounded-full bg-white border border-black/[0.08] text-[#4B5563] font-bold text-xs hover:bg-[#F3F4F6] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+              >
+                Next →
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

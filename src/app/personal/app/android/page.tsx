@@ -6,7 +6,7 @@ import { Play, ArrowRight, ExternalLink } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export default function PersonalAppAndroidPage() {
-  const playStoreUrl = "https://play.google.com/store/apps/details?id=com.treel.smarttyre";
+  const playStoreUrl = "https://play.google.com/store/apps/details?id=com.treel.android";
 
   useEffect(() => {
     const timer = setTimeout(() => {

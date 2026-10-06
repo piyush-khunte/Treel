@@ -132,24 +132,32 @@ export default function PersonalBlogPage() {
       {activeCategory === "All" && !searchQuery.trim() && (
         <section className="py-16 border-b border-black/[0.06] bg-white">
           <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-            <div className="p-8 sm:p-12 rounded-[32px] bg-[#F9FAFB] border border-black/[0.06] hover:border-[#2563EB]/30 transition-all space-y-6">
+            <Link
+              href={`/personal/blog/${featuredArticle.slug}`}
+              className="p-8 sm:p-12 rounded-[32px] bg-[#F9FAFB] border border-black/[0.06] hover:border-[#2563EB]/40 hover:shadow-lg transition-all space-y-6 block group"
+            >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2563EB]/10 text-[#2563EB] font-bold text-xs uppercase tracking-wider">
                 FEATURED ARTICLE
               </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#111827] tracking-tight">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#111827] group-hover:text-[#2563EB] transition-colors tracking-tight">
                 {featuredArticle.title}
               </h2>
               <p className="text-base sm:text-lg text-[#4B5563] max-w-3xl leading-relaxed">
                 {featuredArticle.excerpt}
               </p>
-              <div className="flex flex-wrap items-center gap-4 text-xs text-[#6B7280] font-medium pt-2">
-                <span>By {featuredArticle.author}</span>
-                <span>•</span>
-                <span>{featuredArticle.date}</span>
-                <span>•</span>
-                <span>{featuredArticle.readTime}</span>
+              <div className="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-black/[0.06]">
+                <div className="flex flex-wrap items-center gap-4 text-xs text-[#6B7280] font-medium">
+                  <span>By {featuredArticle.author}</span>
+                  <span>•</span>
+                  <span>{featuredArticle.date}</span>
+                  <span>•</span>
+                  <span>{featuredArticle.readTime}</span>
+                </div>
+                <span className="font-bold text-xs uppercase tracking-wider text-[#2563EB] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  Read article <ArrowRight className="w-4 h-4" />
+                </span>
               </div>
-            </div>
+            </Link>
           </div>
         </section>
       )}
@@ -177,9 +185,10 @@ export default function PersonalBlogPage() {
           {/* Grid of articles */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredArticles.map((art, idx) => (
-              <div
+              <Link
                 key={idx}
-                className="p-8 rounded-3xl bg-white border border-black/[0.06] shadow-sm hover:border-[#2563EB]/30 hover:shadow-md transition-all flex flex-col justify-between group"
+                href={`/personal/blog/${art.slug}`}
+                className="p-8 rounded-3xl bg-white border border-black/[0.06] shadow-sm hover:border-[#2563EB]/40 hover:shadow-md transition-all flex flex-col justify-between group block"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between text-xs">
@@ -202,7 +211,7 @@ export default function PersonalBlogPage() {
                     Read article <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

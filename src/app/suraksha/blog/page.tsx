@@ -8,14 +8,9 @@ import {
   ArrowRight, 
   Calendar, 
   User, 
-  Rss, 
   Filter, 
-  Share2, 
-  CheckCircle2,
   ChevronLeft,
-  ChevronRight,
-  Info,
-  Sparkles
+  ChevronRight
 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
@@ -291,9 +286,6 @@ export default function SurakshaBlogPage() {
                 <span className="px-2.5 py-0.5 bg-[#451A03] text-[#FEF3C7] text-xs font-bold uppercase rounded-[4px]">
                   Safety
                 </span>
-                <span className="text-xs font-semibold text-[#78350F] bg-[#FFFBEB] px-2 py-0.5 rounded border border-[#451A03]/15">
-                  Editorial Sample Template
-                </span>
               </div>
 
               <h2 className="font-anton text-3xl sm:text-4xl lg:text-5xl uppercase tracking-normal text-[#451A03] leading-tight">
@@ -420,13 +412,6 @@ export default function SurakshaBlogPage() {
               </button>
             </div>
           )}
-
-          <div className="p-4 rounded-lg bg-[#FFFBEB] border border-[#451A03]/15 text-xs text-[#78350F] flex items-center gap-2">
-            <Info className="w-4 h-4 text-[#EA580C] shrink-0" />
-            <span>
-              <strong>Note:</strong> Blog cards contain seed topics specified in content.md. Full in-depth editorial text will be updated dynamically through the CMS.
-            </span>
-          </div>
         </div>
       </section>
 
@@ -450,11 +435,6 @@ export default function SurakshaBlogPage() {
                 title="Subscribe on WhatsApp"
                 ariaLabel="Subscribe on WhatsApp"
               />
-            </div>
-
-            <div className="pt-4 border-t border-[#451A03]/10 flex items-center gap-2 text-xs font-mono text-[#78350F]">
-              <Rss className="w-3.5 h-3.5 text-[#EA580C]" />
-              <span>Available via RSS: <span className="underline font-bold">/suraksha/blog/rss.xml</span></span>
             </div>
           </div>
         </div>
@@ -528,9 +508,6 @@ export default function SurakshaBlogPage() {
                 </p>
               </div>
 
-              <p className="text-xs text-[#78350F]/80 italic">
-                * Seed editorial topic from content.md. Full long-form publication body will be syndicated from Treel editorial desk.
-              </p>
             </div>
 
             <div className="flex items-center justify-between pt-2 border-t border-[#451A03]/10">

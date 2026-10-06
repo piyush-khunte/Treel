@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowRight, CheckCircle2, ShieldCheck, Activity, HelpCircle, ChevronRight, MessageSquare, PhoneCall, Check } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
+import { SavingsCalculator } from "@/components/suraksha/savings-calculator";
 
 export const metadata: Metadata = {
   title: "Savings  \u00b7  Nine-Month Payback on Suraksha Kit  \u00b7  ROI Calculator",
@@ -137,104 +138,16 @@ export default function SurakshaSavingsPage() {
                 CALCULATE YOUR TRUCK'S SAVINGS
               </h2>
               <p className="text-[#78350F] text-base mt-2 font-medium">
-                Calculator inputs:
+                Adjust the parameters below to see estimated diesel savings, tyre life extensions, and exact payback timing for your commercial vehicle.
               </p>
             </div>
 
-            <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-4">
-              <ul className="space-y-2.5 text-sm text-[#451A03]">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#DC2626] font-bold">•</span>
-                  <span><strong>Truck configuration (dropdown):</strong> 6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, 16-wheeler, 18-wheeler</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#DC2626] font-bold">•</span>
-                  <span><strong>Monthly kilometres (number):</strong> typical 8,000-25,000 km</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#DC2626] font-bold">•</span>
-                  <span><strong>Current fuel expense per month (₹):</strong> typical 60,000-1,50,000</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#DC2626] font-bold">•</span>
-                  <span><strong>Current tyre expense per year (₹):</strong> typical 60,000-1,50,000</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#DC2626] font-bold">•</span>
-                  <span><strong>Roadside events per year (estimate):</strong> 0, 1, 2, 3, 4+</span>
-                </li>
-              </ul>
+            <SavingsCalculator />
 
-              <div className="pt-3 border-t border-[#451A03]/10 flex flex-wrap items-center gap-4">
-                <button className="px-6 py-3 rounded-[4px] font-rubik font-bold text-sm shadow-md bg-[#DC2626] text-[#FEF3C7] hover:bg-[#B91C1C] transition-all">
-                  Calculate my payback →
-                </button>
-                <Link
-                  href="/suraksha/emi"
-                  className="px-6 py-3 rounded-[4px] font-rubik font-bold text-sm border-2 border-[#DC2626] text-[#DC2626] bg-[#FEF3C7] hover:bg-[#DC2626]/10 transition-all"
-                >
-                  EMI Options →
-                </Link>
-              </div>
-            </div>
-
-            <div>
-              <div className="text-sm font-semibold text-[#78350F] mb-4">
-                Results section: Result cards (post-calculation):
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 shadow-sm space-y-2">
-                  <h3 className="font-anton uppercase tracking-wide text-lg text-[#451A03]">Kit Configuration</h3>
-                  <p className="font-anton text-2xl text-[#DC2626]">[Selected Axle Plan]</p>
-                  <div className="pt-2 font-bold text-xs text-[#DC2626] flex items-center gap-1">
-                    Learn more <ChevronRight className="w-3.5 h-3.5" />
-                  </div>
-                </div>
-
-                <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 shadow-sm space-y-2">
-                  <h3 className="font-anton uppercase tracking-wide text-lg text-[#451A03]">Estimated monthly fuel savings</h3>
-                  <p className="font-anton text-2xl text-[#DC2626]">₹[amount]</p>
-                  <div className="pt-2 font-bold text-xs text-[#DC2626] flex items-center gap-1">
-                    Learn more <ChevronRight className="w-3.5 h-3.5" />
-                  </div>
-                </div>
-
-                <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 shadow-sm space-y-2">
-                  <h3 className="font-anton uppercase tracking-wide text-lg text-[#451A03]">Estimated monthly tyre life savings</h3>
-                  <p className="font-anton text-2xl text-[#DC2626]">₹[amount]</p>
-                  <div className="pt-2 font-bold text-xs text-[#DC2626] flex items-center gap-1">
-                    Learn more <ChevronRight className="w-3.5 h-3.5" />
-                  </div>
-                </div>
-
-                <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 shadow-sm space-y-2">
-                  <h3 className="font-anton uppercase tracking-wide text-lg text-[#451A03]">Estimated annual downtime avoidance</h3>
-                  <p className="font-anton text-2xl text-[#DC2626]">₹[amount]</p>
-                  <div className="pt-2 font-bold text-xs text-[#DC2626] flex items-center gap-1">
-                    Learn more <ChevronRight className="w-3.5 h-3.5" />
-                  </div>
-                </div>
-
-                <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#DC2626] shadow-sm space-y-2">
-                  <h3 className="font-anton uppercase tracking-wide text-lg text-[#DC2626]">**Payback period</h3>
-                  <p className="font-anton text-2xl text-[#DC2626]">[X] months**</p>
-                  <div className="pt-2 font-bold text-xs text-[#DC2626] flex items-center gap-1">
-                    Learn more <ChevronRight className="w-3.5 h-3.5" />
-                  </div>
-                </div>
-
-                <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 shadow-sm space-y-2">
-                  <h3 className="font-anton uppercase tracking-wide text-lg text-[#451A03]">3-year net savings</h3>
-                  <p className="font-anton text-2xl text-[#0891B2]">₹[amount]</p>
-                  <div className="pt-2 font-bold text-xs text-[#0891B2] flex items-center gap-1">
-                    Learn more <ChevronRight className="w-3.5 h-3.5" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-2">
-              <div className="text-xs font-semibold text-[#78350F] mb-3">Below results:</div>
+            <div className="pt-4 flex items-center justify-between flex-wrap gap-4 border-t border-[#451A03]/10">
+              <span className="text-sm font-semibold text-[#78350F]">
+                Ready to install at an authorized Truck Wheels hub?
+              </span>
               <Link
                 href="/suraksha/centres"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-rubik font-bold text-base transition-all shadow-md bg-[#DC2626] text-[#FEF3C7] hover:bg-[#B91C1C]"

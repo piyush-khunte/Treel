@@ -128,12 +128,6 @@ const featureCards = [
     icon: Layers,
   },
   {
-    title: "API",
-    desc: "Developer-first developer portal with OpenAPI specs, webhook management, and programmatic vehicle query endpoints.",
-    href: "/tmip/api",
-    icon: Code2,
-  },
-  {
     title: "Security & compliance",
     desc: "Enterprise data governance, AES-256 encryption, role-based access control, and DPDP Act 2023 compliance.",
     href: "/tmip/security",

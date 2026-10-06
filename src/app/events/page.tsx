@@ -90,9 +90,31 @@ export default function EventsPage() {
     e.preventDefault();
     if (!email || !email.includes("@")) return;
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 600));
-    setSubmitting(false);
-    setSubscribed(true);
+    try {
+      await fetch("/api/tmip/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          full_name: "Events Subscriber",
+          work_email: email,
+          mobile_number: "N/A",
+          company: "Events Subscriber",
+          lead_source: "Events Page Subscription",
+          form_id: "events-subscription",
+          page_path: "/events",
+          landing_page: typeof window !== "undefined" ? window.location.href : "https://treel.in/events",
+          attribution_metadata: {
+            type: "events_subscriber",
+            newsletter: true,
+          }
+        }),
+      });
+    } catch (err) {
+      console.warn("Event subscription request fallback", err);
+    } finally {
+      setSubmitting(false);
+      setSubscribed(true);
+    }
   };
 
   return (

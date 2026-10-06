@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Rss, Layers, Clock, FileText } from "lucide-react";
+import { ArrowRight, Layers, Clock, FileText } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { InsightsClient } from "./insights-client";
 
@@ -149,26 +149,6 @@ export default function TmipInsightsPage() {
                 </Link>
               </div>
             </div>
-          </div>
-
-          {/* RSS Link Strip */}
-          <div className="p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <Rss className="w-5 h-5 text-[#F59E0B]" />
-              <span className="text-sm text-[#CBD5E1] font-ibm-plex">
-                Prefer RSS? Subscribe to TMIP platform updates and research releases.
-              </span>
-            </div>
-            <a
-              href="/tmip/insights/rss.xml"
-              target="_blank"
-              rel="alternate"
-              type="application/rss+xml"
-              className="px-4 py-2 rounded-[3px] bg-white/[0.04] border border-slate-400/20 text-xs font-jetbrains text-[#F1F5F9] hover:bg-[#3B82F6] hover:border-[#3B82F6] transition-all flex items-center gap-1.5 shrink-0"
-            >
-              <span>Subscribe via RSS</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </a>
           </div>
         </div>
       </section>

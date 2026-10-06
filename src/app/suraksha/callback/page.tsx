@@ -324,7 +324,7 @@ export default function SurakshaCallbackPage() {
                   />
                   <span className="text-xs text-[#78350F] leading-relaxed font-medium">
                     Mai callback ke liye permission deta hoon.{" "}
-                    <Link href="/privacy-policy" className="underline hover:text-[#DC2626]">
+                    <Link href="/privacy" className="underline hover:text-[#DC2626]">
                       Privacy policy
                     </Link>{" "}
                     padhi.
