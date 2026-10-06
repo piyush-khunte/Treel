@@ -6,7 +6,10 @@ function getSupabaseClient() {
   const key =
     process.env.SUPABASE_SECRET_KEY ||
     process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    process.env.SUPABASE_PUBLISHABLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    process.env.SUPABASE_ANON_KEY;
 
   if (!url || !key || url.includes("placeholder-treel") || key.includes("placeholder-key")) {
     return null;
@@ -76,7 +79,7 @@ export async function POST(req: NextRequest) {
 
     const supabase = getSupabaseClient();
     if (!supabase) {
-      // In development or if Supabase is unconfigured, return success with warning flag
+      console.warn("[Cookie Consent Ingestion] Supabase client unavailable, stored locally only.");
       return NextResponse.json({
         success: true,
         stored: "local_only",
@@ -95,31 +98,45 @@ export async function POST(req: NextRequest) {
       updated_at: new Date().toISOString(),
     };
 
-    // Check if consent record with this consent_id already exists to update
-    const { data: existing } = await supabase
+    // Try atomic upsert on public.cookie_consents
+    let upsertRes = await supabase
       .from("cookie_consents")
-      .select("id")
-      .eq("consent_id", consent_id)
-      .limit(1);
+      .upsert(insertPayload, { onConflict: "consent_id" });
 
-    let error: any = null;
+    let error = upsertRes.error;
 
-    if (existing && existing.length > 0) {
-      const updateRes = await supabase
+    // If relation does not exist in default schema, fallback to TreelEcommerce.cookie_consents
+    if (error && (error.code === "42P01" || error.message?.includes("does not exist") || error.message?.includes("relation"))) {
+      const fallback = await supabase
+        .from("TreelEcommerce.cookie_consents")
+        .upsert(insertPayload, { onConflict: "consent_id" });
+      error = fallback.error;
+    }
+
+    // If onConflict upsert failed due to missing constraint, fallback to select -> update / insert
+    if (error && (error.code === "42P10" || error.message?.includes("constraint") || error.message?.includes("on conflict"))) {
+      const { data: existing } = await supabase
         .from("cookie_consents")
-        .update(insertPayload)
-        .eq("consent_id", consent_id);
-      error = updateRes.error;
-    } else {
-      const insertRes = await supabase
-        .from("cookie_consents")
-        .insert([insertPayload]);
-      error = insertRes.error;
+        .select("id")
+        .eq("consent_id", consent_id)
+        .limit(1);
+
+      if (existing && existing.length > 0) {
+        const updateRes = await supabase
+          .from("cookie_consents")
+          .update(insertPayload)
+          .eq("consent_id", consent_id);
+        error = updateRes.error;
+      } else {
+        const insertRes = await supabase
+          .from("cookie_consents")
+          .insert([insertPayload]);
+        error = insertRes.error;
+      }
     }
 
     if (error) {
-      // If table does not exist or permissions error, log safely and don't break the client
-      console.warn("[Cookie Consent Ingestion] Remote write error:", error.message || error);
+      console.warn("[Cookie Consent Ingestion] Remote write warning:", error.message || error);
       return NextResponse.json(
         {
           success: false,

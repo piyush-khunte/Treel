@@ -23,12 +23,23 @@ CREATE INDEX IF NOT EXISTS idx_cookie_consents_status ON public.cookie_consents(
 -- Enable Row Level Security (RLS)
 ALTER TABLE public.cookie_consents ENABLE ROW LEVEL SECURITY;
 
--- Deny public anonymous reads/writes directly from browser Supabase client
+-- Allow anonymous visitors and service role to insert consent records
 DROP POLICY IF EXISTS "Public no direct access" ON public.cookie_consents;
-CREATE POLICY "Public no direct access" ON public.cookie_consents
-  FOR ALL
-  TO anon
-  USING (false);
+DROP POLICY IF EXISTS "Allow anon consent insert" ON public.cookie_consents;
+CREATE POLICY "Allow anon consent insert" ON public.cookie_consents
+  FOR INSERT
+  WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Allow anon consent update" ON public.cookie_consents;
+CREATE POLICY "Allow anon consent update" ON public.cookie_consents
+  FOR UPDATE
+  USING (true)
+  WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Allow anon consent select" ON public.cookie_consents;
+CREATE POLICY "Allow anon consent select" ON public.cookie_consents
+  FOR SELECT
+  USING (true);
 
 -- Allow service role full access for backend server actions & APIs
 DROP POLICY IF EXISTS "Service role full access" ON public.cookie_consents;

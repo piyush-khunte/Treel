@@ -14,7 +14,14 @@ import {
 
 function getAdminClient() {
   const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder-treel.supabase.co';
-  const key = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key';
+  const key =
+    process.env.SUPABASE_SECRET_KEY ||
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.SUPABASE_PUBLISHABLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    process.env.SUPABASE_ANON_KEY ||
+    'placeholder-key';
   return createClient(url, key, {
     auth: { persistSession: false }
   });
@@ -696,13 +703,24 @@ export async function getAdminCookieConsents(): Promise<{
 }> {
   const supabase = getAdminClient();
   try {
-    const { data, error } = await supabase
+    let { data, error } = await supabase
       .from('cookie_consents')
       .select('*')
       .order('consent_timestamp', { ascending: false });
 
+    if (error && (error.code === '42P01' || error.message?.includes('does not exist') || error.message?.includes('relation'))) {
+      const fallback = await supabase
+        .from('TreelEcommerce.cookie_consents')
+        .select('*')
+        .order('consent_timestamp', { ascending: false });
+      if (!fallback.error) {
+        data = fallback.data;
+        error = null;
+      }
+    }
+
     if (error) {
-      // Table may not exist yet or connection fallback
+      console.warn('[getAdminCookieConsents] Query warning/fallback:', error.message || error);
       return {
         success: true,
         data: [],
