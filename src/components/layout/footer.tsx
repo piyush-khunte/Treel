@@ -32,7 +32,13 @@ export function Footer({ variant, className }: FooterProps) {
   // Determine variant automatically if not explicitly provided
   let activeVariant: FooterVariant = (variant === "suraksha" ? "master" : variant) || "master";
   if (!variant && pathname) {
-    if (pathname.startsWith("/tmip") || pathname.startsWith("/timp") || pathname.startsWith("/lp/tmip") || pathname.startsWith("/lp-tmip")) {
+    if (
+      pathname.startsWith("/tmip") ||
+      pathname.startsWith("/timp") ||
+      pathname.startsWith("/lp/tmip") ||
+      pathname.startsWith("/lp-tmip") ||
+      pathname.startsWith("/products/otr-tpms")
+    ) {
       activeVariant = "tmip";
     } else if (pathname.startsWith("/personal") || pathname.startsWith("/lp/tpms") || pathname.startsWith("/lp-tpms")) {
       activeVariant = "personal";
@@ -119,7 +125,7 @@ export function Footer({ variant, className }: FooterProps) {
             <p className={theme.tagline}>
               The mobility intelligence company. Every vehicle a signal, every signal an insight.
             </p>
-            <p className="text-xs text-[#64748B]">
+            <p className={theme.certified || "text-xs text-[#64748B]"}>
               ARAI &amp; ISO 9001:2015 Certified · Patents in India, US &amp; EU
             </p>
             <div className="flex items-center gap-3 text-xs text-[#94A3B8]">

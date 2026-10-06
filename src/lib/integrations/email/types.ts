@@ -38,7 +38,7 @@ export interface OrderConfirmationData {
   customerEmail: string;
   customerPhone?: string;
   items: OrderConfirmationItem[];
-  subtotal: number;
+  subtotal?: number;
   tax?: number;
   shipping?: number;
   total: number;

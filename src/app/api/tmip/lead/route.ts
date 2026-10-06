@@ -89,14 +89,27 @@ export async function POST(req: NextRequest) {
     const {
       name,
       full_name,
+      fullName,
       phone,
       mobile,
       mobile_number,
       email,
       work_email,
+      workEmail,
       company,
+      role,
       fleet_size,
       fleetSize,
+      fleet,
+      vehicleType,
+      vehicle_type,
+      vehicle,
+      tms,
+      region,
+      timeSlot,
+      time_slot,
+      slot,
+      context,
       lead_source,
       campaign_type,
       form_id,
@@ -117,7 +130,7 @@ export async function POST(req: NextRequest) {
     // 1. SERVER-SIDE VALIDATION & NORMALIZATION
     // full_name (required NOT NULL in public.leads)
     const normalizedName = (
-      typeof full_name === "string" ? full_name : typeof name === "string" ? name : ""
+      typeof fullName === "string" ? fullName : typeof full_name === "string" ? full_name : typeof name === "string" ? name : ""
     ).trim();
     if (!normalizedName || normalizedName.length < 2) {
       return NextResponse.json(
@@ -126,29 +139,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // mobile_number (required NOT NULL in public.leads)
-    const rawPhone = (
-      typeof mobile_number === "string"
-        ? mobile_number
-        : typeof mobile === "string"
-        ? mobile
-        : typeof phone === "string"
-        ? phone
-        : ""
-    ).trim();
-    const cleanDigits = rawPhone.replace(/\D/g, "");
-    const last10 = cleanDigits.slice(-10);
-    if (last10.length !== 10 || !/^[6-9]\d{9}$/.test(last10)) {
-      return NextResponse.json(
-        { success: false, error: "Please provide a valid 10-digit Indian mobile number." },
-        { status: 400 }
-      );
-    }
-    const normalizedPhone = `+91${last10}`;
-
     // work_email (required NOT NULL in public.leads)
     const rawEmail = (
-      typeof work_email === "string" ? work_email : typeof email === "string" ? email : ""
+      typeof workEmail === "string" ? workEmail : typeof work_email === "string" ? work_email : typeof email === "string" ? email : ""
     ).trim().toLowerCase();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!rawEmail || !emailRegex.test(rawEmail)) {
@@ -158,6 +151,25 @@ export async function POST(req: NextRequest) {
       );
     }
     const normalizedEmail = rawEmail;
+
+    // mobile_number (phone may be optional on /tmip/demo)
+    const rawPhone = (
+      typeof mobile_number === "string"
+        ? mobile_number
+        : typeof mobile === "string"
+        ? mobile
+        : typeof phone === "string"
+        ? phone
+        : ""
+    ).trim();
+    let normalizedPhone = "N/A";
+    const cleanDigits = rawPhone.replace(/\D/g, "");
+    const last10 = cleanDigits.slice(-10);
+    if (last10.length === 10) {
+      normalizedPhone = `+91${last10}`;
+    } else if (rawPhone) {
+      normalizedPhone = rawPhone;
+    }
 
     // company (required NOT NULL in public.leads)
     const normalizedCompany = typeof company === "string" ? company.trim() : "";
@@ -170,7 +182,9 @@ export async function POST(req: NextRequest) {
 
     // fleet_size (nullable in public.leads)
     const rawFleet =
-      typeof fleet_size === "string" || typeof fleet_size === "number"
+      typeof fleet === "string" || typeof fleet === "number"
+        ? String(fleet).trim()
+        : typeof fleet_size === "string" || typeof fleet_size === "number"
         ? String(fleet_size).trim()
         : typeof fleetSize === "string" || typeof fleetSize === "number"
         ? String(fleetSize).trim()
@@ -178,7 +192,7 @@ export async function POST(req: NextRequest) {
     const parsedFleetSize = rawFleet ? parseInt(rawFleet.replace(/\D/g, ""), 10) || null : null;
 
     // 2. IDEMPOTENCY / RAPID DUPLICATE SUBMISSION CHECK
-    const idempotencyKey = `${normalizedEmail}_${last10}`;
+    const idempotencyKey = `tmip_${normalizedEmail}_${last10 || 'nophone'}`;
     if (isDuplicateSubmission(idempotencyKey)) {
       return NextResponse.json(
         { success: false, error: "A submission with these details was already received. Please wait a moment." },
@@ -204,10 +218,33 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const isDemoBooking =
+      form_id === "tmip_demo" ||
+      lead_source === "TMIP Demo" ||
+      page_path === "/tmip/demo" ||
+      typeof vehicleType === "string" ||
+      typeof role === "string";
+
     const finalFormId =
       typeof form_id === "string" && form_id.trim()
         ? form_id.trim()
-        : "tmip_demo";
+        : isDemoBooking
+        ? "tmip_demo"
+        : "tmip_campaign_lead";
+
+    const finalLeadSource =
+      typeof lead_source === "string" && lead_source.trim()
+        ? lead_source.trim()
+        : isDemoBooking
+        ? "TMIP Demo"
+        : "website";
+
+    const finalCampaignType =
+      typeof campaign_type === "string" && campaign_type.trim()
+        ? campaign_type.trim()
+        : isDemoBooking
+        ? "tmip_demo"
+        : "tmip_campaign";
 
     const insertPayload = {
       full_name: normalizedName,
@@ -216,12 +253,8 @@ export async function POST(req: NextRequest) {
       company: normalizedCompany,
       fleet_size: parsedFleetSize,
 
-      lead_source:
-        typeof lead_source === "string" && lead_source.trim() ? lead_source.trim() : "website",
-      campaign_type:
-        typeof campaign_type === "string" && campaign_type.trim()
-          ? campaign_type.trim()
-          : "tmip_campaign",
+      lead_source: finalLeadSource,
+      campaign_type: finalCampaignType,
       form_id: finalFormId,
       status: "new",
 
@@ -240,6 +273,8 @@ export async function POST(req: NextRequest) {
       landing_page:
         typeof landing_page === "string" && landing_page.trim()
           ? landing_page.trim()
+          : isDemoBooking
+          ? "https://treel.in/tmip/demo"
           : "https://treel.in/lp-tmip",
       first_landing_page:
         typeof first_landing_page === "string" && first_landing_page.trim()
@@ -247,15 +282,25 @@ export async function POST(req: NextRequest) {
           : null,
       referrer: typeof referrer === "string" && referrer.trim() ? referrer.trim() : null,
       page_path:
-        typeof page_path === "string" && page_path.trim() ? page_path.trim() : "/lp-tmip",
+        typeof page_path === "string" && page_path.trim()
+          ? page_path.trim()
+          : isDemoBooking
+          ? "/tmip/demo"
+          : "/lp-tmip",
       user_agent: userAgent || null,
 
       attribution_metadata: {
+        role: typeof role === "string" ? role : null,
+        vehicle_type: typeof vehicleType === "string" ? vehicleType : typeof vehicle_type === "string" ? vehicle_type : typeof vehicle === "string" ? vehicle : null,
+        time_slot: typeof timeSlot === "string" ? timeSlot : typeof time_slot === "string" ? time_slot : typeof slot === "string" ? slot : null,
+        tms: typeof tms === "string" ? tms : null,
+        region: typeof region === "string" ? region : null,
+        context: typeof context === "string" ? context : null,
         raw_fleet_size: rawFleet || null,
         product_line: "tmip_enterprise",
         form_id: finalFormId,
       },
-      email_notification_status: isSesConfigured() ? "pending" : "skipped",
+      email_notification_status: "skipped",
     };
 
     const { data: insertData, error: insertError } = await supabase

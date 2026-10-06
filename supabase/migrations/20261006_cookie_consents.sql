@@ -1,0 +1,39 @@
+-- ============================================================================
+-- MIGRATION: 20261006_cookie_consents.sql
+-- PURPOSE: Store anonymous visitor cookie consent audit records
+-- ============================================================================
+
+CREATE TABLE IF NOT EXISTS public.cookie_consents (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  consent_id TEXT NOT NULL UNIQUE,
+  status TEXT NOT NULL CHECK (status IN ('accepted', 'rejected', 'customized', 'withdrawn')),
+  categories JSONB NOT NULL DEFAULT '{"necessary": true, "functional": false, "analytics": false, "marketing": false}'::jsonb,
+  policy_version TEXT NOT NULL DEFAULT '2026-10-01',
+  consent_timestamp TIMESTAMPTZ NOT NULL DEFAULT now(),
+  withdrawn_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- Indexes for performance & audit lookups
+CREATE INDEX IF NOT EXISTS idx_cookie_consents_consent_id ON public.cookie_consents(consent_id);
+CREATE INDEX IF NOT EXISTS idx_cookie_consents_timestamp ON public.cookie_consents(consent_timestamp DESC);
+CREATE INDEX IF NOT EXISTS idx_cookie_consents_status ON public.cookie_consents(status);
+
+-- Enable Row Level Security (RLS)
+ALTER TABLE public.cookie_consents ENABLE ROW LEVEL SECURITY;
+
+-- Deny public anonymous reads/writes directly from browser Supabase client
+DROP POLICY IF EXISTS "Public no direct access" ON public.cookie_consents;
+CREATE POLICY "Public no direct access" ON public.cookie_consents
+  FOR ALL
+  TO anon
+  USING (false);
+
+-- Allow service role full access for backend server actions & APIs
+DROP POLICY IF EXISTS "Service role full access" ON public.cookie_consents;
+CREATE POLICY "Service role full access" ON public.cookie_consents
+  FOR ALL
+  TO service_role
+  USING (true)
+  WITH CHECK (true);

@@ -52,7 +52,7 @@ function TrackOrderContent() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
 
-  const performLookup = (ord: string, eml: string) => {
+  const performLookup = async (ord: string, eml: string) => {
     setValidationError(null);
     setErrorMessage(null);
     setLoading(true);
@@ -60,81 +60,30 @@ function TrackOrderContent() {
     const cleanOrd = ord.trim().toUpperCase();
     const cleanEml = eml.trim().toLowerCase();
 
-    setTimeout(() => {
+    try {
+      const res = await fetch(
+        `/api/shipping/shiprocket/track?orderId=${encodeURIComponent(cleanOrd)}&email=${encodeURIComponent(cleanEml)}`
+      );
+      const data = await res.json();
+
       setLoading(false);
 
-      // Known invalid mock triggers
-      if (cleanOrd === "INVALID" || cleanOrd === "00000" || cleanOrd.length < 3) {
+      if (res.ok && data.success && data.data) {
+        setOrderData(data.data);
+      } else {
         setErrorMessage(
-          "We couldn't find an order matching that order number and email. Check that both are entered correctly. Order numbers are in your confirmation email."
+          data.error?.message ||
+            "We couldn't find an order matching that order number and email. Check that both are entered correctly. Order numbers are in your confirmation email."
         );
         setOrderData(null);
-        return;
       }
-
-      // Valid order tracking resolution
-      const isDelivered = cleanOrd.includes("DELIVERED") || cleanOrd.endsWith("99");
-      const isPreparing = cleanOrd.includes("PREP");
-
-      let currentStatus: OrderData["status"] = "dispatched";
-      let statusLabel = "Dispatched & In Transit";
-      if (isDelivered) {
-        currentStatus = "delivered";
-        statusLabel = "Delivered";
-      } else if (isPreparing) {
-        currentStatus = "preparing";
-        statusLabel = "Preparing to Ship";
-      }
-
-      const orderResult: OrderData = {
-        orderId: cleanOrd.startsWith("TR-") ? cleanOrd : `TR-${cleanOrd}`,
-        orderDate: "10 Sep 2026",
-        status: currentStatus,
-        statusLabel: statusLabel,
-        estimatedDelivery: isDelivered ? "Delivered on 11 Sep 2026" : "13 Sep 2026",
-        productName: "Personal TPMS (4-Tyre Smart Sensor Kit)",
-        quantity: 1,
-        totalAmount: 8999,
-        shippingAddress: "42 Palm Grove Avenue, Indiranagar, Bengaluru, Karnataka 560038",
-        carrier: "Blue Dart Express (Shiprocket)",
-        awbNumber: "SR-9842194812",
-        courierUrl: "https://www.shiprocket.in",
-        steps: [
-          {
-            title: "Order Placed",
-            date: "10 Sep, 10:30 AM",
-            completed: true,
-            current: false,
-          },
-          {
-            title: "Preparing to Ship",
-            date: "10 Sep, 02:15 PM",
-            completed: true,
-            current: isPreparing,
-          },
-          {
-            title: "Dispatched",
-            date: isPreparing ? "Pending" : "11 Sep, 09:00 AM",
-            completed: !isPreparing,
-            current: !isPreparing && !isDelivered,
-          },
-          {
-            title: "Out for Delivery",
-            date: isDelivered ? "11 Sep, 01:45 PM" : "Expected 13 Sep",
-            completed: isDelivered,
-            current: false,
-          },
-          {
-            title: "Delivered",
-            date: isDelivered ? "11 Sep, 04:30 PM" : "Pending",
-            completed: isDelivered,
-            current: isDelivered,
-          },
-        ],
-      };
-
-      setOrderData(orderResult);
-    }, 450);
+    } catch {
+      setLoading(false);
+      setErrorMessage(
+        "An unexpected error occurred while communicating with the tracking network. Please try again in a few moments."
+      );
+      setOrderData(null);
+    }
   };
 
   useEffect(() => {

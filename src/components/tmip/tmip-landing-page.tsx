@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { TmipLandingNavbar } from "@/components/tmip/tmip-landing-navbar";
-import { Footer } from "@/components/layout/footer";
+import { TmipLandingFooter } from "@/components/tmip/tmip-landing-footer";
 import "@/app/tmip/tmip-landing.css";
 
 function pushDataLayer(eventData: Record<string, unknown>) {
@@ -2401,8 +2401,8 @@ export function TmipLandingPage() {
         </div>
       </section>
 
-      {/* TMIP FOOTER (EXACT SAME COMPONENT AS /tmip) */}
-      <Footer variant="tmip" />
+      {/* TMIP LANDING FOOTER (RECREATED ACCORDING TO APPROVED SPEC) */}
+      <TmipLandingFooter />
 
       {/* =========================================================================
           SECTION 17: MOBILE STICKY CTA

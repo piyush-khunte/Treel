@@ -9,7 +9,8 @@ import {
   Users, 
   ArrowLeft, 
   ShieldCheck,
-  Bell 
+  Bell,
+  Cookie 
 } from "lucide-react";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -91,6 +92,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             >
               <Users className="w-4 h-4 text-amber-400" />
               <span>Leads & Inquiries</span>
+            </Link>
+
+            <Link
+              href="/admin/consents"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors"
+            >
+              <Cookie className="w-4 h-4 text-orange-400" />
+              <span>Cookie Consents</span>
             </Link>
           </nav>
         </div>

@@ -1,6 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { isRazorpayConfigured, verifyPaymentSignature } from '@/lib/integrations';
+import {
+  isRazorpayConfigured,
+  verifyPaymentSignature,
+  isSesConfigured,
+  sendOrderConfirmationEmail,
+  sendPaymentReceiptEmail,
+  sendEmail,
+} from '@/lib/integrations';
 import { persistOrderToSupabase, getSupabaseAdminClient } from '@/lib/commerce/order-storage';
+import { syncOrderToShiprocket } from '@/lib/commerce/shiprocket-order-sync';
 
 export async function POST(req: NextRequest) {
   if (!isRazorpayConfigured()) {
@@ -10,7 +18,8 @@ export async function POST(req: NextRequest) {
         configured: false,
         error: {
           code: 'SERVICE_NOT_CONFIGURED',
-          message: 'Razorpay payment verification is disabled. Server credentials are not configured.',
+          message:
+            'Razorpay payment verification is disabled. Server credentials are not configured.',
         },
       },
       { status: 503 }
@@ -77,6 +86,91 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    // 4. Logistics Pipeline: Trigger Shiprocket if configured
+    let shiprocketSync: any = null;
+    if (checkout) {
+      try {
+        shiprocketSync = await syncOrderToShiprocket({
+          orderId: orderRef,
+          checkout: {
+            ...checkout,
+            paymentMethod: 'online',
+          },
+          paymentMethod: 'online',
+        });
+      } catch (shipErr) {
+        console.error('[Online Order] Shiprocket dispatch error:', shipErr);
+      }
+    }
+
+    // 5. Email Pipeline: Trigger Amazon SES order & receipt emails if configured
+    if (isSesConfigured() && checkout?.email) {
+      try {
+        const orderItems = (checkout.items || []).map((it: any) => ({
+          name: it.name || it.title || 'Treel Smart Tyre Sensor Kit',
+          quantity: Number(it.quantity) || 1,
+          price: Number(it.price_inr || it.price) || 0,
+        }));
+
+        // A. Send Order Confirmation Email
+        await sendOrderConfirmationEmail({
+          customerName: checkout.fullName,
+          customerEmail: checkout.email,
+          orderId: orderRef,
+          items: orderItems,
+          total: Number(checkout.totalInr) || 0,
+          shippingAddress: {
+            address1: checkout.address,
+            address2: checkout.addressoptional || '',
+            city: checkout.city,
+            state: checkout.state || 'Maharashtra',
+            pincode: checkout.pincode,
+          },
+        });
+
+        // B. Send Payment Receipt Email
+        await sendPaymentReceiptEmail({
+          customerName: checkout.fullName,
+          customerEmail: checkout.email,
+          paymentId: razorpay_payment_id,
+          orderId: orderRef,
+          amount: (Number(checkout.totalInr) || 0) * 100, // paise
+          currency: 'INR',
+          status: 'Captured / Paid',
+          date: new Date().toLocaleDateString('en-IN', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+          }),
+        });
+
+        // C. Notify Admin Store Operations
+        const adminEmail = process.env.SES_TO_EMAIL || process.env.SES_LEADS_EMAIL;
+        if (adminEmail && adminEmail !== checkout.email) {
+          const adminNoticeHtml = `
+            <div style="font-family: Arial, sans-serif; padding: 20px; color: #111;">
+              <h2 style="color: #059669;">New Prepaid Razorpay Order Confirmed</h2>
+              <p><strong>Order ID:</strong> ${orderRef}</p>
+              <p><strong>Payment ID:</strong> ${razorpay_payment_id}</p>
+              <p><strong>Customer:</strong> ${checkout.fullName} (${checkout.phone}, ${checkout.email})</p>
+              <p><strong>Total Amount:</strong> ₹${Number(checkout.totalInr).toLocaleString('en-IN')}</p>
+              <p><strong>Destination:</strong> ${checkout.city}, ${checkout.state} (${checkout.pincode})</p>
+              <p><strong>Status:</strong> Processing for Shipment</p>
+            </div>
+          `;
+          await sendEmail({
+            to: adminEmail,
+            subject: `[New Paid Order] ${orderRef} — ₹${Number(checkout.totalInr).toLocaleString('en-IN')} (${checkout.fullName})`,
+            html: adminNoticeHtml,
+            replyTo: checkout.email,
+          });
+        }
+      } catch (mailErr) {
+        console.error('[Online Order] Amazon SES email dispatch error:', mailErr);
+      }
+    }
+
+    // 6. Return Success Response
     return NextResponse.json(
       {
         success: true,
@@ -85,6 +179,12 @@ export async function POST(req: NextRequest) {
           verified: true,
           orderId: orderRef,
           paymentId: razorpay_payment_id,
+          shiprocket: shiprocketSync?.success
+            ? {
+                orderId: shiprocketSync.shiprocketOrderId,
+                shipmentId: shiprocketSync.shipmentId,
+              }
+            : undefined,
         },
       },
       { status: 200 }

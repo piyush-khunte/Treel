@@ -274,6 +274,41 @@ export default function AdminOrdersPage() {
               </div>
             </div>
 
+            {/* Shiprocket Logistics Details if available */}
+            {(selectedCheckout.awb_code || selectedCheckout.shiprocket_order_id || selectedCheckout.courier_name) && (
+              <div className="p-4 bg-blue-950/30 border border-blue-900/50 rounded-xl space-y-2 text-xs font-mono">
+                <div className="text-blue-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                  <span>Shiprocket Shipping &amp; Logistics</span>
+                  {selectedCheckout.courier_name && (
+                    <span className="text-slate-300 font-normal">{selectedCheckout.courier_name}</span>
+                  )}
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-slate-300">
+                  {selectedCheckout.awb_code && (
+                    <div>AWB Code: <strong className="text-white">{selectedCheckout.awb_code}</strong></div>
+                  )}
+                  {selectedCheckout.shiprocket_order_id && (
+                    <div>Shiprocket ID: <span className="text-slate-400">{selectedCheckout.shiprocket_order_id}</span></div>
+                  )}
+                  {selectedCheckout.shiprocket_shipment_id && (
+                    <div>Shipment ID: <span className="text-slate-400">{selectedCheckout.shiprocket_shipment_id}</span></div>
+                  )}
+                </div>
+                {selectedCheckout.awb_code && (
+                  <div className="pt-1">
+                    <a
+                      href={selectedCheckout.tracking_url || `https://shiprocket.co/tracking/${selectedCheckout.awb_code}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:text-blue-300 underline inline-flex items-center gap-1 font-sans"
+                    >
+                      Track Shipment via Courier Partner &rarr;
+                    </a>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Status and Total */}
             <div className="flex items-center justify-between pt-4 border-t border-slate-800 text-xs font-mono">
               <div>

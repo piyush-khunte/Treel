@@ -67,6 +67,11 @@ export interface MongoCheckout {
   date?: string;
   __v?: number;
   cartData?: MongoCartItem[];
+  shiprocket_order_id?: number | string;
+  shiprocket_shipment_id?: number | string;
+  awb_code?: string;
+  courier_name?: string;
+  tracking_url?: string;
 }
 
 export interface MongoPayment {

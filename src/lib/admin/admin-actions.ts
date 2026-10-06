@@ -547,6 +547,7 @@ export interface AdminLeadItem {
   vehicles: string;
   status: "New" | "Contacted" | "Qualified" | "Closed";
   time: string;
+  rawId?: string;
 }
 
 export async function getAdminLeads(): Promise<{ success: boolean; data?: AdminLeadItem[]; error?: string }> {
@@ -575,12 +576,28 @@ export async function getAdminLeads(): Promise<{ success: boolean; data?: AdminL
         else relativeTime = `${Math.floor(diffMins / 1440)} days ago`;
       }
 
-      let source = "TMIP Enterprise Demo";
-      if (item.form_id === "tmip_footer_demo") source = "TMIP Footer Demo";
-      else if (item.form_id === "tmip_demo" || item.campaign_type === "tmip_campaign" || item.type === "tmip_campaign_lead") source = "TMIP Campaign Lead";
-      else if (item.type === "personal_tpms_2w" || item.campaign_type === "personal_tpms_2w_campaign") source = "Personal TPMS 2W Campaign";
-      else if (item.type === "suraksha_emi") source = "Suraksha EMI Apply";
-      else if (item.type === "express_callback") source = "30s Express Callback";
+      let source = "TMIP Demo";
+      if (item.lead_source === "TMIP Demo" || item.form_id === "tmip_demo" || item.page_path === "/tmip/demo") {
+        source = "TMIP Demo";
+      } else if (item.lead_source === "General Contact" || item.form_id === "contact" || item.type === "contact" || item.page_path === "/contact") {
+        source = "General Contact";
+      } else if (item.lead_source === "Suraksha Callback" || item.form_id === "suraksha_callback" || item.type === "suraksha_callback" || item.page_path === "/suraksha/callback") {
+        source = "Suraksha Callback";
+      } else if (item.lead_source === "Suraksha Contact" || item.form_id === "suraksha_contact" || item.type === "suraksha_contact" || item.page_path === "/suraksha/contact") {
+        source = "Suraksha Contact";
+      } else if (item.form_id === "tmip_footer_demo") {
+        source = "TMIP Footer Demo";
+      } else if (item.campaign_type === "tmip_campaign" || item.type === "tmip_campaign_lead") {
+        source = "TMIP Campaign Lead";
+      } else if (item.type === "personal_tpms_2w" || item.campaign_type === "personal_tpms_2w_campaign") {
+        source = "Personal TPMS 2W Campaign";
+      } else if (item.type === "suraksha_emi") {
+        source = "Suraksha EMI Apply";
+      } else if (item.type === "express_callback") {
+        source = "30s Express Callback";
+      } else if (item.lead_source) {
+        source = item.lead_source;
+      }
 
       const rawStatus = (item.status || "New").toLowerCase();
       let status: AdminLeadItem["status"] = "New";
@@ -588,27 +605,38 @@ export async function getAdminLeads(): Promise<{ success: boolean; data?: AdminL
       else if (rawStatus === "qualified") status = "Qualified";
       else if (rawStatus === "closed") status = "Closed";
 
+      let meta: any = {};
+      try {
+        meta =
+          item.attribution_metadata ||
+          (typeof item.message === "string" && item.message.startsWith("{") ? JSON.parse(item.message) : {});
+      } catch {
+        meta = {};
+      }
+
       let vehiclesDisplay = "1-5";
-      if (item.fleet_size) {
+      if (source === "TMIP Demo") {
+        vehiclesDisplay = item.fleet_size ? `${item.fleet_size} Trucks` : meta?.vehicle_type || meta?.fleet_size_label || "Enterprise";
+      } else if (source === "General Contact") {
+        vehiclesDisplay = meta?.subject || (item.fleet_size ? `${item.fleet_size} Trucks` : "General");
+      } else if (source === "Suraksha Callback") {
+        vehiclesDisplay = "15-min Callback";
+      } else if (source === "Suraksha Contact") {
+        vehiclesDisplay = meta?.truck_config || meta?.topic || (item.fleet_size ? `${item.fleet_size} Trucks` : "Inquiry");
+      } else if (item.fleet_size) {
         vehiclesDisplay = `${item.fleet_size} Vehicles`;
       } else if (item.type === "personal_tpms_2w" || item.campaign_type === "personal_tpms_2w_campaign") {
-        try {
-          const meta =
-            item.attribution_metadata ||
-            (typeof item.message === "string" ? JSON.parse(item.message) : item.message);
-          vehiclesDisplay =
-            meta?.kit_interest === "motorbike_kit"
-              ? "Motorbike"
-              : meta?.kit_interest === "scooter_kit"
-              ? "Scooter"
-              : (meta?.vehicle_model || "2-Wheeler");
-        } catch {
-          vehiclesDisplay = "2-Wheeler";
-        }
+        vehiclesDisplay =
+          meta?.kit_interest === "motorbike_kit"
+            ? "Motorbike"
+            : meta?.kit_interest === "scooter_kit"
+            ? "Scooter"
+            : (meta?.vehicle_model || "2-Wheeler");
       }
 
       return {
         id: item.id ? (item.id.length > 8 ? `LD-${item.id.slice(-6).toUpperCase()}` : item.id) : `LD-${Math.floor(Math.random() * 1000)}`,
+        rawId: item.id,
         name: item.full_name || item.name || "Anonymous",
         company: item.company || item.company_name || "Personal Vehicle Owner",
         phone: item.mobile_number || item.phone || "N/A",
@@ -632,11 +660,120 @@ export async function updateAdminLeadStatus(id: string, newStatus: string): Prom
     await supabase
       .from('leads')
       .update({ status: newStatus.toLowerCase() })
-      .or(`id.eq.${id}`);
+      .eq('id', id);
     revalidatePath('/admin/leads');
     return { success: true };
   } catch (error: any) {
     return { success: false, error: error.message };
   }
 }
+
+// ============================================================================
+// COOKIE CONSENT RECORDS
+// ============================================================================
+export interface AdminConsentRecord {
+  id: string;
+  consentId: string;
+  status: "Accepted" | "Rejected" | "Customized" | "Withdrawn";
+  categories: string;
+  policyVersion: string;
+  timestamp: string;
+  formattedDate: string;
+  withdrawnAt?: string | null;
+}
+
+export async function getAdminCookieConsents(): Promise<{
+  success: boolean;
+  data?: AdminConsentRecord[];
+  stats?: {
+    total: number;
+    accepted: number;
+    rejected: number;
+    customized: number;
+    withdrawn: number;
+  };
+  error?: string;
+}> {
+  const supabase = getAdminClient();
+  try {
+    const { data, error } = await supabase
+      .from('cookie_consents')
+      .select('*')
+      .order('consent_timestamp', { ascending: false });
+
+    if (error) {
+      // Table may not exist yet or connection fallback
+      return {
+        success: true,
+        data: [],
+        stats: { total: 0, accepted: 0, rejected: 0, customized: 0, withdrawn: 0 },
+      };
+    }
+
+    const records: AdminConsentRecord[] = (data || []).map((row: any) => {
+      const rawStatus = (row.status || "").toLowerCase();
+      let status: AdminConsentRecord["status"] = "Customized";
+      if (rawStatus === "accepted") status = "Accepted";
+      else if (rawStatus === "rejected") status = "Rejected";
+      else if (rawStatus === "withdrawn") status = "Withdrawn";
+
+      const cats = row.categories || {};
+      const activeCats: string[] = ["Necessary"];
+      if (cats.functional) activeCats.push("Functional");
+      if (cats.analytics) activeCats.push("Analytics");
+      if (cats.marketing) activeCats.push("Marketing");
+
+      let formattedDate = "Recently";
+      if (row.consent_timestamp) {
+        try {
+          const d = new Date(row.consent_timestamp);
+          formattedDate = d.toLocaleString("en-IN", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
+            timeZone: "Asia/Kolkata",
+          }) + " IST";
+        } catch {
+          formattedDate = row.consent_timestamp;
+        }
+      }
+
+      return {
+        id: row.id,
+        consentId: row.consent_id || "Anonymous",
+        status,
+        categories: activeCats.join(", "),
+        policyVersion: row.policy_version || "2026-10-01",
+        timestamp: row.consent_timestamp || new Date().toISOString(),
+        formattedDate,
+        withdrawnAt: row.withdrawn_at || null,
+      };
+    });
+
+    const stats = {
+      total: records.length,
+      accepted: records.filter((r) => r.status === "Accepted").length,
+      rejected: records.filter((r) => r.status === "Rejected").length,
+      customized: records.filter((r) => r.status === "Customized").length,
+      withdrawn: records.filter((r) => r.status === "Withdrawn").length,
+    };
+
+    return {
+      success: true,
+      data: records,
+      stats,
+    };
+  } catch (error: any) {
+    console.error("getAdminCookieConsents error:", error);
+    return {
+      success: true,
+      data: [],
+      stats: { total: 0, accepted: 0, rejected: 0, customized: 0, withdrawn: 0 },
+    };
+  }
+}
+
 

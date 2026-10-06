@@ -48,6 +48,7 @@ export function CorporateContactForm() {
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
+  const [serverError, setServerError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submittedData, setSubmittedData] = useState<{ team: string; sla: string } | null>(null);
@@ -96,6 +97,7 @@ export function CorporateContactForm() {
     }
 
     setIsSubmitting(true);
+    setServerError("");
 
     // Calculate routed team and SLA based on selected subject (from content.md)
     let team = "general inquiries";
@@ -113,14 +115,35 @@ export function CorporateContactForm() {
     }
 
     try {
-      // Simulate network request / API dispatch
-      await new Promise((resolve) => setTimeout(resolve, 800));
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          subject: formData.subject,
+          fleetSize: formData.fleetSize,
+          message: formData.message,
+          consent: formData.consent,
+          landing_page: typeof window !== "undefined" ? window.location.href : "https://treel.in/contact",
+          page_path: "/contact",
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Failed to send message. Please try again.");
+      }
 
       setSubmittedData({ team, sla });
       setIsSubmitted(true);
       setErrors({});
-    } catch (err) {
+      setServerError("");
+    } catch (err: any) {
       console.error("Submission error:", err);
+      setServerError(err.message || "Failed to submit note. Please try again or call 1800 833 0233.");
     } finally {
       setIsSubmitting(false);
     }
@@ -138,6 +161,7 @@ export function CorporateContactForm() {
       consent: false,
     });
     setErrors({});
+    setServerError("");
     setIsSubmitted(false);
     setSubmittedData(null);
   };
@@ -184,6 +208,12 @@ export function CorporateContactForm() {
       noValidate 
       className="space-y-6"
     >
+      {serverError && (
+        <div className="p-4 bg-red-950/60 border border-red-500/50 rounded-lg text-red-300 text-xs font-mono flex items-center gap-2">
+          <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+          <span>{serverError}</span>
+        </div>
+      )}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {/* Full name (required) */}
         <div className="space-y-2">

@@ -34,8 +34,9 @@ export default function SurakshaContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     setErrorMsg("");
 
     // Validate 10-digit phone
@@ -51,11 +52,39 @@ export default function SurakshaContactPage() {
     }
 
     setIsSubmitting(true);
-    // Simulate real submission to existing infrastructure
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const res = await fetch("/api/suraksha/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: formData.fullName.trim(),
+          mobileNumber: formData.mobileNumber.trim(),
+          city: formData.city.trim(),
+          truckConfig: formData.truckConfig,
+          preferredLanguage: formData.preferredLanguage,
+          topic: formData.topic,
+          message: formData.message.trim(),
+          consent: formData.consent,
+          form_id: "suraksha_contact",
+          lead_source: "Suraksha Contact",
+          campaign_type: "suraksha_contact",
+          landing_page: typeof window !== "undefined" ? window.location.href : "https://treel.in/suraksha/contact",
+          page_path: "/suraksha/contact",
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Failed to send message. Please try again.");
+      }
+
       setIsSubmitted(true);
-    }, 600);
+    } catch (err: any) {
+      console.error("Suraksha contact submission error:", err);
+      setErrorMsg(err.message || "Failed to send message. Please try again or call 1800 833 0233.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {

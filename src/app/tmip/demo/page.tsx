@@ -21,28 +21,65 @@ export default function TMIPDemoPage() {
     context: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     setIsSubmitting(true);
-    if (typeof window !== "undefined") {
-      try {
-        sessionStorage.setItem("tmip_demo_submission", JSON.stringify(formData));
-      } catch {
-        // sessionStorage unavailable
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/tmip/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          workEmail: formData.workEmail,
+          company: formData.company,
+          role: formData.role,
+          fleetSize: formData.fleetSize,
+          vehicleType: formData.vehicleType,
+          tms: formData.tms,
+          region: formData.region,
+          timeSlot: formData.timeSlot,
+          context: formData.context,
+          form_id: "tmip_demo",
+          lead_source: "TMIP Demo",
+          campaign_type: "tmip_demo",
+          landing_page: typeof window !== "undefined" ? window.location.href : "https://treel.in/tmip/demo",
+          page_path: "/tmip/demo",
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Failed to submit demo request.");
       }
-    }
-    const params = new URLSearchParams({
-      name: formData.fullName,
-      email: formData.workEmail,
-      company: formData.company,
-      fleet: formData.fleetSize,
-      vehicle: formData.vehicleType,
-      slot: formData.timeSlot,
-    });
-    setTimeout(() => {
+
+      if (typeof window !== "undefined") {
+        try {
+          sessionStorage.setItem("tmip_demo_submission", JSON.stringify(formData));
+        } catch {
+          // sessionStorage unavailable
+        }
+      }
+      const params = new URLSearchParams({
+        name: formData.fullName,
+        email: formData.workEmail,
+        company: formData.company,
+        fleet: formData.fleetSize,
+        vehicle: formData.vehicleType,
+        slot: formData.timeSlot,
+      });
       router.push(`/tmip/demo/scheduled?${params.toString()}`);
-    }, 400);
+    } catch (err: any) {
+      console.error("Demo submission failed:", err);
+      setErrorMessage(err.message || "Failed to submit request. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -91,6 +128,12 @@ export default function TMIPDemoPage() {
               <h2 className="font-space-grotesk text-2xl sm:text-3xl font-bold text-[#F1F5F9] mb-6">
                 Request a 30-Minute TMIP Demo
               </h2>
+
+              {errorMessage && (
+                <div className="mb-6 p-4 bg-red-950/60 border border-red-500/50 rounded text-red-300 text-xs font-mono">
+                  {errorMessage}
+                </div>
+              )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

@@ -24,11 +24,11 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               The mobility intelligence company. Every vehicle a signal, every
               signal an insight.
             </p>
-            <div className="text-xs text-[#64748B] font-manrope pt-2 space-y-1">
-              <div>ARAI &amp; ISO 9001:2015 Certified · Patents in India, US &amp; EU</div>
-              <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
-                <span>© 2026 Treel Mobility Solutions Private Limited. All rights reserved.</span>
-              </div>
+            <p className="pt-2 text-xs text-[#64748B] font-manrope">
+              ARAI &amp; ISO 9001:2015 Certified · Patents in India, US &amp; EU
+            </p>
+            <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
+              <span>© 2026 Treel Mobility Solutions Private Limited. All rights reserved.</span>
             </div>
           </div>
 

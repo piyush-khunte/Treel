@@ -53,6 +53,28 @@
   color: var(--blue);
 }
 
+.tmip-landing footer a,
+.tmip-landing .tmip-landing-footer a {
+  color: #94A3B8;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.tmip-landing footer a:hover,
+.tmip-landing .tmip-landing-footer a:hover {
+  color: #3B82F6;
+}
+
+.tmip-landing footer .footer-legal-link,
+.tmip-landing .tmip-landing-footer .footer-legal-link {
+  color: #64748B;
+}
+
+.tmip-landing footer .footer-legal-link:hover,
+.tmip-landing .tmip-landing-footer .footer-legal-link:hover {
+  color: #94A3B8;
+}
+
 .tmip-landing h1,
 .tmip-landing h2,
 .tmip-landing h3 {

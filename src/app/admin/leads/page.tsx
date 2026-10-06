@@ -36,11 +36,11 @@ export default function AdminLeadsPage() {
     fetchLeads();
   }, []);
 
-  const handleUpdateStatus = async (id: string, newStatus: AdminLeadItem["status"]) => {
+  const handleUpdateStatus = async (id: string, newStatus: AdminLeadItem["status"], rawId?: string) => {
     // Optimistic UI update
     setLeads((prev) => prev.map((l) => (l.id === id ? { ...l, status: newStatus } : l)));
     try {
-      await updateAdminLeadStatus(id, newStatus);
+      await updateAdminLeadStatus(rawId || id, newStatus);
     } catch (err) {
       console.error("Failed to update status remotely:", err);
     }
@@ -52,7 +52,7 @@ export default function AdminLeadsPage() {
         <div>
           <h1 className="text-3xl font-bold text-white tracking-tight">Leads & Inquiries CRM</h1>
           <p className="text-sm text-slate-400 font-mono">
-            Real-time submissions from TMIP Paid Campaign (/tmip/campaign), Demo Wizard, and Suraksha EMI
+            Real-time submissions from TMIP Demo, Contact Form, Suraksha Callback & Contact, and Campaigns
           </p>
         </div>
         <Button
@@ -75,7 +75,7 @@ export default function AdminLeadsPage() {
                 <th className="p-4">Lead ID</th>
                 <th className="p-4">Contact Person / Fleet</th>
                 <th className="p-4">Lead Source</th>
-                <th className="p-4">Fleet Scale</th>
+                <th className="p-4">Details / Scale</th>
                 <th className="p-4">Time</th>
                 <th className="p-4">Status</th>
                 <th className="p-4 text-right">Manage</th>
@@ -96,8 +96,12 @@ export default function AdminLeadsPage() {
                   <td className="p-4">
                     <Badge
                       className={`font-mono text-[10px] border ${
-                        l.source.includes("Campaign")
+                        l.source === "TMIP Demo" || l.source.includes("TMIP")
                           ? "bg-blue-950/60 text-blue-400 border-blue-800/60"
+                          : l.source === "General Contact"
+                          ? "bg-orange-950/60 text-orange-400 border-orange-800/60"
+                          : l.source.includes("Suraksha")
+                          ? "bg-red-950/60 text-red-400 border-red-800/60"
                           : "bg-slate-800 text-slate-300 border-slate-700"
                       }`}
                     >
@@ -128,7 +132,7 @@ export default function AdminLeadsPage() {
                           size="sm"
                           variant="outline"
                           className="h-7 text-[10px] text-blue-400 border-blue-500/30 hover:bg-blue-500/20"
-                          onClick={() => handleUpdateStatus(l.id, "Contacted")}
+                          onClick={() => handleUpdateStatus(l.id, "Contacted", l.rawId)}
                         >
                           Mark Contacted
                         </Button>
@@ -138,7 +142,7 @@ export default function AdminLeadsPage() {
                           size="sm"
                           variant="outline"
                           className="h-7 text-[10px] text-purple-400 border-purple-500/30 hover:bg-purple-500/20"
-                          onClick={() => handleUpdateStatus(l.id, "Qualified")}
+                          onClick={() => handleUpdateStatus(l.id, "Qualified", l.rawId)}
                         >
                           Qualify
                         </Button>
@@ -148,7 +152,7 @@ export default function AdminLeadsPage() {
                           size="sm"
                           variant="outline"
                           className="h-7 text-[10px] text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/20"
-                          onClick={() => handleUpdateStatus(l.id, "Closed")}
+                          onClick={() => handleUpdateStatus(l.id, "Closed", l.rawId)}
                         >
                           Close Deal
                         </Button>

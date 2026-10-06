@@ -14,6 +14,7 @@ import "./globals.css";
 import { MasterHeader } from "@/components/layout/master-header";
 import { MasterFooter } from "@/components/layout/master-footer";
 import { CookieBanner } from "@/components/layout/cookie-banner";
+import { ConsentScriptLoader } from "@/components/privacy/consent-script-loader";
 import { CartProvider } from "@/lib/commerce/cart-context";
 
 export const metadata: Metadata = {
@@ -89,6 +90,7 @@ export default function RootLayout({
           <main id="main-content" className="flex-1">
             {children}
           </main>
+          <ConsentScriptLoader />
           <MasterFooter />
           <CookieBanner />
         </CartProvider>
