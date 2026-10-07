@@ -170,8 +170,8 @@ export default function SurakshaEmiPage() {
         </div>
       </section>
 
-      {/* Zero-Cost EMI Section */}
-      <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
+      {/* Zero-Cost EMI Section */} 
+       <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="p-8 sm:p-12 rounded-lg bg-[#FEF3C7] border-3 border-[#10B981] max-w-4xl space-y-4 shadow-md">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#10B981]/15 text-[#047857] font-rubik text-xs font-bold uppercase">

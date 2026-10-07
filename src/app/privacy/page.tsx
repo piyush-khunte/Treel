@@ -247,7 +247,9 @@ export default function PrivacyPage() {
                     4.2 Strategic & Corporate Partners
                   </h3>
                   <p>
-                    Treel operates independently but may share aggregated, non-personal insights with corporate partners for governance and reporting purposes. <strong>We do not share individual customer personal data with external entities</strong> for marketing, sales, or any other secondary purpose.
+                    {/* Treel operates independently but may share aggregated, non-personal insights with corporate partners for governance and reporting purposes. <strong>We do not share individual customer personal data with external entities</strong> for marketing, sales, or any other secondary purpose. */}
+
+                    Treel operates independently and, as part of a corporate group, but may share aggregated, non-personal insights with JK Tyre for corporate reporting purposes.<strong>We do not share individual customer personal data with JK Tyre</strong>  for marketing, sales, or any other secondary purpose.
                   </p>
                 </div>
 
