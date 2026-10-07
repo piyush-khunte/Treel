@@ -348,18 +348,12 @@ export default function TmipSecurityPage() {
             </div>
 
             <div className="p-6 sm:p-8 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 space-y-3">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm font-ibm-plex">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 text-sm font-ibm-plex">
                 <div className="space-y-1">
                   <div className="text-xs font-jetbrains uppercase tracking-wider text-[#3B82F6]">Contact</div>
                   <a href="mailto:security@treel.in" className="text-[#F1F5F9] underline hover:text-[#3B82F6]">
                     security@treel.in
                   </a>
-                </div>
-                <div className="space-y-1">
-                  <div className="text-xs font-jetbrains uppercase tracking-wider text-[#3B82F6]">PGP Key</div>
-                  <Link href="/.well-known/security.txt" className="text-[#F1F5F9] underline hover:text-[#3B82F6]">
-                    /.well-known/security.txt
-                  </Link>
                 </div>
                 <div className="space-y-1">
                   <div className="text-xs font-jetbrains uppercase tracking-wider text-[#3B82F6]">Response Commitment</div>

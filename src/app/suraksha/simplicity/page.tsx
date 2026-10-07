@@ -69,7 +69,7 @@ export default function SurakshaSimplicityPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm space-y-2">
-                <div className="font-anton text-lg uppercase text-[#DC2626] line-through">
+                <div className="font-anton text-lg uppercase text-[#DC2626] ">
                   Item 1: Smartphone app
                 </div>
                 <p className="text-sm text-[#451A03] leading-relaxed">
@@ -78,7 +78,7 @@ export default function SurakshaSimplicityPage() {
               </div>
 
               <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm space-y-2">
-                <div className="font-anton text-lg uppercase text-[#DC2626] line-through">
+                <div className="font-anton text-lg uppercase text-[#DC2626] ">
                   Item 2: Internet connection
                 </div>
                 <p className="text-sm text-[#451A03] leading-relaxed">
@@ -87,7 +87,7 @@ export default function SurakshaSimplicityPage() {
               </div>
 
               <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm space-y-2">
-                <div className="font-anton text-lg uppercase text-[#DC2626] line-through">
+                <div className="font-anton text-lg uppercase text-[#DC2626] ">
                   Item 3: Subscription or monthly fee
                 </div>
                 <p className="text-sm text-[#451A03] leading-relaxed">
@@ -96,7 +96,7 @@ export default function SurakshaSimplicityPage() {
               </div>
 
               <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm space-y-2">
-                <div className="font-anton text-lg uppercase text-[#DC2626] line-through">
+                <div className="font-anton text-lg uppercase text-[#DC2626] ">
                   Item 4: Certified mechanic
                 </div>
                 <p className="text-sm text-[#451A03] leading-relaxed">
@@ -105,7 +105,7 @@ export default function SurakshaSimplicityPage() {
               </div>
 
               <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm space-y-2">
-                <div className="font-anton text-lg uppercase text-[#DC2626] line-through">
+                <div className="font-anton text-lg uppercase text-[#DC2626] ">
                   Item 5: Specific tyre brand
                 </div>
                 <p className="text-sm text-[#451A03] leading-relaxed">
@@ -114,7 +114,7 @@ export default function SurakshaSimplicityPage() {
               </div>
 
               <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm space-y-2">
-                <div className="font-anton text-lg uppercase text-[#DC2626] line-through">
+                <div className="font-anton text-lg uppercase text-[#DC2626] ">
                   Item 6: Truck downtime for installation
                 </div>
                 <p className="text-sm text-[#451A03] leading-relaxed">

@@ -25,57 +25,51 @@ const FAQ_ITEMS: FAQItem[] = [
     answer:
       "Hardware fitment is conducted either by your certified depot maintenance teams using our standardized digital fitment tool and mechanical handbook, or assisted on-site by Treel's authorized pan-India service network. Each asset undergoes end-to-end signal calibration and pressure validation before release.",
   },
+  
   {
     id: "faq-3",
-    category: "Integration",
-    question: "How do our developers obtain API credentials and webhook access?",
-    answer:
-      "API keys with configurable role-based access scopes are issued during technical onboarding. TMIP provides REST endpoints and bidirectional webhooks for real-time telemetry streaming, historical tyre physics logs, and threshold alert routing into your internal systems.",
-  },
-  {
-    id: "faq-4",
     category: "Integration",
     question: "Which transport management (TMS) and ERP platforms does TMIP support?",
     answer:
       "TMIP integrates natively with enterprise platforms including SAP, Oracle, and commercial fleet management solutions like Fleetx, Locus, and LogiNext. Custom internal dispatch, maintenance ERPs, or BI dashboards (Power BI, Tableau) connect seamlessly via our open REST APIs.",
   },
   {
-    id: "faq-5",
+    id: "faq-4",
     category: "Escalation",
     question: "How are support tickets classified between Standard and Critical severity?",
     answer:
       "Critical severity applies to catastrophic service disruptions, telemetry ingestion halts, or platform-wide alert delivery failures affecting active vehicle operations. Standard severity encompasses user account administration, dashboard configuration queries, scheduled report adjustments, and routine telemetry inquiries.",
   },
   {
-    id: "faq-6",
+    id: "faq-5",
     category: "Escalation",
     question: "What is the escalation procedure if an incident exceeds target response times?",
     answer:
       "Support tickets are automatically monitored against contractual response SLAs. If an issue nears or crosses defined thresholds, automated alerts trigger escalation to senior engineering duty officers and operations directors. Enterprise tier clients also maintain direct hotline escalation to their dedicated Customer Success Manager.",
   },
   {
-    id: "faq-7",
+    id: "faq-6",
     category: "Contract",
     question: "What is covered under the Enterprise tier SLA rider?",
     answer:
       "The Enterprise tier SLA rider provides a contractually binding response commitment of within 1 hour for critical incidents, 24/7 critical coverage, dedicated Slack/Teams communication channels, and a named Customer Success Manager for quarterly business reviews and operational optimization.",
   },
   {
-    id: "faq-8",
+    id: "faq-7",
     category: "Contract",
     question: "Can we add more commercial assets or upgrade our support tier mid-contract?",
     answer:
       "Yes. Fleets can scale active vehicle licenses or upgrade support tiers (e.g., from Starter to Growth or Enterprise) at any point during the contract term. Additional hardware provisioning and ingestion quota adjustments are handled proactively by your account representative.",
   },
   {
-    id: "faq-9",
+    id: "faq-8",
     category: "Billing",
     question: "How are subscription billings, telemetry usage, and hardware invoices managed?",
     answer:
       "All invoicing, license counts, and billing statements are accessible within the customer portal under the Account & Finance section. For custom payment structures, billing cycles, or reconciliation questions, our finance desk is reachable via the general contact form with your contract reference ID.",
   },
   {
-    id: "faq-10",
+    id: "faq-9",
     category: "Implementation",
     question: "Is training provided for our fleet controllers, depot technicians, and drivers?",
     answer:

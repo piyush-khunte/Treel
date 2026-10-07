@@ -280,13 +280,7 @@ export default function IndiaCentresMap({
               </svg>
             </div>
 
-            <div className="mt-3 flex items-center justify-between text-[11px] text-[#78350F] font-medium border-t border-[#451A03]/10 pt-2">
-              <span className="flex items-center gap-1">
-                <Info className="w-3.5 h-3.5 text-[#0891B2]" />
-                All 29 coordinates loaded directly from JK Steel Wheels inventory database.
-              </span>
-              <span className="font-bold text-[#451A03]">Source: TWC Client File</span>
-            </div>
+           
           </div>
 
           <div className="lg:col-span-5 space-y-4">

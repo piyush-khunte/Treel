@@ -92,7 +92,7 @@ export function SurakshaCallbackSuccessView() {
             </div>
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
               DHANYAWAAD!<br />
-              <span className="italic text-[#0891B2]">HUM CALL KARENGE.</span>
+              <span className="italic text-[#0891B2]">WE WILL CALL YOU.</span>
             </h1>
             <p className="font-anton uppercase text-xl sm:text-2xl text-[#78350F] tracking-wide">
               Thanks. We'll call you.
