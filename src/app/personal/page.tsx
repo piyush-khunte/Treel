@@ -96,7 +96,7 @@ export default function PersonalPage() {
                   href="/personal/buy"
                   className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-manrope font-bold text-sm transition-all shadow-sm bg-[#2563EB] text-white hover:bg-[#1D4ED8] active:scale-[0.98]"
                 >
-                  Buy for ₹8,999 <ArrowRight className="w-4 h-4" />
+                  Buy Now <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href="/personal/features"
@@ -266,17 +266,7 @@ export default function PersonalPage() {
             </p>
 
             {/* Price block */}
-            <div className="inline-flex items-baseline justify-center gap-3 px-6 py-3 rounded-full bg-white border border-black/[0.08] shadow-xs">
-              <span className="font-manrope text-3xl sm:text-4xl font-extrabold text-[#111827]">
-                ₹8,999
-              </span>
-              <span className="text-[#6B7280] line-through text-base font-medium">
-                ₹12,999
-              </span>
-              <span className="px-2.5 py-0.5 rounded-full bg-[#2563EB]/10 text-[#2563EB] text-xs font-bold">
-                Launch pricing
-              </span>
-            </div>
+            
 
             <div className="pt-4 flex justify-center">
               <Link
