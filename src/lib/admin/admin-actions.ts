@@ -586,6 +586,16 @@ export async function getAdminLeads(): Promise<{ success: boolean; data?: AdminL
       let source = "TMIP Demo";
       if (item.lead_source === "TMIP Demo" || item.form_id === "tmip_demo" || item.page_path === "/tmip/demo") {
         source = "TMIP Demo";
+      } else if (
+        item.lead_source === "Personal Support" ||
+        item.form_id === "personal_support_contact" ||
+        item.form_id === "personal_support" ||
+        item.form_id === "personal_warranty_claim" ||
+        item.campaign_type === "personal_support" ||
+        item.campaign_type === "personal_warranty_claim" ||
+        item.page_path?.startsWith("/personal/support")
+      ) {
+        source = "Personal Support";
       } else if (item.lead_source === "General Contact" || item.form_id === "contact" || item.type === "contact" || item.page_path === "/contact") {
         source = "General Contact";
       } else if (item.lead_source === "Suraksha Callback" || item.form_id === "suraksha_callback" || item.type === "suraksha_callback" || item.page_path === "/suraksha/callback") {
@@ -624,6 +634,8 @@ export async function getAdminLeads(): Promise<{ success: boolean; data?: AdminL
       let vehiclesDisplay = "1-5";
       if (source === "TMIP Demo") {
         vehiclesDisplay = item.fleet_size ? `${item.fleet_size} Trucks` : meta?.vehicle_type || meta?.fleet_size_label || "Enterprise";
+      } else if (source === "Personal Support" || source.includes("Support")) {
+        vehiclesDisplay = meta?.category || meta?.subject || "Support Inquiry";
       } else if (source === "General Contact") {
         vehiclesDisplay = meta?.subject || (item.fleet_size ? `${item.fleet_size} Trucks` : "General");
       } else if (source === "Suraksha Callback") {

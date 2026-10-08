@@ -100,6 +100,8 @@ export default function AdminLeadsPage() {
                           ? "bg-blue-950/60 text-blue-400 border-blue-800/60"
                           : l.source === "General Contact"
                           ? "bg-orange-950/60 text-orange-400 border-orange-800/60"
+                          : l.source === "Personal Support" || l.source.includes("Support") || l.source.includes("Personal")
+                          ? "bg-cyan-950/60 text-cyan-400 border-cyan-800/60"
                           : l.source.includes("Suraksha")
                           ? "bg-red-950/60 text-red-400 border-red-800/60"
                           : "bg-slate-800 text-slate-300 border-slate-700"

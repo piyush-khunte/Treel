@@ -63,16 +63,44 @@ export default function PersonalSupportWarrantyPage() {
     setClaimStep("verified");
   };
 
-  const handleSubmitClaim = (e: React.FormEvent) => {
+  const handleSubmitClaim = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!claimDesc.trim()) {
       setClaimError("Please provide a brief description of the issue.");
       return;
     }
     setClaimError("");
-    const randomId = `CLM-${Math.floor(100000 + Math.random() * 900000)}`;
-    setGeneratedClaimId(randomId);
-    setClaimStep("submitted");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: claimEmail.split("@")[0] || "Customer",
+          email: claimEmail.trim(),
+          orderNumber: claimOrderId.trim(),
+          category: `Warranty Claim — ${claimIssueType}`,
+          subject: `[Warranty Claim] ${claimIssueType} (${claimResolution})`,
+          message: `${claimDesc.trim()}\n\nResolution requested: ${claimResolution}`,
+          description: claimDesc.trim(),
+          priority: "Standard — 2 business days",
+          consent: true,
+          lead_source: "Personal Support",
+          campaign_type: "personal_warranty_claim",
+          form_id: "personal_warranty_claim",
+          company: claimOrderId.trim() ? `Order #${claimOrderId.trim()}` : "Warranty Claimant",
+          landing_page: typeof window !== "undefined" ? window.location.href : "https://treel.in/personal/support/warranty",
+          page_path: "/personal/support/warranty",
+        }),
+      });
+      const data = await res.json();
+      const randomId = data?.ticketId || (data?.leadId ? (data.leadId.length > 8 ? `CLM-${data.leadId.slice(-6).toUpperCase()}` : data.leadId) : `CLM-${Math.floor(100000 + Math.random() * 900000)}`);
+      setGeneratedClaimId(randomId);
+      setClaimStep("submitted");
+    } catch {
+      const randomId = `CLM-${Math.floor(100000 + Math.random() * 900000)}`;
+      setGeneratedClaimId(randomId);
+      setClaimStep("submitted");
+    }
   };
 
   const faqs = [

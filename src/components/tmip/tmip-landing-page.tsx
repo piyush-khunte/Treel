@@ -90,28 +90,28 @@ const TABS = [
 
 const SLIDES = [
   {
-    src: "/images/Approved Images timp landing page/Vehicle_Status_Engine - New.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436260/Vehicle_Status_Engine_-_New.png",
     alt: "TMIP live Vehicle Digital Twin: Engine and overall vehicle health dashboard showing commercial truck status with 4% breakdown probability",
     caption:
       "The live Vehicle Digital Twin: one view per vehicle, per fleet, per region.",
     badge: "Health 87/100 · Breakdown risk 4%",
   },
   {
-    src: "/images/Approved Images timp landing page/Vehicle_Status_Engine_TPMS_View - New.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436261/Vehicle_Status_Engine_TPMS_View_-_New.png",
     alt: "TMIP Tyre Pressure Monitoring System view per wheel showing pressure, temperature and remaining useful life",
     caption:
       "Per-wheel telemetry: real-time pressure, thermal signatures and remaining useful life.",
     badge: "Tyre Life +7% · Median Payback 9 mo",
   },
   {
-    src: "/images/Approved Images timp landing page/Vehicle_Status_Engine_TPMS_TrendView_Temp - New.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436260/Vehicle_Status_Engine_TPMS_TrendView_Temp_-_New.png",
     alt: "TMIP Predictive Maintenance trend view and service window forecasting",
     caption:
       "Predictive intelligence: machine-learning wear models and service due windows.",
     badge: "Next Service: 17 Days · 0 Highway Stops",
   },
   {
-    src: "/images/Approved Images timp landing page/fleet-overview_Grid - New.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436259/fleet-overview_Grid_-_New.png",
     alt: "TMIP Multi-Fleet Overview Grid across national routes, depots and vehicle categories",
     caption:
       "Fleet-wide visibility: aggregate uptime, active alerts and driver safety scores.",
@@ -125,14 +125,14 @@ const SLIDES = [
     badge: "Sub-Second Telemetry · 99.7% Uptime",
   },
   {
-    src: "/images/Approved Images timp landing page/dashboard_3.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436258/dashboard_3.png",
     alt: "TMIP Executive Operations Dashboard showing total cost per kilometre and ROI metrics",
     caption:
       "Executive mobility intelligence: true cost per kilometre by vehicle, route and driver.",
     badge: "Median Payback 9 Months",
   },
   {
-    src: "/images/Approved Images timp landing page/Vehicle_Status_Engine_TPMS_TrendView_Temp_1 - New.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436260/Vehicle_Status_Engine_TPMS_TrendView_Temp_1_-_New.png",
     alt: "TMIP Thermal and Pressure Analytics view for commercial long-haul fleet vehicles",
     caption:
       "Component lifecycle analytics: highway blowout prevention before heat build-up spreads.",
@@ -153,7 +153,7 @@ const FEATURE_SLIDES = [
       "Alert, inspection and tyre-life summaries",
     ],
     image: {
-      src: "/images/tmip-features/fleet-management-software.jpg",
+      src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436102/fleet-management-software.jpg",
       alt: "TMIP fleet dashboard showing total, active, inactive and in-progress vehicles, distance and turnaround charts, active alerts and an inactive vehicles summary",
       width: 738,
       height: 552,
@@ -171,7 +171,7 @@ const FEATURE_SLIDES = [
       "Native integration with Fleetx, Locus, LogiNext and custom TMS",
     ],
     image: {
-      src: "/images/tmip-features/fleet-telematics-gps.jpg",
+      src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436102/fleet-telematics-gps.jpg",
       alt: "TMIP live map of the fleet across South India, with vehicle clusters by region",
       width: 1043,
       height: 545,
@@ -189,7 +189,7 @@ const FEATURE_SLIDES = [
       "Remaining useful life of each tyre, in km",
     ],
     image: {
-      src: "/images/tmip-features/predictive-maintenance.jpg",
+      src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436103/predictive-maintenance.jpg",
       alt: "TMIP vehicle health score of 75 out of 100 and a low breakdown risk of 6 percent",
       width: 524,
       height: 230,
@@ -208,7 +208,7 @@ const FEATURE_SLIDES = [
       "5–7% tyre-life extension, fleet median",
     ],
     image: {
-      src: "/images/tmip-features/fuel-efficiency.jpg",
+      src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436103/fuel-efficiency.jpg",
       alt: "TMIP fleet tiles: fuel consumption, distance travelled and mileage, with average pressure, temperature, pressure difference and pressure-to-temperature ratio",
       width: 682,
       height: 468,
@@ -226,7 +226,7 @@ const FEATURE_SLIDES = [
       { value: "9 mo", label: "Median payback" },
     ],
     image: {
-      src: "/images/tmip-features/mobility-intelligence.jpg",
+      src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436103/mobility-intelligence.jpg",
       alt: "TMIP Vehicle Digital Twin: a 3D truck showing battery, engine, tyres, brakes, fuel and driveline health",
       width: 858,
       height: 547,
@@ -1534,7 +1534,7 @@ export function TmipLandingPage() {
               <figure className="fade">
                 <Image
                   alt="TMIP tyre digital twin with four wheel cards showing pressure in bar, temperature, health percentage and remaining useful life in kilometres"
-                  src="/images/Approved Images timp landing page/Vehicle_Status_Engine_TPMS_View - New.png"
+                  src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436261/Vehicle_Status_Engine_TPMS_View_-_New.png"
                   width={1920}
                   height={911}
                   loading="lazy"
@@ -1572,7 +1572,7 @@ export function TmipLandingPage() {
               <figure className="fade">
                 <Image
                   alt="TMIP AI prediction screen: breakdown probability 4%, next service in 17 days, tyre rotation at 3,200 km, battery failure in 83 days, with an engine remaining-useful-life trend"
-                  src="/images/Approved Images timp landing page/Vehicle_Status_Engine_TPMS_TrendView_Temp - New.png"
+                  src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436260/Vehicle_Status_Engine_TPMS_TrendView_Temp_-_New.png"
                   width={1920}
                   height={911}
                   loading="lazy"
@@ -1687,7 +1687,7 @@ export function TmipLandingPage() {
               <figure className="fade">
                 <Image
                   alt="TMIP maintenance table listing engine oil, air filter, fuel filter, brake lining and battery with health, remaining life and a recommended action for each"
-                  src="/images/Approved Images timp landing page/dashboard_3.png"
+                  src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436258/dashboard_3.png"
                   width={1920}
                   height={911}
                   loading="lazy"
@@ -1725,7 +1725,7 @@ export function TmipLandingPage() {
               <figure className="fade">
                 <Image
                   alt="TMIP cost impact card for a 30-day window: fuel ₹18,400, tyre ₹46,000, maintenance ₹21,000, downtime ₹80,000, total potential savings ₹1,65,400"
-                  src="/images/Approved Images timp landing page/fleet-overview_Grid - New.png"
+                  src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436259/fleet-overview_Grid_-_New.png"
                   width={1920}
                   height={911}
                   loading="lazy"

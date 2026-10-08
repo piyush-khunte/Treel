@@ -330,7 +330,7 @@ export function PersonalGenericCampaignPage() {
         <div className="wrap">
           <Link className="brand" href="/" aria-label="Treel home">
             <Image
-              src="/images/Treel New Logo Final With Favicon & Tagline.png"
+              src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436567/Treel_New_Logo_Final_With_Favicon_Tagline.png"
               alt="Treel"
               width={116}
               height={32}

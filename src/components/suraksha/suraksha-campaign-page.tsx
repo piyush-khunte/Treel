@@ -1575,7 +1575,7 @@ export function SurakshaCampaignPage() {
           <Link href="#main" className="brand" aria-label="Treel Suraksha, home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/Treel New Logo Final With Favicon & Tagline.png"
+              src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436567/Treel_New_Logo_Final_With_Favicon_Tagline.png"
               alt="Treel"
               width="96"
               height="26"

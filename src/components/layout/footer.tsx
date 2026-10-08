@@ -116,7 +116,7 @@ export function Footer({ variant, className }: FooterProps) {
           {/* Brand & Tagline */}
           <div className="lg:col-span-2 space-y-4">
             <Image
-              src="/images/treel main logo.jpg"
+              src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436559/treel_main_logo.jpg"
               alt="Treel"
               width={200}
               height={60}

@@ -14,7 +14,7 @@ export function TmipLandingFooter() {
           <div className="lg:col-span-2 space-y-4 pr-0 lg:pr-6">
             <Link href="/" className="inline-block">
               <Image
-                src="/images/treel main logo.jpg"
+                src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436559/treel_main_logo.jpg"
                 alt="Treel Mobility Intelligence"
                 width={190}
                 height={55}

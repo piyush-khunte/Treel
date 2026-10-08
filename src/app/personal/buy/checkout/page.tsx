@@ -131,7 +131,7 @@ export default function CheckoutPage() {
           currency: razorpayOrder.currency || "INR",
           name: "Treel Mobility Solutions",
           description: "Personal Smart TPMS Kit",
-          image: "/images/Treel New Logo Final With Favicon & Tagline.png",
+          image: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436567/Treel_New_Logo_Final_With_Favicon_Tagline.png",
           order_id: razorpayOrder.id,
           prefill: {
             name: formData.fullName.trim(),

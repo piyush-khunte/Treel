@@ -86,7 +86,7 @@ export function MasterHeader() {
           {/* Brand Logo */}
           <Link prefetch={false} href="/" className="flex items-center group shrink-0 mr-2 xl:mr-5">
             <Image
-              src="/images/Treel New Logo Final With Favicon & Tagline.png"
+              src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436567/Treel_New_Logo_Final_With_Favicon_Tagline.png"
               alt="Treel Mobility Solutions"
               width={160}
               height={50}

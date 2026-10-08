@@ -38,7 +38,7 @@ const views: ViewItem[] = [
   {
     id: "vehicle-digital-twin",
     name: "Vehicle Digital Twin",
-    image: "/images/Vehicle_Status_Engine.png",
+    image: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436260/Vehicle_Status_Engine_-_New.png",
     alt: "Vehicle Status Engine",
     icon: Sliders,
     count: "1,847 nodes",
@@ -58,7 +58,7 @@ const views: ViewItem[] = [
   {
     id: "3d-interactive-twin",
     name: "3D Interactive Twin",
-    image: "/images/dashboard_3.png",
+    image: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436258/dashboard_3.png",
     alt: "dashboard_3",
     icon: Layers,
     count: "Active",
@@ -78,7 +78,7 @@ const views: ViewItem[] = [
   {
     id: "engine-digital-twin",
     name: "Engine Digital Twin",
-    image: "/images/Vehicle_Status_Engine_TPMS_TrendView_Temp_1.png",
+    image: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436260/Vehicle_Status_Engine_TPMS_TrendView_Temp_1_-_New.png",
     alt: "Vehicle Status Engine TPMS Trend View Temp 1",
     icon: Cpu,
     count: "91 / 100",
@@ -98,7 +98,7 @@ const views: ViewItem[] = [
   {
     id: "tyre-digital-twin",
     name: "Tyre Digital Twin",
-    image: "/images/Vehicle_Status_Engine_TPMS_View.png",
+    image: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436261/Vehicle_Status_Engine_TPMS_View_-_New.png",
     alt: "Vehicle Status Engine TPMS View",
     icon: Disc,
     count: "92% health",
@@ -118,7 +118,7 @@ const views: ViewItem[] = [
   {
     id: "ai-prediction-rul",
     name: "AI Prediction & RUL",
-    image: "/images/Vehicle_Status_Engine_TPMS_TrendView_Temp.png",
+    image: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436260/Vehicle_Status_Engine_TPMS_TrendView_Temp_-_New.png",
     alt: "Vehicle Status Engine TPMS Trend View Temp",
     icon: TrendingUp,
     count: "4% risk",

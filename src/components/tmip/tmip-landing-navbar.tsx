@@ -38,7 +38,7 @@ export function TmipLandingNavbar({ onDemoClick }: TmipLandingNavbarProps) {
         <div className="flex items-center gap-2.5 sm:gap-4 shrink-0">
           <Link href="/" className="flex items-center">
             <Image
-              src="/images/treel main logo.jpg"
+              src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436559/treel_main_logo.jpg"
               alt="Treel Mobility Intelligence"
               width={160}
               height={50}

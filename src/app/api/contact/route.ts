@@ -81,10 +81,21 @@ export async function POST(req: NextRequest) {
       mobile_number,
       company,
       subject,
+      category,
+      orderNumber,
+      order_number,
+      priority,
       fleetSize,
       fleet_size,
       message,
+      description,
       consent,
+      lead_source,
+      campaign_type,
+      form_id,
+      product_line,
+      ticket_id,
+      ticketId,
       utm_source,
       utm_medium,
       utm_campaign,
@@ -121,11 +132,20 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const normalizedSubject = typeof subject === "string" ? subject.trim() : "General inquiry";
-    const normalizedMessage = typeof message === "string" ? message.trim() : "";
-    if (!normalizedMessage) {
+    const rawCategory = typeof category === "string" ? category.trim() : "";
+    const rawOrderNumber =
+      typeof orderNumber === "string"
+        ? orderNumber.trim()
+        : typeof order_number === "string"
+        ? order_number.trim()
+        : "";
+    const rawPriority = typeof priority === "string" ? priority.trim() : "";
+    const rawMessage = (
+      typeof message === "string" ? message : typeof description === "string" ? description : ""
+    ).trim();
+    if (!rawMessage) {
       return NextResponse.json(
-        { success: false, error: "Please write your message." },
+        { success: false, error: "Please write your message or description." },
         { status: 400 }
       );
     }
@@ -152,15 +172,53 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Optional company
-    const normalizedCompany = typeof company === "string" && company.trim() ? company.trim() : "Corporate / General Inquirer";
+    const isPersonalSupport =
+      lead_source === "Personal Support" ||
+      form_id === "personal_support_contact" ||
+      form_id === "personal_warranty_claim" ||
+      (typeof page_path === "string" && page_path.startsWith("/personal/support"));
+
+    const normalizedSubject =
+      typeof subject === "string" && subject.trim()
+        ? subject.trim()
+        : rawCategory
+        ? `[Personal Support] ${rawCategory}`
+        : "General inquiry";
+
+    const normalizedCompany =
+      typeof company === "string" && company.trim()
+        ? company.trim()
+        : isPersonalSupport
+        ? (rawOrderNumber ? `Order #${rawOrderNumber}` : "Personal TPMS Customer")
+        : "Corporate / General Inquirer";
+
+    const normalizedLeadSource =
+      typeof lead_source === "string" && lead_source.trim()
+        ? lead_source.trim()
+        : isPersonalSupport
+        ? "Personal Support"
+        : "General Contact";
+
+    const normalizedCampaignType =
+      typeof campaign_type === "string" && campaign_type.trim()
+        ? campaign_type.trim()
+        : isPersonalSupport
+        ? "personal_support"
+        : "contact_form";
+
+    const normalizedFormId =
+      typeof form_id === "string" && form_id.trim()
+        ? form_id.trim()
+        : isPersonalSupport
+        ? "personal_support_contact"
+        : "contact";
 
     // Optional fleet size
     const rawFleet = typeof fleetSize === "string" ? fleetSize : typeof fleet_size === "string" || typeof fleet_size === "number" ? String(fleet_size) : "";
     const parsedFleetSize = rawFleet ? parseInt(rawFleet.replace(/\D/g, ""), 10) || null : null;
 
     // 2. Idempotency Check
-    const idempotencyKey = `contact_${rawEmail}_${normalizedPhone}`;
+    const idempotencyKey = `contact_${rawEmail}_${normalizedPhone}_${normalizedFormId}`;
     if (isDuplicateSubmission(idempotencyKey)) {
       return NextResponse.json(
         { success: false, error: "A submission with these details was already received. Please wait a moment." },
@@ -184,9 +242,9 @@ export async function POST(req: NextRequest) {
       work_email: rawEmail,
       company: normalizedCompany,
       fleet_size: parsedFleetSize,
-      lead_source: "General Contact",
-      campaign_type: "contact_form",
-      form_id: "contact",
+      lead_source: normalizedLeadSource,
+      campaign_type: normalizedCampaignType,
+      form_id: normalizedFormId,
       status: "new",
       utm_source: typeof utm_source === "string" && utm_source.trim() ? utm_source.trim() : null,
       utm_medium: typeof utm_medium === "string" && utm_medium.trim() ? utm_medium.trim() : null,
@@ -196,17 +254,21 @@ export async function POST(req: NextRequest) {
       gclid: typeof gclid === "string" && gclid.trim() ? gclid.trim() : null,
       fbclid: typeof fbclid === "string" && fbclid.trim() ? fbclid.trim() : null,
       ad_group: typeof ad_group === "string" && ad_group.trim() ? ad_group.trim() : null,
-      landing_page: typeof landing_page === "string" && landing_page.trim() ? landing_page.trim() : "https://treel.in/contact",
+      landing_page: typeof landing_page === "string" && landing_page.trim() ? landing_page.trim() : (isPersonalSupport ? "https://treel.in/personal/support/contact" : "https://treel.in/contact"),
       first_landing_page: typeof first_landing_page === "string" && first_landing_page.trim() ? first_landing_page.trim() : null,
       referrer: typeof referrer === "string" && referrer.trim() ? referrer.trim() : null,
-      page_path: typeof page_path === "string" && page_path.trim() ? page_path.trim() : "/contact",
+      page_path: typeof page_path === "string" && page_path.trim() ? page_path.trim() : (isPersonalSupport ? "/personal/support/contact" : "/contact"),
       user_agent: req.headers.get("user-agent") || null,
       attribution_metadata: {
         subject: normalizedSubject,
-        message: normalizedMessage,
+        category: rawCategory || normalizedSubject,
+        order_number: rawOrderNumber || null,
+        priority: rawPriority || null,
+        message: rawMessage,
+        ticket_id: typeof ticketId === "string" ? ticketId : typeof ticket_id === "string" ? ticket_id : null,
         fleet_size_label: rawFleet || null,
         consent: true,
-        product_line: "general_contact",
+        product_line: typeof product_line === "string" && product_line.trim() ? product_line.trim() : (isPersonalSupport ? "personal_tpms" : "general_contact"),
       },
       email_notification_status: "skipped",
     };
@@ -226,6 +288,9 @@ export async function POST(req: NextRequest) {
     }
 
     const insertedLeadId = insertData?.id;
+    const formattedTicketId = insertedLeadId
+      ? (insertedLeadId.length > 8 ? `TCK-${insertedLeadId.slice(-6).toUpperCase()}` : insertedLeadId)
+      : `TCK-${Math.floor(100000 + Math.random() * 900000)}`;
 
     // 4. Amazon SES Email Notification (Triggered only when configured)
     if (isSesConfigured()) {
@@ -276,7 +341,7 @@ export async function POST(req: NextRequest) {
         </table>
 
         <h3 style="margin: 0 0 12px 0; font-size: 15px; color: #0f172a;">Message:</h3>
-        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 14px; font-size: 14px; line-height: 1.6; white-space: pre-wrap; color: #334155; margin-bottom: 24px;">${normalizedMessage}</div>
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 14px; font-size: 14px; line-height: 1.6; white-space: pre-wrap; color: #334155; margin-bottom: 24px;">${rawMessage}</div>
 
         <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #94a3b8; text-align: center;">
           Received on ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })} IST · Treel Mobility Solutions Pvt. Ltd.
@@ -291,7 +356,7 @@ export async function POST(req: NextRequest) {
           to: primaryRecipient,
           subject: emailSubject,
           html: emailHtml,
-          text: `New Contact Inquiry:\nName: ${normalizedName}\nEmail: ${rawEmail}\nPhone: ${normalizedPhone}\nCompany: ${normalizedCompany}\nSubject: ${normalizedSubject}\nMessage:\n${normalizedMessage}`,
+          text: `New Contact Inquiry:\nName: ${normalizedName}\nEmail: ${rawEmail}\nPhone: ${normalizedPhone}\nCompany: ${normalizedCompany}\nSubject: ${normalizedSubject}\nMessage:\n${rawMessage}`,
           replyTo: rawEmail,
         });
 
@@ -318,6 +383,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       success: true,
       leadId: insertedLeadId,
+      ticketId: formattedTicketId,
       message: "Your message has been received.",
     });
   } catch (err: unknown) {

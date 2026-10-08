@@ -99,7 +99,7 @@ export async function POST(req: NextRequest) {
     };
 
     // Try atomic upsert on public.cookie_consents
-    let upsertRes = await supabase
+    const upsertRes = await supabase
       .from("cookie_consents")
       .upsert(insertPayload, { onConflict: "consent_id" });
 

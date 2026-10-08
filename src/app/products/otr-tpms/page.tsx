@@ -198,7 +198,7 @@ export default function OtrTpmsPage() {
               }}
             >
               <Image
-                src="/images/otr-haul-truck-digital-twin.jpg"
+                src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436469/otr-haul-truck-digital-twin.jpg"
                 alt="TMIP Vehicle Digital Twin for a mining haul truck, showing health score, breakdown risk, component health and live status"
                 width={1486}
                 height={704}
@@ -866,7 +866,7 @@ export default function OtrTpmsPage() {
               }}
             >
               <Image
-                src="/images/otr-system-flow.jpg"
+                src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436469/otr-system-flow.jpg"
                 alt="How TMIP connects mining and port equipment to a central command and analytics layer and on to management dashboards and maintenance alerts"
                 width={1408}
                 height={768}

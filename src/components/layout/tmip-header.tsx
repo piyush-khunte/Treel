@@ -48,7 +48,7 @@ export function TmipHeader() {
           <div className="flex items-center gap-2 sm:gap-3 shrink-0 mr-2 xl:mr-5">
             <Link href="/" className="flex items-center group">
               <Image
-                src="/images/treel main logo.jpg"
+                src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436559/treel_main_logo.jpg"
                 alt="Treel"
                 width={160}
                 height={50}

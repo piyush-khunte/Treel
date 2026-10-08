@@ -23,12 +23,15 @@ export default function PersonalSupportContactPage() {
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("Standard — 2 business days");
   const [consent, setConsent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [ticketId, setTicketId] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
     if (!name.trim() || !email.trim() || !description.trim()) {
       setError("Please complete all required fields (Name, Email, and Description).");
       return;
@@ -38,9 +41,45 @@ export default function PersonalSupportContactPage() {
       return;
     }
     setError("");
-    const randomTicket = `TCK-${Math.floor(100000 + Math.random() * 900000)}`;
-    setTicketId(randomTicket);
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: name.trim(),
+          email: email.trim(),
+          orderNumber: orderNumber.trim(),
+          category: category,
+          subject: `[Personal Support] ${category}`,
+          message: description.trim(),
+          description: description.trim(),
+          priority: priority,
+          consent: consent,
+          lead_source: "Personal Support",
+          campaign_type: "personal_support",
+          form_id: "personal_support_contact",
+          company: orderNumber.trim() ? `Order #${orderNumber.trim()}` : "Personal TPMS Customer",
+          landing_page: typeof window !== "undefined" ? window.location.href : "https://treel.in/personal/support/contact",
+          page_path: "/personal/support/contact",
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Failed to submit support inquiry. Please try again.");
+      }
+
+      const returnedTicket = data.ticketId || (data.leadId ? (data.leadId.length > 8 ? `TCK-${data.leadId.slice(-6).toUpperCase()}` : data.leadId) : `TCK-${Math.floor(100000 + Math.random() * 900000)}`);
+      setTicketId(returnedTicket);
+      setSubmitted(true);
+    } catch (err: any) {
+      console.error("Personal support submission error:", err);
+      setError(err.message || "Failed to submit support inquiry. Please try again or call 1800 833 0233.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactOptions = [
@@ -260,9 +299,16 @@ export default function PersonalSupportContactPage() {
 
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-full bg-[#2563EB] text-white font-bold text-sm hover:bg-[#1D4ED8] transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
+                  disabled={isSubmitting}
+                  className="w-full py-4 rounded-full bg-[#2563EB] text-white font-bold text-sm hover:bg-[#1D4ED8] transition-all shadow-md cursor-pointer flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-4 h-4" /> Send to support →
+                  {isSubmitting ? (
+                    <span>Sending inquiry...</span>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" /> Send to support →
+                    </>
+                  )}
                 </button>
               </form>
             ) : (
