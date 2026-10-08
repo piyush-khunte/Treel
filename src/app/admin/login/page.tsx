@@ -11,7 +11,7 @@ function LoginForm() {
   const searchParams = useSearchParams();
   const nextUrl = searchParams.get("next") || "/admin";
 
-  const [username, setUsername] = useState("TreelEcosystem@332");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -88,7 +88,7 @@ function LoginForm() {
               <input
                 type="text"
                 required
-                placeholder="TreelEcosystem@332"
+                placeholder="Enter administrator username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:outline-none focus:border-emerald-500 transition-colors font-mono"

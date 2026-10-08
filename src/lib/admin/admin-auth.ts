@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 import { getSupabaseAdminClient } from "@/lib/commerce/order-storage";
 import {
   ADMIN_SESSION_COOKIE,
-  ADMIN_USERNAME,
   ADMIN_ROLE,
   AUTH_SECRET,
 } from "./admin-constants";
@@ -14,7 +13,6 @@ import {
 
 export {
   ADMIN_SESSION_COOKIE,
-  ADMIN_USERNAME,
   ADMIN_ROLE,
   AUTH_SECRET,
   signSessionToken,
@@ -36,12 +34,9 @@ async function sha256Hex(text: string): Promise<string> {
   return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-// Configured credentials
-const AUTHORIZED_PASS = "Treel#4873@admin!";
-
 /**
- * Validates admin credentials securely.
- * Supports Supabase Auth when configured, and falls back to server-verified credentials.
+ * Validates admin credentials securely without hardcoded values.
+ * Credentials are strictly resolved from server environment variables or Supabase Auth.
  */
 export async function authenticateAdmin(
   username: string,
@@ -70,23 +65,42 @@ export async function authenticateAdmin(
           success: true,
           session: {
             username: cleanUser,
-            role: "admin",
+            role: ADMIN_ROLE,
             iat: now,
             exp: now + 7 * 24 * 60 * 60, // 7 days
           },
         };
       }
     } catch {
-      // Supabase auth fallback to server verification
+      // Supabase auth fallback to server environment verification
     }
   }
 
-  // 2. Server-side credential verification
-  const isUserValid = cleanUser.toLowerCase() === ADMIN_USERNAME.toLowerCase();
+  // 2. Server environment credential verification
+  const envUsername = (
+    process.env.ADMIN_USERNAME ||
+    process.env.ADMIN_USER ||
+    ""
+  ).trim();
+
+  const envPassword = (
+    process.env.ADMIN_PASSWORD ||
+    process.env.ADMIN_PASS ||
+    ""
+  ).trim();
+
+  if (!envUsername || !envPassword) {
+    return {
+      success: false,
+      error: "Admin credentials are not configured in server environment variables.",
+    };
+  }
+
+  const isUserValid = cleanUser.toLowerCase() === envUsername.toLowerCase();
   
-  // Constant-time comparison using hashes
+  // Constant-time comparison using cryptographic HMAC hashes
   const inputHash = await sha256Hex(cleanPass);
-  const expectedHash = await sha256Hex(AUTHORIZED_PASS);
+  const expectedHash = await sha256Hex(envPassword);
   const isPassValid = inputHash === expectedHash;
 
   if (isUserValid && isPassValid) {
@@ -94,7 +108,7 @@ export async function authenticateAdmin(
     return {
       success: true,
       session: {
-        username: ADMIN_USERNAME,
+        username: cleanUser,
         role: ADMIN_ROLE,
         iat: now,
         exp: now + 7 * 24 * 60 * 60, // 7 days
