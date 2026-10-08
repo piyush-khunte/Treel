@@ -121,9 +121,14 @@ export function PersonalGenericCampaignPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalCloseBtnRef = useRef<HTMLButtonElement>(null);
   const lastTriggerRef = useRef<HTMLElement | null>(null);
+  const hasAutoOpenedRef = useRef(false);
+  const userInteractedRef = useRef(false);
 
   const openModal = useCallback(
     (kit?: string, vehicle?: string, ctaLabel?: string, e?: React.MouseEvent) => {
+      if (ctaLabel !== "auto_10s") {
+        userInteractedRef.current = true;
+      }
       if (e) {
         e.preventDefault();
         lastTriggerRef.current = e.currentTarget as HTMLElement;
@@ -154,11 +159,30 @@ export function PersonalGenericCampaignPage() {
   );
 
   const closeModal = useCallback(() => {
+    userInteractedRef.current = true;
     setIsModalOpen(false);
     if (lastTriggerRef.current) {
       lastTriggerRef.current.focus();
     }
   }, []);
+
+  // 10-second automatic form popup
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (
+        !hasAutoOpenedRef.current &&
+        !userInteractedRef.current &&
+        !isModalOpen &&
+        !isSubmitting &&
+        !submitSuccess
+      ) {
+        hasAutoOpenedRef.current = true;
+        openModal(undefined, undefined, "auto_10s");
+      }
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, [isModalOpen, isSubmitting, submitSuccess, openModal]);
 
   useEffect(() => {
     if (!isModalOpen) {
@@ -201,6 +225,7 @@ export function PersonalGenericCampaignPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, source: "popup" | "inpage") => {
     e.preventDefault();
+    userInteractedRef.current = true;
     const phoneClean = formData.mobile.replace(/\D/g, "");
     if (!formData.full_name || formData.full_name.trim().length < 2) {
       setSubmitError("Please enter your full name.");
@@ -212,10 +237,6 @@ export function PersonalGenericCampaignPage() {
     }
     if (!formData.city || formData.city.trim().length < 2) {
       setSubmitError("Please enter your city.");
-      return;
-    }
-    if (!formData.vehicle_type) {
-      setSubmitError("Please select your vehicle type.");
       return;
     }
 
@@ -275,7 +296,7 @@ export function PersonalGenericCampaignPage() {
   };
 
   return (
-    <div className="personal-campaign">
+    <div className="personal-campaign generic-tpms-campaign">
       {/* Tabler Icons SVG Sprite definition */}
       <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true" focusable="false">
         <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></symbol>
@@ -452,7 +473,7 @@ export function PersonalGenericCampaignPage() {
         {/* 1 · ABOVE THE FOLD */}
         <section className="hero" aria-labelledby="hero-title">
           <div className="wrap hero-grid">
-            <div className="hero-copy">
+            <div className="hero-copy hero-content">
               <div className="eyebrow-row">
                 <span className="chip">Personal</span>
                 <span className="eyebrow-text">TPMS for cars &amp; bikes</span>
@@ -463,7 +484,25 @@ export function PersonalGenericCampaignPage() {
               <p className="lede">
                 Treel&apos;s tyre pressure monitoring system puts a small sensor at each tyre&apos;s valve and sends live pressure and temperature to the free TREEL CARE app on your phone. For cars, SUVs, motorbikes and scooters.
               </p>
-              <div className="cta-row">
+              <ul className="benefits">
+                <li>
+                  <Icon id="i-gauge" />
+                  Every tyre, live
+                </li>
+                <li>
+                  <Icon id="i-device-mobile" />
+                  Car and bike in one free app
+                </li>
+                <li>
+                  <Icon id="i-bell-ringing" />
+                  Early leak alerts
+                </li>
+                <li>
+                  <Icon id="i-circle-check" />
+                  ARAI certified · Made in India
+                </li>
+              </ul>
+              <div className="cta-row hero-cta-row">
                 <button
                   type="button"
                   className="btn btn-primary"
@@ -498,27 +537,6 @@ export function PersonalGenericCampaignPage() {
                   Bike / scooter
                 </a>
               </div>
-              <p className="hero-alt">
-                <span>Free expert call back.</span>
-              </p>
-              <ul className="benefits">
-                <li>
-                  <Icon id="i-gauge" />
-                  Every tyre, live
-                </li>
-                <li>
-                  <Icon id="i-device-mobile" />
-                  Car and bike in one free app
-                </li>
-                <li>
-                  <Icon id="i-bell-ringing" />
-                  Early leak alerts
-                </li>
-                <li>
-                  <Icon id="i-circle-check" />
-                  ARAI certified · Made in India
-                </li>
-              </ul>
             </div>
             <div className="hero-visual">
               <div className="toast" aria-hidden="true">
@@ -777,22 +795,6 @@ export function PersonalGenericCampaignPage() {
                     </div>
                   </div>
                   <div className="field">
-                    <label htmlFor="f-veh">What do you drive or ride?</label>
-                    <select
-                      id="f-veh"
-                      name="vehicle_type"
-                      value={formData.vehicle_type}
-                      onChange={(e) => setFormData({ ...formData, vehicle_type: e.target.value })}
-                      required
-                    >
-                      <option value="" disabled>Select your vehicle</option>
-                      <option value="car">Car / SUV / MPV</option>
-                      <option value="motorbike">Motorbike</option>
-                      <option value="scooter">Scooter</option>
-                      <option value="car_and_bike">Both a car and a bike</option>
-                    </select>
-                  </div>
-                  <div className="field">
                     <label htmlFor="f-kit">Kit you&apos;re interested in</label>
                     <select
                       id="f-kit"
@@ -898,7 +900,7 @@ export function PersonalGenericCampaignPage() {
                 </ul>
                 <div className="vfoot">
                   <a
-                    className="btn btn-primary"
+                    className="btn btn-secondary"
                     href="#kits"
                     onClick={() => switchTab("car")}
                   >
@@ -906,7 +908,7 @@ export function PersonalGenericCampaignPage() {
                   </a>
                   <button
                     type="button"
-                    className="textlink"
+                    className="btn btn-primary"
                     onClick={(e) => openModal(undefined, "car", "vpick_car_enquire", e)}
                   >
                     Enquire for my car <Icon id="i-arrow-right" />
@@ -966,7 +968,7 @@ export function PersonalGenericCampaignPage() {
                 </ul>
                 <div className="vfoot">
                   <a
-                    className="btn btn-primary"
+                    className="btn btn-secondary"
                     href="#kits"
                     onClick={() => switchTab("bike")}
                   >
@@ -974,7 +976,7 @@ export function PersonalGenericCampaignPage() {
                   </a>
                   <button
                     type="button"
-                    className="textlink"
+                    className="btn btn-primary"
                     onClick={(e) => openModal(undefined, "motorbike", "vpick_bike_enquire", e)}
                   >
                     Enquire for my bike <Icon id="i-arrow-right" />
@@ -1998,7 +2000,6 @@ export function PersonalGenericCampaignPage() {
                 <figcaption>Dinanath Kavanekar</figcaption>
               </figure>
             </div>
-            <p className="rev-note">Customer reviews as published on treel.in.</p>
           </div>
         </section>
 
@@ -2204,23 +2205,6 @@ export function PersonalGenericCampaignPage() {
                     onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                     required
                   />
-                </div>
-
-                <div className="field">
-                  <label htmlFor="m-veh">Vehicle type</label>
-                  <select
-                    id="m-veh"
-                    name="vehicle_type"
-                    value={formData.vehicle_type}
-                    onChange={(e) => setFormData({ ...formData, vehicle_type: e.target.value })}
-                    required
-                  >
-                    <option value="" disabled>Select your vehicle</option>
-                    <option value="car">Car / SUV / MPV</option>
-                    <option value="motorbike">Motorbike</option>
-                    <option value="scooter">Scooter</option>
-                    <option value="car_and_bike">Both a car and a bike</option>
-                  </select>
                 </div>
 
                 <div className="field">

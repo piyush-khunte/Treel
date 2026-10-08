@@ -88,7 +88,7 @@
 }
 
 .suraksha-campaign-root section {
-  padding: 88px 0;
+  padding: 52px 0;
   position: relative;
 }
 
@@ -111,7 +111,7 @@
   font-size: clamp(30px, 4vw, 48px);
   font-weight: 700;
   line-height: 1.08;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .suraksha-campaign-root h3 {
@@ -151,7 +151,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin: 0 0 14px;
+  margin: 0 0 10px;
   font-size: 13px;
   font-weight: 500;
   color: var(--red);
@@ -172,12 +172,12 @@
   height: 6px;
   border-radius: 2px;
   background: var(--red);
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
 .suraksha-campaign-root .sec-head {
   max-width: 760px;
-  margin-bottom: 44px;
+  margin-bottom: 28px;
 }
 
 .suraksha-campaign-root .sec-head.center {
@@ -659,22 +659,22 @@
 
 /* Hero */
 .suraksha-campaign-root .hero {
-  padding: 56px 0 64px;
+  padding: 36px 0 44px;
 }
 
 .suraksha-campaign-root .hero-grid {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  gap: 44px;
+  gap: 36px;
   align-items: center;
 }
 
 .suraksha-campaign-root .hero h1 {
-  margin: 0 0 16px;
+  margin: 0 0 12px;
 }
 
 .suraksha-campaign-root .lede {
-  margin: 0 0 24px;
+  margin: 0 0 16px;
   font-size: 19px;
   color: var(--brown-2);
   max-width: 40em;
@@ -689,11 +689,11 @@
 
 .suraksha-campaign-root .trust {
   list-style: none;
-  margin: 28px 0 0;
+  margin: 16px 0 20px;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px 22px;
+  gap: 10px 18px;
   max-width: 560px;
 }
 
@@ -765,7 +765,7 @@
 .suraksha-campaign-root .grid3 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: 16px;
 }
 
 .suraksha-campaign-root .card {
@@ -773,7 +773,7 @@
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 30px;
+  padding: 24px;
 }
 
 .suraksha-campaign-root .card .ic-lg {
@@ -783,7 +783,7 @@
   border-radius: 12px;
   background: rgba(220, 38, 38, 0.1);
   color: var(--red);
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
 .suraksha-campaign-root .card p {
@@ -797,7 +797,7 @@
 
 .suraksha-campaign-root .pillar .tag {
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-size: 13px;
   font-weight: 700;
   color: var(--red);
@@ -809,12 +809,12 @@
 }
 
 .suraksha-campaign-root .hook {
-  margin: 20px 0 0;
-  padding: 14px 16px;
+  margin: 14px 0 0;
+  padding: 10px 14px;
   border-left: 5px solid var(--marigold);
   background: rgba(234, 88, 12, 0.08);
   border-radius: 0 12px 12px 0;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--brown);
   line-height: 1.45;
@@ -836,7 +836,7 @@
 .suraksha-campaign-root .split {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 56px;
+  gap: 40px;
   align-items: center;
 }
 
@@ -844,7 +844,7 @@
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 28px;
-  padding: 30px 26px 22px;
+  padding: 22px 20px 16px;
 }
 
 .suraksha-campaign-root .kitart .disp {
@@ -881,7 +881,7 @@
   justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
-  margin-top: 14px;
+  margin-top: 12px;
 }
 
 .suraksha-campaign-root .kitlabels span {
@@ -894,10 +894,10 @@
 
 .suraksha-campaign-root .ticks {
   list-style: none;
-  margin: 24px 0 28px;
+  margin: 16px 0 20px;
   padding: 0;
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
 .suraksha-campaign-root .ticks li {
@@ -922,7 +922,7 @@
 .suraksha-campaign-root .steps {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: 16px;
 }
 
 .suraksha-campaign-root .numblock {
@@ -935,7 +935,7 @@
   color: #fff;
   font-size: 22px;
   font-weight: 800;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 /* Fleet */
@@ -957,7 +957,7 @@
 }
 
 .suraksha-campaign-root .more {
-  margin-top: 14px;
+  margin-top: 12px;
   font-size: 15px;
   font-weight: 700;
   color: var(--brown-3);
@@ -968,7 +968,7 @@
 .suraksha-campaign-root .band {
   background: var(--red);
   color: #fff;
-  padding: 64px 0;
+  padding: 44px 0;
 }
 
 .suraksha-campaign-root .band h2 {
@@ -999,15 +999,15 @@
 .suraksha-campaign-root .clusters {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin: 0 0 30px;
+  gap: 12px;
+  margin: 0 0 20px;
 }
 
 .suraksha-campaign-root .cluster {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 18px 20px;
+  padding: 14px 18px;
   border-radius: 16px;
   background: var(--card);
   border: 1px solid var(--line);
@@ -1032,43 +1032,44 @@
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 20px;
-  padding: 24px 28px;
+  padding: 24px 24px 20px;
   box-shadow: 0 20px 40px -25px rgba(69, 26, 3, 0.35);
-  max-width: 560px;
+  max-width: 440px;
   width: 100%;
+  margin: 0 auto;
 }
 
 @media (max-width: 640px) {
   .suraksha-campaign-root .form-card {
-    padding: 20px 16px;
-    border-radius: 16px;
-    width: calc(100% - 32px);
+    padding: 20px 16px 16px;
+    border-radius: 18px;
+    width: 100%;
     margin: 0 auto;
   }
 }
 
 .suraksha-campaign-root .field {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .suraksha-campaign-root .field label {
   display: block;
   margin-bottom: 4px;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 700;
 }
 
 .suraksha-campaign-root .field input,
 .suraksha-campaign-root .field select {
   width: 100%;
-  height: 44px;
+  height: 42px;
   padding: 0 12px;
   border: 1.5px solid var(--line-2);
-  border-radius: 10px;
+  border-radius: 9px;
   background: #fff;
   color: var(--brown);
   font: inherit;
-  font-size: 15px;
+  font-size: 14.5px;
 }
 
 .suraksha-campaign-root .field input:focus,
@@ -1088,14 +1089,14 @@
   padding: 0 12px;
   border: 1.5px solid var(--line-2);
   border-right: 0;
-  border-radius: 10px 0 0 10px;
+  border-radius: 9px 0 0 9px;
   background: var(--cream);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13.5px;
 }
 
 .suraksha-campaign-root .tel input {
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 9px 9px 0;
 }
 
 .suraksha-campaign-root .row2 {
@@ -1107,12 +1108,12 @@
 @media (max-width: 520px) {
   .suraksha-campaign-root .row2 {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 10px;
   }
 }
 
 .suraksha-campaign-root .form-note {
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   font-size: 12px;
   color: var(--brown-3);
   text-align: center;
@@ -1522,7 +1523,7 @@
   .suraksha-campaign-root .hero-grid,
   .suraksha-campaign-root .split {
     grid-template-columns: 1fr;
-    gap: 34px;
+    gap: 28px;
   }
   .suraksha-campaign-root .hero-copy {
     display: contents;
@@ -1534,41 +1535,50 @@
   .suraksha-campaign-root .hero-copy > h1 { order: 2; }
   .suraksha-campaign-root .hero-copy > .family { order: 3; }
   .suraksha-campaign-root .hero-copy > .lede { order: 4; }
-  .suraksha-campaign-root .hero-copy > .cta-row { order: 5; }
+  .suraksha-campaign-root .hero-copy > .trust {
+    order: 5;
+    margin: 14px 0 16px;
+  }
   .suraksha-campaign-root .hero-grid > .hero-art {
     order: 6;
-    margin: 28px 0 8px;
+    margin: 16px 0 20px;
   }
-  .suraksha-campaign-root .hero-copy > .trust { order: 7; }
+  .suraksha-campaign-root .hero-copy > .cta-row {
+    order: 7;
+    margin-top: 0;
+  }
   .suraksha-campaign-root .grid3,
   .suraksha-campaign-root .steps {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
   .suraksha-campaign-root .clusters {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
 }
 
 @media (max-width: 640px) {
   .suraksha-campaign-root section {
-    padding: 56px 0;
+    padding: 36px 0;
   }
   .suraksha-campaign-root .hero {
-    padding: 26px 0 40px;
+    padding: 20px 0 28px;
   }
   .suraksha-campaign-root .sec-head {
-    margin-bottom: 26px;
+    margin-bottom: 18px;
   }
   .suraksha-campaign-root h2 {
-    font-size: 28px;
+    font-size: 26px;
+    margin-bottom: 8px;
   }
   .suraksha-campaign-root .lede,
   .suraksha-campaign-root .sec-sub {
-    font-size: 17px;
+    font-size: 16px;
   }
   .suraksha-campaign-root .family {
-    font-size: 23px;
-    margin: 10px 0 12px;
+    font-size: 22px;
+    margin: 8px 0 10px;
   }
   .suraksha-campaign-root .cta-row .btn {
     flex: 1 1 100%;
@@ -1578,51 +1588,53 @@
   }
   .suraksha-campaign-root .trust {
     grid-template-columns: 1fr 1fr;
-    gap: 10px 12px;
+    gap: 8px 10px;
   }
   .suraksha-campaign-root .trust li {
-    font-size: 13.5px;
+    font-size: 13px;
     align-items: flex-start;
   }
   .suraksha-campaign-root .card {
-    padding: 22px;
+    padding: 18px;
   }
   .suraksha-campaign-root .hook {
-    font-size: 17px;
+    font-size: 16px;
+    margin-top: 12px;
+    padding: 8px 12px;
   }
   .suraksha-campaign-root .kitart {
-    padding: 22px 16px 16px;
+    padding: 18px 14px 14px;
   }
   .suraksha-campaign-root .sensors {
-    gap: 10px;
+    gap: 8px;
   }
   .suraksha-campaign-root .sensor {
-    width: 38px;
+    width: 36px;
   }
   .suraksha-campaign-root .clusters {
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 8px;
   }
   .suraksha-campaign-root .cluster {
-    padding: 14px;
+    padding: 12px 14px;
   }
   .suraksha-campaign-root .cluster b {
-    font-size: 16px;
+    font-size: 15px;
   }
   .suraksha-campaign-root .cluster span {
-    font-size: 13px;
+    font-size: 12.5px;
   }
   .suraksha-campaign-root .band {
-    padding: 48px 0;
+    padding: 32px 0;
   }
   .suraksha-campaign-root .band .cta-row {
     width: 100%;
   }
   .suraksha-campaign-root .form-card {
-    padding: 22px 18px;
+    padding: 20px 16px 16px;
   }
   .suraksha-campaign-root .faq summary {
-    font-size: 17px;
-    padding: 18px 0;
+    font-size: 16px;
+    padding: 14px 0;
   }
 }

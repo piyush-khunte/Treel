@@ -196,20 +196,20 @@ export function TwinInteractive() {
               className="object-contain drop-shadow-md transition-opacity duration-300"
             />
 
-            {/* Subtle navigation arrows */}
+            {/* Vehicle Digital Twin Navigation Arrows */}
             <button
               onClick={handlePrev}
               aria-label="Previous view"
-              className="absolute left-1 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#050A17]/75 hover:bg-[#3B82F6]/30 border border-white/10 hover:border-[#3B82F6]/50 text-slate-400 hover:text-white flex items-center justify-center transition-all z-10"
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#3B82F6] hover:bg-[#2563EB] active:bg-[#1D4ED8] focus:bg-[#2563EB] border border-[#3B82F6] text-white flex items-center justify-center transition-all z-20 shadow-[0_4px_14px_rgba(59,130,246,0.45)]"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-5 h-5 text-white stroke-[2.5]" />
             </button>
             <button
               onClick={handleNext}
               aria-label="Next view"
-              className="absolute right-1 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#050A17]/75 hover:bg-[#3B82F6]/30 border border-white/10 hover:border-[#3B82F6]/50 text-slate-400 hover:text-white flex items-center justify-center transition-all z-10"
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#3B82F6] hover:bg-[#2563EB] active:bg-[#1D4ED8] focus:bg-[#2563EB] border border-[#3B82F6] text-white flex items-center justify-center transition-all z-20 shadow-[0_4px_14px_rgba(59,130,246,0.45)]"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-5 h-5 text-white stroke-[2.5]" />
             </button>
           </div>
 

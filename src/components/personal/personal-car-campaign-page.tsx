@@ -89,7 +89,6 @@ export function PersonalCarCampaignPage() {
     city: "",
     vehicle_model: "",
     kit_interest: "not_sure",
-    call_time: "anytime",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -100,8 +99,13 @@ export function PersonalCarCampaignPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalCloseBtnRef = useRef<HTMLButtonElement>(null);
   const lastTriggerRef = useRef<HTMLElement | null>(null);
+  const hasAutoOpenedRef = useRef(false);
+  const userInteractedRef = useRef(false);
 
   const openModal = useCallback((kit?: string, ctaLabel?: string, e?: React.MouseEvent) => {
+    if (ctaLabel !== "auto_10s") {
+      userInteractedRef.current = true;
+    }
     if (e) {
       e.preventDefault();
       lastTriggerRef.current = e.currentTarget as HTMLElement;
@@ -120,11 +124,30 @@ export function PersonalCarCampaignPage() {
   }, []);
 
   const closeModal = useCallback(() => {
+    userInteractedRef.current = true;
     setIsModalOpen(false);
     if (lastTriggerRef.current) {
       lastTriggerRef.current.focus();
     }
   }, []);
+
+  // 10-second automatic form popup
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (
+        !hasAutoOpenedRef.current &&
+        !userInteractedRef.current &&
+        !isModalOpen &&
+        !isSubmitting &&
+        !submitSuccess
+      ) {
+        hasAutoOpenedRef.current = true;
+        openModal(undefined, "auto_10s");
+      }
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, [isModalOpen, isSubmitting, submitSuccess, openModal]);
 
   useEffect(() => {
     if (!isModalOpen) {
@@ -167,6 +190,7 @@ export function PersonalCarCampaignPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, source: "popup" | "inpage") => {
     e.preventDefault();
+    userInteractedRef.current = true;
     const phoneClean = formData.mobile.replace(/\D/g, "");
     if (!formData.full_name || formData.full_name.trim().length < 2) {
       setSubmitError("Please enter your full name.");
@@ -192,7 +216,6 @@ export function PersonalCarCampaignPage() {
         city: formData.city.trim(),
         vehicle_model: formData.vehicle_model.trim(),
         kit_interest: formData.kit_interest,
-        call_time: formData.call_time,
         product_line: "personal_tpms_4w",
         lead_source: source === "popup" ? "car_tpms_popup" : "car_tpms_enquiry",
         ...attribution,
@@ -235,7 +258,7 @@ export function PersonalCarCampaignPage() {
   };
 
   return (
-    <div className="personal-campaign">
+    <div className="personal-campaign car-tpms-campaign">
       {/* Tabler Icons SVG Sprite definition */}
       <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true" focusable="false">
         <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></symbol>
@@ -416,7 +439,7 @@ export function PersonalCarCampaignPage() {
         {/* 1 · ABOVE THE FOLD: HERO */}
         <section className="hero" aria-labelledby="hero-title">
           <div className="wrap hero-grid">
-            <div>
+            <div className="hero-content">
               <div className="eyebrow-row">
                 <span className="chip">Personal</span>
                 <span className="eyebrow-text">TPMS for cars, SUVs &amp; MPVs</span>
@@ -425,20 +448,8 @@ export function PersonalCarCampaignPage() {
                 Your car&apos;s tyre pressure. <span className="accent">Live on your phone.</span>
               </h1>
               <p className="lede">
-                Treel sensors watch all four tyres and send live pressure and temperature to the free TREEL CARE app. If a tyre starts to lose air, you&apos;ll know early, long before the drive feels wrong.
+                Treel sensors watch all four tyres and send live pressure and temperature to the free TREEL CARE app.
               </p>
-              <div className="cta-row">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={(e) => openModal(undefined, "hero_callback", e)}
-                >
-                  <span>Get a call back</span> <Icon id="i-arrow-right" />
-                </button>
-                <a className="btn btn-secondary" href="#kits">
-                  See the car kits
-                </a>
-              </div>
               <ul className="benefits">
                 <li>
                   <Icon id="i-gauge" /> All four tyres, live
@@ -453,6 +464,18 @@ export function PersonalCarCampaignPage() {
                   <Icon id="i-circle-check" /> ARAI certified · Made in India
                 </li>
               </ul>
+              <div className="cta-row hero-cta-row">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={(e) => openModal(undefined, "hero_callback", e)}
+                >
+                  <span>Get a call back</span> <Icon id="i-arrow-right" />
+                </button>
+                <a className="btn btn-secondary" href="#kits">
+                  See the car kits
+                </a>
+              </div>
             </div>
             <div className="hero-visual">
               <div className="toast" aria-hidden="true">
@@ -715,20 +738,6 @@ export function PersonalCarCampaignPage() {
                       <option value="car_4_sensors_display">4 sensors + in-cabin display</option>
                       <option value="car_5_sensors_display">5 sensors + display (covers the spare)</option>
                       <option value="car_5_sensors_gps">5 sensors + GPS tracking</option>
-                    </select>
-                  </div>
-                  <div className="field">
-                    <label htmlFor="f-time">Best time to call</label>
-                    <select
-                      id="f-time"
-                      name="call_time"
-                      value={formData.call_time}
-                      onChange={(e) => setFormData({ ...formData, call_time: e.target.value })}
-                    >
-                      <option value="anytime">Any time</option>
-                      <option value="morning">Morning</option>
-                      <option value="afternoon">Afternoon</option>
-                      <option value="evening">Evening</option>
                     </select>
                   </div>
                   <button className="btn btn-primary" type="submit" disabled={isSubmitting}>

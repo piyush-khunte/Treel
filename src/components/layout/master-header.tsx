@@ -216,7 +216,7 @@ export function MasterHeader() {
                   >
                     <div className="w-9 h-9 rounded-lg bg-[#0B0F14] flex items-center justify-center shrink-0 mt-0.5 overflow-hidden">
                       <Image
-                        src="/images/otr-excavator-icon.png"
+                        src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436547/otr-excavator-icon.png"
                         alt="OTR TPMS"
                         width={28}
                         height={28}

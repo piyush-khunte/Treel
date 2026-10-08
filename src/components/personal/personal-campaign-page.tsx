@@ -116,6 +116,8 @@ export function PersonalCampaignPage() {
   const formStartedRef = useRef(false);
   const inPageFormRef = useRef<HTMLFormElement>(null);
   const modalFormRef = useRef<HTMLFormElement>(null);
+  const hasAutoOpenedRef = useRef(false);
+  const userInteractedRef = useRef(false);
 
   const handleFocus = () => {
     if (!formStartedRef.current) {
@@ -155,6 +157,7 @@ export function PersonalCampaignPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    userInteractedRef.current = true;
     if (!validateForm()) return;
 
     setIsSubmitting(true);
@@ -223,6 +226,9 @@ export function PersonalCampaignPage() {
   const lastTriggerRef = useRef<HTMLElement | null>(null);
 
   const openModal = useCallback((ctaLabel: string, e?: React.MouseEvent) => {
+    if (ctaLabel !== "auto_10s") {
+      userInteractedRef.current = true;
+    }
     if (e) {
       e.preventDefault();
       lastTriggerRef.current = e.currentTarget as HTMLElement;
@@ -236,11 +242,30 @@ export function PersonalCampaignPage() {
   }, []);
 
   const closeModal = useCallback(() => {
+    userInteractedRef.current = true;
     setIsModalOpen(false);
     if (lastTriggerRef.current) {
       lastTriggerRef.current.focus();
     }
   }, []);
+
+  // 10-second automatic callback modal popup
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (
+        !hasAutoOpenedRef.current &&
+        !userInteractedRef.current &&
+        !isModalOpen &&
+        !isSubmitting &&
+        !isSuccess
+      ) {
+        hasAutoOpenedRef.current = true;
+        openModal("auto_10s");
+      }
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, [isModalOpen, isSubmitting, isSuccess, openModal]);
 
   // Mobile Navigation Drawer State
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -290,7 +315,7 @@ export function PersonalCampaignPage() {
   };
 
   return (
-    <div className="personal-campaign">
+    <div className="personal-campaign bike-tpms-campaign">
       {/* Tabler Icons SVG Sprite definition */}
       <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true" focusable="false">
         <symbol id="i-arrow-right" viewBox="0 0 24 24">
@@ -599,7 +624,7 @@ export function PersonalCampaignPage() {
             ========================================================================= */}
         <section className="hero" aria-labelledby="hero-title">
           <div className="wrap hero-grid">
-            <div>
+            <div className="hero-content">
               <div className="eyebrow-row">
                 <span className="chip">Personal</span>
                 <span className="eyebrow-text">TPMS for bikes &amp; scooters</span>
@@ -608,21 +633,8 @@ export function PersonalCampaignPage() {
                 Your bike&apos;s tyre pressure. <span className="accent">Live on your phone.</span>
               </h1>
               <p className="lede">
-                Treel sensors watch both tyres and send live pressure and temperature to the free TREEL CARE app. If
-                air starts to leak, you&apos;ll know early, long before the ride feels wrong.
+                Treel sensors watch both tyres and send live pressure and temperature to the free TREEL CARE app.
               </p>
-              <div className="cta-row">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={(e) => openModal("hero_request_callback", e)}
-                >
-                  <span>Get a call back</span> <Icon id="i-arrow-right" />
-                </button>
-                <a className="btn btn-secondary" href="#how" onClick={() => handleCtaClick("hero_see_how")}>
-                  See how it works
-                </a>
-              </div>
               <ul className="benefits">
                 <li>
                   <Icon id="i-gauge" /> Front and rear, live
@@ -637,6 +649,18 @@ export function PersonalCampaignPage() {
                   <Icon id="i-circle-check" /> ARAI certified · Made in India
                 </li>
               </ul>
+              <div className="cta-row hero-cta-row">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={(e) => openModal("hero_request_callback", e)}
+                >
+                  <span>Get a call back</span> <Icon id="i-arrow-right" />
+                </button>
+                <a className="btn btn-secondary" href="#how" onClick={() => handleCtaClick("hero_see_how")}>
+                  See how it works
+                </a>
+              </div>
             </div>
 
             <div className="hero-visual">
@@ -770,18 +794,15 @@ export function PersonalCampaignPage() {
                 <div className="divider" aria-hidden="true" />
                 <p className="eyebrow" style={{ color: "rgba(255, 255, 255, 0.85)" }}>READY WHEN YOU ARE</p>
                 <h2 id="callback-title" style={{ color: "#ffffff" }}>Know before you ride.</h2>
-                <p className="sec-sub" style={{ color: "rgba(255, 255, 255, 0.9)", margin: "0 0 32px" }}>
+                <p className="sec-sub" style={{ color: "rgba(255, 255, 255, 0.9)", margin: "0 0 18px" }}>
                   Choose your kit, have it fitted at a Treel tyre shop, and pair it with the free app. That’s it.
                 </p>
-                <div className="cta-row" style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center", marginBottom: "24px" }}>
+                <div className="cta-row" style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center", marginBottom: "16px" }}>
                   <a
                     href="#kits"
                     className="btn btn-white"
                   >
                     Shop the bike kit <span aria-hidden="true" style={{ marginLeft: "4px" }}>→</span>
-                  </a>
-                  <a
-                  >
                   </a>
                 </div>
                 <p className="help-line" style={{ color: "rgba(255, 255, 255, 0.86)", margin: 0 }}>
@@ -855,19 +876,7 @@ export function PersonalCampaignPage() {
                           onChange={handleInputChange}
                         />
                       </div>
-                      <div className="field">
-                        <label htmlFor="f-kit">I’m looking at</label>
-                        <select
-                          id="f-kit"
-                          name="kit_interest"
-                          value={formData.kit_interest}
-                          onChange={handleInputChange}
-                        >
-                          <option value="not_sure">Not sure yet</option>
-                          <option value="motorbike_kit">Motorbike kit</option>
-                          <option value="scooter_kit">Scooter kit</option>
-                        </select>
-                      </div>
+                     
                     </div>
 
                     <div className="field">
@@ -2014,20 +2023,6 @@ export function PersonalCampaignPage() {
                       value={formData.city}
                       onChange={handleInputChange}
                     />
-                  </div>
-
-                  <div className="field">
-                    <label htmlFor="m-f-kit">Kit you&apos;re interested in</label>
-                    <select
-                      id="m-f-kit"
-                      name="kit_interest"
-                      value={formData.kit_interest}
-                      onChange={handleInputChange}
-                    >
-                      <option value="motorbike_kit">Motorbike kit</option>
-                      <option value="scooter_kit">Scooter kit</option>
-                      <option value="not_sure">Not sure yet</option>
-                    </select>
                   </div>
 
                   <div className="field">

@@ -1149,6 +1149,8 @@ export function SurakshaCampaignPage() {
   // Mobile sticky bar auto-hide state
   const [mbarHidden, setMbarHidden] = useState(false);
   const inlineEnquiryRef = useRef<HTMLElement | null>(null);
+  const hasAutoOpenedRef = useRef(false);
+  const userInteractedRef = useRef(false);
 
   // Form states
   const [inlineFormData, setInlineFormData] = useState({
@@ -1267,15 +1269,55 @@ export function SurakshaCampaignPage() {
   };
 
   // Open Callback Modal
-  const openCallbackModal = (label = "cta_click") => {
-    setCbModalOpen(true);
-    pushDataLayer({
-      event: "callback_popup_open",
-      link_label: label,
-      language: currentLang,
-      product_line: "suraksha",
-    });
-  };
+  const openCallbackModal = useCallback(
+    (label = "cta_click") => {
+      if (label !== "auto_10s") {
+        userInteractedRef.current = true;
+      }
+      setCbModalOpen(true);
+      pushDataLayer({
+        event: "callback_popup_open",
+        link_label: label,
+        language: currentLang,
+        product_line: "suraksha",
+      });
+    },
+    [currentLang],
+  );
+
+  const closeCallbackModal = useCallback(() => {
+    userInteractedRef.current = true;
+    setCbModalOpen(false);
+  }, []);
+
+  // 10-second automatic callback form popup
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (
+        !hasAutoOpenedRef.current &&
+        !userInteractedRef.current &&
+        !cbModalOpen &&
+        !langModalOpen &&
+        !inlineLoading &&
+        !popupLoading &&
+        !inlineSubmitted &&
+        !popupSubmitted
+      ) {
+        hasAutoOpenedRef.current = true;
+        openCallbackModal("auto_10s");
+      }
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, [
+    cbModalOpen,
+    langModalOpen,
+    inlineLoading,
+    popupLoading,
+    inlineSubmitted,
+    popupSubmitted,
+    openCallbackModal,
+  ]);
 
   // Mobile menu state
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -1285,7 +1327,7 @@ export function SurakshaCampaignPage() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         if (!isFirstVisit && langModalOpen) setLangModalOpen(false);
-        if (cbModalOpen) setCbModalOpen(false);
+        if (cbModalOpen) closeCallbackModal();
         if (isMobileMenuOpen) setIsMobileMenuOpen(false);
       }
     };
@@ -1301,7 +1343,7 @@ export function SurakshaCampaignPage() {
       window.removeEventListener("keydown", handleKeyDown);
       document.documentElement.classList.remove("dlg-open");
     };
-  }, [langModalOpen, cbModalOpen, isFirstVisit, isMobileMenuOpen]);
+  }, [langModalOpen, cbModalOpen, isFirstVisit, isMobileMenuOpen, closeCallbackModal]);
 
   // Track sticky mobile bar visibility using IntersectionObserver
   useEffect(() => {
@@ -1324,6 +1366,7 @@ export function SurakshaCampaignPage() {
   // Handle Inline Form Submission
   const handleInlineSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    userInteractedRef.current = true;
     setInlineError("");
 
     if (!inlineFormData.full_name.trim() || inlineFormData.full_name.trim().length < 2) {
@@ -1407,6 +1450,7 @@ export function SurakshaCampaignPage() {
   // Handle Popup Form Submission
   const handlePopupSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    userInteractedRef.current = true;
     setPopupError("");
 
     if (!popupFormData.full_name.trim() || popupFormData.full_name.trim().length < 2) {
@@ -1726,7 +1770,25 @@ export function SurakshaCampaignPage() {
               </p>
               <h1 id="hero-title">{t("hero_h1")}</h1>
               <p className="lede">{t("hero_lede")}</p>
-              <div className="cta-row">
+              <ul className="trust">
+                <li>
+                  <Icon id="i-shield-check" />
+                  <span>{t("trust_cert")}</span>
+                </li>
+                <li>
+                  <Icon id="i-map-pin" />
+                  <span>{t("trust_centres")}</span>
+                </li>
+                <li>
+                  <Icon id="i-device-mobile-off" />
+                  <span>{t("trust_noapp")}</span>
+                </li>
+                <li>
+                  <Icon id="i-coin-rupee" />
+                  <span>{t("trust_emi")}</span>
+                </li>
+              </ul>
+              <div className="cta-row hero-cta-row">
                 {/* MANDATORY REQUIREMENT 1 & 5: Left CTA = WhatsApp (Green) */}
                 <a
                   className="btn btn-wa"
@@ -1755,24 +1817,6 @@ export function SurakshaCampaignPage() {
                   <span>{t("cta_cb")}</span>
                 </button>
               </div>
-              <ul className="trust">
-                <li>
-                  <Icon id="i-shield-check" />
-                  <span>{t("trust_cert")}</span>
-                </li>
-                <li>
-                  <Icon id="i-map-pin" />
-                  <span>{t("trust_centres")}</span>
-                </li>
-                <li>
-                  <Icon id="i-device-mobile-off" />
-                  <span>{t("trust_noapp")}</span>
-                </li>
-                <li>
-                  <Icon id="i-coin-rupee" />
-                  <span>{t("trust_emi")}</span>
-                </li>
-              </ul>
             </div>
 
             <div className="hero-art">
@@ -2494,7 +2538,7 @@ export function SurakshaCampaignPage() {
       {cbModalOpen && (
         <div
           className="suraksha-campaign-modal-backdrop"
-          onClick={() => setCbModalOpen(false)}
+          onClick={closeCallbackModal}
         >
           <div
             className="dlg-card cbdlg"
@@ -2506,7 +2550,7 @@ export function SurakshaCampaignPage() {
             <button
               className="x"
               type="button"
-              onClick={() => setCbModalOpen(false)}
+              onClick={closeCallbackModal}
               aria-label={t("f_close")}
             >
               <Icon id="i-x" />

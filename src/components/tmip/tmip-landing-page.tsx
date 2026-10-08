@@ -118,7 +118,7 @@ const SLIDES = [
     badge: "68,000+ Vehicles Under Management",
   },
   {
-    src: "/images/Approved Images timp landing page/AlertStatus_Status_Performance - New.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436259/AlertStatus_Status_Performance_-_New.png",
     alt: "TMIP Real-Time Alert Feed and Fleet Performance Dashboard",
     caption:
       "Severity-ranked alert feed: sub-second updates from roadside and highway sensors.",
@@ -138,6 +138,13 @@ const SLIDES = [
       "Component lifecycle analytics: highway blowout prevention before heat build-up spreads.",
     badge: "100% Carcass Salvage Rate",
   },
+];
+
+const CLONE_COUNT = 4;
+const EXTENDED_SLIDES = [
+  ...SLIDES.slice(-CLONE_COUNT),
+  ...SLIDES,
+  ...SLIDES.slice(0, CLONE_COUNT),
 ];
 
 const FEATURE_SLIDES = [
@@ -609,25 +616,55 @@ export function TmipLandingPage() {
     return () => clearInterval(timer);
   }, [isFeaturePaused, maxFeatureIndex]);
 
-  // Section 11 Image Card Carousel State
+  // Section 11 Image Card Carousel State (Infinite Loop)
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(true);
   const [isCarouselHovered, setIsCarouselHovered] = useState(false);
   const touchStartXRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (isCarouselHovered) return;
     const timer = setInterval(() => {
-      setCarouselIndex((prev) => (prev + 1) % SLIDES.length);
+      setIsTransitioning(true);
+      setCarouselIndex((prev) => prev + 1);
     }, 4500);
     return () => clearInterval(timer);
   }, [isCarouselHovered]);
 
+  useEffect(() => {
+    if (!isTransitioning) {
+      const raf = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsTransitioning(true);
+        });
+      });
+      return () => cancelAnimationFrame(raf);
+    }
+  }, [isTransitioning]);
+
   const handleNextCarousel = () => {
-    setCarouselIndex((prev) => (prev + 1) % SLIDES.length);
+    setIsTransitioning(true);
+    setCarouselIndex((prev) => prev + 1);
   };
 
   const handlePrevCarousel = () => {
-    setCarouselIndex((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
+    setIsTransitioning(true);
+    setCarouselIndex((prev) => prev - 1);
+  };
+
+  const handleDotClick = (idx: number) => {
+    setIsTransitioning(true);
+    setCarouselIndex(idx);
+  };
+
+  const handleTransitionEnd = () => {
+    if (carouselIndex >= SLIDES.length) {
+      setIsTransitioning(false);
+      setCarouselIndex((prev) => prev - SLIDES.length);
+    } else if (carouselIndex < 0) {
+      setIsTransitioning(false);
+      setCarouselIndex((prev) => prev + SLIDES.length);
+    }
   };
 
   // Full-Page Demo Modal State
@@ -637,6 +674,8 @@ export function TmipLandingPage() {
   >("tmip_demo");
   const modalCloseBtnRef = useRef<HTMLButtonElement>(null);
   const lastTriggerRef = useRef<HTMLElement | null>(null);
+  const hasAutoOpenedRef = useRef(false);
+  const userInteractedRef = useRef(false);
 
   const openModal = useCallback(
     (
@@ -644,6 +683,9 @@ export function TmipLandingPage() {
       e?: React.MouseEvent,
       formId: "tmip_demo" | "tmip_footer_demo" = "tmip_demo",
     ) => {
+      if (location !== "auto_10s") {
+        userInteractedRef.current = true;
+      }
       if (e) {
         e.preventDefault();
         lastTriggerRef.current = e.currentTarget as HTMLElement;
@@ -660,11 +702,29 @@ export function TmipLandingPage() {
   );
 
   const closeModal = useCallback(() => {
+    userInteractedRef.current = true;
     setIsModalOpen(false);
     if (lastTriggerRef.current) {
       lastTriggerRef.current.focus();
     }
   }, []);
+
+  // 10-second automatic demo form popup
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (
+        !hasAutoOpenedRef.current &&
+        !userInteractedRef.current &&
+        !isModalOpen &&
+        !isSubmitting
+      ) {
+        hasAutoOpenedRef.current = true;
+        openModal("auto_10s");
+      }
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, [isModalOpen, isSubmitting, openModal]);
 
   useEffect(() => {
     if (!isModalOpen) {
@@ -1033,9 +1093,9 @@ export function TmipLandingPage() {
                     <span className="err">Enter 10-digit mobile.</span>
                   </div>
 
-                  {/* Work Email */}
+                  {/* Email */}
                   <div className={`field ${errors.email ? "invalid" : ""}`}>
-                    <label htmlFor="hero-email">Work email</label>
+                    <label htmlFor="hero-email">Email</label>
                     <input
                       autoComplete="email"
                       id="hero-email"
@@ -1049,7 +1109,7 @@ export function TmipLandingPage() {
                       onFocus={handleFocus}
                       aria-invalid={errors.email ? "true" : "false"}
                     />
-                    <span className="err">Enter a valid work email.</span>
+                    <span className="err">Enter a valid email.</span>
                   </div>
 
                   {/* Company */}
@@ -1134,15 +1194,6 @@ export function TmipLandingPage() {
                   By submitting, you agree to receive product updates and demo
                   coordination from Treel. Privacy protected under ISO 27001.
                 </p>
-
-                <div className="form-assure">
-                  <span>
-                    <i></i> No credit card required
-                  </span>
-                  <span>
-                    <i></i> 14-day live fleet pilot
-                  </span>
-                </div>
               </form>
             </div>
           </div>
@@ -1611,7 +1662,7 @@ export function TmipLandingPage() {
               <figure className="fade">
                 <Image
                   alt="TMIP event timeline with coolant temperature warning, rapid pressure loss on rear right tyre, harsh braking event and tyre pressure correction"
-                  src="/images/Approved Images timp landing page/AlertStatus_Status_Performance - New.png"
+                  src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436259/AlertStatus_Status_Performance_-_New.png"
                   width={1920}
                   height={911}
                   loading="lazy"
@@ -2137,11 +2188,15 @@ export function TmipLandingPage() {
             <div className="tmip-carousel-viewport">
               <div
                 className="tmip-carousel-track"
+                onTransitionEnd={handleTransitionEnd}
                 style={{
                   ["--slide-index" as string]: carouselIndex,
+                  transition: isTransitioning
+                    ? "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)"
+                    : "none",
                 }}
               >
-                {SLIDES.map((slide, idx) => (
+                {EXTENDED_SLIDES.map((slide, idx) => (
                   <div key={idx} className="tmip-carousel-card">
                     <div className="tmip-carousel-img-wrap">
                       <Image
@@ -2171,7 +2226,12 @@ export function TmipLandingPage() {
                             minHeight: "42px",
                             fontSize: "0.88rem",
                           }}
-                          onClick={(e) => handleCtaClick(`carousel_${idx}`, e)}
+                          onClick={(e) =>
+                            handleCtaClick(
+                              `carousel_${((idx - CLONE_COUNT) % SLIDES.length + SLIDES.length) % SLIDES.length}`,
+                              e,
+                            )
+                          }
                         >
                           Book a demo on this module
                         </button>
@@ -2202,15 +2262,20 @@ export function TmipLandingPage() {
               </button>
 
               <div className="tmip-carousel-dots">
-                {SLIDES.map((_, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    className={`tmip-carousel-dot ${carouselIndex === idx ? "active" : ""}`}
-                    onClick={() => setCarouselIndex(idx)}
-                    aria-label={`Go to slide ${idx + 1}`}
-                  />
-                ))}
+                {SLIDES.map((_, idx) => {
+                  const activeDotIndex =
+                    ((carouselIndex % SLIDES.length) + SLIDES.length) %
+                    SLIDES.length;
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      className={`tmip-carousel-dot ${activeDotIndex === idx ? "active" : ""}`}
+                      onClick={() => handleDotClick(idx)}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
+                  );
+                })}
               </div>
 
               <button
@@ -2321,7 +2386,7 @@ export function TmipLandingPage() {
           <figure>
             <Image
               alt="TMIP Live Vehicle Digital Twin dashboard showing Alert Status, Average Pressure and Temperature, PSI Difference, and Pressure wise Performance charts"
-              src="/images/AlertStatus_Status_Performance.png"
+              src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436259/AlertStatus_Status_Performance_-_New.png"
               width={1920}
               height={911}
               loading="lazy"
@@ -2499,9 +2564,9 @@ export function TmipLandingPage() {
                   <span className="err">Enter 10-digit mobile.</span>
                 </div>
 
-                {/* Work Email */}
+                {/* Email */}
                 <div className={`field ${errors.email ? "invalid" : ""}`}>
-                  <label htmlFor="m-f-email">Work email</label>
+                  <label htmlFor="m-f-email">Email</label>
                   <input
                     autoComplete="email"
                     id="m-f-email"
@@ -2515,7 +2580,7 @@ export function TmipLandingPage() {
                     onFocus={handleFocus}
                     aria-invalid={errors.email ? "true" : "false"}
                   />
-                  <span className="err">Enter a valid work email.</span>
+                  <span className="err">Enter a valid email.</span>
                 </div>
 
                 {/* Company Name */}
@@ -2604,11 +2669,6 @@ export function TmipLandingPage() {
               <p className="consent">
                 By submitting, you agree to receive product updates and demo coordination from Treel. Privacy protected under ISO 27001.
               </p>
-
-              <div className="form-assure">
-                <span><i aria-hidden="true" className="assure-dot"></i>No credit card required</span>
-                <span><i aria-hidden="true" className="assure-dot"></i>14-day live fleet pilot</span>
-              </div>
             </form>
           </div>
         </div>
