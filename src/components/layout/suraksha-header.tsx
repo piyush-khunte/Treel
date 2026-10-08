@@ -211,7 +211,7 @@ export function SurakshaHeader() {
           {/* GET SURAKSHA (CTAs) */}
           <div className="hidden md:flex items-center gap-1.5 xl:gap-2 shrink-0 ml-1.5 xl:ml-3">
             <Link
-              href="/suraksha/callback"
+              href="/suraksha/buy"
               className="px-2 xl:px-3 py-1.5 xl:py-2 rounded font-rubik text-[10.5px] xl:text-xs font-bold bg-[#DC2626] text-white hover:bg-[#B91C1C] transition-all shadow-sm whitespace-nowrap"
             >
               Get Suraksha
@@ -347,11 +347,11 @@ export function SurakshaHeader() {
 
             <div className="pt-3 border-t border-[#451A03]/10 flex flex-col gap-2.5">
               <Link
-                href="/suraksha/callback"
+                href="/suraksha/buy"
                 onClick={() => setMobileOpen(false)}
                 className="w-full py-2.5 text-center rounded font-rubik text-xs font-bold bg-[#DC2626] text-white hover:bg-[#B91C1C] transition-all"
               >
-                Get Suraksha (Callback)
+                Get Suraksha
               </Link>
               <Link
                 href="/suraksha/whatsapp"

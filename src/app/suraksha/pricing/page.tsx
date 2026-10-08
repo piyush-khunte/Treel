@@ -15,17 +15,19 @@ import {
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
+import { PricingBuyButton } from "./pricing-buy-button";
+
 export const metadata: Metadata = {
-  title: "Suraksha Kit · Configurations & Inclusions · EMI Available",
+  title: "Suraksha Kit · Configurations & Pricing · ₹1,700/Tyre",
   description:
-    "Suraksha safety kit configurations for 6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, 16-wheeler, and 18-wheeler trucks. Zero-cost EMI available on Bajaj Finance. No hidden fees.",
+    "Suraksha safety kit pricing at ₹1,700 per tyre for 6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, 16-wheeler, and 18-wheeler trucks. No hidden fees. 3-year warranty included.",
   alternates: {
     canonical: "https://treel.in/suraksha/pricing",
   },
   openGraph: {
-    title: "Suraksha Kit · Configurations & Inclusions · EMI Available",
+    title: "Suraksha Kit · Configurations & Pricing · ₹1,700/Tyre",
     description:
-      "Suraksha safety kit configurations for 6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, 16-wheeler, and 18-wheeler trucks. Zero-cost EMI available on Bajaj Finance. No hidden fees.",
+      "Suraksha safety kit pricing at ₹1,700 per tyre for 6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, 16-wheeler, and 18-wheeler trucks. No hidden fees. 3-year warranty included.",
     url: "https://treel.in/suraksha/pricing",
   },
 };
@@ -33,36 +35,48 @@ export const metadata: Metadata = {
 const configurations = [
   {
     type: "6-wheeler",
+    tyres: 6,
+    price: 10200,
     axleSetup: "2 Axles · Steer & Drive",
     included: "1 in-cab display + 6 tyre sensors + mounting kit + wiring harness",
     popular: false,
   },
   {
     type: "10-wheeler",
+    tyres: 10,
+    price: 17000,
     axleSetup: "3 Axles · Multi-Axle Haulage",
     included: "1 in-cab display + 10 tyre sensors + mounting kit + wiring harness",
     popular: true,
   },
   {
     type: "12-wheeler",
+    tyres: 12,
+    price: 20400,
     axleSetup: "4 Axles · Heavy Commercial",
     included: "1 in-cab display + 12 tyre sensors + mounting kit + wiring harness",
     popular: false,
   },
   {
     type: "14-wheeler",
+    tyres: 14,
+    price: 23800,
     axleSetup: "4-5 Axles · Multi-Axle Goods",
     included: "1 in-cab display + 14 tyre sensors + mounting kit + wiring harness",
     popular: false,
   },
   {
     type: "16-wheeler",
+    tyres: 16,
+    price: 27200,
     axleSetup: "5 Axles · Heavy Haulage",
     included: "1 in-cab display + 16 tyre sensors + mounting kit + wiring harness",
     popular: false,
   },
   {
     type: "18-wheeler",
+    tyres: 18,
+    price: 30600,
     axleSetup: "Prime Mover + Multi-Axle Trailer",
     included: "1 in-cab display + 18 tyre sensors + mounting kit + wiring harness",
     popular: false,
@@ -116,7 +130,7 @@ export default function SurakshaPricingPage() {
             </SurakshaRotator>
 
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Your price depends on how many wheels your truck has. Find your configuration below to see what&apos;s included, then contact us for your price. EMI is available on every kit.
+              Commercial vehicle safety kit priced transparently at <strong>₹1,700 per tyre</strong>. Select your truck configuration below to proceed directly to checkout. EMI options and fitment centre pickup available nationwide.
             </p>
           </div>
         </div>
@@ -130,7 +144,7 @@ export default function SurakshaPricingPage() {
               CONFIGURATIONS BY TRUCK SETUP
             </h2>
             <p className="text-[#78350F] text-base mt-2 font-medium">
-              Standard Indian commercial vehicle kit options for all axle setups.
+              Standard Indian commercial vehicle kit options priced at ₹1,700 per tyre.
             </p>
           </div>
 
@@ -151,8 +165,18 @@ export default function SurakshaPricingPage() {
                 )}
 
                 <div className="space-y-4">
-                  <div className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase">
-                    {item.type}
+                  <div className="flex items-baseline justify-between gap-2">
+                    <div className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase">
+                      {item.type}
+                    </div>
+                    <div className="text-right">
+                      <div className="font-anton text-2xl text-[#DC2626]">
+                        ₹{item.price.toLocaleString("en-IN")}
+                      </div>
+                      <div className="text-[10px] font-semibold text-[#78350F]">
+                        (₹1,700 × {item.tyres} tyres)
+                      </div>
+                    </div>
                   </div>
 
                   <div className="inline-block px-3 py-1 rounded bg-[#FEF3C7] border border-[#451A03]/15 text-[#78350F] font-rubik text-xs font-bold">
@@ -177,17 +201,12 @@ export default function SurakshaPricingPage() {
                 </div>
 
                 <div className="pt-4 border-t border-[#451A03]/10 flex items-center justify-between gap-3">
+                  <PricingBuyButton tyres={item.tyres} type={item.type} />
                   <Link
                     href="/suraksha/centres"
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-[4px] font-rubik text-xs font-bold bg-[#DC2626] text-[#FEF3C7] hover:bg-[#B91C1C] transition-all shadow-sm"
-                  >
-                    Get Suraksha <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                  <Link
-                    href="/suraksha/emi"
                     className="font-rubik text-xs font-bold text-[#78350F] hover:text-[#DC2626] hover:underline flex items-center gap-1"
                   >
-                    EMI Plans <ChevronRight className="w-3.5 h-3.5" />
+                    Find location <ChevronRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>

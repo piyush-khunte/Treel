@@ -12,8 +12,17 @@ import {
   Bell,
   Cookie 
 } from "lucide-react";
+import { getAdminSession } from "@/lib/admin/admin-auth";
+import { AdminLogoutButton } from "./admin-logout-button";
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  const session = await getAdminSession();
+
+  // If unauthenticated (e.g. on /admin/login), render children directly without admin sidebar
+  if (!session) {
+    return <>{children}</>;
+  }
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans flex flex-col md:flex-row">
       {/* Sidebar */}
@@ -104,13 +113,25 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </nav>
         </div>
 
+        {/* Auth status & actions */}
         <div className="pt-6 border-t border-slate-800 space-y-3">
-          <div className="flex items-center gap-2 text-xs text-slate-500 font-mono">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Authenticated Staff Only
+          <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
+            <div className="flex items-center gap-1.5 text-[10px] font-mono text-slate-400">
+              <ShieldCheck className="w-3 h-3 text-emerald-400" /> Authenticated
+            </div>
+            <div className="text-xs font-mono font-bold text-emerald-400 truncate">
+              {session.username}
+            </div>
+            <div className="text-[10px] font-mono text-slate-500 uppercase tracking-wider">
+              Role: {session.role}
+            </div>
           </div>
+
+          <AdminLogoutButton />
+
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors px-3 font-mono"
           >
             <ArrowLeft className="w-3.5 h-3.5" /> Return to Public Site
           </Link>

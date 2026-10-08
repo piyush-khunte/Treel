@@ -58,6 +58,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tmip/api`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
 
     // 0.8 - Suraksha Deep-Dive Pages
+    { url: `${baseUrl}/suraksha/buy`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/suraksha/product`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/suraksha/how-it-works`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/suraksha/pricing`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
