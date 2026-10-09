@@ -182,7 +182,7 @@ export default function VehicleDigitalTwinPage() {
               What operators do differently.
             </h2>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-              The Vehicle Digital Twin changes the operating model of a fleet business. Instead of reacting to failures, operators anticipate them. Instead of averaging costs across the fleet, they attribute cost to specific vehicles, routes, and drivers. Instead of standardising maintenance intervals, they tune them per vehicle. The savings compound: our customers see 5-7% tyre life extension, 5-6% fuel savings, and 30-40% reduction in unscheduled downtime over a 12-month deployment.
+              The Vehicle Digital Twin changes the operating model of a fleet business. Instead of reacting to failures, operators anticipate them. Instead of averaging costs across the fleet, they attribute cost to specific vehicles, routes, and drivers. Instead of standardising maintenance intervals, they tune them per vehicle. The savings compound: our customers see 5-7% tyre life extension, 0.5–0.6% fuel savings, and 30-40% reduction in unscheduled downtime over a 12-month deployment.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
@@ -191,7 +191,7 @@ export default function VehicleDigitalTwinPage() {
                 <div className="font-jetbrains font-mono text-xs uppercase tracking-wider text-[#94A3B8] mt-2">Tyre Life Extension</div>
               </div>
               <div className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] text-center">
-                <div className="font-fraunces text-3xl sm:text-4xl font-medium text-[#D5573B]">5–6%</div>
+                <div className="font-fraunces text-3xl sm:text-4xl font-medium text-[#D5573B]">0.5–0.6%</div>
                 <div className="font-jetbrains font-mono text-xs uppercase tracking-wider text-[#94A3B8] mt-2">Direct Fuel Savings</div>
               </div>
               <div className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] text-center">

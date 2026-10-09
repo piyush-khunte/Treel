@@ -90,7 +90,7 @@ const roiMetrics = [
     detail: "Fleet median achieved through proactive pressure and thermal management",
   },
   {
-    value: "5–6%",
+    value: "0.5–0.6%",
     label: "Fuel savings",
     detail: "Reduced rolling resistance and real-time correction of harsh driving patterns",
   },

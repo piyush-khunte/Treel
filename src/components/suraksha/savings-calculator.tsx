@@ -207,7 +207,7 @@ export function SavingsCalculator() {
               />
             </div>
             <p className="text-[11px] text-[#78350F]">
-              Suraksha delivers 5%–6% diesel savings via accurate pressure.
+              Suraksha delivers 0.5%–0.6% diesel savings via accurate pressure.
             </p>
           </div>
 

@@ -75,7 +75,7 @@ export function ScheduledClientView() {
 
       {/* 3. Short Confirmation Message */}
       <p className="text-[#94A3B8] text-lg sm:text-xl font-ibm-plex max-w-xl mx-auto mb-8 leading-relaxed">
-        Our team will reach out to schedule your 30-minute demo, followed by a 14-day pilot on a subset of your fleet.
+        Our team will reach out to schedule your 30-minute demo.
       </p>
 
       {/* 4. Action / Contact Buttons */}

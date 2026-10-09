@@ -86,7 +86,7 @@ export default function ResearchRoiFleetIntelligencePage() {
                   A comprehensive financial and operational analysis of mobility intelligence and real-time tyre telemetry across commercial vehicle fleets in India. Based on longitudinal empirical data from 200+ enterprise deployments and 68,000 connected vehicles under active management.
                 </p>
                 <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-                  This paper breaks down the exact mechanics of 5–6% fuel savings, 5–7% tyre life extension, and 30–40% reduction in unscheduled downtime, validating the 9-month median capital payback for enterprise fleet operators.
+                  This paper breaks down the exact mechanics of 0.5–0.6% fuel savings, 5–7% tyre life extension, and 30–40% reduction in unscheduled downtime, validating the 9-month median capital payback for enterprise fleet operators.
                 </p>
               </div>
 

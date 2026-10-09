@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Activity, Clock, Layers, BarChart3, Box, Globe } from "lucide-react";
+import { ArrowRight, Activity, Clock, BarChart3, Box, Globe } from "lucide-react";
 import { TwinInteractive } from "./twin-interactive";
 
 export const metadata: Metadata = {
@@ -32,11 +32,6 @@ const capabilities = [
     icon: Clock,
     title: "Predictive maintenance",
     body: "Machine-learning models flag component wear before failure. Reduce unscheduled downtime and stretch maintenance intervals with confidence.",
-  },
-  {
-    icon: Layers,
-    title: "API-first integrations",
-    body: "Native connectors to Fleetx, Locus, LogiNext, and custom TMS stacks. Data flows both ways; TMIP fits your architecture, not the reverse.",
   },
   {
     icon: BarChart3,
@@ -253,7 +248,7 @@ export default function TmipPage() {
               See TMIP on your fleet.
             </h2>
             <p className="font-ibm-plex text-base sm:text-lg text-[#94A3B8] leading-[1.6]">
-              A 30-minute demo with a Treel solutions engineer, followed by a 14-day pilot on a subset of your fleet. If
+              A 30-minute demo with a Treel solutions engineer. If
               the payback math does not work for you, we do not sell into it.
             </p>
             <div className="pt-4">

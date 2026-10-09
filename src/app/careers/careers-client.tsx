@@ -54,7 +54,7 @@ export function CareersInteractiveRoster() {
       team: "GTM",
       location: "Pune",
       type: "Full-time",
-      excerpt: "Partner with enterprise fleet technical buyers, lead 14-day pilots, and deliver TMS custom API integrations across logistics corridors."
+      excerpt: "Partner with enterprise fleet technical buyers, lead technical evaluations, and deliver TMS custom API integrations across logistics corridors."
     }
   ];
 

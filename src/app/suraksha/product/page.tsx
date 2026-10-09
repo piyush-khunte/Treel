@@ -21,16 +21,16 @@ import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 export const metadata: Metadata = {
-  title: "Suraksha Kit · Product Details · In-Cab Display + 4 Tyre Sensors",
+  title: "Suraksha Kit · Product Details · In-Cab Display + Tyre Sensors",
   description:
-    "Suraksha safety kit for trucks: 1 in-cab display + 4 tyre sensors. ARAI certified. 3-year sensor warranty. Fits any truck, any tyre brand.",
+    "Suraksha safety kit for trucks: 1 in-cab display + tyre sensors as per truck configuration. ARAI certified. 3-year sensor warranty. Fits any truck, any tyre brand.",
   alternates: {
     canonical: "https://treel.in/suraksha/product",
   },
   openGraph: {
-    title: "Suraksha Kit · Product Details · In-Cab Display + 4 Tyre Sensors",
+    title: "Suraksha Kit · Product Details · In-Cab Display + Tyre Sensors",
     description:
-      "Suraksha safety kit for trucks: 1 in-cab display + 4 tyre sensors. ARAI certified. 3-year sensor warranty. Fits any truck, any tyre brand.",
+      "Suraksha safety kit for trucks: 1 in-cab display + tyre sensors as per truck configuration. ARAI certified. 3-year sensor warranty. Fits any truck, any tyre brand.",
     url: "https://treel.in/suraksha/product",
   },
 };
@@ -42,8 +42,8 @@ const kitContents = [
     icon: Tv,
   },
   {
-    title: "4 Tyre sensors",
-    desc: "One for each wheel · ARAI certified · 3-year warranty",
+    title: "Tyre sensors as per configuration",
+    desc: "Supplied according to your truck's wheel count · ARAI certified · 3-year warranty",
     icon: Radio,
   },
   {
@@ -144,11 +144,11 @@ export default function SurakshaProductPage() {
               page="5.2"
               className="font-baloo text-xl sm:text-2xl font-bold text-[#DC2626] tracking-wide"
             >
-              एक डिस्प्ले, चार सेंसर। और कुछ नहीं चाहिए।
+              एक डिस्प्ले, आपके ट्रक के अनुसार सेंसर। और कुछ नहीं चाहिए।
             </SurakshaRotator>
 
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Every Suraksha kit comes with an in-cab display, four tyre sensors, and everything needed to mount them. Nothing to download and nothing to subscribe to. Simply install and drive.
+              Every Suraksha kit comes with an in-cab display, tyre sensors configured for your truck&apos;s wheel count, and everything needed to mount them. Nothing to download and nothing to subscribe to. Simply install and drive.
             </p>
           </div>
         </div>

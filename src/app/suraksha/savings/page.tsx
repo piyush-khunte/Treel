@@ -8,13 +8,13 @@ import { SavingsCalculator } from "@/components/suraksha/savings-calculator";
 
 export const metadata: Metadata = {
   title: "Savings  \u00b7  Nine-Month Payback on Suraksha Kit  \u00b7  ROI Calculator",
-  description: "Suraksha kit pays back in 9 months through fuel savings (5-6%), tyre life extension (5-7%), and roadside downtime avoidance. Calculate your truck's savings.",
+  description: "Suraksha kit pays back in 9 months through fuel savings (0.5–0.6%), tyre life extension (5-7%), and roadside downtime avoidance. Calculate your truck's savings.",
   alternates: {
     canonical: "https://treel.in/suraksha/savings",
   },
   openGraph: {
     title: "Savings  \u00b7  Nine-Month Payback on Suraksha Kit  \u00b7  ROI Calculator",
-    description: "Suraksha kit pays back in 9 months through fuel savings (5-6%), tyre life extension (5-7%), and roadside downtime avoidance. Calculate your truck's savings.",
+    description: "Suraksha kit pays back in 9 months through fuel savings (0.5–0.6%), tyre life extension (5-7%), and roadside downtime avoidance. Calculate your truck's savings.",
     url: "https://treel.in/suraksha/savings",
   },
 };
@@ -72,10 +72,10 @@ export default function SurakshaSavingsPage() {
               {/* Bucket 1 */}
               <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 hover:border-[#DC2626] transition-all shadow-sm space-y-4">
                 <div className="font-anton text-xl uppercase text-[#DC2626]">
-                  Bucket 1 · Fuel savings (5-6%)
+                  Bucket 1 · Fuel savings (0.5–0.6%)
                 </div>
                 <p className="text-[#451A03] text-sm leading-relaxed">
-                  Underinflated tyres burn 5-6% extra fuel. Most drivers never notice this, because judging tyre pressure by eye is nearly impossible—especially under heavy loads.
+                  Underinflated tyres burn 0.5–0.6% extra fuel. Most drivers never notice this, because judging tyre pressure by eye is nearly impossible—especially under heavy loads.
                 </p>
                 <div className="pt-3 border-t border-[#451A03]/10 space-y-2 text-xs text-[#78350F]">
                   <div className="font-bold text-[#451A03]">Numbers:</div>

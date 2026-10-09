@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, CheckCircle2, ShieldCheck, Clock, Calendar } from "lucide-react";
+import { ArrowRight, Clock, Calendar } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export default function TMIPDemoPage() {
@@ -114,7 +114,7 @@ export default function TMIPDemoPage() {
               See TMIP on your fleet.
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-ibm-plex max-w-3xl">
-              A 30-minute demo with a Treel solutions engineer. Followed by an optional 14-day pilot on a subset of your fleet. If the payback math does not work for you, we do not sell into it.
+              A 30-minute demo with a Treel solutions engineer. If the payback math does not work for you, we do not sell into it.
             </p>
           </div>
         </div>
@@ -282,16 +282,6 @@ export default function TMIPDemoPage() {
                     <div>
                       <h4 className="font-semibold text-sm text-[#F1F5F9]">2. 30-minute tailored walkthrough</h4>
                       <p className="text-xs text-[#94A3B8] font-ibm-plex mt-1">We show live TMIP telemetry, the Vehicle Digital Twin, and simulated cost-per-kilometre curves for your specific vehicle types.</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 rounded-[3px] bg-blue-500/10 text-[#3B82F6] mt-0.5">
-                      <ShieldCheck className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-sm text-[#F1F5F9]">3. Optional 14-day field pilot</h4>
-                      <p className="text-xs text-[#94A3B8] font-ibm-plex mt-1">Experience live data collection on 5-10 of your fleet vehicles before any contractual commitment.</p>
                     </div>
                   </div>
                 </div>

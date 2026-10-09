@@ -44,7 +44,7 @@ const pillars = [
   {
     number: "02 · SAVINGS",
     title: "NINE MONTHS. FULL PAYBACK.",
-    desc: "Five to six percent fuel savings. Five to seven percent tyre-life extension. Zero roadside towing fees. The kit pays for itself in nine to twelve months.",
+    desc: "0.5 to 0.6 percent fuel savings. Five to seven percent tyre-life extension. Zero roadside towing fees. The kit pays for itself in nine to twelve months.",
     accent: "FULL PAYBACK",
     color: "#EA580C",
     badgeBg: "bg-[#EA580C]/10 text-[#EA580C] border-[#EA580C]/30",
@@ -168,7 +168,7 @@ export default function SurakshaPage() {
                         className="p-2 rounded-[4px] bg-[#FEF3C7] border border-[#DC2626]/30 text-center"
                       >
                         <div className="w-6 h-6 mx-auto rounded-full bg-[#DC2626] text-[#FEF3C7] text-[10px] font-bold flex items-center justify-center mb-1">
-                          S{sensor}
+                          {sensor === 4 ? "S4+" : `S${sensor}`}
                         </div>
                         <span className="text-[10px] font-bold text-[#78350F] block">Sensor</span>
                       </div>
@@ -177,11 +177,11 @@ export default function SurakshaPage() {
                 </div>
 
                 <div className="space-y-2 text-center sm:text-left">
-                  <div className="font-rubik font-bold text-lg text-[#451A03]">
-                    1 in-cab display · 4 tyre sensors
+                  <div className="font-rubik font-bold text-lg text-[#451A03] leading-snug">
+                    1 in-cab display · Tyre sensors as per your truck configuration
                   </div>
                   <div className="text-[#78350F] text-sm font-medium">
-                    DIY install · 15 minutes · Any tyre brand
+                    The number of sensors required depends on your truck&apos;s wheel configuration · DIY install · Any tyre brand
                   </div>
                 </div>
               </div>

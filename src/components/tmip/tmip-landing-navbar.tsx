@@ -66,7 +66,7 @@ export function TmipLandingNavbar({ onDemoClick }: TmipLandingNavbarProps) {
           <a href="#features" className="hover:text-white transition-colors">Features</a>
           <a href="#platform" className="hover:text-white transition-colors">Platform</a>
           <a href="#compare" className="hover:text-white transition-colors">Before &amp; after</a>
-          <a href="#pilot" className="hover:text-white transition-colors">Pilot</a>
+          <a href="#live-twin" className="hover:text-white transition-colors">Demo</a>
           <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
         </nav>
 
@@ -176,11 +176,11 @@ export function TmipLandingNavbar({ onDemoClick }: TmipLandingNavbarProps) {
               <span className="text-xs text-slate-500 font-mono">03</span>
             </a>
             <a
-              href="#pilot"
+              href="#live-twin"
               onClick={handleNavLinkClick}
               className="py-2.5 px-3 rounded-md hover:bg-slate-900/80 hover:text-white transition-colors border-b border-slate-800/50 flex items-center justify-between text-sm"
             >
-              <span>14-day live pilot</span>
+              <span>Live demo</span>
               <span className="text-xs text-slate-500 font-mono">04</span>
             </a>
             <a

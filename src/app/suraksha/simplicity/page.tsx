@@ -159,10 +159,10 @@ export default function SurakshaSimplicityPage() {
               <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-3">
                 <div className="font-anton text-2xl text-[#EA580C]">02</div>
                 <div className="font-anton text-lg uppercase text-[#451A03]">
-                  Step 2 (7 min): Fit Sensors
+                  Step 2: Fit Sensors
                 </div>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  One sensor per tyre with anti-theft locking hardware. Fits securely on any standard commercial wheel. 4 tyres take ~7 minutes.
+                  One sensor per tyre with anti-theft locking hardware. Fits securely on any standard commercial wheel. Fitting takes ~1–2 minutes per tyre.
                 </p>
                 <div className="pt-2 text-xs font-semibold text-[#EA580C]">
                   Sensors mounted on tyre valves

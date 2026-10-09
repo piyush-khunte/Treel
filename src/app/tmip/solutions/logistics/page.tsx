@@ -150,7 +150,7 @@ export default function TmipSolutionsLogisticsPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
-              <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#10B981]">5–6%</div>
+              <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#10B981]">0.5–0.6%</div>
               <div className="text-sm font-semibold text-[#F1F5F9] mt-1 font-ibm-plex">Average Fuel Savings</div>
               <div className="text-xs text-[#94A3B8] mt-1 font-ibm-plex">Achieved via optimized rolling resistance and driver coaching</div>
             </div>
@@ -214,7 +214,7 @@ export default function TmipSolutionsLogisticsPage() {
                   (TMS).
                 </p>
                 <p>
-                  Logistics customers typically see 5–6% fuel savings, 5–7% tyre-life extension, and 30–40% reduction in
+                  Logistics customers typically see 0.5–0.6% fuel savings, 5–7% tyre-life extension, and 30–40% reduction in
                   unscheduled downtime within 12 months of deployment.
                 </p>
               </div>

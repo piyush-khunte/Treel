@@ -150,7 +150,7 @@ const ROLES: Record<string, RoleDetails> = {
     niceToHaves: [
       "Prior experience in commercial transportation, logistics tech (TMS/WMS), or industrial IoT.",
       "Familiarity with data visualization libraries, BI tools, or design systems.",
-      "Experience with enterprise pilot evaluations and customer onboarding journeys."
+      "Experience with enterprise technical evaluations and customer onboarding journeys."
     ],
     whatYouGet: [
       "Competitive salary and equity participation in a rapidly scaling market category leader.",
@@ -171,15 +171,15 @@ const ROLES: Record<string, RoleDetails> = {
     location: "Pune",
     employmentType: "Full-time",
     postedDate: "July 2026",
-    roleSummary: "Partner with enterprise fleet technical leaders, lead 14-day technical pilots, and architect custom TMS/ERP API integrations.",
+    roleSummary: "Partner with enterprise fleet technical leaders, lead technical evaluations, and architect custom TMS/ERP API integrations.",
     aboutTheRole: [
-      "Enterprise fleet sales at Treel are high-touch and deeply technical. When a 1,000-vehicle logistics operator evaluates TMIP, they need to know how our Vehicle Digital Twin integrates with their SAP ERP, Fleetx TMS, or custom data warehouse. You will be the trusted technical authority guiding these evaluations.",
-      "In this role, you will lead pre-sales technical discovery, architect custom API data flows, manage 14-day pilot onboarding, and ensure that prospective customers experience the full economic and operational value of TMIP before contract finalization."
+      "Enterprise fleet sales at Treel are high-touch and deeply technical. When a 1,000-vehicle logistics operator evaluates TMIP, they need to know how our Vehicle Digital Twin integrates with their SAP ERP, TMS platforms, or custom data warehouse. You will be the trusted technical authority guiding these evaluations.",
+      "In this role, you will lead pre-sales technical discovery, architect custom API data flows, manage technical onboarding, and ensure that prospective customers experience the full economic and operational value of TMIP before contract finalization."
     ],
     responsibilities: [
       "Serve as the lead technical advisor in enterprise sales engagements with fleet CTOs, CIOs, and Operations Directors.",
       "Architect and validate custom integration topologies connecting TMIP APIs with customer ERP, TMS, and BI stacks.",
-      "Lead technical setup and data flow configuration for prospective customer 14-day fleet pilots.",
+      "Lead technical setup and data flow configuration for prospective enterprise fleet customers.",
       "Develop reusable reference integration code snippets, webhook listeners, and solution documentation.",
       "Assist enterprise buyers in completing technical vendor security assessments and architecture audits.",
       "Feed customer technical requirements back into the core engineering and product roadmaps."

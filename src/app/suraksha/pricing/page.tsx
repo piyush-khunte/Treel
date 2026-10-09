@@ -242,7 +242,7 @@ export default function SurakshaPricingPage() {
             </div>
 
             <div className="pt-4 border-t-2 border-[#EA580C]/20 text-xs font-semibold text-[#78350F]">
-              5–6% diesel savings + 5–7% extended tyre life + 100% roadside blowout prevention
+              0.5–0.6% diesel savings + 5–7% extended tyre life + 100% roadside blowout prevention
             </div>
           </div>
         </div>

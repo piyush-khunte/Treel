@@ -80,7 +80,7 @@ const FAQ_JSON_LD = {
       name: "How does it pay for itself?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "With 5–6% fuel savings, 5–7% longer tyre life and no roadside towing fees, the kit pays for itself in nine to twelve months.",
+        text: "With 0.5–0.6% fuel savings, 5–7% longer tyre life and no roadside towing fees, the kit pays for itself in nine to twelve months.",
       },
     },
   ],

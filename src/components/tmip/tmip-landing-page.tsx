@@ -32,7 +32,7 @@ const VARIANTS: Record<string, AdVariant> = {
   },
   telematics: {
     h1: "Your GPS shows where trucks are. TMIP shows what's about to fail.",
-    lede: "TMIP layers vehicle health, tyre intelligence and predictive maintenance on top of your existing telematics, with native connectors for Fleetx, Locus and LogiNext.",
+    lede: "TMIP layers vehicle health, tyre intelligence and predictive maintenance on top of your existing telematics, with native connectors for enterprise TMS and fleet management systems.",
   },
   cost: {
     h1: "Cut cost per kilometre across every vehicle.",
@@ -175,7 +175,7 @@ const FEATURE_SLIDES = [
     bullets: [
       "Live map with vehicle clusters by region",
       "Speed, RPM, engine load, fuel, DEF/AdBlue, battery and coolant",
-      "Native integration with Fleetx, Locus, LogiNext and custom TMS",
+      "Native integration with enterprise TMS, dispatch software and custom stacks",
     ],
     image: {
       src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436102/fleet-telematics-gps.jpg",
@@ -2117,7 +2117,7 @@ export function TmipLandingPage() {
               <span>Longer tyre life, fleet median</span>
             </div>
             <div>
-              <strong>5–6%</strong>
+              <strong>0.5–0.6%</strong>
               <span>Additional fuel savings</span>
             </div>
             <div>
@@ -2128,8 +2128,7 @@ export function TmipLandingPage() {
 
           <div className="cmp-cta">
             <p>
-              See what the &ldquo;after&rdquo; looks like on your own vehicles
-              with a 14-day pilot.
+              See what the &ldquo;after&rdquo; looks like on your own vehicles.
             </p>
             <a
               className="btn btn-primary"
@@ -2313,9 +2312,9 @@ export function TmipLandingPage() {
               ways, so TMIP insights show up where your team already works.
             </p>
             <div className="chips">
-              <span className="chip blue">Fleetx</span>
-              <span className="chip blue">Locus</span>
-              <span className="chip blue">LogiNext</span>
+              <span className="chip blue">Enterprise TMS</span>
+              <span className="chip blue">Dispatch Systems</span>
+              <span className="chip blue">Telematics Stacks</span>
               <span className="chip">Custom TMS</span>
               <span className="chip">ERP</span>
               <span className="chip">REST API</span>
@@ -2353,15 +2352,15 @@ export function TmipLandingPage() {
       </section>
 
       {/* =========================================================================
-          SECTION 14: PILOT / LIVE DIGITAL TWIN (MATCHING SS2 - ABOVE FAQ)
+          SECTION 14: LIVE DIGITAL TWIN CTA (MATCHING SS2 - ABOVE FAQ)
           ========================================================================= */}
-      <section className="final" id="pilot" ref={finalRef}>
+      <section className="final" id="live-twin" ref={finalRef}>
         <div className="wrap">
           <div>
             <div aria-hidden="true" className="divider"></div>
             <h2>SEE YOUR FLEET AS A LIVE DIGITAL TWIN.</h2>
             <p>
-              Book a 30-minute demo. If the numbers work, run a 14-day pilot on
+              Book a 30-minute demo. If the numbers work, see the live platform on
               your own vehicles before you decide.
             </p>
             <div className="actions">
@@ -2422,17 +2421,8 @@ export function TmipLandingPage() {
               <p>
                 No. TMIP layers vehicle health, tyre intelligence and predictive
                 maintenance on top of the tracking and dispatch tools you
-                already use. It connects natively to Fleetx, Locus and LogiNext,
-                and to custom TMS stacks through its API.
-              </p>
-            </details>
-            <details>
-              <summary>How does the 14-day pilot work?</summary>
-              <p>
-                After the demo, TMIP is deployed on a subset of your fleet for
-                14 days. Your team uses it in live operations, and at the end we
-                review the data against your baseline and share the payback math
-                for a full rollout.
+                already use. It connects natively to enterprise TMS, dispatch
+                software, and custom stacks through its API.
               </p>
             </details>
             <details>
