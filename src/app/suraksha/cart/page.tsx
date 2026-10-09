@@ -26,6 +26,8 @@ export default function SurakshaCartPage() {
     totalInr,
     totalItems,
     subtotalInr,
+    discountInr,
+    couponCode,
   } = useSurakshaCart();
 
   return (
@@ -232,6 +234,12 @@ export default function SurakshaCartPage() {
                         FREE
                       </span>
                     </div>
+                    {discountInr > 0 && (
+                      <div className="flex justify-between items-center text-[#047857] font-bold">
+                        <span>Coupon Discount ({couponCode}):</span>
+                        <span>-₹{discountInr.toLocaleString("en-IN")}</span>
+                      </div>
+                    )}
                     <div className="flex justify-between items-center text-[#78350F]">
                       <span>Applicable GST (18%)</span>
                       <span className="text-xs text-[#78350F]">Included in Price</span>

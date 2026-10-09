@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { useCart } from "@/lib/commerce/cart-context";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { AvailableCouponsModal } from "@/components/commerce/available-coupons-modal";
 
 export default function CartPage() {
   const {
@@ -36,6 +37,7 @@ export default function CartPage() {
 
   const [inputCode, setInputCode] = useState("");
   const [isValidating, setIsValidating] = useState(false);
+  const [isCouponsModalOpen, setIsCouponsModalOpen] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{
     type: "success" | "error";
     text: string;
@@ -188,9 +190,19 @@ export default function CartPage() {
 
                   {/* Apply Coupon Box */}
                   <div className="p-4 rounded-2xl bg-white border border-black/[0.08] space-y-3">
-                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#374151]">
-                      <Tag className="w-3.5 h-3.5 text-[#2563EB]" />
-                      <span>Apply Coupon Code</span>
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#374151]">
+                        <Tag className="w-3.5 h-3.5 text-[#2563EB]" />
+                        <span>Apply Coupon Code</span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setIsCouponsModalOpen(true)}
+                        className="text-xs font-bold text-[#2563EB] hover:text-[#1D4ED8] hover:underline flex items-center gap-1 cursor-pointer"
+                      >
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>View Available Coupons</span>
+                      </button>
                     </div>
 
                     {couponCode ? (
@@ -313,6 +325,29 @@ export default function CartPage() {
           )}
         </div>
       </section>
+
+      {/* Available Coupons Modal */}
+      <AvailableCouponsModal
+        isOpen={isCouponsModalOpen}
+        onClose={() => setIsCouponsModalOpen(false)}
+        brand="personal"
+        subtotalInr={subtotalInr}
+        currentCouponCode={couponCode}
+        onApplyCoupon={async (code) => {
+          const res = await applyCoupon(code);
+          if (res.success) {
+            setStatusMessage({
+              type: "success",
+              text: res.message || `Coupon "${code}" applied successfully!`,
+            });
+          } else {
+            setStatusMessage({
+              type: "error",
+              text: res.message || `Coupon "${code}" could not be applied.`,
+            });
+          }
+        }}
+      />
     </div>
   );
 }

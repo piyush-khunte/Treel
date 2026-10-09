@@ -36,10 +36,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const brand = body.brand === "suraksha" ? "suraksha" : body.brand === "personal" ? "personal" : undefined;
+
     const result = await validateCouponServer({
       code: rawCode,
       items,
       subtotalInr,
+      brand,
     });
 
     if (!result.valid) {

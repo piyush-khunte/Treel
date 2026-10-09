@@ -120,3 +120,24 @@ export interface NoticeItem {
   updatedAt?: string;
   __v?: number;
 }
+
+export interface AdminCoupon {
+  _id?: string;
+  code: string;
+  discountType: "percent" | "fixed";
+  discountValue: number;
+  productId?: string | null;
+  productTitle?: string | null;
+  productSku?: string | null;
+  category?: string | null;
+  minOrderValue?: number | null;
+  maxDiscount?: number | null;
+  startDate?: string | null;
+  expiryDate?: string | null;
+  maxUses?: number | null;
+  usedCount?: number;
+  status: "Active" | "Inactive";
+  description?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}

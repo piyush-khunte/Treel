@@ -9,13 +9,13 @@ import {
   AlertCircle,
   Truck,
   ShieldCheck,
-  PhoneCall,
-  CheckCircle2,
-  Radio,
-  Tv,
+  Tag,
+  Check,
+  Sparkles,
 } from "lucide-react";
 import { useSurakshaCart } from "@/lib/commerce/cart-context";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { AvailableCouponsModal } from "@/components/commerce/available-coupons-modal";
 
 function loadRazorpayScript(): Promise<boolean> {
   return new Promise((resolve) => {
@@ -70,6 +70,9 @@ export default function SurakshaCheckoutPage() {
     discountInr,
     totalInr,
     couponCode,
+    appliedCoupon,
+    applyCoupon,
+    removeCoupon,
     totalItems,
     clearCart,
   } = useSurakshaCart();
@@ -86,8 +89,50 @@ export default function SurakshaCheckoutPage() {
     paymentMethod: "online" as "online" | "cod",
   });
 
+  const [inputCoupon, setInputCoupon] = useState("");
+  const [isValidatingCoupon, setIsValidatingCoupon] = useState(false);
+  const [isCouponsModalOpen, setIsCouponsModalOpen] = useState(false);
+  const [couponStatus, setCouponStatus] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const handleApplyCoupon = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const clean = inputCoupon.trim().toUpperCase();
+    if (!clean) {
+      setCouponStatus({ type: "error", text: "Please enter a coupon code." });
+      return;
+    }
+
+    setIsValidatingCoupon(true);
+    setCouponStatus(null);
+
+    const res = await applyCoupon(clean);
+    setIsValidatingCoupon(false);
+
+    if (res.success) {
+      setCouponStatus({
+        type: "success",
+        text: res.message || `Coupon "${clean}" applied successfully!`,
+      });
+      setInputCoupon("");
+    } else {
+      setCouponStatus({
+        type: "error",
+        text: res.message || `Coupon code "${clean}" is invalid or expired.`,
+      });
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    removeCoupon();
+    setCouponStatus(null);
+    setInputCoupon("");
+  };
 
   const validateForm = (): boolean => {
     if (!formData.fullName || formData.fullName.trim().length < 2) {
@@ -99,9 +144,13 @@ export default function SurakshaCheckoutPage() {
       setErrorMessage("Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.");
       return false;
     }
-    if (!formData.email || !formData.email.includes("@") || !formData.email.includes(".")) {
-      setErrorMessage("Please enter a valid email address for your GST tax invoice and warranty card.");
-      return false;
+    // Email is OPTIONAL for Suraksha checkout. Validate syntax ONLY if provided.
+    if (formData.email && formData.email.trim().length > 0) {
+      const emailTrim = formData.email.trim();
+      if (!emailTrim.includes("@") || !emailTrim.includes(".")) {
+        setErrorMessage("Please enter a valid email address or leave the field blank.");
+        return false;
+      }
     }
     if (!formData.address || formData.address.trim().length < 5) {
       setErrorMessage("Please enter complete delivery address (Transport Nagar, yard, street, or shop).");
@@ -188,7 +237,7 @@ export default function SurakshaCheckoutPage() {
           order_id: razorpayOrder.id,
           prefill: {
             name: formData.fullName.trim(),
-            email: formData.email.trim(),
+            email: formData.email ? formData.email.trim() : "",
             contact: formData.phone.replace(/\D/g, ""),
           },
           notes: {
@@ -412,12 +461,11 @@ export default function SurakshaCheckoutPage() {
 
                   <div className="sm:col-span-2 space-y-1.5">
                     <label className="text-xs font-bold uppercase text-[#78350F]">
-                      Email Address (for GST tax invoice &amp; warranty card) *
+                      Email Address (Optional — for digital GST tax invoice &amp; warranty card)
                     </label>
                     <input
                       type="email"
-                      required
-                      placeholder="transporter@example.com"
+                      placeholder="transporter@example.com (optional)"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-4 py-3 rounded-[4px] border-2 border-[#451A03]/20 bg-white text-[#451A03] text-sm focus:outline-none focus:border-[#DC2626]"
@@ -595,14 +643,105 @@ export default function SurakshaCheckoutPage() {
                   ))}
                 </div>
 
+                {/* Coupon Code Section */}
+                <div className="p-4 rounded-[4px] bg-white border-2 border-[#451A03]/20 space-y-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#78350F]">
+                      <Tag className="w-3.5 h-3.5 text-[#DC2626]" />
+                      <span>Apply Coupon / Fleet Discount</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setIsCouponsModalOpen(true)}
+                      className="text-xs font-bold text-[#DC2626] hover:underline flex items-center gap-1 cursor-pointer font-rubik uppercase tracking-tight"
+                    >
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>View Available Coupons</span>
+                    </button>
+                  </div>
+
+                  {couponCode ? (
+                    <div className="flex items-center justify-between p-3 rounded-[4px] bg-emerald-50 border-2 border-emerald-500">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center">
+                          <Check className="w-3.5 h-3.5" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-extrabold text-emerald-950 font-mono tracking-wider">
+                            {couponCode}
+                          </div>
+                          <div className="text-[11px] text-emerald-800 font-bold">
+                            You save ₹{discountInr.toLocaleString("en-IN")}
+                            {appliedCoupon?.appliedProductName ? ` (${appliedCoupon.appliedProductName})` : ""}
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleRemoveCoupon}
+                        className="text-xs font-bold text-red-600 hover:text-red-800 hover:underline px-2 py-1 cursor-pointer"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          placeholder="Coupon code (e.g. SURAKSHA10)"
+                          value={inputCoupon}
+                          onChange={(e) => setInputCoupon(e.target.value.toUpperCase())}
+                          className="flex-1 px-3.5 py-2.5 rounded-[4px] border-2 border-[#451A03]/20 bg-white text-xs font-mono font-bold text-[#451A03] uppercase placeholder:font-sans placeholder:normal-case placeholder:font-normal focus:outline-none focus:border-[#DC2626]"
+                        />
+                        <button
+                          type="button"
+                          onClick={handleApplyCoupon}
+                          disabled={isValidatingCoupon || !inputCoupon.trim()}
+                          className="px-5 py-2.5 rounded-[4px] bg-[#DC2626] text-[#FEF3C7] text-xs font-bold uppercase hover:bg-[#B91C1C] transition-all disabled:opacity-50 cursor-pointer shrink-0"
+                        >
+                          {isValidatingCoupon ? "Checking..." : "Apply"}
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {couponStatus && (
+                    <div
+                      className={`p-2.5 rounded-[4px] text-xs flex items-start gap-2 ${
+                        couponStatus.type === "success"
+                          ? "bg-emerald-50 text-emerald-900 border border-emerald-300"
+                          : "bg-red-50 text-red-800 border border-red-300"
+                      }`}
+                    >
+                      {couponStatus.type === "success" ? (
+                        <Sparkles className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                      ) : (
+                        <AlertCircle className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
+                      )}
+                      <span className="font-medium">{couponStatus.text}</span>
+                    </div>
+                  )}
+                </div>
+
                 {/* Calculation breakdown */}
-                <div className="space-y-2.5 pt-4 border-t-2 border-[#451A03]/10 text-sm">
+                <div className="space-y-2.5 pt-2 border-t-2 border-[#451A03]/10 text-sm">
                   <div className="flex justify-between text-[#78350F]">
                     <span>Subtotal ({totalItems} Sensors):</span>
                     <span className="font-mono font-bold text-[#451A03]">
                       ₹{subtotalInr.toLocaleString("en-IN")}
                     </span>
                   </div>
+
+                  {discountInr > 0 && (
+                    <div className="flex justify-between text-[#047857] font-bold">
+                      <span className="flex items-center gap-1">
+                        <Tag className="w-3.5 h-3.5" /> Coupon Discount ({couponCode}):
+                      </span>
+                      <span>-₹{discountInr.toLocaleString("en-IN")}</span>
+                    </div>
+                  )}
+
                   <div className="flex justify-between text-[#78350F]">
                     <span>In-Cab Visual Display Unit:</span>
                     <span className="font-bold text-[#047857] text-xs uppercase">INCLUDED</span>
@@ -662,6 +801,29 @@ export default function SurakshaCheckoutPage() {
           </form>
         </div>
       </section>
+
+      {/* Available Coupons Modal */}
+      <AvailableCouponsModal
+        isOpen={isCouponsModalOpen}
+        onClose={() => setIsCouponsModalOpen(false)}
+        brand="suraksha"
+        subtotalInr={subtotalInr}
+        currentCouponCode={couponCode}
+        onApplyCoupon={async (code) => {
+          const res = await applyCoupon(code);
+          if (res.success) {
+            setCouponStatus({
+              type: "success",
+              text: res.message || `Coupon "${code}" applied successfully!`,
+            });
+          } else {
+            setCouponStatus({
+              type: "error",
+              text: res.message || `Coupon "${code}" could not be applied.`,
+            });
+          }
+        }}
+      />
     </div>
   );
 }

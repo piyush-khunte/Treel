@@ -4,11 +4,12 @@ import {
   ShoppingBag, 
   CreditCard, 
   Package, 
+  Tag,
   FileText, 
   BookOpen, 
   Users, 
   ArrowLeft, 
-  ShieldCheck,
+  ShieldCheck, 
   Bell,
   Cookie 
 } from "lucide-react";
@@ -53,6 +54,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             >
               <Package className="w-4 h-4 text-purple-400" />
               <span>Products & Stock</span>
+            </Link>
+
+            <Link
+              href="/admin/coupons"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors"
+            >
+              <Tag className="w-4 h-4 text-amber-400" />
+              <span>Coupons & Discounts</span>
             </Link>
 
             <Link

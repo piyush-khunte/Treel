@@ -179,7 +179,7 @@ export default function TMIPROICalculatorPage() {
                     <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#F1F5F9] mt-2">
                       ₹{(totalAnnualSavings / 100000).toFixed(2)} Lakh
                     </div>
-                    <div className="text-xs text-[#3B82F6] font-jetbrains mt-1">Fuel (~5.2%) + Tyre Life (~20%)</div>
+                    <div className="text-xs text-[#3B82F6] font-jetbrains mt-1">Fuel (0.52%) + Tyre Life (~20%)</div>
                   </div>
 
                   <div className="p-5 rounded-[4px] bg-[#050A17] border border-slate-400/10">

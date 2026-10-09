@@ -111,6 +111,17 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           }
         }
       }
+
+      const savedSurakshaCoupon = localStorage.getItem("treel_suraksha_coupon");
+      if (savedSurakshaCoupon) {
+        try {
+          const parsedCoupon = JSON.parse(savedSurakshaCoupon);
+          if (parsedCoupon && parsedCoupon.code) {
+            setSurakshaCoupon(parsedCoupon.code);
+            setSurakshaAppliedCoupon(parsedCoupon);
+          }
+        } catch {}
+      }
     } catch (e) {
       console.error("Failed to parse carts from storage", e);
     }
@@ -148,6 +159,19 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       console.error("Failed to save suraksha cart", e);
     }
   }, [surakshaItems]);
+
+  // Save Suraksha coupon to localStorage
+  useEffect(() => {
+    try {
+      if (surakshaAppliedCoupon) {
+        localStorage.setItem("treel_suraksha_coupon", JSON.stringify(surakshaAppliedCoupon));
+      } else {
+        localStorage.removeItem("treel_suraksha_coupon");
+      }
+    } catch (e) {
+      console.error("Failed to save suraksha coupon", e);
+    }
+  }, [surakshaAppliedCoupon]);
 
   // -------------------------------------------------------------
   // PERSONAL CART METHODS
@@ -345,26 +369,79 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const applySurakshaCoupon = async (code: string): Promise<{ success: boolean; message?: string; discountInr?: number }> => {
     const clean = (code || "").trim().toUpperCase();
-    if (clean === "SURAKSHA10" || clean === "FLEET10") {
-      const currentSubtotal = surakshaItems.reduce((acc, i) => acc + i.price_inr * i.quantity, 0);
-      const discount = Math.round((currentSubtotal * 10) / 100);
-      const coupon: AppliedCoupon = {
-        code: clean,
-        discountType: "percent",
-        discountValue: 10,
-        discountAmountInr: discount,
-        message: "10% Fleet discount applied!",
-      };
-      setSurakshaCoupon(clean);
-      setSurakshaAppliedCoupon(coupon);
-      return { success: true, message: coupon.message, discountInr: discount };
+    if (!clean) {
+      return { success: false, message: "Please enter a coupon code." };
     }
-    return { success: false, message: "Invalid Suraksha coupon code." };
+
+    if (surakshaItems.length === 0) {
+      return { success: false, message: "Your Suraksha cart is empty." };
+    }
+
+    const currentSubtotal = surakshaItems.reduce((acc, i) => acc + i.price_inr * i.quantity, 0);
+
+    try {
+      const res = await fetch("/api/coupons/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: clean,
+          items: surakshaItems,
+          subtotalInr: currentSubtotal,
+          brand: "suraksha",
+        }),
+      });
+
+      const json = await res.json();
+      if (res.ok && json.success && json.data) {
+        const couponData: AppliedCoupon = {
+          code: json.data.code,
+          discountType: json.data.discountType,
+          discountValue: json.data.discountValue,
+          discountAmountInr: json.data.discountAmountInr,
+          message: json.data.message,
+          appliedProductName: json.data.appliedProductName,
+        };
+        setSurakshaCoupon(couponData.code);
+        setSurakshaAppliedCoupon(couponData);
+        return {
+          success: true,
+          message: couponData.message || `Coupon "${couponData.code}" applied!`,
+          discountInr: couponData.discountAmountInr,
+        };
+      } else {
+        return {
+          success: false,
+          message: json.error || "Invalid or expired coupon code.",
+        };
+      }
+    } catch (err: any) {
+      // Offline fallback for known Suraksha promotional codes
+      if (clean === "SURAKSHA10" || clean === "FLEET10") {
+        const discountAmount = Math.round((currentSubtotal * 10) / 100);
+        const fallbackCoupon: AppliedCoupon = {
+          code: clean,
+          discountType: "percent",
+          discountValue: 10,
+          discountAmountInr: discountAmount,
+          message: "10% Fleet discount applied!",
+        };
+        setSurakshaCoupon(clean);
+        setSurakshaAppliedCoupon(fallbackCoupon);
+        return { success: true, message: fallbackCoupon.message, discountInr: discountAmount };
+      }
+      return {
+        success: false,
+        message: err?.message || "Could not validate coupon code. Please try again.",
+      };
+    }
   };
 
   const removeSurakshaCoupon = () => {
     setSurakshaCoupon("");
     setSurakshaAppliedCoupon(null);
+    try {
+      localStorage.removeItem("treel_suraksha_coupon");
+    } catch (e) {}
   };
 
   const surakshaTotalItems = surakshaItems.reduce((acc, i) => acc + i.quantity, 0);
