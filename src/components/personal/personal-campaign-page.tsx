@@ -226,7 +226,7 @@ export function PersonalCampaignPage() {
   const lastTriggerRef = useRef<HTMLElement | null>(null);
 
   const openModal = useCallback((ctaLabel: string, e?: React.MouseEvent) => {
-    if (ctaLabel !== "auto_10s") {
+    if (ctaLabel !== "auto_15s") {
       userInteractedRef.current = true;
     }
     if (e) {
@@ -249,7 +249,7 @@ export function PersonalCampaignPage() {
     }
   }, []);
 
-  // 10-second automatic callback modal popup
+  // 15-second automatic callback modal popup
   useEffect(() => {
     const timer = setTimeout(() => {
       if (
@@ -260,9 +260,9 @@ export function PersonalCampaignPage() {
         !isSuccess
       ) {
         hasAutoOpenedRef.current = true;
-        openModal("auto_10s");
+        openModal("auto_15s");
       }
-    }, 10000);
+    }, 15000);
 
     return () => clearTimeout(timer);
   }, [isModalOpen, isSubmitting, isSuccess, openModal]);
@@ -864,19 +864,16 @@ export function PersonalCampaignPage() {
                       {formErrors.mobile && <span className="err">Please enter a valid 10-digit mobile number.</span>}
                     </div>
 
-                    <div className="row2">
-                      <div className="field">
-                        <label htmlFor="f-city">City</label>
-                        <input
-                          id="f-city"
-                          name="city"
-                          type="text"
-                          autoComplete="address-level2"
-                          value={formData.city}
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                     
+                    <div className="field">
+                      <label htmlFor="f-city">City</label>
+                      <input
+                        id="f-city"
+                        name="city"
+                        type="text"
+                        autoComplete="address-level2"
+                        value={formData.city}
+                        onChange={handleInputChange}
+                      />
                     </div>
 
                     <div className="field">

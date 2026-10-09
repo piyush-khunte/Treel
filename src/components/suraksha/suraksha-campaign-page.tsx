@@ -1271,7 +1271,7 @@ export function SurakshaCampaignPage() {
   // Open Callback Modal
   const openCallbackModal = useCallback(
     (label = "cta_click") => {
-      if (label !== "auto_10s") {
+      if (label !== "auto_15s") {
         userInteractedRef.current = true;
       }
       setCbModalOpen(true);
@@ -1290,7 +1290,7 @@ export function SurakshaCampaignPage() {
     setCbModalOpen(false);
   }, []);
 
-  // 10-second automatic callback form popup
+  // 15-second automatic callback form popup
   useEffect(() => {
     const timer = setTimeout(() => {
       if (
@@ -1304,9 +1304,9 @@ export function SurakshaCampaignPage() {
         !popupSubmitted
       ) {
         hasAutoOpenedRef.current = true;
-        openCallbackModal("auto_10s");
+        openCallbackModal("auto_15s");
       }
-    }, 10000);
+    }, 15000);
 
     return () => clearTimeout(timer);
   }, [

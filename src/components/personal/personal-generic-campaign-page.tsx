@@ -126,7 +126,7 @@ export function PersonalGenericCampaignPage() {
 
   const openModal = useCallback(
     (kit?: string, vehicle?: string, ctaLabel?: string, e?: React.MouseEvent) => {
-      if (ctaLabel !== "auto_10s") {
+      if (ctaLabel !== "auto_15s") {
         userInteractedRef.current = true;
       }
       if (e) {
@@ -166,7 +166,7 @@ export function PersonalGenericCampaignPage() {
     }
   }, []);
 
-  // 10-second automatic form popup
+  // 15-second automatic form popup
   useEffect(() => {
     const timer = setTimeout(() => {
       if (
@@ -177,9 +177,9 @@ export function PersonalGenericCampaignPage() {
         !submitSuccess
       ) {
         hasAutoOpenedRef.current = true;
-        openModal(undefined, undefined, "auto_10s");
+        openModal(undefined, undefined, "auto_15s");
       }
-    }, 10000);
+    }, 15000);
 
     return () => clearTimeout(timer);
   }, [isModalOpen, isSubmitting, submitSuccess, openModal]);

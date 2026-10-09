@@ -683,7 +683,7 @@ export function TmipLandingPage() {
       e?: React.MouseEvent,
       formId: "tmip_demo" | "tmip_footer_demo" = "tmip_demo",
     ) => {
-      if (location !== "auto_10s") {
+      if (location !== "auto_15s") {
         userInteractedRef.current = true;
       }
       if (e) {
@@ -709,7 +709,7 @@ export function TmipLandingPage() {
     }
   }, []);
 
-  // 10-second automatic demo form popup
+  // 15-second automatic demo form popup
   useEffect(() => {
     const timer = setTimeout(() => {
       if (
@@ -719,9 +719,9 @@ export function TmipLandingPage() {
         !isSubmitting
       ) {
         hasAutoOpenedRef.current = true;
-        openModal("auto_10s");
+        openModal("auto_15s");
       }
-    }, 10000);
+    }, 15000);
 
     return () => clearTimeout(timer);
   }, [isModalOpen, isSubmitting, openModal]);
@@ -2499,7 +2499,8 @@ export function TmipLandingPage() {
               </svg>
             </button>
 
-            <h2 id="modalTitle">BOOK A 30-MINUTE TMIP DEMO</h2>
+            <p className="tmip-modal-eyebrow">LIVE PLATFORM DEMO</p>
+            <h2 id="modalTitle">Book a 30-Minute TMIP Demo</h2>
             <p className="sub">
               See TMIP on live commercial vehicles. We&apos;ll calculate payback for your fleet before you leave the call.
             </p>

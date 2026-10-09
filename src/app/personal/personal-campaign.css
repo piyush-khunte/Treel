@@ -687,52 +687,69 @@
   color: var(--blue);
 }
 
-@media (max-width: 480px) {
-  .personal-campaign .benefits {
-    grid-template-columns: 1fr;
-  }
-}
-
-.personal-campaign .hero-visual {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  padding: 8px 0 8px 40px;
-}
-
-.personal-campaign .hero-visual::before {
-  content: "";
-  position: absolute;
-  inset: 4% 0 4% 18%;
-  background: radial-gradient(closest-side, var(--blue-tint-2), transparent);
-  border-radius: 50%;
-  z-index: 0;
-}
-
-.personal-campaign .hero-visual .phone {
-  z-index: 1;
-}
-
-.personal-campaign .illus-note {
-  position: absolute;
-  right: 0;
-  bottom: -26px;
-  font-size: 11px;
-  color: var(--fog);
-  z-index: 1;
-}
-
 @media (max-width: 980px) {
+  .personal-campaign .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: stretch;
+  }
+  .personal-campaign .benefits {
+    width: 100%;
+    max-width: 100%;
+    align-self: flex-start;
+    padding-left: 0;
+    margin-left: 0;
+    margin-right: 0;
+    justify-items: start;
+    text-align: left;
+  }
+  .personal-campaign .benefits li {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+  }
   .personal-campaign .hero-visual {
-    padding: 36px 0 8px;
+    padding: 24px 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .personal-campaign .phone {
+    width: min(316px, calc(100vw - 32px));
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    align-self: center;
+  }
+  .personal-campaign .screen {
+    height: 606px;
   }
   .personal-campaign .hero-visual::before {
     inset: 0 8%;
   }
   .personal-campaign .illus-note {
-    right: 50%;
-    transform: translateX(50%);
-    white-space: nowrap;
+    position: static;
+    transform: none;
+    margin-top: 14px;
+    text-align: center;
+    white-space: normal;
+    width: 100%;
+  }
+  .personal-campaign .toast {
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    width: min(280px, calc(100% - 24px));
+  }
+}
+
+@media (max-width: 640px) {
+  .personal-campaign .benefits {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 }
 
@@ -2585,15 +2602,19 @@
 
 @media (max-width: 560px) {
   .personal-campaign .personal-modal-overlay {
-    padding: 12px;
+    padding: 16px;
   }
-  .personal-campaign .personal-modal-card {
-    width: calc(100vw - 24px);
-    max-height: 90vh;
-    padding: 24px 18px 20px;
+  .personal-campaign .personal-modal-card,
+  .personal-campaign .personal-modal-card.modal-compact {
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+    max-height: calc(100dvh - 32px);
+    padding: 20px 16px 16px;
+    border-radius: 16px;
   }
-  .personal-campaign .personal-modal-card h3 {
-    font-size: 1.35rem;
+  .personal-campaign .personal-modal-card h3,
+  .personal-campaign .personal-modal-card.modal-compact h3 {
+    font-size: 1.25rem;
   }
 }
 
@@ -3316,6 +3337,7 @@
   .personal-campaign.bike-tpms-campaign .hero-grid {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     gap: 0;
   }
 
@@ -3326,27 +3348,62 @@
   .personal-campaign.bike-tpms-campaign .eyebrow-row {
     order: 1;
     margin-bottom: 12px;
+    align-self: flex-start;
   }
 
   .personal-campaign.bike-tpms-campaign h1 {
     order: 2;
     margin-bottom: 12px;
+    text-align: left;
   }
 
   .personal-campaign.bike-tpms-campaign .lede {
     order: 3;
     margin-bottom: 16px;
+    text-align: left;
   }
 
   .personal-campaign.bike-tpms-campaign .benefits {
     order: 4;
     margin-bottom: 0;
-    gap: 8px;
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+    align-self: flex-start;
+    padding-left: 0;
+    margin-left: 0;
+    margin-right: 0;
+    grid-template-columns: 1fr;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .personal-campaign.bike-tpms-campaign .benefits li {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
   }
 
   .personal-campaign.bike-tpms-campaign .hero-visual {
     order: 5;
-    padding: 24px 0 12px;
+    padding: 20px 0 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .personal-campaign.bike-tpms-campaign .phone {
+    width: min(316px, calc(100vw - 32px));
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .personal-campaign.bike-tpms-campaign .screen {
+    height: 606px;
   }
 
   .personal-campaign.bike-tpms-campaign .cta-row.hero-cta-row {
@@ -3576,6 +3633,7 @@
   .personal-campaign.car-tpms-campaign .hero-grid {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     gap: 0;
   }
 
@@ -3586,27 +3644,62 @@
   .personal-campaign.car-tpms-campaign .eyebrow-row {
     order: 1;
     margin-bottom: 12px;
+    align-self: flex-start;
   }
 
   .personal-campaign.car-tpms-campaign h1 {
     order: 2;
     margin-bottom: 12px;
+    text-align: left;
   }
 
   .personal-campaign.car-tpms-campaign .lede {
     order: 3;
     margin-bottom: 16px;
+    text-align: left;
   }
 
   .personal-campaign.car-tpms-campaign .benefits {
     order: 4;
     margin-bottom: 0;
-    gap: 8px;
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+    align-self: flex-start;
+    padding-left: 0;
+    margin-left: 0;
+    margin-right: 0;
+    grid-template-columns: 1fr;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .personal-campaign.car-tpms-campaign .benefits li {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
   }
 
   .personal-campaign.car-tpms-campaign .hero-visual {
     order: 5;
-    padding: 24px 0 12px;
+    padding: 20px 0 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .personal-campaign.car-tpms-campaign .phone {
+    width: min(316px, calc(100vw - 32px));
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .personal-campaign.car-tpms-campaign .screen {
+    height: 606px;
   }
 
   .personal-campaign.car-tpms-campaign .cta-row.hero-cta-row {
@@ -3866,6 +3959,7 @@
   .personal-campaign.generic-tpms-campaign .hero-grid {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     gap: 0;
   }
 
@@ -3876,27 +3970,62 @@
   .personal-campaign.generic-tpms-campaign .eyebrow-row {
     order: 1;
     margin-bottom: 12px;
+    align-self: flex-start;
   }
 
   .personal-campaign.generic-tpms-campaign h1 {
     order: 2;
     margin-bottom: 12px;
+    text-align: left;
   }
 
   .personal-campaign.generic-tpms-campaign .lede {
     order: 3;
     margin-bottom: 16px;
+    text-align: left;
   }
 
   .personal-campaign.generic-tpms-campaign .benefits {
     order: 4;
     margin-bottom: 0;
-    gap: 8px;
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+    align-self: flex-start;
+    padding-left: 0;
+    margin-left: 0;
+    margin-right: 0;
+    grid-template-columns: 1fr;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .personal-campaign.generic-tpms-campaign .benefits li {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
   }
 
   .personal-campaign.generic-tpms-campaign .hero-visual {
     order: 5;
-    padding: 24px 0 12px;
+    padding: 20px 0 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .personal-campaign.generic-tpms-campaign .phone {
+    width: min(316px, calc(100vw - 32px));
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .personal-campaign.generic-tpms-campaign .screen {
+    height: 606px;
   }
 
   .personal-campaign.generic-tpms-campaign .cta-row.hero-cta-row {

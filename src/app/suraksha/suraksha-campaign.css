@@ -1103,12 +1103,36 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
+  align-items: stretch;
+}
+
+.suraksha-campaign-root .row2 .field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.suraksha-campaign-root .row2 .field label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.suraksha-campaign-root .row2 .field select {
+  width: 100%;
+  height: 42px;
+  margin-top: auto;
 }
 
 @media (max-width: 520px) {
   .suraksha-campaign-root .row2 {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 0;
+  }
+  .suraksha-campaign-root .row2 .field select {
+    margin-top: 0;
   }
 }
 
@@ -1490,11 +1514,11 @@
     max-height: 94dvh;
   }
   .suraksha-campaign-root .cbdlg {
-    width: calc(100% - 24px);
-    max-width: calc(100% - 24px);
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
     margin: auto;
-    border-radius: 18px;
-    max-height: calc(100dvh - 24px);
+    border-radius: 16px;
+    max-height: calc(100dvh - 32px);
     padding: 20px 16px 16px;
   }
   .suraksha-campaign-root .langdlg.dlg-card {
