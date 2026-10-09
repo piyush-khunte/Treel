@@ -20,7 +20,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { useCart } from "@/lib/commerce/cart-context";
+import { useSurakshaCart } from "@/lib/commerce/cart-context";
 
 const PRESET_CONFIGS = [
   { tyres: 4, name: "4-Wheeler", axle: "2 Axles · LCV / Mini Truck", popular: false },
@@ -38,7 +38,7 @@ const UNIT_PRICE_INR = 1700;
 export default function SurakshaBuyClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { addItem, updateQuantity, items } = useCart();
+  const { addItem, updateQuantity, items } = useSurakshaCart();
 
   // Parse initial tyre count from searchParams if provided (e.g. ?tyres=10 or ?qty=10)
   const queryTyres = parseInt(searchParams.get("tyres") || searchParams.get("qty") || "", 10);
@@ -80,7 +80,7 @@ export default function SurakshaBuyClient() {
       addItem(surakshaItem);
     }
 
-    router.push("/personal/buy/checkout");
+    router.push("/suraksha/cart");
   };
 
   const handleQuickSelect = (count: number) => {

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
-import { useCart } from "@/lib/commerce/cart-context";
+import { useSurakshaCart } from "@/lib/commerce/cart-context";
 
 interface PricingBuyButtonProps {
   tyres: number;
@@ -12,7 +12,7 @@ interface PricingBuyButtonProps {
 
 export function PricingBuyButton({ tyres, type }: PricingBuyButtonProps) {
   const router = useRouter();
-  const { addItem, updateQuantity, items } = useCart();
+  const { addItem, updateQuantity, items } = useSurakshaCart();
   const [loading, setLoading] = useState(false);
 
   const handleBuy = (e: React.MouseEvent) => {
@@ -39,7 +39,7 @@ export function PricingBuyButton({ tyres, type }: PricingBuyButtonProps) {
       addItem(surakshaItem);
     }
 
-    router.push("/personal/buy/checkout");
+    router.push("/suraksha/cart");
   };
 
   return (

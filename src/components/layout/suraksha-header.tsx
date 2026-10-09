@@ -4,8 +4,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ShoppingCart } from "lucide-react";
 import { EcosystemBar } from "./ecosystem-bar";
+import { useSurakshaCart } from "@/lib/commerce/cart-context";
 
 export function SurakshaHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -17,6 +18,7 @@ export function SurakshaHeader() {
   const [mobileGetOpen, setMobileGetOpen] = useState(false);
 
   const pathname = usePathname();
+  const { totalItems } = useSurakshaCart();
 
   if (pathname?.startsWith("/suraksha/campaign")) {
     return null;
@@ -211,7 +213,19 @@ export function SurakshaHeader() {
           {/* GET SURAKSHA (CTAs) */}
           <div className="hidden md:flex items-center gap-1.5 xl:gap-2 shrink-0 ml-1.5 xl:ml-3">
             <Link
-              href="/suraksha/buy"
+              href="/suraksha/cart"
+              className="relative p-2 xl:p-2.5 rounded border border-[#451A03]/20 hover:bg-[#FFFBEB] text-[#451A03] transition-colors shrink-0"
+              aria-label="Suraksha Cart"
+            >
+              <ShoppingCart className="w-4 h-4 text-[#451A03]" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#DC2626] text-[#FEF3C7] text-[10px] font-bold rounded-full flex items-center justify-center font-mono animate-in zoom-in">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+            <Link
+              href="/suraksha/pricing"
               className="px-2 xl:px-3 py-1.5 xl:py-2 rounded font-rubik text-[10.5px] xl:text-xs font-bold bg-[#DC2626] text-white hover:bg-[#B91C1C] transition-all shadow-sm whitespace-nowrap"
             >
               Get Suraksha
@@ -224,8 +238,20 @@ export function SurakshaHeader() {
             </Link>
           </div>
 
-          {/* Mobile menu toggle */}
-          <div className="lg:hidden flex items-center z-10">
+          {/* Mobile Cart & menu toggle */}
+          <div className="lg:hidden flex items-center gap-2 z-10">
+            <Link
+              href="/suraksha/cart"
+              className="relative p-2 rounded border border-[#451A03]/20 text-[#451A03] hover:bg-[#FFFBEB] transition-colors"
+              aria-label="Suraksha Cart"
+            >
+              <ShoppingCart className="w-5 h-5 text-[#451A03]" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#DC2626] text-[#FEF3C7] text-[10px] font-bold rounded-full flex items-center justify-center font-mono">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="p-2 rounded border border-[#451A03]/20 text-[#451A03] hover:bg-[#FFFBEB] transition-colors"
@@ -347,7 +373,15 @@ export function SurakshaHeader() {
 
             <div className="pt-3 border-t border-[#451A03]/10 flex flex-col gap-2.5">
               <Link
-                href="/suraksha/buy"
+                href="/suraksha/cart"
+                onClick={() => setMobileOpen(false)}
+                className="w-full py-2.5 px-4 text-center rounded font-rubik text-xs font-bold border-2 border-[#451A03]/20 text-[#451A03] hover:bg-[#FEF3C7] transition-all flex items-center justify-center gap-2"
+              >
+                <ShoppingCart className="w-4 h-4 text-[#451A03]" />
+                <span>View Suraksha Cart ({totalItems})</span>
+              </Link>
+              <Link
+                href="/suraksha/pricing"
                 onClick={() => setMobileOpen(false)}
                 className="w-full py-2.5 text-center rounded font-rubik text-xs font-bold bg-[#DC2626] text-white hover:bg-[#B91C1C] transition-all"
               >

@@ -1,9 +1,18 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { CartItem, ProductVariant } from "@/types/database";
+import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
+import { CartItem } from "@/types/database";
 
-interface CartContextType {
+export interface AppliedCoupon {
+  code: string;
+  discountType: "percent" | "fixed";
+  discountValue: number;
+  discountAmountInr: number;
+  message?: string;
+  appliedProductName?: string;
+}
+
+export interface CartContextType {
   items: CartItem[];
   addItem: (item: CartItem) => void;
   removeItem: (variantId: string) => void;
@@ -16,128 +25,437 @@ interface CartContextType {
   shippingInr: number;
   totalInr: number;
   couponCode: string;
-  applyCoupon: (code: string) => boolean;
+  appliedCoupon: AppliedCoupon | null;
+  applyCoupon: (code: string) => Promise<{ success: boolean; message?: string; discountInr?: number }>;
   removeCoupon: () => void;
 }
 
-const CartContext = createContext<CartContextType | undefined>(undefined);
+interface CombinedCartContextType {
+  personalCart: CartContextType;
+  surakshaCart: CartContextType;
+}
+
+const CombinedCartContext = createContext<CombinedCartContextType | undefined>(undefined);
+
+export function isSurakshaItem(item: { variant_id?: string; sku?: string; vehicle_type?: string; name?: string; title?: string }): boolean {
+  if (!item) return false;
+  const vid = (item.variant_id || "").toLowerCase();
+  const sku = (item.sku || "").toUpperCase();
+  const vtype = (item.vehicle_type || "").toLowerCase();
+  const name = (item.name || item.title || "").toLowerCase();
+
+  return (
+    vid.startsWith("suraksha") ||
+    sku.includes("SURAKSHA") ||
+    vtype === "truck" ||
+    vtype === "commercial" ||
+    name.includes("suraksha")
+  );
+}
+
+export function isPersonalItem(item: { variant_id?: string; sku?: string; vehicle_type?: string; name?: string; title?: string }): boolean {
+  return !isSurakshaItem(item);
+}
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>([]);
-  const [couponCode, setCouponCode] = useState<string>("");
-  const [discountPercent, setDiscountPercent] = useState<number>(0);
+  // -------------------------------------------------------------
+  // 1. PERSONAL TPMS CART STATE (Namespace: treel_guest_cart)
+  // -------------------------------------------------------------
+  const [personalItems, setPersonalItems] = useState<CartItem[]>([]);
+  const [personalCoupon, setPersonalCoupon] = useState<string>("");
+  const [personalAppliedCoupon, setPersonalAppliedCoupon] = useState<AppliedCoupon | null>(null);
 
-  // Load from localStorage on client
+  // -------------------------------------------------------------
+  // 2. SURAKSHA COMMERCIAL CART STATE (Namespace: treel_suraksha_cart)
+  // -------------------------------------------------------------
+  const [surakshaItems, setSurakshaItems] = useState<CartItem[]>([]);
+  const [surakshaCoupon, setSurakshaCoupon] = useState<string>("");
+  const [surakshaAppliedCoupon, setSurakshaAppliedCoupon] = useState<AppliedCoupon | null>(null);
+
+  // Load from localStorage on client with strict brand sanitization
   useEffect(() => {
     try {
-      const savedCart = localStorage.getItem("treel_guest_cart");
-      if (savedCart) {
-        setItems(JSON.parse(savedCart));
+      // Personal cart
+      const savedPersonal = localStorage.getItem("treel_guest_cart");
+      if (savedPersonal) {
+        const parsed = JSON.parse(savedPersonal);
+        if (Array.isArray(parsed)) {
+          const cleanPersonal = parsed.filter(isPersonalItem);
+          setPersonalItems(cleanPersonal);
+          if (cleanPersonal.length !== parsed.length) {
+            localStorage.setItem("treel_guest_cart", JSON.stringify(cleanPersonal));
+          }
+        }
+      }
+
+      const savedPersonalCoupon = localStorage.getItem("treel_personal_coupon");
+      if (savedPersonalCoupon) {
+        try {
+          const parsedCoupon = JSON.parse(savedPersonalCoupon);
+          if (parsedCoupon && parsedCoupon.code) {
+            setPersonalCoupon(parsedCoupon.code);
+            setPersonalAppliedCoupon(parsedCoupon);
+          }
+        } catch {}
+      }
+
+      // Suraksha cart
+      const savedSuraksha = localStorage.getItem("treel_suraksha_cart");
+      if (savedSuraksha) {
+        const parsed = JSON.parse(savedSuraksha);
+        if (Array.isArray(parsed)) {
+          const cleanSuraksha = parsed.filter(isSurakshaItem);
+          setSurakshaItems(cleanSuraksha);
+          if (cleanSuraksha.length !== parsed.length) {
+            localStorage.setItem("treel_suraksha_cart", JSON.stringify(cleanSuraksha));
+          }
+        }
       }
     } catch (e) {
-      console.error("Failed to parse cart from storage", e);
+      console.error("Failed to parse carts from storage", e);
     }
   }, []);
 
-  // Save to localStorage
+  // Save Personal items to localStorage
   useEffect(() => {
     try {
-      localStorage.setItem("treel_guest_cart", JSON.stringify(items));
+      const cleanPersonal = personalItems.filter(isPersonalItem);
+      localStorage.setItem("treel_guest_cart", JSON.stringify(cleanPersonal));
     } catch (e) {
-      console.error("Failed to save cart to storage", e);
+      console.error("Failed to save personal cart", e);
     }
-  }, [items]);
+  }, [personalItems]);
 
-  const addItem = (newItem: CartItem) => {
-    setItems((prev) => {
-      const existingIndex = prev.findIndex((i) => i.variant_id === newItem.variant_id);
+  // Save Personal coupon to localStorage
+  useEffect(() => {
+    try {
+      if (personalAppliedCoupon) {
+        localStorage.setItem("treel_personal_coupon", JSON.stringify(personalAppliedCoupon));
+      } else {
+        localStorage.removeItem("treel_personal_coupon");
+      }
+    } catch (e) {
+      console.error("Failed to save personal coupon", e);
+    }
+  }, [personalAppliedCoupon]);
+
+  // Save Suraksha items to localStorage
+  useEffect(() => {
+    try {
+      const cleanSuraksha = surakshaItems.filter(isSurakshaItem);
+      localStorage.setItem("treel_suraksha_cart", JSON.stringify(cleanSuraksha));
+    } catch (e) {
+      console.error("Failed to save suraksha cart", e);
+    }
+  }, [surakshaItems]);
+
+  // -------------------------------------------------------------
+  // PERSONAL CART METHODS
+  // -------------------------------------------------------------
+  const addPersonalItem = (newItem: CartItem) => {
+    if (isSurakshaItem(newItem)) {
+      addSurakshaItem(newItem);
+      return;
+    }
+    setPersonalItems((prev) => {
+      const cleanPrev = prev.filter(isPersonalItem);
+      const existingIndex = cleanPrev.findIndex((i) => i.variant_id === newItem.variant_id);
       if (existingIndex > -1) {
-        const updated = [...prev];
+        const updated = [...cleanPrev];
         updated[existingIndex].quantity += newItem.quantity;
         return updated;
       }
-      return [...prev, newItem];
+      return [...cleanPrev, newItem];
     });
   };
 
-  const removeItem = (variantId: string) => {
-    setItems((prev) => prev.filter((i) => i.variant_id !== variantId));
+  const removePersonalItem = (variantId: string) => {
+    setPersonalItems((prev) => prev.filter((i) => i.variant_id !== variantId));
   };
 
-  const updateQuantity = (variantId: string, quantity: number) => {
+  const updatePersonalQuantity = (variantId: string, quantity: number) => {
     if (quantity <= 0) {
-      removeItem(variantId);
+      removePersonalItem(variantId);
       return;
     }
-    setItems((prev) =>
+    setPersonalItems((prev) =>
       prev.map((i) => (i.variant_id === variantId ? { ...i, quantity } : i))
     );
   };
 
-  const clearCart = () => {
-    setItems([]);
-    setCouponCode("");
-    setDiscountPercent(0);
+  const clearPersonalCart = () => {
+    setPersonalItems([]);
+    setPersonalCoupon("");
+    setPersonalAppliedCoupon(null);
     try {
       localStorage.removeItem("treel_guest_cart");
+      localStorage.removeItem("treel_personal_coupon");
     } catch (e) {}
   };
 
-  const applyCoupon = (code: string): boolean => {
-    const clean = code.trim().toUpperCase();
-    if (clean === "TREEL10" || clean === "WELCOME10") {
-      setCouponCode(clean);
-      setDiscountPercent(10);
-      return true;
+  const applyPersonalCoupon = async (code: string): Promise<{ success: boolean; message?: string; discountInr?: number }> => {
+    const clean = (code || "").trim().toUpperCase();
+    if (!clean) {
+      return { success: false, message: "Please enter a coupon code." };
     }
-    if (clean === "FREESHIP") {
-      setCouponCode(clean);
-      setDiscountPercent(5);
-      return true;
+
+    if (personalItems.length === 0) {
+      return { success: false, message: "Your cart is empty." };
     }
-    return false;
+
+    const currentSubtotal = personalItems.reduce((acc, i) => acc + i.price_inr * i.quantity, 0);
+
+    try {
+      const res = await fetch("/api/coupons/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: clean,
+          items: personalItems,
+          subtotalInr: currentSubtotal,
+        }),
+      });
+
+      const json = await res.json();
+      if (res.ok && json.success && json.data) {
+        const couponData: AppliedCoupon = {
+          code: json.data.code,
+          discountType: json.data.discountType,
+          discountValue: json.data.discountValue,
+          discountAmountInr: json.data.discountAmountInr,
+          message: json.data.message,
+          appliedProductName: json.data.appliedProductName,
+        };
+        setPersonalCoupon(couponData.code);
+        setPersonalAppliedCoupon(couponData);
+        return {
+          success: true,
+          message: couponData.message || `Coupon "${couponData.code}" applied!`,
+          discountInr: couponData.discountAmountInr,
+        };
+      } else {
+        return {
+          success: false,
+          message: json.error || "Invalid or expired coupon code.",
+        };
+      }
+    } catch (err: any) {
+      // Offline fallback for known promotional codes
+      if (clean === "TREEL10" || clean === "WELCOME10") {
+        const discountAmount = Math.round((currentSubtotal * 10) / 100);
+        const fallbackCoupon: AppliedCoupon = {
+          code: clean,
+          discountType: "percent",
+          discountValue: 10,
+          discountAmountInr: discountAmount,
+          message: "10% promotional discount applied!",
+        };
+        setPersonalCoupon(clean);
+        setPersonalAppliedCoupon(fallbackCoupon);
+        return { success: true, message: fallbackCoupon.message, discountInr: discountAmount };
+      }
+      return {
+        success: false,
+        message: err?.message || "Could not validate coupon code. Please try again.",
+      };
+    }
   };
 
-  const removeCoupon = () => {
-    setCouponCode("");
-    setDiscountPercent(0);
+  const removePersonalCoupon = () => {
+    setPersonalCoupon("");
+    setPersonalAppliedCoupon(null);
+    try {
+      localStorage.removeItem("treel_personal_coupon");
+    } catch (e) {}
   };
 
-  const totalItems = items.reduce((acc, i) => acc + i.quantity, 0);
-  const subtotalInr = items.reduce((acc, i) => acc + i.price_inr * i.quantity, 0);
-  const discountInr = Math.round((subtotalInr * discountPercent) / 100);
-  const taxInr = Math.round(((subtotalInr - discountInr) * 0.18) / 1.18); // Inclusive 18% GST calculation
-  const shippingInr = subtotalInr > 0 ? 0 : 0; // Free express delivery across India
-  const totalInr = subtotalInr - discountInr + shippingInr;
+  const personalTotalItems = personalItems.reduce((acc, i) => acc + i.quantity, 0);
+  const personalSubtotalInr = personalItems.reduce((acc, i) => acc + i.price_inr * i.quantity, 0);
+
+  // Compute discount accurately based on coupon type
+  let personalDiscountInr = 0;
+  if (personalAppliedCoupon && personalSubtotalInr > 0) {
+    if (personalAppliedCoupon.discountType === "percent") {
+      personalDiscountInr = Math.round((personalSubtotalInr * personalAppliedCoupon.discountValue) / 100);
+    } else {
+      personalDiscountInr = Math.min(personalAppliedCoupon.discountValue, personalSubtotalInr);
+    }
+  }
+
+  const personalTaxInr = Math.round(((personalSubtotalInr - personalDiscountInr) * 0.18) / 1.18);
+  const personalShippingInr = 0;
+  const personalTotalInr = Math.max(0, personalSubtotalInr - personalDiscountInr + personalShippingInr);
+
+  // -------------------------------------------------------------
+  // SURAKSHA CART METHODS
+  // -------------------------------------------------------------
+  const addSurakshaItem = (newItem: CartItem) => {
+    if (!isSurakshaItem(newItem)) {
+      return;
+    }
+    setSurakshaItems((prev) => {
+      const cleanPrev = prev.filter(isSurakshaItem);
+      const existingIndex = cleanPrev.findIndex((i) => i.variant_id === newItem.variant_id);
+      if (existingIndex > -1) {
+        const updated = [...cleanPrev];
+        updated[existingIndex] = {
+          ...updated[existingIndex],
+          ...newItem,
+          quantity: newItem.quantity,
+          sensor_count: newItem.sensor_count || newItem.quantity,
+        };
+        return updated;
+      }
+      return [...cleanPrev, newItem];
+    });
+  };
+
+  const removeSurakshaItem = (variantId: string) => {
+    setSurakshaItems((prev) => prev.filter((i) => i.variant_id !== variantId));
+  };
+
+  const updateSurakshaQuantity = (variantId: string, quantity: number) => {
+    if (quantity <= 0) {
+      removeSurakshaItem(variantId);
+      return;
+    }
+    setSurakshaItems((prev) =>
+      prev.map((i) =>
+        i.variant_id === variantId
+          ? {
+              ...i,
+              quantity,
+              sensor_count: quantity,
+              name: `Treel Suraksha Commercial Safety Kit (${quantity} Tyres)`,
+              sku: `SKU-SURAKSHA-${quantity}TYRE`,
+            }
+          : i
+      )
+    );
+  };
+
+  const clearSurakshaCart = () => {
+    setSurakshaItems([]);
+    setSurakshaCoupon("");
+    setSurakshaAppliedCoupon(null);
+    try {
+      localStorage.removeItem("treel_suraksha_cart");
+    } catch (e) {}
+  };
+
+  const applySurakshaCoupon = async (code: string): Promise<{ success: boolean; message?: string; discountInr?: number }> => {
+    const clean = (code || "").trim().toUpperCase();
+    if (clean === "SURAKSHA10" || clean === "FLEET10") {
+      const currentSubtotal = surakshaItems.reduce((acc, i) => acc + i.price_inr * i.quantity, 0);
+      const discount = Math.round((currentSubtotal * 10) / 100);
+      const coupon: AppliedCoupon = {
+        code: clean,
+        discountType: "percent",
+        discountValue: 10,
+        discountAmountInr: discount,
+        message: "10% Fleet discount applied!",
+      };
+      setSurakshaCoupon(clean);
+      setSurakshaAppliedCoupon(coupon);
+      return { success: true, message: coupon.message, discountInr: discount };
+    }
+    return { success: false, message: "Invalid Suraksha coupon code." };
+  };
+
+  const removeSurakshaCoupon = () => {
+    setSurakshaCoupon("");
+    setSurakshaAppliedCoupon(null);
+  };
+
+  const surakshaTotalItems = surakshaItems.reduce((acc, i) => acc + i.quantity, 0);
+  const surakshaSubtotalInr = surakshaItems.reduce((acc, i) => acc + i.price_inr * i.quantity, 0);
+  let surakshaDiscountInr = 0;
+  if (surakshaAppliedCoupon && surakshaSubtotalInr > 0) {
+    if (surakshaAppliedCoupon.discountType === "percent") {
+      surakshaDiscountInr = Math.round((surakshaSubtotalInr * surakshaAppliedCoupon.discountValue) / 100);
+    } else {
+      surakshaDiscountInr = Math.min(surakshaAppliedCoupon.discountValue, surakshaSubtotalInr);
+    }
+  }
+  const surakshaTaxInr = Math.round(((surakshaSubtotalInr - surakshaDiscountInr) * 0.18) / 1.18);
+  const surakshaShippingInr = 0;
+  const surakshaTotalInr = Math.max(0, surakshaSubtotalInr - surakshaDiscountInr + surakshaShippingInr);
+
+  const personalCartContextValue: CartContextType = {
+    items: personalItems,
+    addItem: addPersonalItem,
+    removeItem: removePersonalItem,
+    updateQuantity: updatePersonalQuantity,
+    clearCart: clearPersonalCart,
+    totalItems: personalTotalItems,
+    subtotalInr: personalSubtotalInr,
+    discountInr: personalDiscountInr,
+    taxInr: personalTaxInr,
+    shippingInr: personalShippingInr,
+    totalInr: personalTotalInr,
+    couponCode: personalCoupon,
+    appliedCoupon: personalAppliedCoupon,
+    applyCoupon: applyPersonalCoupon,
+    removeCoupon: removePersonalCoupon,
+  };
+
+  const surakshaCartContextValue: CartContextType = {
+    items: surakshaItems,
+    addItem: addSurakshaItem,
+    removeItem: removeSurakshaItem,
+    updateQuantity: updateSurakshaQuantity,
+    clearCart: clearSurakshaCart,
+    totalItems: surakshaTotalItems,
+    subtotalInr: surakshaSubtotalInr,
+    discountInr: surakshaDiscountInr,
+    taxInr: surakshaTaxInr,
+    shippingInr: surakshaShippingInr,
+    totalInr: surakshaTotalInr,
+    couponCode: surakshaCoupon,
+    appliedCoupon: surakshaAppliedCoupon,
+    applyCoupon: applySurakshaCoupon,
+    removeCoupon: removeSurakshaCoupon,
+  };
 
   return (
-    <CartContext.Provider
+    <CombinedCartContext.Provider
       value={{
-        items,
-        addItem,
-        removeItem,
-        updateQuantity,
-        clearCart,
-        totalItems,
-        subtotalInr,
-        discountInr,
-        taxInr,
-        shippingInr,
-        totalInr,
-        couponCode,
-        applyCoupon,
-        removeCoupon,
+        personalCart: personalCartContextValue,
+        surakshaCart: surakshaCartContextValue,
       }}
     >
       {children}
-    </CartContext.Provider>
+    </CombinedCartContext.Provider>
   );
 }
 
-export function useCart() {
-  const context = useContext(CartContext);
+/**
+ * Standard hook for Personal TPMS Cart.
+ * Maintains 100% backward compatibility for all existing Personal TPMS store pages.
+ */
+export function useCart(): CartContextType {
+  const context = useContext(CombinedCartContext);
   if (!context) {
     throw new Error("useCart must be used within a CartProvider");
   }
-  return context;
+  return context.personalCart;
+}
+
+/**
+ * Hook for Personal TPMS Cart explicitly.
+ */
+export function usePersonalCart(): CartContextType {
+  return useCart();
+}
+
+/**
+ * Dedicated hook for Suraksha Commercial Cart.
+ * Reads & writes ONLY to treel_suraksha_cart.
+ */
+export function useSurakshaCart(): CartContextType {
+  const context = useContext(CombinedCartContext);
+  if (!context) {
+    throw new Error("useSurakshaCart must be used within a CartProvider");
+  }
+  return context.surakshaCart;
 }

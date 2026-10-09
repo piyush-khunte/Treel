@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createRazorpayOrder, isRazorpayConfigured } from '@/lib/integrations';
+import { validateCouponServer } from '@/lib/commerce/coupon-validator';
 
 export async function GET() {
   const configured = isRazorpayConfigured();
@@ -33,18 +34,58 @@ export async function POST(req: NextRequest) {
 
     let amountInPaise = 0;
     if (Array.isArray(body.items) && body.items.length > 0) {
+      // Check for illegal mixing of Suraksha and Personal TPMS items
+      const hasSuraksha = body.items.some((it: any) => {
+        const vid = (it.variant_id || "").toLowerCase();
+        const sku = (it.sku || "").toUpperCase();
+        const cat = (it.category || it.vehicle_type || "").toLowerCase();
+        return vid.startsWith("suraksha") || sku.includes("SURAKSHA") || cat === "truck";
+      });
+      const hasPersonal = body.items.some((it: any) => {
+        const vid = (it.variant_id || "").toLowerCase();
+        const sku = (it.sku || "").toUpperCase();
+        const cat = (it.category || it.vehicle_type || "").toLowerCase();
+        return !vid.startsWith("suraksha") && !sku.includes("SURAKSHA") && cat !== "truck";
+      });
+
+      if (hasSuraksha && hasPersonal) {
+        return NextResponse.json(
+          {
+            success: false,
+            configured: true,
+            error: {
+              code: 'CART_BRAND_CONTAMINATION',
+              message: 'Orders cannot contain both Personal TPMS and Suraksha Commercial items. Please purchase them separately.',
+            },
+          },
+          { status: 400 }
+        );
+      }
+
+      // Calculate server-side verified subtotal
       const subtotal = body.items.reduce((acc: number, it: any) => {
-        const p = Number(it.price_inr || it.price) || 0;
+        const vid = (it.variant_id || "").toLowerCase();
+        const sku = (it.sku || "").toUpperCase();
+        const isSur = vid.startsWith("suraksha") || sku.includes("SURAKSHA") || it.vehicle_type === "truck";
+        // Enforce fixed ₹1,700/tyre for Suraksha
+        const unitPrice = isSur ? 1700 : Number(it.price_inr || it.price) || 0;
         const q = Number(it.quantity) || 1;
-        return acc + p * q;
+        return acc + unitPrice * q;
       }, 0);
+
       let discount = 0;
       const coupon = (body.couponCode || '').trim().toUpperCase();
-      if (coupon === 'TREEL10' || coupon === 'WELCOME10') {
-        discount = Math.round((subtotal * 10) / 100);
-      } else if (coupon === 'FREESHIP') {
-        discount = Math.round((subtotal * 5) / 100);
+      if (coupon) {
+        const couponResult = await validateCouponServer({
+          code: coupon,
+          items: body.items,
+          subtotalInr: subtotal,
+        });
+        if (couponResult.valid) {
+          discount = couponResult.discountAmountInr;
+        }
       }
+
       const total = Math.max(1, subtotal - discount);
       amountInPaise = Math.round(total * 100);
     } else if (typeof body.amountInPaise === 'number' && body.amountInPaise > 0) {

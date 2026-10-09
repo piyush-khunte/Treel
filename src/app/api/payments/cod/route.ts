@@ -42,6 +42,33 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Check for illegal mixing of Suraksha and Personal TPMS items
+    const hasSuraksha = checkout.items.some((it: any) => {
+      const vid = (it.variant_id || "").toLowerCase();
+      const sku = (it.sku || "").toUpperCase();
+      const cat = (it.category || it.vehicle_type || "").toLowerCase();
+      return vid.startsWith("suraksha") || sku.includes("SURAKSHA") || cat === "truck";
+    });
+    const hasPersonal = checkout.items.some((it: any) => {
+      const vid = (it.variant_id || "").toLowerCase();
+      const sku = (it.sku || "").toUpperCase();
+      const cat = (it.category || it.vehicle_type || "").toLowerCase();
+      return !vid.startsWith("suraksha") && !sku.includes("SURAKSHA") && cat !== "truck";
+    });
+
+    if (hasSuraksha && hasPersonal) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'CART_BRAND_CONTAMINATION',
+            message: 'Orders cannot contain both Personal TPMS and Suraksha Commercial items. Please purchase them separately.',
+          },
+        },
+        { status: 400 }
+      );
+    }
+
     // 1. Primary Operation: Persist COD order to Supabase
     const saveRes = await persistOrderToSupabase({
       checkout: {
