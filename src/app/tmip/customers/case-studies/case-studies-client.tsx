@@ -4,11 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Filter } from "lucide-react";
 
+import { TmipCaseStudy } from "@/types/content";
+
 interface CaseStudy {
   id: string;
   slug: string;
-  industry: "Logistics" | "Passenger Transport" | "Construction" | "Mining" | "OEM";
-  fleetSize: "Under 100" | "100-500" | "500-2000" | "2000+";
+  industry: "Logistics" | "Passenger Transport" | "Construction" | "Mining" | "OEM" | string;
+  fleetSize: "Under 100" | "100-500" | "500-2000" | "2000+" | string;
   headline: string;
   excerpt: string;
   metricValue: string;
@@ -25,7 +27,7 @@ const studies: CaseStudy[] = [
     headline: "1,000 trucks. 12 months. What changed.",
     excerpt:
       "The full operational story of a large logistics fleet running TMIP for one year. Deployment timeline, operating changes, measured outcomes, and what the operator does differently now.",
-    metricValue: "5.2% Fuel · 6.8% Tyre Life",
+    metricValue: "0.5–0.6% Fuel · 6.8% Tyre Life",
     metricLabel: "34% downtime drop across 1,000 linehaul units",
     isFeatured: true,
   },
@@ -86,14 +88,38 @@ const studies: CaseStudy[] = [
   },
 ];
 
-export function CaseStudiesClient() {
+interface CaseStudiesClientProps {
+  initialStudies?: TmipCaseStudy[];
+}
+
+export function CaseStudiesClient({ initialStudies }: CaseStudiesClientProps = {}) {
   const [selectedIndustry, setSelectedIndustry] = useState("All");
   const [selectedFleetSize, setSelectedFleetSize] = useState("All");
 
-  const industries = ["All", "Logistics", "Passenger Transport", "Construction", "Mining", "OEM"];
-  const fleetSizes = ["All", "Under 100", "100-500", "500-2000", "2000+"];
+  const baseIndustries = ["All", "Logistics", "Passenger Transport", "Construction", "Mining", "OEM"];
+  const baseFleetSizes = ["All", "Under 100", "100-500", "500-2000", "2000+"];
 
-  const filteredStudies = studies.filter((study) => {
+  const allStudies: CaseStudy[] = (initialStudies && initialStudies.length > 0)
+    ? initialStudies.map((s) => ({
+        id: s._id,
+        slug: s.slug,
+        industry: s.industry,
+        fleetSize: s.fleetSize,
+        headline: s.headline,
+        excerpt: s.excerpt,
+        metricValue: s.metricValue,
+        metricLabel: s.metricLabel,
+        isFeatured: s.isFeatured,
+      }))
+    : studies;
+
+  const dynamicIndustries = Array.from(new Set(allStudies.map((s) => s.industry).filter(Boolean)));
+  const industries = Array.from(new Set([...baseIndustries, ...dynamicIndustries]));
+
+  const dynamicFleetSizes = Array.from(new Set(allStudies.map((s) => s.fleetSize).filter(Boolean)));
+  const fleetSizes = Array.from(new Set([...baseFleetSizes, ...dynamicFleetSizes]));
+
+  const filteredStudies = allStudies.filter((study) => {
     const matchIndustry = selectedIndustry === "All" || study.industry === selectedIndustry;
     const matchFleetSize = selectedFleetSize === "All" || study.fleetSize === selectedFleetSize;
     return matchIndustry && matchFleetSize;
@@ -187,7 +213,7 @@ export function CaseStudiesClient() {
 
             <div className="lg:col-span-4 p-6 rounded-[4px] bg-[#050A17]/80 border border-slate-400/10 space-y-4">
               <div>
-                <div className="font-space-grotesk text-3xl font-bold text-[#10B981]">5.2% Fuel</div>
+                <div className="font-space-grotesk text-3xl font-bold text-[#10B981]">0.5–0.6% Fuel</div>
                 <div className="text-xs text-[#94A3B8] font-ibm-plex">Fleetwide Fuel Consumption Reduction</div>
               </div>
               <div className="border-t border-slate-400/10 pt-3">

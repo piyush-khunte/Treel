@@ -101,7 +101,7 @@ const differentiators = [
   },
   {
     title: "Any tyre brand",
-    desc: "Works with JK, MRF, Apollo, CEAT, Bridgestone, Michelin, or any other brand. Suraksha doesn't care what tyre you use.",
+    desc: "Works with any brand. Suraksha doesn't care what tyre you use.",
   },
   {
     title: "Puncture shop friendly",

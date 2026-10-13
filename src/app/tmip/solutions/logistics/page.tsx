@@ -234,7 +234,7 @@ export default function TmipSolutionsLogisticsPage() {
               <div className="space-y-4 pt-2">
                 <div className="flex items-center justify-between p-3 rounded-[3px] bg-white/[0.02] border border-slate-400/10">
                   <span className="text-sm text-[#94A3B8] font-ibm-plex">Fleet Fuel Economy</span>
-                  <span className="text-sm font-jetbrains font-bold text-[#10B981]">+5.2% Avg Gain</span>
+                  <span className="text-sm font-jetbrains font-bold text-[#10B981]">+0.52% Avg Gain</span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-[3px] bg-white/[0.02] border border-slate-400/10">
                   <span className="text-sm text-[#94A3B8] font-ibm-plex">Casing Retread Life</span>
@@ -319,7 +319,7 @@ export default function TmipSolutionsLogisticsPage() {
                 </p>
                 <div className="flex items-center gap-6 pt-2 font-jetbrains text-sm">
                   <div>
-                    <span className="text-[#10B981] font-bold">5.2%</span>
+                    <span className="text-[#10B981] font-bold">0.52%</span>
                     <span className="text-xs text-[#94A3B8] ml-1.5">Fuel savings</span>
                   </div>
                   <div>

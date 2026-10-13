@@ -60,7 +60,7 @@ export default function TmipInsightsPage() {
 
             <p className="text-base sm:text-xl text-[#94A3B8] leading-relaxed font-ibm-plex max-w-3xl">
               An empirical analysis of fleet economics across 200 enterprises and 68,000+ assets. How vehicle digital twin
-              telemetry correlates tyre pressure disciplines directly to 5.2% fuel savings and full capital payback.
+              telemetry correlates tyre pressure disciplines directly to 0.5–0.6% fuel savings and full capital payback.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 text-xs font-jetbrains text-[#94A3B8] pt-2">

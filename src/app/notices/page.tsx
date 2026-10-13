@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Bell, Calendar, FileText, ShieldCheck, Tag } from "lucide-react";
+import { ArrowRight, Bell, Calendar, FileText, ShieldCheck, Tag, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { getPublicNotices } from "@/lib/admin/admin-actions";
@@ -125,6 +125,21 @@ export default async function NoticesPage() {
                       <div className="text-[#94A3B8] text-sm sm:text-base leading-relaxed whitespace-pre-line font-inter">
                         {notice.description}
                       </div>
+
+                      {(notice.documentUrl || notice.document_url) && (
+                        <div className="pt-2">
+                          <a
+                            href={notice.documentUrl || notice.document_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#D5573B]/50 text-xs sm:text-sm font-medium text-[#FAF7F2] hover:text-[#D5573B] transition-all group max-w-full break-words"
+                          >
+                            <FileText className="w-4 h-4 text-[#D5573B] shrink-0 group-hover:scale-110 transition-transform" />
+                            <span className="font-medium">Read Full Notice (PDF / Document)</span>
+                            <ExternalLink className="w-3.5 h-3.5 text-[#94A3B8] shrink-0 group-hover:text-[#D5573B] transition-colors" />
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </article>
                 ))}

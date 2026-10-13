@@ -315,7 +315,7 @@ export default function TmipSolutionsPassengerTransportPage() {
                     <span className="text-xs text-[#94A3B8] ml-1.5">Roadside incidents</span>
                   </div>
                   <div>
-                    <span className="text-[#3B82F6] font-bold">5.8%</span>
+                    <span className="text-[#3B82F6] font-bold">0.5–0.6%</span>
                     <span className="text-xs text-[#94A3B8] ml-1.5">Fuel saved</span>
                   </div>
                 </div>

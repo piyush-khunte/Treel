@@ -1,0 +1,148 @@
+[
+  {
+    "_id": "cs_1",
+    "slug": "1000-truck-case-study",
+    "industry": "Logistics",
+    "fleetSize": "500-2000",
+    "headline": "1,000 trucks. 12 months. What changed.",
+    "excerpt": "The full operational story of a large logistics fleet running TMIP for one year. Deployment timeline, operating changes, measured outcomes, and what the operator does differently now.",
+    "metricValue": "0.5–0.6% Fuel · 6.8% Tyre Life",
+    "metricLabel": "34% downtime drop across 1,000 linehaul units",
+    "isFeatured": true,
+    "status": "Published",
+    "customerProfile": "1,000 linehaul trailers across pan-India routes (NH-48, NH-44)",
+    "challenge": "High unpredicted roadside tyre blowouts and diesel wastage due to persistent slow leaks in long-haul transit.",
+    "solution": "Fleet-wide deployment of TMIP valve-stem telemetry sensors connected to automatic maintenance alerts and centralized dispatch.",
+    "quote": {
+      "text": "TMIP eliminated 85% of roadside punctures in the first six months. The fuel savings alone amortized the investment in under 9 months.",
+      "author": "VP Operations",
+      "title": "National Freight Carrier"
+    },
+    "results": [
+      {
+        "value": "0.5–0.6%",
+        "label": "Fuel Savings",
+        "delta": "vs. pre-deployment baseline",
+        "desc": "Measured across 18 million cumulative fleet kilometres on NH-48 and NH-44 corridors."
+      },
+      {
+        "value": "6.8%",
+        "label": "Tyre-Life Extension",
+        "delta": "Fleet median improvement",
+        "desc": "Average steer and drive axle casing life extended by 14,000+ kilometres before first retread."
+      },
+      {
+        "value": "34%",
+        "label": "Downtime Reduction",
+        "delta": "Trailing 12 months",
+        "desc": "Punctures, slow-leaks, and thermal blowouts detected and rectified at scheduled depot stops."
+      },
+      {
+        "value": "8.6 mo",
+        "label": "Capital Payback",
+        "delta": "Full deployment payback",
+        "desc": "Hardware fitment, cloud subscriptions, and integration costs fully amortized by operational savings."
+      }
+    ]
+  },
+  {
+    "_id": "cs_2",
+    "slug": "intercity-passenger-express",
+    "industry": "Passenger Transport",
+    "fleetSize": "500-2000",
+    "headline": "Eliminating high-speed tyre failures across 650 luxury intercity coaches.",
+    "excerpt": "How continuous sub-second pressure and heat telemetry eliminated thermal blowouts on high-speed western expressways.",
+    "metricValue": "0 Bursts",
+    "metricLabel": "Zero roadside tyre incidents in 18 months",
+    "isFeatured": false,
+    "status": "Published",
+    "customerProfile": "650 luxury multi-axle passenger buses operating on expressway corridors",
+    "challenge": "Passenger safety risks caused by intense asphalt heat causing thermal tyre failures at 100+ km/h.",
+    "solution": "Real-time thermal hysteresis alarms giving drivers early warnings 30 minutes before blowout temperature thresholds.",
+    "quote": {
+      "text": "In public passenger transport, passenger safety is everything. Zero blowouts in 18 months gives our passengers complete confidence.",
+      "author": "Chief Operations Officer",
+      "title": "Intercity Transit Lines"
+    }
+  },
+  {
+    "_id": "cs_3",
+    "slug": "quarry-transit-tippers",
+    "industry": "Construction",
+    "fleetSize": "100-500",
+    "headline": "Extending tipper tyre life in severe dust-heavy quarry routes.",
+    "excerpt": "Protecting heavy multi-axle transit tippers against severe puncture cycles and carcass fatigue during massive highway paving contracts.",
+    "metricValue": "14% Lower Scrap",
+    "metricLabel": "Extended tyre casing retreadability",
+    "isFeatured": false,
+    "status": "Published",
+    "customerProfile": "280 multi-axle tippers hauling aggregates across rough access roads",
+    "challenge": "Extreme sharp rock cuts causing rapid casing failure before tyres could even reach first retreading.",
+    "solution": "Ruggedized rim sensors with continuous load-deflection pressure optimization.",
+    "quote": {
+      "text": "Our retreadability index increased from 1.1 to 2.4 per tyre casing within one year of TMIP fitment.",
+      "author": "Fleet Maintenance Head",
+      "title": "Infrastructure & Aggregates Corp"
+    }
+  },
+  {
+    "_id": "cs_4",
+    "slug": "open-cast-haulage-analytics",
+    "industry": "Mining",
+    "fleetSize": "100-500",
+    "headline": "Preventing high-tonnage dumper downtime in central India mining corridors.",
+    "excerpt": "Optimizing load-pressure distribution on rigid dump trucks operating in rugged, abrasive mining pits with unforgiving production schedules.",
+    "metricValue": "99.4% Uptime",
+    "metricLabel": "Sustained shift productivity on heavy haulers",
+    "isFeatured": false,
+    "status": "Published",
+    "customerProfile": "Rigid heavy dump trucks in open-cast coal and iron ore pits",
+    "challenge": "Massive hourly downtime cost when a 60-tonne haul truck suffers a tyre replacement delay in the pit.",
+    "solution": "TMIP edge receivers mounted directly at pit dispatch towers providing instantaneous wheel alerts.",
+    "quote": {
+      "text": "We avoided ₹2.1 Cr in unplanned pit shutdown hours by catching slow valve leaks at the shift change.",
+      "author": "Mining Pit Superintendent",
+      "title": "Central Minerals & Metals"
+    }
+  },
+  {
+    "_id": "cs_5",
+    "slug": "cold-chain-express-transit",
+    "industry": "Logistics",
+    "fleetSize": "100-500",
+    "headline": "Protecting perishable pharmaceutical corridors with synchronized sensor telemetry.",
+    "excerpt": "Refrigerated linehaul operator correlates tyre rolling resistance with generator fuel draw, stabilizing transit unit costs.",
+    "metricValue": "₹1.4 Cr",
+    "metricLabel": "Annualized fuel and tyre maintenance savings",
+    "isFeatured": false,
+    "status": "Published",
+    "customerProfile": "320 reefer trucks transporting temperature-sensitive pharmaceuticals",
+    "challenge": "Unplanned roadside tyre stops risk breaking the cold chain and spoiling multi-crore drug consignments.",
+    "solution": "Unified cold chain and tyre health telemetry dashboard with immediate dispatch rerouting.",
+    "quote": {
+      "text": "Zero spoilage claims over 14 million kilometers. TMIP protects both our rolling stock and the critical cargo inside.",
+      "author": "Director of Quality & Logistics",
+      "title": "PharmaTrans Express"
+    }
+  },
+  {
+    "_id": "cs_6",
+    "slug": "oem-pre-delivery-intelligence",
+    "industry": "OEM",
+    "fleetSize": "2000+",
+    "headline": "Tier-1 OEM factory integration delivering smart connected fleets from Day 1.",
+    "excerpt": "How leading commercial vehicle manufacturers embed TMIP edge telematics during pre-delivery inspection for corporate fleet buyers.",
+    "metricValue": "100% Pre-Configured",
+    "metricLabel": "Zero depot commissioning lag for fleet buyers",
+    "isFeatured": false,
+    "status": "Published",
+    "customerProfile": "2,000+ commercial prime movers rolled off OEM assembly lines with pre-fitted smart sensors",
+    "challenge": "Fleet buyers historically required 2-3 weeks to fit aftermarket sensors before vehicle commissioning.",
+    "solution": "Factory fitment during assembly, linked directly to vehicle VIN and buyer telematics accounts.",
+    "quote": {
+      "text": "Our enterprise buyers receive fully active digital twins the second their drivers turn the ignition key on delivery day.",
+      "author": "VP Commercial Vehicles",
+      "title": "Leading Automotive OEM"
+    }
+  }
+]

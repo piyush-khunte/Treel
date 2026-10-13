@@ -171,26 +171,48 @@ function notifyConsentChange(consent: StoredConsent): void {
 }
 
 /**
- * Records consent to the server-side API asynchronously without blocking the user.
+ * Records consent to the server-side API asynchronously with retry logic.
  */
-async function syncConsentServerSide(consent: StoredConsent, action: "consent" | "update" | "withdraw"): Promise<void> {
-  try {
-    await fetch("/api/privacy/cookie-consent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        consent_id: consent.consentId,
-        status: consent.status,
-        categories: consent.categories,
-        policy_version: consent.policyVersion,
-        consent_timestamp: consent.timestamp,
-        withdrawn_at: consent.withdrawnAt || null,
-        action,
-      }),
-    });
-  } catch {
-    // Graceful silent fallback — browser preference is already stored in cookie
-    console.warn("[Cookie Consent] Remote sync was not completed; local consent is safely active.");
+async function syncConsentServerSide(
+  consent: StoredConsent,
+  action: "consent" | "update" | "withdraw",
+  source: string = "Banner",
+  pagePath: string = "/"
+): Promise<void> {
+  const payload = {
+    consent_id: consent.consentId,
+    status: consent.status,
+    categories: consent.categories,
+    policy_version: consent.policyVersion,
+    consent_timestamp: consent.timestamp,
+    withdrawn_at: consent.withdrawnAt || null,
+    source,
+    page_path: pagePath,
+    action,
+  };
+
+  const attemptSync = async (): Promise<boolean> => {
+    try {
+      const res = await fetch("/api/privacy/cookie-consent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      return res.ok;
+    } catch {
+      return false;
+    }
+  };
+
+  const success = await attemptSync();
+  if (!success) {
+    // Retry once after a brief delay for transient network hiccups
+    setTimeout(async () => {
+      const retrySuccess = await attemptSync();
+      if (!retrySuccess) {
+        console.warn("[Cookie Consent] Remote sync was not completed; local consent is safely active.");
+      }
+    }, 1000);
   }
 }
 
@@ -200,11 +222,13 @@ async function syncConsentServerSide(consent: StoredConsent, action: "consent" |
 export function saveConsentPreference(
   status: ConsentStatus,
   categories: Partial<ConsentCategories>,
-  action: "consent" | "update" | "withdraw" = "consent"
+  action: "consent" | "update" | "withdraw" = "consent",
+  source: string = "Banner"
 ): StoredConsent {
   const current = getStoredConsent();
   const consentId = current?.consentId || generateAnonymousConsentId();
   const now = new Date().toISOString();
+  const pagePath = typeof window !== "undefined" ? window.location.pathname : "/";
 
   const finalCategories: ConsentCategories = {
     necessary: true,
@@ -243,7 +267,7 @@ export function saveConsentPreference(
   notifyConsentChange(storedConsent);
 
   // 5. Fire server-side recording asynchronously
-  syncConsentServerSide(storedConsent, action);
+  syncConsentServerSide(storedConsent, action, source, pagePath);
 
   return storedConsent;
 }
@@ -251,6 +275,6 @@ export function saveConsentPreference(
 /**
  * Withdraws all optional consent.
  */
-export function withdrawAllConsent(): StoredConsent {
-  return saveConsentPreference("withdrawn", DEFAULT_CATEGORIES, "withdraw");
+export function withdrawAllConsent(source: string = "Preferences Settings"): StoredConsent {
+  return saveConsentPreference("withdrawn", DEFAULT_CATEGORIES, "withdraw", source);
 }

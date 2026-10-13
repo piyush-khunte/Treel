@@ -92,8 +92,8 @@ export function SavingsCalculator() {
   };
 
   // Calculations
-  // 1. Fuel savings: 5.5% average savings from properly inflated tyres
-  const monthlyFuelSavings = Math.round(fuelExpense * 0.055);
+  // 1. Fuel savings: 0.5–0.6% average savings from properly inflated tyres
+  const monthlyFuelSavings = Math.round(fuelExpense * 0.0055);
 
   // 2. Tyre savings: 6% extended life of annual tyre expense / 12
   const monthlyTyreSavings = Math.round((tyreExpense * 0.06) / 12);
@@ -310,7 +310,7 @@ export function SavingsCalculator() {
                 Estimated Fuel Savings
               </span>
               <h4 className="font-anton uppercase tracking-wide text-xl text-[#451A03] mt-1">
-                5.5% Monthly Fuel Cut
+                0.5–0.6% Monthly Fuel Cut
               </h4>
             </div>
             <p className="font-anton text-2xl text-[#DC2626]">

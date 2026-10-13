@@ -151,7 +151,7 @@ export default function RoiFleetIntelligencePage() {
                     <div className="text-xs text-[#94A3B8] font-ibm-plex">Median Capital Payback Period</div>
                   </div>
                   <div className="p-4 rounded-[4px] bg-[#050A17] border border-slate-400/10 space-y-1">
-                    <div className="font-space-grotesk text-2xl font-bold text-[#3B82F6]">5.2%</div>
+                    <div className="font-space-grotesk text-2xl font-bold text-[#3B82F6]">0.5–0.6%</div>
                     <div className="text-xs text-[#94A3B8] font-ibm-plex">Average Fleet Fuel Cost Reduction</div>
                   </div>
                   <div className="p-4 rounded-[4px] bg-[#050A17] border border-slate-400/10 space-y-1">

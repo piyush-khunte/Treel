@@ -279,7 +279,7 @@ export default function QuarryTransitCaseStudyPage() {
                 1,000 trucks. 12 months. What changed.
               </h3>
               <p className="text-xs text-[#94A3B8] leading-relaxed font-ibm-plex">
-                5.2% fuel savings, 6.8% tyre life extension, 34% downtime reduction across pan-India routes.
+                0.5–0.6% fuel savings, 6.8% tyre life extension, 34% downtime reduction across pan-India routes.
               </p>
             </Link>
 

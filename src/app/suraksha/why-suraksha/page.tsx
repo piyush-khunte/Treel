@@ -140,7 +140,7 @@ export default function SurakshaWhySurakshaPage() {
 
             <div className="space-y-3 text-sm text-[#451A03]">
               <p>
-                <strong>Fuel savings (0.5–0.6%):</strong> Underinflated tyres consume 0.5–0.6% extra diesel. With Suraksha, tyres stay at optimal operating pressure. For a typical 10-wheeler truck with a monthly fuel bill of ₹80,000–₹1,20,000, a 5% saving delivers ₹4,000–₹6,000 back every month.
+                <strong>Fuel savings (0.5–0.6%):</strong> Underinflated tyres consume 0.5–0.6% extra diesel. With Suraksha, tyres stay at optimal operating pressure. For a typical 10-wheeler truck with a monthly fuel bill of ₹80,000–₹1,20,000, a 0.5–0.6% saving delivers ₹400–₹720 back every month.
               </p>
               <p>
                 <strong>Tyre life extension (5–7%):</strong> Properly inflated tyres last 5–7% longer. With a fresh set of truck tyres costing ₹2,00,000–₹3,50,000, extending tyre life saves thousands across every tyre cycle.
@@ -157,7 +157,7 @@ export default function SurakshaWhySurakshaPage() {
               <ul className="space-y-2 text-sm text-[#451A03]">
                 <li className="flex items-start gap-2">
                   <span className="text-[#EA580C] font-bold">•</span>
-                  <span>Fuel savings: ₹4,000–₹6,000 per month × 9 months = ₹36,000–₹54,000</span>
+                  <span>Fuel savings: ₹400–₹720 per month × 9 months = ₹3,600–₹6,480</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#EA580C] font-bold">•</span>

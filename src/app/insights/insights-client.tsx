@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
+import { TreelInsightArticle } from "@/types/content";
+
 interface Article {
   slug: string;
   category: string;
@@ -26,13 +28,17 @@ interface Article {
   readTime: string;
 }
 
-export function InsightsClientView() {
+interface InsightsClientViewProps {
+  initialArticles?: TreelInsightArticle[];
+}
+
+export function InsightsClientView({ initialArticles }: InsightsClientViewProps = {}) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [email, setEmail] = useState("");
   const [isSubscribing, setIsSubscribing] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
 
-  const categories = [
+  const baseCategories = [
     "All",
     "Mobility Intelligence",
     "Fleet Operations",
@@ -42,7 +48,7 @@ export function InsightsClientView() {
     "Founder Notes"
   ];
 
-  const featuredArticle: Article = {
+  const fallbackFeatured: Article = {
     slug: "vehicle-digital-twins-architecture",
     category: "Mobility Intelligence",
     title: "From Telemetry to Reasoning: The Architecture of Vehicle Digital Twins",
@@ -52,7 +58,7 @@ export function InsightsClientView() {
     readTime: "6 min read"
   };
 
-  const articles: Article[] = [
+  const fallbackArticles: Article[] = [
     {
       slug: "physics-of-tyre-pressure-fuel-savings",
       category: "Fleet Operations",
@@ -108,6 +114,25 @@ export function InsightsClientView() {
       readTime: "6 min read"
     }
   ];
+
+  const hasDynamic = initialArticles && initialArticles.length > 0;
+  const dynamicItems: Article[] = hasDynamic
+    ? initialArticles.map((a) => ({
+        slug: a.slug,
+        category: a.category,
+        title: a.title,
+        excerpt: a.deck,
+        author: a.author,
+        date: a.date,
+        readTime: a.readTime,
+      }))
+    : [];
+
+  const featuredArticle: Article = hasDynamic ? dynamicItems[0] : fallbackFeatured;
+  const articles: Article[] = hasDynamic ? dynamicItems.slice(1) : fallbackArticles;
+
+  const dynamicCategories = Array.from(new Set((hasDynamic ? dynamicItems : [fallbackFeatured, ...fallbackArticles]).map((a) => a.category).filter(Boolean)));
+  const categories = Array.from(new Set([...baseCategories, ...dynamicCategories]));
 
   const filteredArticles = activeCategory === "All" 
     ? articles 

@@ -40,19 +40,19 @@ export function CookieBanner() {
   }, []);
 
   const handleAcceptAll = () => {
-    saveConsentPreference("accepted", ACCEPTED_ALL_CATEGORIES, "consent");
+    saveConsentPreference("accepted", ACCEPTED_ALL_CATEGORIES, "consent", "Cookie Banner");
     setHasConsent(true);
     setShowConfigModal(false);
   };
 
   const handleRejectAll = () => {
-    saveConsentPreference("rejected", DEFAULT_CATEGORIES, "consent");
+    saveConsentPreference("rejected", DEFAULT_CATEGORIES, "consent", "Cookie Banner");
     setHasConsent(true);
     setShowConfigModal(false);
   };
 
   const handleSaveCustom = () => {
-    saveConsentPreference("customized", customCategories, "consent");
+    saveConsentPreference("customized", customCategories, "consent", "Cookie Banner Preferences");
     setHasConsent(true);
     setShowConfigModal(false);
   };

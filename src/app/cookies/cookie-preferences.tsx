@@ -41,7 +41,7 @@ export function CookiePreferencesManager() {
 
   const handleSave = (customPrefs?: ConsentCategories) => {
     const toSave = customPrefs || preferences;
-    const result = saveConsentPreference("customized", toSave, "update");
+    const result = saveConsentPreference("customized", toSave, "update", "Cookie Preferences Page");
     setCurrentConsent(result);
     setSavedMessage("Cookie preferences saved successfully.");
     setTimeout(() => setSavedMessage(null), 4000);
@@ -49,7 +49,7 @@ export function CookiePreferencesManager() {
   };
 
   const handleAcceptAll = () => {
-    const result = saveConsentPreference("accepted", ACCEPTED_ALL_CATEGORIES, "consent");
+    const result = saveConsentPreference("accepted", ACCEPTED_ALL_CATEGORIES, "consent", "Cookie Preferences Page");
     setCurrentConsent(result);
     setPreferences(ACCEPTED_ALL_CATEGORIES);
     setSavedMessage("All cookie categories accepted.");
@@ -58,7 +58,7 @@ export function CookiePreferencesManager() {
   };
 
   const handleRejectAll = () => {
-    const result = saveConsentPreference("rejected", DEFAULT_CATEGORIES, "consent");
+    const result = saveConsentPreference("rejected", DEFAULT_CATEGORIES, "consent", "Cookie Preferences Page");
     setCurrentConsent(result);
     setPreferences(DEFAULT_CATEGORIES);
     setSavedMessage("Non-essential cookies rejected. Essential cookies remain active.");
@@ -67,7 +67,7 @@ export function CookiePreferencesManager() {
   };
 
   const handleWithdraw = () => {
-    const result = withdrawAllConsent();
+    const result = withdrawAllConsent("Cookie Preferences Withdrawal");
     setCurrentConsent(result);
     setPreferences(DEFAULT_CATEGORIES);
     setSavedMessage("Consent withdrawn. Non-essential tracking cookies cleared.");

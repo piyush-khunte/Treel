@@ -16,11 +16,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function InsightsPage() {
+import { getPublishedInsights } from "@/lib/content/insights-storage";
+
+export default async function InsightsPage() {
+  const publishedInsights = await getPublishedInsights();
+
   return (
     <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
       {/* Client View with Filters, Featured Card, Grid, and Newsletter */}
-      <InsightsClientView />
+      <InsightsClientView initialArticles={publishedInsights} />
     </div>
   );
 }

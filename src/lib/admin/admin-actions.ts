@@ -10,9 +10,41 @@ import {
   MongoBlog, 
   MongoAnnualReturn,
   NoticeItem,
-  AdminCoupon
+  AdminCoupon,
+  AdminConsentRecord
 } from '@/types/admin';
 import { getAdminSession } from '@/lib/admin/admin-auth';
+import { getAllNotices, saveNotice, removeNotice } from '@/lib/notices/notice-storage';
+import { validateNoticeWordCount, validateAndNormalizeDriveUrl, MAX_NOTICE_WORD_COUNT } from '@/lib/notices/notice-utils';
+import { 
+  getAllBlogsFromDb, 
+  getPublishedBlogsFromDb, 
+  getBlogBySlugFromDb, 
+  toSupabaseBlogPayload, 
+  fromSupabaseBlogRow 
+} from '@/lib/blogs/blog-storage';
+import { getAllConsentRecords, getConsentStats } from '@/lib/privacy/consent-storage';
+import { 
+  ContentCategoryType, 
+  TreelInsightArticle, 
+  TmipCaseStudy, 
+  SurakshaArticle 
+} from '@/types/content';
+import { 
+  getAllInsights, 
+  saveInsight, 
+  deleteInsight 
+} from '@/lib/content/insights-storage';
+import { 
+  getAllCaseStudies, 
+  saveCaseStudy, 
+  deleteCaseStudy 
+} from '@/lib/content/casestudies-storage';
+import { 
+  getAllSurakshaArticles, 
+  saveSurakshaArticle, 
+  deleteSurakshaArticle 
+} from '@/lib/content/suraksha-storage';
 
 function getAdminClient() {
   const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder-treel.supabase.co';
@@ -244,64 +276,174 @@ export async function getAdminPayments(): Promise<{ success: boolean; data?: Mon
 // BLOGS CRUD
 // ============================================================================
 export async function getAdminBlogs(): Promise<{ success: boolean; data?: MongoBlog[]; error?: string }> {
-  const supabase = getAdminClient();
   try {
-    const { data, error } = await supabase
-      .from('TreelEcommerce.blogs')
-      .select('*')
-      .order('date', { ascending: false });
-
-    if (error) throw error;
-    return { success: true, data: (data as MongoBlog[]) || [] };
+    const data = await getAllBlogsFromDb();
+    return { success: true, data };
   } catch (error: any) {
     console.error('getAdminBlogs error:', error);
     return { success: false, error: error.message || 'Failed to fetch blogs' };
   }
 }
 
-export async function createAdminBlog(blog: Partial<MongoBlog>) {
-  const supabase = getAdminClient();
+export async function getPublicBlogs(): Promise<{ success: boolean; data?: MongoBlog[]; error?: string }> {
   try {
-    const payload = {
-      ...blog,
-      slug: blog.slug || blog.title?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '') || `blog-${Date.now()}`,
-      date: blog.date || new Date().toISOString()
-    };
+    const data = await getPublishedBlogsFromDb();
+    return { success: true, data };
+  } catch (error: any) {
+    console.error('getPublicBlogs error:', error);
+    return { success: false, error: error.message || 'Failed to fetch public blogs' };
+  }
+}
 
-    const { data, error } = await supabase
+export async function getPublicBlogBySlug(slug: string): Promise<{ success: boolean; data?: MongoBlog | null; error?: string }> {
+  try {
+    const blog = await getBlogBySlugFromDb(slug);
+    if (!blog || blog.status === 'Draft') {
+      return { success: true, data: null };
+    }
+    return { success: true, data: blog };
+  } catch (error: any) {
+    console.error('getPublicBlogBySlug error:', error);
+    return { success: false, error: error.message || 'Failed to fetch blog post' };
+  }
+}
+
+export async function createAdminBlog(blog: Partial<MongoBlog>): Promise<{ success: boolean; data?: MongoBlog; error?: string }> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized: Administrator authentication required.' };
+  }
+
+  if (!blog.title || !blog.title.trim()) {
+    return { success: false, error: 'Blog title is required.' };
+  }
+  if (!blog.slug || !blog.slug.trim()) {
+    return { success: false, error: 'Blog slug is required.' };
+  }
+  if (!blog.description || !blog.description.trim()) {
+    return { success: false, error: 'Blog excerpt/summary is required.' };
+  }
+  if (!blog.blogContent || !blog.blogContent.trim()) {
+    return { success: false, error: 'Blog content body is required.' };
+  }
+
+  const cleanSlug = blog.slug
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)+/g, '');
+
+  if (!cleanSlug) {
+    return { success: false, error: 'Invalid blog slug format.' };
+  }
+
+  // Check unique slug
+  const existingBlogs = await getAllBlogsFromDb();
+  if (existingBlogs.some(b => b.slug.toLowerCase() === cleanSlug.toLowerCase())) {
+    return { success: false, error: `A blog post with slug "${cleanSlug}" already exists. Please choose a unique slug.` };
+  }
+
+  const supabase = getAdminClient();
+  const payload = toSupabaseBlogPayload({ ...blog, slug: cleanSlug });
+
+  try {
+    const { error } = await supabase
       .from('TreelEcommerce.blogs')
-      .insert([payload])
-      .select();
+      .insert([payload]);
 
     if (error) throw error;
+
     revalidatePath('/admin/blogs');
-    return { success: true, data };
+    revalidatePath('/personal/blog');
+    revalidatePath(`/personal/blog/${cleanSlug}`);
+    revalidatePath('/blog');
+    revalidatePath(`/blog/${cleanSlug}`);
+    revalidatePath('/suraksha/blog');
+
+    return { success: true, data: fromSupabaseBlogRow(payload) };
   } catch (error: any) {
     console.error('createAdminBlog error:', error);
     return { success: false, error: error.message || 'Failed to create blog' };
   }
 }
 
-export async function updateAdminBlog(id: string, updates: Partial<MongoBlog>) {
+export async function updateAdminBlog(id: string, updates: Partial<MongoBlog>): Promise<{ success: boolean; data?: MongoBlog; error?: string }> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized: Administrator authentication required.' };
+  }
+
+  if (updates.title !== undefined && !updates.title.trim()) {
+    return { success: false, error: 'Blog title cannot be empty.' };
+  }
+
+  if (updates.slug !== undefined) {
+    const cleanSlug = updates.slug
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)+/g, '');
+
+    if (!cleanSlug) {
+      return { success: false, error: 'Invalid blog slug format.' };
+    }
+
+    const existingBlogs = await getAllBlogsFromDb();
+    if (existingBlogs.some(b => b._id !== id && b.slug.toLowerCase() === cleanSlug.toLowerCase())) {
+      return { success: false, error: `A blog post with slug "${cleanSlug}" already exists. Please choose a unique slug.` };
+    }
+    updates.slug = cleanSlug;
+  }
+
+  const existing = (await getAllBlogsFromDb()).find(b => b._id === id);
+  const merged: MongoBlog = {
+    ...(existing || {
+      _id: id,
+      title: '',
+      slug: updates.slug || `blog-${Date.now()}`,
+      description: '',
+      blogContent: '',
+      image: '',
+      date: new Date().toISOString()
+    }),
+    ...updates
+  };
+
   const supabase = getAdminClient();
+  const payload = toSupabaseBlogPayload(merged);
+
   try {
-    const { _id, ...fields } = updates;
-    const { data, error } = await supabase
+    const { _id: _ignoredId, ...fields } = payload;
+    void _ignoredId;
+
+    const { error } = await supabase
       .from('TreelEcommerce.blogs')
       .update(fields)
-      .eq('_id', id)
-      .select();
+      .eq('_id', id);
 
     if (error) throw error;
+
     revalidatePath('/admin/blogs');
-    return { success: true, data };
+    revalidatePath('/personal/blog');
+    revalidatePath(`/personal/blog/${merged.slug}`);
+    revalidatePath('/blog');
+    revalidatePath(`/blog/${merged.slug}`);
+    revalidatePath('/suraksha/blog');
+
+    return { success: true, data: merged };
   } catch (error: any) {
     console.error('updateAdminBlog error:', error);
     return { success: false, error: error.message || 'Failed to update blog' };
   }
 }
 
-export async function deleteAdminBlog(id: string) {
+export async function deleteAdminBlog(id: string): Promise<{ success: boolean; error?: string }> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized: Administrator authentication required.' };
+  }
+
+  const existing = (await getAllBlogsFromDb()).find(b => b._id === id);
   const supabase = getAdminClient();
   try {
     const { error } = await supabase
@@ -310,12 +452,222 @@ export async function deleteAdminBlog(id: string) {
       .eq('_id', id);
 
     if (error) throw error;
+
     revalidatePath('/admin/blogs');
+    revalidatePath('/personal/blog');
+    if (existing?.slug) {
+      revalidatePath(`/personal/blog/${existing.slug}`);
+      revalidatePath(`/blog/${existing.slug}`);
+    }
+    revalidatePath('/blog');
+    revalidatePath('/suraksha/blog');
+
     return { success: true };
   } catch (error: any) {
     console.error('deleteAdminBlog error:', error);
     return { success: false, error: error.message || 'Failed to delete blog' };
   }
+}
+
+export async function togglePublishAdminBlog(id: string, currentStatus: "Published" | "Draft"): Promise<{ success: boolean; data?: MongoBlog; error?: string }> {
+  const newStatus = currentStatus === "Published" ? "Draft" : "Published";
+  return updateAdminBlog(id, { status: newStatus });
+}
+
+// ============================================================================
+// MULTI-CATEGORY CONTENT CRUD (Treel Main, TMIP, Suraksha, Personal TPMS)
+// ============================================================================
+
+export async function getAdminCategoryContent(category: ContentCategoryType): Promise<{ success: boolean; data?: any[]; error?: string }> {
+  try {
+    switch (category) {
+      case "treel_main": {
+        const data = await getAllInsights(true);
+        return { success: true, data };
+      }
+      case "tmip": {
+        const data = await getAllCaseStudies(true);
+        return { success: true, data };
+      }
+      case "suraksha": {
+        const data = await getAllSurakshaArticles(true);
+        return { success: true, data };
+      }
+      case "personal": {
+        const data = await getAllBlogsFromDb();
+        return { success: true, data };
+      }
+      default:
+        return { success: false, error: `Invalid content category: ${category}` };
+    }
+  } catch (err: any) {
+    console.error(`getAdminCategoryContent [${category}] error:`, err);
+    return { success: false, error: err.message || `Failed to fetch ${category} content` };
+  }
+}
+
+export async function createAdminCategoryContent(
+  category: ContentCategoryType,
+  payload: any
+): Promise<{ success: boolean; data?: any; error?: string }> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: "Unauthorized: Administrator authentication required." };
+  }
+
+  try {
+    switch (category) {
+      case "treel_main": {
+        if (!payload.title || !payload.title.trim()) {
+          return { success: false, error: "Title is required for Treel Main insight." };
+        }
+        if (!payload.deck || !payload.deck.trim()) {
+          return { success: false, error: "Summary / deck is required for Treel Main insight." };
+        }
+        const saved = await saveInsight(payload);
+        revalidatePath("/admin/blogs");
+        revalidatePath("/insights");
+        if (saved.slug) revalidatePath(`/insights/${saved.slug}`);
+        return { success: true, data: saved };
+      }
+      case "tmip": {
+        if (!payload.headline || !payload.headline.trim()) {
+          return { success: false, error: "Headline is required for TMIP case study." };
+        }
+        if (!payload.excerpt || !payload.excerpt.trim()) {
+          return { success: false, error: "Excerpt is required for TMIP case study." };
+        }
+        const saved = await saveCaseStudy(payload);
+        revalidatePath("/admin/blogs");
+        revalidatePath("/tmip/customers/case-studies");
+        if (saved.slug) revalidatePath(`/tmip/customers/case-studies/${saved.slug}`);
+        return { success: true, data: saved };
+      }
+      case "suraksha": {
+        if (!payload.title || !payload.title.trim()) {
+          return { success: false, error: "Title is required for Suraksha article." };
+        }
+        if (!payload.excerpt || !payload.excerpt.trim()) {
+          return { success: false, error: "Excerpt is required for Suraksha article." };
+        }
+        const saved = await saveSurakshaArticle(payload);
+        revalidatePath("/admin/blogs");
+        revalidatePath("/suraksha/blog");
+        return { success: true, data: saved };
+      }
+      case "personal": {
+        return createAdminBlog(payload);
+      }
+      default:
+        return { success: false, error: `Invalid content category: ${category}` };
+    }
+  } catch (err: any) {
+    console.error(`createAdminCategoryContent [${category}] error:`, err);
+    return { success: false, error: err.message || `Failed to create content in ${category}` };
+  }
+}
+
+export async function updateAdminCategoryContent(
+  category: ContentCategoryType,
+  id: string,
+  payload: any
+): Promise<{ success: boolean; data?: any; error?: string }> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: "Unauthorized: Administrator authentication required." };
+  }
+
+  try {
+    switch (category) {
+      case "treel_main": {
+        if (payload.title !== undefined && !payload.title.trim()) {
+          return { success: false, error: "Title cannot be empty." };
+        }
+        const saved = await saveInsight({ ...payload, _id: id });
+        revalidatePath("/admin/blogs");
+        revalidatePath("/insights");
+        if (saved.slug) revalidatePath(`/insights/${saved.slug}`);
+        return { success: true, data: saved };
+      }
+      case "tmip": {
+        if (payload.headline !== undefined && !payload.headline.trim()) {
+          return { success: false, error: "Headline cannot be empty." };
+        }
+        const saved = await saveCaseStudy({ ...payload, _id: id });
+        revalidatePath("/admin/blogs");
+        revalidatePath("/tmip/customers/case-studies");
+        if (saved.slug) revalidatePath(`/tmip/customers/case-studies/${saved.slug}`);
+        return { success: true, data: saved };
+      }
+      case "suraksha": {
+        if (payload.title !== undefined && !payload.title.trim()) {
+          return { success: false, error: "Title cannot be empty." };
+        }
+        const saved = await saveSurakshaArticle({ ...payload, _id: id });
+        revalidatePath("/admin/blogs");
+        revalidatePath("/suraksha/blog");
+        return { success: true, data: saved };
+      }
+      case "personal": {
+        return updateAdminBlog(id, payload);
+      }
+      default:
+        return { success: false, error: `Invalid content category: ${category}` };
+    }
+  } catch (err: any) {
+    console.error(`updateAdminCategoryContent [${category}] error:`, err);
+    return { success: false, error: err.message || `Failed to update content in ${category}` };
+  }
+}
+
+export async function deleteAdminCategoryContent(
+  category: ContentCategoryType,
+  id: string
+): Promise<{ success: boolean; error?: string }> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: "Unauthorized: Administrator authentication required." };
+  }
+
+  try {
+    switch (category) {
+      case "treel_main": {
+        await deleteInsight(id);
+        revalidatePath("/admin/blogs");
+        revalidatePath("/insights");
+        return { success: true };
+      }
+      case "tmip": {
+        await deleteCaseStudy(id);
+        revalidatePath("/admin/blogs");
+        revalidatePath("/tmip/customers/case-studies");
+        return { success: true };
+      }
+      case "suraksha": {
+        await deleteSurakshaArticle(id);
+        revalidatePath("/admin/blogs");
+        revalidatePath("/suraksha/blog");
+        return { success: true };
+      }
+      case "personal": {
+        return deleteAdminBlog(id);
+      }
+      default:
+        return { success: false, error: `Invalid content category: ${category}` };
+    }
+  } catch (err: any) {
+    console.error(`deleteAdminCategoryContent [${category}] error:`, err);
+    return { success: false, error: err.message || `Failed to delete content in ${category}` };
+  }
+}
+
+export async function togglePublishAdminCategoryContent(
+  category: ContentCategoryType,
+  id: string,
+  currentStatus: "Published" | "Draft"
+): Promise<{ success: boolean; data?: any; error?: string }> {
+  const newStatus = currentStatus === "Published" ? "Draft" : "Published";
+  return updateAdminCategoryContent(category, id, { status: newStatus });
 }
 
 // ============================================================================
@@ -399,139 +751,133 @@ export async function deleteAdminAnnualReturn(id: string) {
 // NOTICE BOARD CRUD
 // ============================================================================
 
-// Module-level cache/fallback for reliable local and offline operation
-let localNotices: NoticeItem[] = [
-  {
-    _id: "not_101",
-    title: "Statutory Notice: Compliance & Audited Annual Financial Disclosures (FY 2025-26)",
-    description: "Notice is hereby given that the audited financial accounts and statutory filings of Treel Mobility Solutions Private Limited for the financial year have been adopted and submitted in compliance with applicable MCA corporate regulations.",
-    publishedDate: "2026-03-20",
-    status: "Published",
-    category: "Corporate & Statutory",
-    createdAt: "2026-03-20T10:00:00.000Z"
-  }
-];
-
 export async function getAdminNotices(): Promise<{ success: boolean; data?: NoticeItem[]; error?: string }> {
-  const supabase = getAdminClient();
   try {
-    const { data, error } = await supabase
-      .from('TreelEcommerce.notices')
-      .select('*')
-      .order('publishedDate', { ascending: false });
-
-    if (!error && data && data.length > 0) {
-      return { success: true, data: data as NoticeItem[] };
-    }
-  } catch {
-    // Graceful fallback to local store if remote table not migrated
+    const data = await getAllNotices();
+    return { success: true, data };
+  } catch (error: any) {
+    console.error("getAdminNotices error:", error);
+    return { success: false, error: error.message || "Failed to fetch notices" };
   }
-  return { success: true, data: [...localNotices].sort((a, b) => (b.publishedDate || "").localeCompare(a.publishedDate || "")) };
 }
 
 export async function getPublicNotices(): Promise<{ success: boolean; data?: NoticeItem[]; error?: string }> {
-  const supabase = getAdminClient();
   try {
-    const { data, error } = await supabase
-      .from('TreelEcommerce.notices')
-      .select('*')
-      .eq('status', 'Published')
-      .order('publishedDate', { ascending: false });
-
-    if (!error && data && data.length > 0) {
-      return { success: true, data: data as NoticeItem[] };
-    }
-  } catch {
-    // Graceful fallback
+    const all = await getAllNotices();
+    const publishedOnly = all.filter((n) => n.status === "Published");
+    return { success: true, data: publishedOnly };
+  } catch (error: any) {
+    console.error("getPublicNotices error:", error);
+    return { success: false, error: error.message || "Failed to fetch public notices" };
   }
-  const publishedOnly = localNotices
-    .filter(n => n.status === "Published")
-    .sort((a, b) => (b.publishedDate || "").localeCompare(a.publishedDate || ""));
-  return { success: true, data: publishedOnly };
 }
 
 export async function createAdminNotice(notice: Partial<NoticeItem>): Promise<{ success: boolean; data?: NoticeItem; error?: string }> {
-  const supabase = getAdminClient();
-  const id = notice._id || `not_${Date.now()}`;
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: "Unauthorized: Administrator authentication required." };
+  }
+
+  if (!notice.title || !notice.title.trim()) {
+    return { success: false, error: "Notice title is required." };
+  }
+
+  // Enforce server-side word count limit
+  const wordValidation = validateNoticeWordCount(notice.description);
+  if (!wordValidation.valid) {
+    return { success: false, error: wordValidation.error };
+  }
+
+  // Validate and normalize Google Drive URL if present
+  let normalizedDocUrl: string | undefined = undefined;
+  const rawDocUrl = notice.documentUrl || notice.document_url;
+  if (rawDocUrl && rawDocUrl.trim()) {
+    const driveValidation = validateAndNormalizeDriveUrl(rawDocUrl);
+    if (!driveValidation.valid) {
+      return { success: false, error: driveValidation.error };
+    }
+    normalizedDocUrl = driveValidation.normalizedUrl;
+  }
+
+  const id = notice._id && !notice._id.startsWith("new_") ? notice._id : `not_${Date.now()}`;
   const now = new Date().toISOString();
   const newNotice: NoticeItem = {
     _id: id,
-    title: notice.title || "Untitled Notice",
-    description: notice.description || "",
+    title: notice.title.trim(),
+    description: (notice.description || "").trim(),
     publishedDate: notice.publishedDate || now.split("T")[0],
     status: notice.status === "Published" ? "Published" : "Draft",
-    category: notice.category || "General Notice",
+    category: notice.category?.trim() || "General Notice",
+    documentUrl: normalizedDocUrl,
+    document_url: normalizedDocUrl,
     createdAt: now,
-    updatedAt: now
+    updatedAt: now,
   };
 
-  // Always update local cache for instant consistency
-  localNotices = [newNotice, ...localNotices.filter(n => n._id !== id)];
-
-  try {
-    const { data, error } = await supabase
-      .from('TreelEcommerce.notices')
-      .insert([newNotice])
-      .select();
-
-    if (!error && data) {
-      // synced to Supabase
-    }
-  } catch {
-    // Local store active
-  }
+  const saved = await saveNotice(newNotice);
 
   revalidatePath('/admin/notices');
   revalidatePath('/notices');
-  return { success: true, data: newNotice };
+  return { success: true, data: saved };
 }
 
 export async function updateAdminNotice(id: string, updates: Partial<NoticeItem>): Promise<{ success: boolean; data?: NoticeItem; error?: string }> {
-  const supabase = getAdminClient();
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: "Unauthorized: Administrator authentication required." };
+  }
+
+  if (updates.title !== undefined && !updates.title.trim()) {
+    return { success: false, error: "Notice title cannot be empty." };
+  }
+
+  if (updates.description !== undefined) {
+    const wordValidation = validateNoticeWordCount(updates.description);
+    if (!wordValidation.valid) {
+      return { success: false, error: wordValidation.error };
+    }
+  }
+
+  let normalizedDocUrl: string | undefined = updates.documentUrl || updates.document_url;
+  if (normalizedDocUrl && normalizedDocUrl.trim()) {
+    const driveValidation = validateAndNormalizeDriveUrl(normalizedDocUrl);
+    if (!driveValidation.valid) {
+      return { success: false, error: driveValidation.error };
+    }
+    normalizedDocUrl = driveValidation.normalizedUrl;
+  }
+
+  const all = await getAllNotices();
+  const existing = all.find((n) => n._id === id);
   const now = new Date().toISOString();
-  const existing = localNotices.find(n => n._id === id);
   const updatedNotice: NoticeItem = {
     ...(existing || {
       _id: id,
       title: "",
       description: "",
       status: "Draft",
-      createdAt: now
+      createdAt: now,
     }),
     ...updates,
-    updatedAt: now
+    documentUrl: normalizedDocUrl,
+    document_url: normalizedDocUrl,
+    updatedAt: now,
   };
 
-  localNotices = localNotices.map(n => (n._id === id ? updatedNotice : n));
-
-  try {
-    const { _id: _ignoredId, ...fields } = updates;
-    void _ignoredId;
-    await supabase
-      .from('TreelEcommerce.notices')
-      .update({ ...fields, updatedAt: now })
-      .eq('_id', id);
-  } catch {
-    // Local store active
-  }
+  const saved = await saveNotice(updatedNotice);
 
   revalidatePath('/admin/notices');
   revalidatePath('/notices');
-  return { success: true, data: updatedNotice };
+  return { success: true, data: saved };
 }
 
 export async function deleteAdminNotice(id: string): Promise<{ success: boolean; error?: string }> {
-  const supabase = getAdminClient();
-  localNotices = localNotices.filter(n => n._id !== id);
-
-  try {
-    await supabase
-      .from('TreelEcommerce.notices')
-      .delete()
-      .eq('_id', id);
-  } catch {
-    // Local store active
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: "Unauthorized: Administrator authentication required." };
   }
+
+  await removeNotice(id);
 
   revalidatePath('/admin/notices');
   revalidatePath('/notices');
@@ -692,16 +1038,7 @@ export async function updateAdminLeadStatus(id: string, newStatus: string): Prom
 // ============================================================================
 // COOKIE CONSENT RECORDS
 // ============================================================================
-export interface AdminConsentRecord {
-  id: string;
-  consentId: string;
-  status: "Accepted" | "Rejected" | "Customized" | "Withdrawn";
-  categories: string;
-  policyVersion: string;
-  timestamp: string;
-  formattedDate: string;
-  withdrawnAt?: string | null;
-}
+export type { AdminConsentRecord };
 
 export async function getAdminCookieConsents(): Promise<{
   success: boolean;
@@ -712,86 +1049,25 @@ export async function getAdminCookieConsents(): Promise<{
     rejected: number;
     customized: number;
     withdrawn: number;
+    analyticsCount?: number;
+    marketingCount?: number;
+    functionalCount?: number;
   };
   error?: string;
 }> {
-  const supabase = getAdminClient();
-  try {
-    let { data, error } = await supabase
-      .from('cookie_consents')
-      .select('*')
-      .order('consent_timestamp', { ascending: false });
-
-    if (error && (error.code === '42P01' || error.message?.includes('does not exist') || error.message?.includes('relation'))) {
-      const fallback = await supabase
-        .from('TreelEcommerce.cookie_consents')
-        .select('*')
-        .order('consent_timestamp', { ascending: false });
-      if (!fallback.error) {
-        data = fallback.data;
-        error = null;
-      }
-    }
-
-    if (error) {
-      console.warn('[getAdminCookieConsents] Query warning/fallback:', error.message || error);
-      return {
-        success: true,
-        data: [],
-        stats: { total: 0, accepted: 0, rejected: 0, customized: 0, withdrawn: 0 },
-      };
-    }
-
-    const records: AdminConsentRecord[] = (data || []).map((row: any) => {
-      const rawStatus = (row.status || "").toLowerCase();
-      let status: AdminConsentRecord["status"] = "Customized";
-      if (rawStatus === "accepted") status = "Accepted";
-      else if (rawStatus === "rejected") status = "Rejected";
-      else if (rawStatus === "withdrawn") status = "Withdrawn";
-
-      const cats = row.categories || {};
-      const activeCats: string[] = ["Necessary"];
-      if (cats.functional) activeCats.push("Functional");
-      if (cats.analytics) activeCats.push("Analytics");
-      if (cats.marketing) activeCats.push("Marketing");
-
-      let formattedDate = "Recently";
-      if (row.consent_timestamp) {
-        try {
-          const d = new Date(row.consent_timestamp);
-          formattedDate = d.toLocaleString("en-IN", {
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: true,
-            timeZone: "Asia/Kolkata",
-          }) + " IST";
-        } catch {
-          formattedDate = row.consent_timestamp;
-        }
-      }
-
-      return {
-        id: row.id,
-        consentId: row.consent_id || "Anonymous",
-        status,
-        categories: activeCats.join(", "),
-        policyVersion: row.policy_version || "2026-10-01",
-        timestamp: row.consent_timestamp || new Date().toISOString(),
-        formattedDate,
-        withdrawnAt: row.withdrawn_at || null,
-      };
-    });
-
-    const stats = {
-      total: records.length,
-      accepted: records.filter((r) => r.status === "Accepted").length,
-      rejected: records.filter((r) => r.status === "Rejected").length,
-      customized: records.filter((r) => r.status === "Customized").length,
-      withdrawn: records.filter((r) => r.status === "Withdrawn").length,
+  const session = await getAdminSession();
+  if (!session) {
+    return {
+      success: false,
+      error: "Unauthorized: Administrator authentication required to access consent audit records.",
+      data: [],
+      stats: { total: 0, accepted: 0, rejected: 0, customized: 0, withdrawn: 0 },
     };
+  }
+
+  try {
+    const records = await getAllConsentRecords();
+    const stats = getConsentStats(records);
 
     return {
       success: true,
@@ -801,7 +1077,8 @@ export async function getAdminCookieConsents(): Promise<{
   } catch (error: any) {
     console.error("getAdminCookieConsents error:", error);
     return {
-      success: true,
+      success: false,
+      error: error?.message || "Failed to fetch cookie consent audit records",
       data: [],
       stats: { total: 0, accepted: 0, rejected: 0, customized: 0, withdrawn: 0 },
     };

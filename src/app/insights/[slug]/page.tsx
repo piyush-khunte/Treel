@@ -34,6 +34,8 @@ interface InsightArticle {
     };
   };
   relatedSlugs: string[];
+  status?: "Published" | "Draft";
+  _id?: string;
 }
 
 const ARTICLES: Record<string, InsightArticle> = {
@@ -72,7 +74,7 @@ const ARTICLES: Record<string, InsightArticle> = {
           heading: "From Reactive Downtime to Financial Predictability",
           paragraphs: [
             "When vehicle digital twins operate across an entire fleet, the financial dynamics of maintenance undergo a fundamental shift. Unplanned roadside tyre failures—which historically account for the single largest cause of unplanned commercial vehicle downtime—are virtually eliminated.",
-            "Fuel efficiency gains between 2.8% and 4.2% are realized purely by maintaining optimal rolling resistance, while tyre carcass life is extended by 15% to 20%. By turning the physical state of every wheel into a deterministic digital asset, mobility intelligence delivers hard, measurable capital return."
+            "Fuel efficiency gains between 0.5% and 0.6% are realized purely by maintaining optimal rolling resistance, while tyre carcass life is extended by 15% to 20%. By turning the physical state of every wheel into a deterministic digital asset, mobility intelligence delivers hard, measurable capital return."
           ]
         }
       ],
@@ -99,7 +101,7 @@ const ARTICLES: Record<string, InsightArticle> = {
     date: "August 2026",
     publishIsoDate: "2026-08-15",
     readTime: "5 min read",
-    tldr: "Under-inflation creates excessive tyre contact patch deflection, exponentially increasing hysteretic energy loss and rolling resistance. Correcting inflation in real-time yields immediate diesel savings between 2.8% and 4.2% across long-haul freight operations.",
+    tldr: "Under-inflation creates excessive tyre contact patch deflection, exponentially increasing hysteretic energy loss and rolling resistance. Correcting inflation in real-time yields immediate diesel savings between 0.5% and 0.6% across long-haul freight operations.",
     body: {
       sections: [
         {
@@ -112,7 +114,7 @@ const ARTICLES: Record<string, InsightArticle> = {
         {
           heading: "Empirical Fleet Findings",
           paragraphs: [
-            "Analyzing 100,000 km of telematics data across 16-wheel tippers and highway trailers showed that active pressure regulation consistently saved between 2.8% and 4.2% on bulk fuel expenditures.",
+            "Analyzing 100,000 km of telematics data across 16-wheel tippers and highway trailers showed that active pressure regulation consistently saved 0.5–0.6% on bulk fuel expenditures.",
             "Furthermore, internal carcass temperatures remained within safe structural limits, preventing premature tread separation and extending casing life for multiple retread cycles."
           ]
         }
@@ -222,7 +224,7 @@ const ARTICLES: Record<string, InsightArticle> = {
     date: "July 2026",
     publishIsoDate: "2026-07-10",
     readTime: "7 min read",
-    tldr: "Hardware investments in commercial vehicle intelligence amortize rapidly. Direct fuel savings (3.2% avg) and tyre casing preservation (18% avg) generate full capital payback in under 9 months for heavy commercial vehicles.",
+    tldr: "Hardware investments in commercial vehicle intelligence amortize rapidly. Direct fuel savings (0.5% avg) and tyre casing preservation (18% avg) generate full capital payback in under 9 months for heavy commercial vehicles.",
     body: {
       sections: [
         {
@@ -235,7 +237,7 @@ const ARTICLES: Record<string, InsightArticle> = {
         {
           heading: "The 9-Month Payback Model",
           paragraphs: [
-            "Across multi-axle tippers and line-haul prime movers, the combined financial impact of 3% fuel optimization and 18% tyre life extension delivers a return on hardware investment in 8.4 to 9.2 months.",
+            "Across multi-axle tippers and line-haul prime movers, the combined financial impact of 0.5% fuel optimization and 18% tyre life extension delivers a return on hardware investment in 8.4 to 9.2 months.",
             "Beyond direct line items, eliminating roadside downtime penalties and preventing catastrophic wheel-end fires dramatically reduces enterprise insurance premiums and contract SLA disputes."
           ]
         }
@@ -294,15 +296,18 @@ const ARTICLES: Record<string, InsightArticle> = {
   }
 };
 
+import { getInsightBySlug, getPublishedInsights } from "@/lib/content/insights-storage";
+
 export function generateStaticParams() {
   return Object.keys(ARTICLES).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const article = ARTICLES[slug];
+  const dbArticle = await getInsightBySlug(slug);
+  const article = dbArticle || ARTICLES[slug];
 
-  if (!article) {
+  if (!article || article.status === "Draft") {
     return {
       title: "Article Not Found · Treel Insights",
       description: "The requested insight article could not be found.",
@@ -328,9 +333,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function InsightsSlugPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const article = ARTICLES[slug];
+  const dbArticle = await getInsightBySlug(slug);
+  const article = dbArticle || ARTICLES[slug];
 
-  if (!article) {
+  if (!article || article.status === "Draft") {
     return (
       <div className="min-h-[70vh] bg-[#0F1419] text-[#FAF7F2] font-inter py-24 flex items-center">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 text-center space-y-6">
@@ -355,9 +361,14 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
     );
   }
 
-  const relatedArticles = article.relatedSlugs
-    .map((s) => ARTICLES[s])
-    .filter(Boolean) as InsightArticle[];
+  const allPublished = await getPublishedInsights();
+  const relatedArticles: InsightArticle[] = (article.relatedSlugs && article.relatedSlugs.length > 0)
+    ? (article.relatedSlugs
+        .map((s) => allPublished.find((a) => a.slug === s) || ARTICLES[s])
+        .filter(Boolean) as InsightArticle[])
+    : (allPublished
+        .filter((a) => a.slug !== article.slug)
+        .slice(0, 3) as InsightArticle[]);
 
   return (
     <article className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">

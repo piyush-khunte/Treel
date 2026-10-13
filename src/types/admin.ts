@@ -98,6 +98,11 @@ export interface MongoBlog {
   metatitle?: string;
   metadescription?: string;
   date?: string;
+  author?: string;
+  category?: string;
+  status?: "Published" | "Draft";
+  readTime?: string;
+  tags?: string[];
   __v?: string | number;
 }
 
@@ -116,6 +121,8 @@ export interface NoticeItem {
   publishedDate?: string;
   status: "Published" | "Draft";
   category?: string;
+  documentUrl?: string;
+  document_url?: string;
   createdAt?: string;
   updatedAt?: string;
   __v?: number;
@@ -139,5 +146,26 @@ export interface AdminCoupon {
   status: "Active" | "Inactive";
   description?: string;
   createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface AdminConsentRecord {
+  id: string;
+  consentId: string;
+  status: "Accepted" | "Rejected" | "Customized" | "Withdrawn";
+  decision: "Accepted All" | "Rejected Non-Essential" | "Custom Preferences" | "Withdrawn";
+  categories: string;
+  rawCategories: {
+    necessary: boolean;
+    functional: boolean;
+    analytics: boolean;
+    marketing: boolean;
+  };
+  policyVersion: string;
+  timestamp: string;
+  formattedDate: string;
+  withdrawnAt?: string | null;
+  source?: string;
+  pagePath?: string;
   updatedAt?: string;
 }

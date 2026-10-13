@@ -18,7 +18,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TmipCustomersCaseStudiesPage() {
+import { getPublishedCaseStudies } from "@/lib/content/casestudies-storage";
+
+export default async function TmipCustomersCaseStudiesPage() {
+  const publishedStudies = await getPublishedCaseStudies();
+
   return (
     <div className="relative bg-[#050A17] text-[#F1F5F9] font-ibm-plex overflow-x-hidden min-h-screen">
       {/* Subtle Blueprint Grid: 60px x 60px rgba(59,130,246,0.04) */}
@@ -68,7 +72,7 @@ export default function TmipCustomersCaseStudiesPage() {
       {/* Main Section · Interactive Filter & Case Study Cards */}
       <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <CaseStudiesClient />
+          <CaseStudiesClient initialStudies={publishedStudies} />
         </div>
       </section>
 

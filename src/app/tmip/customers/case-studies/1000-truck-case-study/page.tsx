@@ -5,21 +5,21 @@ import { ArrowRight, ChevronRight, CheckCircle2, TrendingDown, Clock, ShieldChec
 export const metadata: Metadata = {
   title: "1,000 trucks. 12 months. What changed. · TMIP Case Study",
   description:
-    "The full operational story of a large logistics fleet running TMIP for one year. 5.2% fuel savings, 6.8% tyre life extension, 34% reduction in unscheduled downtime.",
+    "The full operational story of a large logistics fleet running TMIP for one year. 0.5–0.6% fuel savings, 6.8% tyre life extension, 34% reduction in unscheduled downtime.",
   alternates: {
     canonical: "https://treel.in/tmip/customers/case-studies/1000-truck-case-study",
   },
   openGraph: {
     title: "1,000 trucks. 12 months. What changed. · TMIP Case Study",
     description:
-      "The full operational story of a large logistics fleet running TMIP for one year. 5.2% fuel savings, 6.8% tyre life extension, 34% reduction in unscheduled downtime.",
+      "The full operational story of a large logistics fleet running TMIP for one year. 0.5–0.6% fuel savings, 6.8% tyre life extension, 34% reduction in unscheduled downtime.",
     url: "https://treel.in/tmip/customers/case-studies/1000-truck-case-study",
   },
 };
 
 const results = [
   {
-    value: "5.2%",
+    value: "0.5–0.6%",
     label: "Fuel Savings",
     delta: "vs. pre-deployment baseline",
     desc: "Measured across 18 million cumulative fleet kilometres on NH-48 and NH-44 corridors.",
@@ -233,7 +233,7 @@ export default function OneThousandTruckCaseStudyPage() {
                 </p>
                 <p>
                   By eliminating running on under-inflated tyres and preventing heat-induced blowouts, the fleet achieved
-                  a documented 5.2% fuel savings and extended median casing life by 6.8%, reaching full project capital
+                  a documented 0.5–0.6% fuel savings and extended median casing life by 6.8%, reaching full project capital
                   payback in 8.6 months.
                 </p>
               </div>

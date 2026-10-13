@@ -65,7 +65,7 @@ const featuredCaseStudies = [
   {
     tag: "LOGISTICS",
     headline: "1,000 trucks. 12 months. What changed.",
-    metric: "5.2% Fuel Savings · 6.8% Tyre Life Extension",
+    metric: "0.5–0.6% Fuel Savings · 6.8% Tyre Life Extension",
     body: "A comprehensive Pan-India linehaul operator reduced roadside punctures by 34% and hit complete capital payback in under 9 months.",
     href: "/tmip/customers/case-studies/1000-truck-case-study",
   },

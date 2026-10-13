@@ -55,7 +55,7 @@ const articles: InsightArticle[] = [
     category: "Fleet Analytics",
     title: "The Math of Rolling Resistance: Correlating 10 PSI Under-Inflation to Diesel Burn",
     excerpt:
-      "Empirical analysis tracking 18 million kilometres of commercial haulage. How continuous pressure calibration cuts fleet operating fuel expense by 5.2%.",
+      "Empirical analysis tracking 18 million kilometres of commercial haulage. How continuous pressure calibration cuts fleet operating fuel expense by 0.5–0.6%.",
     author: "Pooja Deshmukh",
     date: "July 2026",
     readTime: "10 min read",

@@ -19,7 +19,8 @@ export default function TMIPROICalculatorPage() {
   const annualTyreSpend = fleetSize * tyreSpendPerVehicle;
 
   // TMIP savings assumptions based on 200+ fleet deployments
-  const fuelSavingsRate = 0.052; // ~5.2% fuel savings via optimized tyre pressure
+  const FUEL_SAVINGS_PERCENT = 0.52; // 0.52% fuel savings via optimized tyre pressure
+  const fuelSavingsRate = FUEL_SAVINGS_PERCENT / 100; // 0.0052
   const tyreLifeExtensionRate = 0.20; // ~20% tyre life extension
   
   const estimatedFuelSavings = annualFuelSpend * fuelSavingsRate;
@@ -29,7 +30,9 @@ export default function TMIPROICalculatorPage() {
   // TMIP platform investment estimate (~Rs. 1,200/vehicle/mo)
   const annualPlatformInvestment = fleetSize * 1200 * 12;
   const netAnnualBenefit = totalAnnualSavings - annualPlatformInvestment;
-  const paybackMonths = Math.max(3.5, Math.min(12, (annualPlatformInvestment / (totalAnnualSavings / 12))));
+  const paybackMonths = totalAnnualSavings > 0
+    ? Math.max(3.5, Math.min(12, (annualPlatformInvestment / (totalAnnualSavings / 12))))
+    : 12;
 
   return (
     <div className="relative bg-[#050A17] text-[#F1F5F9] font-ibm-plex overflow-x-hidden min-h-screen">
@@ -179,7 +182,7 @@ export default function TMIPROICalculatorPage() {
                     <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#F1F5F9] mt-2">
                       ₹{(totalAnnualSavings / 100000).toFixed(2)} Lakh
                     </div>
-                    <div className="text-xs text-[#3B82F6] font-jetbrains mt-1">Fuel (0.52%) + Tyre Life (~20%)</div>
+                    <div className="text-xs text-[#3B82F6] font-jetbrains mt-1">Fuel ({FUEL_SAVINGS_PERCENT}%) + Tyre Life (~20%)</div>
                   </div>
 
                   <div className="p-5 rounded-[4px] bg-[#050A17] border border-slate-400/10">

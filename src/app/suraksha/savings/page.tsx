@@ -80,8 +80,8 @@ export default function SurakshaSavingsPage() {
                 <div className="pt-3 border-t border-[#451A03]/10 space-y-2 text-xs text-[#78350F]">
                   <div className="font-bold text-[#451A03]">Numbers:</div>
                   <div>• 10-wheeler monthly fuel expense: ₹80,000-₹1,20,000 (typical, varies by route)</div>
-                  <div>• 5% savings = ₹4,000-₹6,000 per month</div>
-                  <div className="font-bold text-[#DC2626]">• Annual savings = ₹48,000-₹72,000</div>
+                  <div>• 0.5–0.6% savings = ₹400-₹720 per month</div>
+                  <div className="font-bold text-[#DC2626]">• Annual savings = ₹4,800-₹8,640</div>
                   <div className="pt-1 text-[#451A03]">Explanation: With Suraksha, you get confirmed correct pressure on every single trip. In the long run, this is the single largest savings contributor.</div>
                 </div>
               </div>
