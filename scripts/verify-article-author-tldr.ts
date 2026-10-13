@@ -43,18 +43,18 @@ async function runVerification() {
     "Section 3: From Reactive Downtime to Financial Predictability is present"
   );
 
-  // 2. Removal of TL;DR branding/box from public page and admin
+  // 2. Removal of  branding/box from public page and admin
   const insightsPageSrc = fs.readFileSync(
     path.join(__dirname, "../src/app/insights/[slug]/page.tsx"),
     "utf-8"
   );
   assert(
-    !insightsPageSrc.includes("<span>TL;DR</span>"),
-    "TL;DR callout block removed from /insights/[slug]/page.tsx"
+    !insightsPageSrc.includes("<span>T</span>"),
+    " callout block removed from /insights/[slug]/page.tsx"
   );
   assert(
-    !insightsPageSrc.includes("TL;DR Callout Block"),
-    "TL;DR comments removed from /insights/[slug]/page.tsx"
+    !insightsPageSrc.includes(" Callout Block"),
+    " comments removed from /insights/[slug]/page.tsx"
   );
 
   const adminBlogsSrc = fs.readFileSync(
@@ -62,8 +62,8 @@ async function runVerification() {
     "utf-8"
   );
   assert(
-    !adminBlogsSrc.includes("TL;DR Takeaway Box"),
-    "TL;DR Takeaway Box field and label removed from /admin/blogs"
+    !adminBlogsSrc.includes(" Takeaway Box"),
+    " Takeaway Box field and label removed from /admin/blogs"
   );
   assert(
     adminBlogsSrc.includes("Article Sections") &&

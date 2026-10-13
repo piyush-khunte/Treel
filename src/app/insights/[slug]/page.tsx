@@ -447,6 +447,19 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
               <div className="absolute inset-0 bg-white/5 opacity-40" />
             </div>
 
+            {/* Key Takeaway Box */}
+            {article.tldr && (
+              <div className="p-6 sm:p-8 rounded-lg bg-[#D5573B]/[0.08] border border-[#D5573B]/30 space-y-2.5">
+                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#D5573B] font-semibold">
+                  <span className="w-2 h-2 rounded-full bg-[#D5573B] animate-pulse" />
+                  Key Takeaway
+                </div>
+                <p className="text-sm sm:text-base text-[#FAF7F2]/90 leading-relaxed font-inter">
+                  {article.tldr}
+                </p>
+              </div>
+            )}
+
             {/* Article Prose Sections */}
             <div className="space-y-10 text-base sm:text-lg text-[#94A3B8] leading-relaxed font-inter">
               {article.body.sections.map((sec, idx) => (

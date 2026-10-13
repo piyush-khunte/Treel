@@ -157,7 +157,7 @@ export default function TmipPlatformPredictiveMaintenancePage() {
         </div>
       </section>
 
-      {/* TL;DR Section for AEO */}
+      {/* Key Takeaway Section for AEO */}
       <section className="relative z-10 py-16 border-b border-slate-400/10 bg-[#0B1220]/60">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="p-8 rounded-[4px] bg-[#080E1E] border border-blue-500/20 max-w-4xl relative overflow-hidden">

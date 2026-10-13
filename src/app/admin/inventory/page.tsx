@@ -12,7 +12,10 @@ import {
   ExternalLink,
   X,
   Save,
-  Image as ImageIcon
+  Image as ImageIcon,
+  Shield,
+  Layers,
+  Tag
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -25,22 +28,72 @@ import {
   createAdminProduct, 
   deleteAdminProduct 
 } from "@/lib/admin/admin-actions";
-import { MongoProduct } from "@/types/admin";
+import { MongoProduct, ProductBrand } from "@/types/admin";
 
 export default function AdminInventoryPage() {
   const [products, setProducts] = useState<MongoProduct[]>([]);
   const [loading, setLoading] = useState(true);
+  const [activeBrandTab, setActiveBrandTab] = useState<"all" | "personal" | "suraksha">("all");
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [editingProduct, setEditingProduct] = useState<MongoProduct | null>(null);
   const [isNewProduct, setIsNewProduct] = useState(false);
   const [saving, setSaving] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+  const handleImageFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !editingProduct) return;
+
+    const validTypes = ["image/jpeg", "image/png", "image/webp", "image/gif", "image/svg+xml"];
+    if (!validTypes.includes(file.type.toLowerCase())) {
+      setUploadError("Invalid file type. Please choose a JPG, PNG, WebP, GIF, or SVG image.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setUploadError(`File is too large (${(file.size / (1024 * 1024)).toFixed(1)}MB). Maximum allowed is 5MB.`);
+      return;
+    }
+
+    setUploadError(null);
+    setUploadingImage(true);
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImagePreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await fetch("/api/admin/upload-product-image", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success && data.url) {
+        setEditingProduct({ ...editingProduct, image: data.url });
+        setImagePreview(data.url);
+      } else {
+        setUploadError(data.error || "Failed to upload image");
+      }
+    } catch (err: any) {
+      setUploadError(err.message || "Network error while uploading image");
+    } finally {
+      setUploadingImage(false);
+    }
+  };
 
   const loadProducts = async () => {
     setLoading(true);
     setErrorMsg(null);
-    const res = await getAdminProducts();
+    const res = await getAdminProducts("all");
     if (res.success && res.data) {
       setProducts(res.data);
     } else {
@@ -53,9 +106,19 @@ export default function AdminInventoryPage() {
     loadProducts();
   }, []);
 
-  const categories = Array.from(new Set(products.map(p => p.category).filter(Boolean)));
+  const totalCount = products.length;
+  const personalCount = products.filter(p => (p.brand || "personal") === "personal").length;
+  const surakshaCount = products.filter(p => p.brand === "suraksha").length;
 
-  const filteredProducts = products.filter(p => {
+  const brandScopedProducts = products.filter(p => {
+    if (activeBrandTab === "personal") return (p.brand || "personal") === "personal";
+    if (activeBrandTab === "suraksha") return p.brand === "suraksha";
+    return true;
+  });
+
+  const categories = Array.from(new Set(brandScopedProducts.map(p => p.category).filter(Boolean)));
+
+  const filteredProducts = brandScopedProducts.filter(p => {
     const matchesSearch = (p.title || "").toLowerCase().includes(search.toLowerCase()) ||
                           (p.productsku || "").toLowerCase().includes(search.toLowerCase()) ||
                           (p.slug || "").toLowerCase().includes(search.toLowerCase());
@@ -63,18 +126,33 @@ export default function AdminInventoryPage() {
     return matchesSearch && matchesCat;
   });
 
+  const handleBrandTabChange = (tab: "all" | "personal" | "suraksha") => {
+    setActiveBrandTab(tab);
+    setCategoryFilter("all");
+  };
+
   const handleEdit = (prod: MongoProduct) => {
-    setEditingProduct({ ...prod });
+    const brand: ProductBrand = (prod.brand as ProductBrand) || (
+      prod.category?.toLowerCase().includes("suraksha") || 
+      prod.productsku?.includes("SURAKSHA") || 
+      prod.title?.toLowerCase().includes("suraksha") ? "suraksha" : "personal"
+    );
+    setEditingProduct({ ...prod, brand, brand_scope: brand });
+    setImagePreview(prod.image || null);
+    setUploadError(null);
     setIsNewProduct(false);
   };
 
   const handleCreateNew = () => {
+    const defaultBrand: ProductBrand = activeBrandTab === "suraksha" ? "suraksha" : "personal";
     setEditingProduct({
       _id: `new_${Date.now()}`,
+      brand: defaultBrand,
+      brand_scope: defaultBrand,
       title: "",
       price: 0,
       saleprice: null,
-      category: "Personal TPMS",
+      category: defaultBrand === "suraksha" ? "Commercial Truck Kit" : "Car Kit",
       slug: "",
       image: "",
       description: "",
@@ -91,13 +169,21 @@ export default function AdminInventoryPage() {
       couponcode: "",
       couponamount: null,
       productsku: "",
+      status: "active",
+      stock: 100,
     });
+    setImagePreview(null);
+    setUploadError(null);
     setIsNewProduct(true);
   };
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!editingProduct) return;
+    if (!editingProduct.brand) {
+      setErrorMsg("Product brand is required. Please choose Personal TPMS or Treel Suraksha.");
+      return;
+    }
     setSaving(true);
     setErrorMsg(null);
 
@@ -168,12 +254,69 @@ export default function AdminInventoryPage() {
         </div>
       )}
 
+      {/* Brand Navigation Tabs */}
+      <div className="flex flex-wrap items-center gap-2 border-b border-slate-800 pb-4">
+        <button
+          type="button"
+          onClick={() => handleBrandTabChange("all")}
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all ${
+            activeBrandTab === "all"
+              ? "bg-purple-600 text-white shadow-md shadow-purple-600/20 ring-1 ring-purple-500"
+              : "bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800"
+          }`}
+        >
+          <Layers className="w-3.5 h-3.5" />
+          <span>All Products</span>
+          <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${activeBrandTab === "all" ? "bg-purple-800 text-purple-100" : "bg-slate-800 text-slate-400"}`}>
+            {totalCount}
+          </span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => handleBrandTabChange("personal")}
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all ${
+            activeBrandTab === "personal"
+              ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/20 ring-1 ring-emerald-500"
+              : "bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800"
+          }`}
+        >
+          <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
+          <span>Personal TPMS</span>
+          <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${activeBrandTab === "personal" ? "bg-emerald-800 text-emerald-100" : "bg-slate-800 text-slate-400"}`}>
+            {personalCount}
+          </span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => handleBrandTabChange("suraksha")}
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all ${
+            activeBrandTab === "suraksha"
+              ? "bg-amber-600 text-white shadow-md shadow-amber-600/20 ring-1 ring-amber-500"
+              : "bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800"
+          }`}
+        >
+          <span className="w-2 h-2 rounded-full bg-amber-400 inline-block animate-pulse"></span>
+          <span>Treel Suraksha</span>
+          <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${activeBrandTab === "suraksha" ? "bg-amber-800 text-amber-100" : "bg-slate-800 text-slate-400"}`}>
+            {surakshaCount}
+          </span>
+        </button>
+      </div>
+
       {/* Filter & Search Bar */}
       <div className="flex flex-col sm:flex-row gap-4 justify-between items-center bg-slate-900 p-4 rounded-2xl border border-slate-800">
         <div className="relative w-full sm:w-80">
           <Search className="w-4 h-4 absolute left-3 top-3.5 text-slate-500" />
           <Input
-            placeholder="Search by Title, SKU, Slug..."
+            placeholder={
+              activeBrandTab === "personal" 
+                ? "Search Personal TPMS (Title, SKU)..." 
+                : activeBrandTab === "suraksha" 
+                ? "Search Suraksha (Title, SKU)..." 
+                : "Search all products (Title, SKU)..."
+            }
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="pl-9 bg-slate-950 border-slate-800 text-white placeholder:text-slate-500"
@@ -187,7 +330,7 @@ export default function AdminInventoryPage() {
             onClick={() => setCategoryFilter("all")}
             className={`text-xs uppercase font-mono ${categoryFilter === "all" ? "bg-purple-600 text-white" : "border-slate-800 text-slate-400 hover:bg-slate-800"}`}
           >
-            All Categories ({products.length})
+            All Categories ({brandScopedProducts.length})
           </Button>
           {categories.map((cat) => (
             <Button
@@ -210,6 +353,7 @@ export default function AdminInventoryPage() {
             <thead className="bg-slate-950 text-slate-500 uppercase tracking-wider border-b border-slate-800">
               <tr>
                 <th className="p-4">SKU / ID</th>
+                <th className="p-4">Brand</th>
                 <th className="p-4">Product Name</th>
                 <th className="p-4">Category</th>
                 <th className="p-4">Regular Price</th>
@@ -221,14 +365,14 @@ export default function AdminInventoryPage() {
             <tbody className="divide-y divide-slate-800">
               {loading ? (
                 <tr>
-                  <td colSpan={7} className="p-8 text-center text-slate-500 font-sans">
+                  <td colSpan={8} className="p-8 text-center text-slate-500 font-sans">
                     <RefreshCw className="w-5 h-5 animate-spin mx-auto mb-2 text-purple-400" />
                     Loading products from Supabase...
                   </td>
                 </tr>
               ) : filteredProducts.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="p-8 text-center text-slate-500 font-sans">
+                  <td colSpan={8} className="p-8 text-center text-slate-500 font-sans">
                     No products found matching your criteria.
                   </td>
                 </tr>
@@ -238,6 +382,19 @@ export default function AdminInventoryPage() {
                     <td className="p-4">
                       <div className="text-purple-400 font-bold">{p.productsku || "NO-SKU"}</div>
                       <div className="text-[10px] text-slate-500 truncate max-w-[100px]">{p._id}</div>
+                    </td>
+                    <td className="p-4">
+                      {p.brand === "suraksha" ? (
+                        <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 font-mono text-[10px] gap-1 px-2 py-0.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span>
+                          Treel Suraksha
+                        </Badge>
+                      ) : (
+                        <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 font-mono text-[10px] gap-1 px-2 py-0.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
+                          Personal TPMS
+                        </Badge>
+                      )}
                     </td>
                     <td className="p-4">
                       <div className="text-white font-sans font-medium">{p.title}</div>
@@ -267,6 +424,15 @@ export default function AdminInventoryPage() {
                     </td>
                     <td className="p-4 text-right">
                       <div className="flex justify-end items-center gap-1.5">
+                        <a 
+                          href={p.brand === "suraksha" ? "/suraksha/product" : `/personal/product?slug=${p.slug}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title={p.brand === "suraksha" ? "View on Suraksha storefront" : "View on Personal TPMS storefront"}
+                          className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
                         <Button 
                           size="sm" 
                           variant="outline" 
@@ -315,6 +481,85 @@ export default function AdminInventoryPage() {
             </div>
 
             <form onSubmit={handleSave} className="space-y-6 text-xs font-mono">
+              {/* Product Brand Selector */}
+              <div className="p-4 rounded-xl border border-slate-800 bg-slate-950/70 space-y-3">
+                <div className="flex items-center justify-between">
+                  <label className="text-slate-200 font-bold text-xs flex items-center gap-2">
+                    <Shield className="w-4 h-4 text-purple-400" />
+                    Product Brand / Storefront Scope *
+                  </label>
+                  {!isNewProduct && (
+                    <span className="text-[10px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+                      Brand Locked (Preserves Order & Storefront Integrity)
+                    </span>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <button
+                    type="button"
+                    disabled={!isNewProduct}
+                    onClick={() => {
+                      setEditingProduct({
+                        ...editingProduct,
+                        brand: "personal",
+                        brand_scope: "personal",
+                        category: editingProduct.category === "Commercial Truck Kit" ? "Car Kit" : editingProduct.category
+                      });
+                    }}
+                    className={`p-3.5 rounded-xl border text-left transition-all ${
+                      editingProduct.brand === "personal"
+                        ? "bg-emerald-500/10 border-emerald-500 text-white shadow-lg shadow-emerald-500/5 ring-1 ring-emerald-500"
+                        : "bg-slate-900 border-slate-800 text-slate-400 hover:border-slate-700"
+                    } ${!isNewProduct ? "cursor-not-allowed opacity-75" : "cursor-pointer"}`}
+                  >
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="font-bold text-sm text-emerald-400 flex items-center gap-1.5">
+                        <CheckCircle2 className={`w-4 h-4 ${editingProduct.brand === "personal" ? "text-emerald-400" : "text-slate-600"}`} />
+                        Personal TPMS
+                      </span>
+                      <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-[9px] font-mono">
+                        Consumer (2W / 4W)
+                      </Badge>
+                    </div>
+                    <p className="text-[11px] text-slate-400 font-sans leading-relaxed">
+                      Consumer tyre monitoring kits for bikes and cars. Displayed exclusively on the /personal storefront.
+                    </p>
+                  </button>
+
+                  <button
+                    type="button"
+                    disabled={!isNewProduct}
+                    onClick={() => {
+                      setEditingProduct({
+                        ...editingProduct,
+                        brand: "suraksha",
+                        brand_scope: "suraksha",
+                        category: editingProduct.category === "Car Kit" ? "Commercial Truck Kit" : editingProduct.category
+                      });
+                    }}
+                    className={`p-3.5 rounded-xl border text-left transition-all ${
+                      editingProduct.brand === "suraksha"
+                        ? "bg-amber-500/10 border-amber-500 text-white shadow-lg shadow-amber-500/5 ring-1 ring-amber-500"
+                        : "bg-slate-900 border-slate-800 text-slate-400 hover:border-slate-700"
+                    } ${!isNewProduct ? "cursor-not-allowed opacity-75" : "cursor-pointer"}`}
+                  >
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="font-bold text-sm text-amber-400 flex items-center gap-1.5">
+                        <CheckCircle2 className={`w-4 h-4 ${editingProduct.brand === "suraksha" ? "text-amber-400" : "text-slate-600"}`} />
+                        Treel Suraksha
+                      </span>
+                      <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 text-[9px] font-mono">
+                        Commercial Fleets
+                      </Badge>
+                    </div>
+                    <p className="text-[11px] text-slate-400 font-sans leading-relaxed">
+                      Commercial truck TPMS, multi-axle trailers, in-cab display units. Displayed exclusively on /suraksha.
+                    </p>
+                  </button>
+                </div>
+              </div>
+
               {/* Core Info */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
@@ -335,20 +580,51 @@ export default function AdminInventoryPage() {
                     className="bg-slate-950 border-slate-800 text-white"
                   />
                 </div>
-                <div className="space-y-1">
-                  <label className="text-slate-400">Category *</label>
+                <div className="space-y-1 sm:col-span-2">
+                  <div className="flex items-center justify-between">
+                    <label className="text-slate-400">Category *</label>
+                    <span className="text-[10px] text-slate-500">Presets for {editingProduct.brand === "suraksha" ? "Suraksha" : "Personal TPMS"}:</span>
+                  </div>
                   <Input
                     required
                     value={editingProduct.category || ""}
                     onChange={(e) => setEditingProduct({ ...editingProduct, category: e.target.value })}
                     className="bg-slate-950 border-slate-800 text-white"
                   />
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {(editingProduct.brand === "suraksha"
+                      ? ["Commercial Truck Kit", "Multi-Axle Kit", "Prime Mover Kit", "Display Kit", "Replacement Sensor"]
+                      : ["Car Kit", "Bike Kit", "Upgrade Kit", "Replacement Sensor"]
+                    ).map((preset) => (
+                      <button
+                        key={preset}
+                        type="button"
+                        onClick={() => setEditingProduct({ ...editingProduct, category: preset })}
+                        className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors ${
+                          editingProduct.category === preset
+                            ? "bg-purple-600 text-white font-bold"
+                            : "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200"
+                        }`}
+                      >
+                        + {preset}
+                      </button>
+                    ))}
+                  </div>
                 </div>
                 <div className="space-y-1">
                   <label className="text-slate-400">Product SKU</label>
                   <Input
                     value={editingProduct.productsku || ""}
                     onChange={(e) => setEditingProduct({ ...editingProduct, productsku: e.target.value })}
+                    className="bg-slate-950 border-slate-800 text-white"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-slate-400">Inventory Stock Count</label>
+                  <Input
+                    type="number"
+                    value={editingProduct.stock ?? 100}
+                    onChange={(e) => setEditingProduct({ ...editingProduct, stock: Number(e.target.value) })}
                     className="bg-slate-950 border-slate-800 text-white"
                   />
                 </div>
@@ -395,35 +671,109 @@ export default function AdminInventoryPage() {
               </div>
 
               {/* Images */}
-              <div className="space-y-3 pt-4 border-t border-slate-800">
-                <div className="text-sm font-bold text-white flex items-center gap-2">
-                  <ImageIcon className="w-4 h-4 text-purple-400" /> S3 Image Asset URLs
+              <div className="space-y-4 pt-4 border-t border-slate-800">
+                <div className="flex items-center justify-between">
+                  <div className="text-sm font-bold text-white flex items-center gap-2">
+                    <ImageIcon className="w-4 h-4 text-purple-400" /> Primary Product Image *
+                  </div>
+                  {editingProduct.image && (
+                    <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
+                      <CheckCircle2 className="w-3.5 h-3.5" /> Image attached
+                    </span>
+                  )}
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <Input
-                    placeholder="Primary image URL (image)"
-                    value={editingProduct.image || ""}
-                    onChange={(e) => setEditingProduct({ ...editingProduct, image: e.target.value })}
-                    className="bg-slate-950 border-slate-800 text-white"
-                  />
-                  <Input
-                    placeholder="Image 2 URL (image2)"
-                    value={editingProduct.image2 || ""}
-                    onChange={(e) => setEditingProduct({ ...editingProduct, image2: e.target.value })}
-                    className="bg-slate-950 border-slate-800 text-white"
-                  />
-                  <Input
-                    placeholder="Image 3 URL (image3)"
-                    value={editingProduct.image3 || ""}
-                    onChange={(e) => setEditingProduct({ ...editingProduct, image3: e.target.value })}
-                    className="bg-slate-950 border-slate-800 text-white"
-                  />
-                  <Input
-                    placeholder="Image 4 URL (image4)"
-                    value={editingProduct.image4 || ""}
-                    onChange={(e) => setEditingProduct({ ...editingProduct, image4: e.target.value })}
-                    className="bg-slate-950 border-slate-800 text-white"
-                  />
+
+                {/* Upload or URL Card */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-950 p-4 rounded-xl border border-slate-800">
+                  {/* File Upload Selector */}
+                  <div className="space-y-2">
+                    <label className="text-slate-300 font-semibold block text-xs">
+                      Option A: Upload Image File (PNG, JPG, WebP max 5MB)
+                    </label>
+                    <div className="flex flex-col gap-2">
+                      <input
+                        type="file"
+                        accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml"
+                        disabled={uploadingImage}
+                        onChange={handleImageFileUpload}
+                        className="file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-500 text-slate-400 text-xs cursor-pointer border border-slate-800 rounded-lg p-2 bg-slate-900 w-full"
+                      />
+                      {uploadingImage && (
+                        <div className="flex items-center gap-2 text-xs text-purple-400 animate-pulse font-mono">
+                          <RefreshCw className="w-3.5 h-3.5 animate-spin" /> Uploading image to storage...
+                        </div>
+                      )}
+                      {uploadError && (
+                        <div className="text-rose-400 text-[11px] font-sans">
+                          {uploadError}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Manual URL Input */}
+                  <div className="space-y-2">
+                    <label className="text-slate-300 font-semibold block text-xs">
+                      Option B: Or Enter Image URL
+                    </label>
+                    <Input
+                      placeholder="https://...image.png"
+                      value={editingProduct.image || ""}
+                      onChange={(e) => {
+                        setEditingProduct({ ...editingProduct, image: e.target.value });
+                        setImagePreview(e.target.value);
+                      }}
+                      className="bg-slate-900 border-slate-800 text-white font-mono text-xs"
+                    />
+                  </div>
+                </div>
+
+                {/* Preview Thumbnail */}
+                {(imagePreview || editingProduct.image) && (
+                  <div className="flex items-center gap-3 p-3 bg-slate-950 rounded-xl border border-slate-800">
+                    <div className="w-16 h-16 rounded-lg bg-slate-900 border border-slate-800 overflow-hidden flex items-center justify-center shrink-0">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={imagePreview || editingProduct.image}
+                        alt="Product Preview"
+                        className="w-full h-full object-contain"
+                        onError={(e) => {
+                          (e.target as HTMLElement).style.display = "none";
+                        }}
+                      />
+                    </div>
+                    <div className="space-y-1 overflow-hidden">
+                      <div className="text-xs font-semibold text-white">Live Image Preview</div>
+                      <div className="text-[11px] text-slate-400 font-mono truncate max-w-md">
+                        {editingProduct.image}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Secondary Gallery Images */}
+                <div className="space-y-2 pt-2">
+                  <label className="text-slate-400 block text-xs">Secondary Gallery Image URLs (Optional)</label>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <Input
+                      placeholder="Gallery 2 (image2)"
+                      value={editingProduct.image2 || ""}
+                      onChange={(e) => setEditingProduct({ ...editingProduct, image2: e.target.value })}
+                      className="bg-slate-950 border-slate-800 text-white text-xs"
+                    />
+                    <Input
+                      placeholder="Gallery 3 (image3)"
+                      value={editingProduct.image3 || ""}
+                      onChange={(e) => setEditingProduct({ ...editingProduct, image3: e.target.value })}
+                      className="bg-slate-950 border-slate-800 text-white text-xs"
+                    />
+                    <Input
+                      placeholder="Gallery 4 (image4)"
+                      value={editingProduct.image4 || ""}
+                      onChange={(e) => setEditingProduct({ ...editingProduct, image4: e.target.value })}
+                      className="bg-slate-950 border-slate-800 text-white text-xs"
+                    />
+                  </div>
                 </div>
               </div>
 

@@ -1,5 +1,22 @@
 [
   {
+    "_id": "sur_1791889993170",
+    "slug": "test-suraksha-image-1791889986103",
+    "title": "Test Suraksha Article",
+    "category": "Safety",
+    "excerpt": "Suraksha excerpt",
+    "author": "Suraksha Fleet Team",
+    "date": "October 2026",
+    "readTime": "5 min read",
+    "keyTakeaway": "Drive safe",
+    "content": "<p>Suraksha test body</p>",
+    "image": "https://images.unsplash.com/photo-suraksha-test",
+    "status": "Published",
+    "isFeatured": false,
+    "createdAt": "2026-10-13T11:13:13.170Z",
+    "updatedAt": "2026-10-13T11:13:13.170Z"
+  },
+  {
     "_id": "sur_1791870531592",
     "slug": "test-suraksha-blog",
     "title": "test suraksha blog",
@@ -9,6 +26,7 @@
     "date": "October 2026",
     "readTime": "5 min read",
     "keyTakeaway": "Suraksha delivers continuous tyre pressure and temperature alerts to protect driver safety.",
+    "content": "<p>This is a test blog post for Suraksha safety monitoring. Full article content and diagnostic telemetry details are maintained here.</p>",
     "status": "Published",
     "isFeatured": false,
     "createdAt": "2026-10-13T05:48:51.592Z",
@@ -17,14 +35,18 @@
   {
     "_id": "sur_1",
     "slug": "fuel-10-tips",
-    "title": "10 Simple Fuel-Saving Tips Every Driver Should Know",
+    "title": "10 Simple Fuel-Saving Tips Every Driver Should Know test",
     "category": "Fuel efficiency",
     "excerpt": "Maintaining proper tyre pressure and smooth throttle control can cut your diesel consumption by 8–12%.",
     "author": "Suraksha Fleet Team",
     "date": "October 2026",
     "readTime": "5 min read",
+    "keyTakeaway": "Keeping cold tyre pressure within 2 PSI of recommendation saves ₹18,000 to ₹25,000 in annual diesel bills on long-haul routes.",
+    "content": "<h3>1. Check Cold Tyre Pressure Every Morning</h3><p>Never measure tyre pressure after driving on hot asphalt. Friction naturally expands internal air by 4 to 6 PSI. Measuring cold pressure before wheels roll out ensures your tyres are operating within the manufacturer's optimal rolling resistance threshold, immediately saving 8% to 12% in diesel consumption.</p><h3>2. Eliminate Excessive Engine Idling</h3><p>A heavy commercial vehicle consumes approximately 2.5 to 3.5 litres of diesel for every hour spent idling with the cabin air conditioning running. Plan loading and unloading wait times with auxiliary ventilation instead of continuous idling.</p><h3>3. Maintain Constant Highway Momentum</h3><p>Jackrabbit acceleration and erratic braking consume up to 30% more fuel than smooth, progressive throttle control. Cruise steadily between 55 and 65 km/h in top gear across open expressway stretches.</p><h3>4. Verify Steer-Axle Wheel Alignment</h3><p>When front tyres pull even slightly off alignment, tyres scrub against the tarmac continuously, turning expensive diesel combustion into wasted tyre smoke and premature shoulder wear.</p> \n",
     "status": "Published",
-    "keyTakeaway": "Keeping cold tyre pressure within 2 PSI of recommendation saves ₹18,000 to ₹25,000 in annual diesel bills on long-haul routes."
+    "isFeatured": false,
+    "createdAt": "2026-10-13T09:07:35.928Z",
+    "updatedAt": "2026-10-13T09:08:38.088Z"
   },
   {
     "_id": "sur_2",
@@ -36,7 +58,8 @@
     "date": "October 2026",
     "readTime": "4 min read",
     "status": "Published",
-    "keyTakeaway": "Unbalanced steering pull usually means unequal tyre inflation. Check front axle cold PSI before adjusting mechanical alignment."
+    "keyTakeaway": "Unbalanced steering pull usually means unequal tyre inflation. Check front axle cold PSI before adjusting mechanical alignment.",
+    "content": "<h3>1. Uneven Front Steer-Axle Pull</h3><p>If you find yourself constantly applying counter-pressure on the steering wheel to keep your truck centered in lane, one of your front steer tyres is running under-inflated. A 5 to 10 PSI pressure variance between steer wheels generates massive rolling drag.</p><h3>2. Premature Shoulder Scrubbing</h3><p>When tyres run under-inflated, the center crown collapses slightly, shifting vehicle weight onto the outer shoulders. This rapid shoulder wear is an unmistakable physical sign of continuous diesel wastage.</p><h3>3. Excessive Valve Stem and Rim Heat</h3><p>During routine highway rest stops, touch your wheel hub and valve stems. Excessive warmth indicates high rolling friction caused by low air pressure or dragging brake shoes.</p><h3>4. Drop in Coasting Distance</h3><p>When you release the throttle on a level highway stretch, a properly inflated truck rolls freely. If your truck decelerates rapidly without engine braking, high rolling drag is burning extra litres per kilometre.</p>"
   },
   {
     "_id": "sur_3",
@@ -48,7 +71,8 @@
     "date": "September 2026",
     "readTime": "6 min read",
     "status": "Published",
-    "keyTakeaway": "Under-inflation flexes tyre rubber continuously, converting valuable diesel combustion directly into wasted road friction heat."
+    "keyTakeaway": "Under-inflation flexes tyre rubber continuously, converting valuable diesel combustion directly into wasted road friction heat.",
+    "content": "<h3>The Science of Rolling Resistance</h3><p>Every commercial radial tyre requires sufficient air pressure to maintain its designed structural profile. When a tyre is 10 PSI below placard recommendation, tyre deflection increases by over 12%. This continuous rubber flexing generates mechanical hysteresis—friction within the rubber compound that directly opposes vehicle forward motion.</p><h3>The Financial Impact on Single-Truck Operators</h3><p>For an owner-operator driving 12,000 kilometres per month with diesel at ₹90/litre, a 1.5% to 2% increase in fuel consumption translates to over ₹20,000 to ₹25,000 in preventable losses every single year. Maintaining optimal cold tyre pressure pays for your maintenance and insurance costs.</p><h3>Cold vs Hot Inflation Rules</h3><p>Never bleed air from hot tyres during highway stops. Air expansion during transit is normal and engineered into radial tyre pressure envelopes. If you bleed air while hot, once the tyre cools down at depot, it will operate severely under-inflated on your next leg.</p>"
   },
   {
     "_id": "sur_4",
@@ -60,7 +84,8 @@
     "date": "September 2026",
     "readTime": "6 min read",
     "status": "Published",
-    "keyTakeaway": "Never reduce tyre pressure during monsoon. Harder, properly inflated tread grooves cut through standing water to prevent aquaplaning."
+    "keyTakeaway": "Never reduce tyre pressure during monsoon. Harder, properly inflated tread grooves cut through standing water to prevent aquaplaning.",
+    "content": "<h3>Why Under-Inflation Causes Highway Aquaplaning</h3><p>During heavy monsoon showers, rainwater accumulates in highway ruts. An under-inflated tyre loses its crown tension, causing the tread grooves to collapse slightly. This drastically limits water evacuation channels, causing the tyre to ride on top of standing water at speeds as low as 50 km/h.</p><h3>The Golden Rule of Monsoon Inflation</h3><p>Never reduce tyre pressure during the monsoon season under the mistaken belief that softer tyres offer more grip. Stiff, properly pressurized tread ribs cut through water films down to the solid asphalt surface.</p><h3>Stopping Distance Multipliers</h3><p>On wet asphalt, commercial vehicle stopping distance increases by 35% to 45%. Double your following distance behind trailing vehicles, and test brake feel immediately after driving through deep water puddles.</p>"
   },
   {
     "_id": "sur_5",
@@ -72,7 +97,8 @@
     "date": "September 2026",
     "readTime": "5 min read",
     "status": "Published",
-    "keyTakeaway": "Take a 15-minute break every 3 hours on night journeys. Inspect tyre warmth by feeling the valve stems during rest breaks."
+    "keyTakeaway": "Take a 15-minute break every 3 hours on night journeys. Inspect tyre warmth by feeling the valve stems during rest breaks.",
+    "content": "<h3>1. The 3-Second Following Distance Rule</h3><p>A loaded 16-wheeler traveling at 70 km/h requires at least 65 to 80 metres to stop safely under emergency braking. Maintain at least 3 seconds of buffer space from the vehicle ahead.</p><h3>2. Scheduled Micro-Breaks Every 3 Hours</h3><p>Highway hypnosis and driver fatigue account for over 40% of nighttime commercial vehicle accidents in India. Take a mandatory 15-minute break every three hours to walk around the vehicle, check tyre temperatures, and hydrate.</p><h3>3. Nighttime Lighting & Convex Mirror Care</h3><p>Keep headlights and convex blind-spot mirrors clean of road grime and mud. Avoid using high beams when following vehicles closely or encountering oncoming traffic.</p><h3>4. Wheel Nut and Rim Inspection</h3><p>During rest stops, perform a rapid visual inspection of wheel nuts and rim flanges for signs of rust trails, which indicate loose lug nuts.</p>"
   },
   {
     "_id": "sur_6",
@@ -85,7 +111,8 @@
     "readTime": "6 min read",
     "status": "Published",
     "isFeatured": true,
-    "keyTakeaway": "If a front tyre bursts, do NOT slam the brakes. Grip the steering wheel firmly with both hands, maintain slight throttle, and gently coast onto the shoulder."
+    "keyTakeaway": "If a front tyre bursts, do NOT slam the brakes. Grip the steering wheel firmly with both hands, maintain slight throttle, and gently coast onto the shoulder.",
+    "content": "<h3>The Dynamics of a High-Speed Steer Blowout</h3><p>A front steer blowout produces instantaneous steering pull toward the failed tyre. The natural instinct of many drivers is to panic and slam on the brakes, which shifts all vehicle momentum forward onto the collapsed rim, causing an immediate rollover or jackknife.</p><h3>Step-by-Step Survival Protocol</h3><p>1. Grip the steering wheel firmly with both hands at the 9 and 3 o'clock positions.<br/>2. Maintain slight throttle for 2 to 3 seconds to stabilize directional momentum.<br/>3. Do NOT engage emergency air brakes or trailer retarders abruptly.<br/>4. Allow engine drag and rolling friction to decelerate the truck gradually.<br/>5. Signal and ease the vehicle onto the highway shoulder once speed drops below 30 km/h.</p><h3>Prevention via Real-Time Telemetry</h3><p>Over 80% of highway blowouts begin as slow pinhole punctures 30 to 45 minutes before thermal failure occurs. Real-time in-cab pressure and temperature sensors give drivers sufficient advance warning to pull over safely.</p>"
   },
   {
     "_id": "sur_7",
@@ -97,7 +124,8 @@
     "date": "October 2026",
     "readTime": "7 min read",
     "status": "Published",
-    "keyTakeaway": "Single-truck owner operators transporting goods under GTA RCM do not require separate GST registration if bill value is under thresholds."
+    "keyTakeaway": "Single-truck owner operators transporting goods under GTA RCM do not require separate GST registration if bill value is under thresholds.",
+    "content": "<h3>Understanding GTA and Reverse Charge Mechanism (RCM)</h3><p>For single-truck owner-drivers and small fleet operators transporting goods through a registered Goods Transport Agency (GTA), tax liability generally falls under the Reverse Charge Mechanism (RCM). Under RCM, the consignor or consignee paying freight charges is responsible for depositing GST, freeing the individual driver from monthly return filings.</p><h3>E-Way Bill Compliance Rules</h3><p>Any consignment with goods value exceeding ₹50,000 requires a valid E-Way Bill. Ensure that Part B of the E-Way bill is updated with your truck registration number before commencing transit. If route diversions or vehicle breakdowns occur, update Part B immediately via SMS or mobile portal.</p><h3>Document Checklist for Highway Checkpoints</h3><p>Always carry: 1. Physical or DigiLocker RC copy; 2. Valid Fitness Certificate; 3. Comprehensive or Third-Party Insurance policy; 4. Pollution Under Control (PUC) certificate; 5. National or State Goods Carriage Permit; 6. Valid E-Way Bill with Part B updated.</p>"
   },
   {
     "_id": "sur_8",
@@ -109,7 +137,8 @@
     "date": "September 2026",
     "readTime": "5 min read",
     "status": "Published",
-    "keyTakeaway": "Standard motor policies exclude tyre rim and blowout damage unless you have an active commercial tyre add-on endorsement."
+    "keyTakeaway": "Standard motor policies exclude tyre rim and blowout damage unless you have an active commercial tyre add-on endorsement.",
+    "content": "<h3>Third-Party vs Comprehensive Commercial Coverage</h3><p>While Third-Party (TP) insurance is mandatory under the Motor Vehicles Act to cover damage or injury to third parties, it provides zero coverage for your own truck or tyres. Comprehensive commercial insurance protects your asset against accidents, overturning, fire, and theft.</p><h3>The Critical Tyre Damage Endorsement</h3><p>Standard motor insurance policies explicitly exclude damage to tyres and rims unless the vehicle suffers a major collision simultaneously. Adding a dedicated commercial tyre rider covers roadside blowouts, cuts, and casing failures, saving lakhs in replacement costs.</p><h3>Avoiding Claim Rejection</h3><p>Insurance surveyors commonly reject claims if: 1. The vehicle was operating beyond legal gross vehicle weight (GVW); 2. The driver held an expired commercial driving license; 3. The accident was not reported to the insurer within 48 hours.</p>"
   },
   {
     "_id": "sur_9",
@@ -121,7 +150,8 @@
     "date": "August 2026",
     "readTime": "4 min read",
     "status": "Published",
-    "keyTakeaway": "Keep your FASTag linked to NPCI bank account with auto-recharge to prevent toll plaza double-cash charge penalties."
+    "keyTakeaway": "Keep your FASTag linked to NPCI bank account with auto-recharge to prevent toll plaza double-cash charge penalties.",
+    "content": "<h3>Avoiding Double-Cash Penalty at Toll Plazas</h3><p>Under National Highway Fee Rules, passing through an electronic FASTag lane with an inactive, low-balance, or unreadable tag attracts a mandatory double-toll cash charge. Linking your FASTag wallet to automated bank auto-debit ensures balance never dips below minimum thresholds.</p><h3>Resolving Blacklisted Tag Disputes</h3><p>If your FASTag displays a 'Blacklisted' error at a plaza despite sufficient funds, contact your issuing bank helpline immediately with the tag TID number to clear temporary verification holds.</p><h3>Monthly Passes for Dedicated Routes</h3><p>If your truck operates local regional shuttle runs passing through the same toll plaza repeatedly, register for a discounted 50-trip monthly pass to reduce toll expenses by up to 30%.</p>"
   },
   {
     "_id": "sur_10",
@@ -133,7 +163,8 @@
     "date": "October 2026",
     "readTime": "8 min read",
     "status": "Published",
-    "keyTakeaway": "Choose truck centres equipped with automated nitrogen stations and round-the-clock CCTV parking security."
+    "keyTakeaway": "Choose truck centres equipped with automated nitrogen stations and round-the-clock CCTV parking security.",
+    "content": "<h3>Corridor Safety along NH-44 and NH-48</h3><p>Long-haul corridors such as NH-44 (Kashmir to Kanyakumari) and NH-48 (Delhi to Chennai) feature dedicated commercial transport hubs equipped with secure compound parking, driver rest dormitories, and mechanical repair yards.</p><h3>Automated Nitrogen Tyre Top-Up Points</h3><p>Prioritize truck stops offering automated nitrogen inflation stations. Nitrogen contains larger molecular structures than oxygen and lacks moisture, resulting in lower pressure loss and superior thermal stability during long highway runs.</p><h3>Secure Overnight Parking Protocols</h3><p>Never park along unlit expressway shoulders or isolated flyover ramps. Always park inside well-lit transport nagars or authorized toll plaza lay-bys with round-the-clock CCTV security.</p>"
   },
   {
     "_id": "sur_11",
@@ -145,7 +176,8 @@
     "date": "September 2026",
     "readTime": "5 min read",
     "status": "Published",
-    "keyTakeaway": "Plan rest stops between 2 AM and 5 AM when circadian rhythm is lowest to eliminate microsleep risks on expressways."
+    "keyTakeaway": "Plan rest stops between 2 AM and 5 AM when circadian rhythm is lowest to eliminate microsleep risks on expressways.",
+    "content": "<h3>The High-Risk 2 AM to 5 AM Circadian Window</h3><p>Human circadian biology reaches its deepest cognitive low between 2:00 AM and 5:00 AM. Statistical highway crash data shows an exponential spike in rear-end collisions during these pre-dawn hours. Schedule primary rest windows during this timeframe.</p><h3>The Power of the 20-Minute Power Nap</h3><p>If eyelids feel heavy or you experience sudden microsleep, pull into the nearest authorized dhaba or toll lay-by. A short 20-minute power nap restores mental alertness and reaction speed far more effectively than energy drinks or heavy tea.</p><h3>Hydration and Diet for Highway Longevity</h3><p>Avoid heavy carbohydrate meals before long night drives. Keep drinking clean water throughout the shift to prevent dehydration headaches and muscle cramping.</p>"
   },
   {
     "_id": "sur_12",
@@ -157,7 +189,8 @@
     "date": "October 2026",
     "readTime": "6 min read",
     "status": "Published",
-    "keyTakeaway": "Maintaining valid fitness certificates and emission testing protects owner-drivers from heavy state inter-border checkpoint penalties."
+    "keyTakeaway": "Maintaining valid fitness certificates and emission testing protects owner-drivers from heavy state inter-border checkpoint penalties.",
+    "content": "<h3>Automated Testing Stations (ATS) Mandate</h3><p>Under the national commercial vehicle scrappage policy, commercial vehicles older than 15 years must undergo mandatory fitness testing at registered Automated Testing Stations (ATS). Tests evaluate braking efficiency, suspension deflection, emissions, and structural chassis integrity.</p><h3>Green Tax Implications</h3><p>Commercial vehicles older than 8 years face green tax surcharges of 10% to 25% of road tax at the time of fitness renewal. Maintaining proper engine tune-up and emission compliance prevents renewal penalties.</p><h3>Scrappage Incentives and OEM Rebates</h3><p>Scrapping an end-of-life commercial vehicle at a Registered Vehicle Scrapping Facility (RVSF) yields a Certificate of Deposit (CD), entitling the owner-driver to motor vehicle tax concessions and discounts up to 5% on purchasing a new commercial vehicle.</p>"
   },
   {
     "_id": "sur_13",
@@ -169,7 +202,8 @@
     "date": "September 2026",
     "readTime": "4 min read",
     "status": "Published",
-    "keyTakeaway": "Include a diesel-price escalation clause in quarterly transport contracts to insulate your truck's net monthly profit."
+    "keyTakeaway": "Include a diesel-price escalation clause in quarterly transport contracts to insulate your truck's net monthly profit.",
+    "content": "<h3>Calculating Your True Cost-per-Kilometre (CPK)</h3><p>To insulate your business against diesel price spikes, calculate your exact CPK across: 1. Diesel fuel expense; 2. Tyre wear cost per km; 3. Engine oil and filter amortisation; 4. Driver trip allowance; 5. Toll charges. Knowing your baseline CPK ensures you never accept non-viable freight rates.</p><h3>Diesel Escalation Clauses in Freight Contracts</h3><p>Always demand an explicit diesel-price variation clause in transport agreements. If diesel rates shift by more than ±₹2 per litre, freight rates should automatically adjust proportionally.</p><h3>Fuel Security on the Road</h3><p>Inspect diesel tank anti-siphoning grilles and fuel cap locks. Never leave your vehicle unattended in secluded parking bays during overnight transit.</p>"
   },
   {
     "_id": "sur_14",
@@ -181,6 +215,7 @@
     "date": "August 2026",
     "readTime": "5 min read",
     "status": "Published",
-    "keyTakeaway": "Never bleed air from a hot tyre during midday runs. Pressure naturally rises with heat; bleeding air causes severe under-inflation when tyres cool down."
+    "keyTakeaway": "Never bleed air from a hot tyre during midday runs. Pressure naturally rises with heat; bleeding air causes severe under-inflation when tyres cool down.",
+    "content": "<h3>Tarmac Temperatures vs Tyre Pressure Envelopes</h3><p>During peak summer months in central and northern India, tarmac surface temperatures frequently exceed 60°C. Continuous road friction and ambient heat expand air molecules inside the tyre cavity, raising gauge pressure by 10 to 15 PSI.</p><h3>The Dangerous Mistake of Midday Air Bleeding</h3><p>When drivers see 130 PSI on a tyre that started at 115 PSI, some bleed air to 'bring it back'. This is a catastrophic mistake. When the truck rests at night and tyres cool down, the tyre becomes severely under-inflated. On the next morning run, the tyre experiences intense sidewall flexing and blows out.</p><h3>Managing Summer Highway Trips</h3><p>Verify cold pressure before morning departure. If tyre temperature warnings trigger on your cab monitor, reduce speed by 10 to 15 km/h to decrease frictional heat generation, or take a 20-minute rest stop to let tyres cool naturally in the shade.</p>"
   }
 ]

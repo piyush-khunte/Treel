@@ -10,6 +10,7 @@ import {
 import { persistOrderToSupabase, getSupabaseAdminClient } from '@/lib/commerce/order-storage';
 import { syncOrderToShiprocket } from '@/lib/commerce/shiprocket-order-sync';
 import { validateCouponServer } from '@/lib/commerce/coupon-validator';
+import { validateCartBrandServer, isSurakshaProductOrItem } from '@/lib/commerce/brand-validator';
 
 export async function POST(req: NextRequest) {
   if (!isRazorpayConfigured()) {
@@ -69,6 +70,23 @@ export async function POST(req: NextRequest) {
     // 3. Persist order & payment record to Supabase
     let orderRef = `TRL-ORD-${Date.now().toString().slice(-6)}`;
     if (checkout) {
+      if (Array.isArray(checkout.items) && checkout.items.length > 0) {
+        const brandValidation = validateCartBrandServer(checkout.items, body.brand || checkout.brand);
+        if (!brandValidation.valid) {
+          return NextResponse.json(
+            {
+              success: false,
+              configured: true,
+              error: {
+                code: brandValidation.code || 'CART_BRAND_CONTAMINATION',
+                message: brandValidation.error || 'Cart items do not match the requested storefront brand.',
+              },
+            },
+            { status: 400 }
+          );
+        }
+      }
+
       const rawCoupon = (checkout.couponCode || checkout.coupon || '').trim().toUpperCase();
       if (rawCoupon && Array.isArray(checkout.items)) {
         const subtotal = checkout.items.reduce((acc: number, it: any) => {

@@ -94,6 +94,26 @@ export async function getAuthorProfile(slugOrName: string): Promise<{
     }
   }
 
+  // Case Studies (TMIP)
+  for (const item of caseStudies) {
+    const caseAuthor = item.author || "Treel Research";
+    if (isMatch(caseAuthor)) {
+      authoredArticles.push({
+        id: item._id || item.slug,
+        slug: item.slug,
+        title: item.headline,
+        deckOrExcerpt: item.excerpt,
+        category: item.industry || "Case Study",
+        categoryUrl: `/tmip/customers/case-studies`,
+        url: `/tmip/customers/case-studies/${item.slug}`,
+        date: "Deployment Review",
+        readTime: "5 min read",
+        source: "tmip",
+        sourceLabel: "TMIP Case Study",
+      });
+    }
+  }
+
   // 2. Identify or compose profile
   let profile = VERIFIED_AUTHORS[normalizedSlug];
 

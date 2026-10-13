@@ -3,6 +3,7 @@
 
 export interface PersonalProduct {
   id: string;
+  brand?: 'personal' | 'suraksha' | string;
   title: string;
   price: number;
   saleprice: number | null;
@@ -455,15 +456,70 @@ export const PERSONAL_PRODUCTS: PersonalProduct[] = [
   }
 ];
 
-export function getPersonalProducts(): PersonalProduct[] {
+function getStoredProducts(): PersonalProduct[] {
+  if (typeof window === "undefined") {
+    try {
+      // Dynamic require so bundlers do not attempt to bundle fs on the client
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const fs = require("fs");
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const path = require("path");
+      const storePath = path.join(process.cwd(), "src", "lib", "data", "products-store.json");
+      if (fs.existsSync(storePath)) {
+        const raw = fs.readFileSync(storePath, "utf-8");
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed.map((p: any) => ({
+            id: p._id || p.id,
+            title: p.title,
+            price: Number(p.price) || 0,
+            saleprice: p.saleprice !== null && p.saleprice !== undefined ? Number(p.saleprice) : null,
+            category: p.category || "Car Kit",
+            description: p.description || "",
+            slug: p.slug,
+            image: p.image,
+            image2: p.image2 || null,
+            image3: p.image3 || null,
+            image4: p.image4 || null,
+            image5: p.image5 || null,
+            galleryImage1: p.galleryImage1 || null,
+            galleryImage2: p.galleryImage2 || null,
+            boxpoint: p.boxpoint || null,
+            editorValue: p.editorValue || null,
+            stepone: p.stepone || null,
+            steptwo: p.steptwo || null,
+            stepthree: p.stepthree || null,
+            stepfour: p.stepfour || null,
+            stepdescription1: p.stepdescription1 || null,
+            stepdescription2: p.stepdescription2 || null,
+            stepdescription3: p.stepdescription3 || null,
+            stepdescription4: p.stepdescription4 || null,
+            couponamount: p.couponamount || null,
+            couponcode: p.couponcode || null,
+            productsku: p.productsku || null,
+            date: p.date || null,
+          }));
+        }
+      }
+    } catch {
+      // Fallback to static array in case of any file error
+    }
+  }
   return PERSONAL_PRODUCTS;
 }
 
+export function getPersonalProducts(): PersonalProduct[] {
+  return getStoredProducts();
+}
+
 export function getPersonalProductBySlug(slug: string): PersonalProduct | undefined {
-  return PERSONAL_PRODUCTS.find((p) => p.slug === slug);
+  const products = getStoredProducts();
+  const clean = decodeURIComponent(slug).trim().toLowerCase();
+  return products.find((p) => (p.slug || "").toLowerCase() === clean || (p.id || "").toLowerCase() === clean);
 }
 
 export function getPersonalProductsByCategory(category: string): PersonalProduct[] {
-  if (!category || category === 'All') return PERSONAL_PRODUCTS;
-  return PERSONAL_PRODUCTS.filter((p) => p.category.toLowerCase() === category.toLowerCase());
+  const products = getStoredProducts();
+  if (!category || category === "All") return products;
+  return products.filter((p) => p.category.toLowerCase() === category.toLowerCase());
 }

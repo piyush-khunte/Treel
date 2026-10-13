@@ -54,7 +54,7 @@ export default function VehicleDigitalTwinPage() {
         </div>
       </section>
 
-      {/* Section · TL;DR (At A Glance Callout Box) */}
+      {/* Section · Key Takeaway (At A Glance Callout Box) */}
       <section className="py-12 border-b border-white/10 bg-white/[0.01]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] border-l-2 border-l-[#D5573B] space-y-3">

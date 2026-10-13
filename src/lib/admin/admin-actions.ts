@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 import { revalidatePath } from 'next/cache';
 import { 
   MongoProduct, 
+  ProductBrand,
   MongoCheckout, 
   MongoCartItem,
   MongoPayment, 
@@ -52,17 +53,23 @@ import {
   saveSurakshaArticle, 
   deleteSurakshaArticle 
 } from '@/lib/content/suraksha-storage';
+import {
+  getAllProducts,
+  saveProduct,
+  deleteProduct,
+} from '@/lib/commerce/product-storage';
 
 function getAdminClient() {
-  const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder-treel.supabase.co';
-  const key =
+  const url = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder-treel.supabase.co').replace(/^['"]|['"]$/g, '');
+  const key = (
     process.env.SUPABASE_SECRET_KEY ||
     process.env.SUPABASE_SERVICE_ROLE_KEY ||
     process.env.SUPABASE_PUBLISHABLE_KEY ||
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
     process.env.SUPABASE_ANON_KEY ||
-    'placeholder-key';
+    'placeholder-key'
+  ).replace(/^['"]|['"]$/g, '');
   return createClient(url, key, {
     auth: { persistSession: false }
   });
@@ -111,16 +118,10 @@ export async function getAdminOverviewStats() {
 // ============================================================================
 // PRODUCTS CRUD
 // ============================================================================
-export async function getAdminProducts(): Promise<{ success: boolean; data?: MongoProduct[]; error?: string }> {
-  const supabase = getAdminClient();
+export async function getAdminProducts(brand?: "personal" | "suraksha" | "all"): Promise<{ success: boolean; data?: MongoProduct[]; error?: string }> {
   try {
-    const { data, error } = await supabase
-      .from('TreelEcommerce.products')
-      .select('*')
-      .order('title', { ascending: true });
-
-    if (error) throw error;
-    return { success: true, data: (data as MongoProduct[]) || [] };
+    const data = await getAllProducts(true, brand);
+    return { success: true, data };
   } catch (error: any) {
     console.error('getAdminProducts error:', error);
     return { success: false, error: error.message || 'Failed to fetch products' };
@@ -128,20 +129,30 @@ export async function getAdminProducts(): Promise<{ success: boolean; data?: Mon
 }
 
 export async function updateAdminProduct(id: string, updates: Partial<MongoProduct>) {
-  const supabase = getAdminClient();
-  try {
-    // Remove _id from updates payload if present to avoid mutating PK
-    const { _id, ...fields } = updates;
-    const { data, error } = await supabase
-      .from('TreelEcommerce.products')
-      .update(fields)
-      .eq('_id', id)
-      .select();
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: "Unauthorized: Administrator authentication required." };
+  }
 
-    if (error) throw error;
-    revalidatePath('/admin/inventory');
-    revalidatePath('/admin/products');
-    return { success: true, data };
+  if (!id) {
+    return { success: false, error: "Product ID is required." };
+  }
+
+  try {
+    if (updates.title !== undefined && !updates.title.trim()) {
+      return { success: false, error: "Product title cannot be empty." };
+    }
+
+    if (updates.brand !== undefined) {
+      const rawBrand = updates.brand.toLowerCase().trim();
+      if (rawBrand !== "personal" && rawBrand !== "suraksha") {
+        return { success: false, error: "Invalid brand. Must be 'personal' (Personal TPMS) or 'suraksha' (Treel Suraksha)." };
+      }
+      updates.brand = rawBrand as ProductBrand;
+    }
+
+    const updated = await saveProduct({ ...updates, _id: id });
+    return { success: true, data: [updated] };
   } catch (error: any) {
     console.error('updateAdminProduct error:', error);
     return { success: false, error: error.message || 'Failed to update product' };
@@ -149,23 +160,23 @@ export async function updateAdminProduct(id: string, updates: Partial<MongoProdu
 }
 
 export async function createAdminProduct(product: Partial<MongoProduct>) {
-  const supabase = getAdminClient();
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: "Unauthorized: Administrator authentication required." };
+  }
+
+  if (!product.title || !product.title.trim()) {
+    return { success: false, error: "Product title is required." };
+  }
+
+  const rawBrand = (product.brand || "").toLowerCase().trim();
+  if (rawBrand !== "personal" && rawBrand !== "suraksha") {
+    return { success: false, error: "Product brand is required. Choose 'Personal TPMS' or 'Treel Suraksha'." };
+  }
+
   try {
-    // Ensure slug exists
-    const payload = {
-      ...product,
-      slug: product.slug || product.title?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '') || `product-${Date.now()}`
-    };
-
-    const { data, error } = await supabase
-      .from('TreelEcommerce.products')
-      .insert([payload])
-      .select();
-
-    if (error) throw error;
-    revalidatePath('/admin/inventory');
-    revalidatePath('/admin/products');
-    return { success: true, data };
+    const created = await saveProduct({ ...product, brand: rawBrand as ProductBrand });
+    return { success: true, data: [created] };
   } catch (error: any) {
     console.error('createAdminProduct error:', error);
     return { success: false, error: error.message || 'Failed to create product' };
@@ -173,17 +184,18 @@ export async function createAdminProduct(product: Partial<MongoProduct>) {
 }
 
 export async function deleteAdminProduct(id: string) {
-  const supabase = getAdminClient();
-  try {
-    const { error } = await supabase
-      .from('TreelEcommerce.products')
-      .delete()
-      .eq('_id', id);
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: "Unauthorized: Administrator authentication required." };
+  }
 
-    if (error) throw error;
-    revalidatePath('/admin/inventory');
-    revalidatePath('/admin/products');
-    return { success: true };
+  if (!id) {
+    return { success: false, error: "Product ID is required." };
+  }
+
+  try {
+    const success = await deleteProduct(id);
+    return { success };
   } catch (error: any) {
     console.error('deleteAdminProduct error:', error);
     return { success: false, error: error.message || 'Failed to delete product' };
@@ -251,8 +263,10 @@ export async function updateAdminCheckoutStatus(id: string, status: string) {
       .select();
 
     if (error) throw error;
-    revalidatePath('/admin/orders');
-    revalidatePath('/admin');
+    try {
+      revalidatePath('/admin/orders');
+      revalidatePath('/admin');
+    } catch {}
     return { success: true, data };
   } catch (error: any) {
     console.error('updateAdminCheckoutStatus error:', error);
@@ -534,7 +548,11 @@ export async function createAdminCategoryContent(
         const saved = await saveInsight(payload);
         revalidatePath("/admin/blogs");
         revalidatePath("/insights");
-        if (saved.slug) revalidatePath(`/insights/${saved.slug}`);
+        revalidatePath("/tmip/insights");
+        if (saved.slug) {
+          revalidatePath(`/insights/${saved.slug}`);
+          revalidatePath(`/tmip/insights/${saved.slug}`);
+        }
         return { success: true, data: saved };
       }
       case "tmip": {
@@ -547,7 +565,9 @@ export async function createAdminCategoryContent(
         const saved = await saveCaseStudy(payload);
         revalidatePath("/admin/blogs");
         revalidatePath("/tmip/customers/case-studies");
-        if (saved.slug) revalidatePath(`/tmip/customers/case-studies/${saved.slug}`);
+        if (saved.slug) {
+          revalidatePath(`/tmip/customers/case-studies/${saved.slug}`);
+        }
         return { success: true, data: saved };
       }
       case "suraksha": {
@@ -560,6 +580,12 @@ export async function createAdminCategoryContent(
         const saved = await saveSurakshaArticle(payload);
         revalidatePath("/admin/blogs");
         revalidatePath("/suraksha/blog");
+        if (saved.slug) {
+          revalidatePath(`/suraksha/blog/${saved.slug}`);
+        }
+        if (saved._id) {
+          revalidatePath(`/suraksha/blog/${saved._id}`);
+        }
         return { success: true, data: saved };
       }
       case "personal": {
@@ -593,7 +619,11 @@ export async function updateAdminCategoryContent(
         const saved = await saveInsight({ ...payload, _id: id });
         revalidatePath("/admin/blogs");
         revalidatePath("/insights");
-        if (saved.slug) revalidatePath(`/insights/${saved.slug}`);
+        revalidatePath("/tmip/insights");
+        if (saved.slug) {
+          revalidatePath(`/insights/${saved.slug}`);
+          revalidatePath(`/tmip/insights/${saved.slug}`);
+        }
         return { success: true, data: saved };
       }
       case "tmip": {
@@ -603,7 +633,9 @@ export async function updateAdminCategoryContent(
         const saved = await saveCaseStudy({ ...payload, _id: id });
         revalidatePath("/admin/blogs");
         revalidatePath("/tmip/customers/case-studies");
-        if (saved.slug) revalidatePath(`/tmip/customers/case-studies/${saved.slug}`);
+        if (saved.slug) {
+          revalidatePath(`/tmip/customers/case-studies/${saved.slug}`);
+        }
         return { success: true, data: saved };
       }
       case "suraksha": {
@@ -613,6 +645,12 @@ export async function updateAdminCategoryContent(
         const saved = await saveSurakshaArticle({ ...payload, _id: id });
         revalidatePath("/admin/blogs");
         revalidatePath("/suraksha/blog");
+        if (saved.slug) {
+          revalidatePath(`/suraksha/blog/${saved.slug}`);
+        }
+        if (saved._id) {
+          revalidatePath(`/suraksha/blog/${saved._id}`);
+        }
         return { success: true, data: saved };
       }
       case "personal": {
@@ -642,6 +680,7 @@ export async function deleteAdminCategoryContent(
         await deleteInsight(id);
         revalidatePath("/admin/blogs");
         revalidatePath("/insights");
+        revalidatePath("/tmip/insights");
         return { success: true };
       }
       case "tmip": {
@@ -699,8 +738,11 @@ export async function getAdminAnnualReturns(): Promise<{ success: boolean; data?
 export async function createAdminAnnualReturn(ret: Partial<MongoAnnualReturn>) {
   const supabase = getAdminClient();
   try {
+    const { _id, ...cleanRet } = ret;
+    const finalId = _id && !_id.startsWith('new_') ? _id : `ret_${Date.now()}`;
     const payload = {
-      ...ret,
+      ...cleanRet,
+      _id: finalId,
       date: ret.date || new Date().toISOString()
     };
 
@@ -710,7 +752,9 @@ export async function createAdminAnnualReturn(ret: Partial<MongoAnnualReturn>) {
       .select();
 
     if (error) throw error;
-    revalidatePath('/admin/annual-returns');
+    try {
+      revalidatePath('/admin/annual-returns');
+    } catch {}
     return { success: true, data };
   } catch (error: any) {
     console.error('createAdminAnnualReturn error:', error);
@@ -729,7 +773,9 @@ export async function updateAdminAnnualReturn(id: string, updates: Partial<Mongo
       .select();
 
     if (error) throw error;
-    revalidatePath('/admin/annual-returns');
+    try {
+      revalidatePath('/admin/annual-returns');
+    } catch {}
     return { success: true, data };
   } catch (error: any) {
     console.error('updateAdminAnnualReturn error:', error);
@@ -746,7 +792,9 @@ export async function deleteAdminAnnualReturn(id: string) {
       .eq('_id', id);
 
     if (error) throw error;
-    revalidatePath('/admin/annual-returns');
+    try {
+      revalidatePath('/admin/annual-returns');
+    } catch {}
     return { success: true };
   } catch (error: any) {
     console.error('deleteAdminAnnualReturn error:', error);

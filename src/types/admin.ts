@@ -1,9 +1,13 @@
 // TypeScript Types for Treel Admin Panel
 // Aligned with the migrated Supabase schema (TreelEcommerce.*)
 
+export type ProductBrand = "personal" | "suraksha";
+
 export interface MongoProduct {
   _id: string;
   title: string;
+  brand?: ProductBrand | string;
+  brand_scope?: string;
   price: number;
   saleprice: number | null;
   category: string;
@@ -30,6 +34,8 @@ export interface MongoProduct {
   couponcode?: string | null;
   productsku?: string;
   date?: string;
+  status?: string;
+  stock?: number;
   __v?: number;
 }
 

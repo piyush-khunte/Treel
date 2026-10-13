@@ -57,6 +57,8 @@ export interface TmipCaseStudy {
     author: string;
     title: string;
   };
+  author?: string;
+  authorRole?: string;
   content?: string;
   createdAt?: string;
   updatedAt?: string;

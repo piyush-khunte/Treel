@@ -9,6 +9,7 @@ import {
   Loader2, 
   CheckCircle2
 } from "lucide-react";
+import { copyToClipboardSafe } from "@/lib/utils/clipboard";
 
 interface ArticleShareProps {
   title: string;
@@ -18,11 +19,13 @@ interface ArticleShareProps {
 export function ArticleShareBar({ title, url }: ArticleShareProps) {
   const [copied, setCopied] = useState(false);
 
-  const handleCopy = () => {
+  const handleCopy = async () => {
     if (typeof window !== "undefined") {
-      navigator.clipboard.writeText(window.location.href);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      const res = await copyToClipboardSafe(window.location.href);
+      if (res.success) {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }
     }
   };
 

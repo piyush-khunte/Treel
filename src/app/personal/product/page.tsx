@@ -21,6 +21,8 @@ import {
 } from "lucide-react";
 import { useCart } from "@/lib/commerce/cart-context";
 import { PERSONAL_PRODUCTS, PersonalProduct, getPersonalProductBySlug } from "@/lib/data/personal-products";
+import { getValidImageSrc } from "@/lib/utils/image-utils";
+import { isSurakshaProductOrItem } from "@/lib/commerce/brand-validator";
 
 function ProductDetailContent({ product }: { product: PersonalProduct }) {
   const router = useRouter();
@@ -29,13 +31,21 @@ function ProductDetailContent({ product }: { product: PersonalProduct }) {
   // Gather all valid gallery images
   const images = useMemo(() => {
     const list: string[] = [];
-    if (product.image) list.push(product.image);
-    if (product.image2) list.push(product.image2);
-    if (product.image3) list.push(product.image3);
-    if (product.image4) list.push(product.image4);
-    if (product.image5) list.push(product.image5);
-    if (product.galleryImage1) list.push(product.galleryImage1);
-    if (product.galleryImage2) list.push(product.galleryImage2);
+    const candidates = [
+      product.image,
+      product.image2,
+      product.image3,
+      product.image4,
+      product.image5,
+      product.galleryImage1,
+      product.galleryImage2,
+    ];
+    for (const c of candidates) {
+      const valid = getValidImageSrc(c);
+      if (valid && !list.includes(valid)) {
+        list.push(valid);
+      }
+    }
     return list;
   }, [product]);
 
@@ -149,14 +159,26 @@ function ProductDetailContent({ product }: { product: PersonalProduct }) {
             {/* Gallery Column */}
             <div className="lg:col-span-6 space-y-4">
               <div className="aspect-square rounded-3xl bg-[#F3F4F6] border border-black/[0.06] p-8 flex items-center justify-center relative overflow-hidden shadow-inner">
-                <Image
-                  src={images[selectedImgIndex] || product.image}
-                  alt={product.title}
-                  fill
-                  unoptimized
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-contain p-6"
-                />
+                {(() => {
+                  const mainSrc = images[selectedImgIndex] || getValidImageSrc(product.image);
+                  if (!mainSrc) {
+                    return (
+                      <div className="w-full h-full flex items-center justify-center text-slate-400 font-mono text-xs">
+                        {product.title}
+                      </div>
+                    );
+                  }
+                  return (
+                    <Image
+                      src={mainSrc}
+                      alt={product.title}
+                      fill
+                      unoptimized
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-contain p-6"
+                    />
+                  );
+                })()}
               </div>
 
               {/* Thumbnails */}
@@ -411,13 +433,17 @@ function ProductDetailContent({ product }: { product: PersonalProduct }) {
               >
                 <div>
                   <div className="aspect-square rounded-2xl bg-white p-4 mb-4 relative overflow-hidden flex items-center justify-center">
-                    <Image
-                      src={rel.image}
-                      alt={rel.title}
-                      fill
-                      unoptimized
-                      className="object-contain p-2 group-hover:scale-105 transition-transform"
-                    />
+                    {getValidImageSrc(rel.image) ? (
+                      <Image
+                        src={getValidImageSrc(rel.image)!}
+                        alt={rel.title}
+                        fill
+                        unoptimized
+                        className="object-contain p-2 group-hover:scale-105 transition-transform"
+                      />
+                    ) : (
+                      <div className="text-slate-400 font-mono text-xs">{rel.title}</div>
+                    )}
                   </div>
                   <div className="text-[10px] font-semibold text-[#2563EB] uppercase tracking-wider mb-1">
                     {rel.category}
@@ -444,16 +470,63 @@ function ProductDetailContent({ product }: { product: PersonalProduct }) {
 }
 
 function ProductDetailWrapper() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const slugParam = searchParams.get("slug");
 
-  if (!slugParam) {
-    redirect("/personal/buy");
+  const [product, setProduct] = useState<PersonalProduct | null>(() => {
+    if (!slugParam) return null;
+    const initial = getPersonalProductBySlug(slugParam);
+    if (initial && (initial.brand === "suraksha" || isSurakshaProductOrItem(initial))) {
+      return null;
+    }
+    return initial || null;
+  });
+  const [loading, setLoading] = useState<boolean>(!product);
+
+  React.useEffect(() => {
+    if (!slugParam) {
+      router.replace("/personal/buy");
+      return;
+    }
+
+    if (!product) {
+      fetch("/api/products?brand=personal")
+        .then((r) => r.json())
+        .then((data: PersonalProduct[]) => {
+          if (Array.isArray(data)) {
+            const clean = decodeURIComponent(slugParam).trim().toLowerCase();
+            const found = data.find(
+              (p) =>
+                (p.slug || "").toLowerCase() === clean ||
+                (p.id || "").toLowerCase() === clean
+            );
+            if (found && found.brand !== "suraksha" && !isSurakshaProductOrItem(found)) {
+              setProduct(found);
+              setLoading(false);
+              return;
+            }
+          }
+          setLoading(false);
+          router.replace("/personal/buy");
+        })
+        .catch(() => {
+          setLoading(false);
+          router.replace("/personal/buy");
+        });
+    }
+  }, [product, slugParam, router]);
+
+  if (loading) {
+    return (
+      <div className="py-24 text-center text-sm font-bold text-[#6B7280]">
+        Loading product details...
+      </div>
+    );
   }
 
-  const product = getPersonalProductBySlug(slugParam);
   if (!product) {
-    redirect("/personal/buy");
+    return null;
   }
 
   return <ProductDetailContent product={product} />;

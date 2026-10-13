@@ -84,10 +84,7 @@ const differentiators = [
     title: "Predictive analytics",
     desc: "Built on longitudinal telemetry across 68,000+ commercial vehicles, not static high/low alert thresholds that cause operator alarm fatigue.",
   },
-  {
-    title: "API-first architecture",
-    desc: "Bi-directional webhooks and REST endpoints integrate cleanly with your existing TMS, ERP, and workshop management software stacks.",
-  },
+ 
   {
     title: "Sub-second telemetry",
     desc: "Live 180ms sensor-to-cloud latency streaming via 5G edge networks rather than 5-minute delayed polling intervals.",

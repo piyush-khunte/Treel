@@ -10,7 +10,10 @@ import {
   RefreshCw, 
   X, 
   Save, 
-  ExternalLink 
+  ExternalLink,
+  Download,
+  Upload,
+  CheckCircle2
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -30,6 +33,46 @@ export default function AdminAnnualReturnsPage() {
   const [editingItem, setEditingItem] = useState<MongoAnnualReturn | null>(null);
   const [isNew, setIsNew] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [uploadingPdf, setUploadingPdf] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+
+  const handlePdfFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !editingItem) return;
+
+    if (!file.name.toLowerCase().endsWith(".pdf") && file.type !== "application/pdf") {
+      setUploadError("Invalid file type. Please upload a PDF document (.pdf).");
+      return;
+    }
+    if (file.size > 25 * 1024 * 1024) {
+      setUploadError(`File is too large (${(file.size / (1024 * 1024)).toFixed(1)}MB). Maximum allowed size is 25MB.`);
+      return;
+    }
+
+    setUploadError(null);
+    setUploadingPdf(true);
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await fetch("/api/admin/upload-document", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success && data.url) {
+        setEditingItem({ ...editingItem, pdf: data.url });
+      } else {
+        setUploadError(data.error || "Failed to upload document");
+      }
+    } catch (err: any) {
+      setUploadError(err.message || "Network error while uploading document");
+    } finally {
+      setUploadingPdf(false);
+    }
+  };
 
   const loadData = async () => {
     setLoading(true);
@@ -189,6 +232,16 @@ export default function AdminAnnualReturnsPage() {
                     <td className="p-4 text-slate-400">{r.date ? new Date(r.date).toLocaleDateString() : "--"}</td>
                     <td className="p-4 text-right">
                       <div className="flex justify-end items-center gap-1.5">
+                        <a
+                          href={r.pdf}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          download
+                          title="Download document"
+                          className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                        >
+                          <Download className="w-3.5 h-3.5" />
+                        </a>
                         <Button 
                           size="sm" 
                           variant="outline" 
@@ -246,15 +299,81 @@ export default function AdminAnnualReturnsPage() {
                 />
               </div>
 
-              <div className="space-y-1">
-                <label className="text-slate-400">PDF Document Link (pdf) *</label>
-                <Input
-                  required
-                  value={editingItem.pdf || ""}
-                  onChange={(e) => setEditingItem({ ...editingItem, pdf: e.target.value })}
-                  className="bg-slate-950 border-slate-800 text-white"
-                  placeholder="https://...s3.amazonaws.com/annual-returns/..."
-                />
+              {/* PDF Document Section */}
+              <div className="space-y-3 pt-2 border-t border-slate-800">
+                <div className="flex items-center justify-between">
+                  <label className="text-slate-300 font-semibold block text-xs">
+                    PDF Document (pdf) *
+                  </label>
+                  {editingItem.pdf && (
+                    <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
+                      <CheckCircle2 className="w-3.5 h-3.5" /> PDF attached
+                    </span>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-950 p-4 rounded-xl border border-slate-800">
+                  {/* Option A: Upload File */}
+                  <div className="space-y-2">
+                    <label className="text-slate-400 block text-[11px]">
+                      Option A: Upload PDF Document (max 25MB)
+                    </label>
+                    <div className="flex flex-col gap-2">
+                      <input
+                        type="file"
+                        accept="application/pdf,.pdf"
+                        disabled={uploadingPdf}
+                        onChange={handlePdfFileUpload}
+                        className="file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-rose-600 file:text-white hover:file:bg-rose-500 text-slate-400 text-xs cursor-pointer border border-slate-800 rounded-lg p-2 bg-slate-900 w-full"
+                      />
+                      {uploadingPdf && (
+                        <div className="flex items-center gap-2 text-xs text-rose-400 animate-pulse font-mono">
+                          <RefreshCw className="w-3.5 h-3.5 animate-spin" /> Uploading document to storage...
+                        </div>
+                      )}
+                      {uploadError && (
+                        <div className="text-rose-400 text-[11px] font-sans">
+                          {uploadError}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Option B: Enter URL */}
+                  <div className="space-y-2">
+                    <label className="text-slate-400 block text-[11px]">
+                      Option B: Or Enter PDF Document URL
+                    </label>
+                    <Input
+                      required
+                      placeholder="https://...document.pdf"
+                      value={editingItem.pdf || ""}
+                      onChange={(e) => setEditingItem({ ...editingItem, pdf: e.target.value })}
+                      className="bg-slate-900 border-slate-800 text-white font-mono text-xs"
+                    />
+                  </div>
+                </div>
+
+                {/* PDF Verification Preview Link */}
+                {editingItem.pdf && (
+                  <div className="flex items-center justify-between p-3 bg-slate-950 rounded-xl border border-slate-800">
+                    <div className="flex items-center gap-2 overflow-hidden text-xs">
+                      <FileText className="w-4 h-4 text-rose-400 shrink-0" />
+                      <span className="text-slate-300 truncate max-w-sm font-mono text-[11px]">
+                        {editingItem.pdf}
+                      </span>
+                    </div>
+                    <a
+                      href={editingItem.pdf}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-mono text-rose-400 hover:text-rose-300 flex items-center gap-1 shrink-0 ml-2"
+                    >
+                      <span>Verify PDF</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                )}
               </div>
 
               <div className="space-y-1">

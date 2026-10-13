@@ -21,9 +21,12 @@ import {
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
 import { slugifyAuthor } from "@/lib/authors/author-utils";
+import { getAdminSession } from "@/lib/admin/admin-auth";
+import { getValidImageSrc } from "@/lib/utils/image-utils";
 import {
   getPublishedSurakshaArticleBySlug,
   getPublishedSurakshaArticles,
+  getSurakshaArticleBySlug,
 } from "@/lib/content/suraksha-storage";
 
 export const revalidate = 60;
@@ -44,9 +47,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const article = await getPublishedSurakshaArticleBySlug(slug);
+  const adminSession = await getAdminSession();
+  const article = await getSurakshaArticleBySlug(slug, Boolean(adminSession));
 
-  if (!article) {
+  if (!article || (article.status !== "Published" && !adminSession)) {
     return {
       title: "Article Not Found · Suraksha Drivers' Blog",
       description: "The requested Suraksha article could not be found.",
@@ -69,7 +73,7 @@ export async function generateMetadata({
       description,
       url: canonicalUrl,
       type: "article",
-      images: article.image ? [{ url: article.image }] : undefined,
+      images: getValidImageSrc(article.image) ? [{ url: getValidImageSrc(article.image)! }] : undefined,
     },
   };
 }
@@ -80,9 +84,10 @@ export default async function SurakshaArticleDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const article = await getPublishedSurakshaArticleBySlug(slug);
+  const adminSession = await getAdminSession();
+  const article = await getSurakshaArticleBySlug(slug, Boolean(adminSession));
 
-  if (!article || article.status !== "Published") {
+  if (!article || (article.status !== "Published" && !adminSession)) {
     notFound();
   }
 
@@ -107,6 +112,19 @@ export default async function SurakshaArticleDetailPage({
 
   return (
     <div className="space-y-0 bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20 min-h-screen">
+      {/* Admin Draft Preview Notification Banner */}
+      {article.status !== "Published" && (
+        <div className="bg-amber-500/25 border-b border-amber-600/30 text-amber-950 px-6 py-2.5 text-xs font-mono font-semibold flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <AlertTriangle className="w-4 h-4 text-amber-700 shrink-0" />
+            <span>Admin Preview Mode — This article is currently in Draft and not visible to the public.</span>
+          </div>
+          <span className="uppercase px-2 py-0.5 rounded bg-amber-500/30 text-amber-950 text-[10px] tracking-wider">
+            Draft
+          </span>
+        </div>
+      )}
+
       {/* 1. TOP ARTICLE HERO */}
       <section className="relative overflow-hidden pt-12 pb-14 sm:pt-16 sm:pb-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1100px] mx-auto px-6 sm:px-10 space-y-6">
@@ -171,17 +189,21 @@ export default async function SurakshaArticleDetailPage({
       <section className="py-12 sm:py-16 bg-[#FEF3C7]">
         <div className="max-w-[900px] mx-auto px-6 sm:px-10 space-y-10">
           {/* Optional Featured Image */}
-          {article.image && (
-            <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border-2 border-[#451A03]/15 shadow-md">
-              <Image
-                src={article.image}
-                alt={article.title}
-                fill
-                priority
-                className="object-cover"
-              />
-            </div>
-          )}
+          {(() => {
+            const validImageSrc = getValidImageSrc(article.image);
+            if (!validImageSrc) return null;
+            return (
+              <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border-2 border-[#451A03]/15 shadow-md">
+                <Image
+                  src={validImageSrc}
+                  alt={article.title || "Suraksha post featured image"}
+                  fill
+                  priority
+                  className="object-cover"
+                />
+              </div>
+            );
+          })()}
 
           {/* Lead Excerpt */}
           {article.excerpt && (

@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, Calendar, Clock, User, ShoppingCart } from "luci
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { getPublicBlogBySlug, getPublicBlogs } from "@/lib/admin/admin-actions";
 import { slugifyAuthor } from "@/lib/authors/author-utils";
+import { getValidImageSrc } from "@/lib/utils/image-utils";
 
 export const revalidate = 60;
 
@@ -47,7 +48,7 @@ export async function generateMetadata({
       title: metaTitle,
       description: metaDesc,
       url: `https://treel.in/personal/blog/${article.slug}`,
-      images: article.image ? [{ url: article.image }] : undefined,
+      images: getValidImageSrc(article.image) ? [{ url: getValidImageSrc(article.image)! }] : undefined,
     },
   };
 }
@@ -122,25 +123,29 @@ export default async function PersonalArticlePage({
       {/* Article Body */}
       <article className="py-16 bg-white">
         <div className="max-w-[840px] mx-auto px-6 sm:px-10 space-y-8">
-          {article.image && (
-            <div className="rounded-2xl overflow-hidden border border-black/[0.08] shadow-sm mb-8">
-              <img
-                src={article.image}
-                alt={article.title}
-                className="w-full h-auto max-h-[460px] object-cover"
-              />
-            </div>
-          )}
+          {(() => {
+            const validImageSrc = getValidImageSrc(article.image);
+            if (!validImageSrc) return null;
+            return (
+              <div className="rounded-2xl overflow-hidden border border-black/[0.08] shadow-sm mb-8">
+                <img
+                  src={validImageSrc}
+                  alt={article.title || "Personal blog post cover"}
+                  className="w-full h-auto max-h-[460px] object-cover"
+                />
+              </div>
+            );
+          })()}
 
           {/* Body Content */}
           {hasHtml ? (
             <div
               className="prose prose-lg max-w-none text-[#374151] leading-relaxed space-y-6 [&>p]:leading-relaxed [&>p]:text-base [&>p]:sm:text-lg [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-[#111827] [&>h3]:text-xl [&>h3]:font-bold [&>h3]:text-[#111827] [&>ul]:list-disc [&>ul]:pl-5 [&>ol]:list-decimal [&>ol]:pl-5"
-              dangerouslySetInnerHTML={{ __html: article.blogContent }}
+              dangerouslySetInnerHTML={{ __html: article.blogContent || "" }}
             />
           ) : (
             <div className="space-y-6 text-base sm:text-lg text-[#374151] leading-relaxed">
-              {article.blogContent.split("\n\n").map((para, i) => (
+              {(article.blogContent || "").split("\n\n").map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
             </div>

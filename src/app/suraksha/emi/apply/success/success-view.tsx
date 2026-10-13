@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
+import { copyToClipboardSafe } from "@/lib/utils/clipboard";
 
 interface EmiApplicationDetails {
   referenceNumber: string;
@@ -95,9 +96,9 @@ export function SurakshaEmiSuccessView() {
     }
   }, [searchParams]);
 
-  const handleCopy = () => {
-    if (typeof navigator !== "undefined" && navigator.clipboard) {
-      navigator.clipboard.writeText(details.referenceNumber);
+  const handleCopy = async () => {
+    const res = await copyToClipboardSafe(details.referenceNumber);
+    if (res.success) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }

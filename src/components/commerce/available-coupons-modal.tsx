@@ -13,6 +13,7 @@ import {
   Loader2,
 } from "lucide-react";
 import type { AvailableCouponItem } from "@/lib/commerce/coupon-validator";
+import { copyToClipboardSafe } from "@/lib/utils/clipboard";
 
 interface AvailableCouponsModalProps {
   isOpen: boolean;
@@ -86,12 +87,10 @@ export function AvailableCouponsModal({
   if (!isOpen) return null;
 
   const handleCopy = async (code: string) => {
-    try {
-      await navigator.clipboard.writeText(code);
+    const res = await copyToClipboardSafe(code);
+    if (res.success) {
       setCopiedCode(code);
       setTimeout(() => setCopiedCode(null), 2500);
-    } catch (err) {
-      console.warn("Clipboard write failed:", err);
     }
   };
 

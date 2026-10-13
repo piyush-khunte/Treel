@@ -29,11 +29,15 @@ import {
   TrendingUp,
   Quote,
   ArrowUp,
-  ArrowDown
+  ArrowDown,
+  Copy,
+  Check
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { copyToClipboardSafe } from "@/lib/utils/clipboard";
+import { getValidImageSrc } from "@/lib/utils/image-utils";
 import { 
   getAdminCategoryContent, 
   createAdminCategoryContent, 
@@ -178,9 +182,24 @@ export default function AdminBlogsPage() {
 
   const activeMeta = CATEGORIES.find((c) => c.id === activeCategory)!;
 
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
+
   const showFeedback = (type: "success" | "error", message: string) => {
     setFeedback({ type, message });
     setTimeout(() => setFeedback(null), 5000);
+  };
+
+  const handleCopyText = async (text: string, key: string, label: string) => {
+    const res = await copyToClipboardSafe(text);
+    if (res.success) {
+      setCopiedKey(key);
+      showFeedback("success", `${label} copied to clipboard.`);
+      setTimeout(() => {
+        setCopiedKey((curr) => (curr === key ? null : curr));
+      }, 2000);
+    } else {
+      showFeedback("error", res.error || `Could not copy ${label}. Please copy manually.`);
+    }
   };
 
   // Load items for active category and refresh all category statistics
@@ -278,7 +297,8 @@ export default function AdminBlogsPage() {
           text: "",
           author: "",
           title: ""
-        }
+        },
+        content: ""
       });
     } else if (activeCategory === "suraksha") {
       setEditingItem({
@@ -291,6 +311,8 @@ export default function AdminBlogsPage() {
         date: dateFormatted,
         readTime: "5 min read",
         keyTakeaway: "Suraksha delivers continuous tyre pressure and temperature alerts to protect driver safety.",
+        content: "",
+        image: "",
         status: "Published"
       });
     } else {
@@ -318,12 +340,16 @@ export default function AdminBlogsPage() {
   const handleEdit = (item: any) => {
     const cloned = JSON.parse(JSON.stringify(item));
     if (activeCategory === "treel_main") {
+      cloned.tldr = cloned.tldr || "";
       if (!cloned.body || !Array.isArray(cloned.body.sections) || cloned.body.sections.length === 0) {
         cloned.body = {
-          sections: [{ heading: "Key Analysis", paragraphs: [cloned.deck || ""] }],
+          sections: [{ heading: "Key Analysis", paragraphs: [cloned.deck || cloned.content || ""] }],
           pullQuote: cloned.body?.pullQuote
         };
       }
+    }
+    if (cloned.image !== undefined) {
+      cloned.image = getValidImageSrc(cloned.image) || "";
     }
     setEditingItem(cloned);
     setIsNewItem(false);
@@ -705,6 +731,8 @@ export default function AdminBlogsPage() {
                     publicPreviewUrl = `/tmip/customers/case-studies/${item.slug}`;
                   } else if (activeCategory === "personal" && item.slug) {
                     publicPreviewUrl = `/personal/blog/${item.slug}`;
+                  } else if (activeCategory === "suraksha") {
+                    publicPreviewUrl = `/suraksha/blog/${item.slug || item._id}`;
                   }
 
                   return (
@@ -717,6 +745,19 @@ export default function AdminBlogsPage() {
                           </div>
                           <div className="text-xs font-mono text-slate-400 flex items-center gap-2">
                             <span className="truncate max-w-xs">{itemSlug}</span>
+                            <button
+                              type="button"
+                              onClick={() => handleCopyText(itemSlug, `slug_${item._id}`, "Slug")}
+                              title="Copy slug"
+                              aria-label={`Copy slug ${itemSlug}`}
+                              className="p-1 rounded text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer inline-flex items-center"
+                            >
+                              {copiedKey === `slug_${item._id}` ? (
+                                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                              ) : (
+                                <Copy className="w-3.5 h-3.5" />
+                              )}
+                            </button>
                             {item.isFeatured && (
                               <span className="px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 text-[10px] uppercase font-bold">
                                 Featured
@@ -793,10 +834,29 @@ export default function AdminBlogsPage() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
-                            title="Preview on public site"
+                            title="View blog"
+                            aria-label={`View blog ${displayTitle}`}
                           >
                             <ExternalLink className="w-4 h-4" />
                           </Link>
+
+                          {/* Copy Public Link */}
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const fullUrl = typeof window !== "undefined" ? `${window.location.origin}${publicPreviewUrl}` : publicPreviewUrl;
+                              handleCopyText(fullUrl, `link_${item._id}`, "Public link");
+                            }}
+                            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                            title="Copy public link"
+                            aria-label={`Copy public link for ${displayTitle}`}
+                          >
+                            {copiedKey === `link_${item._id}` ? (
+                              <Check className="w-4 h-4 text-emerald-400" />
+                            ) : (
+                              <Copy className="w-4 h-4" />
+                            )}
+                          </button>
 
                           {/* Edit */}
                           <button
@@ -873,9 +933,22 @@ export default function AdminBlogsPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
-                        URL Slug *
-                      </label>
+                      <div className="flex items-center justify-between mb-1">
+                        <label className="block text-xs font-mono uppercase tracking-wider text-slate-400">
+                          URL Slug *
+                        </label>
+                        {editingItem.slug && (
+                          <button
+                            type="button"
+                            onClick={() => handleCopyText(editingItem.slug, "modal_slug", "Slug")}
+                            className="text-[11px] font-mono text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer"
+                            title="Copy slug"
+                          >
+                            {copiedKey === "modal_slug" ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                            <span>{copiedKey === "modal_slug" ? "Copied" : "Copy"}</span>
+                          </button>
+                        )}
+                      </div>
                       <Input
                         value={editingItem.slug || ""}
                         onChange={(e) => setEditingItem({ ...editingItem, slug: e.target.value })}
@@ -962,6 +1035,32 @@ export default function AdminBlogsPage() {
                       className="w-full bg-slate-950 border border-white/10 rounded-md p-3 text-sm text-white focus:outline-none focus:border-blue-500"
                     />
                   </div>
+
+                    <div>
+                      <div className="flex items-center justify-between mb-1">
+                        <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">
+                          Key Takeaway (Optional)
+                        </label>
+                        {editingItem.tldr && (
+                          <button
+                            type="button"
+                            onClick={() => handleCopyText(editingItem.tldr, "modal_tldr", "Key Takeaway")}
+                            className="text-[11px] font-mono text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer"
+                            title="Copy Key Takeaway"
+                          >
+                            {copiedKey === "modal_tldr" ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                            <span>{copiedKey === "modal_tldr" ? "Copied" : "Copy Key Takeaway"}</span>
+                          </button>
+                        )}
+                      </div>
+                      <textarea
+                        rows={3}
+                        value={editingItem.tldr || ""}
+                        onChange={(e) => setEditingItem({ ...editingItem, tldr: e.target.value })}
+                        placeholder="Key takeaway paragraph for busy executives..."
+                        className="w-full bg-slate-950 border border-white/10 rounded-md p-3 text-sm text-white focus:outline-none focus:border-blue-500 font-sans leading-relaxed"
+                      />
+                    </div>
 
                   {/* Multi-Section Article Editor */}
                   <div className="space-y-4 pt-2 border-t border-white/10">
@@ -1173,9 +1272,22 @@ export default function AdminBlogsPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
-                        URL Slug *
-                      </label>
+                      <div className="flex items-center justify-between mb-1">
+                        <label className="block text-xs font-mono uppercase tracking-wider text-slate-400">
+                          URL Slug *
+                        </label>
+                        {editingItem.slug && (
+                          <button
+                            type="button"
+                            onClick={() => handleCopyText(editingItem.slug, "modal_slug", "Slug")}
+                            className="text-[11px] font-mono text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer"
+                            title="Copy slug"
+                          >
+                            {copiedKey === "modal_slug" ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                            <span>{copiedKey === "modal_slug" ? "Copied" : "Copy"}</span>
+                          </button>
+                        )}
+                      </div>
                       <Input
                         value={editingItem.slug || ""}
                         onChange={(e) => setEditingItem({ ...editingItem, slug: e.target.value })}
@@ -1292,6 +1404,55 @@ export default function AdminBlogsPage() {
                     </div>
                   </div>
 
+                  <div className="p-4 rounded-lg bg-slate-900 border border-white/10 space-y-3">
+                    <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">
+                      Featured Executive Quote (Optional)
+                    </label>
+                    <textarea
+                      rows={2}
+                      value={editingItem.quote?.text || ""}
+                      onChange={(e) => setEditingItem({
+                        ...editingItem,
+                        quote: { ...(editingItem.quote || {}), text: e.target.value }
+                      })}
+                      placeholder="Quote from VP / Operations Head..."
+                      className="w-full bg-slate-950 border border-white/10 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-blue-500"
+                    />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <Input
+                        value={editingItem.quote?.author || ""}
+                        onChange={(e) => setEditingItem({
+                          ...editingItem,
+                          quote: { ...(editingItem.quote || {}), author: e.target.value }
+                        })}
+                        placeholder="Author name e.g. Rajesh Kumar"
+                        className="bg-slate-950 border-white/10 text-white text-xs"
+                      />
+                      <Input
+                        value={editingItem.quote?.title || ""}
+                        onChange={(e) => setEditingItem({
+                          ...editingItem,
+                          quote: { ...(editingItem.quote || {}), title: e.target.value }
+                        })}
+                        placeholder="Role / Title e.g. VP Logistics Operations"
+                        className="bg-slate-950 border-white/10 text-white text-xs"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
+                      Full Case Study Narrative / Content (HTML or Markdown)
+                    </label>
+                    <textarea
+                      rows={8}
+                      value={editingItem.content || ""}
+                      onChange={(e) => setEditingItem({ ...editingItem, content: e.target.value })}
+                      placeholder="Full deep-dive article content, sections, telemetry results, and operational details..."
+                      className="w-full bg-slate-950 border border-white/10 rounded-md p-3 text-sm text-white font-mono focus:outline-none focus:border-blue-500 leading-relaxed"
+                    />
+                  </div>
+
                   <div className="flex items-center gap-2 pt-2">
                     <input
                       type="checkbox"
@@ -1323,7 +1484,32 @@ export default function AdminBlogsPage() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                      <div className="flex items-center justify-between mb-1">
+                        <label className="block text-xs font-mono uppercase tracking-wider text-slate-400">
+                          URL Slug *
+                        </label>
+                        {editingItem.slug && (
+                          <button
+                            type="button"
+                            onClick={() => handleCopyText(editingItem.slug, "modal_slug", "Slug")}
+                            className="text-[11px] font-mono text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer"
+                            title="Copy slug"
+                          >
+                            {copiedKey === "modal_slug" ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                            <span>{copiedKey === "modal_slug" ? "Copied" : "Copy"}</span>
+                          </button>
+                        )}
+                      </div>
+                      <Input
+                        value={editingItem.slug || ""}
+                        onChange={(e) => setEditingItem({ ...editingItem, slug: e.target.value })}
+                        placeholder="e.g. fuel-10-tips"
+                        className="bg-slate-950 border-white/10 text-white font-mono text-xs"
+                        required
+                      />
+                    </div>
                     <div>
                       <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
                         Topic Category
@@ -1390,6 +1576,43 @@ export default function AdminBlogsPage() {
                     />
                   </div>
 
+                  <div>
+                    <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
+                      Full Article Body (HTML or Markdown)
+                    </label>
+                    <textarea
+                      rows={8}
+                      value={editingItem.content || ""}
+                      onChange={(e) => setEditingItem({ ...editingItem, content: e.target.value })}
+                      placeholder="Detailed advice, maintenance steps, safety guidelines in HTML or Markdown..."
+                      className="w-full bg-slate-950 border border-white/10 rounded-md p-3 text-sm text-white font-mono focus:outline-none focus:border-blue-500 leading-relaxed"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
+                      Cover Image URL (Optional)
+                    </label>
+                    <Input
+                      value={editingItem.image || ""}
+                      onChange={(e) => setEditingItem({ ...editingItem, image: e.target.value })}
+                      placeholder="https://images.unsplash.com/photo-..."
+                      className="bg-slate-950 border-white/10 text-white"
+                    />
+                    {getValidImageSrc(editingItem.image) && (
+                      <div className="mt-2 h-28 rounded-lg overflow-hidden border border-white/10 bg-slate-950">
+                        <img
+                          src={getValidImageSrc(editingItem.image)!}
+                          alt="Preview"
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            (e.currentTarget as HTMLImageElement).style.display = "none";
+                          }}
+                        />
+                      </div>
+                    )}
+                  </div>
+
                   <div className="p-4 rounded-xl bg-orange-950/20 border border-orange-500/30 space-y-2">
                     <label className="block text-xs font-mono uppercase tracking-wider text-orange-400 font-bold">
                       Key Takeaway for Indian Highway Drivers
@@ -1423,9 +1646,22 @@ export default function AdminBlogsPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
-                        URL Slug *
-                      </label>
+                      <div className="flex items-center justify-between mb-1">
+                        <label className="block text-xs font-mono uppercase tracking-wider text-slate-400">
+                          URL Slug *
+                        </label>
+                        {editingItem.slug && (
+                          <button
+                            type="button"
+                            onClick={() => handleCopyText(editingItem.slug, "modal_slug", "Slug")}
+                            className="text-[11px] font-mono text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer"
+                            title="Copy slug"
+                          >
+                            {copiedKey === "modal_slug" ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                            <span>{copiedKey === "modal_slug" ? "Copied" : "Copy"}</span>
+                          </button>
+                        )}
+                      </div>
                       <Input
                         value={editingItem.slug || ""}
                         onChange={(e) => setEditingItem({ ...editingItem, slug: e.target.value })}
@@ -1485,10 +1721,10 @@ export default function AdminBlogsPage() {
                       placeholder="https://images.unsplash.com/photo-..."
                       className="bg-slate-950 border-white/10 text-white"
                     />
-                    {editingItem.image && (
+                    {getValidImageSrc(editingItem.image) && (
                       <div className="mt-2 h-28 rounded-lg overflow-hidden border border-white/10 bg-slate-950">
                         <img
-                          src={editingItem.image}
+                          src={getValidImageSrc(editingItem.image)!}
                           alt="Preview"
                           className="w-full h-full object-cover"
                           onError={(e) => {

@@ -347,10 +347,14 @@ export async function getPublishedInsights(): Promise<TreelInsightArticle[]> {
   return getAllInsights(false);
 }
 
-export async function getInsightBySlug(slug: string): Promise<TreelInsightArticle | null> {
-  const all = await getAllInsights(true);
+export async function getInsightBySlug(slug: string, includeDrafts = true): Promise<TreelInsightArticle | null> {
+  const all = await getAllInsights(includeDrafts);
   const found = all.find((item) => item.slug.toLowerCase() === slug.toLowerCase());
   return found || null;
+}
+
+export async function getPublishedInsightBySlug(slug: string): Promise<TreelInsightArticle | null> {
+  return getInsightBySlug(slug, false);
 }
 
 export async function saveInsight(insight: Partial<TreelInsightArticle>): Promise<TreelInsightArticle> {
@@ -360,34 +364,36 @@ export async function saveInsight(insight: Partial<TreelInsightArticle>): Promis
   const id = insight._id && !insight._id.startsWith("new_") ? insight._id : `insight_${Date.now()}`;
   const slug = (insight.slug || insight.title?.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "") || `insight-${Date.now()}`).trim();
 
+  const existingIdx = all.findIndex((i) => (id && i._id === id) || (slug && i.slug.toLowerCase() === slug.toLowerCase()));
+  const existing = existingIdx >= 0 ? all[existingIdx] : undefined;
+
   const fullInsight: TreelInsightArticle = {
     _id: id,
-    slug,
-    category: insight.category || "Mobility Intelligence",
-    categorySlug: insight.categorySlug || slug,
-    title: insight.title || "Untitled Insight",
-    deck: insight.deck || "",
-    author: insight.author || "Treel Team",
-    authorRole: insight.authorRole || "Treel Mobility Solutions",
-    authorBio: insight.authorBio || "",
-    date: insight.date || "October 2026",
-    publishIsoDate: insight.publishIsoDate || now.split("T")[0],
-    readTime: insight.readTime || "5 min read",
-    status: insight.status === "Draft" ? "Draft" : "Published",
-    tldr: insight.tldr || "",
-    body: insight.body || {
-      sections: [{ heading: "Overview", paragraphs: [insight.deck || ""] }],
+    slug: existing?.slug || slug,
+    category: insight.category || existing?.category || "Mobility Intelligence",
+    categorySlug: insight.categorySlug || existing?.categorySlug || slug,
+    title: (insight.title || existing?.title || "Untitled Insight").trim(),
+    deck: insight.deck !== undefined ? insight.deck : (existing?.deck || ""),
+    author: insight.author || existing?.author || "Treel Team",
+    authorRole: insight.authorRole || existing?.authorRole || "Treel Mobility Solutions",
+    authorBio: insight.authorBio !== undefined ? insight.authorBio : (existing?.authorBio || ""),
+    date: insight.date || existing?.date || "October 2026",
+    publishIsoDate: insight.publishIsoDate || existing?.publishIsoDate || now.split("T")[0],
+    readTime: insight.readTime || existing?.readTime || "5 min read",
+    status: insight.status !== undefined ? (insight.status === "Draft" ? "Draft" : "Published") : (existing?.status || "Published"),
+    tldr: insight.tldr !== undefined ? insight.tldr : (existing?.tldr || ""),
+    body: insight.body || existing?.body || {
+      sections: [{ heading: "Overview", paragraphs: [insight.deck || existing?.deck || ""] }],
     },
-    relatedSlugs: insight.relatedSlugs || [],
-    createdAt: insight.createdAt || now,
+    relatedSlugs: insight.relatedSlugs || existing?.relatedSlugs || [],
+    createdAt: existing?.createdAt || insight.createdAt || now,
     updatedAt: now,
   };
 
-  const existingIdx = all.findIndex((i) => i._id === id || i.slug.toLowerCase() === slug.toLowerCase());
   let updatedList: TreelInsightArticle[];
   if (existingIdx >= 0) {
     updatedList = [...all];
-    updatedList[existingIdx] = { ...all[existingIdx], ...fullInsight };
+    updatedList[existingIdx] = fullInsight;
   } else {
     updatedList = [fullInsight, ...all];
   }

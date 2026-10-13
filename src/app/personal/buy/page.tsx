@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { useCart } from "@/lib/commerce/cart-context";
 import { PERSONAL_PRODUCTS, PersonalProduct } from "@/lib/data/personal-products";
+import { getValidImageSrc } from "@/lib/utils/image-utils";
 
 export default function PersonalBuyPage() {
   const router = useRouter();
@@ -25,13 +26,25 @@ export default function PersonalBuyPage() {
 
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [addedToast, setAddedToast] = useState<string | null>(null);
+  const [products, setProducts] = useState<PersonalProduct[]>(PERSONAL_PRODUCTS);
+
+  React.useEffect(() => {
+    fetch("/api/products")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setProducts(data);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const categories = ["All", "Car Kit", "Bike Kit", "Upgrade Kit"];
 
   const filteredProducts = useMemo(() => {
-    if (activeCategory === "All") return PERSONAL_PRODUCTS;
-    return PERSONAL_PRODUCTS.filter((p) => p.category === activeCategory);
-  }, [activeCategory]);
+    if (activeCategory === "All") return products;
+    return products.filter((p) => p.category === activeCategory);
+  }, [activeCategory, products]);
 
   const handleAddToCart = (product: PersonalProduct, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -146,8 +159,8 @@ export default function PersonalBuyPage() {
             </span>
             {categories.map((cat) => {
               const count = cat === "All" 
-                ? PERSONAL_PRODUCTS.length 
-                : PERSONAL_PRODUCTS.filter((p) => p.category === cat).length;
+                ? products.length 
+                : products.filter((p) => p.category === cat).length;
               const isActive = activeCategory === cat;
 
               return (
@@ -203,14 +216,20 @@ export default function PersonalBuyPage() {
                       href={`/personal/product?slug=${product.slug}`} 
                       className="block aspect-square rounded-2xl bg-[#F3F4F6] p-6 mb-4 relative overflow-hidden flex items-center justify-center group-hover:bg-slate-100 transition-colors"
                     >
-                      <Image
-                        src={product.image}
-                        alt={product.title}
-                        fill
-                        unoptimized
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-                      />
+                      {getValidImageSrc(product.image) ? (
+                        <Image
+                          src={getValidImageSrc(product.image)!}
+                          alt={product.title}
+                          fill
+                          unoptimized
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-slate-400 font-mono text-xs">
+                          {product.title}
+                        </div>
+                      )}
                     </Link>
 
                     {/* Category Eyebrow */}

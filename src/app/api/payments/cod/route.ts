@@ -3,6 +3,7 @@ import { persistOrderToSupabase } from '@/lib/commerce/order-storage';
 import { syncOrderToShiprocket } from '@/lib/commerce/shiprocket-order-sync';
 import { isSesConfigured, sendOrderConfirmationEmail, sendEmail } from '@/lib/integrations';
 import { validateCouponServer } from '@/lib/commerce/coupon-validator';
+import { validateCartBrandServer, isSurakshaProductOrItem } from '@/lib/commerce/brand-validator';
 
 export async function POST(req: NextRequest) {
   try {
@@ -43,32 +44,22 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Check for illegal mixing of Suraksha and Personal TPMS items
-    const hasSuraksha = checkout.items.some((it: any) => {
-      const vid = (it.variant_id || "").toLowerCase();
-      const sku = (it.sku || "").toUpperCase();
-      const cat = (it.category || it.vehicle_type || "").toLowerCase();
-      return vid.startsWith("suraksha") || sku.includes("SURAKSHA") || cat === "truck";
-    });
-    const hasPersonal = checkout.items.some((it: any) => {
-      const vid = (it.variant_id || "").toLowerCase();
-      const sku = (it.sku || "").toUpperCase();
-      const cat = (it.category || it.vehicle_type || "").toLowerCase();
-      return !vid.startsWith("suraksha") && !sku.includes("SURAKSHA") && cat !== "truck";
-    });
-
-    if (hasSuraksha && hasPersonal) {
+    // Enforce strict server-side brand validation
+    const brandValidation = validateCartBrandServer(checkout.items, body.brand || checkout.brand);
+    if (!brandValidation.valid) {
       return NextResponse.json(
         {
           success: false,
           error: {
-            code: 'CART_BRAND_CONTAMINATION',
-            message: 'Orders cannot contain both Personal TPMS and Suraksha Commercial items. Please purchase them separately.',
+            code: brandValidation.code || 'CART_BRAND_CONTAMINATION',
+            message: brandValidation.error || 'Cart items do not match the requested storefront brand.',
           },
         },
         { status: 400 }
       );
     }
+
+    const hasSuraksha = checkout.items.some(isSurakshaProductOrItem);
 
     // Calculate server-side verified subtotal
     const subtotal = checkout.items.reduce((acc: number, it: any) => {

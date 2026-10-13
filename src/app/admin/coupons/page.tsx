@@ -40,6 +40,7 @@ import {
 } from "@/lib/admin/admin-actions";
 import { AdminCoupon, CouponCategory, MongoProduct } from "@/types/admin";
 import { PERSONAL_PRODUCTS } from "@/lib/data/personal-products";
+import { copyToClipboardSafe } from "@/lib/utils/clipboard";
 
 interface CategoryMeta {
   id: CouponCategory;
@@ -198,10 +199,12 @@ export default function AdminCouponsPage() {
     }
   }, [products, targetCategoryForProducts]);
 
-  const handleCopy = (code: string) => {
-    navigator.clipboard.writeText(code);
-    setCopiedCode(code);
-    setTimeout(() => setCopiedCode(null), 2000);
+  const handleCopy = async (code: string) => {
+    const res = await copyToClipboardSafe(code);
+    if (res.success) {
+      setCopiedCode(code);
+      setTimeout(() => setCopiedCode(null), 2000);
+    }
   };
 
   const handleCreateNew = () => {

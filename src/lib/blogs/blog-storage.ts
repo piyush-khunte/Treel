@@ -1,5 +1,6 @@
 import { MongoBlog } from "@/types/admin";
 import { createClient } from "@supabase/supabase-js";
+import { getValidImageSrc } from "@/lib/utils/image-utils";
 
 function getAdminClient() {
   const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder-treel.supabase.co";
@@ -144,7 +145,7 @@ export function toSupabaseBlogPayload(blog: Partial<MongoBlog>) {
     slug: (blog.slug || titleStr.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "")).trim(),
     description: blog.description || "",
     blogContent: blog.blogContent || "",
-    image: blog.image || "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80",
+    image: getValidImageSrc(blog.image) || "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80",
     metatitle: blog.metatitle || titleStr,
     metadescription: blog.metadescription || blog.description || titleStr,
     date: blog.date || new Date().toISOString(),
@@ -171,7 +172,7 @@ export function fromSupabaseBlogRow(row: any): MongoBlog {
     slug: row.slug,
     description: row.description || "",
     blogContent: row.blogContent || "",
-    image: row.image || "",
+    image: getValidImageSrc(row.image) || "",
     metatitle: row.metatitle || "",
     metadescription: row.metadescription || "",
     date: row.date || "",

@@ -102,9 +102,7 @@ export function TmipHeader() {
                 <Link href="/tmip/platform/predictive-maintenance" className="block px-3 py-2 rounded-lg text-xs normal-case text-slate-300 hover:bg-[#3B82F6]/10 hover:text-[#3B82F6] transition-colors">
                   Predictive Maintenance
                 </Link>
-                <Link href="/tmip/platform/integrations" className="block px-3 py-2 rounded-lg text-xs normal-case text-slate-300 hover:bg-[#3B82F6]/10 hover:text-[#3B82F6] transition-colors">
-                  Integrations
-                </Link>
+                
               </div>
             </div>
 

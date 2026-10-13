@@ -2,14 +2,17 @@
 
 import React, { useState } from "react";
 import { Share2, Check, Copy } from "lucide-react";
+import { copyToClipboardSafe } from "@/lib/utils/clipboard";
 
 export function PressShareBar({ headline, url }: { headline: string; url: string }) {
   const [copied, setCopied] = useState(false);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(url);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async () => {
+    const res = await copyToClipboardSafe(url);
+    if (res.success) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
   };
 
   const encodedUrl = encodeURIComponent(url);

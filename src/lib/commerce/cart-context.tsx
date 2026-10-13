@@ -178,7 +178,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // -------------------------------------------------------------
   const addPersonalItem = (newItem: CartItem) => {
     if (isSurakshaItem(newItem)) {
-      addSurakshaItem(newItem);
+      console.warn("[Cart] Cross-brand item rejected: Suraksha commercial items cannot be added to Personal TPMS cart.", newItem);
       return;
     }
     setPersonalItems((prev) => {
@@ -318,6 +318,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // -------------------------------------------------------------
   const addSurakshaItem = (newItem: CartItem) => {
     if (!isSurakshaItem(newItem)) {
+      console.warn("[Cart] Cross-brand item rejected: Non-Suraksha / Personal TPMS items cannot be added to Suraksha cart.", newItem);
       return;
     }
     setSurakshaItems((prev) => {

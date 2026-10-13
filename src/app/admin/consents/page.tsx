@@ -25,6 +25,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { getAdminCookieConsents } from "@/lib/admin/admin-actions";
 import { AdminConsentRecord } from "@/types/admin";
+import { copyToClipboardSafe } from "@/lib/utils/clipboard";
 
 export default function AdminConsentsPage() {
   const [records, setRecords] = useState<AdminConsentRecord[]>([]);
@@ -103,10 +104,12 @@ export default function AdminConsentsPage() {
     });
   };
 
-  const copyToClipboard = (text: string, id: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
+  const copyToClipboard = async (text: string, id: string) => {
+    const res = await copyToClipboardSafe(text);
+    if (res.success) {
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 2000);
+    }
   };
 
   // Filtered & Sorted records
