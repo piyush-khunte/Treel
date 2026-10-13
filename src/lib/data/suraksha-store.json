@@ -1,5 +1,20 @@
 [
   {
+    "_id": "sur_1791870531592",
+    "slug": "test-suraksha-blog",
+    "title": "test suraksha blog",
+    "category": "Safety",
+    "excerpt": "test",
+    "author": "Suraksha Fleet Team",
+    "date": "October 2026",
+    "readTime": "5 min read",
+    "keyTakeaway": "Suraksha delivers continuous tyre pressure and temperature alerts to protect driver safety.",
+    "status": "Published",
+    "isFeatured": false,
+    "createdAt": "2026-10-13T05:48:51.592Z",
+    "updatedAt": "2026-10-13T05:48:51.592Z"
+  },
+  {
     "_id": "sur_1",
     "slug": "fuel-10-tips",
     "title": "10 Simple Fuel-Saving Tips Every Driver Should Know",

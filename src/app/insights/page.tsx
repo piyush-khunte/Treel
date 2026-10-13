@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Rss } from "lucide-react";
 import { InsightsClientView } from "./insights-client";
 
 export const metadata: Metadata = {

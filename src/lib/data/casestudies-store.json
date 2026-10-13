@@ -1,5 +1,24 @@
 [
   {
+    "_id": "cs_1791870412433",
+    "slug": "case-study-1791870492874",
+    "industry": "Logistics",
+    "fleetSize": "100-500",
+    "headline": "Untitled Case Study",
+    "excerpt": "",
+    "metricValue": "0.5–0.6% Fuel Savings",
+    "metricLabel": "Operating advantage",
+    "isFeatured": false,
+    "status": "Published",
+    "customerProfile": "",
+    "challenge": "",
+    "solution": "",
+    "results": [],
+    "content": "",
+    "createdAt": "2026-10-13T05:48:12.874Z",
+    "updatedAt": "2026-10-13T05:48:12.874Z"
+  },
+  {
     "_id": "cs_1",
     "slug": "1000-truck-case-study",
     "industry": "Logistics",

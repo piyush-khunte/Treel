@@ -27,7 +27,9 @@ import {
   Layers,
   ChevronRight,
   TrendingUp,
-  Quote
+  Quote,
+  ArrowUp,
+  ArrowDown
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -314,7 +316,16 @@ export default function AdminBlogsPage() {
   };
 
   const handleEdit = (item: any) => {
-    setEditingItem(JSON.parse(JSON.stringify(item)));
+    const cloned = JSON.parse(JSON.stringify(item));
+    if (activeCategory === "treel_main") {
+      if (!cloned.body || !Array.isArray(cloned.body.sections) || cloned.body.sections.length === 0) {
+        cloned.body = {
+          sections: [{ heading: "Key Analysis", paragraphs: [cloned.deck || ""] }],
+          pullQuote: cloned.body?.pullQuote
+        };
+      }
+    }
+    setEditingItem(cloned);
     setIsNewItem(false);
   };
 
@@ -350,6 +361,24 @@ export default function AdminBlogsPage() {
     } else {
       if (!editingItem.title?.trim()) {
         showFeedback("error", "Title is required.");
+        return;
+      }
+    }
+
+    if (activeCategory === "treel_main") {
+      if (!editingItem.deck?.trim()) {
+        showFeedback("error", "Deck / Executive summary is required.");
+        return;
+      }
+      if (!editingItem.body?.sections || editingItem.body.sections.length === 0) {
+        showFeedback("error", "At least one article section is required.");
+        return;
+      }
+      const hasEmpty = editingItem.body.sections.some(
+        (s: any) => !s.heading?.trim() || (!Array.isArray(s.paragraphs) || s.paragraphs.length === 0)
+      );
+      if (hasEmpty) {
+        showFeedback("error", "Please ensure every section has a heading and paragraph content.");
         return;
       }
     }
@@ -934,45 +963,194 @@ export default function AdminBlogsPage() {
                     />
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
-                      TL;DR Takeaway Box
-                    </label>
-                    <textarea
-                      rows={2}
-                      value={editingItem.tldr || ""}
-                      onChange={(e) => setEditingItem({ ...editingItem, tldr: e.target.value })}
-                      placeholder="Key takeaway paragraph for busy executives..."
-                      className="w-full bg-slate-950 border border-white/10 rounded-md p-3 text-sm text-white focus:outline-none focus:border-blue-500"
-                    />
-                  </div>
+                  {/* Multi-Section Article Editor */}
+                  <div className="space-y-4 pt-2 border-t border-white/10">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                      <div>
+                        <label className="block text-xs font-mono uppercase tracking-wider text-slate-200 font-bold">
+                          Article Sections ({editingItem.body?.sections?.length || 0}) *
+                        </label>
+                        <p className="text-[11px] text-slate-400">
+                          Add, edit, and reorder all sections of the article. All sections are published in order.
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const currentSecs = editingItem.body?.sections || [];
+                          setEditingItem({
+                            ...editingItem,
+                            body: {
+                              ...editingItem.body,
+                              sections: [
+                                ...currentSecs,
+                                {
+                                  heading: `Section ${currentSecs.length + 1}`,
+                                  paragraphs: [""]
+                                }
+                              ]
+                            }
+                          });
+                        }}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition-colors w-fit shrink-0 cursor-pointer"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Add Section</span>
+                      </button>
+                    </div>
 
-                  {/* Body Overview / Paragraph */}
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
-                      Article Main Section Content
-                    </label>
-                    <textarea
-                      rows={6}
-                      value={editingItem.body?.sections?.[0]?.paragraphs?.join("\n\n") || ""}
-                      onChange={(e) => {
-                        const pars = e.target.value.split("\n\n").filter(Boolean);
-                        setEditingItem({
-                          ...editingItem,
-                          body: {
-                            ...editingItem.body,
-                            sections: [
-                              {
-                                heading: editingItem.body?.sections?.[0]?.heading || "Analysis & Insights",
-                                paragraphs: pars
+                    {(!editingItem.body?.sections || editingItem.body.sections.length === 0) ? (
+                      <div className="p-4 text-center border border-dashed border-white/10 rounded-lg text-slate-400 text-xs">
+                        No sections defined. Click &ldquo;Add Section&rdquo; to add your first article section.
+                      </div>
+                    ) : (
+                      editingItem.body.sections.map((section: any, sIdx: number) => (
+                        <div key={sIdx} className="p-4 rounded-lg bg-slate-900 border border-white/10 space-y-3">
+                          <div className="flex items-center justify-between gap-3">
+                            <div className="flex items-center gap-2">
+                              <span className="px-2 py-0.5 rounded bg-blue-950 text-blue-400 border border-blue-800 text-[11px] font-mono font-bold">
+                                Section #{sIdx + 1}
+                              </span>
+                              <span className="text-xs font-semibold text-white">Section Heading</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <button
+                                type="button"
+                                disabled={sIdx === 0}
+                                onClick={() => {
+                                  if (sIdx === 0) return;
+                                  const nextSecs = [...editingItem.body.sections];
+                                  const temp = nextSecs[sIdx];
+                                  nextSecs[sIdx] = nextSecs[sIdx - 1];
+                                  nextSecs[sIdx - 1] = temp;
+                                  setEditingItem({
+                                    ...editingItem,
+                                    body: { ...editingItem.body, sections: nextSecs }
+                                  });
+                                }}
+                                title="Move Section Up"
+                                className="p-1 rounded text-slate-400 hover:text-white hover:bg-white/10 disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer"
+                              >
+                                <ArrowUp className="w-3.5 h-3.5" />
+                              </button>
+                              <button
+                                type="button"
+                                disabled={sIdx === editingItem.body.sections.length - 1}
+                                onClick={() => {
+                                  if (sIdx === editingItem.body.sections.length - 1) return;
+                                  const nextSecs = [...editingItem.body.sections];
+                                  const temp = nextSecs[sIdx];
+                                  nextSecs[sIdx] = nextSecs[sIdx + 1];
+                                  nextSecs[sIdx + 1] = temp;
+                                  setEditingItem({
+                                    ...editingItem,
+                                    body: { ...editingItem.body, sections: nextSecs }
+                                  });
+                                }}
+                                title="Move Section Down"
+                                className="p-1 rounded text-slate-400 hover:text-white hover:bg-white/10 disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer"
+                              >
+                                <ArrowDown className="w-3.5 h-3.5" />
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const nextSecs = editingItem.body.sections.filter((_: any, idx: number) => idx !== sIdx);
+                                  setEditingItem({
+                                    ...editingItem,
+                                    body: { ...editingItem.body, sections: nextSecs }
+                                  });
+                                }}
+                                title="Delete Section"
+                                className="p-1 rounded text-red-400 hover:text-red-300 hover:bg-red-950/40 ml-1 cursor-pointer"
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          </div>
+
+                          <Input
+                            value={section.heading || ""}
+                            onChange={(e) => {
+                              const nextSecs = [...editingItem.body.sections];
+                              nextSecs[sIdx] = { ...nextSecs[sIdx], heading: e.target.value };
+                              setEditingItem({
+                                ...editingItem,
+                                body: { ...editingItem.body, sections: nextSecs }
+                              });
+                            }}
+                            placeholder="e.g. The Three-Layer Architecture of the Vehicle Digital Twin"
+                            className="bg-slate-950 border-white/10 text-white font-medium"
+                            required
+                          />
+
+                          <div>
+                            <label className="block text-[11px] font-mono text-slate-400 mb-1">
+                              Section Paragraphs (separate paragraphs with an empty blank line)
+                            </label>
+                            <textarea
+                              rows={5}
+                              value={Array.isArray(section.paragraphs) ? section.paragraphs.join("\n\n") : (section.paragraphs || "")}
+                              onChange={(e) => {
+                                const pars = e.target.value.split("\n\n").filter(Boolean);
+                                const nextSecs = [...editingItem.body.sections];
+                                nextSecs[sIdx] = { ...nextSecs[sIdx], paragraphs: pars };
+                                setEditingItem({
+                                  ...editingItem,
+                                  body: { ...editingItem.body, sections: nextSecs }
+                                });
+                              }}
+                              placeholder="Write section paragraphs here. Separate each paragraph with an empty line..."
+                              className="w-full bg-slate-950 border border-white/10 rounded-md p-3 text-sm text-white font-sans leading-relaxed focus:outline-none focus:border-blue-500"
+                              required
+                            />
+                          </div>
+                        </div>
+                      ))
+                    )}
+
+                    {/* Pull Quote Callout Box */}
+                    <div className="p-4 rounded-lg bg-slate-900/80 border border-white/10 space-y-2">
+                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">
+                        Pull Quote Callout (Optional)
+                      </label>
+                      <textarea
+                        rows={2}
+                        value={editingItem.body?.pullQuote?.quote || ""}
+                        onChange={(e) => {
+                          setEditingItem({
+                            ...editingItem,
+                            body: {
+                              ...editingItem.body,
+                              pullQuote: {
+                                ...(editingItem.body?.pullQuote || {}),
+                                quote: e.target.value,
+                                attribution: editingItem.body?.pullQuote?.attribution || "— Treel Intelligence"
                               }
-                            ]
-                          }
-                        });
-                      }}
-                      placeholder="Enter the full article paragraphs (separate paragraphs with an empty line)..."
-                      className="w-full bg-slate-950 border border-white/10 rounded-md p-3 text-sm text-white font-sans leading-relaxed focus:outline-none focus:border-blue-500"
-                    />
+                            }
+                          });
+                        }}
+                        placeholder="Key highlighted quote to feature inline..."
+                        className="w-full bg-slate-950 border border-white/10 rounded-md p-2.5 text-xs text-white focus:outline-none focus:border-blue-500"
+                      />
+                      <Input
+                        value={editingItem.body?.pullQuote?.attribution || ""}
+                        onChange={(e) => {
+                          setEditingItem({
+                            ...editingItem,
+                            body: {
+                              ...editingItem.body,
+                              pullQuote: {
+                                ...(editingItem.body?.pullQuote || {}),
+                                attribution: e.target.value
+                              }
+                            }
+                          });
+                        }}
+                        placeholder="Attribution e.g. — Manish Ingale, Founder"
+                        className="bg-slate-950 border-white/10 text-white text-xs"
+                      />
+                    </div>
                   </div>
                 </div>
               )}

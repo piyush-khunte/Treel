@@ -20,8 +20,9 @@ export function PricingBuyButton({ tyres, type }: PricingBuyButtonProps) {
     setLoading(true);
 
     const surakshaItem = {
-      variant_id: "suraksha-sensor-kit",
-      sku: `SKU-SURAKSHA-${tyres}TYRE`,
+      id: `suraksha_${tyres}w`,
+      variant_id: `suraksha_${tyres}w`,
+      sku: `SKU-SURAKSHA-${tyres}W`,
       name: `Treel Suraksha Commercial Safety Kit (${tyres} Tyres)`,
       price_inr: 1700,
       mrp_inr: 2000,
@@ -32,9 +33,14 @@ export function PricingBuyButton({ tyres, type }: PricingBuyButtonProps) {
         "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436567/Treel_New_Logo_Final_With_Favicon_Tagline.png",
     };
 
-    const existing = items.find((i) => i.variant_id === "suraksha-sensor-kit");
+    const existing = items.find(
+      (i) =>
+        i.id === `suraksha_${tyres}w` ||
+        i.variant_id === `suraksha_${tyres}w` ||
+        i.variant_id === "suraksha-sensor-kit"
+    );
     if (existing) {
-      updateQuantity("suraksha-sensor-kit", tyres);
+      updateQuantity(existing.variant_id, tyres);
     } else {
       addItem(surakshaItem);
     }

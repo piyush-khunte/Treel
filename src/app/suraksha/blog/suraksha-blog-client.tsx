@@ -16,9 +16,11 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { SurakshaArticle } from "@/types/content";
+import { slugifyAuthor } from "@/lib/authors/author-utils";
 
 interface Article {
   id: string;
+  slug?: string;
   title: string;
   category: "Fuel efficiency" | "Safety" | "Business & GST" | "Route planning" | "Industry news" | "Maintenance" | string;
   excerpt: string;
@@ -26,6 +28,7 @@ interface Article {
   date: string;
   readTime: string;
   keyTakeaway?: string;
+  isFeatured?: boolean;
   isSeed?: boolean;
 }
 
@@ -201,7 +204,6 @@ interface SurakshaBlogClientProps {
 
 export function SurakshaBlogClient({ initialArticles }: SurakshaBlogClientProps = {}) {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
-  const [activeArticle, setActiveArticle] = useState<Article | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 6;
 
@@ -209,6 +211,7 @@ export function SurakshaBlogClient({ initialArticles }: SurakshaBlogClientProps 
     if (initialArticles && initialArticles.length > 0) {
       return initialArticles.map((a) => ({
         id: a._id || a.slug || `sur_${Date.now()}`,
+        slug: a.slug || a._id,
         title: a.title,
         category: a.category as any,
         excerpt: a.excerpt,
@@ -216,11 +219,23 @@ export function SurakshaBlogClient({ initialArticles }: SurakshaBlogClientProps 
         date: a.date,
         readTime: a.readTime,
         keyTakeaway: a.keyTakeaway,
+        isFeatured: a.isFeatured,
         isSeed: false,
       }));
     }
-    return fallbackArticlesData;
+    return fallbackArticlesData.map((a) => ({
+      ...a,
+      slug: a.id,
+    }));
   }, [initialArticles]);
+
+  const featuredArticle = useMemo(() => {
+    return (
+      articlesData.find((a) => a.slug === "safety-front-blowout" || a.id === "safety-front-blowout") ||
+      articlesData.find((a) => a.isFeatured) ||
+      articlesData[0]
+    );
+  }, [articlesData]);
 
   const baseCategories = [
     "All",
@@ -326,43 +341,48 @@ export function SurakshaBlogClient({ initialArticles }: SurakshaBlogClientProps 
                   FEATURED
                 </span>
                 <span className="px-2.5 py-0.5 bg-[#451A03] text-[#FEF3C7] text-xs font-bold uppercase rounded-[4px]">
-                  Safety
+                  {featuredArticle.category}
                 </span>
               </div>
 
               <h2 className="font-anton text-3xl sm:text-4xl lg:text-5xl uppercase tracking-normal text-[#451A03] leading-tight">
-                How to Prevent Front Tyre Blowouts — A Highway Survival Guide
+                <Link
+                  href={`/suraksha/blog/${featuredArticle.slug || featuredArticle.id}`}
+                  className="hover:text-[#DC2626] transition-colors"
+                >
+                  {featuredArticle.title}
+                </Link>
               </h2>
 
               <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-medium">
-                Front tyre blowouts are among the greatest risks at highway speeds. Suraksha gives real-time pressure and temperature alerts to catch slow leaks long before a dangerous failure.
+                {featuredArticle.excerpt}
               </p>
 
               <div className="pt-2 flex items-center gap-4 text-xs font-semibold text-[#78350F] flex-wrap">
-                <span className="flex items-center gap-1.5">
+                <Link
+                  href={`/authors/${slugifyAuthor(featuredArticle.author)}`}
+                  className="flex items-center gap-1.5 hover:text-[#DC2626] hover:underline transition-colors"
+                >
                   <User className="w-3.5 h-3.5 text-[#DC2626]" />
-                  Accident Prevention Unit
-                </span>
+                  {featuredArticle.author}
+                </Link>
                 <span className="flex items-center gap-1.5">
                   <Calendar className="w-3.5 h-3.5 text-[#DC2626]" />
-                  August 2026
+                  {featuredArticle.date}
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5 text-[#DC2626]" />
-                  6 min read
+                  {featuredArticle.readTime}
                 </span>
               </div>
 
               <div className="pt-4">
-                <button
-                  onClick={() => {
-                    const feat = articlesData.find((a) => a.id === "safety-front-blowout") || articlesData[0];
-                    if (feat) setActiveArticle(feat);
-                  }}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-sm transition-all shadow-sm bg-[#DC2626] text-white hover:bg-[#B91C1C] cursor-pointer"
+                <Link
+                  href={`/suraksha/blog/${featuredArticle.slug || featuredArticle.id}`}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-sm transition-all shadow-sm bg-[#DC2626] text-white hover:bg-[#B91C1C]"
                 >
                   Read featured article <ArrowRight className="w-4 h-4" />
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -388,7 +408,12 @@ export function SurakshaBlogClient({ initialArticles }: SurakshaBlogClientProps 
                   </div>
 
                   <h3 className="font-anton text-2xl uppercase tracking-normal text-[#451A03] group-hover:text-[#DC2626] transition-colors leading-tight">
-                    {article.title}
+                    <Link
+                      href={`/suraksha/blog/${article.slug || article.id}`}
+                      className="hover:underline"
+                    >
+                      {article.title}
+                    </Link>
                   </h3>
 
                   <p className="text-[#78350F] text-sm leading-relaxed line-clamp-3">
@@ -398,16 +423,23 @@ export function SurakshaBlogClient({ initialArticles }: SurakshaBlogClientProps 
 
                 <div className="pt-6 border-t border-[#451A03]/10 mt-6 flex items-center justify-between">
                   <div className="text-[11px] text-[#78350F] font-semibold">
-                    <div>{article.author}</div>
+                    <div>
+                      <Link
+                        href={`/authors/${slugifyAuthor(article.author)}`}
+                        className="hover:text-[#DC2626] hover:underline transition-colors"
+                      >
+                        {article.author}
+                      </Link>
+                    </div>
                     <div className="text-[10px] text-[#78350F]/75">{article.date}</div>
                   </div>
 
-                  <button
-                    onClick={() => setActiveArticle(article)}
-                    className="font-rubik font-bold text-xs uppercase tracking-wider text-[#DC2626] hover:text-[#B91C1C] flex items-center gap-1 cursor-pointer"
+                  <Link
+                    href={`/suraksha/blog/${article.slug || article.id}`}
+                    className="font-rubik font-bold text-xs uppercase tracking-wider text-[#DC2626] hover:text-[#B91C1C] flex items-center gap-1"
                   >
                     Read article <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -504,64 +536,6 @@ export function SurakshaBlogClient({ initialArticles }: SurakshaBlogClientProps 
           </div>
         </div>
       </section>
-
-      {/* INTERACTIVE ARTICLE PREVIEW MODAL */}
-      {activeArticle && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 sm:p-6 backdrop-blur-xs animate-in fade-in duration-200">
-          <div className="bg-[#FFFBEB] border-2 border-[#DC2626] rounded-xl max-w-2xl w-full p-6 sm:p-8 text-[#451A03] space-y-6 shadow-2xl relative">
-            <div className="flex items-start justify-between border-b border-[#451A03]/10 pb-4">
-              <div className="space-y-1">
-                <span className="text-[10px] font-bold text-[#DC2626] uppercase tracking-wider">
-                  {activeArticle.category} · {activeArticle.readTime}
-                </span>
-                <h3 className="font-anton text-2xl sm:text-3xl uppercase tracking-normal text-[#451A03]">
-                  {activeArticle.title}
-                </h3>
-                <div className="text-xs text-[#78350F] font-semibold">
-                  By {activeArticle.author} · {activeArticle.date}
-                </div>
-              </div>
-              <button
-                onClick={() => setActiveArticle(null)}
-                className="px-2.5 py-1 text-xs bg-[#451A03]/10 hover:bg-[#451A03]/20 rounded font-mono font-bold cursor-pointer"
-              >
-                ✕ Close
-              </button>
-            </div>
-
-            <div className="space-y-4 text-sm text-[#451A03] leading-relaxed">
-              <p className="font-medium text-base text-[#78350F]">
-                {activeArticle.excerpt}
-              </p>
-
-              <div className="p-4 bg-[#FEF3C7] rounded-lg border border-[#451A03]/15 space-y-2">
-                <div className="font-bold text-xs uppercase text-[#DC2626]">
-                  Key Takeaway for Indian Highway Drivers:
-                </div>
-                <p className="text-xs leading-relaxed text-[#78350F]">
-                  {activeArticle.keyTakeaway || "Suraksha delivers continuous tyre pressure and temperature telemetry to your cab. Early leak warnings prevent blowouts on high-speed runs and protect fuel economy."}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between pt-2 border-t border-[#451A03]/10">
-              <Link
-                href="/suraksha/centres"
-                onClick={() => setActiveArticle(null)}
-                className="text-xs font-bold text-[#DC2626] hover:underline flex items-center gap-1"
-              >
-                Fit Suraksha at Nearest Centre →
-              </Link>
-              <button
-                onClick={() => setActiveArticle(null)}
-                className="px-4 py-2 bg-[#DC2626] text-white text-xs font-bold rounded uppercase tracking-wider cursor-pointer"
-              >
-                Back to Blog
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

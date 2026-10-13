@@ -72,15 +72,19 @@ export interface ProductImage {
 }
 
 export interface CartItem {
+  id?: string;
   variant_id: string;
   sku: string;
   name: string;
+  title?: string;
   price_inr: number;
   mrp_inr: number;
   quantity: number;
   image_url: string;
   sensor_count: number;
   vehicle_type: string;
+  category?: string;
+  productsku?: string;
 }
 
 export interface Cart {

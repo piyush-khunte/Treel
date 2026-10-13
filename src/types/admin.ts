@@ -128,15 +128,21 @@ export interface NoticeItem {
   __v?: number;
 }
 
+export type CouponCategory = "PERSONAL_TPMS" | "SURAKSHA";
+export type CouponScope = "category" | "product";
+
 export interface AdminCoupon {
   _id?: string;
   code: string;
   discountType: "percent" | "fixed";
   discountValue: number;
+  scope?: CouponScope;
   productId?: string | null;
   productTitle?: string | null;
   productSku?: string | null;
-  category?: string | null;
+  productIds?: string[] | null;
+  productSkus?: string[] | null;
+  category: CouponCategory;
   minOrderValue?: number | null;
   maxDiscount?: number | null;
   startDate?: string | null;

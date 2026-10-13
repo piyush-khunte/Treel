@@ -5,10 +5,10 @@ import {
   ChevronRight, 
   Calendar, 
   Clock, 
-  BookOpen,
-  FileText
+  BookOpen
 } from "lucide-react";
 import { ArticleShareBar, ArticleNewsletterForm } from "./article-client";
+import { slugifyAuthor } from "@/lib/authors/author-utils";
 
 interface InsightArticle {
   slug: string;
@@ -406,7 +406,12 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
             <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-6">
               <div className="flex items-center gap-4 text-xs sm:text-sm text-[#94A3B8] font-inter">
                 <div>
-                  <span className="text-[#FAF7F2] font-semibold">{article.author}</span>
+                  <Link 
+                    href={`/authors/${slugifyAuthor(article.author)}`}
+                    className="text-[#FAF7F2] font-semibold hover:text-[#D5573B] transition-colors hover:underline"
+                  >
+                    {article.author}
+                  </Link>
                   <span className="mx-2 text-white/30">·</span>
                   <span className="font-mono text-xs text-[#94A3B8]">{article.authorRole}</span>
                 </div>
@@ -442,17 +447,6 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
               <div className="absolute inset-0 bg-white/5 opacity-40" />
             </div>
 
-            {/* TL;DR Callout Block */}
-            <div className="p-6 sm:p-8 rounded-lg bg-[#D5573B]/[0.06] border border-[#D5573B]/20 space-y-3">
-              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#D5573B] font-bold">
-                <FileText className="w-4 h-4 text-[#D5573B]" />
-                <span>TL;DR</span>
-              </div>
-              <p className="text-sm sm:text-base text-[#FAF7F2] leading-relaxed font-inter">
-                {article.tldr}
-              </p>
-            </div>
-
             {/* Article Prose Sections */}
             <div className="space-y-10 text-base sm:text-lg text-[#94A3B8] leading-relaxed font-inter">
               {article.body.sections.map((sec, idx) => (
@@ -460,11 +454,50 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
                   <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2] tracking-tight pt-4">
                     {sec.heading}
                   </h2>
-                  {sec.paragraphs.map((p, pIdx) => (
-                    <p key={pIdx} className="leading-relaxed">
-                      {p}
-                    </p>
-                  ))}
+                  {sec.paragraphs.map((p, pIdx) => {
+                    const hasHtml = /<[a-z][\s\S]*>/i.test(p);
+                    if (hasHtml) {
+                      return (
+                        <div
+                          key={pIdx}
+                          className="prose prose-invert max-w-none text-base sm:text-lg text-[#94A3B8] leading-relaxed [&>table]:w-full [&>table]:my-4 [&>table]:border-collapse [&>table]:border [&>table]:border-white/10 [&>table_th]:border [&>table_th]:border-white/10 [&>table_th]:p-3 [&>table_th]:bg-white/5 [&>table_td]:border [&>table_td]:border-white/10 [&>table_td]:p-3"
+                          dangerouslySetInnerHTML={{ __html: p }}
+                        />
+                      );
+                    }
+
+                    const numberedMatch = p.match(/^(\d+\.)\s+(.*)$/);
+                    if (numberedMatch) {
+                      return (
+                        <div key={pIdx} className="flex items-start gap-3.5 pl-3 py-2 bg-white/[0.02] rounded-lg border border-white/[0.05] my-2">
+                          <span className="font-mono text-sm font-bold text-[#D5573B] shrink-0 mt-0.5">
+                            {numberedMatch[1]}
+                          </span>
+                          <p className="leading-relaxed flex-1 text-[#FAF7F2]/90">
+                            {numberedMatch[2]}
+                          </p>
+                        </div>
+                      );
+                    }
+
+                    const bulletMatch = p.match(/^([-*•])\s+(.*)$/);
+                    if (bulletMatch) {
+                      return (
+                        <div key={pIdx} className="flex items-start gap-3 pl-3 py-1">
+                          <span className="text-[#D5573B] text-lg leading-none shrink-0 mt-1">•</span>
+                          <p className="leading-relaxed flex-1">
+                            {bulletMatch[2]}
+                          </p>
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <p key={pIdx} className="leading-relaxed">
+                        {p}
+                      </p>
+                    );
+                  })}
 
                   {/* Inline Pull Quote after Section 1 */}
                   {idx === 0 && article.body.pullQuote && (
@@ -483,15 +516,29 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
 
             {/* Author Bio Card */}
             <div className="p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center gap-6">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-white/[0.01] border border-white/15 relative overflow-hidden flex-shrink-0" />
+              <div className="w-20 h-20 rounded-full bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-white/[0.01] border border-white/15 relative overflow-hidden flex-shrink-0 flex items-center justify-center font-fraunces text-2xl text-[#FAF7F2]/80">
+                {article.author.split(" ").map(n => n[0]).join("").slice(0, 2)}
+              </div>
               <div className="space-y-2 flex-1">
-                <div>
-                  <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2]">
-                    {article.author}
-                  </h3>
-                  <div className="text-xs font-mono uppercase tracking-wider text-[#D5573B] font-semibold mt-0.5">
-                    {article.authorRole}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div>
+                    <Link
+                      href={`/authors/${slugifyAuthor(article.author)}`}
+                      className="font-fraunces text-xl font-medium text-[#FAF7F2] hover:text-[#D5573B] transition-colors hover:underline block"
+                    >
+                      {article.author}
+                    </Link>
+                    <div className="text-xs font-mono uppercase tracking-wider text-[#D5573B] font-semibold mt-0.5">
+                      {article.authorRole}
+                    </div>
                   </div>
+                  <Link
+                    href={`/authors/${slugifyAuthor(article.author)}`}
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-[#94A3B8] hover:text-[#FAF7F2] transition-colors"
+                  >
+                    <span>View profile &amp; publications</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#D5573B]" />
+                  </Link>
                 </div>
                 <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed font-inter">
                   {article.authorBio}

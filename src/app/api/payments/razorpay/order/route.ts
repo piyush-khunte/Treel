@@ -80,10 +80,22 @@ export async function POST(req: NextRequest) {
           code: coupon,
           items: body.items,
           subtotalInr: subtotal,
+          brand: hasSuraksha ? "suraksha" : "personal",
         });
-        if (couponResult.valid) {
-          discount = couponResult.discountAmountInr;
+        if (!couponResult.valid) {
+          return NextResponse.json(
+            {
+              success: false,
+              configured: true,
+              error: {
+                code: 'INVALID_COUPON',
+                message: couponResult.error || couponResult.message || `Coupon "${coupon}" is invalid for this order.`,
+              },
+            },
+            { status: 400 }
+          );
         }
+        discount = couponResult.discountAmountInr;
       }
 
       const total = Math.max(1, subtotal - discount);

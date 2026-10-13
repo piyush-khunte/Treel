@@ -237,6 +237,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           code: clean,
           items: personalItems,
           subtotalInr: currentSubtotal,
+          brand: "personal",
         }),
       });
 
@@ -296,10 +297,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const personalTotalItems = personalItems.reduce((acc, i) => acc + i.quantity, 0);
   const personalSubtotalInr = personalItems.reduce((acc, i) => acc + i.price_inr * i.quantity, 0);
 
-  // Compute discount accurately based on coupon type
+  // Compute discount accurately based on verified coupon data
   let personalDiscountInr = 0;
   if (personalAppliedCoupon && personalSubtotalInr > 0) {
-    if (personalAppliedCoupon.discountType === "percent") {
+    if (typeof personalAppliedCoupon.discountAmountInr === "number" && personalAppliedCoupon.discountAmountInr > 0) {
+      personalDiscountInr = Math.min(personalAppliedCoupon.discountAmountInr, personalSubtotalInr);
+    } else if (personalAppliedCoupon.discountType === "percent") {
       personalDiscountInr = Math.round((personalSubtotalInr * personalAppliedCoupon.discountValue) / 100);
     } else {
       personalDiscountInr = Math.min(personalAppliedCoupon.discountValue, personalSubtotalInr);
@@ -348,10 +351,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         i.variant_id === variantId
           ? {
               ...i,
+              id: `suraksha_${quantity}w`,
               quantity,
               sensor_count: quantity,
               name: `Treel Suraksha Commercial Safety Kit (${quantity} Tyres)`,
-              sku: `SKU-SURAKSHA-${quantity}TYRE`,
+              sku: `SKU-SURAKSHA-${quantity}W`,
             }
           : i
       )
@@ -448,7 +452,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const surakshaSubtotalInr = surakshaItems.reduce((acc, i) => acc + i.price_inr * i.quantity, 0);
   let surakshaDiscountInr = 0;
   if (surakshaAppliedCoupon && surakshaSubtotalInr > 0) {
-    if (surakshaAppliedCoupon.discountType === "percent") {
+    if (typeof surakshaAppliedCoupon.discountAmountInr === "number" && surakshaAppliedCoupon.discountAmountInr > 0) {
+      surakshaDiscountInr = Math.min(surakshaAppliedCoupon.discountAmountInr, surakshaSubtotalInr);
+    } else if (surakshaAppliedCoupon.discountType === "percent") {
       surakshaDiscountInr = Math.round((surakshaSubtotalInr * surakshaAppliedCoupon.discountValue) / 100);
     } else {
       surakshaDiscountInr = Math.min(surakshaAppliedCoupon.discountValue, surakshaSubtotalInr);

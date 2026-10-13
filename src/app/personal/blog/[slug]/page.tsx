@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Calendar, Clock, User, ShoppingCart } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { getPublicBlogBySlug, getPublicBlogs } from "@/lib/admin/admin-actions";
+import { slugifyAuthor } from "@/lib/authors/author-utils";
 
 export const revalidate = 60;
 
@@ -100,9 +101,12 @@ export default async function PersonalArticlePage({
           )}
 
           <div className="flex flex-wrap items-center gap-4 text-xs text-[#6B7280] font-semibold pt-2 border-t border-black/[0.06]">
-            <span className="flex items-center gap-1.5 text-[#111827]">
+            <Link
+              href={`/authors/${slugifyAuthor(article.author || "Treel Automotive Team")}`}
+              className="flex items-center gap-1.5 text-[#111827] hover:text-[#2563EB] hover:underline transition-colors"
+            >
               <User className="w-3.5 h-3.5 text-[#2563EB]" /> {article.author || "Treel Automotive Team"}
-            </span>
+            </Link>
             <span>•</span>
             <span className="flex items-center gap-1.5">
               <Calendar className="w-3.5 h-3.5 text-[#2563EB]" /> {formatBlogDate(article.date)}

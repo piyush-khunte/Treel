@@ -109,7 +109,7 @@ export default function SurakshaSimplicityPage() {
                   Item 5: Specific tyre brand
                 </div>
                 <p className="text-sm text-[#451A03] leading-relaxed">
-                  Compatible with all commercial truck tyre brands—JK Tyre, MRF, Apollo, CEAT, Bridgestone, Michelin, and retreads.
+                  Compatible with all commercial truck tyre brands.
                 </p>
               </div>
 

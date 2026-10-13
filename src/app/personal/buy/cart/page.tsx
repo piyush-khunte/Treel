@@ -332,6 +332,7 @@ export default function CartPage() {
         onClose={() => setIsCouponsModalOpen(false)}
         brand="personal"
         subtotalInr={subtotalInr}
+        items={items}
         currentCouponCode={couponCode}
         onApplyCoupon={async (code) => {
           const res = await applyCoupon(code);

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { persistOrderToSupabase } from '@/lib/commerce/order-storage';
 import { syncOrderToShiprocket } from '@/lib/commerce/shiprocket-order-sync';
 import { isSesConfigured, sendOrderConfirmationEmail, sendEmail } from '@/lib/integrations';
+import { validateCouponServer } from '@/lib/commerce/coupon-validator';
 
 export async function POST(req: NextRequest) {
   try {
@@ -69,10 +70,50 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Calculate server-side verified subtotal
+    const subtotal = checkout.items.reduce((acc: number, it: any) => {
+      const vid = (it.variant_id || "").toLowerCase();
+      const sku = (it.sku || "").toUpperCase();
+      const isSur = vid.startsWith("suraksha") || sku.includes("SURAKSHA") || it.vehicle_type === "truck";
+      const unitPrice = isSur ? 1700 : Number(it.price_inr || it.price) || 0;
+      const q = Number(it.quantity) || 1;
+      return acc + unitPrice * q;
+    }, 0);
+
+    let verifiedDiscount = 0;
+    const rawCoupon = (checkout.couponCode || checkout.coupon || '').trim().toUpperCase();
+    if (rawCoupon) {
+      const couponResult = await validateCouponServer({
+        code: rawCoupon,
+        items: checkout.items,
+        subtotalInr: subtotal,
+        brand: hasSuraksha ? "suraksha" : "personal",
+      });
+
+      if (!couponResult.valid) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: {
+              code: 'INVALID_COUPON',
+              message: couponResult.error || couponResult.message || `Coupon "${rawCoupon}" is invalid for this order.`,
+            },
+          },
+          { status: 400 }
+        );
+      }
+      verifiedDiscount = couponResult.discountAmountInr;
+    }
+
+    const verifiedTotal = Math.max(0, subtotal - verifiedDiscount);
+
     // 1. Primary Operation: Persist COD order to Supabase
     const saveRes = await persistOrderToSupabase({
       checkout: {
         ...checkout,
+        subtotalInr: subtotal,
+        discountInr: verifiedDiscount,
+        totalInr: verifiedTotal,
         paymentMethod: 'cod',
       },
       status: 'pending', // COD is pending payment on delivery

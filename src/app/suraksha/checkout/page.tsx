@@ -808,6 +808,7 @@ export default function SurakshaCheckoutPage() {
         onClose={() => setIsCouponsModalOpen(false)}
         brand="suraksha"
         subtotalInr={subtotalInr}
+        items={items}
         currentCouponCode={couponCode}
         onApplyCoupon={async (code) => {
           const res = await applyCoupon(code);

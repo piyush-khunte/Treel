@@ -11,8 +11,15 @@ import {
   MongoAnnualReturn,
   NoticeItem,
   AdminCoupon,
+  CouponCategory,
   AdminConsentRecord
 } from '@/types/admin';
+import {
+  getAllCoupons,
+  saveCoupon,
+  deleteCoupon,
+  toggleCouponStatus,
+} from '@/lib/commerce/coupon-storage';
 import { getAdminSession } from '@/lib/admin/admin-auth';
 import { getAllNotices, saveNotice, removeNotice } from '@/lib/notices/notice-storage';
 import { validateNoticeWordCount, validateAndNormalizeDriveUrl, MAX_NOTICE_WORD_COUNT } from '@/lib/notices/notice-utils';
@@ -1086,10 +1093,10 @@ export async function getAdminCookieConsents(): Promise<{
 }
 
 // ============================================================================
-// COUPON & DISCOUNT CODE MANAGEMENT CRUD
+// COUPON & DISCOUNT CODE MANAGEMENT CRUD (Personal TPMS vs Suraksha separated)
 // ============================================================================
 
-export async function getAdminCoupons(): Promise<{
+export async function getAdminCoupons(category?: CouponCategory): Promise<{
   success: boolean;
   data?: AdminCoupon[];
   stats?: {
@@ -1105,141 +1112,19 @@ export async function getAdminCoupons(): Promise<{
     return { success: false, error: "Unauthorized. Admin login required." };
   }
 
-  const supabase = getAdminClient();
   try {
-    // 1. Fetch all products from Supabase to extract product-linked coupons
-    const { data: products, error: prodErr } = await supabase
-      .from('TreelEcommerce.products')
-      .select('_id, title, productsku, category, price, saleprice, couponcode, couponamount')
-      .order('title', { ascending: true });
-
-    if (prodErr) {
-      console.warn("getAdminCoupons products fetch warning:", prodErr.message);
-    }
-
-    const couponsList: AdminCoupon[] = [];
-    const seenCodes = new Set<string>();
-
-    // Add product-bound coupons from Supabase
-    if (products && Array.isArray(products)) {
-      for (const p of products) {
-        const rawCode = (p.couponcode || "").trim();
-        if (rawCode) {
-          const rawAmount = String(p.couponamount || "").trim();
-          let discountType: "percent" | "fixed" = "fixed";
-          let discountValue = 0;
-
-          if (rawAmount.endsWith("%")) {
-            discountType = "percent";
-            discountValue = parseFloat(rawAmount.replace("%", "")) || 10;
-          } else {
-            discountType = "fixed";
-            discountValue = parseFloat(rawAmount) || 0;
-          }
-
-          couponsList.push({
-            _id: `coup_prod_${p._id}`,
-            code: rawCode.toUpperCase(),
-            discountType,
-            discountValue,
-            productId: p._id,
-            productTitle: p.title,
-            productSku: p.productsku || "SKU-AUTO",
-            category: p.category || "Personal TPMS",
-            minOrderValue: 0,
-            status: "Active",
-            description: `Product coupon for ${p.title}`,
-          });
-          seenCodes.add(rawCode.toUpperCase());
-        }
-      }
-    }
-
-    // Add standard promotional / sitewide coupons
-    const promoCoupons: AdminCoupon[] = [
-      {
-        _id: "coup_promo_treel10",
-        code: "TREEL10",
-        discountType: "percent",
-        discountValue: 10,
-        productId: null,
-        productTitle: "All Products (Sitewide)",
-        productSku: "SITEWIDE",
-        category: "Sitewide",
-        minOrderValue: 0,
-        status: "Active",
-        description: "Official 10% sitewide promotional code for personal TPMS",
-      },
-      {
-        _id: "coup_promo_welcome10",
-        code: "WELCOME10",
-        discountType: "percent",
-        discountValue: 10,
-        productId: null,
-        productTitle: "All Products (Sitewide)",
-        productSku: "SITEWIDE",
-        category: "Sitewide",
-        minOrderValue: 0,
-        status: "Active",
-        description: "New customer 10% welcome discount code",
-      },
-      {
-        _id: "coup_promo_freeship",
-        code: "FREESHIP",
-        discountType: "percent",
-        discountValue: 5,
-        productId: null,
-        productTitle: "All Products (Sitewide)",
-        productSku: "SITEWIDE",
-        category: "Sitewide",
-        minOrderValue: 0,
-        status: "Active",
-        description: "Free express shipping + 5% additional cart savings",
-      },
-      {
-        _id: "coup_promo_treel500",
-        code: "TREEL500",
-        discountType: "fixed",
-        discountValue: 500,
-        productId: null,
-        productTitle: "All Orders over ₹2,500",
-        productSku: "SITEWIDE-TIER",
-        category: "Sitewide",
-        minOrderValue: 2500,
-        status: "Active",
-        description: "Flat ₹500 instant savings on orders of ₹2,500 and above",
-      },
-      {
-        _id: "coup_promo_suraksha10",
-        code: "SURAKSHA10",
-        discountType: "percent",
-        discountValue: 10,
-        productId: null,
-        productTitle: "Suraksha Commercial Fleet Orders",
-        productSku: "SURAKSHA-FLEET",
-        category: "Suraksha Commercial",
-        minOrderValue: 0,
-        status: "Active",
-        description: "10% commercial truck fleet safety discount code",
-      },
-    ];
-
-    for (const promo of promoCoupons) {
-      if (!seenCodes.has(promo.code)) {
-        couponsList.push(promo);
-      }
-    }
+    const list = await getAllCoupons(category);
 
     const stats = {
-      total: couponsList.length,
-      active: couponsList.filter((c) => c.status === "Active").length,
-      productCoupons: couponsList.filter((c) => !!c.productId).length,
-      sitewideCoupons: couponsList.filter((c) => !c.productId).length,
+      total: list.length,
+      active: list.filter((c) => c.status === "Active").length,
+      productCoupons: list.filter((c) => !!c.productId && c.productId !== "all").length,
+      sitewideCoupons: list.filter((c) => !c.productId || c.productId === "all").length,
     };
 
     return {
       success: true,
-      data: couponsList,
+      data: list,
       stats,
     };
   } catch (error: any) {
@@ -1253,10 +1138,17 @@ export async function getAdminCoupons(): Promise<{
 
 export async function saveAdminCoupon(payload: {
   code: string;
+  category: CouponCategory;
   discountType: "percent" | "fixed";
   discountValue: number;
+  scope?: "category" | "product";
   productId?: string | null;
+  productTitle?: string | null;
+  productSku?: string | null;
+  productIds?: string[] | null;
+  productSkus?: string[] | null;
   minOrderValue?: number | null;
+  maxDiscount?: number | null;
   status?: "Active" | "Inactive";
   description?: string;
 }): Promise<{ success: boolean; data?: AdminCoupon; error?: string }> {
@@ -1265,102 +1157,44 @@ export async function saveAdminCoupon(payload: {
     return { success: false, error: "Unauthorized. Admin login required." };
   }
 
-  const cleanCode = (payload.code || "").trim().toUpperCase().replace(/[^A-Z0-9_-]/g, "");
-  if (!cleanCode || cleanCode.length < 3) {
-    return { success: false, error: "Coupon code must be at least 3 alphanumeric characters." };
+  if (!payload.category || (payload.category !== "PERSONAL_TPMS" && payload.category !== "SURAKSHA")) {
+    return {
+      success: false,
+      error: "Category must be strictly specified as either 'PERSONAL_TPMS' or 'SURAKSHA'.",
+    };
   }
 
-  const discountValue = Number(payload.discountValue) || 0;
-  if (discountValue <= 0) {
-    return { success: false, error: "Discount value must be greater than zero." };
+  const result = await saveCoupon({
+    code: payload.code,
+    category: payload.category,
+    discountType: payload.discountType,
+    discountValue: payload.discountValue,
+    scope: payload.scope,
+    productId: payload.productId === "all" ? null : payload.productId,
+    productTitle: payload.productTitle,
+    productSku: payload.productSku,
+    productIds: payload.productIds,
+    productSkus: payload.productSkus,
+    minOrderValue: payload.minOrderValue,
+    maxDiscount: payload.maxDiscount,
+    status: payload.status,
+    description: payload.description,
+  });
+
+  if (result.success) {
+    revalidatePath('/admin/coupons');
+    revalidatePath('/personal/buy/cart');
+    revalidatePath('/personal/buy/checkout');
+    revalidatePath('/suraksha/cart');
+    revalidatePath('/suraksha/checkout');
   }
 
-  if (payload.discountType === "percent" && discountValue > 100) {
-    return { success: false, error: "Percentage discount cannot exceed 100%." };
-  }
-
-  const formattedAmount = payload.discountType === "percent" ? `${discountValue}%` : String(discountValue);
-  const supabase = getAdminClient();
-
-  try {
-    if (payload.productId && payload.productId !== "all") {
-      // Save coupon directly on specific product in Supabase
-      const { data, error } = await supabase
-        .from('TreelEcommerce.products')
-        .update({
-          couponcode: payload.status === "Inactive" ? null : cleanCode,
-          couponamount: payload.status === "Inactive" ? null : formattedAmount,
-        })
-        .eq('_id', payload.productId)
-        .select('_id, title, productsku, category, couponcode, couponamount');
-
-      if (error) throw error;
-
-      const p = data && data[0];
-      const resultCoupon: AdminCoupon = {
-        _id: `coup_prod_${payload.productId}`,
-        code: cleanCode,
-        discountType: payload.discountType,
-        discountValue,
-        productId: payload.productId,
-        productTitle: p?.title || "Specific Product",
-        productSku: p?.productsku || "SKU-AUTO",
-        category: p?.category || "Personal TPMS",
-        minOrderValue: Number(payload.minOrderValue) || 0,
-        status: payload.status || "Active",
-        description: payload.description || `Coupon for ${p?.title || "product"}`,
-      };
-
-      revalidatePath('/admin/coupons');
-      revalidatePath('/admin/inventory');
-      revalidatePath('/personal/buy/cart');
-      revalidatePath('/personal/buy/checkout');
-      return { success: true, data: resultCoupon };
-    } else {
-      // Sitewide / multi-product coupon: update products or register coupon
-      const { data: prods } = await supabase
-        .from('TreelEcommerce.products')
-        .select('_id, title, productsku, category')
-        .limit(10);
-
-      if (prods && prods.length > 0) {
-        await supabase
-          .from('TreelEcommerce.products')
-          .update({
-            couponcode: payload.status === "Inactive" ? null : cleanCode,
-            couponamount: payload.status === "Inactive" ? null : formattedAmount,
-          })
-          .eq('_id', prods[0]._id);
-      }
-
-      const resultCoupon: AdminCoupon = {
-        _id: `coup_${cleanCode.toLowerCase()}`,
-        code: cleanCode,
-        discountType: payload.discountType,
-        discountValue,
-        productId: null,
-        productTitle: "All Products (Sitewide)",
-        productSku: "SITEWIDE",
-        category: "Sitewide",
-        minOrderValue: Number(payload.minOrderValue) || 0,
-        status: payload.status || "Active",
-        description: payload.description || `Sitewide coupon ${cleanCode}`,
-      };
-
-      revalidatePath('/admin/coupons');
-      revalidatePath('/admin/inventory');
-      revalidatePath('/personal/buy/cart');
-      revalidatePath('/personal/buy/checkout');
-      return { success: true, data: resultCoupon };
-    }
-  } catch (error: any) {
-    console.error("saveAdminCoupon error:", error);
-    return { success: false, error: error.message || "Failed to save coupon to database" };
-  }
+  return result;
 }
 
 export async function deleteAdminCoupon(
   code: string,
+  category?: CouponCategory,
   productId?: string | null
 ): Promise<{ success: boolean; error?: string }> {
   const session = await getAdminSession();
@@ -1368,71 +1202,42 @@ export async function deleteAdminCoupon(
     return { success: false, error: "Unauthorized. Admin login required." };
   }
 
-  const cleanCode = (code || "").trim().toUpperCase();
-  const supabase = getAdminClient();
+  const result = await deleteCoupon(code, category);
 
-  try {
-    if (productId) {
-      await supabase
-        .from('TreelEcommerce.products')
-        .update({ couponcode: null, couponamount: null })
-        .eq('_id', productId);
-    }
-
-    if (cleanCode) {
-      await supabase
-        .from('TreelEcommerce.products')
-        .update({ couponcode: null, couponamount: null })
-        .ilike('couponcode', cleanCode);
-    }
-
+  if (result.success) {
     revalidatePath('/admin/coupons');
-    revalidatePath('/admin/inventory');
     revalidatePath('/personal/buy/cart');
     revalidatePath('/personal/buy/checkout');
-    return { success: true };
-  } catch (error: any) {
-    console.error("deleteAdminCoupon error:", error);
-    return { success: false, error: error.message || "Failed to delete coupon" };
+    revalidatePath('/suraksha/cart');
+    revalidatePath('/suraksha/checkout');
   }
+
+  return result;
 }
 
 export async function toggleAdminCouponStatus(
   code: string,
-  productId: string | null,
-  currentStatus: "Active" | "Inactive"
+  category?: CouponCategory,
+  productId?: string | null,
+  currentStatus?: "Active" | "Inactive"
 ): Promise<{ success: boolean; error?: string }> {
   const session = await getAdminSession();
   if (!session) {
     return { success: false, error: "Unauthorized. Admin login required." };
   }
 
-  const newStatus = currentStatus === "Active" ? "Inactive" : "Active";
-  const supabase = getAdminClient();
+  const result = await toggleCouponStatus(code, category);
 
-  try {
-    if (newStatus === "Inactive") {
-      if (productId) {
-        await supabase
-          .from('TreelEcommerce.products')
-          .update({ couponcode: null, couponamount: null })
-          .eq('_id', productId);
-      }
-      await supabase
-        .from('TreelEcommerce.products')
-        .update({ couponcode: null, couponamount: null })
-        .ilike('couponcode', code.toUpperCase());
-    }
-
+  if (result.success) {
     revalidatePath('/admin/coupons');
-    revalidatePath('/admin/inventory');
     revalidatePath('/personal/buy/cart');
     revalidatePath('/personal/buy/checkout');
-    return { success: true };
-  } catch (error: any) {
-    console.error("toggleAdminCouponStatus error:", error);
-    return { success: false, error: error.message || "Failed to update status" };
+    revalidatePath('/suraksha/cart');
+    revalidatePath('/suraksha/checkout');
   }
+
+  return { success: result.success, error: result.error };
 }
+
 
 

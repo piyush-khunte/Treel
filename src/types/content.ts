@@ -72,6 +72,8 @@ export interface SurakshaArticle {
   date: string;
   readTime: string;
   keyTakeaway?: string;
+  content?: string;
+  image?: string;
   status: "Published" | "Draft";
   isFeatured?: boolean;
   createdAt?: string;

@@ -263,6 +263,21 @@ export async function getSurakshaArticleById(id: string): Promise<SurakshaArticl
   return found || null;
 }
 
+export async function getSurakshaArticleBySlug(slug: string, includeDrafts = false): Promise<SurakshaArticle | null> {
+  const all = await getAllSurakshaArticles(includeDrafts);
+  const clean = decodeURIComponent(slug).trim().toLowerCase();
+  const found = all.find((item) => {
+    const itemSlug = (item.slug || "").trim().toLowerCase();
+    const itemId = (item._id || "").trim().toLowerCase();
+    return itemSlug === clean || itemId === clean;
+  });
+  return found || null;
+}
+
+export async function getPublishedSurakshaArticleBySlug(slug: string): Promise<SurakshaArticle | null> {
+  return getSurakshaArticleBySlug(slug, false);
+}
+
 export async function saveSurakshaArticle(article: Partial<SurakshaArticle>): Promise<SurakshaArticle> {
   const all = await getAllSurakshaArticles(true);
   const now = new Date().toISOString();
@@ -280,6 +295,8 @@ export async function saveSurakshaArticle(article: Partial<SurakshaArticle>): Pr
     date: article.date || "October 2026",
     readTime: article.readTime || "5 min read",
     keyTakeaway: article.keyTakeaway || "Suraksha delivers continuous tyre pressure and temperature alerts to protect driver safety.",
+    content: article.content,
+    image: article.image,
     status: article.status === "Draft" ? "Draft" : "Published",
     isFeatured: !!article.isFeatured,
     createdAt: article.createdAt || now,

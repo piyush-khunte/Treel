@@ -7,8 +7,7 @@ import {
   Mail, 
   Check, 
   Loader2, 
-  CheckCircle2, 
-  Rss
+  CheckCircle2
 } from "lucide-react";
 
 interface ArticleShareProps {
@@ -150,14 +149,6 @@ export function ArticleNewsletterForm() {
           )}
         </form>
       )}
-
-      <div className="pt-2 border-t border-white/10 flex items-center gap-2 text-xs font-mono text-[#94A3B8]">
-        <Rss className="w-3.5 h-3.5 text-[#D5573B]" />
-        <span>Also available via RSS feed:</span>
-        <Link href="/insights/rss.xml" className="text-[#FAF7F2] underline hover:text-[#D5573B] transition-colors font-semibold">
-          Subscribe via RSS
-        </Link>
-      </div>
     </div>
   );
 }

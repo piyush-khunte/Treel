@@ -41,7 +41,7 @@ const results = [
     desc: "Conservative alert thresholds caught slow leaks and abnormal drag miles before structural failure occurred.",
   },
   {
-    value: "5.8%",
+    value: "0.5%",
     label: "Fleet Fuel Savings",
     delta: "Optimized highway inflation",
     desc: "Maintaining precise manufacturer cold-inflation targets reduced rolling resistance across long-distance routes.",

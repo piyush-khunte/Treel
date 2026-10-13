@@ -9,6 +9,7 @@ import {
 } from '@/lib/integrations';
 import { persistOrderToSupabase, getSupabaseAdminClient } from '@/lib/commerce/order-storage';
 import { syncOrderToShiprocket } from '@/lib/commerce/shiprocket-order-sync';
+import { validateCouponServer } from '@/lib/commerce/coupon-validator';
 
 export async function POST(req: NextRequest) {
   if (!isRazorpayConfigured()) {
@@ -68,6 +69,46 @@ export async function POST(req: NextRequest) {
     // 3. Persist order & payment record to Supabase
     let orderRef = `TRL-ORD-${Date.now().toString().slice(-6)}`;
     if (checkout) {
+      const rawCoupon = (checkout.couponCode || checkout.coupon || '').trim().toUpperCase();
+      if (rawCoupon && Array.isArray(checkout.items)) {
+        const subtotal = checkout.items.reduce((acc: number, it: any) => {
+          const vid = (it.variant_id || "").toLowerCase();
+          const sku = (it.sku || "").toUpperCase();
+          const isSur = vid.startsWith("suraksha") || sku.includes("SURAKSHA") || it.vehicle_type === "truck";
+          const unitPrice = isSur ? 1700 : Number(it.price_inr || it.price) || 0;
+          const q = Number(it.quantity) || 1;
+          return acc + unitPrice * q;
+        }, 0);
+
+        const hasSuraksha = checkout.items.some((it: any) => {
+          const vid = (it.variant_id || "").toLowerCase();
+          const sku = (it.sku || "").toUpperCase();
+          const cat = (it.category || it.vehicle_type || "").toLowerCase();
+          return vid.startsWith("suraksha") || sku.includes("SURAKSHA") || cat === "truck";
+        });
+
+        const couponResult = await validateCouponServer({
+          code: rawCoupon,
+          items: checkout.items,
+          subtotalInr: subtotal,
+          brand: hasSuraksha ? "suraksha" : "personal",
+        });
+
+        if (!couponResult.valid) {
+          return NextResponse.json(
+            {
+              success: false,
+              configured: true,
+              error: {
+                code: 'INVALID_COUPON',
+                message: couponResult.error || couponResult.message || `Coupon "${rawCoupon}" is invalid for this order.`,
+              },
+            },
+            { status: 400 }
+          );
+        }
+      }
+
       const saveRes = await persistOrderToSupabase({
         checkout: {
           ...checkout,

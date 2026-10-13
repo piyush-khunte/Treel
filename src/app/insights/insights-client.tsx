@@ -7,7 +7,6 @@ import {
   Calendar, 
   Clock, 
   User, 
-  Rss, 
   Mail, 
   Loader2, 
   CheckCircle2, 
@@ -15,6 +14,7 @@ import {
   BookOpen
 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { slugifyAuthor } from "@/lib/authors/author-utils";
 
 import { TreelInsightArticle } from "@/types/content";
 
@@ -190,7 +190,15 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
             {/* Byline & Read CTA */}
             <div className="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-white/10">
               <div className="flex items-center gap-4 text-xs sm:text-sm font-mono text-[#94A3B8]">
-                <span>By {featuredArticle.author}</span>
+                <span>
+                  By{" "}
+                  <Link 
+                    href={`/authors/${slugifyAuthor(featuredArticle.author)}`}
+                    className="text-[#FAF7F2] hover:text-[#D5573B] hover:underline transition-colors font-medium"
+                  >
+                    {featuredArticle.author}
+                  </Link>
+                </span>
                 <span>•</span>
                 <span>{featuredArticle.date}</span>
                 <span>•</span>
@@ -235,15 +243,17 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredArticles.map((article) => (
-              <Link
+              <div
                 key={article.slug}
-                href={`/insights/${article.slug}`}
                 className="rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-sm"
               >
                 {/* Thumbnail Placeholder */}
-                <div className="w-full aspect-[16/9] bg-gradient-to-br from-white/[0.05] to-white/[0.01] border-b border-white/10 flex items-center justify-center text-[#94A3B8]">
+                <Link
+                  href={`/insights/${article.slug}`}
+                  className="w-full aspect-[16/9] bg-gradient-to-br from-white/[0.05] to-white/[0.01] border-b border-white/10 flex items-center justify-center text-[#94A3B8] block"
+                >
                   <BookOpen className="w-7 h-7 text-[#D5573B]/50 group-hover:scale-110 transition-transform" />
-                </div>
+                </Link>
 
                 <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
                   <div className="space-y-2">
@@ -251,7 +261,9 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
                       {article.category}
                     </span>
                     <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-snug">
-                      {article.title}
+                      <Link href={`/insights/${article.slug}`} className="hover:underline">
+                        {article.title}
+                      </Link>
                     </h3>
                     <p className="text-xs text-[#94A3B8] line-clamp-3 leading-relaxed font-inter">
                       {article.excerpt}
@@ -259,11 +271,19 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
                   </div>
 
                   <div className="pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-[#94A3B8]">
-                    <span>By {article.author}</span>
+                    <span>
+                      By{" "}
+                      <Link 
+                        href={`/authors/${slugifyAuthor(article.author)}`}
+                        className="text-[#FAF7F2] hover:text-[#D5573B] hover:underline transition-colors"
+                      >
+                        {article.author}
+                      </Link>
+                    </span>
                     <span>{article.readTime}</span>
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -317,15 +337,6 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
                 </button>
               </form>
             )}
-
-            {/* RSS Link Footer */}
-            <div className="pt-8 border-t border-white/10 flex items-center justify-center gap-2 text-xs font-mono text-[#94A3B8]">
-              <Rss className="w-4 h-4 text-[#D5573B]" />
-              <span>Also available via RSS:</span>
-              <Link href="/insights/rss.xml" className="text-[#FAF7F2] underline hover:text-[#D5573B] transition-colors">
-                /insights/rss.xml
-              </Link>
-            </div>
           </div>
         </div>
       </section>

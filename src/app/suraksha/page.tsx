@@ -178,7 +178,7 @@ export default function SurakshaPage() {
 
                 <div className="space-y-2 text-center sm:text-left">
                   <div className="font-rubik font-bold text-lg text-[#451A03] leading-snug">
-                    1 in-cab display · Tyre sensors as per your truck configuration
+                    1 in-cab display · Sensor for each of your tyre
                   </div>
                   <div className="text-[#78350F] text-sm font-medium">
                     The number of sensors required depends on your truck&apos;s wheel configuration · DIY install · Any tyre brand

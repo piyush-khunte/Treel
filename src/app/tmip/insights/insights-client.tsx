@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { slugifyAuthor } from "@/lib/authors/author-utils";
 
 interface InsightArticle {
   id: string;
@@ -136,7 +137,16 @@ export function InsightsClient() {
             </div>
 
             <div className="pt-4 border-t border-slate-400/10 flex items-center justify-between text-xs font-jetbrains text-[#94A3B8]">
-              <span>{article.date}</span>
+              <div className="flex items-center gap-2">
+                <Link
+                  href={`/authors/${slugifyAuthor(article.author)}`}
+                  className="text-[#F1F5F9] hover:text-[#3B82F6] hover:underline transition-colors font-medium"
+                >
+                  {article.author}
+                </Link>
+                <span className="text-slate-600">·</span>
+                <span>{article.date}</span>
+              </div>
               <Link
                 href="/tmip/whitepapers/roi-fleet-intelligence"
                 className="text-[#3B82F6] font-semibold group-hover:text-white flex items-center gap-1 transition-colors"

@@ -1,5 +1,5 @@
-import { getSupabaseAdminClient } from "./order-storage";
-import { PERSONAL_PRODUCTS } from "@/lib/data/personal-products";
+import { getAllCoupons, getCouponByCode } from "./coupon-storage";
+import { AdminCoupon, CouponCategory } from "@/types/admin";
 
 export interface CouponValidationResult {
   valid: boolean;
@@ -9,6 +9,7 @@ export interface CouponValidationResult {
   discountAmountInr: number;
   message: string;
   appliedProductName?: string;
+  eligibleSubtotalInr?: number;
   error?: string;
 }
 
@@ -27,9 +28,203 @@ export interface AvailableCouponItem {
   ineligibilityReason?: string;
 }
 
-const SURAKSHA_CODES = new Set(["SURAKSHA10", "FLEET10"]);
-const PERSONAL_PROMO_CODES = new Set(["TREEL10", "WELCOME10", "FREESHIP", "TREEL500"]);
+export interface CanonicalSurakshaProduct {
+  id: string;
+  title: string;
+  sku: string;
+  price: number;
+  tyres: number;
+  aliases: string[];
+}
 
+export const CANONICAL_SURAKSHA_PRODUCTS: CanonicalSurakshaProduct[] = [
+  {
+    id: "suraksha_6w",
+    title: "Suraksha 6-Wheel Commercial Kit",
+    sku: "SKU-SURAKSHA-6W",
+    price: 10200,
+    tyres: 6,
+    aliases: ["SKU-SURAKSHA-6W", "SKU-SURAKSHA-6TYRE", "TRL-SUR-6W", "6W", "6-WHEEL", "6-WHEELER"],
+  },
+  {
+    id: "suraksha_10w",
+    title: "Suraksha 10-Wheel Multi-Axle Kit",
+    sku: "SKU-SURAKSHA-10W",
+    price: 17000,
+    tyres: 10,
+    aliases: ["SKU-SURAKSHA-10W", "SKU-SURAKSHA-10TYRE", "TRL-SUR-10W", "10W", "10-WHEEL", "10-WHEELER"],
+  },
+  {
+    id: "suraksha_12w",
+    title: "Suraksha 12-Wheel Heavy Haul Kit",
+    sku: "SKU-SURAKSHA-12W",
+    price: 20400,
+    tyres: 12,
+    aliases: ["SKU-SURAKSHA-12W", "SKU-SURAKSHA-12TYRE", "TRL-SUR-12W", "12W", "12-WHEEL", "12-WHEELER"],
+  },
+  {
+    id: "suraksha_14w",
+    title: "Suraksha 14-Wheel Freight Kit",
+    sku: "SKU-SURAKSHA-14W",
+    price: 23800,
+    tyres: 14,
+    aliases: ["SKU-SURAKSHA-14W", "SKU-SURAKSHA-14TYRE", "TRL-SUR-14W", "14W", "14-WHEEL", "14-WHEELER"],
+  },
+  {
+    id: "suraksha_16w",
+    title: "Suraksha 16-Wheel Commercial Kit",
+    sku: "SKU-SURAKSHA-16W",
+    price: 27200,
+    tyres: 16,
+    aliases: ["SKU-SURAKSHA-16W", "SKU-SURAKSHA-16TYRE", "TRL-SUR-16W", "16W", "16-WHEEL", "16-WHEELER"],
+  },
+  {
+    id: "suraksha_18w",
+    title: "Suraksha 18-Wheel Multi-Axle Kit",
+    sku: "SKU-SURAKSHA-18W",
+    price: 30600,
+    tyres: 18,
+    aliases: ["SKU-SURAKSHA-18W", "SKU-SURAKSHA-18TYRE", "TRL-SUR-18W", "18W", "18-WHEEL", "18-WHEELER"],
+  },
+  {
+    id: "suraksha_22w",
+    title: "Suraksha 22-Wheel Prime Mover Kit",
+    sku: "SKU-SURAKSHA-22W",
+    price: 37400,
+    tyres: 22,
+    aliases: ["SKU-SURAKSHA-22W", "SKU-SURAKSHA-22TYRE", "TRL-SUR-22W", "22W", "22-WHEEL", "22-WHEELER"],
+  },
+];
+
+export function isSurakshaCartItem(item: any): boolean {
+  if (!item) return false;
+  const vid = (item.variant_id || "").toLowerCase();
+  const sku = (item.sku || "").toUpperCase();
+  const vtype = (item.vehicle_type || "").toLowerCase();
+  const cat = (item.category || "").toLowerCase();
+  const name = (item.name || item.title || "").toLowerCase();
+
+  return (
+    vid.startsWith("suraksha") ||
+    sku.includes("SURAKSHA") ||
+    vtype === "truck" ||
+    vtype === "commercial" ||
+    cat.includes("truck") ||
+    cat.includes("commercial") ||
+    cat.includes("suraksha") ||
+    name.includes("suraksha")
+  );
+}
+
+/**
+ * Determines whether a specific cart item is eligible for the given coupon.
+ * Enforces exact product IDs, canonical SKUs, and Suraksha axle/tyre configurations.
+ */
+export function isItemEligibleForCoupon(item: any, coupon: AdminCoupon): boolean {
+  if (!item || !coupon) return false;
+
+  // 1. Strict Brand/Category boundary check
+  const isSuraksha = isSurakshaCartItem(item);
+  if (coupon.category === "SURAKSHA" && !isSuraksha) return false;
+  if (coupon.category === "PERSONAL_TPMS" && isSuraksha) return false;
+
+  // 2. Check if coupon is category-wide
+  const isCategoryWide =
+    coupon.scope === "category" ||
+    ((!coupon.productId || coupon.productId === "all") &&
+      (!coupon.productIds || coupon.productIds.length === 0) &&
+      (!coupon.productSku || coupon.productSku.toUpperCase().includes("SITEWIDE")));
+
+  if (isCategoryWide) {
+    return true;
+  }
+
+  // 3. Product-specific check:
+  // Gather target product identifiers from the coupon
+  const targetIds = new Set<string>();
+  if (coupon.productId && coupon.productId !== "all") {
+    targetIds.add(coupon.productId.toLowerCase());
+  }
+  if (Array.isArray(coupon.productIds)) {
+    for (const pid of coupon.productIds) {
+      if (pid && pid !== "all") targetIds.add(pid.toLowerCase());
+    }
+  }
+
+  const targetSkus = new Set<string>();
+  if (coupon.productSku && !coupon.productSku.toUpperCase().includes("SITEWIDE")) {
+    targetSkus.add(coupon.productSku.toUpperCase());
+  }
+  if (Array.isArray(coupon.productSkus)) {
+    for (const psku of coupon.productSkus) {
+      if (psku && !psku.toUpperCase().includes("SITEWIDE")) targetSkus.add(psku.toUpperCase());
+    }
+  }
+
+  // A. For Suraksha commercial items
+  if (coupon.category === "SURAKSHA") {
+    // Determine which tyre configurations this coupon is valid for
+    const validTyreCounts = new Set<number>();
+    for (const prod of CANONICAL_SURAKSHA_PRODUCTS) {
+      const matchesId = targetIds.has(prod.id.toLowerCase());
+      const matchesSku =
+        targetSkus.has(prod.sku.toUpperCase()) ||
+        prod.aliases.some((a) => targetSkus.has(a.toUpperCase()));
+      if (matchesId || matchesSku) {
+        validTyreCounts.add(prod.tyres);
+      }
+    }
+
+    // Direct match against target IDs or target SKUs
+    const itId = (item.id || item._id || item.variant_id || "").toLowerCase();
+    const itSku = (item.sku || "").toUpperCase();
+    if (targetIds.has(itId) || targetSkus.has(itSku)) {
+      return true;
+    }
+
+    // Determine the tyre count of this cart item
+    let itemTyres: number | null = null;
+    const itQty = Number(item.quantity) || 0;
+    const itSensors = Number(item.sensor_count) || 0;
+    const itName = (item.name || item.title || "").toUpperCase();
+
+    for (const prod of CANONICAL_SURAKSHA_PRODUCTS) {
+      if (
+        itId === prod.id ||
+        itSku === prod.sku ||
+        prod.aliases.some((a) => itSku === a.toUpperCase()) ||
+        itName.includes(`${prod.tyres} TYRE`) ||
+        itName.includes(`${prod.tyres}-WHEEL`) ||
+        itName.includes(`${prod.tyres} WHEEL`) ||
+        itQty === prod.tyres ||
+        itSensors === prod.tyres
+      ) {
+        itemTyres = prod.tyres;
+        break;
+      }
+    }
+
+    if (itemTyres !== null && validTyreCounts.size > 0) {
+      return validTyreCounts.has(itemTyres);
+    }
+
+    return false;
+  }
+
+  // B. For Personal TPMS consumer items
+  const itId = (item.id || item._id || item.variant_id || "").toLowerCase();
+  const itSku = (item.sku || item.productsku || "").toUpperCase();
+
+  if (targetIds.has(itId)) return true;
+  if (targetSkus.has(itSku)) return true;
+
+  return false;
+}
+
+/**
+ * Validates a coupon against cart contents, subtotal, and brand.
+ * Strictly enforces product-level eligibility and brand boundaries.
+ */
 export async function validateCouponServer(params: {
   code: string;
   items?: any[];
@@ -37,7 +232,7 @@ export async function validateCouponServer(params: {
   brand?: "personal" | "suraksha";
 }): Promise<CouponValidationResult> {
   const { code, items = [], subtotalInr, brand } = params;
-  const cleanCode = (code || "").trim().toUpperCase();
+  const cleanCode = (code || "").trim().toUpperCase().replace(/[^A-Z0-9_-]/g, "");
 
   if (!cleanCode) {
     return {
@@ -63,36 +258,48 @@ export async function validateCouponServer(params: {
     };
   }
 
-  // Detect brand from items if not explicitly supplied
+  // Detect brand from cart items if not explicitly specified
   let detectedBrand: "personal" | "suraksha" = brand || "personal";
   if (!brand && items.length > 0) {
-    const isSuraksha = items.some((it: any) => {
-      const vid = (it.variant_id || "").toLowerCase();
-      const sku = (it.sku || "").toUpperCase();
-      const cat = (it.category || it.vehicle_type || "").toLowerCase();
-      return vid.startsWith("suraksha") || sku.includes("SURAKSHA") || cat === "truck";
-    });
-    if (isSuraksha) detectedBrand = "suraksha";
+    if (items.some(isSurakshaCartItem)) {
+      detectedBrand = "suraksha";
+    }
   }
 
-  // 1. Strict Brand Separation Enforcement
-  if (detectedBrand === "suraksha" && PERSONAL_PROMO_CODES.has(cleanCode)) {
+  // Look up coupon from persistent storage
+  const coupon = await getCouponByCode(cleanCode);
+
+  if (!coupon) {
     return {
       valid: false,
       code: cleanCode,
-      discountType: "percent",
+      discountType: "fixed",
       discountValue: 0,
       discountAmountInr: 0,
-      message: `Coupon "${cleanCode}" is valid only for Personal TPMS products.`,
-      error: `Coupon "${cleanCode}" is valid only for Personal TPMS products.`,
+      message: `Coupon code "${cleanCode}" is invalid or expired.`,
+      error: `Coupon code "${cleanCode}" is invalid or expired.`,
     };
   }
 
-  if (detectedBrand === "personal" && SURAKSHA_CODES.has(cleanCode)) {
+  // Check if coupon is active
+  if (coupon.status !== "Active") {
     return {
       valid: false,
       code: cleanCode,
-      discountType: "percent",
+      discountType: coupon.discountType,
+      discountValue: 0,
+      discountAmountInr: 0,
+      message: `Coupon "${cleanCode}" is currently inactive.`,
+      error: `Coupon "${cleanCode}" is currently inactive.`,
+    };
+  }
+
+  // 1. Strict Brand Separation Enforcement
+  if (detectedBrand === "personal" && coupon.category === "SURAKSHA") {
+    return {
+      valid: false,
+      code: cleanCode,
+      discountType: coupon.discountType,
       discountValue: 0,
       discountAmountInr: 0,
       message: `Coupon "${cleanCode}" is valid only for Suraksha Commercial Fleet orders.`,
@@ -100,315 +307,158 @@ export async function validateCouponServer(params: {
     };
   }
 
-  // 2. Suraksha Promotional Codes
-  if (detectedBrand === "suraksha" && SURAKSHA_CODES.has(cleanCode)) {
-    const discountAmount = Math.round((subtotalInr * 10) / 100);
+  if (detectedBrand === "suraksha" && coupon.category === "PERSONAL_TPMS") {
     return {
-      valid: true,
+      valid: false,
       code: cleanCode,
-      discountType: "percent",
-      discountValue: 10,
-      discountAmountInr: discountAmount,
-      message: `Suraksha 10% commercial fleet discount applied! You saved ₹${discountAmount.toLocaleString("en-IN")}.`,
+      discountType: coupon.discountType,
+      discountValue: 0,
+      discountAmountInr: 0,
+      message: `Coupon "${cleanCode}" is valid only for Personal TPMS products.`,
+      error: `Coupon "${cleanCode}" is valid only for Personal TPMS products.`,
     };
   }
 
-  // 3. Check Database (Supabase TreelEcommerce.products) for Admin-managed coupons
-  let dbMatch: any = null;
-  try {
-    const supabase = getSupabaseAdminClient();
-    const { data: dbProducts } = await supabase
-      .from("TreelEcommerce.products")
-      .select("_id, title, price, saleprice, couponcode, couponamount, productsku, category")
-      .ilike("couponcode", cleanCode);
+  // 2. Product-Specific Scope & Cart Item Filtering
+  const isProductSpecific =
+    coupon.scope === "product" ||
+    (coupon.scope !== "category" &&
+      ((coupon.productId && coupon.productId !== "all") ||
+        (Array.isArray(coupon.productIds) && coupon.productIds.length > 0)));
 
-    if (dbProducts && dbProducts.length > 0) {
-      dbMatch = dbProducts[0];
-    }
-  } catch (dbErr) {
-    console.warn("Supabase coupon lookup fallback:", dbErr);
-  }
+  const eligibleItems = items.filter((it: any) => isItemEligibleForCoupon(it, coupon));
 
-  // 4. Fallback to catalog PERSONAL_PRODUCTS if offline/seeded
-  if (!dbMatch) {
-    const localMatch = PERSONAL_PRODUCTS.find(
-      (p) => (p.couponcode || "").toUpperCase() === cleanCode
-    );
-    if (localMatch) {
-      dbMatch = {
-        _id: localMatch.id,
-        title: localMatch.title,
-        price: localMatch.price,
-        saleprice: localMatch.saleprice,
-        couponcode: localMatch.couponcode,
-        couponamount: localMatch.couponamount,
-        productsku: localMatch.productsku,
-        category: "Personal TPMS",
+  if (isProductSpecific) {
+    if (items.length > 0 && eligibleItems.length === 0) {
+      return {
+        valid: false,
+        code: cleanCode,
+        discountType: coupon.discountType,
+        discountValue: 0,
+        discountAmountInr: 0,
+        message: `Coupon "${cleanCode}" applies only to "${coupon.productTitle || "the specified product(s)"}".`,
+        error: `Coupon "${cleanCode}" applies only to "${coupon.productTitle || "the specified product(s)"}".`,
       };
     }
   }
 
-  // A. Product-Specific Admin Coupon Found
-  if (dbMatch && dbMatch.couponcode) {
-    // If user is on Suraksha but product coupon belongs to Personal TPMS product
-    const isCommercialProduct =
-      (dbMatch.category || "").toLowerCase().includes("commercial") ||
-      (dbMatch.category || "").toLowerCase().includes("truck") ||
-      (dbMatch.title || "").toLowerCase().includes("suraksha");
-
-    if (detectedBrand === "suraksha" && !isCommercialProduct) {
-      return {
-        valid: false,
-        code: cleanCode,
-        discountType: "fixed",
-        discountValue: 0,
-        discountAmountInr: 0,
-        message: `Coupon "${cleanCode}" is valid only for Personal TPMS (${dbMatch.title}).`,
-        error: `Coupon "${cleanCode}" is valid only for Personal TPMS (${dbMatch.title}).`,
-      };
-    }
-
-    if (detectedBrand === "personal" && isCommercialProduct) {
-      return {
-        valid: false,
-        code: cleanCode,
-        discountType: "fixed",
-        discountValue: 0,
-        discountAmountInr: 0,
-        message: `Coupon "${cleanCode}" is valid only for Suraksha Commercial Fleet orders.`,
-        error: `Coupon "${cleanCode}" is valid only for Suraksha Commercial Fleet orders.`,
-      };
-    }
-
-    const rawAmount = String(dbMatch.couponamount || "").trim();
-    let discountAmount = 0;
-    let discountType: "percent" | "fixed" = "fixed";
-    let discountValue = 0;
-
-    if (rawAmount.endsWith("%")) {
-      const pct = parseFloat(rawAmount.replace("%", ""));
-      discountType = "percent";
-      discountValue = isNaN(pct) ? 10 : pct;
-      discountAmount = Math.round((subtotalInr * discountValue) / 100);
-    } else {
-      const parsedFixed = parseFloat(rawAmount);
-      if (!isNaN(parsedFixed) && parsedFixed > 0) {
-        discountType = "fixed";
-        discountValue = parsedFixed;
-        discountAmount = Math.min(parsedFixed, subtotalInr);
-      } else {
-        discountType = "percent";
-        discountValue = 10;
-        discountAmount = Math.round((subtotalInr * 10) / 100);
-      }
-    }
-
+  // 3. Minimum Order Value Check (against total cart subtotal)
+  if (coupon.minOrderValue && coupon.minOrderValue > 0 && subtotalInr < coupon.minOrderValue) {
     return {
-      valid: true,
+      valid: false,
       code: cleanCode,
-      discountType,
-      discountValue,
-      discountAmountInr: discountAmount,
-      message: `Coupon "${cleanCode}" applied successfully! You saved ₹${discountAmount.toLocaleString("en-IN")}.`,
-      appliedProductName: dbMatch.title,
+      discountType: coupon.discountType,
+      discountValue: 0,
+      discountAmountInr: 0,
+      message: `Coupon "${cleanCode}" requires a minimum order value of ₹${coupon.minOrderValue.toLocaleString("en-IN")}.`,
+      error: `Coupon "${cleanCode}" requires a minimum order value of ₹${coupon.minOrderValue.toLocaleString("en-IN")}.`,
     };
   }
 
-  // B. Personal TPMS Sitewide Promotional Coupons
-  if (detectedBrand === "personal") {
-    if (cleanCode === "TREEL10" || cleanCode === "WELCOME10") {
-      const discountAmount = Math.round((subtotalInr * 10) / 100);
-      return {
-        valid: true,
-        code: cleanCode,
-        discountType: "percent",
-        discountValue: 10,
-        discountAmountInr: discountAmount,
-        message: `Special 10% discount applied! You saved ₹${discountAmount.toLocaleString("en-IN")}.`,
-      };
-    }
+  // 4. Calculate Verified Discount Amount against ONLY eligible items
+  // In mixed carts or product-restricted coupons, ineligible items do not contribute to the discount
+  const applicableItems = isProductSpecific ? eligibleItems : items;
+  const eligibleSubtotalInr = applicableItems.reduce((acc: number, it: any) => {
+    const isSur = isSurakshaCartItem(it);
+    const unitPrice = isSur ? 1700 : Number(it.price_inr || it.price) || 0;
+    const q = Number(it.quantity) || 1;
+    return acc + unitPrice * q;
+  }, 0);
 
-    if (cleanCode === "FREESHIP") {
-      const discountAmount = Math.round((subtotalInr * 5) / 100);
-      return {
-        valid: true,
-        code: cleanCode,
-        discountType: "percent",
-        discountValue: 5,
-        discountAmountInr: discountAmount,
-        message: `Free express shipping & 5% bonus discount applied! You saved ₹${discountAmount.toLocaleString("en-IN")}.`,
-      };
-    }
+  const basisSubtotal = eligibleSubtotalInr > 0 ? eligibleSubtotalInr : subtotalInr;
 
-    if (cleanCode === "TREEL500") {
-      if (subtotalInr < 2500) {
-        return {
-          valid: false,
-          code: cleanCode,
-          discountType: "fixed",
-          discountValue: 500,
-          discountAmountInr: 0,
-          message: "Coupon TREEL500 requires a minimum order value of ₹2,500.",
-          error: "Coupon TREEL500 requires a minimum order value of ₹2,500.",
-        };
-      }
-      const discountAmount = Math.min(500, subtotalInr);
-      return {
-        valid: true,
-        code: cleanCode,
-        discountType: "fixed",
-        discountValue: 500,
-        discountAmountInr: discountAmount,
-        message: "Flat ₹500 discount applied!",
-      };
+  let discountAmount = 0;
+  if (coupon.discountType === "percent") {
+    discountAmount = Math.round((basisSubtotal * coupon.discountValue) / 100);
+    if (coupon.maxDiscount && coupon.maxDiscount > 0) {
+      discountAmount = Math.min(discountAmount, coupon.maxDiscount);
     }
+  } else {
+    // Fixed INR discount capped at eligible items subtotal
+    discountAmount = Math.min(coupon.discountValue, basisSubtotal);
   }
 
-  // Invalid code
+  discountAmount = Math.max(0, discountAmount);
+
   return {
-    valid: false,
+    valid: true,
     code: cleanCode,
-    discountType: "fixed",
-    discountValue: 0,
-    discountAmountInr: 0,
-    message: `Coupon code "${cleanCode}" is invalid or expired.`,
-    error: `Coupon code "${cleanCode}" is invalid or expired.`,
+    discountType: coupon.discountType,
+    discountValue: coupon.discountValue,
+    discountAmountInr: discountAmount,
+    eligibleSubtotalInr: basisSubtotal,
+    message: `Coupon "${cleanCode}" applied successfully! You saved ₹${discountAmount.toLocaleString("en-IN")}.`,
+    appliedProductName: isProductSpecific ? (coupon.productTitle || undefined) : undefined,
   };
 }
 
 /**
- * Returns strictly filtered available coupons for the specified brand.
+ * Returns available coupons for the specified brand, strictly filtered by cart item eligibility.
+ * Product-specific coupons ONLY appear if at least one eligible product is in the cart.
  */
 export async function getAvailableCouponsServer(params: {
   brand: "personal" | "suraksha";
   subtotalInr?: number;
+  items?: any[];
 }): Promise<AvailableCouponItem[]> {
-  const { brand, subtotalInr = 0 } = params;
-  const list: AvailableCouponItem[] = [];
+  const { brand, subtotalInr = 0, items = [] } = params;
+  const targetCategory: CouponCategory = brand === "suraksha" ? "SURAKSHA" : "PERSONAL_TPMS";
 
-  if (brand === "personal") {
-    // 1. Fetch live product coupons from Supabase
-    try {
-      const supabase = getSupabaseAdminClient();
-      const { data: dbProducts } = await supabase
-        .from("TreelEcommerce.products")
-        .select("_id, title, price, saleprice, couponcode, couponamount, productsku, category")
-        .not("couponcode", "is", null);
+  const allCoupons = await getAllCoupons(targetCategory);
+  const activeCoupons = allCoupons.filter((c) => c.status === "Active" && c.category === targetCategory);
 
-      if (dbProducts && Array.isArray(dbProducts)) {
-        for (const p of dbProducts) {
-          const rawCode = (p.couponcode || "").trim().toUpperCase();
-          if (rawCode && !SURAKSHA_CODES.has(rawCode)) {
-            const rawAmount = String(p.couponamount || "").trim();
-            let discountType: "percent" | "fixed" = "fixed";
-            let discountValue = 0;
+  const eligibleCoupons: AvailableCouponItem[] = [];
 
-            if (rawAmount.endsWith("%")) {
-              discountType = "percent";
-              discountValue = parseFloat(rawAmount.replace("%", "")) || 10;
-            } else {
-              discountType = "fixed";
-              discountValue = parseFloat(rawAmount) || 0;
-            }
+  for (const c of activeCoupons) {
+    const isProductSpecific =
+      c.scope === "product" ||
+      (c.scope !== "category" &&
+        ((c.productId && c.productId !== "all") ||
+          (Array.isArray(c.productIds) && c.productIds.length > 0)));
 
-            list.push({
-              code: rawCode,
-              title: `${p.title} Special Offer`,
-              discountType,
-              discountValue,
-              discountLabel: discountType === "percent" ? `${discountValue}% OFF` : `₹${discountValue.toLocaleString("en-IN")} FLAT OFF`,
-              description: `Special discount for ${p.title} (SKU: ${p.productsku || "TRL"})`,
-              minOrderValue: 0,
-              brand: "personal",
-              productTitle: p.title,
-              isEligible: true,
-            });
-          }
-        }
+    // If product-specific and cart items are provided, check if the cart contains a matching product
+    if (isProductSpecific && items.length > 0) {
+      const hasMatchingProduct = items.some((it) => isItemEligibleForCoupon(it, c));
+      if (!hasMatchingProduct) {
+        // Exclude coupon completely: does not apply to current cart items
+        continue;
       }
-    } catch (e) {
-      console.warn("Error fetching product coupons:", e);
     }
 
-    // 2. Personal TPMS Sitewide Promo Codes
-    list.push(
-      {
-        code: "TREEL10",
-        title: "10% Sitewide Discount",
-        discountType: "percent",
-        discountValue: 10,
-        discountLabel: "10% OFF",
-        description: "Official promotional discount valid on all Personal TPMS kits.",
-        minOrderValue: 0,
-        brand: "personal",
-        isEligible: true,
-      },
-      {
-        code: "WELCOME10",
-        title: "Welcome Customer Offer",
-        discountType: "percent",
-        discountValue: 10,
-        discountLabel: "10% OFF",
-        description: "Special 10% introductory offer on your first smart TPMS order.",
-        minOrderValue: 0,
-        brand: "personal",
-        isEligible: true,
-      },
-      {
-        code: "FREESHIP",
-        title: "Express Shipping Bonus",
-        discountType: "percent",
-        discountValue: 5,
-        discountLabel: "5% OFF",
-        description: "Free express pan-India delivery + 5% bonus checkout discount.",
-        minOrderValue: 0,
-        brand: "personal",
-        isEligible: true,
-      },
-      {
-        code: "TREEL500",
-        title: "Flat ₹500 Mega Savings",
-        discountType: "fixed",
-        discountValue: 500,
-        discountLabel: "₹500 FLAT OFF",
-        description: "Flat ₹500 instant discount on orders of ₹2,500 and above.",
-        minOrderValue: 2500,
-        brand: "personal",
-        isEligible: subtotalInr >= 2500 || subtotalInr === 0,
-        ineligibilityReason: subtotalInr > 0 && subtotalInr < 2500 ? `Requires minimum order of ₹2,500 (Add ₹${(2500 - subtotalInr).toLocaleString("en-IN")} more)` : undefined,
-      }
-    );
-  } else if (brand === "suraksha") {
-    // Suraksha Commercial Fleet Promo Codes
-    list.push(
-      {
-        code: "SURAKSHA10",
-        title: "Suraksha Fleet Safety Discount",
-        discountType: "percent",
-        discountValue: 10,
-        discountLabel: "10% OFF",
-        description: "10% discount on complete commercial truck TPMS safety kits.",
-        minOrderValue: 0,
-        brand: "suraksha",
-        isEligible: true,
-      },
-      {
-        code: "FLEET10",
-        title: "Commercial Transporter Promo",
-        discountType: "percent",
-        discountValue: 10,
-        discountLabel: "10% OFF",
-        description: "Special 10% fleet pricing discount for verified truck transporters.",
-        minOrderValue: 0,
-        brand: "suraksha",
-        isEligible: true,
-      }
-    );
+    const isEligible = !c.minOrderValue || subtotalInr >= c.minOrderValue || subtotalInr === 0;
+    const ineligibilityReason =
+      c.minOrderValue && subtotalInr > 0 && subtotalInr < c.minOrderValue
+        ? `Requires minimum order of ₹${c.minOrderValue.toLocaleString("en-IN")} (Add ₹${(c.minOrderValue - subtotalInr).toLocaleString("en-IN")} more)`
+        : undefined;
+
+    const discountLabel =
+      c.discountType === "percent"
+        ? `${c.discountValue}% OFF`
+        : `₹${c.discountValue.toLocaleString("en-IN")} FLAT OFF`;
+
+    eligibleCoupons.push({
+      code: c.code,
+      title: c.productTitle || (brand === "suraksha" ? "Suraksha Fleet Safety Offer" : "Personal TPMS Offer"),
+      discountType: c.discountType,
+      discountValue: c.discountValue,
+      discountLabel,
+      description:
+        c.description ||
+        (c.discountType === "percent"
+          ? `${c.discountValue}% discount on your order`
+          : `Flat ₹${c.discountValue} savings`),
+      minOrderValue: c.minOrderValue || 0,
+      maxDiscount: c.maxDiscount || undefined,
+      brand,
+      productTitle: isProductSpecific ? (c.productTitle || undefined) : undefined,
+      isEligible,
+      ineligibilityReason,
+    });
   }
 
   // Deduplicate by code
   const uniqueMap = new Map<string, AvailableCouponItem>();
-  for (const item of list) {
+  for (const item of eligibleCoupons) {
     if (!uniqueMap.has(item.code)) {
       uniqueMap.set(item.code, item);
     }

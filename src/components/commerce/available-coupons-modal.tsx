@@ -19,6 +19,7 @@ interface AvailableCouponsModalProps {
   onClose: () => void;
   brand: "personal" | "suraksha";
   subtotalInr: number;
+  items?: any[];
   currentCouponCode?: string;
   onApplyCoupon: (code: string) => Promise<boolean | void> | boolean | void;
 }
@@ -28,6 +29,7 @@ export function AvailableCouponsModal({
   onClose,
   brand,
   subtotalInr,
+  items,
   currentCouponCode,
   onApplyCoupon,
 }: AvailableCouponsModalProps) {
@@ -50,7 +52,15 @@ export function AvailableCouponsModal({
     setIsLoading(true);
     setError(null);
 
-    fetch(`/api/coupons/available?brand=${brand}&subtotal=${subtotalInr}`)
+    fetch("/api/coupons/available", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        brand,
+        subtotalInr,
+        items: items || [],
+      }),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.success && Array.isArray(data.coupons)) {
@@ -71,7 +81,7 @@ export function AvailableCouponsModal({
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "unset";
     };
-  }, [isOpen, brand, subtotalInr, onClose]);
+  }, [isOpen, brand, subtotalInr, items, onClose]);
 
   if (!isOpen) return null;
 

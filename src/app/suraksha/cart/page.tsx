@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -14,9 +14,13 @@ import {
   Lock,
   PhoneCall,
   ShoppingBag,
+  Tag,
+  Sparkles,
+  Check,
 } from "lucide-react";
 import { useSurakshaCart } from "@/lib/commerce/cart-context";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { AvailableCouponsModal } from "@/components/commerce/available-coupons-modal";
 
 export default function SurakshaCartPage() {
   const {
@@ -28,7 +32,51 @@ export default function SurakshaCartPage() {
     subtotalInr,
     discountInr,
     couponCode,
+    appliedCoupon,
+    applyCoupon,
+    removeCoupon,
   } = useSurakshaCart();
+
+  const [inputCoupon, setInputCoupon] = useState("");
+  const [isValidatingCoupon, setIsValidatingCoupon] = useState(false);
+  const [isCouponsModalOpen, setIsCouponsModalOpen] = useState(false);
+  const [couponStatus, setCouponStatus] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
+
+  const handleApplyCoupon = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const clean = inputCoupon.trim().toUpperCase();
+    if (!clean) {
+      setCouponStatus({ type: "error", text: "Please enter a coupon code." });
+      return;
+    }
+
+    setIsValidatingCoupon(true);
+    setCouponStatus(null);
+    const res = await applyCoupon(clean);
+    setIsValidatingCoupon(false);
+
+    if (res.success) {
+      setCouponStatus({
+        type: "success",
+        text: res.message || `Coupon "${clean}" applied successfully!`,
+      });
+      setInputCoupon("");
+    } else {
+      setCouponStatus({
+        type: "error",
+        text: res.message || `Coupon code "${clean}" is invalid or expired.`,
+      });
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    removeCoupon();
+    setCouponStatus(null);
+    setInputCoupon("");
+  };
 
   return (
     <div className="bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20 min-h-screen">
@@ -234,6 +282,78 @@ export default function SurakshaCartPage() {
                         FREE
                       </span>
                     </div>
+                    {/* Suraksha Fleet Coupon Box */}
+                    <div className="p-3.5 rounded-md bg-[#FEF3C7] border border-[#DC2626]/30 space-y-2.5">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#451A03]">
+                          <Tag className="w-3.5 h-3.5 text-[#DC2626]" />
+                          <span>Fleet Promo Code</span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setIsCouponsModalOpen(true)}
+                          className="text-xs font-bold text-[#DC2626] hover:underline flex items-center gap-1 cursor-pointer"
+                        >
+                          <Sparkles className="w-3.5 h-3.5" />
+                          <span>View Fleet Offers</span>
+                        </button>
+                      </div>
+
+                      {couponCode ? (
+                        <div className="flex items-center justify-between p-2.5 rounded bg-emerald-50 border border-emerald-300">
+                          <div className="flex items-center gap-2">
+                            <div className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center">
+                              <Check className="w-3 h-3" />
+                            </div>
+                            <div>
+                              <div className="text-xs font-bold text-emerald-900 font-mono tracking-wider">
+                                {couponCode}
+                              </div>
+                              <div className="text-[10px] text-emerald-700 font-semibold">
+                                You save ₹{discountInr.toLocaleString("en-IN")}
+                                {appliedCoupon?.appliedProductName ? ` (${appliedCoupon.appliedProductName})` : ""}
+                              </div>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={handleRemoveCoupon}
+                            className="text-xs font-bold text-red-600 hover:underline px-1 cursor-pointer"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      ) : (
+                        <form onSubmit={handleApplyCoupon} className="space-y-1.5">
+                          <div className="flex gap-2">
+                            <input
+                              type="text"
+                              placeholder="e.g. SURAKSHA10, FLEET10"
+                              value={inputCoupon}
+                              onChange={(e) => setInputCoupon(e.target.value.toUpperCase())}
+                              className="flex-1 px-3 py-2 rounded border border-[#451A03]/20 bg-white text-xs font-mono font-bold text-[#451A03] uppercase placeholder:font-sans placeholder:normal-case placeholder:font-normal focus:outline-none focus:border-[#DC2626]"
+                            />
+                            <button
+                              type="submit"
+                              disabled={isValidatingCoupon || !inputCoupon.trim()}
+                              className="px-4 py-2 rounded bg-[#DC2626] text-[#FEF3C7] text-xs font-bold uppercase hover:bg-[#B91C1C] disabled:opacity-50 transition-colors cursor-pointer"
+                            >
+                              {isValidatingCoupon ? "Checking..." : "Apply"}
+                            </button>
+                          </div>
+                          {couponStatus && (
+                            <div
+                              className={`text-[11px] font-bold ${
+                                couponStatus.type === "success" ? "text-emerald-700" : "text-red-600"
+                              }`}
+                            >
+                              {couponStatus.text}
+                            </div>
+                          )}
+                        </form>
+                      )}
+                    </div>
+
                     {discountInr > 0 && (
                       <div className="flex justify-between items-center text-[#047857] font-bold">
                         <span>Coupon Discount ({couponCode}):</span>
@@ -294,6 +414,30 @@ export default function SurakshaCartPage() {
           )}
         </div>
       </section>
+
+      {/* Available Coupons Modal */}
+      <AvailableCouponsModal
+        isOpen={isCouponsModalOpen}
+        onClose={() => setIsCouponsModalOpen(false)}
+        brand="suraksha"
+        subtotalInr={subtotalInr}
+        items={items}
+        currentCouponCode={couponCode}
+        onApplyCoupon={async (code) => {
+          const res = await applyCoupon(code);
+          if (res.success) {
+            setCouponStatus({
+              type: "success",
+              text: res.message || `Coupon "${code}" applied successfully!`,
+            });
+          } else {
+            setCouponStatus({
+              type: "error",
+              text: res.message || `Coupon "${code}" could not be applied.`,
+            });
+          }
+        }}
+      />
     </div>
   );
 }

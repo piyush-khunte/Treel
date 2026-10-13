@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import {
   Tag,
   Plus,
@@ -19,7 +19,13 @@ import {
   AlertCircle,
   ToggleLeft,
   ToggleRight,
+  ShieldCheck,
+  Car,
+  Truck,
+  ExternalLink,
+  Check,
 } from "lucide-react";
+import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -32,10 +38,71 @@ import {
   toggleAdminCouponStatus,
   getAdminProducts,
 } from "@/lib/admin/admin-actions";
-import { AdminCoupon, MongoProduct } from "@/types/admin";
+import { AdminCoupon, CouponCategory, MongoProduct } from "@/types/admin";
+import { PERSONAL_PRODUCTS } from "@/lib/data/personal-products";
+
+interface CategoryMeta {
+  id: CouponCategory;
+  name: string;
+  shortName: string;
+  description: string;
+  publicUrl: string;
+  icon: any;
+  accentBorder: string;
+  accentText: string;
+  badgeBg: string;
+  bannerBg: string;
+}
+
+const COUPON_CATEGORIES: CategoryMeta[] = [
+  {
+    id: "PERSONAL_TPMS",
+    name: "Personal TPMS Coupons",
+    shortName: "Personal TPMS",
+    description: "Passenger Cars, 2-Wheelers & Consumer TPMS kits (/personal/buy/*)",
+    publicUrl: "/personal/buy/cart",
+    icon: Car,
+    accentBorder: "border-amber-500/50",
+    accentText: "text-amber-400",
+    badgeBg: "bg-amber-500/15 text-amber-300 border-amber-500/30",
+    bannerBg: "bg-amber-500/10 border-amber-500/30",
+  },
+  {
+    id: "SURAKSHA",
+    name: "Suraksha Coupons",
+    shortName: "Suraksha Commercial",
+    description: "Commercial Fleet Trucks & Heavy Transporters (/suraksha/*)",
+    publicUrl: "/suraksha/checkout",
+    icon: Truck,
+    accentBorder: "border-red-500/50",
+    accentText: "text-red-400",
+    badgeBg: "bg-red-500/15 text-red-300 border-red-500/30",
+    bannerBg: "bg-red-500/10 border-red-500/30",
+  },
+];
+
+// Fallback commercial catalogue for Suraksha if no products marked in db
+const SURAKSHA_DEFAULT_PRODUCTS = [
+  { _id: "suraksha_6w", title: "Suraksha 6-Wheel Commercial Kit", productsku: "SKU-SURAKSHA-6W", price: 10200 },
+  { _id: "suraksha_10w", title: "Suraksha 10-Wheel Multi-Axle Kit", productsku: "SKU-SURAKSHA-10W", price: 17000 },
+  { _id: "suraksha_12w", title: "Suraksha 12-Wheel Heavy Haul Kit", productsku: "SKU-SURAKSHA-12W", price: 20400 },
+  { _id: "suraksha_14w", title: "Suraksha 14-Wheel Freight Kit", productsku: "SKU-SURAKSHA-14W", price: 23800 },
+  { _id: "suraksha_16w", title: "Suraksha 16-Wheel Commercial Kit", productsku: "SKU-SURAKSHA-16W", price: 27200 },
+  { _id: "suraksha_22w", title: "Suraksha 22-Wheel Prime Mover Kit", productsku: "SKU-SURAKSHA-22W", price: 37400 },
+];
+
+// Fallback consumer catalogue for Personal TPMS
+const PERSONAL_DEFAULT_PRODUCTS = PERSONAL_PRODUCTS.map((p) => ({
+  _id: p.id,
+  title: p.title,
+  productsku: p.productsku || `SKU-TPMS-${p.id.slice(-6)}`,
+  price: p.price,
+  category: p.category,
+}));
 
 export default function AdminCouponsPage() {
-  const [coupons, setCoupons] = useState<AdminCoupon[]>([]);
+  const [activeCategory, setActiveCategory] = useState<CouponCategory>("PERSONAL_TPMS");
+  const [allCoupons, setAllCoupons] = useState<AdminCoupon[]>([]);
   const [products, setProducts] = useState<MongoProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -48,6 +115,11 @@ export default function AdminCouponsPage() {
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
+  // Form scope and product multi-select state
+  const [formScope, setFormScope] = useState<"category" | "product">("category");
+  const [selectedProductIds, setSelectedProductIds] = useState<string[]>([]);
+  const [productFilterQuery, setProductFilterQuery] = useState("");
+
   const loadData = async () => {
     setLoading(true);
     setErrorMsg(null);
@@ -58,7 +130,7 @@ export default function AdminCouponsPage() {
     ]);
 
     if (couponsRes.success && couponsRes.data) {
-      setCoupons(couponsRes.data);
+      setAllCoupons(couponsRes.data);
     } else {
       setErrorMsg(couponsRes.error || "Failed to load coupons");
     }
@@ -74,6 +146,58 @@ export default function AdminCouponsPage() {
     loadData();
   }, []);
 
+  const activeMeta = useMemo(() => {
+    return COUPON_CATEGORIES.find((c) => c.id === activeCategory) || COUPON_CATEGORIES[0];
+  }, [activeCategory]);
+
+  // Coupons strictly filtered to activeCategory
+  const categoryCoupons = useMemo(() => {
+    return allCoupons.filter((c) => c.category === activeCategory);
+  }, [allCoupons, activeCategory]);
+
+  // Counts for each category tab
+  const categoryCounts = useMemo(() => {
+    return {
+      PERSONAL_TPMS: allCoupons.filter((c) => c.category === "PERSONAL_TPMS").length,
+      SURAKSHA: allCoupons.filter((c) => c.category === "SURAKSHA").length,
+    };
+  }, [allCoupons]);
+
+  // Relevant products scoped to the target category (supports modal category switching)
+  const targetCategoryForProducts = editingCoupon?.category || activeCategory;
+  const relevantProducts = useMemo(() => {
+    if (targetCategoryForProducts === "SURAKSHA") {
+      const fromDb = products.filter((p) => {
+        const cat = (p.category || "").toLowerCase();
+        const title = (p.title || "").toLowerCase();
+        const sku = (p.productsku || "").toUpperCase();
+        return (
+          cat.includes("commercial") ||
+          cat.includes("truck") ||
+          cat.includes("suraksha") ||
+          title.includes("suraksha") ||
+          sku.includes("SURAKSHA")
+        );
+      });
+      return fromDb.length > 0 ? fromDb : SURAKSHA_DEFAULT_PRODUCTS;
+    } else {
+      // Personal TPMS products
+      const fromDb = products.filter((p) => {
+        const cat = (p.category || "").toLowerCase();
+        const title = (p.title || "").toLowerCase();
+        const sku = (p.productsku || "").toUpperCase();
+        const isSur =
+          cat.includes("commercial") ||
+          cat.includes("truck") ||
+          cat.includes("suraksha") ||
+          title.includes("suraksha") ||
+          sku.includes("SURAKSHA");
+        return !isSur;
+      });
+      return fromDb.length > 0 ? fromDb : PERSONAL_DEFAULT_PRODUCTS;
+    }
+  }, [products, targetCategoryForProducts]);
+
   const handleCopy = (code: string) => {
     navigator.clipboard.writeText(code);
     setCopiedCode(code);
@@ -81,13 +205,24 @@ export default function AdminCouponsPage() {
   };
 
   const handleCreateNew = () => {
+    setFormScope("category");
+    setSelectedProductIds([]);
+    setProductFilterQuery("");
     setEditingCoupon({
       _id: `coup_new_${Date.now()}`,
       code: "",
+      category: activeCategory,
       discountType: "percent",
       discountValue: 10,
+      scope: "category",
       productId: "all",
-      productTitle: "All Products (Sitewide)",
+      productTitle:
+        activeCategory === "SURAKSHA"
+          ? "All Suraksha Commercial Fleet Orders (Category-Wide)"
+          : "All Personal TPMS Products (Category-Wide)",
+      productSku: activeCategory === "SURAKSHA" ? "SURAKSHA-SITEWIDE" : "PERSONAL-SITEWIDE",
+      productIds: [],
+      productSkus: [],
       minOrderValue: 0,
       status: "Active",
       description: "",
@@ -97,9 +232,29 @@ export default function AdminCouponsPage() {
   };
 
   const handleEdit = (coupon: AdminCoupon) => {
+    const isProdScope =
+      coupon.scope === "product" ||
+      (coupon.scope !== "category" &&
+        ((!!coupon.productId && coupon.productId !== "all") ||
+          (Array.isArray(coupon.productIds) && coupon.productIds.length > 0)));
+
+    let initialIds: string[] = [];
+    if (Array.isArray(coupon.productIds) && coupon.productIds.length > 0) {
+      initialIds = [...coupon.productIds];
+    } else if (coupon.productId && coupon.productId !== "all") {
+      initialIds = [coupon.productId];
+    }
+
+    setFormScope(isProdScope ? "product" : "category");
+    setSelectedProductIds(initialIds);
+    setProductFilterQuery("");
     setEditingCoupon({
       ...coupon,
-      productId: coupon.productId || "all",
+      category: coupon.category || activeCategory,
+      scope: isProdScope ? "product" : "category",
+      productId: coupon.productId || (isProdScope ? initialIds[0] || null : "all"),
+      productIds: initialIds,
+      productSkus: coupon.productSkus || (coupon.productSku ? [coupon.productSku] : []),
     });
     setIsNewCoupon(false);
     setErrorMsg(null);
@@ -109,21 +264,76 @@ export default function AdminCouponsPage() {
     e.preventDefault();
     if (!editingCoupon) return;
 
+    if (formScope === "product") {
+      if (selectedProductIds.length === 0) {
+        setErrorMsg("Please select at least one specific product for product-specific coupons.");
+        return;
+      }
+    }
+
     setSaving(true);
     setErrorMsg(null);
 
+    const targetCategory = editingCoupon.category || activeCategory;
+    let productIdsPayload: string[] | null = null;
+    let productSkusPayload: string[] | null = null;
+    let productIdPayload: string | null = null;
+    let productSkuPayload: string | null = null;
+    let productTitlePayload: string | null = null;
+
+    if (formScope === "product") {
+      productIdsPayload = selectedProductIds;
+      const matchedProducts = selectedProductIds.map((id) => {
+        const found = relevantProducts.find((p) => p._id === id);
+        return {
+          id,
+          sku: found?.productsku || id,
+          title: found?.title || id,
+        };
+      });
+
+      productSkusPayload = matchedProducts.map((p) => p.sku);
+      productIdPayload = productIdsPayload[0] || null;
+      productSkuPayload = productSkusPayload[0] || null;
+
+      if (matchedProducts.length === 1) {
+        productTitlePayload = matchedProducts[0].title;
+      } else {
+        productTitlePayload = `${matchedProducts[0].title} (+${matchedProducts.length - 1} more)`;
+      }
+    } else {
+      productIdPayload = null;
+      productSkuPayload =
+        targetCategory === "SURAKSHA" ? "SURAKSHA-SITEWIDE" : "PERSONAL-SITEWIDE";
+      productTitlePayload =
+        targetCategory === "SURAKSHA"
+          ? "All Suraksha Commercial Fleet Orders (Category-Wide)"
+          : "All Personal TPMS Products (Category-Wide)";
+    }
+
     const res = await saveAdminCoupon({
       code: editingCoupon.code,
+      category: targetCategory,
       discountType: editingCoupon.discountType,
       discountValue: editingCoupon.discountValue,
-      productId: editingCoupon.productId === "all" ? null : editingCoupon.productId,
+      scope: formScope,
+      productId: productIdPayload,
+      productTitle: productTitlePayload,
+      productSku: productSkuPayload,
+      productIds: productIdsPayload,
+      productSkus: productSkusPayload,
       minOrderValue: editingCoupon.minOrderValue,
+      maxDiscount: editingCoupon.maxDiscount,
       status: editingCoupon.status,
       description: editingCoupon.description,
     });
 
     if (res.success) {
-      setSuccessMsg(`Coupon "${editingCoupon.code.toUpperCase()}" saved successfully to database.`);
+      setSuccessMsg(
+        `Coupon "${editingCoupon.code.toUpperCase()}" saved to ${
+          targetCategory === "SURAKSHA" ? "Suraksha" : "Personal TPMS"
+        } database.`
+      );
       setTimeout(() => setSuccessMsg(null), 4000);
       setEditingCoupon(null);
       await loadData();
@@ -134,10 +344,17 @@ export default function AdminCouponsPage() {
   };
 
   const handleDelete = async (coupon: AdminCoupon) => {
-    if (!confirm(`Are you sure you want to remove coupon "${coupon.code}" from the database?`)) return;
+    if (
+      !confirm(
+        `Are you sure you want to permanently delete coupon "${coupon.code}" from ${
+          coupon.category === "SURAKSHA" ? "Suraksha" : "Personal TPMS"
+        }?`
+      )
+    )
+      return;
 
     setLoading(true);
-    const res = await deleteAdminCoupon(coupon.code, coupon.productId);
+    const res = await deleteAdminCoupon(coupon.code, coupon.category, coupon.productId);
     if (res.success) {
       setSuccessMsg(`Coupon "${coupon.code}" deleted.`);
       setTimeout(() => setSuccessMsg(null), 3000);
@@ -150,10 +367,19 @@ export default function AdminCouponsPage() {
 
   const handleToggleStatus = async (coupon: AdminCoupon) => {
     const nextStatus = coupon.status === "Active" ? "Inactive" : "Active";
-    const res = await toggleAdminCouponStatus(coupon.code, coupon.productId || null, coupon.status);
+    const res = await toggleAdminCouponStatus(
+      coupon.code,
+      coupon.category,
+      coupon.productId || null,
+      coupon.status
+    );
     if (res.success) {
-      setCoupons((prev) =>
-        prev.map((c) => (c.code === coupon.code ? { ...c, status: nextStatus } : c))
+      setAllCoupons((prev) =>
+        prev.map((c) =>
+          c.code === coupon.code && c.category === coupon.category
+            ? { ...c, status: nextStatus }
+            : c
+        )
       );
       setSuccessMsg(`Coupon "${coupon.code}" marked as ${nextStatus}.`);
       setTimeout(() => setSuccessMsg(null), 3000);
@@ -162,41 +388,61 @@ export default function AdminCouponsPage() {
     }
   };
 
-  const filteredCoupons = coupons.filter((c) => {
+  const isCouponProductSpecific = (c: AdminCoupon) => {
+    return (
+      c.scope === "product" ||
+      (c.scope !== "category" &&
+        ((!!c.productId && c.productId !== "all") ||
+          (Array.isArray(c.productIds) && c.productIds.length > 0)))
+    );
+  };
+
+  const filteredCoupons = categoryCoupons.filter((c) => {
+    const searchLower = search.toLowerCase();
     const matchesSearch =
-      (c.code || "").toLowerCase().includes(search.toLowerCase()) ||
-      (c.productTitle || "").toLowerCase().includes(search.toLowerCase()) ||
-      (c.productSku || "").toLowerCase().includes(search.toLowerCase()) ||
-      (c.description || "").toLowerCase().includes(search.toLowerCase());
+      (c.code || "").toLowerCase().includes(searchLower) ||
+      (c.productTitle || "").toLowerCase().includes(searchLower) ||
+      (c.productSku || "").toLowerCase().includes(searchLower) ||
+      (c.productSkus || []).some((s) => s.toLowerCase().includes(searchLower)) ||
+      (c.description || "").toLowerCase().includes(searchLower);
 
-    const matchesStatus =
-      statusFilter === "all" || c.status === statusFilter;
+    const matchesStatus = statusFilter === "all" || c.status === statusFilter;
 
+    const isProd = isCouponProductSpecific(c);
     const matchesScope =
       scopeFilter === "all" ||
-      (scopeFilter === "product" && !!c.productId) ||
-      (scopeFilter === "sitewide" && !c.productId);
+      (scopeFilter === "product" && isProd) ||
+      (scopeFilter === "sitewide" && !isProd);
 
     return matchesSearch && matchesStatus && matchesScope;
   });
 
-  const activeCount = coupons.filter((c) => c.status === "Active").length;
-  const productCouponsCount = coupons.filter((c) => !!c.productId).length;
-  const sitewideCouponsCount = coupons.filter((c) => !c.productId).length;
+  const activeCount = categoryCoupons.filter((c) => c.status === "Active").length;
+  const productCouponsCount = categoryCoupons.filter((c) => isCouponProductSpecific(c)).length;
+  const sitewideCouponsCount = categoryCoupons.filter((c) => !isCouponProductSpecific(c)).length;
 
   return (
     <div className="space-y-8 max-w-7xl">
-      {/* Page Header */}
+      {/* 1. Header Section */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold text-white tracking-tight flex items-center gap-3">
-            <Tag className="w-7 h-7 text-amber-400" /> Coupons & Discount Codes
+            <Tag className="w-7 h-7 text-amber-400" /> Coupons &amp; Discount Management
           </h1>
           <p className="text-sm text-slate-400 font-mono">
-            Live database-backed promotion codes for Personal TPMS cart & checkout
+            Strict brand separation between Personal TPMS and Suraksha Commercial Fleet codes
           </p>
         </div>
         <div className="flex items-center gap-3">
+          <Link
+            href={activeMeta.publicUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+          >
+            <span>Live Cart</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </Link>
           <Button
             variant="outline"
             size="sm"
@@ -210,12 +456,69 @@ export default function AdminCouponsPage() {
           <Button
             size="sm"
             onClick={handleCreateNew}
-            className="bg-amber-600 hover:bg-amber-500 text-white text-xs font-mono gap-1.5"
+            className={
+              activeCategory === "SURAKSHA"
+                ? "bg-red-600 hover:bg-red-500 text-white text-xs font-mono gap-1.5 shadow-lg shadow-red-950/40"
+                : "bg-amber-600 hover:bg-amber-500 text-white text-xs font-mono gap-1.5 shadow-lg shadow-amber-950/40"
+            }
           >
             <Plus className="w-3.5 h-3.5" />
-            Add Coupon
+            Add {activeCategory === "SURAKSHA" ? "Suraksha" : "TPMS"} Coupon
           </Button>
         </div>
+      </div>
+
+      {/* 2. Top-Level Category Navigation (Personal TPMS vs Suraksha) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {COUPON_CATEGORIES.map((cat) => {
+          const Icon = cat.icon;
+          const isActive = activeCategory === cat.id;
+          const count = categoryCounts[cat.id];
+
+          return (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`text-left p-5 rounded-2xl border transition-all cursor-pointer relative ${
+                isActive
+                  ? `${cat.bannerBg} ${cat.accentBorder} shadow-xl ring-1 ring-white/10`
+                  : "bg-slate-900/70 border-slate-800/80 hover:bg-slate-850 hover:border-slate-700 text-slate-400"
+              }`}
+            >
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2.5">
+                  <div
+                    className={`w-9 h-9 rounded-xl flex items-center justify-center ${
+                      isActive ? "bg-white/10" : "bg-slate-800"
+                    }`}
+                  >
+                    <Icon className={`w-5 h-5 ${isActive ? cat.accentText : "text-slate-400"}`} />
+                  </div>
+                  <div>
+                    <h2
+                      className={`text-base font-bold tracking-tight ${
+                        isActive ? "text-white" : "text-slate-300"
+                      }`}
+                    >
+                      {cat.name}
+                    </h2>
+                    <span className="text-[11px] font-mono text-slate-400">
+                      {cat.shortName} Section
+                    </span>
+                  </div>
+                </div>
+                <span
+                  className={`text-xs font-mono font-bold px-2.5 py-1 rounded-full border ${
+                    isActive ? cat.badgeBg : "bg-slate-800 text-slate-400 border-slate-700"
+                  }`}
+                >
+                  {count} {count === 1 ? "Coupon" : "Coupons"}
+                </span>
+              </div>
+              <p className="text-xs text-slate-400 font-sans mt-1">{cat.description}</p>
+            </button>
+          );
+        })}
       </div>
 
       {/* Status Alerts */}
@@ -233,18 +536,18 @@ export default function AdminCouponsPage() {
         </div>
       )}
 
-      {/* KPI Stats Cards */}
+      {/* 3. KPI Stats Cards (Scoped to Active Category) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card className="p-6 bg-slate-900 border border-slate-800 rounded-2xl space-y-2">
           <div className="flex justify-between items-center text-xs text-slate-400 font-mono">
-            <span>Total Coupons</span>
-            <Tag className="w-4 h-4 text-amber-400" />
+            <span>Total {activeCategory === "SURAKSHA" ? "Suraksha" : "TPMS"}</span>
+            <Tag className={`w-4 h-4 ${activeMeta.accentText}`} />
           </div>
           <div className="text-2xl font-bold text-white font-mono">
-            {loading ? "..." : coupons.length}
+            {loading ? "..." : categoryCoupons.length}
           </div>
           <div className="text-xs text-slate-500 font-mono">
-            Configured in Supabase
+            Configured in database
           </div>
         </Card>
 
@@ -257,7 +560,7 @@ export default function AdminCouponsPage() {
             {loading ? "..." : activeCount}
           </div>
           <div className="text-xs text-emerald-400/80 font-mono">
-            Redeemable in cart
+            Redeemable in {activeCategory === "SURAKSHA" ? "Suraksha checkout" : "Personal cart"}
           </div>
         </Card>
 
@@ -270,7 +573,7 @@ export default function AdminCouponsPage() {
             {loading ? "..." : productCouponsCount}
           </div>
           <div className="text-xs text-purple-400 font-mono">
-            Linked to catalogue SKUs
+            Linked to {activeCategory === "SURAKSHA" ? "truck SKUs" : "personal SKUs"}
           </div>
         </Card>
 
@@ -283,17 +586,19 @@ export default function AdminCouponsPage() {
             {loading ? "..." : sitewideCouponsCount}
           </div>
           <div className="text-xs text-cyan-400 font-mono">
-            Applies to any cart
+            {activeCategory === "SURAKSHA"
+              ? "All Suraksha orders only"
+              : "All Personal TPMS orders only"}
           </div>
         </Card>
       </div>
 
-      {/* Filter & Search Bar */}
+      {/* 4. Filter & Search Bar */}
       <div className="flex flex-col sm:flex-row gap-4 justify-between items-center bg-slate-900 p-4 rounded-2xl border border-slate-800">
         <div className="relative w-full sm:w-80">
           <Search className="w-4 h-4 absolute left-3 top-3.5 text-slate-500" />
           <Input
-            placeholder="Search by Code, Product, SKU..."
+            placeholder={`Search ${activeCategory === "SURAKSHA" ? "Suraksha" : "TPMS"} codes, SKUs...`}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="pl-9 bg-slate-950 border-slate-800 text-white placeholder:text-slate-500 font-mono text-xs"
@@ -308,11 +613,13 @@ export default function AdminCouponsPage() {
             onClick={() => setStatusFilter("all")}
             className={`text-xs uppercase font-mono ${
               statusFilter === "all"
-                ? "bg-amber-600 text-white"
+                ? activeCategory === "SURAKSHA"
+                  ? "bg-red-600 text-white"
+                  : "bg-amber-600 text-white"
                 : "border-slate-800 text-slate-400 hover:bg-slate-800"
             }`}
           >
-            All Status ({coupons.length})
+            All Status ({categoryCoupons.length})
           </Button>
           <Button
             variant={statusFilter === "Active" ? "default" : "outline"}
@@ -336,14 +643,22 @@ export default function AdminCouponsPage() {
                 : "border-slate-800 text-slate-400 hover:bg-slate-800"
             }`}
           >
-            Inactive ({coupons.length - activeCount})
+            Inactive ({categoryCoupons.length - activeCount})
           </Button>
 
           {/* Scope filter */}
           <Button
             variant={scopeFilter === "all" ? "default" : "outline"}
             size="sm"
-            onClick={() => setScopeFilter(scopeFilter === "all" ? "product" : scopeFilter === "product" ? "sitewide" : "all")}
+            onClick={() =>
+              setScopeFilter(
+                scopeFilter === "all"
+                  ? "product"
+                  : scopeFilter === "product"
+                  ? "sitewide"
+                  : "all"
+              )
+            }
             className="text-xs uppercase font-mono border-slate-800 text-slate-300 hover:bg-slate-800 gap-1.5"
           >
             <SlidersHorizontal className="w-3.5 h-3.5 text-purple-400" />
@@ -352,15 +667,16 @@ export default function AdminCouponsPage() {
         </div>
       </div>
 
-      {/* Coupons Table */}
+      {/* 5. Coupons Table */}
       <Card className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs text-slate-300 font-mono">
             <thead className="bg-slate-950 text-slate-500 uppercase tracking-wider border-b border-slate-800">
               <tr>
                 <th className="p-4">Coupon Code</th>
+                <th className="p-4">Category Scope</th>
                 <th className="p-4">Discount</th>
-                <th className="p-4">Scope / Applicable Product</th>
+                <th className="p-4">Applicable Product / Scope</th>
                 <th className="p-4">Min. Order</th>
                 <th className="p-4">Status</th>
                 <th className="p-4 text-right">Actions</th>
@@ -369,15 +685,15 @@ export default function AdminCouponsPage() {
             <tbody className="divide-y divide-slate-800">
               {loading ? (
                 <tr>
-                  <td colSpan={6} className="p-8 text-center text-slate-500 font-sans">
+                  <td colSpan={7} className="p-8 text-center text-slate-500 font-sans">
                     <RefreshCw className="w-5 h-5 animate-spin mx-auto mb-2 text-amber-400" />
-                    Loading coupons from Supabase database...
+                    Loading {activeMeta.name} from database...
                   </td>
                 </tr>
               ) : filteredCoupons.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="p-8 text-center text-slate-500 font-sans">
-                    No coupons found matching your search criteria.
+                  <td colSpan={7} className="p-8 text-center text-slate-500 font-sans">
+                    No {activeMeta.name} found matching your criteria.
                   </td>
                 </tr>
               ) : (
@@ -386,7 +702,13 @@ export default function AdminCouponsPage() {
                     {/* Code */}
                     <td className="p-4">
                       <div className="flex items-center gap-2">
-                        <span className="px-2.5 py-1 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 font-bold font-mono text-sm tracking-wider">
+                        <span
+                          className={`px-2.5 py-1 rounded-lg border font-bold font-mono text-sm tracking-wider ${
+                            coupon.category === "SURAKSHA"
+                              ? "bg-red-500/10 border-red-500/30 text-red-400"
+                              : "bg-amber-500/10 border-amber-500/30 text-amber-400"
+                          }`}
+                        >
                           {coupon.code}
                         </span>
                         <button
@@ -402,6 +724,19 @@ export default function AdminCouponsPage() {
                       </div>
                     </td>
 
+                    {/* Category Scope */}
+                    <td className="p-4">
+                      {coupon.category === "SURAKSHA" ? (
+                        <Badge className="bg-red-500/15 text-red-300 border-red-500/30 text-[10px] font-mono flex items-center gap-1 w-fit">
+                          <Truck className="w-3 h-3" /> Suraksha Commercial
+                        </Badge>
+                      ) : (
+                        <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 text-[10px] font-mono flex items-center gap-1 w-fit">
+                          <Car className="w-3 h-3" /> Personal TPMS
+                        </Badge>
+                      )}
+                    </td>
+
                     {/* Discount Value */}
                     <td className="p-4">
                       <div className="font-bold text-white text-sm">
@@ -410,28 +745,49 @@ export default function AdminCouponsPage() {
                           : `₹${coupon.discountValue.toLocaleString("en-IN")} FLAT`}
                       </div>
                       <div className="text-[10px] text-slate-500 uppercase">
-                        {coupon.discountType === "percent" ? "Percentage Discount" : "Fixed Cash Discount"}
+                        {coupon.discountType === "percent"
+                          ? "Percentage Discount"
+                          : "Fixed Cash Discount"}
                       </div>
                     </td>
 
                     {/* Scope */}
                     <td className="p-4">
-                      {coupon.productId ? (
-                        <div>
-                          <div className="text-white font-sans font-medium truncate max-w-[240px]">
-                            {coupon.productTitle}
+                      {isCouponProductSpecific(coupon) ? (
+                        <div className="space-y-1 max-w-[280px]">
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            <Badge className="bg-purple-500/15 text-purple-300 border-purple-500/30 text-[10px] font-mono">
+                              Specific Product{coupon.productIds && coupon.productIds.length > 1 ? `s (${coupon.productIds.length})` : ""}
+                            </Badge>
                           </div>
-                          <div className="text-[10px] text-purple-400 font-mono">
-                            SKU: {coupon.productSku || "PRODUCT"}
+                          <div className="text-white font-sans font-medium text-xs leading-tight line-clamp-2">
+                            {coupon.productTitle || "Specific Selected Product(s)"}
+                          </div>
+                          <div className="flex flex-wrap gap-1 mt-1">
+                            {(coupon.productSkus && coupon.productSkus.length > 0
+                              ? coupon.productSkus
+                              : coupon.productSku
+                              ? [coupon.productSku]
+                              : []
+                            ).map((sku) => (
+                              <span
+                                key={sku}
+                                className="px-1.5 py-0.5 rounded bg-slate-950 border border-slate-700 text-purple-300 font-mono text-[10px]"
+                              >
+                                SKU: {sku}
+                              </span>
+                            ))}
                           </div>
                         </div>
                       ) : (
                         <div>
                           <Badge className="bg-cyan-500/10 text-cyan-400 border-cyan-500/30 text-[10px] font-mono">
-                            Sitewide (All Products)
+                            {coupon.category === "SURAKSHA"
+                              ? "Category-Wide (All Suraksha Fleet)"
+                              : "Category-Wide (All Personal TPMS)"}
                           </Badge>
-                          <div className="text-[10px] text-slate-500 truncate max-w-[220px]">
-                            {coupon.description || "Applies to entire cart"}
+                          <div className="text-[10px] text-slate-500 truncate max-w-[220px] mt-0.5">
+                            {coupon.description || "Applies to any eligible item in category"}
                           </div>
                         </div>
                       )}
@@ -499,18 +855,35 @@ export default function AdminCouponsPage() {
         </div>
       </Card>
 
-      {/* Add / Edit Coupon Modal */}
+      {/* 6. Add / Edit Coupon Modal */}
       {editingCoupon && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 space-y-6 shadow-2xl">
             <div className="flex justify-between items-center border-b border-slate-800 pb-4">
               <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <Badge
+                    className={
+                      editingCoupon.category === "SURAKSHA"
+                        ? "bg-red-500/20 text-red-300 border-red-500/40 text-[10px] font-mono"
+                        : "bg-amber-500/20 text-amber-300 border-amber-500/40 text-[10px] font-mono"
+                    }
+                  >
+                    {editingCoupon.category === "SURAKSHA" ? "Suraksha Commercial" : "Personal TPMS"}
+                  </Badge>
+                </div>
                 <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                  <Tag className="w-5 h-5 text-amber-400" />
-                  {isNewCoupon ? "Create New Coupon" : `Edit Coupon: ${editingCoupon.code}`}
+                  <Tag
+                    className={`w-5 h-5 ${
+                      editingCoupon.category === "SURAKSHA" ? "text-red-400" : "text-amber-400"
+                    }`}
+                  />
+                  {isNewCoupon
+                    ? `Create ${editingCoupon.category === "SURAKSHA" ? "Suraksha" : "Personal TPMS"} Coupon`
+                    : `Edit Coupon: ${editingCoupon.code}`}
                 </h2>
                 <p className="text-xs text-slate-400 font-mono">
-                  Saves directly to Supabase database table TreelEcommerce.products
+                  Saves to persistent database store with strict category isolation
                 </p>
               </div>
               <button
@@ -524,12 +897,50 @@ export default function AdminCouponsPage() {
             <form onSubmit={handleSave} className="space-y-6 text-xs font-mono">
               {/* Form Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Coupon Category Scope (Locked to target tab) */}
+                <div className="space-y-1">
+                  <label className="text-slate-300 font-bold">Category Scope *</label>
+                  <select
+                    value={editingCoupon.category}
+                    onChange={(e) => {
+                      const nextCat = e.target.value as CouponCategory;
+                      setSelectedProductIds([]);
+                      setEditingCoupon({
+                        ...editingCoupon,
+                        category: nextCat,
+                        productId: formScope === "category" ? "all" : null,
+                        productTitle:
+                          nextCat === "SURAKSHA"
+                            ? "All Suraksha Commercial Fleet Orders (Category-Wide)"
+                            : "All Personal TPMS Products (Category-Wide)",
+                        productSku:
+                          nextCat === "SURAKSHA"
+                            ? "SURAKSHA-SITEWIDE"
+                            : "PERSONAL-SITEWIDE",
+                        productIds: [],
+                        productSkus: [],
+                      });
+                    }}
+                    className="w-full px-3 py-2.5 rounded-lg bg-slate-950 border border-slate-800 text-white font-mono text-xs focus:outline-none focus:border-amber-500"
+                  >
+                    <option value="PERSONAL_TPMS">🚗 Personal TPMS (/personal/buy/*)</option>
+                    <option value="SURAKSHA">🚛 Suraksha Commercial Fleet (/suraksha/*)</option>
+                  </select>
+                  <div className="text-[10px] text-slate-500">
+                    Category cannot be bypassed or shared across carts.
+                  </div>
+                </div>
+
                 {/* Coupon Code */}
                 <div className="space-y-1">
                   <label className="text-slate-300 font-bold">Coupon Code *</label>
                   <Input
                     required
-                    placeholder="e.g. SUMMER25, DIWALI500"
+                    placeholder={
+                      editingCoupon.category === "SURAKSHA"
+                        ? "e.g. FLEET15, HIGHWAY10"
+                        : "e.g. TREEL20, DIWALI500"
+                    }
                     value={editingCoupon.code}
                     onChange={(e) =>
                       setEditingCoupon({
@@ -537,29 +948,13 @@ export default function AdminCouponsPage() {
                         code: e.target.value.toUpperCase().replace(/[^A-Z0-9_-]/g, ""),
                       })
                     }
-                    className="bg-slate-950 border-slate-800 text-amber-400 font-bold text-sm tracking-wider uppercase"
+                    className={`bg-slate-950 border-slate-800 font-bold text-sm tracking-wider uppercase ${
+                      editingCoupon.category === "SURAKSHA" ? "text-red-400" : "text-amber-400"
+                    }`}
                   />
                   <div className="text-[10px] text-slate-500">
-                    Alphanumeric only. Will be auto-formatted to uppercase.
+                    Alphanumeric uppercase. Min 3 characters.
                   </div>
-                </div>
-
-                {/* Status */}
-                <div className="space-y-1">
-                  <label className="text-slate-300 font-bold">Status *</label>
-                  <select
-                    value={editingCoupon.status}
-                    onChange={(e) =>
-                      setEditingCoupon({
-                        ...editingCoupon,
-                        status: e.target.value as "Active" | "Inactive",
-                      })
-                    }
-                    className="w-full px-3 py-2.5 rounded-lg bg-slate-950 border border-slate-800 text-white font-mono text-xs focus:outline-none focus:border-amber-500"
-                  >
-                    <option value="Active">Active (Customer Can Redeem)</option>
-                    <option value="Inactive">Inactive (Disabled / Paused)</option>
-                  </select>
                 </div>
 
                 {/* Discount Type */}
@@ -592,7 +987,7 @@ export default function AdminCouponsPage() {
                     required
                     min={1}
                     max={editingCoupon.discountType === "percent" ? 100 : 100000}
-                    placeholder={editingCoupon.discountType === "percent" ? "e.g. 15" : "e.g. 500"}
+                    placeholder={editingCoupon.discountType === "percent" ? "e.g. 10" : "e.g. 500"}
                     value={editingCoupon.discountValue || ""}
                     onChange={(e) =>
                       setEditingCoupon({
@@ -604,29 +999,21 @@ export default function AdminCouponsPage() {
                   />
                 </div>
 
-                {/* Applicable Scope / Product */}
-                <div className="sm:col-span-2 space-y-1">
-                  <label className="text-slate-300 font-bold">Applicable Product / Scope *</label>
+                {/* Status */}
+                <div className="space-y-1">
+                  <label className="text-slate-300 font-bold">Status *</label>
                   <select
-                    value={editingCoupon.productId || "all"}
-                    onChange={(e) => {
-                      const selId = e.target.value;
-                      const prod = products.find((p) => p._id === selId);
+                    value={editingCoupon.status}
+                    onChange={(e) =>
                       setEditingCoupon({
                         ...editingCoupon,
-                        productId: selId,
-                        productTitle: prod ? prod.title : "All Products (Sitewide)",
-                        productSku: prod?.productsku || "SITEWIDE",
-                      });
-                    }}
+                        status: e.target.value as "Active" | "Inactive",
+                      })
+                    }
                     className="w-full px-3 py-2.5 rounded-lg bg-slate-950 border border-slate-800 text-white font-mono text-xs focus:outline-none focus:border-amber-500"
                   >
-                    <option value="all">🌐 All Products (Sitewide Promotional Code)</option>
-                    {products.map((p) => (
-                      <option key={p._id} value={p._id}>
-                        📦 {p.title} (SKU: {p.productsku || "N/A"}) - ₹{p.price}
-                      </option>
-                    ))}
+                    <option value="Active">Active (Customer Can Redeem)</option>
+                    <option value="Inactive">Inactive (Disabled / Paused)</option>
                   </select>
                 </div>
 
@@ -648,11 +1035,226 @@ export default function AdminCouponsPage() {
                   />
                 </div>
 
+                {/* 1. Dedicated Scope Selector */}
+                <div className="sm:col-span-2 space-y-2">
+                  <label className="text-slate-300 font-bold block">
+                    Coupon Scope / Eligibility Level *
+                  </label>
+                  <p className="text-[11px] text-slate-400">
+                    Choose whether this coupon applies across all {editingCoupon.category === "SURAKSHA" ? "Suraksha Commercial" : "Personal TPMS"} products or is strictly restricted to specific individual products/SKUs.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                    {/* Option 1: Category-Wide */}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFormScope("category");
+                        setSelectedProductIds([]);
+                      }}
+                      className={`p-3.5 rounded-xl border text-left flex items-start gap-3 transition-all cursor-pointer ${
+                        formScope === "category"
+                          ? editingCoupon.category === "SURAKSHA"
+                            ? "bg-red-500/15 border-red-500/50 text-white ring-1 ring-red-500/30"
+                            : "bg-amber-500/15 border-amber-500/50 text-white ring-1 ring-amber-500/30"
+                          : "bg-slate-950/70 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-300"
+                      }`}
+                    >
+                      <div
+                        className={`p-2 rounded-lg shrink-0 ${
+                          formScope === "category"
+                            ? editingCoupon.category === "SURAKSHA"
+                              ? "bg-red-500/20 text-red-400"
+                              : "bg-amber-500/20 text-amber-400"
+                            : "bg-slate-800 text-slate-400"
+                        }`}
+                      >
+                        <Percent className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-xs text-white flex items-center gap-1.5">
+                          <span>Category-Wide</span>
+                          {formScope === "category" && (
+                            <span className="text-[10px] text-emerald-400 font-mono">
+                              (Selected)
+                            </span>
+                          )}
+                        </div>
+                        <div className="text-[11px] text-slate-400 mt-0.5">
+                          Applies to all eligible {editingCoupon.category === "SURAKSHA" ? "Suraksha Commercial Fleet" : "Personal TPMS"} orders.
+                        </div>
+                      </div>
+                    </button>
+
+                    {/* Option 2: Specific Product(s) */}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFormScope("product");
+                        if (selectedProductIds.length === 0 && relevantProducts.length > 0) {
+                          setSelectedProductIds([relevantProducts[0]._id]);
+                        }
+                      }}
+                      className={`p-3.5 rounded-xl border text-left flex items-start gap-3 transition-all cursor-pointer ${
+                        formScope === "product"
+                          ? "bg-purple-500/15 border-purple-500/50 text-white ring-1 ring-purple-500/30"
+                          : "bg-slate-950/70 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-300"
+                      }`}
+                    >
+                      <div
+                        className={`p-2 rounded-lg shrink-0 ${
+                          formScope === "product"
+                            ? "bg-purple-500/20 text-purple-400"
+                            : "bg-slate-800 text-slate-400"
+                        }`}
+                      >
+                        <ShoppingBag className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-xs text-white flex items-center gap-1.5">
+                          <span>Specific Product(s)</span>
+                          {formScope === "product" && (
+                            <span className="text-[10px] text-purple-400 font-mono">
+                              (Selected)
+                            </span>
+                          )}
+                        </div>
+                        <div className="text-[11px] text-slate-400 mt-0.5">
+                          Restricted only to explicitly selected products and canonical SKUs.
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
+                {/* 2. Specific Product(s) Multi-Select Checklist */}
+                {formScope === "product" && (
+                  <div className="sm:col-span-2 space-y-3 p-4 rounded-xl bg-slate-950/80 border border-slate-800">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800/80 pb-2.5">
+                      <div>
+                        <label className="text-slate-200 font-bold block text-xs flex items-center gap-1.5">
+                          <span>Select Eligible Products / Canonical SKUs *</span>
+                          <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/40 text-[10px] font-mono">
+                            {selectedProductIds.length} Selected
+                          </Badge>
+                        </label>
+                        <span className="text-[11px] text-slate-400">
+                          Coupons will ONLY apply if at least one of these exact items is in the customer cart.
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedProductIds(relevantProducts.map((p) => p._id))}
+                          className="text-[11px] font-bold text-amber-400 hover:text-amber-300 transition-colors"
+                        >
+                          Select All ({relevantProducts.length})
+                        </button>
+                        <span className="text-slate-700">•</span>
+                        <button
+                          type="button"
+                          onClick={() => setSelectedProductIds([])}
+                          className="text-[11px] text-slate-400 hover:text-slate-300 transition-colors"
+                        >
+                          Deselect All
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Filter query if list has more than 3 products */}
+                    {relevantProducts.length > 3 && (
+                      <Input
+                        placeholder="Search products or SKUs..."
+                        value={productFilterQuery}
+                        onChange={(e) => setProductFilterQuery(e.target.value)}
+                        className="bg-slate-900 border-slate-800 text-xs font-mono h-8 placeholder:text-slate-500"
+                      />
+                    )}
+
+                    {/* Checklist Container */}
+                    <div className="max-h-56 overflow-y-auto space-y-1.5 pr-1">
+                      {relevantProducts
+                        .filter((p) => {
+                          if (!productFilterQuery.trim()) return true;
+                          const q = productFilterQuery.toLowerCase();
+                          return (
+                            (p.title || "").toLowerCase().includes(q) ||
+                            (p.productsku || "").toLowerCase().includes(q) ||
+                            (p._id || "").toLowerCase().includes(q)
+                          );
+                        })
+                        .map((p) => {
+                          const isSelected = selectedProductIds.includes(p._id);
+                          const sku = p.productsku || p._id;
+                          return (
+                            <label
+                              key={p._id}
+                              className={`flex items-center justify-between p-2.5 rounded-lg border transition-all cursor-pointer ${
+                                isSelected
+                                  ? "bg-purple-950/20 border-purple-500/50 text-white shadow-sm"
+                                  : "bg-slate-900/50 border-slate-800/80 text-slate-400 hover:bg-slate-850 hover:text-slate-300"
+                              }`}
+                            >
+                              <div className="flex items-center gap-3">
+                                <input
+                                  type="checkbox"
+                                  checked={isSelected}
+                                  onChange={() => {
+                                    if (isSelected) {
+                                      setSelectedProductIds(
+                                        selectedProductIds.filter((id) => id !== p._id)
+                                      );
+                                    } else {
+                                      setSelectedProductIds([...selectedProductIds, p._id]);
+                                    }
+                                  }}
+                                  className="w-4 h-4 rounded border-slate-700 bg-slate-950 text-purple-600 focus:ring-0 cursor-pointer"
+                                />
+                                <div>
+                                  <div className="font-sans font-medium text-xs text-white leading-tight">
+                                    {p.title}
+                                  </div>
+                                  <div className="flex items-center gap-2 mt-1">
+                                    <span className="text-[10px] font-mono text-purple-300 bg-purple-500/15 px-1.5 py-0.5 rounded border border-purple-500/30">
+                                      SKU: {sku}
+                                    </span>
+                                    {p.price ? (
+                                      <span className="text-[10px] font-mono text-slate-400">
+                                        ₹{p.price.toLocaleString("en-IN")}
+                                      </span>
+                                    ) : null}
+                                  </div>
+                                </div>
+                              </div>
+                              {isSelected ? (
+                                <Badge className="bg-purple-500/25 text-purple-200 border-purple-500/50 text-[10px] font-mono shrink-0">
+                                  Eligible
+                                </Badge>
+                              ) : (
+                                <span className="text-[10px] text-slate-500 font-mono shrink-0">
+                                  Excluded
+                                </span>
+                              )}
+                            </label>
+                          );
+                        })}
+                    </div>
+
+                    {selectedProductIds.length === 0 && (
+                      <div className="p-2.5 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-400 text-[11px] font-mono flex items-center gap-2">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        <span>
+                          Error: At least one specific product must be selected for product-level coupons.
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 {/* Description / Notes */}
-                <div className="space-y-1">
-                  <label className="text-slate-300 font-bold">Admin Description / Purpose</label>
+                <div className="sm:col-span-2 space-y-1">
+                  <label className="text-slate-300 font-bold">Admin Description / Offer Tagline</label>
                   <Input
-                    placeholder="e.g. Festive promotional campaign"
+                    placeholder="e.g. Highway Transporter Festive Safety Campaign"
                     value={editingCoupon.description || ""}
                     onChange={(e) =>
                       setEditingCoupon({
@@ -678,10 +1280,18 @@ export default function AdminCouponsPage() {
                 <Button
                   type="submit"
                   disabled={saving}
-                  className="bg-amber-600 hover:bg-amber-500 text-white gap-2 font-mono"
+                  className={
+                    editingCoupon.category === "SURAKSHA"
+                      ? "bg-red-600 hover:bg-red-500 text-white gap-2 font-mono"
+                      : "bg-amber-600 hover:bg-amber-500 text-white gap-2 font-mono"
+                  }
                 >
                   <Save className="w-4 h-4" />
-                  {saving ? "Saving to Database..." : isNewCoupon ? "Create Coupon" : "Save Changes"}
+                  {saving
+                    ? "Saving to Database..."
+                    : isNewCoupon
+                    ? `Create ${editingCoupon.category === "SURAKSHA" ? "Suraksha" : "Personal"} Coupon`
+                    : "Save Changes"}
                 </Button>
               </div>
             </form>

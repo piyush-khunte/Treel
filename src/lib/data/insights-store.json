@@ -1,5 +1,38 @@
 [
   {
+    "_id": "insight_1791870155472",
+    "slug": "test",
+    "category": "Mobility Intelligence",
+    "categorySlug": "mobility-intelligence",
+    "title": "Test",
+    "deck": "test blog 1",
+    "author": "Treel Mobility Team",
+    "authorRole": "Mobility Intelligence",
+    "authorBio": "Engineering and telemetry research team at Treel Mobility Solutions.",
+    "date": "October 2026",
+    "publishIsoDate": "2026-10-13",
+    "readTime": "5 min read",
+    "status": "Published",
+    "tldr": "",
+    "body": {
+      "sections": [
+        {
+          "heading": "Key Analysis",
+          "paragraphs": [
+            "test successful"
+          ]
+        }
+      ],
+      "pullQuote": {
+        "quote": "",
+        "attribution": "— Treel Intelligence"
+      }
+    },
+    "relatedSlugs": [],
+    "createdAt": "2026-10-13T05:42:35.472Z",
+    "updatedAt": "2026-10-13T05:43:10.585Z"
+  },
+  {
     "_id": "insight_1",
     "slug": "vehicle-digital-twins-architecture",
     "category": "Mobility Intelligence",
@@ -41,7 +74,7 @@
         }
       ],
       "pullQuote": {
-        "quote": "The vehicle is the fundamental unit of economic intelligence in road logistics, not the individual component or the GPS coordinate.",
+        "quote": "The vehicle is the fundamental unit of economic intelligence in road logistics, not the individual component or the GPS coordinate. test",
         "attribution": "— Manish Ingale, Founder"
       }
     },
@@ -49,7 +82,9 @@
       "physics-of-tyre-pressure-fuel-savings",
       "scaling-iot-across-indian-highways",
       "cfo-guide-to-fleet-payback"
-    ]
+    ],
+    "createdAt": "2026-10-13T07:02:08.841Z",
+    "updatedAt": "2026-10-13T07:02:08.841Z"
   },
   {
     "_id": "insight_2",
