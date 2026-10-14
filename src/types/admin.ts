@@ -190,3 +190,12 @@ export interface AdminConsentRecord {
   pagePath?: string;
   updatedAt?: string;
 }
+
+export type { 
+  EventItemRecord, 
+  EventAgendaItem, 
+  EventSpeaker, 
+  JobOpeningRecord,
+  WhitepaperRecord,
+  WhitepaperFormat
+} from "./content";

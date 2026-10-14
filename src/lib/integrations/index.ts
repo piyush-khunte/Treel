@@ -22,6 +22,8 @@ export {
   sendOrderConfirmationEmail,
   sendPaymentReceiptEmail,
   sendShippingNotificationEmail,
+  sendSupportAcknowledgementEmail,
+  sendNewsletterWelcomeEmail,
 } from './email/ses-client';
 
 // Shiprocket Logistics Integration

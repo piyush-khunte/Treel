@@ -907,6 +907,11 @@ export default function AdminBlogsPage() {
     e.preventDefault();
     if (!editingItem) return;
 
+    const payloadItem: any = {
+      ...editingItem,
+      body: editingItem.body ? { ...editingItem.body } : undefined
+    };
+
     // Field Validations
     if (activeCategory === "tmip") {
       if (!editingItem.headline?.trim()) {
@@ -923,7 +928,7 @@ export default function AdminBlogsPage() {
           showFeedback("error", "Please provide a heading for every section in the case study.");
           return;
         }
-        editingItem.sections = editingItem.sections.map((s: any, idx: number) => ({
+        payloadItem.sections = editingItem.sections.map((s: any, idx: number) => ({
           id: s.id || `sec_${Date.now()}_${idx}`,
           heading: s.heading.trim(),
           content: (s.content || "").trim(),
@@ -948,11 +953,14 @@ export default function AdminBlogsPage() {
           showFeedback("error", "Please ensure every section has a heading.");
           return;
         }
-        editingItem.body.sections = editingItem.body.sections.map((s: any) => ({
-          heading: s.heading.trim(),
-          content: s.content || "",
-          paragraphs: (s.content || "").split("\n\n").filter(Boolean)
-        }));
+        payloadItem.body = {
+          ...editingItem.body,
+          sections: editingItem.body.sections.map((s: any) => ({
+            heading: s.heading.trim(),
+            content: s.content || "",
+            paragraphs: (s.content || "").split("\n\n").filter(Boolean)
+          }))
+        };
       }
     }
 
@@ -963,14 +971,14 @@ export default function AdminBlogsPage() {
           showFeedback("error", "Please provide a heading for every section in the Suraksha article.");
           return;
         }
-        editingItem.sections = editingItem.sections.map((s: any, idx: number) => ({
+        payloadItem.sections = editingItem.sections.map((s: any, idx: number) => ({
           id: s.id || `sec_${Date.now()}_${idx}`,
           heading: s.heading.trim(),
           content: (s.content || "").trim(),
           paragraphs: (s.content || "").split("\n\n").filter(Boolean)
         }));
         if (!editingItem.content || !editingItem.content.trim()) {
-          editingItem.content = editingItem.sections
+          payloadItem.content = payloadItem.sections
             .map((s: any) => `<h3>${s.heading}</h3>${(s.content || "").split("\n\n").filter(Boolean).map((p: string) => `<p>${p}</p>`).join("")}`)
             .join("");
         }
@@ -984,19 +992,19 @@ export default function AdminBlogsPage() {
           showFeedback("error", "Please provide a heading for every section in the blog post.");
           return;
         }
-        editingItem.sections = editingItem.sections.map((s: any, idx: number) => ({
+        payloadItem.sections = editingItem.sections.map((s: any, idx: number) => ({
           id: s.id || `sec_${Date.now()}_${idx}`,
           heading: s.heading.trim(),
           content: (s.content || "").trim(),
           paragraphs: (s.content || "").split("\n\n").filter(Boolean)
         }));
         if (!editingItem.blogContent || !editingItem.blogContent.trim()) {
-          editingItem.blogContent = editingItem.sections
+          payloadItem.blogContent = payloadItem.sections
             .map((s: any) => `<h2>${s.heading}</h2>${(s.content || "").split("\n\n").filter(Boolean).map((p: string) => `<p>${p}</p>`).join("")}`)
             .join("");
         }
       }
-      if (!editingItem.blogContent?.trim()) {
+      if (!editingItem.blogContent?.trim() && (!payloadItem.blogContent || !payloadItem.blogContent.trim())) {
         showFeedback("error", "Blog content or at least one article section is required.");
         return;
       }
@@ -1005,7 +1013,7 @@ export default function AdminBlogsPage() {
     setSaving(true);
 
     if (isNewItem) {
-      const res = await createAdminCategoryContent(activeCategory, editingItem);
+      const res = await createAdminCategoryContent(activeCategory, payloadItem);
       if (res.success) {
         showFeedback("success", `${activeMeta.itemNoun} created successfully.`);
         setEditingItem(null);
@@ -1014,7 +1022,7 @@ export default function AdminBlogsPage() {
         showFeedback("error", res.error || "Failed to create content item");
       }
     } else {
-      const res = await updateAdminCategoryContent(activeCategory, editingItem._id, editingItem);
+      const res = await updateAdminCategoryContent(activeCategory, editingItem._id, payloadItem);
       if (res.success) {
         showFeedback("success", `${activeMeta.itemNoun} updated successfully.`);
         setEditingItem(null);

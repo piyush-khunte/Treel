@@ -11,7 +11,9 @@ import {
   ArrowLeft, 
   ShieldCheck, 
   Bell,
-  Cookie 
+  Cookie,
+  Calendar,
+  Briefcase
 } from "lucide-react";
 import { getAdminSession } from "@/lib/admin/admin-auth";
 import { AdminLogoutButton } from "./admin-logout-button";
@@ -86,6 +88,30 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             >
               <BookOpen className="w-4 h-4 text-cyan-400" />
               <span>Blogs & Content</span>
+            </Link>
+
+            <Link
+              href="/admin/events"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors"
+            >
+              <Calendar className="w-4 h-4 text-indigo-400" />
+              <span>Events & Webinars</span>
+            </Link>
+
+            <Link
+              href="/admin/careers"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors"
+            >
+              <Briefcase className="w-4 h-4 text-teal-400" />
+              <span>Careers & Openings</span>
+            </Link>
+
+            <Link
+              href="/admin/whitepapers"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors"
+            >
+              <FileText className="w-4 h-4 text-blue-400" />
+              <span>Whitepapers & Research</span>
             </Link>
 
             <Link

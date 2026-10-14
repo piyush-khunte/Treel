@@ -1295,5 +1295,348 @@ export async function toggleAdminCouponStatus(
   return { success: result.success, error: result.error };
 }
 
+// ============================================================================
+// EVENTS MANAGEMENT
+// ============================================================================
+
+export async function getAdminEventsListAction(): Promise<{
+  success: boolean;
+  data?: import('@/types/content').EventItemRecord[];
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { getAllEvents } = await import('@/lib/content/events-storage');
+    const events = await getAllEvents();
+    return { success: true, data: events };
+  } catch (err: any) {
+    console.error('getAdminEventsListAction error:', err);
+    return { success: false, error: err.message || 'Failed to fetch events.' };
+  }
+}
+
+export async function saveEventAction(
+  data: Partial<import('@/types/content').EventItemRecord>
+): Promise<{
+  success: boolean;
+  data?: import('@/types/content').EventItemRecord;
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { saveEvent } = await import('@/lib/content/events-storage');
+    const res = await saveEvent(data);
+    if (res.success && res.data) {
+      revalidatePath('/events');
+      if (res.data.slug) {
+        revalidatePath(`/events/${res.data.slug}`);
+      }
+      revalidatePath('/admin/events');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('saveEventAction error:', err);
+    return { success: false, error: err.message || 'Failed to save event.' };
+  }
+}
+
+export async function deleteEventAction(
+  id: string
+): Promise<{ success: boolean; error?: string }> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { deleteEvent } = await import('@/lib/content/events-storage');
+    const res = await deleteEvent(id);
+    if (res.success) {
+      revalidatePath('/events');
+      revalidatePath('/admin/events');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('deleteEventAction error:', err);
+    return { success: false, error: err.message || 'Failed to delete event.' };
+  }
+}
+
+export async function toggleEventPublishAction(
+  id: string
+): Promise<{
+  success: boolean;
+  data?: import('@/types/content').EventItemRecord;
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { toggleEventPublish } = await import('@/lib/content/events-storage');
+    const res = await toggleEventPublish(id);
+    if (res.success && res.data) {
+      revalidatePath('/events');
+      if (res.data.slug) {
+        revalidatePath(`/events/${res.data.slug}`);
+      }
+      revalidatePath('/admin/events');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('toggleEventPublishAction error:', err);
+    return { success: false, error: err.message || 'Failed to toggle event publish status.' };
+  }
+}
+
+// ============================================================================
+// CAREERS MANAGEMENT
+// ============================================================================
+
+export async function getAdminCareersListAction(): Promise<{
+  success: boolean;
+  data?: import('@/types/content').JobOpeningRecord[];
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { getAllJobs } = await import('@/lib/content/careers-storage');
+    const jobs = await getAllJobs();
+    return { success: true, data: jobs };
+  } catch (err: any) {
+    console.error('getAdminCareersListAction error:', err);
+    return { success: false, error: err.message || 'Failed to fetch careers.' };
+  }
+}
+
+export async function saveJobAction(
+  data: Partial<import('@/types/content').JobOpeningRecord>
+): Promise<{
+  success: boolean;
+  data?: import('@/types/content').JobOpeningRecord;
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { saveJob } = await import('@/lib/content/careers-storage');
+    const res = await saveJob(data);
+    if (res.success && res.data) {
+      revalidatePath('/careers');
+      if (res.data.slug) {
+        revalidatePath(`/careers/${res.data.slug}`);
+      }
+      revalidatePath('/admin/careers');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('saveJobAction error:', err);
+    return { success: false, error: err.message || 'Failed to save job.' };
+  }
+}
+
+export async function deleteJobAction(
+  id: string
+): Promise<{ success: boolean; error?: string }> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { deleteJob } = await import('@/lib/content/careers-storage');
+    const res = await deleteJob(id);
+    if (res.success) {
+      revalidatePath('/careers');
+      revalidatePath('/admin/careers');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('deleteJobAction error:', err);
+    return { success: false, error: err.message || 'Failed to delete job.' };
+  }
+}
+
+export async function toggleJobPublishAction(
+  id: string
+): Promise<{
+  success: boolean;
+  data?: import('@/types/content').JobOpeningRecord;
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { toggleJobPublish } = await import('@/lib/content/careers-storage');
+    const res = await toggleJobPublish(id);
+    if (res.success && res.data) {
+      revalidatePath('/careers');
+      if (res.data.slug) {
+        revalidatePath(`/careers/${res.data.slug}`);
+      }
+      revalidatePath('/admin/careers');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('toggleJobPublishAction error:', err);
+    return { success: false, error: err.message || 'Failed to toggle job publish status.' };
+  }
+}
+
+export async function closeJobAction(
+  id: string
+): Promise<{
+  success: boolean;
+  data?: import('@/types/content').JobOpeningRecord;
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { closeJob } = await import('@/lib/content/careers-storage');
+    const res = await closeJob(id);
+    if (res.success && res.data) {
+      revalidatePath('/careers');
+      if (res.data.slug) {
+        revalidatePath(`/careers/${res.data.slug}`);
+      }
+      revalidatePath('/admin/careers');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('closeJobAction error:', err);
+    return { success: false, error: err.message || 'Failed to close job.' };
+  }
+}
+
+// ============================================================================
+// WHITEPAPERS MANAGEMENT
+// ============================================================================
+
+export async function getAdminWhitepapersListAction(): Promise<{
+  success: boolean;
+  data?: import('@/types/content').WhitepaperRecord[];
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { getAllWhitepapers } = await import('@/lib/content/whitepapers-storage');
+    const items = await getAllWhitepapers();
+    return { success: true, data: items };
+  } catch (err: any) {
+    console.error('getAdminWhitepapersListAction error:', err);
+    return { success: false, error: err.message || 'Failed to fetch whitepapers.' };
+  }
+}
+
+export async function saveWhitepaperAction(
+  data: Partial<import('@/types/content').WhitepaperRecord>
+): Promise<{
+  success: boolean;
+  data?: import('@/types/content').WhitepaperRecord;
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { saveWhitepaper } = await import('@/lib/content/whitepapers-storage');
+    const res = await saveWhitepaper(data);
+    if (res.success && res.data) {
+      revalidatePath('/tmip/whitepapers');
+      if (res.data.slug) {
+        revalidatePath(`/tmip/whitepapers/${res.data.slug}`);
+      }
+      revalidatePath('/admin/whitepapers');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('saveWhitepaperAction error:', err);
+    return { success: false, error: err.message || 'Failed to save whitepaper.' };
+  }
+}
+
+export async function deleteWhitepaperAction(
+  id: string
+): Promise<{ success: boolean; error?: string }> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { deleteWhitepaper } = await import('@/lib/content/whitepapers-storage');
+    const res = await deleteWhitepaper(id);
+    if (res.success) {
+      revalidatePath('/tmip/whitepapers');
+      revalidatePath('/admin/whitepapers');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('deleteWhitepaperAction error:', err);
+    return { success: false, error: err.message || 'Failed to delete whitepaper.' };
+  }
+}
+
+export async function toggleWhitepaperPublishAction(
+  id: string
+): Promise<{
+  success: boolean;
+  data?: import('@/types/content').WhitepaperRecord;
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { toggleWhitepaperPublish } = await import('@/lib/content/whitepapers-storage');
+    const res = await toggleWhitepaperPublish(id);
+    if (res.success && res.data) {
+      revalidatePath('/tmip/whitepapers');
+      if (res.data.slug) {
+        revalidatePath(`/tmip/whitepapers/${res.data.slug}`);
+      }
+      revalidatePath('/admin/whitepapers');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('toggleWhitepaperPublishAction error:', err);
+    return { success: false, error: err.message || 'Failed to toggle whitepaper publish status.' };
+  }
+}
+
+
+
 
 

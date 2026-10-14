@@ -10,7 +10,8 @@ import {
   User, 
   Phone, 
   Truck, 
-  Briefcase 
+  Briefcase,
+  Eye
 } from "lucide-react";
 
 const FREE_EMAIL_DOMAINS = [
@@ -38,6 +39,14 @@ export function DataArchWhitepaperGatedForm() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [accessResult, setAccessResult] = useState<{
+    token: string;
+    viewUrl: string;
+    downloadUrl: string;
+    emailStatus: string;
+    message: string;
+    format: string;
+  } | null>(null);
 
   const validate = () => {
     const errs: Record<string, string> = {};
@@ -76,36 +85,49 @@ export function DataArchWhitepaperGatedForm() {
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
     setLoading(true);
 
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
+    try {
+      const res = await fetch("/api/tmip/whitepapers/access", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          slug: "time-series-infrastructure-heavy-haul",
+          email: workEmail.trim().toLowerCase(),
+          fullName: fullName.trim(),
+          company: company.trim(),
+          phone: phone.trim(),
+          fleetSize: fleetSize || "100-500",
+          consent,
+        }),
+      });
 
-      try {
-        const blob = new Blob(
-          ["Treel Research: Data Architecture & Telemetry Ingestion at Enterprise Scale (Technical Whitepaper)"],
-          { type: "application/pdf" }
-        );
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.style.display = "none";
-        a.href = url;
-        a.download = "Treel-Research-Data-Architecture-Whitepaper.pdf";
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-      } catch (err) {
-        console.error("Download simulation error:", err);
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setAccessResult({
+          token: data.token,
+          viewUrl: data.viewUrl,
+          downloadUrl: data.downloadUrl,
+          emailStatus: data.emailStatus,
+          message: data.message,
+          format: data.whitepaper?.format || "DOCX",
+        });
+        setSubmitted(true);
+      } else {
+        setErrors({ form: data.error || "Unable to grant document access. Please try again." });
       }
-    }, 800);
+    } catch (err: any) {
+      setErrors({ form: err.message || "Failed to process request. Please try again." });
+    } finally {
+      setLoading(false);
+    }
   };
 
-  if (submitted) {
+  if (submitted && accessResult) {
     return (
       <div className="bg-white/[0.03] border border-white/[0.08] rounded-lg p-8 sm:p-10 space-y-6 text-left">
         <div className="w-12 h-12 rounded-md bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B]">
@@ -114,15 +136,44 @@ export function DataArchWhitepaperGatedForm() {
 
         <div className="space-y-2">
           <h3 className="font-fraunces text-2xl font-medium text-[#FAF7F2]">
-            Check your inbox.
+            Access Granted
           </h3>
           <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed font-inter">
-            We&apos;ve emailed the technical whitepaper to <span className="text-[#FAF7F2] font-semibold">{workEmail}</span>. If you don&apos;t see it in a few minutes, check your spam folder. Any questions? Reach us at <a href="mailto:hello@treel.in" className="text-[#D5573B] underline">hello@treel.in</a>.
+            {accessResult.message}
           </p>
         </div>
 
-        <div className="p-4 rounded-lg bg-white/[0.02] border border-white/[0.08] text-xs text-[#94A3B8] font-mono flex items-center gap-2">
-          <span>✓ Direct download initiated</span>
+        <div className="p-4 rounded-lg bg-black/40 border border-white/10 text-left space-y-1">
+          <div className="text-[10px] font-mono uppercase text-[#D5573B] font-semibold">
+            {accessResult.format} Document Ready
+          </div>
+          <div className="text-sm font-semibold text-white">
+            High-Frequency Time-Series Data Infrastructure for Heavy Haul Fleets
+          </div>
+          <div className="text-[11px] font-mono text-slate-400">
+            Format: {accessResult.format} · 26 Pages
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
+          {accessResult.format.toUpperCase() === "PDF" && (
+            <a
+              href={accessResult.viewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-white/[0.08] hover:bg-white/[0.15] border border-white/15 text-white font-mono text-xs font-semibold transition-all"
+            >
+              <span>View Online</span>
+            </a>
+          )}
+          <a
+            href={accessResult.downloadUrl}
+            download
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-[#D5573B] hover:bg-[#CB4831] text-white font-mono text-xs font-semibold transition-all shadow-md"
+          >
+            <Download className="w-4 h-4" />
+            <span>Download {accessResult.format} File</span>
+          </a>
         </div>
       </div>
     );

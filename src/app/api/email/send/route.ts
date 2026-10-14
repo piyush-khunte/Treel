@@ -6,6 +6,8 @@ import {
   sendOrderConfirmationEmail,
   sendPaymentReceiptEmail,
   sendShippingNotificationEmail,
+  sendSupportAcknowledgementEmail,
+  sendNewsletterWelcomeEmail,
 } from '@/lib/integrations';
 
 export async function GET() {
@@ -56,6 +58,16 @@ export async function POST(req: NextRequest) {
 
     if (body.type === 'shipping_notification') {
       const result = await sendShippingNotificationEmail(body.data);
+      return NextResponse.json(result, { status: result.success ? 200 : 400 });
+    }
+
+    if (body.type === 'support_acknowledgement') {
+      const result = await sendSupportAcknowledgementEmail(body.data);
+      return NextResponse.json(result, { status: result.success ? 200 : 400 });
+    }
+
+    if (body.type === 'newsletter_welcome') {
+      const result = await sendNewsletterWelcomeEmail(body.data);
       return NextResponse.json(result, { status: result.success ? 200 : 400 });
     }
 

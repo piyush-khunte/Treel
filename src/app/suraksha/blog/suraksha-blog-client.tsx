@@ -209,8 +209,8 @@ export function SurakshaBlogClient({ initialArticles }: SurakshaBlogClientProps 
 
   const articlesData: Article[] = useMemo(() => {
     if (initialArticles && initialArticles.length > 0) {
-      return initialArticles.map((a) => ({
-        id: a._id || a.slug || `sur_${Date.now()}`,
+      return initialArticles.map((a, idx) => ({
+        id: a._id || a.slug || `sur_${idx}`,
         slug: a.slug || a._id,
         title: a.title,
         category: a.category as any,

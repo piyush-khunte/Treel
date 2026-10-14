@@ -10,6 +10,8 @@ import {
   sendOrderConfirmationEmail,
   sendPaymentReceiptEmail,
   sendShippingNotificationEmail,
+  sendSupportAcknowledgementEmail,
+  sendNewsletterWelcomeEmail,
   isShiprocketConfigured,
   checkServiceability,
   createShiprocketOrder,
@@ -123,6 +125,26 @@ async function runVerification() {
   console.log('sendShippingNotificationEmail response:', sesShipping);
   if (sesShipping.configured !== false || sesShipping.error?.code !== 'SERVICE_NOT_CONFIGURED') {
     throw new Error('FAIL: SES sendShippingNotificationEmail did not return SERVICE_NOT_CONFIGURED');
+  }
+
+  const sesSupport = await sendSupportAcknowledgementEmail({
+    name: 'Jane Doe',
+    email: 'jane@example.com',
+    message: 'Help with sensor diagnostics',
+    purpose: 'Technical Support',
+  });
+  console.log('sendSupportAcknowledgementEmail response:', sesSupport);
+  if (sesSupport.configured !== false || sesSupport.error?.code !== 'SERVICE_NOT_CONFIGURED') {
+    throw new Error('FAIL: SES sendSupportAcknowledgementEmail did not return SERVICE_NOT_CONFIGURED');
+  }
+
+  const sesNewsletter = await sendNewsletterWelcomeEmail({
+    email: 'jane@example.com',
+    source: 'test_suite',
+  });
+  console.log('sendNewsletterWelcomeEmail response:', sesNewsletter);
+  if (sesNewsletter.configured !== false || sesNewsletter.error?.code !== 'SERVICE_NOT_CONFIGURED') {
+    throw new Error('FAIL: SES sendNewsletterWelcomeEmail did not return SERVICE_NOT_CONFIGURED');
   }
 
   // Verify Shiprocket disabled

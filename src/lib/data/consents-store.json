@@ -1,5 +1,25 @@
 [
   {
+    "id": "cons_6bb2d1b3726b48d3",
+    "consentId": "cons_6bb2d1b3726b48d3",
+    "status": "Accepted",
+    "decision": "Accepted All",
+    "categories": "Necessary, Functional, Analytics, Marketing",
+    "rawCategories": {
+      "necessary": true,
+      "functional": true,
+      "analytics": true,
+      "marketing": true
+    },
+    "policyVersion": "2026-10-01",
+    "timestamp": "2026-10-14T10:39:46.717Z",
+    "formattedDate": "14 Oct 2026, 04:09 pm IST",
+    "withdrawnAt": null,
+    "source": "Cookie Banner",
+    "pagePath": "/leadership",
+    "updatedAt": "2026-10-14T10:39:44.527Z"
+  },
+  {
     "id": "cons_d5e7be202a7b4327",
     "consentId": "cons_d5e7be202a7b4327",
     "status": "Accepted",

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { isSesConfigured, sendEmail } from "@/lib/integrations";
+import { isSesConfigured, sendEmail, sendSupportAcknowledgementEmail } from "@/lib/integrations";
 
 // In-memory idempotency cache (prevents rapid double-clicks within 30s)
 const recentSubmissions = new Map<string, number>();
@@ -359,6 +359,20 @@ export async function POST(req: NextRequest) {
           text: `New Contact Inquiry:\nName: ${normalizedName}\nEmail: ${rawEmail}\nPhone: ${normalizedPhone}\nCompany: ${normalizedCompany}\nSubject: ${normalizedSubject}\nMessage:\n${rawMessage}`,
           replyTo: rawEmail,
         });
+
+        // Send customer-facing confirmation matching reference website behavior
+        try {
+          await sendSupportAcknowledgementEmail({
+            name: normalizedName,
+            email: rawEmail,
+            phone: normalizedPhone,
+            purpose: normalizedSubject,
+            message: rawMessage,
+            ticketId: formattedTicketId,
+          });
+        } catch (ackErr) {
+          console.warn("[Contact Form Ingestion] Customer acknowledgement dispatch warning:", ackErr);
+        }
 
         if (insertedLeadId && supabase) {
           await supabase

@@ -94,3 +94,105 @@ export type CategoryContentItem =
   | ({ categoryType: "suraksha" } & SurakshaArticle)
   | ({ categoryType: "personal" } & PersonalBlogArticle);
 
+export interface EventAgendaItem {
+  time: string;
+  title: string;
+  speaker: string;
+  desc: string;
+}
+
+export interface EventSpeaker {
+  name: string;
+  role: string;
+  org: string;
+  bio: string;
+}
+
+export interface EventItemRecord {
+  _id: string;
+  slug: string;
+  name: string;
+  title?: string;
+  type: string; // "Conference" | "Webinar" | "In-person" | "Meetup" | "Roundtable" | "Keynote"
+  dateTime: string;
+  startDate?: string;
+  endDate?: string;
+  location: string;
+  isOnline?: boolean;
+  excerpt: string;
+  about?: string[];
+  agenda?: EventAgendaItem[];
+  speakers?: EventSpeaker[];
+  materialUrl?: string;
+  materialLabel?: string;
+  registrationUrl?: string;
+  bannerUrl?: string;
+  image?: string;
+  featured?: boolean;
+  status: "Upcoming" | "Ongoing" | "Completed" | "Cancelled";
+  publicationStatus: "Published" | "Draft";
+  seoTitle?: string;
+  seoDescription?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface JobOpeningRecord {
+  _id: string;
+  slug: string;
+  title: string;
+  team: string; // Department e.g. "Engineering", "Product", "GTM", "Operations"
+  location: string; // e.g. "Pune", "Hybrid", "Remote"
+  type: string; // "Full-time" | "Part-time" | "Contract" | "Internship"
+  workArrangement?: string; // "Onsite" | "Hybrid" | "Remote"
+  postedDate?: string;
+  deadline?: string;
+  roleSummary: string; // excerpt
+  aboutTheRole: string[];
+  responsibilities: string[];
+  mustHaves: string[];
+  niceToHaves?: string[];
+  whatYouGet?: string[];
+  experienceLevel?: string;
+  applicationUrl?: string;
+  relatedSlugs?: string[];
+  status: "Published" | "Draft" | "Closed";
+  seoTitle?: string;
+  seoDescription?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export type WhitepaperFormat = "PDF" | "DOC" | "DOCX";
+
+export interface WhitepaperRecord {
+  _id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  description?: string;
+  topic: "ROI & Payback" | "Vehicle Digital Twin" | "Predictive Maintenance" | "Fleet Operations" | "Case Study" | string;
+  industry: "All" | "Logistics" | "Passenger Transport" | "Construction" | "Mining" | "OEM" | string;
+  author?: string;
+  length?: string; // e.g. "28 pages"
+  publishDate?: string; // e.g. "October 2026"
+  fileUrl: string; // Storage URL or local path
+  fileFormat: WhitepaperFormat;
+  fileSize: number; // in bytes
+  fileSizeFormatted?: string; // e.g. "2.4 MB"
+  originalFilename: string;
+  coverImage?: string;
+  isFeatured?: boolean;
+  publicationStatus: "Published" | "Draft";
+  gated?: boolean;
+  directUrl?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  downloadCount?: number;
+  displayOnTmip?: boolean;
+  displayOnResearch?: boolean;
+  year?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+

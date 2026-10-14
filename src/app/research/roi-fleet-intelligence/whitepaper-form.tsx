@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Download, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { Download, Loader2, CheckCircle2, AlertCircle, Eye, ArrowRight } from "lucide-react";
 
 export function WhitepaperGatedForm() {
   const [formData, setFormData] = useState({
@@ -18,6 +18,14 @@ export function WhitepaperGatedForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [accessResult, setAccessResult] = useState<{
+    token: string;
+    viewUrl: string;
+    downloadUrl: string;
+    emailStatus: string;
+    message: string;
+    format: string;
+  } | null>(null);
 
   const validate = (): boolean => {
     const errs: Record<string, string> = {};
@@ -45,22 +53,88 @@ export function WhitepaperGatedForm() {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 700));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    try {
+      const res = await fetch("/api/tmip/whitepapers/access", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          slug: "roi-fleet-intelligence",
+          email: formData.workEmail.trim().toLowerCase(),
+          fullName: formData.fullName.trim(),
+          company: formData.company.trim(),
+          phone: formData.phone.trim(),
+          fleetSize: formData.fleetSize,
+          consent: formData.consent,
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setAccessResult({
+          token: data.token,
+          viewUrl: data.viewUrl,
+          downloadUrl: data.downloadUrl,
+          emailStatus: data.emailStatus,
+          message: data.message,
+          format: data.whitepaper?.format || "PDF",
+        });
+        setIsSubmitted(true);
+      } else {
+        setErrors({ form: data.error || "Unable to grant document access. Please try again." });
+      }
+    } catch (err: any) {
+      setErrors({ form: err.message || "Failed to process request. Please try again." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  if (isSubmitted) {
+  if (isSubmitted && accessResult) {
     return (
-      <div className="p-6 rounded-lg bg-white/[0.04] border border-[#D5573B]/30 space-y-4 animate-in fade-in duration-300">
-        <div className="w-10 h-10 rounded-full bg-[#D5573B]/10 text-[#D5573B] flex items-center justify-center">
+      <div className="p-6 rounded-lg bg-white/[0.04] border border-[#D5573B]/30 space-y-5 animate-in fade-in duration-300">
+        <div className="w-12 h-12 rounded-full bg-[#D5573B]/10 text-[#D5573B] flex items-center justify-center mx-auto">
           <CheckCircle2 className="w-6 h-6" />
         </div>
-        <h4 className="font-fraunces text-xl font-medium text-[#FAF7F2]">Check your inbox.</h4>
-        <p className="text-xs text-[#94A3B8] leading-relaxed">
-          We&apos;ve emailed the whitepaper to <span className="text-white font-medium">{formData.workEmail}</span>. If you don&apos;t see it in a few minutes, check your spam folder. Any questions? Reach us at{" "}
-          <a href="mailto:hello@treel.in" className="text-[#D5573B] underline">hello@treel.in</a>.
-        </p>
+        <div className="text-center space-y-1">
+          <h4 className="font-fraunces text-xl font-medium text-[#FAF7F2]">Access Granted</h4>
+          <p className="text-xs text-[#94A3B8] leading-relaxed max-w-sm mx-auto">
+            {accessResult.message}
+          </p>
+        </div>
+
+        <div className="p-3.5 rounded-md bg-black/40 border border-white/10 text-left space-y-1">
+          <div className="text-[10px] font-mono uppercase text-[#D5573B] font-semibold">
+            {accessResult.format} Document Ready
+          </div>
+          <div className="text-xs font-semibold text-white">
+            The Fleet ROI and Fuel Savings Paper
+          </div>
+          <div className="text-[11px] font-mono text-slate-400">
+            Format: {accessResult.format} · 28 Pages
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 pt-1">
+          {accessResult.format.toUpperCase() === "PDF" && (
+            <a
+              href={accessResult.viewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-[3px] bg-white/[0.08] hover:bg-white/[0.15] border border-white/15 text-white font-mono text-xs font-semibold transition-all"
+            >
+              <Eye className="w-3.5 h-3.5 text-[#D5573B]" />
+              <span>View Online</span>
+            </a>
+          )}
+          <a
+            href={accessResult.downloadUrl}
+            download
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-[3px] bg-[#D5573B] hover:bg-[#CB4831] text-white font-mono text-xs font-semibold transition-all shadow-md"
+          >
+            <Download className="w-3.5 h-3.5" />
+            <span>Download File</span>
+          </a>
+        </div>
       </div>
     );
   }

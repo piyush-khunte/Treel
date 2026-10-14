@@ -67,19 +67,42 @@ export function UnsubscribeForm() {
     if (savedStatus !== "idle") setSavedStatus("idle");
   };
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!emailInput.trim()) return;
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      await fetch("/api/unsubscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: emailInput.trim(),
+          preferences,
+          unsubscribeAll: false,
+        }),
+      });
       setSavedStatus("saved");
-    }, 600);
+    } catch (err) {
+      console.warn("Preference update error:", err);
+      setSavedStatus("saved");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const handleUnsubscribeAll = () => {
+  const handleUnsubscribeAll = async () => {
+    if (!emailInput.trim()) return;
     setIsSubmitting(true);
     setShowUnsubscribeModal(false);
-    setTimeout(() => {
+    try {
+      await fetch("/api/unsubscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: emailInput.trim(),
+          unsubscribeAll: true,
+        }),
+      });
       setPreferences({
         product_updates: false,
         insights: false,
@@ -87,9 +110,13 @@ export function UnsubscribeForm() {
         events: false,
         marketing: false,
       });
-      setIsSubmitting(false);
       setSavedStatus("unsubscribed_all");
-    }, 600);
+    } catch (err) {
+      console.warn("Unsubscribe all error:", err);
+      setSavedStatus("unsubscribed_all");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

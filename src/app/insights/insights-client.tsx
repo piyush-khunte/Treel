@@ -143,9 +143,22 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
     if (!email.trim() || isSubscribing) return;
 
     setIsSubscribing(true);
-    await new Promise((resolve) => setTimeout(resolve, 600));
-    setIsSubscribing(false);
-    setSubscribed(true);
+    try {
+      await fetch("/api/newsletter/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email.trim(),
+          source: "insights_portal",
+          interest: "Mobility Intelligence Research",
+        }),
+      });
+      setSubscribed(true);
+    } catch {
+      setSubscribed(true);
+    } finally {
+      setIsSubscribing(false);
+    }
   };
 
   return (

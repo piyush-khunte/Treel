@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { CareersInteractiveRoster } from "./careers-client";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { getPublishedJobs } from "@/lib/content/careers-storage";
 
 export const metadata: Metadata = {
   title: "Careers at Treel  ·  Build Mobility Intelligence",
@@ -28,7 +29,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CareersPage() {
+export const revalidate = 60;
+
+export default async function CareersPage() {
+  const jobs = await getPublishedJobs();
+
   const pillars = [
     {
       title: "Craft",
@@ -150,7 +155,7 @@ export default function CareersPage() {
               </p>
             </div>
 
-            <CareersInteractiveRoster />
+            <CareersInteractiveRoster initialRoles={jobs} />
           </div>
         </div>
       </section>

@@ -69,6 +69,11 @@ const nextConfig: NextConfig = {
         destination: "/lp-tpms/bike",
         permanent: true,
       },
+      {
+        source: "/support-thankyou",
+        destination: "/thank-you",
+        permanent: true,
+      },
     ];
   },
 };

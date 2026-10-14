@@ -2,23 +2,28 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { WhitepapersClient } from "./whitepapers-client";
+import { getPublishedWhitepapers } from "@/lib/content/whitepapers-storage";
 
 export const metadata: Metadata = {
-  title: "Whitepapers · TMIP",
+  title: "Whitepapers · TMIP Research Library",
   description:
     "TMIP research library. ROI analysis, case studies, technical papers on the Vehicle Digital Twin. Free downloads for fleet operations leaders and technical buyers.",
   alternates: {
     canonical: "https://treel.in/tmip/whitepapers",
   },
   openGraph: {
-    title: "Whitepapers · TMIP",
+    title: "Whitepapers · TMIP Research Library",
     description:
       "TMIP research library. ROI analysis, case studies, technical papers on the Vehicle Digital Twin. Free downloads for fleet operations leaders and technical buyers.",
     url: "https://treel.in/tmip/whitepapers",
   },
 };
 
-export default function TmipWhitepapersPage() {
+export const revalidate = 60;
+
+export default async function TmipWhitepapersPage() {
+  const publishedWhitepapers = await getPublishedWhitepapers();
+
   return (
     <div className="relative bg-[#050A17] text-[#F1F5F9] font-ibm-plex overflow-x-hidden min-h-screen">
       {/* Subtle Blueprint Grid: 60px x 60px rgba(59,130,246,0.04) */}
@@ -46,7 +51,7 @@ export default function TmipWhitepapersPage() {
             </nav>
 
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
-              WHITEPAPERS
+              WHITEPAPERS & RESEARCH
             </div>
 
             <h1 className="font-space-grotesk text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F1F5F9] leading-[1.12]">
@@ -64,7 +69,7 @@ export default function TmipWhitepapersPage() {
       {/* Interactive Whitepapers Directory */}
       <section className="relative z-10 py-20 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <WhitepapersClient />
+          <WhitepapersClient initialWhitepapers={publishedWhitepapers} />
         </div>
       </section>
 

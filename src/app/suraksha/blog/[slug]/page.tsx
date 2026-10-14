@@ -78,6 +78,16 @@ export async function generateMetadata({
   };
 }
 
+function CategoryIcon({ category, className }: { category?: string; className?: string }) {
+  const c = (category || "").toLowerCase();
+  if (c.includes("fuel")) return <Fuel className={className} />;
+  if (c.includes("safety")) return <ShieldCheck className={className} />;
+  if (c.includes("route")) return <Navigation className={className} />;
+  if (c.includes("maint")) return <Wrench className={className} />;
+  if (c.includes("gst") || c.includes("business")) return <FileText className={className} />;
+  return <BookOpen className={className} />;
+}
+
 export default async function SurakshaArticleDetailPage({
   params,
 }: {
@@ -98,17 +108,6 @@ export default async function SurakshaArticleDetailPage({
     .slice(0, 3);
 
   const hasHtmlContent = /<[a-z][\s\S]*>/i.test(article.content || "");
-
-  const getCategoryIcon = (cat?: string) => {
-    const c = (cat || "").toLowerCase();
-    if (c.includes("fuel")) return Fuel;
-    if (c.includes("safety")) return ShieldCheck;
-    if (c.includes("route")) return Navigation;
-    if (c.includes("maint")) return Wrench;
-    if (c.includes("gst") || c.includes("business")) return FileText;
-    return BookOpen;
-  };
-  const CategoryIcon = getCategoryIcon(article.category);
 
   return (
     <div className="space-y-0 bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20 min-h-screen">
@@ -149,7 +148,7 @@ export default async function SurakshaArticleDetailPage({
           {/* Category & Badge */}
           <div className="flex items-center gap-2.5 flex-wrap pt-2">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
-              <CategoryIcon className="w-3.5 h-3.5" />
+              <CategoryIcon category={article.category} className="w-3.5 h-3.5" />
               {article.category || "The Drivers' Blog"}
             </div>
             {article.isFeatured && (

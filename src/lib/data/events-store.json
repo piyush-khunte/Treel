@@ -1,0 +1,238 @@
+[
+  {
+    "_id": "evt_1791962694659",
+    "slug": "test",
+    "name": "test",
+    "title": "test",
+    "type": "Conference",
+    "dateTime": "oct 14",
+    "startDate": "2026-10-28",
+    "location": "Online / Virtual",
+    "isOnline": true,
+    "excerpt": "test",
+    "about": [
+      "test"
+    ],
+    "agenda": [],
+    "speakers": [],
+    "materialLabel": "Download Presentation Deck",
+    "featured": false,
+    "status": "Upcoming",
+    "publicationStatus": "Published",
+    "createdAt": "2026-10-14T07:25:29.091Z",
+    "updatedAt": "2026-10-14T07:25:29.091Z"
+  },
+  {
+    "_id": "evt_fleet_telematics_summit_2026",
+    "slug": "fleet-telematics-summit-2026",
+    "name": "National Commercial Fleet & Telematics Summit 2026",
+    "title": "National Commercial Fleet & Telematics Summit 2026",
+    "type": "Conference",
+    "dateTime": "14–16 October 2026 · 09:30 AM IST",
+    "location": "Hall 4, Pragati Maidan, New Delhi, India",
+    "isOnline": false,
+    "excerpt": "Keynote presentation on Vehicle Digital Twins and operational findings from 68,000 active commercial haulage vehicles.",
+    "about": [
+      "The National Commercial Fleet & Telematics Summit brings together chief operating officers, fleet directors, and automotive technology innovators from across the Indian subcontinent. As logistics corridors expand and vehicle payloads scale, operating efficiency requires real-time physics models rather than simple GPS pings.",
+      "Treel Mobility Solutions will deliver the keynote presentation on 'Operating Vehicle Digital Twins at National Scale: Telemetry Findings from 68,000 Commercial Vehicles'. Join our technical leadership to explore how thermodynamic wheel-end sensing transforms fleet unit economics and virtually eliminates highway tyre blowouts."
+    ],
+    "agenda": [
+      {
+        "time": "09:30 AM – 10:30 AM",
+        "title": "Keynote: Beyond GPS — Transforming Commercial Haulage with Wheel Telemetry",
+        "speaker": "Manish Ingale (Founder, Treel Mobility)",
+        "desc": "An architectural deep-dive into how sensor ingestion at 24 Hz decodes tire degradation, axle balance, and fuel drag before physical breakdown occurs."
+      },
+      {
+        "time": "11:00 AM – 12:30 PM",
+        "title": "Panel: The CFO Dilemma — Fleet Payback and Real-World ROI in 2026",
+        "speaker": "Executive Fleet Directors & Treel Analytics Team",
+        "desc": "Case studies from 500+ vehicle fleet operators demonstrating how sub-second telemetry achieves median payback in 9 months."
+      },
+      {
+        "time": "02:00 PM – 03:30 PM",
+        "title": "Live Hardware & Digital Twin Demonstration",
+        "speaker": "Treel Systems Engineering Team",
+        "desc": "Live interactive bench testing of IP69K military-rated sensors under high thermal and mechanical stress profiles."
+      }
+    ],
+    "speakers": [
+      {
+        "name": "Manish Ingale",
+        "role": "Founder & CEO",
+        "org": "Treel Mobility Solutions",
+        "bio": "Founded Treel in 2018 with the vision of converting commercial vehicle wheel dynamics into actionable enterprise intelligence. Leading architecture and national OEM deployments."
+      },
+      {
+        "name": "Dr. Vikram Seth",
+        "role": "Head of Mobility Data Science",
+        "org": "Treel Mobility Solutions",
+        "bio": "Specializes in thermodynamic modeling, multi-axle load distribution inference, and predictive machine learning models for high-tonnage freight transport."
+      }
+    ],
+    "featured": true,
+    "status": "Upcoming",
+    "publicationStatus": "Published",
+    "createdAt": "2026-08-01T00:00:00.000Z",
+    "updatedAt": "2026-10-14T07:24:38.490Z"
+  },
+  {
+    "_id": "evt_zero_roadside_blowouts_webinar",
+    "slug": "zero-roadside-blowouts-webinar",
+    "name": "Zero Roadside Blowouts: The Predictive Maintenance Playbook",
+    "title": "Zero Roadside Blowouts: The Predictive Maintenance Playbook",
+    "type": "Webinar",
+    "dateTime": "12 November 2026 · 03:00 PM IST",
+    "location": "Online (Live Interactive Zoom with Q&A)",
+    "isOnline": true,
+    "excerpt": "Technical walkthrough on configuring sub-second thermal telemetry to flag micro-leaks before roadside tyre blowouts occur.",
+    "about": [
+      "Roadside tyre failures remain the number-one driver of unscheduled commercial vehicle downtime in India, causing severe delays, cargo loss, and highway accidents. Yet over 85% of catastrophic carcass failures show distinct thermodynamic anomalies hours before failure.",
+      "In this live 75-minute technical masterclass, Treel's systems engineering team demonstrates how to transition from reactive roadside repairs to deterministic maintenance schedules using live Vehicle Digital Twins."
+    ],
+    "agenda": [
+      {
+        "time": "03:00 PM – 03:20 PM",
+        "title": "The Physics of Tyre Failure: Heat, Load, and Decay Gradients",
+        "speaker": "Engineering Team",
+        "desc": "Why traditional pressure checks at fuel stations miss micro-punctures and bead-seat leaks."
+      },
+      {
+        "time": "03:20 PM – 03:50 PM",
+        "title": "Configuring Real-Time Alert Workflows for Dispatch & Depot Teams",
+        "speaker": "Product Operations Lead",
+        "desc": "Step-by-step guidance on setting threshold parameters to dispatch mechanics during scheduled loading windows."
+      },
+      {
+        "time": "03:50 PM – 04:15 PM",
+        "title": "Open Live Q&A with Treel Telematics Architects",
+        "speaker": "Treel Engineering Panel",
+        "desc": "Direct troubleshooting, integration questions with existing ERP/FMS platforms, and API walkthrough."
+      }
+    ],
+    "speakers": [
+      {
+        "name": "Rajesh Kulkarni",
+        "role": "VP of Product Engineering",
+        "org": "Treel Mobility Solutions",
+        "bio": "Over 15 years in automotive embedded systems and commercial vehicle telematics. Directs Treel's firmware and telemetry ingest pipelines."
+      }
+    ],
+    "featured": false,
+    "status": "Upcoming",
+    "publicationStatus": "Published",
+    "createdAt": "2026-08-01T00:00:00.000Z",
+    "updatedAt": "2026-08-01T00:00:00.000Z"
+  },
+  {
+    "_id": "evt_pune_mobility_roundtable",
+    "slug": "pune-mobility-engineering-roundtable",
+    "name": "Pune Commercial Mobility Engineering Roundtable",
+    "title": "Pune Commercial Mobility Engineering Roundtable",
+    "type": "In-person",
+    "dateTime": "4 December 2026 · 05:00 PM IST",
+    "location": "Treel R&D Centre, Baner Tech Park, Pune, Maharashtra",
+    "isOnline": false,
+    "excerpt": "Engineering deep-dive with Treel hardware architects on IP69K sensor telemetry and high-vibration off-highway durability.",
+    "about": [
+      "An invitation-only technical roundtable bringing together Pune's premier automotive hardware, IoT, and embedded firmware engineers. Explore the challenges of sub-second sensor telemetry in harsh operating conditions across India's industrial freight routes.",
+      "Tour Treel's hardware test laboratory, examine our latest ARAI-certified sensor prototypes, and network with engineers building the future of connected mobility."
+    ],
+    "agenda": [
+      {
+        "time": "05:00 PM – 05:45 PM",
+        "title": "Welcome & R&D Laboratory Tour",
+        "speaker": "Treel Lab Director",
+        "desc": "Behind-the-scenes walkthrough of environmental stress testing, RF chamber calibration, and battery endurance test stations."
+      },
+      {
+        "time": "05:45 PM – 07:00 PM",
+        "title": "Technical Panel: Hardware Resilience Under 60°C Road Temps and 50G Impacts",
+        "speaker": "Hardware Engineering Leads",
+        "desc": "Designing IP69K electronics for multi-year maintenance-free service life on heavy commercial axles."
+      },
+      {
+        "time": "07:00 PM – 08:00 PM",
+        "title": "Networking Dinner & Drinks",
+        "speaker": "All Attendees",
+        "desc": "Connect with fellow hardware and software engineers in the Pune automotive tech ecosystem."
+      }
+    ],
+    "speakers": [
+      {
+        "name": "Sanjay Deshmukh",
+        "role": "Director of Hardware Engineering",
+        "org": "Treel Mobility Solutions",
+        "bio": "Leading sensor packaging, piezoelectric transducer integration, and long-range BLE telemetry design."
+      }
+    ],
+    "featured": false,
+    "status": "Upcoming",
+    "publicationStatus": "Published",
+    "createdAt": "2026-08-01T00:00:00.000Z",
+    "updatedAt": "2026-08-01T00:00:00.000Z"
+  },
+  {
+    "_id": "evt_past_india_ev_expo_2026",
+    "slug": "india-ev-commercial-fleet-expo-2026",
+    "name": "India EV & Commercial Fleet Expo 2026",
+    "title": "India EV & Commercial Fleet Expo 2026",
+    "type": "Conference",
+    "dateTime": "August 2026",
+    "location": "New Delhi",
+    "isOnline": false,
+    "excerpt": "Presentation on commercial fleet electrification and telematics integration.",
+    "about": [],
+    "agenda": [],
+    "speakers": [],
+    "materialUrl": "/research/roi-fleet-intelligence",
+    "materialLabel": "View Session Paper",
+    "featured": false,
+    "status": "Completed",
+    "publicationStatus": "Published",
+    "createdAt": "2026-08-01T00:00:00.000Z",
+    "updatedAt": "2026-08-01T00:00:00.000Z"
+  },
+  {
+    "_id": "evt_past_heavy_haulage_safety",
+    "slug": "heavy-haulage-safety-cost-optimization",
+    "name": "Heavy Haulage Safety & Cost Optimization",
+    "title": "Heavy Haulage Safety & Cost Optimization",
+    "type": "Roundtable",
+    "dateTime": "June 2026",
+    "location": "Kolkata",
+    "isOnline": false,
+    "excerpt": "Executive session on haulage safety and predictive maintenance.",
+    "about": [],
+    "agenda": [],
+    "speakers": [],
+    "materialUrl": "/research/data-architecture",
+    "materialLabel": "Download Executive Deck",
+    "featured": false,
+    "status": "Completed",
+    "publicationStatus": "Published",
+    "createdAt": "2026-06-01T00:00:00.000Z",
+    "updatedAt": "2026-06-01T00:00:00.000Z"
+  },
+  {
+    "_id": "evt_past_jk_tyre_leadership",
+    "slug": "jk-tyre-treel-logistics-leadership-conclave",
+    "name": "JK Tyre & Treel Logistics Leadership Conclave",
+    "title": "JK Tyre & Treel Logistics Leadership Conclave",
+    "type": "Keynote",
+    "dateTime": "April 2026",
+    "location": "Bengaluru",
+    "isOnline": false,
+    "excerpt": "Logistics leadership gathering on connected fleet intelligence.",
+    "about": [],
+    "agenda": [],
+    "speakers": [],
+    "materialUrl": "/insights/from-telemetry-to-reasoning",
+    "materialLabel": "Read Summary",
+    "featured": false,
+    "status": "Completed",
+    "publicationStatus": "Published",
+    "createdAt": "2026-04-01T00:00:00.000Z",
+    "updatedAt": "2026-04-01T00:00:00.000Z"
+  }
+]

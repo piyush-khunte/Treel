@@ -71,3 +71,32 @@ export interface ShippingNotificationData {
   trackingUrl?: string;
   expectedDeliveryDate?: string;
 }
+
+export interface SupportAcknowledgementData {
+  name: string;
+  email: string;
+  phone?: string;
+  purpose?: string;
+  message: string;
+  ticketId?: string;
+}
+
+export interface NewsletterWelcomeData {
+  email: string;
+  source?: string;
+  interest?: string;
+  unsubscribeUrl?: string;
+}
+
+export interface WhitepaperAccessEmailData {
+  email: string;
+  recipientName?: string;
+  whitepaperTitle: string;
+  fileFormat: string;
+  length?: string;
+  viewUrl: string;
+  downloadUrl: string;
+  coverImage?: string;
+}
+
+

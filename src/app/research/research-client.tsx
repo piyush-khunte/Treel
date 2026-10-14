@@ -3,133 +3,68 @@
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import { ArrowRight, BookOpen, FileText, Calendar, Layers, Search, Filter } from "lucide-react";
+import { WhitepaperRecord } from "@/types/content";
+import { WhitepaperAccessModal } from "@/components/whitepapers/whitepaper-access-modal";
 
-interface Whitepaper {
-  id: string;
-  title: string;
-  topic: string;
-  industry: string;
-  year: string;
-  abstract: string;
-  length: string;
-  date: string;
-  href: string;
-  tagColor: string;
+interface ResearchLibraryProps {
+  initialWhitepapers?: WhitepaperRecord[];
 }
 
-const WHITEPAPERS: Whitepaper[] = [
-  {
-    id: "roi-fleet-intelligence",
-    title: "The Fleet ROI and Fuel Savings Paper",
-    topic: "ROI & Payback",
-    industry: "Logistics",
-    year: "2026",
-    abstract: "How real-time tyre telemetry delivers verifiable 2.5–4.5% fuel savings and sub-9-month payback across commercial fleets.",
-    length: "24 pages",
-    date: "October 2026",
-    href: "/research/roi-fleet-intelligence",
-    tagColor: "bg-[#D5573B]/10 text-[#D5573B] border-[#D5573B]/20",
-  },
-  {
-    id: "data-architecture",
-    title: "Data Architecture & Telemetry Ingestion",
-    topic: "Mobility Intelligence",
-    industry: "OEM",
-    year: "2026",
-    abstract: "Engineering a multi-tenant telemetry pipeline ingesting 150M+ daily sensor datapoints with sub-second latency.",
-    length: "28 pages",
-    date: "Q3 2026",
-    href: "/research/data-architecture",
-    tagColor: "bg-[#D5573B]/10 text-[#D5573B] border-[#D5573B]/20",
-  },
-  {
-    id: "case-study-1000-truck",
-    title: "The 1,000-Truck Case Study",
-    topic: "Fleet Operations",
-    industry: "Logistics",
-    year: "2026",
-    abstract: "Operational deployment results: tyre lifecycle extension, breakdown reduction, and full payback achieved in Week 11.",
-    length: "18 pages",
-    date: "November 2026 (Week 11)",
-    href: "/tmip/customers/case-studies",
-    tagColor: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-  },
-  {
-    id: "vehicle-digital-twin",
-    title: "The Vehicle Digital Twin Technical Paper",
-    topic: "Vehicle Digital Twin",
-    industry: "Passenger Transport",
-    year: "2026",
-    abstract: "Mathematical and physical foundations of Treel's 5-layer digital twin converting raw telemetry into predictive health state.",
-    length: "32 pages",
-    date: "Q4 2026",
-    href: "/vehicle-digital-twin",
-    tagColor: "bg-purple-500/10 text-purple-400 border-purple-500/20",
-  },
-  {
-    id: "predictive-maintenance-heavy",
-    title: "Predictive Maintenance in Heavy Haulage",
-    topic: "Predictive Maintenance",
-    industry: "Mining",
-    year: "2025",
-    abstract: "Early-stage thermodynamic anomaly detection preventing catastrophic blowouts in mining and construction haul trucks.",
-    length: "22 pages",
-    date: "November 2025",
-    href: "/research/roi-fleet-intelligence",
-    tagColor: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-  },
-  {
-    id: "infrastructure-construction-fleets",
-    title: "Fleet Operations in Infrastructure Construction",
-    topic: "Fleet Operations",
-    industry: "Construction",
-    year: "2025",
-    abstract: "Telemetry deployment benchmarks across off-highway tippers and transit mixers operating in severe ambient conditions.",
-    length: "20 pages",
-    date: "August 2025",
-    href: "/research/data-architecture",
-    tagColor: "bg-[#D5573B]/10 text-[#D5573B] border-[#D5573B]/20",
-  },
-];
-
-const TOPICS = [
-  "All",
-  "Mobility Intelligence",
-  "Vehicle Digital Twin",
-  "ROI & Payback",
-  "Fleet Operations",
-  "Predictive Maintenance",
-];
-
-const INDUSTRIES = [
-  "All",
-  "Logistics",
-  "Passenger Transport",
-  "Construction",
-  "Mining",
-  "OEM",
-];
-
-const YEARS = ["All", "2026", "2025", "2024"];
-
-export function ResearchLibrary() {
+export function ResearchLibrary({ initialWhitepapers = [] }: ResearchLibraryProps) {
   const [selectedTopic, setSelectedTopic] = useState("All");
   const [selectedIndustry, setSelectedIndustry] = useState("All");
   const [selectedYear, setSelectedYear] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [activePaper, setActivePaper] = useState<WhitepaperRecord | null>(null);
+
+  // Dynamic filter sets
+  const topics = useMemo(() => {
+    const set = new Set<string>();
+    initialWhitepapers.forEach((w) => {
+      if (w.topic) set.add(w.topic);
+    });
+    return ["All", ...Array.from(set)];
+  }, [initialWhitepapers]);
+
+  const industries = useMemo(() => {
+    const set = new Set<string>();
+    initialWhitepapers.forEach((w) => {
+      if (w.industry && w.industry !== "All") set.add(w.industry);
+    });
+    return ["All", ...Array.from(set)];
+  }, [initialWhitepapers]);
+
+  const years = useMemo(() => {
+    const set = new Set<string>();
+    initialWhitepapers.forEach((w) => {
+      const yr = w.year || (w.publishDate?.match(/\b(202\d)\b/)?.[1]) || "2026";
+      set.add(yr);
+    });
+    return ["All", ...Array.from(set)];
+  }, [initialWhitepapers]);
 
   const filteredWhitepapers = useMemo(() => {
-    return WHITEPAPERS.filter((item) => {
+    return initialWhitepapers.filter((item) => {
+      const itemYear = item.year || (item.publishDate?.match(/\b(202\d)\b/)?.[1]) || "2026";
       const matchTopic = selectedTopic === "All" || item.topic === selectedTopic;
-      const matchIndustry = selectedIndustry === "All" || item.industry === selectedIndustry;
-      const matchYear = selectedYear === "All" || item.year === selectedYear;
+      const matchIndustry = selectedIndustry === "All" || item.industry === selectedIndustry || item.industry === "All";
+      const matchYear = selectedYear === "All" || itemYear === selectedYear;
       const matchSearch =
         searchQuery.trim() === "" ||
         item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.abstract.toLowerCase().includes(searchQuery.toLowerCase());
+        (item.excerpt && item.excerpt.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (item.description && item.description.toLowerCase().includes(searchQuery.toLowerCase()));
       return matchTopic && matchIndustry && matchYear && matchSearch;
     });
-  }, [selectedTopic, selectedIndustry, selectedYear, searchQuery]);
+  }, [initialWhitepapers, selectedTopic, selectedIndustry, selectedYear, searchQuery]);
+
+  const getTagColor = (topic: string) => {
+    if (topic.includes("ROI")) return "bg-[#D5573B]/10 text-[#D5573B] border-[#D5573B]/20";
+    if (topic.includes("Twin")) return "bg-purple-500/10 text-purple-400 border-purple-500/20";
+    if (topic.includes("Predictive")) return "bg-amber-500/10 text-amber-400 border-amber-500/20";
+    if (topic.includes("Case")) return "bg-blue-500/10 text-blue-400 border-blue-500/20";
+    return "bg-[#D5573B]/10 text-[#D5573B] border-[#D5573B]/20";
+  };
 
   return (
     <div className="space-y-12">
@@ -160,14 +95,14 @@ export function ResearchLibrary() {
             Topic Filter
           </label>
           <div className="flex flex-wrap gap-2">
-            {TOPICS.map((topic) => {
+            {topics.map((topic) => {
               const active = selectedTopic === topic;
               return (
                 <button
                   key={topic}
                   type="button"
                   onClick={() => setSelectedTopic(topic)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
                     active
                       ? "bg-[#D5573B] text-[#FAF7F2] shadow-sm"
                       : "bg-white/5 text-[#94A3B8] hover:bg-white/10 hover:text-[#FAF7F2] border border-white/5"
@@ -191,7 +126,7 @@ export function ResearchLibrary() {
               onChange={(e) => setSelectedIndustry(e.target.value)}
               className="w-full px-3 py-2 text-xs bg-[#141B22] border border-white/10 rounded-md text-[#FAF7F2] focus:outline-none focus:border-[#D5573B] cursor-pointer"
             >
-              {INDUSTRIES.map((ind) => (
+              {industries.map((ind) => (
                 <option key={ind} value={ind} className="bg-[#141B22] text-white">
                   {ind === "All" ? "All Industries" : ind}
                 </option>
@@ -208,7 +143,7 @@ export function ResearchLibrary() {
               onChange={(e) => setSelectedYear(e.target.value)}
               className="w-full px-3 py-2 text-xs bg-[#141B22] border border-white/10 rounded-md text-[#FAF7F2] focus:outline-none focus:border-[#D5573B] cursor-pointer"
             >
-              {YEARS.map((yr) => (
+              {years.map((yr) => (
                 <option key={yr} value={yr} className="bg-[#141B22] text-white">
                   {yr === "All" ? "All Years" : yr}
                 </option>
@@ -221,7 +156,7 @@ export function ResearchLibrary() {
       {/* Grid of Whitepaper Cards */}
       <div className="space-y-6">
         <div className="flex items-center justify-between text-xs font-mono text-[#94A3B8]">
-          <span>Showing {filteredWhitepapers.length} whitepapers</span>
+          <span>Showing {filteredWhitepapers.length} research publications</span>
           {(selectedTopic !== "All" || selectedIndustry !== "All" || selectedYear !== "All" || searchQuery) && (
             <button
               type="button"
@@ -231,7 +166,7 @@ export function ResearchLibrary() {
                 setSelectedYear("All");
                 setSearchQuery("");
               }}
-              className="text-[#D5573B] hover:underline"
+              className="text-[#D5573B] hover:underline cursor-pointer"
             >
               Reset filters
             </button>
@@ -248,75 +183,97 @@ export function ResearchLibrary() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredWhitepapers.map((paper) => (
-              <div
-                key={paper.id}
-                className="group relative flex flex-col justify-between p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="space-y-4">
-                  {/* Cover Thumbnail Visual */}
-                  <div className="relative h-44 rounded-md bg-gradient-to-br from-[#1C283F] via-[#152033] to-[#0D1522] border border-white/10 p-5 flex flex-col justify-between overflow-hidden group-hover:border-white/20 transition-all">
-                    <div className="flex items-center justify-between">
-                      <div className="w-8 h-8 rounded-md bg-white/5 border border-white/10 flex items-center justify-center">
-                        <FileText className="w-4 h-4 text-[#D5573B]" />
+            {filteredWhitepapers.map((paper) => {
+              const tagColor = getTagColor(paper.topic || "");
+              return (
+                <div
+                  key={paper._id}
+                  className="group relative flex flex-col justify-between p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="space-y-4">
+                    {/* Cover Thumbnail Visual */}
+                    <div className="relative h-44 rounded-md bg-gradient-to-br from-[#1C283F] via-[#152033] to-[#0D1522] border border-white/10 p-5 flex flex-col justify-between overflow-hidden group-hover:border-white/20 transition-all">
+                      <div className="flex items-center justify-between">
+                        <div className="w-8 h-8 rounded-md bg-white/5 border border-white/10 flex items-center justify-center">
+                          <FileText className="w-4 h-4 text-[#D5573B]" />
+                        </div>
+                        <span className={`text-[10px] font-mono uppercase px-2 py-0.5 rounded-[4px] border ${tagColor}`}>
+                          {paper.topic}
+                        </span>
                       </div>
-                      <span className={`text-[10px] font-mono uppercase px-2 py-0.5 rounded-[4px] border ${paper.tagColor}`}>
-                        {paper.topic}
-                      </span>
+
+                      <div className="space-y-1">
+                        <div className="text-[10px] font-mono text-[#94A3B8] uppercase tracking-wider">
+                          Treel Research · {paper.length || "Full Report"} · {paper.fileFormat}
+                        </div>
+                        <div className="font-fraunces text-sm font-medium text-[#FAF7F2] line-clamp-2 leading-tight">
+                          {paper.title}
+                        </div>
+                      </div>
+
+                      {/* Decorative subtle grid background */}
+                      <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px] opacity-5 pointer-events-none" />
                     </div>
 
-                    <div className="space-y-1">
-                      <div className="text-[10px] font-mono text-[#94A3B8] uppercase tracking-wider">
-                        Treel Research · {paper.length}
+                    {/* Content Details */}
+                    <div className="space-y-2 pt-1">
+                      <div className="flex items-center gap-3 text-xs text-[#94A3B8] font-mono">
+                        <span className="flex items-center gap-1">
+                          <Calendar className="w-3 h-3 text-[#D5573B]" />
+                          {paper.publishDate || "2026"}
+                        </span>
+                        <span>·</span>
+                        <span className="flex items-center gap-1">
+                          <Layers className="w-3 h-3 text-[#D5573B]" />
+                          {paper.industry}
+                        </span>
                       </div>
-                      <div className="font-fraunces text-sm font-medium text-[#FAF7F2] line-clamp-2 leading-tight">
+
+                      <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-snug line-clamp-2">
                         {paper.title}
-                      </div>
-                    </div>
+                      </h3>
 
-                    {/* Decorative subtle grid background */}
-                    <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px] opacity-5 pointer-events-none" />
+                      <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed line-clamp-3">
+                        {paper.excerpt}
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Content Details */}
-                  <div className="space-y-2 pt-1">
-                    <div className="flex items-center gap-3 text-xs text-[#94A3B8] font-mono">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-3 h-3 text-[#D5573B]" />
-                        {paper.date}
-                      </span>
-                      <span>·</span>
-                      <span className="flex items-center gap-1">
-                        <Layers className="w-3 h-3 text-[#D5573B]" />
-                        {paper.industry}
-                      </span>
-                    </div>
+                  {/* Card CTA */}
+                  <div className="pt-6 mt-4 border-t border-white/5 flex items-center justify-between">
+                    <button
+                      type="button"
+                      onClick={() => setActivePaper(paper)}
+                      className="inline-flex items-center gap-2 text-xs font-semibold text-[#D5573B] hover:text-[#FAF7F2] transition-colors cursor-pointer"
+                    >
+                      <span>Download {paper.fileFormat}</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </button>
 
-                    <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-snug">
-                      {paper.title}
-                    </h3>
-
-                    <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed line-clamp-3">
-                      {paper.abstract}
-                    </p>
+                    {paper.directUrl && (
+                      <Link
+                        href={paper.directUrl}
+                        className="text-[11px] font-mono text-[#94A3B8] hover:text-white transition-colors"
+                      >
+                        Overview →
+                      </Link>
+                    )}
                   </div>
                 </div>
-
-                {/* Card CTA */}
-                <div className="pt-6 mt-4 border-t border-white/5">
-                  <Link
-                    href={paper.href}
-                    className="inline-flex items-center gap-2 text-xs font-semibold text-[#D5573B] hover:text-[#FAF7F2] transition-colors"
-                  >
-                    Download
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
+
+      {/* Redesigned Compact Accessible Modal with Corporate Orange Accent */}
+      {activePaper && (
+        <WhitepaperAccessModal
+          paper={activePaper}
+          onClose={() => setActivePaper(null)}
+          accentColor="orange"
+        />
+      )}
     </div>
   );
 }

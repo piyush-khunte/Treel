@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ResearchLibrary } from "./research-client";
 import { ArrowRight, BookOpen, FileCheck, Layers, Sparkles } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { getPublishedWhitepapers } from "@/lib/content/whitepapers-storage";
 
 export const metadata: Metadata = {
   title: "Research & Whitepapers  ·  Treel",
@@ -21,7 +22,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ResearchPage() {
+export default async function ResearchPage() {
+  const publishedWhitepapers = await getPublishedWhitepapers("research");
   return (
     <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
       {/* Hero Section */}
@@ -51,7 +53,7 @@ export default function ResearchPage() {
       {/* Main Research Library Section with Filters and Cards */}
       <section className="py-16 sm:py-20 border-b border-white/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <ResearchLibrary />
+          <ResearchLibrary initialWhitepapers={publishedWhitepapers} />
         </div>
       </section>
 

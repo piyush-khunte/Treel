@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2, Lock, ArrowRight, AlertCircle } from "lucide-react";
+import { CheckCircle2, Lock, ArrowRight, AlertCircle, Eye, Download } from "lucide-react";
 
 export function WhitepaperForm() {
   const [formData, setFormData] = useState({
@@ -15,7 +15,16 @@ export function WhitepaperForm() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [accessResult, setAccessResult] = useState<{
+    token: string;
+    viewUrl: string;
+    downloadUrl: string;
+    emailStatus: string;
+    message: string;
+    format: string;
+  } | null>(null);
 
   const freeEmailDomains = [
     "gmail.com",
@@ -27,7 +36,7 @@ export function WhitepaperForm() {
     "rediffmail.com",
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
@@ -47,19 +56,93 @@ export function WhitepaperForm() {
       return;
     }
 
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/tmip/whitepapers/access", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          slug: "roi-fleet-intelligence",
+          email: formData.email.trim().toLowerCase(),
+          fullName: formData.fullName.trim(),
+          company: formData.company.trim(),
+          phone: formData.phone.trim(),
+          fleetSize: formData.fleetSize,
+          consent: formData.consent,
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setAccessResult({
+          token: data.token,
+          viewUrl: data.viewUrl,
+          downloadUrl: data.downloadUrl,
+          emailStatus: data.emailStatus,
+          message: data.message,
+          format: data.whitepaper?.fileFormat || "PDF",
+        });
+        setSubmitted(true);
+      } else {
+        setError(data.error || "Unable to grant document access. Please try again.");
+      }
+    } catch (err: any) {
+      setError(err.message || "Failed to process document request. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
-  if (submitted) {
+  if (submitted && accessResult) {
     return (
-      <div className="rounded-[4px] border border-blue-500/30 bg-[#0B1220] p-8 text-center space-y-4">
-        <div className="w-12 h-12 rounded-[3px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6] mx-auto">
-          <CheckCircle2 className="w-6 h-6" />
+      <div className="rounded-[4px] border border-blue-500/30 bg-[#0B1220] p-8 text-center space-y-6">
+        <div className="w-14 h-14 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto">
+          <CheckCircle2 className="w-7 h-7" />
         </div>
-        <h3 className="font-space-grotesk text-2xl font-bold text-[#F1F5F9]">Check your inbox.</h3>
-        <p className="text-sm sm:text-base text-[#94A3B8] max-w-md mx-auto leading-relaxed font-ibm-plex">
-          We&apos;ve emailed the full 28-page whitepaper to <strong className="text-[#F1F5F9]">{formData.email}</strong>. If you
-          don&apos;t see it in a few minutes, check your spam folder.
+        <div className="space-y-2">
+          <h3 className="font-space-grotesk text-2xl font-bold text-[#F1F5F9]">Access Granted</h3>
+          <p className="text-sm text-[#94A3B8] max-w-md mx-auto leading-relaxed font-ibm-plex">
+            {accessResult.message}
+          </p>
+        </div>
+
+        <div className="p-4 rounded-[4px] bg-[#050A17] border border-blue-500/20 text-left space-y-1 max-w-md mx-auto">
+          <div className="text-xs font-jetbrains text-[#3B82F6] uppercase font-bold">
+            {accessResult.format} Document Ready
+          </div>
+          <div className="text-sm font-semibold text-white">
+            The Fleet ROI Paper — How TMIP customers reach payback in nine months
+          </div>
+          <div className="text-[11px] font-mono text-slate-400">
+            Format: {accessResult.format} · 28 pages
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+          {accessResult.format.toUpperCase() === "PDF" && (
+            <a
+              href={accessResult.viewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-[3px] bg-white/[0.08] hover:bg-white/[0.15] border border-slate-400/20 text-white font-jetbrains text-xs font-semibold transition-all"
+            >
+              <Eye className="w-4 h-4 text-[#3B82F6]" />
+              <span>View PDF in Browser</span>
+            </a>
+          )}
+          <a
+            href={accessResult.downloadUrl}
+            download
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-[3px] bg-[#3B82F6] hover:bg-[#2563EB] text-white font-jetbrains text-xs font-semibold transition-all shadow-md"
+          >
+            <Download className="w-4 h-4" />
+            <span>Download {accessResult.format} File</span>
+          </a>
+        </div>
+
+        <p className="text-[11px] text-slate-500 font-jetbrains">
+          Authenticated link valid for 48 hours. If you requested email delivery, check your inbox at{" "}
+          <strong className="text-slate-300 font-normal">{formData.email}</strong>.
         </p>
       </div>
     );
@@ -200,10 +283,17 @@ export function WhitepaperForm() {
         <div className="pt-3">
           <button
             type="submit"
-            className="w-full py-3.5 px-6 rounded-[3px] font-semibold text-sm transition-all shadow-md bg-[#3B82F6] hover:bg-[#2563EB] text-white flex items-center justify-center gap-2 cursor-pointer"
+            disabled={submitting}
+            className="w-full py-3.5 px-6 rounded-[3px] font-semibold text-sm transition-all shadow-md bg-[#3B82F6] hover:bg-[#2563EB] disabled:bg-blue-800 text-white flex items-center justify-center gap-2 cursor-pointer"
           >
-            <span>Download full paper (PDF)</span>
-            <ArrowRight className="w-4 h-4" />
+            {submitting ? (
+              <span>Verifying &amp; Unlocking...</span>
+            ) : (
+              <>
+                <span>Download full paper (PDF)</span>
+                <ArrowRight className="w-4 h-4" />
+              </>
+            )}
           </button>
         </div>
       </form>

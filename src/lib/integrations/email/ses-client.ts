@@ -7,6 +7,9 @@ import {
   PaymentReceiptData,
   SendEmailResult,
   ShippingNotificationData,
+  SupportAcknowledgementData,
+  NewsletterWelcomeData,
+  WhitepaperAccessEmailData,
 } from './types';
 
 let sesClientInstance: SESClient | null = null;
@@ -17,7 +20,7 @@ let sesClientInstance: SESClient | null = null;
 export function isSesConfigured(): boolean {
   const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
   const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
-  const region = process.env.AWS_REGION;
+  const region = process.env.AWS_SES_REGION || (process.env.HOST?.includes('us-east-1') ? 'us-east-1' : process.env.AWS_REGION) || 'us-east-1';
   return Boolean(
     accessKeyId &&
       secretAccessKey &&
@@ -34,8 +37,9 @@ export function isSesConfigured(): boolean {
 function getSesClient(): SESClient | null {
   if (!isSesConfigured()) return null;
   if (!sesClientInstance) {
+    const region = process.env.AWS_SES_REGION || (process.env.HOST?.includes('us-east-1') ? 'us-east-1' : process.env.AWS_REGION) || 'us-east-1';
     sesClientInstance = new SESClient({
-      region: process.env.AWS_REGION!,
+      region,
       credentials: {
         accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
@@ -64,7 +68,8 @@ export async function sendEmail(
     };
   }
 
-  const fromEmail = payload.from || process.env.SES_FROM_EMAIL || 'support@treel.in';
+  const fromEmail = payload.from || process.env.SES_FROM_EMAIL || process.env.FROM_EMAIL || 'hello@treel.in';
+
   const toAddresses = Array.isArray(payload.to) ? payload.to : [payload.to];
 
   if (toAddresses.length === 0 || !toAddresses[0]) {
@@ -190,6 +195,7 @@ export async function sendContactLeadEmail(
 
 /**
  * Sends an order confirmation email to the customer.
+ * Reproduces the authentic Treel template from reference CheckoutForm.jsx with responsive styling.
  */
 export async function sendOrderConfirmationEmail(
   data: OrderConfirmationData
@@ -198,9 +204,19 @@ export async function sendOrderConfirmationEmail(
     .map(
       (item) => `
       <tr>
-        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">${escapeHtml(item.name)}</td>
-        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; text-align: center;">${item.quantity}</td>
-        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; text-align: right;">₹${(item.price * item.quantity).toLocaleString('en-IN')}</td>
+        <td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-size: 14px; color: #111827; font-weight: 500;">
+          ${escapeHtml(item.name)}
+          ${item.sku ? `<div style="font-size: 12px; color: #6b7280; font-family: monospace;">SKU: ${escapeHtml(item.sku)}</div>` : ''}
+        </td>
+        <td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-size: 14px; color: #374151; text-align: center;">
+          ${item.quantity}
+        </td>
+        <td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-size: 14px; color: #374151; text-align: right;">
+          ₹${Number(item.price).toLocaleString('en-IN')}
+        </td>
+        <td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-size: 14px; color: #111827; font-weight: 600; text-align: right;">
+          ₹${(Number(item.price) * item.quantity).toLocaleString('en-IN')}
+        </td>
       </tr>
     `
     )
@@ -208,61 +224,361 @@ export async function sendOrderConfirmationEmail(
 
   const html = `
     <!DOCTYPE html>
-    <html>
-      <head><meta charset="utf-8"><title>Order Confirmation - Treel</title></head>
-      <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 20px;">
-        <div style="max-width: 600px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
-          <div style="background: #0284c7; padding: 24px; color: #ffffff; text-align: center;">
-            <h1 style="margin: 0; font-size: 24px;">Thank you for your order!</h1>
-            <p style="margin: 8px 0 0 0; font-size: 14px; opacity: 0.9;">Order ID: ${escapeHtml(data.orderId)}</p>
-          </div>
-          <div style="padding: 24px;">
-            <p>Hi ${escapeHtml(data.customerName)},</p>
-            <p>Your order has been received and is being processed. Here are the order details:</p>
-            
-            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-              <thead>
-                <tr style="background: #f1f5f9; text-align: left;">
-                  <th style="padding: 8px;">Item</th>
-                  <th style="padding: 8px; text-align: center;">Qty</th>
-                  <th style="padding: 8px; text-align: right;">Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${itemsHtml}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colspan="2" style="padding: 8px; text-align: right; font-weight: bold;">Total:</td>
-                  <td style="padding: 8px; text-align: right; font-weight: bold; color: #0284c7;">₹${data.total.toLocaleString('en-IN')}</td>
-                </tr>
-              </tfoot>
-            </table>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Treel Order Confirmation</title>
+      </head>
+      <body style="margin: 0; padding: 0; background-color: #d5d5d5; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #d5d5d5; padding: 20px 0;">
+          <tbody>
+            <tr>
+              <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                  <tbody>
+                    <!-- Header Section with Treel Brand -->
+                    <tr>
+                      <td style="padding: 24px 32px; background-color: #111111;">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                          <tbody>
+                            <tr>
+                              <td align="left">
+                                <a href="https://treel.in" target="_blank" style="text-decoration: none;">
+                                  <span style="font-size: 24px; font-weight: 800; letter-spacing: 2px; color: #ffffff;">TREEL</span>
+                                </a>
+                              </td>
+                              <td align="right" style="color: #9ca3af; font-size: 12px; font-family: monospace;">
+                                ORDER #${escapeHtml(data.orderId)}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
 
-            <div style="background: #f8fafc; padding: 16px; border-radius: 6px; margin-top: 20px;">
-              <h4 style="margin: 0 0 8px 0; font-size: 14px;">Shipping Address:</h4>
-              <p style="margin: 0; font-size: 13px; color: #64748b;">
-                ${escapeHtml(data.shippingAddress.address1)}<br />
-                ${data.shippingAddress.address2 ? `${escapeHtml(data.shippingAddress.address2)}<br />` : ''}
-                ${escapeHtml(data.shippingAddress.city)}, ${escapeHtml(data.shippingAddress.state)} - ${escapeHtml(data.shippingAddress.pincode)}
-              </p>
-            </div>
-          </div>
-          <div style="background: #f8fafc; padding: 16px; text-align: center; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0;">
-            <p style="margin: 0;">Treel Mobility Solutions Pvt. Ltd. | Customer Support</p>
-          </div>
-        </div>
+                    <!-- Status Hero Banner -->
+                    <tr>
+                      <td style="padding: 32px 32px 24px 32px; background-color: #ffffff;">
+                        <h1 style="color: #111111; font-size: 22px; font-weight: 700; line-height: 28px; margin: 0 0 16px 0;">
+                          Your Treel order confirmation
+                        </h1>
+                        <div style="background-color: #f3f4f6; padding: 14px 18px; border-radius: 6px; margin-bottom: 20px;">
+                          <p style="color: #111111; font-size: 15px; margin: 0; line-height: 22px;">
+                            Hello <strong>${escapeHtml(data.customerName)}</strong>,
+                          </p>
+                        </div>
+                        <p style="color: #059669; font-size: 20px; font-weight: 700; margin: 0; line-height: 26px;">
+                          Your order has been placed successfully.
+                        </p>
+                      </td>
+                    </tr>
+
+                    <!-- Order Details & Billing Address -->
+                    <tr>
+                      <td style="padding: 0 32px 24px 32px;">
+                        <table width="100%" cellpadding="16" cellspacing="0" border="0" style="background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px;">
+                          <tbody>
+                            <tr>
+                              <td width="50%" valign="top" style="border-right: 1px solid #e5e7eb;">
+                                <h3 style="font-size: 14px; font-weight: 700; color: #374151; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.5px;">Order Details</h3>
+                                <p style="font-size: 13px; color: #4b5563; margin: 0; line-height: 20px;">
+                                  <strong>Email:</strong> ${escapeHtml(data.customerEmail)}<br />
+                                  ${data.customerPhone ? `<strong>Phone:</strong> ${escapeHtml(data.customerPhone)}<br />` : ''}
+                                  <strong>Order ID:</strong> ${escapeHtml(data.orderId)}
+                                </p>
+                              </td>
+                              <td width="50%" valign="top">
+                                <h3 style="font-size: 14px; font-weight: 700; color: #374151; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.5px;">Shipping Address</h3>
+                                <p style="font-size: 13px; color: #4b5563; margin: 0; line-height: 20px;">
+                                  ${escapeHtml(data.customerName)}<br />
+                                  ${escapeHtml(data.shippingAddress.address1)}<br />
+                                  ${data.shippingAddress.address2 ? `${escapeHtml(data.shippingAddress.address2)}<br />` : ''}
+                                  ${escapeHtml(data.shippingAddress.city)}, ${escapeHtml(data.shippingAddress.state)} - ${escapeHtml(data.shippingAddress.pincode)}
+                                </p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+
+                    <!-- Line Items Table -->
+                    <tr>
+                      <td style="padding: 0 32px 24px 32px;">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border: 1px solid #e5e7eb; border-radius: 6px; overflow: hidden;">
+                          <thead>
+                            <tr style="background-color: #f3f4f6;">
+                              <th align="left" style="padding: 10px 16px; font-size: 12px; font-weight: 700; color: #4b5563; text-transform: uppercase;">Product</th>
+                              <th align="center" style="padding: 10px 16px; font-size: 12px; font-weight: 700; color: #4b5563; text-transform: uppercase;">Qty</th>
+                              <th align="right" style="padding: 10px 16px; font-size: 12px; font-weight: 700; color: #4b5563; text-transform: uppercase;">Unit Price</th>
+                              <th align="right" style="padding: 10px 16px; font-size: 12px; font-weight: 700; color: #4b5563; text-transform: uppercase;">Total</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            ${itemsHtml}
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+
+                    <!-- Totals Calculation -->
+                    <tr>
+                      <td style="padding: 0 32px 32px 32px;">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f9fafb; border-radius: 6px; padding: 16px;">
+                          <tbody>
+                            <tr>
+                              <td align="right" style="padding: 6px 0; font-size: 14px; color: #4b5563;">Sub-Total:</td>
+                              <td align="right" width="120" style="padding: 6px 0 6px 16px; font-size: 14px; color: #111827; font-weight: 600;">
+                                ₹${data.total.toLocaleString('en-IN')}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td align="right" style="padding: 8px 0 0 0; font-size: 16px; font-weight: 700; color: #111827; border-top: 1px solid #e5e7eb;">Order Total:</td>
+                              <td align="right" width="120" style="padding: 8px 0 0 16px; font-size: 18px; font-weight: 700; color: #059669; border-top: 1px solid #e5e7eb;">
+                                ₹${data.total.toLocaleString('en-IN')}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+
+                    <!-- Support Help Notice -->
+                    <tr>
+                      <td style="padding: 0 32px 24px 32px; text-align: center;">
+                        <div style="background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 14px; font-size: 13px; color: #1e40af;">
+                          <strong>Need assistance with installation or tracking?</strong><br />
+                          Call our toll-free customer support helpline: <strong>1800 833 0233</strong> or email <a href="mailto:hello@treel.in" style="color: #2563eb; text-decoration: underline;">hello@treel.in</a>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <!-- Dark Brand Footer matching Reference site -->
+                    <tr>
+                      <td style="padding: 24px 32px; background-color: #111111; color: #9ca3af; font-size: 12px; line-height: 18px;">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                          <tbody>
+                            <tr>
+                              <td valign="top" style="color: #d1d5db;">
+                                <strong>Treel Mobility Solutions Private Limited</strong><br />
+                                S.No.6/1B, 6/4, 7/4, Laxmi Vishnupuram, NDA Road, Vill. Shivane, Pune, Maharashtra 411023, India<br />
+                                GST NO: 123456789
+                              </td>
+                              <td align="right" valign="top" style="color: #9ca3af;">
+                                <a href="https://treel.in" style="color: #ffffff; text-decoration: none; font-weight: 600;">Visit treel.in</a><br />
+                                <span style="font-size: 11px;">A JK Tyre Company</span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </body>
     </html>
   `;
+
+  const text = `Treel Order Confirmation #${data.orderId}\n\nHello ${data.customerName},\n\nYour order has been placed successfully for a total of ₹${data.total.toLocaleString('en-IN')}.\n\nItems:\n${data.items.map((it) => `- ${it.name} x ${it.quantity}: ₹${(it.price * it.quantity).toLocaleString('en-IN')}`).join('\n')}\n\nShipping Address:\n${data.customerName}\n${data.shippingAddress.address1}\n${data.shippingAddress.city}, ${data.shippingAddress.state} - ${data.shippingAddress.pincode}\n\nSupport Helpline: 1800 833 0233 (Toll-Free) | hello@treel.in\nTreel Mobility Solutions Pvt. Ltd., Pune, Maharashtra 411023`;
 
   return sendEmail({
     to: data.customerEmail,
     subject: `Order Confirmation #${data.orderId} — Treel`,
     html,
-    text: `Hi ${data.customerName},\nYour order #${data.orderId} is confirmed for a total of ₹${data.total}.\nThank you for choosing Treel.`,
+    text,
   });
 }
+
+/**
+ * Sends a customer acknowledgement email when a support inquiry is submitted.
+ * Reproduces the authentic copy and layout from reference support.js.
+ */
+export async function sendSupportAcknowledgementEmail(
+  data: SupportAcknowledgementData
+): Promise<IntegrationResult<SendEmailResult>> {
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <title>Thank You for Reaching Out to TREEL Support</title>
+      </head>
+      <body style="margin: 0; padding: 0; background-color: #f4f4f4; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f4f4f4; padding: 24px 0;">
+          <tbody>
+            <tr>
+              <td align="center">
+                <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%; background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
+                  <tbody>
+                    <!-- Header -->
+                    <tr>
+                      <td style="padding: 24px; background-color: #111827; text-align: center;">
+                        <h1 style="color: #ffffff; font-size: 20px; margin: 0; letter-spacing: 0.5px;">Thank You for Reaching Out to Mr. TREEL Support</h1>
+                        ${data.ticketId ? `<p style="color: #9ca3af; font-size: 12px; margin: 6px 0 0 0; font-family: monospace;">Ticket Ref: ${escapeHtml(data.ticketId)}</p>` : ''}
+                      </td>
+                    </tr>
+
+                    <!-- Customer Greeting -->
+                    <tr>
+                      <td style="padding: 28px 32px 16px 32px; font-size: 15px; line-height: 1.6; color: #374151;">
+                        <p style="margin: 0 0 14px 0;">Dear <strong>${escapeHtml(data.name)}</strong>,</p>
+                        <p style="margin: 0 0 14px 0;">
+                          Thank you for getting in touch with us! We&apos;ve received your inquiry, and our support team is reviewing your request. We&apos;re here to assist you, and a specialist will get back to you as soon as possible.
+                        </p>
+                      </td>
+                    </tr>
+
+                    <!-- Request Summary Table -->
+                    <tr>
+                      <td style="padding: 0 32px 24px 32px;">
+                        <div style="background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; padding: 20px;">
+                          <h3 style="color: #111827; font-size: 16px; margin: 0 0 14px 0;">Here&apos;s a summary of your request:</h3>
+                          <table role="presentation" width="100%" cellpadding="6" cellspacing="0" border="0" style="font-size: 14px; border-collapse: collapse;">
+                            <tbody>
+                              <tr>
+                                <td style="width: 140px; font-weight: bold; color: #4b5563; padding: 6px 0;">Name:</td>
+                                <td style="color: #111827; padding: 6px 0;">${escapeHtml(data.name)}</td>
+                              </tr>
+                              <tr>
+                                <td style="width: 140px; font-weight: bold; color: #4b5563; padding: 6px 0;">Email:</td>
+                                <td style="color: #111827; padding: 6px 0;">${escapeHtml(data.email)}</td>
+                              </tr>
+                              ${data.phone ? `
+                              <tr>
+                                <td style="width: 140px; font-weight: bold; color: #4b5563; padding: 6px 0;">Phone Number:</td>
+                                <td style="color: #111827; padding: 6px 0;">${escapeHtml(data.phone)}</td>
+                              </tr>` : ''}
+                              ${data.purpose ? `
+                              <tr>
+                                <td style="width: 140px; font-weight: bold; color: #4b5563; padding: 6px 0;">Purpose:</td>
+                                <td style="color: #111827; padding: 6px 0;">${escapeHtml(data.purpose)}</td>
+                              </tr>` : ''}
+                              <tr>
+                                <td valign="top" style="width: 140px; font-weight: bold; color: #4b5563; padding: 6px 0;">Message:</td>
+                                <td style="color: #111827; padding: 6px 0; white-space: pre-wrap;">${escapeHtml(data.message)}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <!-- Sign-off & Support Desk details -->
+                    <tr>
+                      <td style="padding: 0 32px 28px 32px; font-size: 14px; line-height: 1.6; color: #374151;">
+                        <p style="margin: 0 0 10px 0;">We appreciate your patience, and we look forward to helping you!</p>
+                        <p style="margin: 0; font-weight: bold; color: #111827;">Best regards,</p>
+                        <p style="margin: 4px 0 0 0; color: #4b5563;">
+                          <strong>The TREEL Support Team</strong><br />
+                          Treel Mobility Solutions Pvt. Ltd.<br />
+                          Email: <a href="mailto:hello@treel.in" style="color: #2563eb; text-decoration: underline;">hello@treel.in</a><br />
+                          Toll-Free Helpline: <strong>1800 833 0233</strong><br />
+                          Website: <a href="https://treel.in" style="color: #2563eb; text-decoration: underline;">https://treel.in</a>
+                        </p>
+                      </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                      <td style="padding: 16px 24px; background-color: #f9fafb; border-top: 1px solid #e5e7eb; font-size: 11px; color: #9ca3af; text-align: center;">
+                        You are receiving this confirmation because you contacted Treel customer support. If you did not make this request, please disregard this email.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </body>
+    </html>
+  `;
+
+  const text = `Thank You for Reaching Out to Mr. TREEL Support\n\nDear ${data.name},\n\nThank you for getting in touch with us! We have received your inquiry, and our support team is reviewing your request.\n\nSummary of your request:\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone || 'N/A'}\nPurpose: ${data.purpose || 'General Inquiry'}\nMessage:\n${data.message}\n\nBest regards,\nThe TREEL Support Team\nhello@treel.in | 1800 833 0233 | https://treel.in`;
+
+  return sendEmail({
+    to: data.email,
+    subject: "Thank You for Reaching Out to TREEL Support",
+    html,
+    text,
+  });
+}
+
+/**
+ * Sends a welcome / subscription confirmation email to a new subscriber.
+ */
+export async function sendNewsletterWelcomeEmail(
+  data: NewsletterWelcomeData
+): Promise<IntegrationResult<SendEmailResult>> {
+  const unsubscribeUrl = data.unsubscribeUrl || `https://treel.in/unsubscribe?email=${encodeURIComponent(data.email)}`;
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <title>Welcome to Treel Mobility Intelligence</title>
+      </head>
+      <body style="margin: 0; padding: 0; background-color: #0f1419; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #faf7f2;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #0f1419; padding: 32px 0;">
+          <tbody>
+            <tr>
+              <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%; background-color: #141b22; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; overflow: hidden;">
+                  <tbody>
+                    <tr>
+                      <td style="padding: 28px 32px; background-color: #090d11; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+                        <span style="font-size: 22px; font-weight: 800; letter-spacing: 2px; color: #faf7f2;">TREEL</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 36px 32px;">
+                        <h2 style="font-size: 24px; color: #faf7f2; margin: 0 0 16px 0; font-weight: 700;">
+                          Welcome to Treel Updates &amp; Research
+                        </h2>
+                        <p style="font-size: 15px; line-height: 1.6; color: #94a3b8; margin: 0 0 20px 0;">
+                          You have successfully subscribed to Treel Mobility Intelligence dispatches, event announcements, and technical research whitepapers.
+                        </p>
+                        <div style="background-color: rgba(213, 87, 59, 0.1); border: 1px solid rgba(213, 87, 59, 0.3); border-radius: 6px; padding: 18px; margin-bottom: 24px;">
+                          <p style="font-size: 13px; color: #faf7f2; margin: 0; line-height: 20px;">
+                            <strong>What to expect:</strong> Monthly research notes from India&apos;s connected tyre telematics dataset, firmware updates, and event invitations. No spam, ever.
+                          </p>
+                        </div>
+                        <p style="font-size: 13px; color: #64748b; margin: 0;">
+                          Need to manage your communication preferences? You can <a href="${escapeHtml(unsubscribeUrl)}" style="color: #d5573b; text-decoration: underline;">update your preferences or unsubscribe anytime</a>.
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 18px 32px; background-color: #090d11; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 11px; color: #64748b; text-align: center;">
+                        Treel Mobility Solutions Pvt. Ltd. | S.No.6/1B, NDA Road, Pune, Maharashtra 411023
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </body>
+    </html>
+  `;
+
+  const text = `Welcome to Treel Mobility Intelligence\n\nYou have successfully subscribed to Treel research updates and mobility intelligence.\n\nTo manage your preferences or unsubscribe at any time, visit:\n${unsubscribeUrl}\n\nTreel Mobility Solutions Pvt. Ltd., Pune, Maharashtra 411023`;
+
+  return sendEmail({
+    to: data.email,
+    subject: "Welcome to Treel Mobility Intelligence & Updates",
+    html,
+    text,
+  });
+}
+
 
 /**
  * Sends a payment receipt email to the customer.
@@ -346,6 +662,88 @@ export async function sendShippingNotificationEmail(
     subject: `Your Treel Order #${data.orderId} Has Shipped!`,
     html,
     text: `Your order #${data.orderId} has shipped via ${data.courierName}. Tracking / AWB: ${data.awbCode}.${data.trackingUrl ? ` Track here: ${data.trackingUrl}` : ''}`,
+  });
+}
+
+/**
+ * Sends whitepaper document access details and secure download links.
+ */
+export async function sendWhitepaperAccessEmail(
+  data: WhitepaperAccessEmailData
+): Promise<IntegrationResult<SendEmailResult>> {
+  const recipientGreeting = data.recipientName ? `Hi ${escapeHtml(data.recipientName)},` : "Hello,";
+  const isPdf = data.fileFormat.toUpperCase() === "PDF";
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <title>Your TMIP Whitepaper Access</title>
+      </head>
+      <body style="margin: 0; padding: 0; background-color: #050a17; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #f1f5f9;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #050a17; padding: 32px 0;">
+          <tbody>
+            <tr>
+              <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%; background-color: #0b1220; border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; overflow: hidden;">
+                  <tbody>
+                    <tr>
+                      <td style="padding: 24px 32px; background-color: #030712; border-bottom: 1px solid rgba(59, 130, 246, 0.2);">
+                        <span style="font-size: 20px; font-weight: 800; letter-spacing: 2px; color: #3b82f6;">TREEL TMIP</span>
+                        <span style="font-size: 11px; color: #94a3b8; margin-left: 8px; text-transform: uppercase; letter-spacing: 1px;">Research Library</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 36px 32px;">
+                        <p style="font-size: 15px; color: #94a3b8; margin: 0 0 16px 0;">
+                          ${recipientGreeting}
+                        </p>
+                        <h2 style="font-size: 22px; color: #f1f5f9; margin: 0 0 16px 0; font-weight: 700; line-height: 1.3;">
+                          ${escapeHtml(data.whitepaperTitle)}
+                        </h2>
+                        <p style="font-size: 14px; line-height: 1.6; color: #94a3b8; margin: 0 0 24px 0;">
+                          Thank you for your interest in TMIP research. Your document (${escapeHtml(data.fileFormat)}${data.length ? ` · ${escapeHtml(data.length)}` : ""}) is ready for access.
+                        </p>
+                        <div style="background-color: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: 6px; padding: 20px; margin-bottom: 28px; text-align: center;">
+                          <a href="${escapeHtml(data.downloadUrl)}" style="background-color: #3b82f6; color: #ffffff; padding: 12px 28px; border-radius: 4px; font-size: 14px; font-weight: bold; text-decoration: none; display: inline-block; margin-right: 8px;">
+                            Download ${escapeHtml(data.fileFormat)}
+                          </a>
+                          ${
+                            isPdf
+                              ? `<a href="${escapeHtml(data.viewUrl)}" style="background-color: rgba(255, 255, 255, 0.05); color: #94a3b8; border: 1px solid rgba(255, 255, 255, 0.2); padding: 11px 20px; border-radius: 4px; font-size: 14px; text-decoration: none; display: inline-block;">
+                                  View Online
+                                </a>`
+                              : ""
+                          }
+                        </div>
+                        <p style="font-size: 12px; color: #64748b; line-height: 1.5; margin: 0;">
+                          This document link is uniquely generated for your request and remains valid for 48 hours. If you need any assistance, reach out to us at <a href="mailto:support@treel.in" style="color: #3b82f6;">support@treel.in</a>.
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 18px 32px; background-color: #030712; border-top: 1px solid rgba(59, 130, 246, 0.15); font-size: 11px; color: #64748b; text-align: center;">
+                        Treel Mobility Solutions Pvt. Ltd. | S.No.6/1B, NDA Road, Pune, Maharashtra 411023
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </body>
+    </html>
+  `;
+
+  const text = `Treel TMIP Research Whitepaper\n\n${data.whitepaperTitle}\n\nYour document is ready for download:\n${data.downloadUrl}\n\n${isPdf ? `View in browser: ${data.viewUrl}\n\n` : ""}This access link is valid for 48 hours.\n\nTreel Mobility Solutions Pvt. Ltd., Pune, Maharashtra 411023`;
+
+  return sendEmail({
+    to: data.email,
+    subject: `Your Whitepaper: ${data.whitepaperTitle} · TMIP Research`,
+    html,
+    text,
   });
 }
 

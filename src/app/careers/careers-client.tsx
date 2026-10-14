@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import { Search, MapPin, Briefcase, ChevronRight, ArrowRight } from "lucide-react";
+import { JobOpeningRecord } from "@/types/content";
 
 interface Role {
   id: string;
@@ -14,57 +15,89 @@ interface Role {
   excerpt: string;
 }
 
-export function CareersInteractiveRoster() {
+const DEFAULT_ROLES: Role[] = [
+  {
+    id: "job_senior_embedded_engineer",
+    slug: "senior-embedded-engineer",
+    title: "Senior Embedded Firmware Engineer",
+    team: "Engineering",
+    location: "Pune",
+    type: "Full-time",
+    excerpt: "Design and optimize ultra-low-power BLE firmware and RF telemetry sensor protocols for extreme automotive conditions."
+  },
+  {
+    id: "job_staff_backend_engineer",
+    slug: "staff-backend-engineer",
+    title: "Staff Backend Engineer (IoT & Distributed Systems)",
+    team: "Engineering",
+    location: "Pune",
+    type: "Full-time",
+    excerpt: "Architect high-throughput sub-second telemetry ingestion pipelines and Vehicle Digital Twin state engines handling 68K+ connected trucks."
+  },
+  {
+    id: "job_product_manager_insights",
+    slug: "product-manager-insights",
+    title: "Product Manager — Telemetry & Insights",
+    team: "Product",
+    location: "Hybrid",
+    type: "Full-time",
+    excerpt: "Own the core fleet analytics features, predictive maintenance models, and customer-facing dashboard interfaces for TMIP Enterprise."
+  },
+  {
+    id: "job_enterprise_solutions_architect",
+    slug: "enterprise-solutions-architect",
+    title: "Enterprise Solutions Architect (TMIP)",
+    team: "GTM",
+    location: "Pune",
+    type: "Full-time",
+    excerpt: "Partner with enterprise fleet technical buyers, lead technical evaluations, and deliver TMS custom API integrations across logistics corridors."
+  }
+];
+
+interface CareersInteractiveRosterProps {
+  initialRoles?: JobOpeningRecord[];
+}
+
+export function CareersInteractiveRoster({ initialRoles }: CareersInteractiveRosterProps) {
   const [selectedTeam, setSelectedTeam] = useState("All");
   const [selectedLocation, setSelectedLocation] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const roles: Role[] = [
-    {
-      id: "role-1",
-      slug: "senior-embedded-engineer",
-      title: "Senior Embedded Firmware Engineer",
-      team: "Engineering",
-      location: "Pune",
-      type: "Full-time",
-      excerpt: "Design and optimize ultra-low-power BLE firmware and RF telemetry sensor protocols for extreme automotive conditions."
-    },
-    {
-      id: "role-2",
-      slug: "staff-backend-engineer",
-      title: "Staff Backend Engineer (IoT & Distributed Systems)",
-      team: "Engineering",
-      location: "Pune",
-      type: "Full-time",
-      excerpt: "Architect high-throughput sub-second telemetry ingestion pipelines and Vehicle Digital Twin state engines handling 68K+ connected trucks."
-    },
-    {
-      id: "role-3",
-      slug: "product-manager-insights",
-      title: "Product Manager — Telemetry & Insights",
-      team: "Product",
-      location: "Hybrid",
-      type: "Full-time",
-      excerpt: "Own the core fleet analytics features, predictive maintenance models, and customer-facing dashboard interfaces for TMIP Enterprise."
-    },
-    {
-      id: "role-4",
-      slug: "enterprise-solutions-architect",
-      title: "Enterprise Solutions Architect (TMIP)",
-      team: "GTM",
-      location: "Pune",
-      type: "Full-time",
-      excerpt: "Partner with enterprise fleet technical buyers, lead technical evaluations, and deliver TMS custom API integrations across logistics corridors."
+  const roles: Role[] = useMemo(() => {
+    if (initialRoles && initialRoles.length > 0) {
+      return initialRoles.map((r) => ({
+        id: r._id,
+        slug: r.slug,
+        title: r.title,
+        team: r.team || "Engineering",
+        location: r.location || "Pune",
+        type: r.type || "Full-time",
+        excerpt: r.roleSummary || (r.aboutTheRole && r.aboutTheRole[0]) || "",
+      }));
     }
-  ];
+    return DEFAULT_ROLES;
+  }, [initialRoles]);
+
+  const teamOptions = useMemo(() => {
+    const set = new Set<string>();
+    roles.forEach((r) => { if (r.team) set.add(r.team); });
+    return ["All", ...Array.from(set)];
+  }, [roles]);
+
+  const locationOptions = useMemo(() => {
+    const set = new Set<string>();
+    roles.forEach((r) => { if (r.location) set.add(r.location); });
+    return ["All", ...Array.from(set)];
+  }, [roles]);
 
   const filteredRoles = useMemo(() => {
     return roles.filter((r) => {
-      const matchTeam = selectedTeam === "All" || r.team === selectedTeam;
-      const matchLoc = selectedLocation === "All" || r.location === selectedLocation;
+      const matchTeam = selectedTeam === "All" || r.team.toLowerCase() === selectedTeam.toLowerCase();
+      const matchLoc = selectedLocation === "All" || r.location.toLowerCase() === selectedLocation.toLowerCase();
       const matchSearch = searchQuery.trim() === "" || 
         r.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-        r.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+        r.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        r.team.toLowerCase().includes(searchQuery.toLowerCase());
       return matchTeam && matchLoc && matchSearch;
     });
   }, [roles, selectedTeam, selectedLocation, searchQuery]);
@@ -92,11 +125,11 @@ export function CareersInteractiveRoster() {
             onChange={(e) => setSelectedTeam(e.target.value)}
             className="w-full px-3 py-2 rounded-md bg-[#141B22] border border-white/15 text-[#FAF7F2] text-xs sm:text-sm outline-none focus:border-[#D5573B] transition-all cursor-pointer"
           >
-            <option value="All">All Teams</option>
-            <option value="Engineering">Engineering</option>
-            <option value="Product">Product</option>
-            <option value="GTM">GTM</option>
-            <option value="Operations">Operations</option>
+            {teamOptions.map((tm) => (
+              <option key={tm} value={tm}>
+                {tm === "All" ? "All Teams" : tm}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -107,10 +140,11 @@ export function CareersInteractiveRoster() {
             onChange={(e) => setSelectedLocation(e.target.value)}
             className="w-full px-3 py-2 rounded-md bg-[#141B22] border border-white/15 text-[#FAF7F2] text-xs sm:text-sm outline-none focus:border-[#D5573B] transition-all cursor-pointer"
           >
-            <option value="All">All Locations</option>
-            <option value="Pune">Pune</option>
-            <option value="Hybrid">Hybrid</option>
-            <option value="Remote">Remote</option>
+            {locationOptions.map((loc) => (
+              <option key={loc} value={loc}>
+                {loc === "All" ? "All Locations" : loc}
+              </option>
+            ))}
           </select>
         </div>
       </div>
@@ -131,10 +165,10 @@ export function CareersInteractiveRoster() {
                       {role.team}
                     </span>
                     <span className="text-xs text-[#94A3B8] font-mono flex items-center gap-1">
-                      <MapPin className="w-3 h-3" /> {role.location}
+                      <MapPin className="w-3 h-3 text-[#D5573B]" /> {role.location}
                     </span>
                     <span className="text-xs text-[#94A3B8] font-mono flex items-center gap-1">
-                      <Briefcase className="w-3 h-3" /> {role.type}
+                      <Briefcase className="w-3 h-3 text-[#D5573B]" /> {role.type}
                     </span>
                   </div>
                   <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">
