@@ -137,8 +137,49 @@ export default async function PersonalArticlePage({
             );
           })()}
 
-          {/* Body Content */}
-          {hasHtml ? (
+          {/* Body Content (Dynamic Sections, or Custom HTML/Text) */}
+          {article.sections && article.sections.length > 0 ? (
+            <div className="space-y-8 text-base sm:text-lg text-[#374151] leading-relaxed">
+              {article.sections.map((sec, idx) => {
+                const text = sec.content || (Array.isArray(sec.paragraphs) ? sec.paragraphs.join("\n\n") : "");
+                return (
+                  <div key={sec.id || idx} className="space-y-3">
+                    {sec.heading && (
+                      <h2 className="text-2xl sm:text-3xl font-bold text-[#111827]">
+                        {sec.heading}
+                      </h2>
+                    )}
+                    {text && (
+                      <div className="space-y-4">
+                        {text.split("\n\n").map((para, pIdx) => {
+                          if (para.includes("\n•") || para.startsWith("•") || para.includes("\n-") || para.startsWith("-")) {
+                            const lines = para.split("\n").filter(Boolean);
+                            const intro = lines.filter((l) => !l.startsWith("•") && !l.startsWith("-"));
+                            const bullets = lines.filter((l) => l.startsWith("•") || l.startsWith("-"));
+                            return (
+                              <div key={pIdx} className="space-y-2">
+                                {intro.length > 0 && <p className="leading-relaxed">{intro.join(" ")}</p>}
+                                <ul className="space-y-2 pl-4 border-l-2 border-[#2563EB]/40 text-sm sm:text-base text-[#4B5563]">
+                                  {bullets.map((b, bIdx) => (
+                                    <li key={bIdx}>{b.replace(/^[•\-]\s*/, "")}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            );
+                          }
+                          return (
+                            <p key={pIdx} className="leading-relaxed">
+                              {para}
+                            </p>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ) : hasHtml ? (
             <div
               className="prose prose-lg max-w-none text-[#374151] leading-relaxed space-y-6 [&>p]:leading-relaxed [&>p]:text-base [&>p]:sm:text-lg [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-[#111827] [&>h3]:text-xl [&>h3]:font-bold [&>h3]:text-[#111827] [&>ul]:list-disc [&>ul]:pl-5 [&>ol]:list-decimal [&>ol]:pl-5"
               dangerouslySetInnerHTML={{ __html: article.blogContent || "" }}
@@ -164,7 +205,7 @@ export default async function PersonalArticlePage({
               href="/personal/buy"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#2563EB] text-white font-bold text-xs uppercase tracking-wider hover:bg-[#1D4ED8] transition-all shadow-md"
             >
-              <ShoppingCart className="w-4 h-4" /> Buy Personal TPMS (₹8,999)
+              <ShoppingCart className="w-4 h-4" /> Buy Personal TPMS
             </Link>
           </div>
         </div>

@@ -1,4 +1,6 @@
-import { MongoBlog } from "@/types/admin";
+import { MongoBlog, ArticleSection } from "@/types/admin";
+
+export type { ArticleSection };
 
 export type ContentCategoryType = "treel_main" | "tmip" | "suraksha" | "personal";
 
@@ -43,6 +45,7 @@ export interface TmipCaseStudy {
   metricLabel: string;
   isFeatured?: boolean;
   status: "Published" | "Draft";
+  sections?: ArticleSection[];
   customerProfile?: string;
   results?: {
     value: string;
@@ -74,6 +77,7 @@ export interface SurakshaArticle {
   date: string;
   readTime: string;
   keyTakeaway?: string;
+  sections?: ArticleSection[];
   content?: string;
   image?: string;
   status: "Published" | "Draft";

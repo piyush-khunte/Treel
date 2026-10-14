@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = "force-dynamic";
+
 import { getPublishedCaseStudies } from "@/lib/content/casestudies-storage";
 
 export default async function TmipCustomersCaseStudiesPage() {

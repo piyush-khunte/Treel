@@ -352,7 +352,7 @@ function readLocalStore(): TmipCaseStudy[] {
               res.quote = seed.quote;
               updated = true;
             }
-            if (!res.customerProfile && seed.customerProfile) {
+            if (!res.customerProfile && seed.customerProfile && (!res.sections || res.sections.length === 0) && !res.updatedAt) {
               res.customerProfile = seed.customerProfile;
               updated = true;
             }
@@ -462,12 +462,13 @@ export async function saveCaseStudy(cs: Partial<TmipCaseStudy>): Promise<TmipCas
     metricLabel: cs.metricLabel || existing?.metricLabel || "Operating advantage",
     isFeatured: cs.isFeatured !== undefined ? !!cs.isFeatured : (existing?.isFeatured ?? false),
     status: cs.status ? (cs.status === "Draft" ? "Draft" : "Published") : (existing?.status || "Published"),
+    sections: cs.sections !== undefined ? cs.sections : (existing?.sections || []),
     customerProfile: cs.customerProfile !== undefined ? cs.customerProfile : (existing?.customerProfile || ""),
     challenge: cs.challenge !== undefined ? cs.challenge : (existing?.challenge || ""),
     solution: cs.solution !== undefined ? cs.solution : (existing?.solution || ""),
     quote: cs.quote !== undefined ? cs.quote : existing?.quote,
-    author: cs.author || existing?.author || "Treel Research",
-    authorRole: cs.authorRole || existing?.authorRole || "Mobility Intelligence Research Group",
+    author: cs.author !== undefined ? cs.author : (existing?.author || "Treel Research"),
+    authorRole: cs.authorRole !== undefined ? cs.authorRole : (existing?.authorRole || "Mobility Intelligence Research Group"),
     results: cs.results !== undefined ? cs.results : (existing?.results || []),
     content: cs.content !== undefined ? cs.content : (existing?.content || ""),
     createdAt: existing?.createdAt || cs.createdAt || now,

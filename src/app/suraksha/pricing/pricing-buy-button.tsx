@@ -8,9 +8,20 @@ import { useSurakshaCart } from "@/lib/commerce/cart-context";
 interface PricingBuyButtonProps {
   tyres: number;
   type: string;
+  title?: string;
+  price?: number;
+  sku?: string;
+  productId?: string;
 }
 
-export function PricingBuyButton({ tyres, type }: PricingBuyButtonProps) {
+export function PricingBuyButton({
+  tyres,
+  type,
+  title,
+  price,
+  sku,
+  productId,
+}: PricingBuyButtonProps) {
   const router = useRouter();
   const { addItem, updateQuantity, items } = useSurakshaCart();
   const [loading, setLoading] = useState(false);
@@ -19,13 +30,19 @@ export function PricingBuyButton({ tyres, type }: PricingBuyButtonProps) {
     e.preventDefault();
     setLoading(true);
 
+    const effectivePrice = price && price > 0 ? price : tyres * 1700;
+    const pricePerTyre = tyres > 0 ? Math.round(effectivePrice / tyres) : 1700;
+    const effectiveSku = sku || `SKU-SURAKSHA-${tyres}W`;
+    const effectiveName = title || `Treel Suraksha Commercial Safety Kit (${tyres} Tyres)`;
+    const variantId = `suraksha_${tyres}w`;
+
     const surakshaItem = {
-      id: `suraksha_${tyres}w`,
-      variant_id: `suraksha_${tyres}w`,
-      sku: `SKU-SURAKSHA-${tyres}W`,
-      name: `Treel Suraksha Commercial Safety Kit (${tyres} Tyres)`,
-      price_inr: 1700,
-      mrp_inr: 2000,
+      id: productId || variantId,
+      variant_id: variantId,
+      sku: effectiveSku,
+      name: effectiveName,
+      price_inr: pricePerTyre,
+      mrp_inr: Math.round(pricePerTyre * 1.18),
       quantity: tyres,
       sensor_count: tyres,
       vehicle_type: "truck",
@@ -35,8 +52,8 @@ export function PricingBuyButton({ tyres, type }: PricingBuyButtonProps) {
 
     const existing = items.find(
       (i) =>
-        i.id === `suraksha_${tyres}w` ||
-        i.variant_id === `suraksha_${tyres}w` ||
+        i.id === (productId || variantId) ||
+        i.variant_id === variantId ||
         i.variant_id === "suraksha-sensor-kit"
     );
     if (existing) {

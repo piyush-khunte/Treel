@@ -166,34 +166,52 @@ export function CaseStudyDetailView({ study }: CaseStudyDetailViewProps) {
       <section className="relative z-10 py-20 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-16">
-            {/* The Customer / Fleet Profile */}
-            {study.customerProfile && (
-              <div className="space-y-4">
-                <h2 className="font-space-grotesk text-2xl sm:text-3xl font-bold text-[#F1F5F9]">
-                  Who they are
-                </h2>
-                {renderFormattedBlock(study.customerProfile)}
-              </div>
-            )}
+            {/* Dynamic Sections (Custom headings, paragraphs, and bullet points) */}
+            {study.sections && study.sections.length > 0 ? (
+              study.sections.map((sec, idx) => {
+                const sectionText = sec.content || (Array.isArray(sec.paragraphs) ? sec.paragraphs.join("\n\n") : "");
+                if (!sec.heading && !sectionText) return null;
+                return (
+                  <div key={sec.id || idx} className="space-y-4">
+                    {sec.heading && (
+                      <h2 className="font-space-grotesk text-2xl sm:text-3xl font-bold text-[#F1F5F9]">
+                        {sec.heading}
+                      </h2>
+                    )}
+                    {sectionText && renderFormattedBlock(sectionText)}
+                  </div>
+                );
+              })
+            ) : (
+              /* Backward-compatibility fallback for unmigrated legacy case studies */
+              <>
+                {study.customerProfile && (
+                  <div className="space-y-4">
+                    <h2 className="font-space-grotesk text-2xl sm:text-3xl font-bold text-[#F1F5F9]">
+                      Who they are
+                    </h2>
+                    {renderFormattedBlock(study.customerProfile)}
+                  </div>
+                )}
 
-            {/* The Operational Challenge */}
-            {study.challenge && (
-              <div className="space-y-4">
-                <h2 className="font-space-grotesk text-2xl sm:text-3xl font-bold text-[#F1F5F9]">
-                  What they came to us for
-                </h2>
-                {renderFormattedBlock(study.challenge)}
-              </div>
-            )}
+                {study.challenge && (
+                  <div className="space-y-4">
+                    <h2 className="font-space-grotesk text-2xl sm:text-3xl font-bold text-[#F1F5F9]">
+                      What they came to us for
+                    </h2>
+                    {renderFormattedBlock(study.challenge)}
+                  </div>
+                )}
 
-            {/* The Solution */}
-            {study.solution && (
-              <div className="space-y-4">
-                <h2 className="font-space-grotesk text-2xl sm:text-3xl font-bold text-[#F1F5F9]">
-                  What we built together
-                </h2>
-                {renderFormattedBlock(study.solution)}
-              </div>
+                {study.solution && (
+                  <div className="space-y-4">
+                    <h2 className="font-space-grotesk text-2xl sm:text-3xl font-bold text-[#F1F5F9]">
+                      What we built together
+                    </h2>
+                    {renderFormattedBlock(study.solution)}
+                  </div>
+                )}
+              </>
             )}
 
             {/* Customer Quote */}

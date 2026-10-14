@@ -50,7 +50,8 @@ import {
   TreelInsightArticle, 
   TmipCaseStudy, 
   SurakshaArticle, 
-  PersonalBlogArticle 
+  PersonalBlogArticle,
+  ArticleSection
 } from "@/types/content";
 
 interface CategoryMeta {
@@ -155,6 +156,437 @@ const SUB_CATEGORIES_MAP: Record<ContentCategoryType, string[]> = {
     "Industry Insights"
   ]
 };
+
+interface SectionItem {
+  id?: string;
+  heading: string;
+  content: string;
+  paragraphs?: string[];
+}
+
+interface DynamicSectionBuilderProps {
+  sections: SectionItem[];
+  onChange: (sections: SectionItem[]) => void;
+  title?: string;
+  description?: string;
+  templateCategory: "tmip" | "treel_main" | "suraksha" | "personal";
+}
+
+const SECTION_TEMPLATES: Record<string, { label: string; sections: { heading: string; content: string }[] }[]> = {
+  tmip: [
+    {
+      label: "Standard Case Study (4 Sections)",
+      sections: [
+        {
+          heading: "Who they are — Customer & Fleet Profile",
+          content: "A Tier-1 commercial fleet operating across long-haul freight corridors connecting primary manufacturing clusters to major metropolitan hubs.\n\nWith vehicles logging over 12,000 kilometres per month, tyre replacement and diesel fuel constitute the two largest controllable line items in their operating expense structure."
+        },
+        {
+          heading: "What they came to us for — Operational Challenge",
+          content: "Prior to deploying TMIP, tyre maintenance relied on manual yard checks during scheduled depot stops, creating critical operational liabilities:\n\n• Slow pressure loss in transit: Unnoticed punctures triggering thermal casing damage\n• Under-inflation rolling resistance: Sub-optimal PSI increasing diesel burn across highway stretches\n• Unscheduled breakdown disruption: En-route tyre emergencies causing vehicle downtime and SLA penalties"
+        },
+        {
+          heading: "What we built together — TMIP Solution & Deployment",
+          content: "Treel executed a phased rollout across linehaul hubs:\n\n• STAGE 01 · Hardware Retrofit: ARAI-certified valve-stem sensors fitted to all wheel positions with in-cabin telematics gateways\n• STAGE 02 · TMS Integration: Bi-directional webhooks connected TMIP telemetry directly into the client enterprise dispatch ERP\n• STAGE 03 · Digital Twin Activation: Predictive degradation models trained on corridor telemetry to dispatch workshop alerts"
+        },
+        {
+          heading: "Life on TMIP & Operational Outcomes",
+          content: "Central control towers now monitor tyre conditions across active vehicles in real time. Workshop queues are generated automatically, directing mechanics only to assets displaying active pressure or thermal variances.\n\nBy eliminating under-inflated running, the fleet achieved measurable fuel savings and casing life extension."
+        }
+      ]
+    },
+    {
+      label: "Fleet Spotlight (3 Sections)",
+      sections: [
+        {
+          heading: "Fleet Background & Corridors",
+          content: "Overview of operating routes, fleet scale, vehicle configurations, and haulage frequency..."
+        },
+        {
+          heading: "Operational Challenges Before TMIP",
+          content: "Key maintenance bottlenecks, roadside breakdown frequency, and manual tyre inspection limitations..."
+        },
+        {
+          heading: "Deployment Architecture & Telemetry Results",
+          content: "Sensor hardware fitment, real-time alert thresholds, and verified fleet efficiency metrics..."
+        }
+      ]
+    },
+    {
+      label: "Safety & Hazard Prevention (3 Sections)",
+      sections: [
+        {
+          heading: "Safety Mandate & Vehicle Profile",
+          content: "Passenger or hazardous cargo haulage specifications and zero-incident requirements..."
+        },
+        {
+          heading: "High-Speed Thermal Risks on Expressways",
+          content: "Thermal buildup on concrete highways and risks of high-speed tyre blowouts..."
+        },
+        {
+          heading: "In-Cabin Early Warning & Zero-Burst Record",
+          content: "Continuous pressure and temperature alerts providing advance warning before thermal limits are reached..."
+        }
+      ]
+    }
+  ],
+  suraksha: [
+    {
+      label: "Driver Safety & Maintenance Guide (3 Sections)",
+      sections: [
+        {
+          heading: "Understanding the Road Risk",
+          content: "Why under-inflated tyres overheat and cause sudden roadside failures on Indian expressways..."
+        },
+        {
+          heading: "Step-by-Step Highway Action Plan",
+          content: "Practical driving and maintenance techniques:\n\n• Check cold tyre pressure before starting morning runs\n• Never bleed air from hot tyres during highway stops\n• Maintain steady highway cruising speed to minimize rolling friction"
+        },
+        {
+          heading: "Pre-Trip Inspection Checklist",
+          content: "Essential morning checks for owner-operators:\n\n• Visual inspection of valve stems and rim flanges\n• Verification of dual-wheel spacing to prevent sidewall rubbing\n• Tread depth check across steer and drive axles"
+        }
+      ]
+    },
+    {
+      label: "Fuel Economy Strategy (3 Sections)",
+      sections: [
+        {
+          heading: "The Physics of Rolling Drag",
+          content: "Every 10 PSI drop below recommended pressure increases rolling resistance and diesel consumption..."
+        },
+        {
+          heading: "Daily Pressure & Driving Habits",
+          content: "Maintaining proper cold pressure and steady throttle control saves 8% to 12% in diesel bills..."
+        },
+        {
+          heading: "Monthly Cost Savings Calculation",
+          content: "How a single commercial truck saves ₹2,000 to ₹3,500 every month by keeping tyres at optimal PSI..."
+        }
+      ]
+    }
+  ],
+  personal: [
+    {
+      label: "Consumer TPMS Guide (3 Sections)",
+      sections: [
+        {
+          heading: "Why Factory TPMS Is Not Enough",
+          content: "Most factory indirect systems only warn drivers after a 25% pressure loss, which is too late on high-speed expressways..."
+        },
+        {
+          heading: "Direct Bluetooth Telemetry Advantages",
+          content: "Continuous numeric PSI and temperature readings delivered directly to your smartphone and smartwatch..."
+        },
+        {
+          heading: "Installation and Daily App Usage",
+          content: "Simple DIY installation on standard tyre valves with instant pairing to the mobile companion app..."
+        }
+      ]
+    },
+    {
+      label: "Tyre Health & Road Safety (3 Sections)",
+      sections: [
+        {
+          heading: "Cold vs Hot Tyre Calibration",
+          content: "Understanding why measuring tyre pressure after driving gives false readings..."
+        },
+        {
+          heading: "Monsoon Aquaplaning Prevention",
+          content: "Why correct tyre pressure keeps tread grooves open to channel standing water away from the contact patch..."
+        },
+        {
+          heading: "Highway Emergency Preparation",
+          content: "What to do when receiving a sudden low-pressure alert at highway speeds..."
+        }
+      ]
+    }
+  ],
+  treel_main: [
+    {
+      label: "Mobility Intelligence Deep Dive (3 Sections)",
+      sections: [
+        {
+          heading: "The Limits of Raw Telemetry",
+          content: "Why isolated GPS coordinates and raw sensor numbers are insufficient for enterprise fleet decision-making..."
+        },
+        {
+          heading: "The Three-Layer Architecture of Vehicle Digital Twins",
+          content: "Edge ingestion, state accumulation, and predictive inference operating on sub-second tyre signals..."
+        },
+        {
+          heading: "From Reactive Downtime to Financial Predictability",
+          content: "How continuous telemetry transforms tyre maintenance from reactive roadside repairs into deterministic capital returns..."
+        }
+      ]
+    },
+    {
+      label: "Fleet Research & Thermodynamics (3 Sections)",
+      sections: [
+        {
+          heading: "Thermodynamics of Tyre Rolling Resistance",
+          content: "Mechanical hysteresis inside viscoelastic rubber compounds under cyclical highway deformation..."
+        },
+        {
+          heading: "Empirical Corridor Telemetry Dataset",
+          content: "Findings from 68,000 active commercial vehicles across national highway freight corridors..."
+        },
+        {
+          heading: "Total Cost of Ownership & ROI Modeling",
+          content: "Quantified diesel savings, casing life extension before first retread, and capital amortization timelines..."
+        }
+      ]
+    }
+  ]
+};
+
+function DynamicSectionBuilder({
+  sections,
+  onChange,
+  title = "Article Narrative Sections",
+  description = "Configure custom section headings, paragraphs, and formatted bullet lists for this article.",
+  templateCategory,
+}: DynamicSectionBuilderProps) {
+  const [selectedTemplate, setSelectedTemplate] = useState("");
+
+  const handleHeadingChange = (index: number, val: string) => {
+    const next = [...sections];
+    next[index] = { ...next[index], heading: val };
+    onChange(next);
+  };
+
+  const handleContentChange = (index: number, val: string) => {
+    const next = [...sections];
+    next[index] = { ...next[index], content: val };
+    onChange(next);
+  };
+
+  const handleMoveUp = (index: number) => {
+    if (index === 0) return;
+    const next = [...sections];
+    const temp = next[index];
+    next[index] = next[index - 1];
+    next[index - 1] = temp;
+    onChange(next);
+  };
+
+  const handleMoveDown = (index: number) => {
+    if (index === sections.length - 1) return;
+    const next = [...sections];
+    const temp = next[index];
+    next[index] = next[index + 1];
+    next[index + 1] = temp;
+    onChange(next);
+  };
+
+  const handleDelete = (index: number) => {
+    const next = sections.filter((_, i) => i !== index);
+    onChange(next);
+  };
+
+  const handleAddSection = () => {
+    const next: SectionItem[] = [
+      ...sections,
+      {
+        id: `sec_${Date.now()}_${sections.length + 1}`,
+        heading: "",
+        content: ""
+      }
+    ];
+    onChange(next);
+  };
+
+  const handleTemplateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const val = e.target.value;
+    setSelectedTemplate(val);
+    if (!val) return;
+
+    if (val === "__blank__") {
+      if (sections.length > 0 && sections.some((s) => s.heading || s.content)) {
+        if (!window.confirm("Clear all sections and start blank?")) {
+          setSelectedTemplate("");
+          return;
+        }
+      }
+      onChange([]);
+      setSelectedTemplate("");
+      return;
+    }
+
+    const available = SECTION_TEMPLATES[templateCategory] || [];
+    const chosen = available.find((t) => t.label === val);
+    if (!chosen) return;
+
+    if (sections.length > 0 && sections.some((s) => s.heading || s.content)) {
+      if (!window.confirm(`Load "${chosen.label}" template? This will replace your current sections.`)) {
+        setSelectedTemplate("");
+        return;
+      }
+    }
+
+    const nextSections: SectionItem[] = chosen.sections.map((s, idx) => ({
+      id: `sec_${Date.now()}_${idx}`,
+      heading: s.heading,
+      content: s.content
+    }));
+    onChange(nextSections);
+    setSelectedTemplate("");
+  };
+
+  const templates = SECTION_TEMPLATES[templateCategory] || [];
+
+  return (
+    <div className="space-y-4 pt-3 border-t border-white/10">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <div className="flex items-center gap-2">
+            <label className="block text-xs font-mono uppercase tracking-wider text-blue-400 font-bold">
+              {title} ({sections.length})
+            </label>
+            <span className="text-[10px] px-2 py-0.5 rounded bg-blue-950/60 border border-blue-800 text-blue-300 font-mono">
+              Dynamic Builder
+            </span>
+          </div>
+          <p className="text-[11px] text-slate-400 mt-0.5">
+            {description}
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2 flex-wrap shrink-0">
+          {templates.length > 0 && (
+            <select
+              value={selectedTemplate}
+              onChange={handleTemplateChange}
+              className="bg-slate-950 border border-white/15 rounded-md px-2.5 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-blue-500 cursor-pointer"
+              title="Optional starter templates"
+            >
+              <option value="">Load Template (Optional)...</option>
+              {templates.map((tpl) => (
+                <option key={tpl.label} value={tpl.label}>
+                  {tpl.label}
+                </option>
+              ))}
+              <option value="__blank__">— Clear all / Start blank —</option>
+            </select>
+          )}
+
+          <button
+            type="button"
+            onClick={handleAddSection}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition-colors cursor-pointer"
+          >
+            <Plus className="w-3.5 h-3.5" />
+            <span>Add Section</span>
+          </button>
+        </div>
+      </div>
+
+      {sections.length === 0 ? (
+        <div className="p-6 text-center border-2 border-dashed border-white/10 rounded-xl bg-slate-950/40 space-y-3">
+          <div className="w-10 h-10 rounded-full bg-blue-950/50 border border-blue-800/60 text-blue-400 flex items-center justify-center mx-auto">
+            <Layers className="w-5 h-5" />
+          </div>
+          <div className="space-y-1">
+            <h4 className="text-sm font-semibold text-white">No Sections Configured</h4>
+            <p className="text-xs text-slate-400 max-w-md mx-auto">
+              New articles start blank by default. Click &ldquo;Add Section&rdquo; to add a custom heading and text, or load a starter template from the dropdown.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={handleAddSection}
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition-colors cursor-pointer"
+          >
+            <Plus className="w-3.5 h-3.5" />
+            <span>Add Your First Section</span>
+          </button>
+        </div>
+      ) : (
+        <div className="space-y-4">
+          {sections.map((section, sIdx) => (
+            <div
+              key={section.id || sIdx}
+              className="p-4 rounded-xl bg-slate-900 border border-white/10 space-y-3 relative group transition-all duration-150 hover:border-white/20"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-0.5 rounded bg-blue-950 text-blue-400 border border-blue-800 text-[11px] font-mono font-bold">
+                    Section #{sIdx + 1}
+                  </span>
+                  {section.heading ? (
+                    <span className="text-xs font-semibold text-slate-200 truncate max-w-xs sm:max-w-md">
+                      {section.heading}
+                    </span>
+                  ) : (
+                    <span className="text-xs text-slate-400 italic">Untitled Section</span>
+                  )}
+                </div>
+
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    disabled={sIdx === 0}
+                    onClick={() => handleMoveUp(sIdx)}
+                    title="Move Section Up"
+                    className="p-1 rounded text-slate-400 hover:text-white hover:bg-white/10 disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    <ArrowUp className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    type="button"
+                    disabled={sIdx === sections.length - 1}
+                    onClick={() => handleMoveDown(sIdx)}
+                    title="Move Section Down"
+                    className="p-1 rounded text-slate-400 hover:text-white hover:bg-white/10 disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    <ArrowDown className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(sIdx)}
+                    title="Delete Section"
+                    className="p-1 rounded text-red-400 hover:text-red-300 hover:bg-red-950/40 ml-1 cursor-pointer"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-mono uppercase text-slate-400 mb-1">
+                  Section Heading / Topic *
+                </label>
+                <Input
+                  value={section.heading || ""}
+                  onChange={(e) => handleHeadingChange(sIdx, e.target.value)}
+                  placeholder="e.g. Who they are, Operational Challenge, Hardware Fitment, Digital Twin Activation..."
+                  className="bg-slate-950 border-white/10 text-white font-medium"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-mono uppercase text-slate-400 mb-1">
+                  Section Content &amp; Bullets
+                </label>
+                <textarea
+                  rows={5}
+                  value={section.content || ""}
+                  onChange={(e) => handleContentChange(sIdx, e.target.value)}
+                  placeholder="Write section narrative here. Separate paragraphs with an empty blank line.\n\nSupports structured bullet points:\n• Point 1: Detailed description\n• Point 2: Another observation"
+                  className="w-full bg-slate-950 border border-white/10 rounded-md p-3 text-sm text-white font-sans leading-relaxed focus:outline-none focus:border-blue-500"
+                />
+                <p className="text-[11px] text-slate-400 mt-1 flex items-center gap-1.5">
+                  <span className="text-blue-400">💡 Tip:</span> Separate paragraphs with blank lines. Start lines with <span className="font-mono text-slate-300">•</span> or <span className="font-mono text-slate-300">-</span> for auto-formatted bullet lists.
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function AdminBlogsPage() {
   const [activeCategory, setActiveCategory] = useState<ContentCategoryType>("treel_main");
@@ -265,12 +697,7 @@ export default function AdminBlogsPage() {
         status: "Published",
         tldr: "",
         body: {
-          sections: [
-            {
-              heading: "Key Analysis",
-              paragraphs: [""]
-            }
-          ],
+          sections: [],
           pullQuote: {
             quote: "",
             attribution: "— Treel Intelligence"
@@ -286,18 +713,44 @@ export default function AdminBlogsPage() {
         industry: "Logistics",
         fleetSize: "100-500",
         excerpt: "",
-        metricValue: "0.5–0.6% Fuel Savings",
-        metricLabel: "Measured Fleet Improvement",
+        metricValue: "0.5–0.6% Fuel · 6.8% Tyre Life",
+        metricLabel: "34% downtime drop across fleet units",
+        author: "Treel Research",
+        authorRole: "Mobility Intelligence Research Group",
         isFeatured: false,
         status: "Published",
-        customerProfile: "",
-        challenge: "",
-        solution: "",
+        sections: [],
         quote: {
           text: "",
           author: "",
           title: ""
         },
+        results: [
+          {
+            value: "0.5–0.6%",
+            label: "Fuel Savings",
+            delta: "vs. pre-deployment baseline",
+            desc: "Measured across active linehaul corridor operations."
+          },
+          {
+            value: "6.8%",
+            label: "Tyre-Life Extension",
+            delta: "Fleet median improvement",
+            desc: "Average steer and drive axle casing life extended before first retread."
+          },
+          {
+            value: "34%",
+            label: "Downtime Reduction",
+            delta: "Trailing 12 months",
+            desc: "Punctures, slow-leaks, and thermal blowouts detected and rectified at scheduled depot stops."
+          },
+          {
+            value: "8.6 mo",
+            label: "Capital Payback",
+            delta: "Full deployment payback",
+            desc: "Hardware fitment, cloud subscriptions, and integration costs fully amortized by operational savings."
+          }
+        ],
         content: ""
       });
     } else if (activeCategory === "suraksha") {
@@ -311,8 +764,10 @@ export default function AdminBlogsPage() {
         date: dateFormatted,
         readTime: "5 min read",
         keyTakeaway: "Suraksha delivers continuous tyre pressure and temperature alerts to protect driver safety.",
+        sections: [],
         content: "",
         image: "",
+        isFeatured: false,
         status: "Published"
       });
     } else {
@@ -323,6 +778,7 @@ export default function AdminBlogsPage() {
         subtitle: "",
         slug: "",
         description: "",
+        sections: [],
         blogContent: "",
         image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80",
         metatitle: "",
@@ -341,11 +797,88 @@ export default function AdminBlogsPage() {
     const cloned = JSON.parse(JSON.stringify(item));
     if (activeCategory === "treel_main") {
       cloned.tldr = cloned.tldr || "";
-      if (!cloned.body || !Array.isArray(cloned.body.sections) || cloned.body.sections.length === 0) {
-        cloned.body = {
-          sections: [{ heading: "Key Analysis", paragraphs: [cloned.deck || cloned.content || ""] }],
-          pullQuote: cloned.body?.pullQuote
-        };
+      if (!cloned.body || typeof cloned.body !== "object") {
+        cloned.body = { sections: [], pullQuote: { quote: "", attribution: "— Treel Intelligence" } };
+      }
+      if (!Array.isArray(cloned.body.sections)) {
+        cloned.body.sections = [];
+      } else {
+        cloned.body.sections = cloned.body.sections.map((s: any, idx: number) => ({
+          id: s.id || `sec_${Date.now()}_${idx}`,
+          heading: s.heading || "",
+          content: s.content !== undefined ? s.content : (Array.isArray(s.paragraphs) ? s.paragraphs.join("\n\n") : "")
+        }));
+      }
+    }
+    if (activeCategory === "tmip") {
+      cloned.author = cloned.author || "Treel Research";
+      cloned.authorRole = cloned.authorRole || "Mobility Intelligence Research Group";
+      cloned.quote = cloned.quote || { text: "", author: "", title: "" };
+      if (!Array.isArray(cloned.results) || cloned.results.length === 0) {
+        cloned.results = [
+          {
+            value: cloned.metricValue || "0.5–0.6%",
+            label: cloned.metricLabel || "Operating advantage",
+            delta: "Measured outcome",
+            desc: cloned.excerpt || "Observed improvement under active TMIP telemetry."
+          }
+        ];
+      }
+      // Populate sections: if already defined, normalize; else synthesize from legacy fields
+      if (Array.isArray(cloned.sections) && cloned.sections.length > 0) {
+        cloned.sections = cloned.sections.map((s: any, idx: number) => ({
+          id: s.id || `sec_${idx}`,
+          heading: s.heading || "",
+          content: s.content !== undefined ? s.content : (Array.isArray(s.paragraphs) ? s.paragraphs.join("\n\n") : "")
+        }));
+      } else {
+        const legacySecs: any[] = [];
+        if (cloned.customerProfile && cloned.customerProfile.trim()) {
+          legacySecs.push({
+            id: `sec_profile_${Date.now()}`,
+            heading: "Who they are",
+            content: cloned.customerProfile.trim()
+          });
+        }
+        if (cloned.challenge && cloned.challenge.trim()) {
+          legacySecs.push({
+            id: `sec_challenge_${Date.now()}`,
+            heading: "What they came to us for",
+            content: cloned.challenge.trim()
+          });
+        }
+        if (cloned.solution && cloned.solution.trim()) {
+          legacySecs.push({
+            id: `sec_solution_${Date.now()}`,
+            heading: "What we built together",
+            content: cloned.solution.trim()
+          });
+        }
+        cloned.sections = legacySecs;
+      }
+    }
+    if (activeCategory === "suraksha") {
+      cloned.keyTakeaway = cloned.keyTakeaway || "";
+      cloned.isFeatured = !!cloned.isFeatured;
+      if (Array.isArray(cloned.sections) && cloned.sections.length > 0) {
+        cloned.sections = cloned.sections.map((s: any, idx: number) => ({
+          id: s.id || `sec_${idx}`,
+          heading: s.heading || "",
+          content: s.content !== undefined ? s.content : (Array.isArray(s.paragraphs) ? s.paragraphs.join("\n\n") : "")
+        }));
+      } else {
+        cloned.sections = [];
+      }
+    }
+    if (activeCategory === "personal") {
+      if (Array.isArray(cloned.sections) && cloned.sections.length > 0) {
+        cloned.sections = cloned.sections.map((s: any, idx: number) => ({
+          id: s.id || `sec_${idx}`,
+          heading: s.heading || "",
+          content: s.content !== undefined ? s.content : (Array.isArray(s.paragraphs) ? s.paragraphs.join("\n\n") : "")
+        }));
+      } else {
+        cloned.sections = [];
       }
     }
     if (cloned.image !== undefined) {
@@ -384,6 +917,19 @@ export default function AdminBlogsPage() {
         showFeedback("error", "Case study summary / excerpt is required.");
         return;
       }
+      if (Array.isArray(editingItem.sections) && editingItem.sections.length > 0) {
+        const missingHeading = editingItem.sections.find((s: any) => !s.heading?.trim());
+        if (missingHeading) {
+          showFeedback("error", "Please provide a heading for every section in the case study.");
+          return;
+        }
+        editingItem.sections = editingItem.sections.map((s: any, idx: number) => ({
+          id: s.id || `sec_${Date.now()}_${idx}`,
+          heading: s.heading.trim(),
+          content: (s.content || "").trim(),
+          paragraphs: (s.content || "").split("\n\n").filter(Boolean)
+        }));
+      }
     } else {
       if (!editingItem.title?.trim()) {
         showFeedback("error", "Title is required.");
@@ -396,22 +942,64 @@ export default function AdminBlogsPage() {
         showFeedback("error", "Deck / Executive summary is required.");
         return;
       }
-      if (!editingItem.body?.sections || editingItem.body.sections.length === 0) {
-        showFeedback("error", "At least one article section is required.");
-        return;
-      }
-      const hasEmpty = editingItem.body.sections.some(
-        (s: any) => !s.heading?.trim() || (!Array.isArray(s.paragraphs) || s.paragraphs.length === 0)
-      );
-      if (hasEmpty) {
-        showFeedback("error", "Please ensure every section has a heading and paragraph content.");
-        return;
+      if (Array.isArray(editingItem.body?.sections) && editingItem.body.sections.length > 0) {
+        const missingHeading = editingItem.body.sections.find((s: any) => !s.heading?.trim());
+        if (missingHeading) {
+          showFeedback("error", "Please ensure every section has a heading.");
+          return;
+        }
+        editingItem.body.sections = editingItem.body.sections.map((s: any) => ({
+          heading: s.heading.trim(),
+          content: s.content || "",
+          paragraphs: (s.content || "").split("\n\n").filter(Boolean)
+        }));
       }
     }
 
-    if (activeCategory === "personal" && !editingItem.blogContent?.trim()) {
-      showFeedback("error", "Blog content is required.");
-      return;
+    if (activeCategory === "suraksha") {
+      if (Array.isArray(editingItem.sections) && editingItem.sections.length > 0) {
+        const missingHeading = editingItem.sections.find((s: any) => !s.heading?.trim());
+        if (missingHeading) {
+          showFeedback("error", "Please provide a heading for every section in the Suraksha article.");
+          return;
+        }
+        editingItem.sections = editingItem.sections.map((s: any, idx: number) => ({
+          id: s.id || `sec_${Date.now()}_${idx}`,
+          heading: s.heading.trim(),
+          content: (s.content || "").trim(),
+          paragraphs: (s.content || "").split("\n\n").filter(Boolean)
+        }));
+        if (!editingItem.content || !editingItem.content.trim()) {
+          editingItem.content = editingItem.sections
+            .map((s: any) => `<h3>${s.heading}</h3>${(s.content || "").split("\n\n").filter(Boolean).map((p: string) => `<p>${p}</p>`).join("")}`)
+            .join("");
+        }
+      }
+    }
+
+    if (activeCategory === "personal") {
+      if (Array.isArray(editingItem.sections) && editingItem.sections.length > 0) {
+        const missingHeading = editingItem.sections.find((s: any) => !s.heading?.trim());
+        if (missingHeading) {
+          showFeedback("error", "Please provide a heading for every section in the blog post.");
+          return;
+        }
+        editingItem.sections = editingItem.sections.map((s: any, idx: number) => ({
+          id: s.id || `sec_${Date.now()}_${idx}`,
+          heading: s.heading.trim(),
+          content: (s.content || "").trim(),
+          paragraphs: (s.content || "").split("\n\n").filter(Boolean)
+        }));
+        if (!editingItem.blogContent || !editingItem.blogContent.trim()) {
+          editingItem.blogContent = editingItem.sections
+            .map((s: any) => `<h2>${s.heading}</h2>${(s.content || "").split("\n\n").filter(Boolean).map((p: string) => `<p>${p}</p>`).join("")}`)
+            .join("");
+        }
+      }
+      if (!editingItem.blogContent?.trim()) {
+        showFeedback("error", "Blog content or at least one article section is required.");
+        return;
+      }
     }
 
     setSaving(true);
@@ -1062,151 +1650,28 @@ export default function AdminBlogsPage() {
                       />
                     </div>
 
-                  {/* Multi-Section Article Editor */}
-                  <div className="space-y-4 pt-2 border-t border-white/10">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                      <div>
-                        <label className="block text-xs font-mono uppercase tracking-wider text-slate-200 font-bold">
-                          Article Sections ({editingItem.body?.sections?.length || 0}) *
-                        </label>
-                        <p className="text-[11px] text-slate-400">
-                          Add, edit, and reorder all sections of the article. All sections are published in order.
-                        </p>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const currentSecs = editingItem.body?.sections || [];
-                          setEditingItem({
-                            ...editingItem,
-                            body: {
-                              ...editingItem.body,
-                              sections: [
-                                ...currentSecs,
-                                {
-                                  heading: `Section ${currentSecs.length + 1}`,
-                                  paragraphs: [""]
-                                }
-                              ]
-                            }
-                          });
-                        }}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition-colors w-fit shrink-0 cursor-pointer"
-                      >
-                        <Plus className="w-3.5 h-3.5" />
-                        <span>Add Section</span>
-                      </button>
-                    </div>
-
-                    {(!editingItem.body?.sections || editingItem.body.sections.length === 0) ? (
-                      <div className="p-4 text-center border border-dashed border-white/10 rounded-lg text-slate-400 text-xs">
-                        No sections defined. Click &ldquo;Add Section&rdquo; to add your first article section.
-                      </div>
-                    ) : (
-                      editingItem.body.sections.map((section: any, sIdx: number) => (
-                        <div key={sIdx} className="p-4 rounded-lg bg-slate-900 border border-white/10 space-y-3">
-                          <div className="flex items-center justify-between gap-3">
-                            <div className="flex items-center gap-2">
-                              <span className="px-2 py-0.5 rounded bg-blue-950 text-blue-400 border border-blue-800 text-[11px] font-mono font-bold">
-                                Section #{sIdx + 1}
-                              </span>
-                              <span className="text-xs font-semibold text-white">Section Heading</span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <button
-                                type="button"
-                                disabled={sIdx === 0}
-                                onClick={() => {
-                                  if (sIdx === 0) return;
-                                  const nextSecs = [...editingItem.body.sections];
-                                  const temp = nextSecs[sIdx];
-                                  nextSecs[sIdx] = nextSecs[sIdx - 1];
-                                  nextSecs[sIdx - 1] = temp;
-                                  setEditingItem({
-                                    ...editingItem,
-                                    body: { ...editingItem.body, sections: nextSecs }
-                                  });
-                                }}
-                                title="Move Section Up"
-                                className="p-1 rounded text-slate-400 hover:text-white hover:bg-white/10 disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer"
-                              >
-                                <ArrowUp className="w-3.5 h-3.5" />
-                              </button>
-                              <button
-                                type="button"
-                                disabled={sIdx === editingItem.body.sections.length - 1}
-                                onClick={() => {
-                                  if (sIdx === editingItem.body.sections.length - 1) return;
-                                  const nextSecs = [...editingItem.body.sections];
-                                  const temp = nextSecs[sIdx];
-                                  nextSecs[sIdx] = nextSecs[sIdx + 1];
-                                  nextSecs[sIdx + 1] = temp;
-                                  setEditingItem({
-                                    ...editingItem,
-                                    body: { ...editingItem.body, sections: nextSecs }
-                                  });
-                                }}
-                                title="Move Section Down"
-                                className="p-1 rounded text-slate-400 hover:text-white hover:bg-white/10 disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer"
-                              >
-                                <ArrowDown className="w-3.5 h-3.5" />
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  const nextSecs = editingItem.body.sections.filter((_: any, idx: number) => idx !== sIdx);
-                                  setEditingItem({
-                                    ...editingItem,
-                                    body: { ...editingItem.body, sections: nextSecs }
-                                  });
-                                }}
-                                title="Delete Section"
-                                className="p-1 rounded text-red-400 hover:text-red-300 hover:bg-red-950/40 ml-1 cursor-pointer"
-                              >
-                                <Trash2 className="w-3.5 h-3.5" />
-                              </button>
-                            </div>
-                          </div>
-
-                          <Input
-                            value={section.heading || ""}
-                            onChange={(e) => {
-                              const nextSecs = [...editingItem.body.sections];
-                              nextSecs[sIdx] = { ...nextSecs[sIdx], heading: e.target.value };
-                              setEditingItem({
-                                ...editingItem,
-                                body: { ...editingItem.body, sections: nextSecs }
-                              });
-                            }}
-                            placeholder="e.g. The Three-Layer Architecture of the Vehicle Digital Twin"
-                            className="bg-slate-950 border-white/10 text-white font-medium"
-                            required
-                          />
-
-                          <div>
-                            <label className="block text-[11px] font-mono text-slate-400 mb-1">
-                              Section Paragraphs (separate paragraphs with an empty blank line)
-                            </label>
-                            <textarea
-                              rows={5}
-                              value={Array.isArray(section.paragraphs) ? section.paragraphs.join("\n\n") : (section.paragraphs || "")}
-                              onChange={(e) => {
-                                const pars = e.target.value.split("\n\n").filter(Boolean);
-                                const nextSecs = [...editingItem.body.sections];
-                                nextSecs[sIdx] = { ...nextSecs[sIdx], paragraphs: pars };
-                                setEditingItem({
-                                  ...editingItem,
-                                  body: { ...editingItem.body, sections: nextSecs }
-                                });
-                              }}
-                              placeholder="Write section paragraphs here. Separate each paragraph with an empty line..."
-                              className="w-full bg-slate-950 border border-white/10 rounded-md p-3 text-sm text-white font-sans leading-relaxed focus:outline-none focus:border-blue-500"
-                              required
-                            />
-                          </div>
-                        </div>
-                      ))
-                    )}
+                  {/* Dynamic Multi-Section Article Builder */}
+                  <DynamicSectionBuilder
+                    sections={(editingItem.body?.sections || []).map((s: any, idx: number) => ({
+                      id: s.id || `sec_${idx}`,
+                      heading: s.heading || "",
+                      content: s.content !== undefined ? s.content : (Array.isArray(s.paragraphs) ? s.paragraphs.join("\n\n") : "")
+                    }))}
+                    onChange={(newSecs) => setEditingItem({
+                      ...editingItem,
+                      body: {
+                        ...editingItem.body,
+                        sections: newSecs.map((s) => ({
+                          heading: s.heading,
+                          content: s.content,
+                          paragraphs: s.content.split("\n\n").filter(Boolean)
+                        }))
+                      }
+                    })}
+                    templateCategory="treel_main"
+                    title="Article Narrative Sections"
+                    description="Configure custom headings, paragraphs, and formatted bullet lists for this insight."
+                  />
 
                     {/* Pull Quote Callout Box */}
                     <div className="p-4 rounded-lg bg-slate-900/80 border border-white/10 space-y-2">
@@ -1250,9 +1715,24 @@ export default function AdminBlogsPage() {
                         className="bg-slate-950 border-white/10 text-white text-xs"
                       />
                     </div>
+
+                    {/* Related Article Slugs */}
+                    <div>
+                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
+                        Related Article Slugs (Optional, comma-separated)
+                      </label>
+                      <Input
+                        value={Array.isArray(editingItem.relatedSlugs) ? editingItem.relatedSlugs.join(", ") : (editingItem.relatedSlugs || "")}
+                        onChange={(e) => {
+                          const slugs = e.target.value.split(",").map((s) => s.trim()).filter(Boolean);
+                          setEditingItem({ ...editingItem, relatedSlugs: slugs });
+                        }}
+                        placeholder="e.g. physics-of-tyre-pressure-fuel-savings, scaling-iot-across-indian-highways"
+                        className="bg-slate-950 border-white/10 text-white font-mono text-xs"
+                      />
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
               {/* === B. TMIP (CASE STUDIES) === */}
               {activeCategory === "tmip" && (
@@ -1326,10 +1806,43 @@ export default function AdminBlogsPage() {
                     </div>
                   </div>
 
+                  {/* Author Attribution Fields */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
-                        Highlight Metric Value
+                        Author / Telemetry Research
+                      </label>
+                      <Input
+                        value={editingItem.author || ""}
+                        onChange={(e) => setEditingItem({ ...editingItem, author: e.target.value })}
+                        placeholder="e.g. Treel Research"
+                        className="bg-slate-950 border-white/10 text-white"
+                      />
+                      <p className="text-[11px] text-slate-400 mt-1">
+                        Generates the &ldquo;Documented by&rdquo; and &ldquo;Researched by&rdquo; author profile link.
+                      </p>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
+                        Author Role / Research Group
+                      </label>
+                      <Input
+                        value={editingItem.authorRole || ""}
+                        onChange={(e) => setEditingItem({ ...editingItem, authorRole: e.target.value })}
+                        placeholder="e.g. Mobility Intelligence Research Group"
+                        className="bg-slate-950 border-white/10 text-white"
+                      />
+                      <p className="text-[11px] text-slate-400 mt-1">
+                        Displayed beside the author attribution on the header and footer card.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Listing Primary Metric */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
+                        Highlight Metric Value (Listing Badge)
                       </label>
                       <Input
                         value={editingItem.metricValue || ""}
@@ -1340,7 +1853,7 @@ export default function AdminBlogsPage() {
                     </div>
                     <div>
                       <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
-                        Metric Description Label
+                        Metric Description Label (Listing Badge)
                       </label>
                       <Input
                         value={editingItem.metricLabel || ""}
@@ -1365,44 +1878,181 @@ export default function AdminBlogsPage() {
                     />
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
-                      Customer Profile
-                    </label>
-                    <Input
-                      value={editingItem.customerProfile || ""}
-                      onChange={(e) => setEditingItem({ ...editingItem, customerProfile: e.target.value })}
-                      placeholder="e.g. 1,000 linehaul trailers across pan-India routes"
-                      className="bg-slate-950 border-white/10 text-white"
-                    />
+                  {/* Outcome Metric Cards (Results Array) */}
+                  <div className="space-y-4 pt-2 border-t border-white/10">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                      <div>
+                        <label className="block text-xs font-mono uppercase tracking-wider text-emerald-400 font-bold">
+                          Outcome Metric Cards ({editingItem.results?.length || 0})
+                        </label>
+                        <p className="text-[11px] text-slate-400">
+                          These outcome cards render in the green-accented metrics banner below the headline (Fuel Savings, Tyre-Life Extension, Downtime Reduction, Capital Payback).
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const currentResults = Array.isArray(editingItem.results) ? editingItem.results : [];
+                          setEditingItem({
+                            ...editingItem,
+                            results: [
+                              ...currentResults,
+                              {
+                                value: "10%",
+                                label: "Metric Label",
+                                delta: "Measured outcome",
+                                desc: "Detailed telemetry observation across fleet operations."
+                              }
+                            ]
+                          });
+                        }}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition-colors w-fit shrink-0 cursor-pointer"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Add Metric Card</span>
+                      </button>
+                    </div>
+
+                    {(!editingItem.results || editingItem.results.length === 0) ? (
+                      <div className="p-4 text-center border border-dashed border-white/10 rounded-lg text-slate-400 text-xs">
+                        No outcome metric cards added. Click &ldquo;Add Metric Card&rdquo; to add cards to the metrics banner.
+                      </div>
+                    ) : (
+                      editingItem.results.map((res: any, rIdx: number) => (
+                        <div key={rIdx} className="p-4 rounded-lg bg-slate-900 border border-emerald-500/20 space-y-3">
+                          <div className="flex items-center justify-between gap-3">
+                            <div className="flex items-center gap-2">
+                              <span className="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 text-[11px] font-mono font-bold">
+                                Card #{rIdx + 1}
+                              </span>
+                              <span className="text-xs font-semibold text-white">
+                                {res.label || "Outcome Metric"}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <button
+                                type="button"
+                                disabled={rIdx === 0}
+                                onClick={() => {
+                                  if (rIdx === 0) return;
+                                  const nextResults = [...editingItem.results];
+                                  const temp = nextResults[rIdx];
+                                  nextResults[rIdx] = nextResults[rIdx - 1];
+                                  nextResults[rIdx - 1] = temp;
+                                  setEditingItem({ ...editingItem, results: nextResults });
+                                }}
+                                title="Move Card Up"
+                                className="p-1 rounded text-slate-400 hover:text-white hover:bg-white/10 disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer"
+                              >
+                                <ArrowUp className="w-3.5 h-3.5" />
+                              </button>
+                              <button
+                                type="button"
+                                disabled={rIdx === editingItem.results.length - 1}
+                                onClick={() => {
+                                  if (rIdx === editingItem.results.length - 1) return;
+                                  const nextResults = [...editingItem.results];
+                                  const temp = nextResults[rIdx];
+                                  nextResults[rIdx] = nextResults[rIdx + 1];
+                                  nextResults[rIdx + 1] = temp;
+                                  setEditingItem({ ...editingItem, results: nextResults });
+                                }}
+                                title="Move Card Down"
+                                className="p-1 rounded text-slate-400 hover:text-white hover:bg-white/10 disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer"
+                              >
+                                <ArrowDown className="w-3.5 h-3.5" />
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const nextResults = editingItem.results.filter((_: any, idx: number) => idx !== rIdx);
+                                  setEditingItem({ ...editingItem, results: nextResults });
+                                }}
+                                title="Delete Card"
+                                className="p-1 rounded text-red-400 hover:text-red-300 hover:bg-red-950/40 ml-1 cursor-pointer"
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div>
+                              <label className="block text-[11px] font-mono text-emerald-400 mb-1">
+                                Stat Value (e.g. 0.5–0.6%, 6.8%, 34%)
+                              </label>
+                              <Input
+                                value={res.value || ""}
+                                onChange={(e) => {
+                                  const nextResults = [...editingItem.results];
+                                  nextResults[rIdx] = { ...nextResults[rIdx], value: e.target.value };
+                                  setEditingItem({ ...editingItem, results: nextResults });
+                                }}
+                                placeholder="e.g. 0.5–0.6%"
+                                className="bg-slate-950 border-white/10 text-emerald-400 font-mono font-bold text-sm"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-[11px] font-mono text-slate-300 mb-1">
+                                Card Label (e.g. Fuel Savings)
+                              </label>
+                              <Input
+                                value={res.label || ""}
+                                onChange={(e) => {
+                                  const nextResults = [...editingItem.results];
+                                  nextResults[rIdx] = { ...nextResults[rIdx], label: e.target.value };
+                                  setEditingItem({ ...editingItem, results: nextResults });
+                                }}
+                                placeholder="e.g. Fuel Savings"
+                                className="bg-slate-950 border-white/10 text-white font-medium text-xs"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-[11px] font-mono text-blue-400 mb-1">
+                                Delta / Baseline (e.g. vs. pre-deployment)
+                              </label>
+                              <Input
+                                value={res.delta || ""}
+                                onChange={(e) => {
+                                  const nextResults = [...editingItem.results];
+                                  nextResults[rIdx] = { ...nextResults[rIdx], delta: e.target.value };
+                                  setEditingItem({ ...editingItem, results: nextResults });
+                                }}
+                                placeholder="e.g. vs. pre-deployment baseline"
+                                className="bg-slate-950 border-white/10 text-blue-400 font-mono text-xs"
+                              />
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="block text-[11px] font-mono text-slate-400 mb-1">
+                              Detailed Description (renders beneath card stat)
+                            </label>
+                            <textarea
+                              rows={2}
+                              value={res.desc || ""}
+                              onChange={(e) => {
+                                const nextResults = [...editingItem.results];
+                                nextResults[rIdx] = { ...nextResults[rIdx], desc: e.target.value };
+                                setEditingItem({ ...editingItem, results: nextResults });
+                              }}
+                              placeholder="e.g. Measured across 18 million cumulative fleet kilometres on NH-48 and NH-44 corridors."
+                              className="w-full bg-slate-950 border border-white/10 rounded-md p-2 text-xs text-slate-300 focus:outline-none focus:border-blue-500 font-sans leading-relaxed"
+                            />
+                          </div>
+                        </div>
+                      ))
+                    )}
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
-                        Operational Challenge
-                      </label>
-                      <textarea
-                        rows={3}
-                        value={editingItem.challenge || ""}
-                        onChange={(e) => setEditingItem({ ...editingItem, challenge: e.target.value })}
-                        placeholder="What issues did the fleet operator face before TMIP?"
-                        className="w-full bg-slate-950 border border-white/10 rounded-md p-3 text-sm text-white focus:outline-none focus:border-blue-500"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
-                        TMIP Solution &amp; Deployment
-                      </label>
-                      <textarea
-                        rows={3}
-                        value={editingItem.solution || ""}
-                        onChange={(e) => setEditingItem({ ...editingItem, solution: e.target.value })}
-                        placeholder="How did TMIP sensors and cloud algorithms solve it?"
-                        className="w-full bg-slate-950 border border-white/10 rounded-md p-3 text-sm text-white focus:outline-none focus:border-blue-500"
-                      />
-                    </div>
-                  </div>
+                  {/* Dynamic Multi-Section Case Study Builder */}
+                  <DynamicSectionBuilder
+                    sections={editingItem.sections || []}
+                    onChange={(newSecs) => setEditingItem({ ...editingItem, sections: newSecs })}
+                    templateCategory="tmip"
+                    title="Case Study Narrative Sections"
+                    description="Configure custom section headings, paragraphs, and formatted bullet lists for this case study. Reorder or remove sections freely."
+                  />
 
                   <div className="p-4 rounded-lg bg-slate-900 border border-white/10 space-y-3">
                     <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">
@@ -1576,12 +2226,29 @@ export default function AdminBlogsPage() {
                     />
                   </div>
 
+                  {/* Dynamic Multi-Section Suraksha Builder */}
+                  <DynamicSectionBuilder
+                    sections={editingItem.sections || []}
+                    onChange={(newSecs) => {
+                      setEditingItem({
+                        ...editingItem,
+                        sections: newSecs,
+                        content: newSecs.length > 0
+                          ? newSecs.map((s) => `<h3>${s.heading}</h3>${(s.content || "").split("\n\n").filter(Boolean).map((p) => `<p>${p}</p>`).join("")}`).join("")
+                          : editingItem.content
+                      });
+                    }}
+                    templateCategory="suraksha"
+                    title="Article Narrative Sections"
+                    description="Configure custom headings, paragraphs, and structured bullet lists for this Suraksha article."
+                  />
+
                   <div>
                     <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
-                      Full Article Body (HTML or Markdown)
+                      Full Article Body (HTML or Markdown, auto-synced from sections)
                     </label>
                     <textarea
-                      rows={8}
+                      rows={6}
                       value={editingItem.content || ""}
                       onChange={(e) => setEditingItem({ ...editingItem, content: e.target.value })}
                       placeholder="Detailed advice, maintenance steps, safety guidelines in HTML or Markdown..."
@@ -1624,6 +2291,19 @@ export default function AdminBlogsPage() {
                       placeholder="Crucial takeaway shown highlighted in the reader modal..."
                       className="w-full bg-slate-950 border border-orange-500/20 rounded-md p-2.5 text-xs text-orange-200 focus:outline-none"
                     />
+                  </div>
+
+                  <div className="flex items-center gap-2 pt-2">
+                    <input
+                      type="checkbox"
+                      id="isFeaturedSuraksha"
+                      checked={!!editingItem.isFeatured}
+                      onChange={(e) => setEditingItem({ ...editingItem, isFeatured: e.target.checked })}
+                      className="rounded bg-slate-950 border-white/10 text-orange-600 focus:ring-0 w-4 h-4 cursor-pointer"
+                    />
+                    <label htmlFor="isFeaturedSuraksha" className="text-sm text-slate-300 cursor-pointer">
+                      Feature on Suraksha Blog hero section
+                    </label>
                   </div>
                 </div>
               )}
@@ -1749,17 +2429,58 @@ export default function AdminBlogsPage() {
                     />
                   </div>
 
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
+                        SEO Meta Title (Optional)
+                      </label>
+                      <Input
+                        value={editingItem.metatitle || ""}
+                        onChange={(e) => setEditingItem({ ...editingItem, metatitle: e.target.value })}
+                        placeholder="Custom page title for search engines..."
+                        className="bg-slate-950 border-white/10 text-white text-xs"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
+                        SEO Meta Description (Optional)
+                      </label>
+                      <Input
+                        value={editingItem.metadescription || ""}
+                        onChange={(e) => setEditingItem({ ...editingItem, metadescription: e.target.value })}
+                        placeholder="Custom meta description for search engines..."
+                        className="bg-slate-950 border-white/10 text-white text-xs"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Dynamic Multi-Section Blog Builder */}
+                  <DynamicSectionBuilder
+                    sections={editingItem.sections || []}
+                    onChange={(newSecs) => {
+                      setEditingItem({
+                        ...editingItem,
+                        sections: newSecs,
+                        blogContent: newSecs.length > 0
+                          ? newSecs.map((s) => `<h2>${s.heading}</h2>${(s.content || "").split("\n\n").filter(Boolean).map((p) => `<p>${p}</p>`).join("")}`).join("")
+                          : editingItem.blogContent
+                      });
+                    }}
+                    templateCategory="personal"
+                    title="Blog Narrative Sections"
+                    description="Configure custom headings, paragraphs, and structured bullet lists for this Personal TPMS post."
+                  />
+
                   <div>
                     <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
-                      Full Article Body (HTML or Markdown) *
+                      Full Article Body (HTML or Markdown, auto-synced from sections)
                     </label>
                     <textarea
-                      rows={8}
+                      rows={6}
                       value={editingItem.blogContent || ""}
                       onChange={(e) => setEditingItem({ ...editingItem, blogContent: e.target.value })}
                       placeholder="<p>Enter the complete HTML body here...</p>"
                       className="w-full bg-slate-950 border border-white/10 rounded-md p-3 text-sm text-white font-mono focus:outline-none focus:border-blue-500"
-                      required
                     />
                   </div>
                 </div>

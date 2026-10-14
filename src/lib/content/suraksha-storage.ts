@@ -342,7 +342,12 @@ export async function saveSurakshaArticle(article: Partial<SurakshaArticle>): Pr
     date: article.date || existing?.date || "October 2026",
     readTime: article.readTime || existing?.readTime || "5 min read",
     keyTakeaway: article.keyTakeaway !== undefined ? article.keyTakeaway : (existing?.keyTakeaway || "Suraksha delivers continuous tyre pressure and temperature alerts to protect driver safety."),
-    content: article.content !== undefined ? article.content : (existing?.content || ""),
+    sections: article.sections !== undefined ? article.sections : (existing?.sections || []),
+    content: article.content !== undefined 
+      ? article.content 
+      : ((article.sections && article.sections.length > 0)
+          ? article.sections.map(s => `<h3>${s.heading}</h3>${(s.content || "").split("\n\n").filter(Boolean).map(p => `<p>${p}</p>`).join("")}`).join("")
+          : (existing?.content || "")),
     image: getValidImageSrc(article.image !== undefined ? article.image : existing?.image) || undefined,
     status: article.status ? (article.status === "Draft" ? "Draft" : "Published") : (existing?.status || "Published"),
     isFeatured: article.isFeatured !== undefined ? !!article.isFeatured : (existing?.isFeatured ?? false),

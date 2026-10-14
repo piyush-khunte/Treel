@@ -17,7 +17,7 @@ import {
   SlidersHorizontal
 } from "lucide-react";
 import { useCart } from "@/lib/commerce/cart-context";
-import { PERSONAL_PRODUCTS, PersonalProduct } from "@/lib/data/personal-products";
+import { PERSONAL_PRODUCTS, PersonalProduct, normalizePersonalCategory } from "@/lib/data/personal-products";
 import { getValidImageSrc } from "@/lib/utils/image-utils";
 
 export default function PersonalBuyPage() {
@@ -29,7 +29,7 @@ export default function PersonalBuyPage() {
   const [products, setProducts] = useState<PersonalProduct[]>(PERSONAL_PRODUCTS);
 
   React.useEffect(() => {
-    fetch("/api/products")
+    fetch(`/api/products?brand=personal&t=${Date.now()}`)
       .then((r) => r.json())
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) {
@@ -43,18 +43,23 @@ export default function PersonalBuyPage() {
 
   const filteredProducts = useMemo(() => {
     if (activeCategory === "All") return products;
-    return products.filter((p) => p.category === activeCategory);
+    return products.filter((p) => {
+      const norm = normalizePersonalCategory(p.category);
+      return norm.toLowerCase() === activeCategory.toLowerCase();
+    });
   }, [activeCategory, products]);
 
   const handleAddToCart = (product: PersonalProduct, e: React.MouseEvent) => {
     e.stopPropagation();
 
-    const vehicleType = product.category === "Bike Kit" ? "2w" : "4w";
+    const norm = normalizePersonalCategory(product.category);
+    const isBike = norm.toLowerCase().includes("bike") || norm === "2w";
+    const vehicleType = isBike ? "2w" : "4w";
     const sensorCount = product.title.includes("5 Sensor") 
       ? 5 
       : product.title.includes("4 Sensor") 
       ? 4 
-      : product.category === "Bike Kit" 
+      : isBike 
       ? 2 
       : 4;
 
@@ -77,12 +82,14 @@ export default function PersonalBuyPage() {
   const handleBuyNow = (product: PersonalProduct, e: React.MouseEvent) => {
     e.stopPropagation();
 
-    const vehicleType = product.category === "Bike Kit" ? "2w" : "4w";
+    const norm = normalizePersonalCategory(product.category);
+    const isBike = norm.toLowerCase().includes("bike") || norm === "2w";
+    const vehicleType = isBike ? "2w" : "4w";
     const sensorCount = product.title.includes("5 Sensor") 
       ? 5 
       : product.title.includes("4 Sensor") 
       ? 4 
-      : product.category === "Bike Kit" 
+      : isBike 
       ? 2 
       : 4;
 
@@ -234,7 +241,7 @@ export default function PersonalBuyPage() {
 
                     {/* Category Eyebrow */}
                     <div className="text-[11px] font-semibold text-[#2563EB] uppercase tracking-wider mb-1.5">
-                      {product.category}
+                      {normalizePersonalCategory(product.category)}
                     </div>
 
                     {/* Title */}

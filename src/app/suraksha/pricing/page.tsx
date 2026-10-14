@@ -17,6 +17,11 @@ import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 import { PricingBuyButton } from "./pricing-buy-button";
 
+import { getAllProducts } from "@/lib/commerce/product-storage";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Suraksha Kit · Configurations & Pricing · ₹1,700/Tyre",
   description:
@@ -32,54 +37,84 @@ export const metadata: Metadata = {
   },
 };
 
-const configurations = [
+interface PricingDisplayItem {
+  id: string;
+  type: string;
+  tyres: number;
+  price: number;
+  axleSetup: string;
+  included: string;
+  popular: boolean;
+  title: string;
+  sku: string;
+}
+
+const fallbackConfigurations: PricingDisplayItem[] = [
   {
+    id: "6b0000000000000000000006",
     type: "6-wheeler",
     tyres: 6,
     price: 10200,
     axleSetup: "2 Axles · Steer & Drive",
     included: "1 in-cab display + 6 tyre sensors + mounting kit + wiring harness",
     popular: false,
+    title: "Treel Suraksha Commercial Kit - 6 Wheeler",
+    sku: "SKU-SURAKSHA-6W",
   },
   {
+    id: "6b0000000000000000000010",
     type: "10-wheeler",
     tyres: 10,
     price: 17000,
     axleSetup: "3 Axles · Multi-Axle Haulage",
     included: "1 in-cab display + 10 tyre sensors + mounting kit + wiring harness",
     popular: true,
+    title: "Treel Suraksha Commercial Kit - 10 Wheeler",
+    sku: "SKU-SURAKSHA-10W",
   },
   {
+    id: "6b0000000000000000000012",
     type: "12-wheeler",
     tyres: 12,
     price: 20400,
     axleSetup: "4 Axles · Heavy Commercial",
     included: "1 in-cab display + 12 tyre sensors + mounting kit + wiring harness",
     popular: false,
+    title: "Treel Suraksha Commercial Kit - 12 Wheeler",
+    sku: "SKU-SURAKSHA-12W",
   },
   {
+    id: "6b0000000000000000000014",
     type: "14-wheeler",
     tyres: 14,
     price: 23800,
     axleSetup: "4-5 Axles · Multi-Axle Goods",
     included: "1 in-cab display + 14 tyre sensors + mounting kit + wiring harness",
     popular: false,
+    title: "Treel Suraksha Commercial Kit - 14 Wheeler",
+    sku: "SKU-SURAKSHA-14W",
   },
   {
+    id: "6b0000000000000000000016",
     type: "16-wheeler",
     tyres: 16,
     price: 27200,
     axleSetup: "5 Axles · Heavy Haulage",
     included: "1 in-cab display + 16 tyre sensors + mounting kit + wiring harness",
     popular: false,
+    title: "Treel Suraksha Commercial Kit - 16 Wheeler",
+    sku: "SKU-SURAKSHA-16W",
   },
   {
+    id: "6b0000000000000000000018",
     type: "18-wheeler",
     tyres: 18,
     price: 30600,
     axleSetup: "Prime Mover + Multi-Axle Trailer",
     included: "1 in-cab display + 18 tyre sensors + mounting kit + wiring harness",
     popular: false,
+    title: "Treel Suraksha Commercial Kit - 18 Wheeler",
+    sku: "SKU-SURAKSHA-18W",
   },
 ];
 
@@ -98,7 +133,84 @@ const notIncludedList = [
   "Delivery charges for home delivery (free at Truck Wheels centres)",
 ];
 
-export default function SurakshaPricingPage() {
+export default async function SurakshaPricingPage() {
+  let displayConfigs: PricingDisplayItem[] = fallbackConfigurations;
+
+  try {
+    const rawProducts = await getAllProducts(true, "suraksha");
+    const activeProducts = rawProducts.filter((p) => (p.status || "active") !== "inactive");
+
+    if (activeProducts.length > 0) {
+      displayConfigs = activeProducts.map((p) => {
+        // Derive tyres count
+        let tyres = 6;
+        const tyreMatch = (p.title + " " + p.slug + " " + (p.productsku || "")).match(
+          /(\d+)\s*(?:-| )*(?:wheeler|wheel|tyre|tyres|w)\b/i
+        );
+        if (tyreMatch) {
+          tyres = parseInt(tyreMatch[1], 10);
+        } else if (p.price > 0) {
+          tyres = Math.max(1, Math.round(p.price / 1700));
+        }
+
+        // Derive type label
+        const typeMatch = (p.title + " " + p.slug).match(/(\d+)\s*-?\s*wheeler/i);
+        const typeLabel = typeMatch ? `${typeMatch[1]}-wheeler` : p.title;
+
+        // Derive axle setup
+        const axleSetup =
+          p.stepone ||
+          (tyres === 4
+            ? "2 Axles · LCV / Mini Truck"
+            : tyres === 6
+            ? "2 Axles · Steer & Drive"
+            : tyres === 10
+            ? "3 Axles · Multi-Axle Haulage"
+            : tyres === 12
+            ? "4 Axles · Heavy Commercial"
+            : tyres === 14
+            ? "4-5 Axles · Multi-Axle Goods"
+            : tyres === 16
+            ? "5 Axles · Heavy Haulage"
+            : tyres === 18
+            ? "Prime Mover + Multi-Axle Trailer"
+            : tyres === 20
+            ? "5-6 Axles · Super Heavy Haulage"
+            : tyres === 22
+            ? "Multi-Axle Heavy Haulage"
+            : `${Math.max(2, Math.round(tyres / 4))} Axles · Commercial Haulage`);
+
+        // Derive included description
+        const included =
+          p.description ||
+          `1 in-cab display + ${tyres} tyre sensors + mounting kit + wiring harness`;
+
+        // Check if popular
+        const popular =
+          tyres === 10 ||
+          (p.boxpoint || "").toLowerCase().includes("popular") ||
+          p.slug.includes("10-wheeler");
+
+        return {
+          id: p._id,
+          type: typeLabel,
+          tyres,
+          price: Number(p.price) || tyres * 1700,
+          axleSetup,
+          included,
+          popular,
+          title: p.title,
+          sku: p.productsku || p.slug,
+        };
+      });
+
+      // Sort by tyre count ascending, then price ascending
+      displayConfigs.sort((a, b) => a.tyres - b.tyres || a.price - b.price);
+    }
+  } catch (err) {
+    console.error("Failed to load dynamic Suraksha products for pricing page:", err);
+  }
+
   return (
     <div className="bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20">
       {/* Hero Section */}
@@ -149,9 +261,9 @@ export default function SurakshaPricingPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {configurations.map((item) => (
+            {displayConfigs.map((item) => (
               <div
-                key={item.type}
+                key={item.id || item.type}
                 className={`p-6 sm:p-8 rounded-lg border-3 transition-all relative flex flex-col justify-between space-y-6 shadow-md ${
                   item.popular
                     ? "bg-[#FFFBEB] border-[#DC2626] ring-4 ring-[#DC2626]/20"
@@ -174,7 +286,7 @@ export default function SurakshaPricingPage() {
                         ₹{item.price.toLocaleString("en-IN")}
                       </div>
                       <div className="text-[10px] font-semibold text-[#78350F]">
-                        (₹1,700 × {item.tyres} tyres)
+                        (₹{item.tyres > 0 ? Math.round(item.price / item.tyres).toLocaleString("en-IN") : "1,700"} × {item.tyres} tyres)
                       </div>
                     </div>
                   </div>
@@ -201,7 +313,14 @@ export default function SurakshaPricingPage() {
                 </div>
 
                 <div className="pt-4 border-t border-[#451A03]/10 flex items-center justify-between gap-3">
-                  <PricingBuyButton tyres={item.tyres} type={item.type} />
+                  <PricingBuyButton 
+                    tyres={item.tyres} 
+                    type={item.type}
+                    title={item.title}
+                    price={item.price}
+                    sku={item.sku}
+                    productId={item.id}
+                  />
                   <Link
                     href="/suraksha/centres"
                     className="font-rubik text-xs font-bold text-[#78350F] hover:text-[#DC2626] hover:underline flex items-center gap-1"

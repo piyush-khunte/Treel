@@ -15,7 +15,11 @@ import {
   Image as ImageIcon,
   Shield,
   Layers,
-  Tag
+  Tag,
+  Car,
+  Bike,
+  Radio,
+  Disc
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -40,6 +44,7 @@ export default function AdminInventoryPage() {
   const [isNewProduct, setIsNewProduct] = useState(false);
   const [saving, setSaving] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -186,20 +191,26 @@ export default function AdminInventoryPage() {
     }
     setSaving(true);
     setErrorMsg(null);
+    setSuccessMsg(null);
 
     if (isNewProduct) {
       const res = await createAdminProduct(editingProduct);
       if (res.success) {
+        const brandLabel = editingProduct.brand === "suraksha" ? "Treel Suraksha (/suraksha/pricing)" : "Personal TPMS";
+        setSuccessMsg(`Product "${editingProduct.title}" created successfully and published to ${brandLabel}!`);
         setEditingProduct(null);
         await loadProducts();
+        setTimeout(() => setSuccessMsg(null), 6000);
       } else {
         setErrorMsg(res.error || "Failed to create product");
       }
     } else {
       const res = await updateAdminProduct(editingProduct._id, editingProduct);
       if (res.success) {
+        setSuccessMsg(`Product "${editingProduct.title}" updated successfully! Price: ₹${Number(editingProduct.price).toLocaleString("en-IN")}.`);
         setEditingProduct(null);
         await loadProducts();
+        setTimeout(() => setSuccessMsg(null), 6000);
       } else {
         setErrorMsg(res.error || "Failed to update product");
       }
@@ -210,11 +221,15 @@ export default function AdminInventoryPage() {
   const handleDelete = async (id: string, title: string) => {
     if (!confirm(`Are you sure you want to delete "${title}"?`)) return;
     setLoading(true);
+    setErrorMsg(null);
+    setSuccessMsg(null);
     const res = await deleteAdminProduct(id);
     if (res.success) {
+      setSuccessMsg(`Product "${title}" deleted successfully.`);
       await loadProducts();
+      setTimeout(() => setSuccessMsg(null), 5000);
     } else {
-      alert(res.error || "Failed to delete product");
+      setErrorMsg(res.error || "Failed to delete product");
       setLoading(false);
     }
   };
@@ -248,9 +263,24 @@ export default function AdminInventoryPage() {
         </div>
       </div>
 
+      {successMsg && (
+        <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono flex items-center justify-between shadow-lg shadow-emerald-500/5">
+          <div className="flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-400" />
+            <span>{successMsg}</span>
+          </div>
+          <button type="button" onClick={() => setSuccessMsg(null)} className="text-emerald-400 hover:text-emerald-300">
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
+
       {errorMsg && (
-        <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-mono">
-          {errorMsg}
+        <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-mono flex items-center justify-between">
+          <span>{errorMsg}</span>
+          <button type="button" onClick={() => setErrorMsg(null)} className="text-rose-400 hover:text-rose-300">
+            <X className="w-3.5 h-3.5" />
+          </button>
         </div>
       )}
 
@@ -425,10 +455,10 @@ export default function AdminInventoryPage() {
                     <td className="p-4 text-right">
                       <div className="flex justify-end items-center gap-1.5">
                         <a 
-                          href={p.brand === "suraksha" ? "/suraksha/product" : `/personal/product?slug=${p.slug}`}
+                          href={p.brand === "suraksha" ? "/suraksha/pricing" : `/personal/product?slug=${p.slug}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          title={p.brand === "suraksha" ? "View on Suraksha storefront" : "View on Personal TPMS storefront"}
+                          title={p.brand === "suraksha" ? "View on Suraksha storefront (/suraksha/pricing)" : "View on Personal TPMS storefront"}
                           className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
                         >
                           <ExternalLink className="w-3.5 h-3.5" />
@@ -481,6 +511,11 @@ export default function AdminInventoryPage() {
             </div>
 
             <form onSubmit={handleSave} className="space-y-6 text-xs font-mono">
+              {errorMsg && (
+                <div className="p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-mono">
+                  {errorMsg}
+                </div>
+              )}
               {/* Product Brand Selector */}
               <div className="p-4 rounded-xl border border-slate-800 bg-slate-950/70 space-y-3">
                 <div className="flex items-center justify-between">
@@ -580,36 +615,149 @@ export default function AdminInventoryPage() {
                     className="bg-slate-950 border-slate-800 text-white"
                   />
                 </div>
-                <div className="space-y-1 sm:col-span-2">
+                {/* Product Type / Category Selector */}
+                <div className="space-y-3 sm:col-span-2 p-4 rounded-xl border border-slate-800 bg-slate-950/80">
                   <div className="flex items-center justify-between">
-                    <label className="text-slate-400">Category *</label>
-                    <span className="text-[10px] text-slate-500">Presets for {editingProduct.brand === "suraksha" ? "Suraksha" : "Personal TPMS"}:</span>
+                    <label className="text-slate-200 font-bold text-xs flex items-center gap-2">
+                      <Layers className="w-4 h-4 text-blue-400" />
+                      {editingProduct.brand === "suraksha" ? "Commercial Suraksha Kit Type *" : "Personal TPMS Product Type *"}
+                    </label>
+                    <span className="text-[10px] font-mono text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">
+                      {editingProduct.brand === "suraksha" ? "Suraksha Storefront Fleet Specs" : "Controls Storefront Badge (CAR KIT / BIKE KIT)"}
+                    </span>
                   </div>
-                  <Input
-                    required
-                    value={editingProduct.category || ""}
-                    onChange={(e) => setEditingProduct({ ...editingProduct, category: e.target.value })}
-                    className="bg-slate-950 border-slate-800 text-white"
-                  />
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {(editingProduct.brand === "suraksha"
-                      ? ["Commercial Truck Kit", "Multi-Axle Kit", "Prime Mover Kit", "Display Kit", "Replacement Sensor"]
-                      : ["Car Kit", "Bike Kit", "Upgrade Kit", "Replacement Sensor"]
-                    ).map((preset) => (
-                      <button
-                        key={preset}
-                        type="button"
-                        onClick={() => setEditingProduct({ ...editingProduct, category: preset })}
-                        className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors ${
-                          editingProduct.category === preset
-                            ? "bg-purple-600 text-white font-bold"
-                            : "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200"
-                        }`}
-                      >
-                        + {preset}
-                      </button>
-                    ))}
-                  </div>
+
+                  {editingProduct.brand === "personal" ? (
+                    <div className="space-y-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+                        {[
+                          {
+                            id: "Car Kit",
+                            title: "Car Kit",
+                            specs: "4W TPMS (Cars & SUVs)",
+                            badge: "CAR KIT",
+                            Icon: Car,
+                            color: "blue",
+                            activeClass: "bg-blue-600/15 border-blue-500 ring-2 ring-blue-500 text-white shadow-md shadow-blue-500/10",
+                            badgeClass: "bg-blue-500 text-white",
+                          },
+                          {
+                            id: "Bike Kit",
+                            title: "Bike Kit",
+                            specs: "2W TPMS (Bikes & Scooters)",
+                            badge: "BIKE KIT",
+                            Icon: Bike,
+                            color: "emerald",
+                            activeClass: "bg-emerald-600/15 border-emerald-500 ring-2 ring-emerald-500 text-white shadow-md shadow-emerald-500/10",
+                            badgeClass: "bg-emerald-500 text-white",
+                          },
+                          {
+                            id: "Upgrade Kit",
+                            title: "Upgrade Kit",
+                            specs: "MTrac GPS & Smart Sync",
+                            badge: "UPGRADE KIT",
+                            Icon: Radio,
+                            color: "indigo",
+                            activeClass: "bg-indigo-600/15 border-indigo-500 ring-2 ring-indigo-500 text-white shadow-md shadow-indigo-500/10",
+                            badgeClass: "bg-indigo-500 text-white",
+                          },
+                          {
+                            id: "Replacement Sensor",
+                            title: "Replacement Sensor",
+                            specs: "Standalone Valve / Sensor",
+                            badge: "REPLACEMENT SENSOR",
+                            Icon: Disc,
+                            color: "purple",
+                            activeClass: "bg-purple-600/15 border-purple-500 ring-2 ring-purple-500 text-white shadow-md shadow-purple-500/10",
+                            badgeClass: "bg-purple-500 text-white",
+                          },
+                        ].map((item) => {
+                          const currentNorm = (editingProduct.category || "").toLowerCase();
+                          const isSelected = 
+                            currentNorm === item.id.toLowerCase() ||
+                            (item.id === "Bike Kit" && currentNorm.includes("bike")) ||
+                            (item.id === "Car Kit" && currentNorm.includes("car") && !currentNorm.includes("truck")) ||
+                            (item.id === "Upgrade Kit" && currentNorm.includes("upgrade")) ||
+                            (item.id === "Replacement Sensor" && (currentNorm.includes("replacement") || currentNorm.includes("sensor")));
+
+                          return (
+                            <button
+                              key={item.id}
+                              type="button"
+                              onClick={() => setEditingProduct({ ...editingProduct, category: item.id })}
+                              className={`p-3 rounded-xl border text-left transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between ${
+                                isSelected
+                                  ? item.activeClass
+                                  : "bg-slate-900 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200"
+                              }`}
+                            >
+                              <div className="flex items-center justify-between mb-2">
+                                <item.Icon className={`w-5 h-5 ${isSelected ? "text-white" : "text-slate-400"}`} />
+                                <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded font-bold uppercase tracking-wider ${
+                                  isSelected ? item.badgeClass : "bg-slate-800 text-slate-400"
+                                }`}>
+                                  {item.badge}
+                                </span>
+                              </div>
+                              <div>
+                                <div className="font-bold text-xs flex items-center gap-1.5">
+                                  <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 ${isSelected ? "text-white" : "text-slate-700"}`} />
+                                  <span>{item.title}</span>
+                                </div>
+                                <p className="text-[10px] text-slate-400 mt-1 leading-snug">{item.specs}</p>
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 pt-1 border-t border-slate-800/60">
+                        <span className="text-[11px] text-slate-400 shrink-0 font-mono">Selected Category:</span>
+                        <Input
+                          required
+                          value={editingProduct.category || ""}
+                          onChange={(e) => setEditingProduct({ ...editingProduct, category: e.target.value })}
+                          className="bg-slate-950 border-slate-800 text-white font-mono text-xs h-8 max-w-sm"
+                          placeholder="e.g. Car Kit, Bike Kit"
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-3">
+                      <div className="flex flex-wrap gap-1.5">
+                        {[
+                          "Commercial Truck Kit",
+                          "Multi-Axle Kit",
+                          "Prime Mover Kit",
+                          "Display Kit",
+                          "Replacement Sensor"
+                        ].map((preset) => (
+                          <button
+                            key={preset}
+                            type="button"
+                            onClick={() => setEditingProduct({ ...editingProduct, category: preset })}
+                            className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-colors cursor-pointer ${
+                              editingProduct.category === preset
+                                ? "bg-amber-600 text-white font-bold ring-1 ring-amber-400"
+                                : "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200"
+                            }`}
+                          >
+                            + {preset}
+                          </button>
+                        ))}
+                      </div>
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 pt-1 border-t border-slate-800/60">
+                        <span className="text-[11px] text-slate-400 shrink-0 font-mono">Category Value:</span>
+                        <Input
+                          required
+                          value={editingProduct.category || ""}
+                          onChange={(e) => setEditingProduct({ ...editingProduct, category: e.target.value })}
+                          className="bg-slate-950 border-slate-800 text-white font-mono text-xs h-8 max-w-sm"
+                          placeholder="e.g. Commercial Truck Kit"
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="space-y-1">
                   <label className="text-slate-400">Product SKU</label>

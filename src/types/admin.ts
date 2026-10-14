@@ -93,6 +93,14 @@ export interface MongoPayment {
   __v?: number;
 }
 
+export interface ArticleSection {
+  id?: string;
+  heading: string;
+  content?: string;
+  paragraphs?: string[];
+  order?: number;
+}
+
 export interface MongoBlog {
   _id: string;
   title: string;
@@ -100,6 +108,7 @@ export interface MongoBlog {
   slug: string;
   description: string;
   blogContent: string;
+  sections?: ArticleSection[];
   image: string;
   metatitle?: string;
   metadescription?: string;

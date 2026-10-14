@@ -565,8 +565,12 @@ export async function createAdminCategoryContent(
         const saved = await saveCaseStudy(payload);
         revalidatePath("/admin/blogs");
         revalidatePath("/tmip/customers/case-studies");
+        revalidatePath("/tmip/customers/case-studies/[slug]", "page");
         if (saved.slug) {
           revalidatePath(`/tmip/customers/case-studies/${saved.slug}`);
+        }
+        if (payload.slug && payload.slug !== saved.slug) {
+          revalidatePath(`/tmip/customers/case-studies/${payload.slug}`);
         }
         return { success: true, data: saved };
       }
@@ -633,8 +637,12 @@ export async function updateAdminCategoryContent(
         const saved = await saveCaseStudy({ ...payload, _id: id });
         revalidatePath("/admin/blogs");
         revalidatePath("/tmip/customers/case-studies");
+        revalidatePath("/tmip/customers/case-studies/[slug]", "page");
         if (saved.slug) {
           revalidatePath(`/tmip/customers/case-studies/${saved.slug}`);
+        }
+        if (payload.slug && payload.slug !== saved.slug) {
+          revalidatePath(`/tmip/customers/case-studies/${payload.slug}`);
         }
         return { success: true, data: saved };
       }

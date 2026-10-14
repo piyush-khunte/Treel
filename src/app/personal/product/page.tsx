@@ -20,7 +20,7 @@ import {
   FileText
 } from "lucide-react";
 import { useCart } from "@/lib/commerce/cart-context";
-import { PERSONAL_PRODUCTS, PersonalProduct, getPersonalProductBySlug } from "@/lib/data/personal-products";
+import { PERSONAL_PRODUCTS, PersonalProduct, getPersonalProductBySlug, normalizePersonalCategory } from "@/lib/data/personal-products";
 import { getValidImageSrc } from "@/lib/utils/image-utils";
 import { isSurakshaProductOrItem } from "@/lib/commerce/brand-validator";
 
@@ -65,12 +65,14 @@ function ProductDetailContent({ product }: { product: PersonalProduct }) {
     ? Math.round(((product.saleprice - product.price) / product.saleprice) * 100)
     : 0;
 
-  const vehicleType = product.category === "Bike Kit" ? "2w" : "4w";
+  const normalizedCategory = normalizePersonalCategory(product.category);
+  const isBikeProduct = normalizedCategory.toLowerCase().includes("bike") || normalizedCategory === "2w";
+  const vehicleType = isBikeProduct ? "2w" : "4w";
   const sensorCount = product.title.includes("5 Sensor") 
     ? 5 
     : product.title.includes("4 Sensor") 
     ? 4 
-    : product.category === "Bike Kit" 
+    : isBikeProduct 
     ? 2 
     : 4;
 
@@ -211,7 +213,7 @@ function ProductDetailContent({ product }: { product: PersonalProduct }) {
             <div className="lg:col-span-6 space-y-6">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] text-xs font-bold uppercase tracking-[0.15em] mb-3">
-                  <Sparkles className="w-3.5 h-3.5" /> {product.category}
+                  <Sparkles className="w-3.5 h-3.5" /> {normalizedCategory}
                 </div>
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#111827] leading-tight">
                   {product.title}
@@ -490,32 +492,40 @@ function ProductDetailWrapper() {
       return;
     }
 
-    if (!product) {
-      fetch("/api/products?brand=personal")
-        .then((r) => r.json())
-        .then((data: PersonalProduct[]) => {
-          if (Array.isArray(data)) {
-            const clean = decodeURIComponent(slugParam).trim().toLowerCase();
-            const found = data.find(
-              (p) =>
-                (p.slug || "").toLowerCase() === clean ||
-                (p.id || "").toLowerCase() === clean
-            );
-            if (found && found.brand !== "suraksha" && !isSurakshaProductOrItem(found)) {
-              setProduct(found);
-              setLoading(false);
-              return;
-            }
+    fetch(`/api/products?brand=personal&t=${Date.now()}`)
+      .then((r) => r.json())
+      .then((data: PersonalProduct[]) => {
+        if (Array.isArray(data)) {
+          const clean = decodeURIComponent(slugParam).trim().toLowerCase();
+          const found = data.find(
+            (p) =>
+              (p.slug || "").toLowerCase() === clean ||
+              (p.id || "").toLowerCase() === clean
+          );
+          if (found && found.brand !== "suraksha" && !isSurakshaProductOrItem(found)) {
+            setProduct(found);
+            setLoading(false);
+            return;
           }
-          setLoading(false);
-          router.replace("/personal/buy");
-        })
-        .catch(() => {
-          setLoading(false);
-          router.replace("/personal/buy");
+        }
+        setProduct((prev) => {
+          if (!prev) {
+            router.replace("/personal/buy");
+          }
+          return prev;
         });
-    }
-  }, [product, slugParam, router]);
+        setLoading(false);
+      })
+      .catch(() => {
+        setProduct((prev) => {
+          if (!prev) {
+            router.replace("/personal/buy");
+          }
+          return prev;
+        });
+        setLoading(false);
+      });
+  }, [slugParam, router]);
 
   if (loading) {
     return (

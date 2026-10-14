@@ -1,5 +1,45 @@
 [
   {
+    "_id": "cs_1791957852833",
+    "slug": "test-blog-1",
+    "industry": "Logistics",
+    "fleetSize": "100-500",
+    "headline": "test blog 1",
+    "excerpt": "test blog 1",
+    "metricValue": "0.5–0.6% Fuel · 6.8% Tyre Life",
+    "metricLabel": "34% downtime drop across fleet units",
+    "isFeatured": true,
+    "status": "Published",
+    "sections": [],
+    "customerProfile": "",
+    "challenge": "",
+    "solution": "",
+    "quote": {
+      "text": "",
+      "author": "",
+      "title": ""
+    },
+    "author": "Treel Research",
+    "authorRole": "Mobility Intelligence Research Group",
+    "results": [
+      {
+        "value": "0.5–0.6%",
+        "label": "Fuel Savings",
+        "delta": "vs. pre-deployment baseline",
+        "desc": "Measured across active linehaul corridor operations."
+      },
+      {
+        "value": "6.8%",
+        "label": "Tyre-Life Extension",
+        "delta": "Fleet median improvement",
+        "desc": "Average steer and drive axle casing life extended before first retread."
+      }
+    ],
+    "content": "test 1",
+    "createdAt": "2026-10-14T06:04:12.833Z",
+    "updatedAt": "2026-10-14T06:04:12.833Z"
+  },
+  {
     "_id": "cs_1",
     "slug": "1000-truck-case-study",
     "industry": "Logistics",
@@ -18,6 +58,8 @@
       "author": "Head of Fleet Engineering & Maintenance",
       "title": "Tier-1 Pan-India Logistics Operator"
     },
+    "author": "Treel Research",
+    "authorRole": "Mobility Intelligence Research Group",
     "results": [
       {
         "value": "0.5–0.6%",
@@ -46,9 +88,7 @@
     ],
     "content": "<h3>What we built together</h3><p>Treel executed a phased 90-day rollout across seven major maintenance hubs: Stage 01 (Days 1–30) retrofitted ARAI-certified valve-stem sensors to all 18 tyre positions per tractor-trailer unit. Stage 02 (Days 31–60) integrated native bi-directional REST webhooks into the client's custom enterprise dispatch ERP. Stage 03 (Days 61–90) activated digital twin predictive degradation models trained on live corridor telemetry.</p><h3>What changed</h3><p>Today, the operator's central control tower monitors 18,000+ active tyre nodes in real time. Yard inspection shifts no longer waste hours checking 1,000 healthy vehicles; instead, workshop dispatch queues are automatically generated, directing mechanics only to assets displaying active pressure or thermal variances.</p><p>By eliminating running on under-inflated tyres and preventing heat-induced blowouts, the fleet achieved a documented 0.5–0.6% fuel savings and extended median casing life by 6.8%, reaching full project capital payback in 8.6 months. </p>",
     "createdAt": "2026-10-13T09:01:41.413Z",
-    "updatedAt": "2026-10-13T09:02:04.357Z",
-    "author": "Treel Research",
-    "authorRole": "Mobility Intelligence Research Group"
+    "updatedAt": "2026-10-14T04:29:13.200Z"
   },
   {
     "_id": "cs_2",

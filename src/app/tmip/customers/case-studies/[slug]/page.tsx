@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { getCaseStudyBySlug } from "@/lib/content/casestudies-storage";
 import { CaseStudyDetailView } from "@/components/content/case-study-detail-view";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 export const dynamicParams = true;
 
 export async function generateMetadata({

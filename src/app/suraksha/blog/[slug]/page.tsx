@@ -227,8 +227,49 @@ export default async function SurakshaArticleDetailPage({
             </div>
           )}
 
-          {/* Full Content (Custom HTML or Text) */}
-          {article.content && (
+          {/* Full Content (Dynamic Sections, or Custom HTML/Text) */}
+          {article.sections && article.sections.length > 0 ? (
+            <div className="space-y-8 text-base sm:text-lg leading-relaxed text-[#451A03] font-rubik">
+              {article.sections.map((sec, idx) => {
+                const text = sec.content || (Array.isArray(sec.paragraphs) ? sec.paragraphs.join("\n\n") : "");
+                return (
+                  <div key={sec.id || idx} className="space-y-3">
+                    {sec.heading && (
+                      <h2 className="font-anton text-2xl sm:text-3xl uppercase tracking-normal text-[#451A03]">
+                        {sec.heading}
+                      </h2>
+                    )}
+                    {text && (
+                      <div className="space-y-4">
+                        {text.split("\n\n").map((para, pIdx) => {
+                          if (para.includes("\n•") || para.startsWith("•") || para.includes("\n-") || para.startsWith("-")) {
+                            const lines = para.split("\n").filter(Boolean);
+                            const intro = lines.filter((l) => !l.startsWith("•") && !l.startsWith("-"));
+                            const bullets = lines.filter((l) => l.startsWith("•") || l.startsWith("-"));
+                            return (
+                              <div key={pIdx} className="space-y-2">
+                                {intro.length > 0 && <p className="leading-relaxed">{intro.join(" ")}</p>}
+                                <ul className="space-y-2 pl-4 border-l-2 border-[#DC2626]/40 text-sm sm:text-base text-[#78350F]">
+                                  {bullets.map((b, bIdx) => (
+                                    <li key={bIdx}>{b.replace(/^[•\-]\s*/, "")}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            );
+                          }
+                          return (
+                            <p key={pIdx} className="leading-relaxed">
+                              {para}
+                            </p>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ) : article.content ? (
             <div className="space-y-6 text-base sm:text-lg leading-relaxed text-[#451A03] font-rubik">
               {hasHtmlContent ? (
                 <div
@@ -243,7 +284,7 @@ export default async function SurakshaArticleDetailPage({
                 ))
               )}
             </div>
-          )}
+          ) : null}
 
           {/* Practical Highway Guidance & Best Practices */}
           <div className="bg-[#FFFBEB] border-2 border-[#451A03]/10 rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">

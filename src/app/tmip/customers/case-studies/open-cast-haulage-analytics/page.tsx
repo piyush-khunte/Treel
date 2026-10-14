@@ -5,7 +5,7 @@ import { CaseStudyDetailView } from "@/components/content/case-study-detail-view
 
 const SLUG = "open-cast-haulage-analytics";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   const study = await getCaseStudyBySlug(SLUG);

@@ -133,10 +133,17 @@ export function toSupabaseBlogPayload(blog: Partial<MongoBlog>) {
     category: blog.category || "General",
     readTime: blog.readTime || "5 min read",
     tags: blog.tags || [],
+    sections: blog.sections || []
   };
 
   const id = blog._id && !blog._id.startsWith("new_") ? blog._id : `blog_${Date.now()}`;
   const titleStr = typeof blog.title === "string" ? blog.title : (Array.isArray(blog.title) ? (blog.title as any)[0] : "Untitled Post");
+
+  const effectiveContent = blog.blogContent || (
+    (blog.sections && blog.sections.length > 0)
+      ? blog.sections.map(s => `<h2>${s.heading}</h2>${(s.content || "").split("\n\n").filter(Boolean).map(p => `<p>${p}</p>`).join("")}`).join("")
+      : ""
+  );
 
   return {
     _id: id,
@@ -144,7 +151,7 @@ export function toSupabaseBlogPayload(blog: Partial<MongoBlog>) {
     subtitle: blog.subtitle || null,
     slug: (blog.slug || titleStr.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "")).trim(),
     description: blog.description || "",
-    blogContent: blog.blogContent || "",
+    blogContent: effectiveContent,
     image: getValidImageSrc(blog.image) || "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80",
     metatitle: blog.metatitle || titleStr,
     metadescription: blog.metadescription || blog.description || titleStr,
@@ -172,6 +179,7 @@ export function fromSupabaseBlogRow(row: any): MongoBlog {
     slug: row.slug,
     description: row.description || "",
     blogContent: row.blogContent || "",
+    sections: metadata.sections && Array.isArray(metadata.sections) && metadata.sections.length > 0 ? metadata.sections : undefined,
     image: getValidImageSrc(row.image) || "",
     metatitle: row.metatitle || "",
     metadescription: row.metadescription || "",

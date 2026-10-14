@@ -7,7 +7,7 @@ export interface PersonalProduct {
   title: string;
   price: number;
   saleprice: number | null;
-  category: 'Car Kit' | 'Bike Kit' | 'Upgrade Kit';
+  category: 'Car Kit' | 'Bike Kit' | 'Upgrade Kit' | 'Replacement Sensor' | string;
   description: string;
   slug: string;
   image: string;
@@ -474,7 +474,7 @@ function getStoredProducts(): PersonalProduct[] {
             title: p.title,
             price: Number(p.price) || 0,
             saleprice: p.saleprice !== null && p.saleprice !== undefined ? Number(p.saleprice) : null,
-            category: p.category || "Car Kit",
+            category: normalizePersonalCategory(p.category),
             description: p.description || "",
             slug: p.slug,
             image: p.image,
@@ -508,6 +508,65 @@ function getStoredProducts(): PersonalProduct[] {
   return PERSONAL_PRODUCTS;
 }
 
+export function normalizePersonalCategory(raw?: string | null): string {
+  if (!raw) return "Car Kit";
+  const trimmed = raw.trim();
+  const lower = trimmed.toLowerCase();
+
+  // Bike / 2-wheeler TPMS
+  if (
+    lower === "bike kit" ||
+    lower === "bike" ||
+    lower === "bike-kit" ||
+    lower === "2w" ||
+    lower === "2w tpms" ||
+    lower === "motorbikes" ||
+    lower === "scooters" ||
+    lower === "cruisers" ||
+    lower.includes("bike kit")
+  ) {
+    return "Bike Kit";
+  }
+
+  // Car / 4-wheeler TPMS
+  if (
+    lower === "car kit" ||
+    lower === "car" ||
+    lower === "car-kit" ||
+    lower === "4w" ||
+    lower === "4w tpms" ||
+    lower === "cars" ||
+    lower.includes("car kit")
+  ) {
+    return "Car Kit";
+  }
+
+  // Upgrade Kit / MTrac
+  if (
+    lower === "upgrade kit" ||
+    lower === "upgrade" ||
+    lower === "upgrade-kit" ||
+    lower === "mtrac" ||
+    lower === "gps" ||
+    lower.includes("upgrade kit")
+  ) {
+    return "Upgrade Kit";
+  }
+
+  // Replacement Sensor
+  if (
+    lower === "replacement sensor" ||
+    lower === "replacement" ||
+    lower === "sensor" ||
+    lower === "sensors" ||
+    lower.includes("replacement sensor")
+  ) {
+    return "Replacement Sensor";
+  }
+
+  return trimmed;
+}
+
 export function getPersonalProducts(): PersonalProduct[] {
   return getStoredProducts();
 }
@@ -521,5 +580,5 @@ export function getPersonalProductBySlug(slug: string): PersonalProduct | undefi
 export function getPersonalProductsByCategory(category: string): PersonalProduct[] {
   const products = getStoredProducts();
   if (!category || category === "All") return products;
-  return products.filter((p) => p.category.toLowerCase() === category.toLowerCase());
+  return products.filter((p) => normalizePersonalCategory(p.category).toLowerCase() === category.toLowerCase());
 }

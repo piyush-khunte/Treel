@@ -1,5 +1,22 @@
 [
   {
+    "_id": "sur_1791957901503",
+    "slug": "test-suraksha-blog-1",
+    "title": "test suraksha blog 1",
+    "category": "Safety",
+    "excerpt": "testing",
+    "author": "Suraksha Fleet Team",
+    "date": "October 2026",
+    "readTime": "5 min read",
+    "keyTakeaway": "Suraksha delivers continuous tyre pressure and temperature alerts to protect driver safety.",
+    "sections": [],
+    "content": "",
+    "status": "Published",
+    "isFeatured": false,
+    "createdAt": "2026-10-14T06:05:01.503Z",
+    "updatedAt": "2026-10-14T06:05:01.503Z"
+  },
+  {
     "_id": "sur_1791889993170",
     "slug": "test-suraksha-image-1791889986103",
     "title": "Test Suraksha Article",

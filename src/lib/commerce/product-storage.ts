@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
 import { MongoProduct, ProductBrand } from "@/types/admin";
-import { PERSONAL_PRODUCTS, PersonalProduct } from "@/lib/data/personal-products";
+import { PERSONAL_PRODUCTS, PersonalProduct, normalizePersonalCategory } from "@/lib/data/personal-products";
+import { SURAKSHA_DEFAULT_PRODUCTS } from "@/lib/data/suraksha-products";
 import { createClient } from "@supabase/supabase-js";
 import { revalidatePath } from "next/cache";
 
@@ -14,18 +15,23 @@ export function resolveProductBrand(p: Partial<MongoProduct>): ProductBrand {
   if (p._id && PERSONAL_PRODUCTS.some((seed) => seed.id === p._id)) {
     return "personal";
   }
+  if (p._id && SURAKSHA_DEFAULT_PRODUCTS.some((seed) => seed._id === p._id)) {
+    return "suraksha";
+  }
 
   // Check reliable Suraksha indicators
   const cat = (p.category || "").toLowerCase();
   const sku = (p.productsku || "").toUpperCase();
   const title = (p.title || "").toLowerCase();
+  const slug = (p.slug || "").toLowerCase();
 
   if (
     cat.includes("suraksha") ||
     cat.includes("commercial") ||
     cat.includes("truck") ||
     sku.includes("SURAKSHA") ||
-    title.includes("suraksha")
+    title.includes("suraksha") ||
+    slug.includes("suraksha")
   ) {
     return "suraksha";
   }
@@ -108,13 +114,18 @@ function mapPersonalToMongo(p: PersonalProduct): MongoProduct {
 }
 
 export function mapMongoToPersonal(p: MongoProduct): PersonalProduct {
+  const resolvedBrand = p.brand || resolveProductBrand(p);
+  const normalizedCategory = resolvedBrand === "personal"
+    ? normalizePersonalCategory(p.category)
+    : (p.category || "Commercial Truck Kit");
+
   return {
     id: p._id,
-    brand: p.brand || resolveProductBrand(p),
+    brand: resolvedBrand,
     title: p.title,
     price: Number(p.price) || 0,
     saleprice: p.saleprice !== null && p.saleprice !== undefined ? Number(p.saleprice) : null,
-    category: (p.category as any) || "Car Kit",
+    category: normalizedCategory as any,
     description: p.description || "",
     slug: p.slug,
     image: p.image,
@@ -141,28 +152,62 @@ export function mapMongoToPersonal(p: MongoProduct): PersonalProduct {
   };
 }
 
+function ensureCanonicalProducts(items: MongoProduct[]): { products: MongoProduct[]; modified: boolean } {
+  let modified = false;
+  const current = [...items];
+
+  // 1. Ensure Personal TPMS initial seeds exist
+  const personalInitial = PERSONAL_PRODUCTS.map(mapPersonalToMongo);
+  for (const seed of personalInitial) {
+    const exists = current.some(
+      (p) => p._id === seed._id || (p.slug && seed.slug && p.slug === seed.slug)
+    );
+    if (!exists) {
+      current.push(seed);
+      modified = true;
+    }
+  }
+
+  // 2. Ensure Suraksha Commercial initial seeds exist
+  for (const seed of SURAKSHA_DEFAULT_PRODUCTS) {
+    const exists = current.some(
+      (p) =>
+        p._id === seed._id ||
+        (p.slug && seed.slug && p.slug === seed.slug) ||
+        (p.productsku && seed.productsku && p.productsku.toUpperCase() === seed.productsku.toUpperCase())
+    );
+    if (!exists) {
+      current.push(seed);
+      modified = true;
+    }
+  }
+
+  return { products: current, modified };
+}
+
 function readLocalStore(): MongoProduct[] {
+  let items: MongoProduct[] = [];
   try {
     if (fs.existsSync(STORE_PATH)) {
       const raw = fs.readFileSync(STORE_PATH, "utf-8");
       const parsed = JSON.parse(raw);
       if (Array.isArray(parsed) && parsed.length > 0) {
-        const normalized = parsed.map((item: any) => ({
+        items = parsed.map((item: any) => ({
           ...item,
           brand: item.brand || resolveProductBrand(item),
           brand_scope: item.brand_scope || item.brand || resolveProductBrand(item),
         })) as MongoProduct[];
-        return normalized;
       }
     }
   } catch (err) {
     console.error("Failed to read products-store.json:", err);
   }
 
-  // Fallback to initial seeds
-  const initial = PERSONAL_PRODUCTS.map(mapPersonalToMongo);
-  writeLocalStore(initial);
-  return initial;
+  const { products, modified } = ensureCanonicalProducts(items);
+  if (modified || !fs.existsSync(STORE_PATH)) {
+    writeLocalStore(products);
+  }
+  return products;
 }
 
 function writeLocalStore(items: MongoProduct[]): void {
@@ -175,6 +220,48 @@ function writeLocalStore(items: MongoProduct[]): void {
   } catch (err) {
     console.error("Failed to write products-store.json:", err);
   }
+}
+
+const SUPABASE_PRODUCT_COLUMNS = new Set([
+  "_id",
+  "title",
+  "price",
+  "saleprice",
+  "category",
+  "editorValue",
+  "description",
+  "slug",
+  "image",
+  "image2",
+  "image3",
+  "image4",
+  "image5",
+  "boxpoint",
+  "stepone",
+  "steptwo",
+  "stepdescription1",
+  "stepdescription2",
+  "stepdescription3",
+  "stepdescription4",
+  "date",
+  "__v",
+  "stepfour",
+  "stepthree",
+  "couponamount",
+  "couponcode",
+  "productsku",
+  "galleryImage1",
+  "galleryImage2",
+]);
+
+export function toSupabaseProductPayload(product: MongoProduct): Record<string, any> {
+  const payload: Record<string, any> = {};
+  for (const key of Object.keys(product)) {
+    if (SUPABASE_PRODUCT_COLUMNS.has(key)) {
+      payload[key] = (product as any)[key];
+    }
+  }
+  return payload;
 }
 
 export async function getAllProducts(
@@ -198,8 +285,25 @@ export async function getAllProducts(
           brand: item.brand || resolveProductBrand(item),
           brand_scope: item.brand_scope || item.brand || resolveProductBrand(item),
         })) as MongoProduct[];
-        writeLocalStore(remoteProducts);
-        items = remoteProducts;
+
+        // Merge remote products with localItems so local newly added/edited items are preserved
+        const mergedMap = new Map<string, MongoProduct>();
+        for (const p of remoteProducts) {
+          mergedMap.set(p._id, p);
+        }
+        for (const lp of localItems) {
+          if (!mergedMap.has(lp._id)) {
+            const existsBySlug = remoteProducts.some((rp) => rp.slug === lp.slug);
+            if (!existsBySlug) {
+              mergedMap.set(lp._id, lp);
+            }
+          }
+        }
+
+        const merged = Array.from(mergedMap.values());
+        const { products } = ensureCanonicalProducts(merged);
+        writeLocalStore(products);
+        items = products;
       }
     } catch (err) {
       // Suppress network errors and gracefully use localItems
@@ -242,8 +346,13 @@ export async function saveProduct(product: Partial<MongoProduct>): Promise<Mongo
   const all = await getAllProducts(true);
   const now = new Date().toISOString();
 
-  const id = product._id && !product._id.startsWith("new_") ? product._id : generateObjectId();
-  const existingIdx = all.findIndex((p) => p._id === id || (product.slug && p.slug === product.slug));
+  const isNew = !product._id || product._id.startsWith("new_");
+  const id = isNew ? generateObjectId() : product._id!;
+
+  let existingIdx = -1;
+  if (!isNew) {
+    existingIdx = all.findIndex((p) => p._id === id);
+  }
   const existing = existingIdx >= 0 ? all[existingIdx] : undefined;
 
   // Enforce server-side brand validation
@@ -264,14 +373,31 @@ export async function saveProduct(product: Partial<MongoProduct>): Promise<Mongo
     }
   }
 
-  const slug = (
+  const rawSlug = (
     product.slug ||
     existing?.slug ||
     product.title?.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "") ||
     `product-${Date.now()}`
   ).trim();
 
-  const defaultCategory = resolvedBrand === "suraksha" ? "Commercial Truck Kit" : "Car Kit";
+  // Prevent slug collision with other products
+  const slugCollision = all.find((p) => p._id !== id && (p.slug || "").toLowerCase() === rawSlug.toLowerCase());
+  if (slugCollision) {
+    if (isNew) {
+      throw new Error(`A product with slug "${rawSlug}" already exists ("${slugCollision.title}"). Please choose a unique slug.`);
+    } else {
+      throw new Error(`Cannot change slug to "${rawSlug}" because it is already used by "${slugCollision.title}".`);
+    }
+  }
+  const slug = rawSlug;
+
+  let finalCategory: string;
+  if (resolvedBrand === "personal") {
+    const rawCat = product.category?.trim() || existing?.category;
+    finalCategory = rawCat ? normalizePersonalCategory(rawCat) : "Car Kit";
+  } else {
+    finalCategory = product.category?.trim() || existing?.category || "Commercial Truck Kit";
+  }
 
   const fullProduct: MongoProduct = {
     _id: id,
@@ -280,7 +406,7 @@ export async function saveProduct(product: Partial<MongoProduct>): Promise<Mongo
     title: product.title.trim(),
     price: Number(product.price) || 0,
     saleprice: product.saleprice !== undefined && product.saleprice !== null ? Number(product.saleprice) : null,
-    category: product.category?.trim() || existing?.category || defaultCategory,
+    category: finalCategory,
     description: product.description !== undefined ? product.description : (existing?.description || ""),
     slug,
     image: product.image || existing?.image || "",
@@ -321,9 +447,14 @@ export async function saveProduct(product: Partial<MongoProduct>): Promise<Mongo
   // Sync to Supabase TreelEcommerce.products
   try {
     const supabase = getAdminClient();
-    await supabase
+    const payload = toSupabaseProductPayload(fullProduct);
+    const { error: sbError } = await supabase
       .from("TreelEcommerce.products")
-      .upsert([fullProduct], { onConflict: "_id" });
+      .upsert([payload], { onConflict: "_id" });
+
+    if (sbError) {
+      console.error("Supabase sync error for product:", sbError);
+    }
   } catch (err) {
     console.error("Supabase sync error for product:", err);
   }
@@ -334,6 +465,7 @@ export async function saveProduct(product: Partial<MongoProduct>): Promise<Mongo
     revalidatePath("/admin/products");
     revalidatePath("/personal/buy");
     revalidatePath("/personal/product");
+    revalidatePath("/suraksha/pricing");
     revalidatePath("/suraksha/buy");
     revalidatePath("/suraksha/product");
     revalidatePath("/api/products");
@@ -367,6 +499,7 @@ export async function deleteProduct(id: string): Promise<boolean> {
     revalidatePath("/admin/products");
     revalidatePath("/personal/buy");
     revalidatePath("/personal/product");
+    revalidatePath("/suraksha/pricing");
     revalidatePath("/suraksha/buy");
     revalidatePath("/suraksha/product");
     revalidatePath("/api/products");
