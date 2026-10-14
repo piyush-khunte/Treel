@@ -144,7 +144,7 @@ export default function SurakshaPage() {
 
             {/* Right Kit Visual Box */}
             <div className="lg:col-span-5">
-              <div className="p-8 rounded-lg bg-[#FEF3C7] border-3 border-[#DC2626] shadow-xl relative overflow-hidden space-y-6">
+              <div className="p-6 sm:p-7 xl:p-8 rounded-lg bg-[#FEF3C7] border-3 border-[#DC2626] shadow-xl relative overflow-hidden space-y-6">
                 <div className="flex items-center justify-between border-b-2 border-[#DC2626]/20 pb-4">
                   <span className="font-anton text-lg tracking-wider text-[#DC2626] uppercase">
                     KIT INCLUDES
@@ -176,13 +176,16 @@ export default function SurakshaPage() {
                   </div>
                 </div>
 
-                <div className="space-y-2 text-center sm:text-left">
-                  <div className="font-rubik font-bold text-lg text-[#451A03] leading-snug">
-                    1 in-cab display · Sensor for each of your tyre
-                  </div>
-                  <div className="text-[#78350F] text-sm font-medium">
-                    The number of sensors required depends on your truck&apos;s wheel configuration · DIY install · Any tyre brand
-                  </div>
+                <div className="space-y-2.5 sm:space-y-3 text-center sm:text-left">
+                  <h3 className="font-rubik font-bold text-base sm:text-[17px] text-[#451A03] leading-snug text-balance">
+                    <span className="inline-block whitespace-nowrap">1 in-cab display •</span>{" "}
+                    <span className="inline-block">Sensor for each of your tyre</span>
+                  </h3>
+                  <p className="text-[#78350F] text-xs sm:text-sm font-medium leading-relaxed text-pretty">
+                    The number of sensors required depends on your truck&apos;s wheel configuration •{" "}
+                    <span className="whitespace-nowrap">DIY install</span> •{" "}
+                    <span className="whitespace-nowrap">Any tyre brand</span>
+                  </p>
                 </div>
               </div>
             </div>
