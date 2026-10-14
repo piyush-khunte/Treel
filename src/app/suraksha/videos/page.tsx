@@ -1,22 +1,18 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import Link from "next/link";
-import { 
-  Play, 
-  Clock, 
-  ArrowRight, 
-  Tv, 
-  Globe, 
-  CheckCircle2, 
-  Filter,
-  ExternalLink,
-  HelpCircle,
-  Video
-} from "lucide-react";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
-import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
+import {
+ArrowRight,
+Clock,
+ExternalLink,
+Filter,
+Play,
+Video
+} from "lucide-react";
+import Link from "next/link";
+import { useMemo,useState } from "react";
 
 interface VideoItem {
   id: string;

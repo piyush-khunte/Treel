@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
-import { Phone, Mail, MessageSquare, CheckCircle2, ArrowRight, Clock, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CheckCircle2,Mail,MessageSquare,Phone } from "lucide-react";
+import React,{ useState } from "react";
 
 export default function MaintenancePage() {
   const [email, setEmail] = useState("");

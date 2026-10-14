@@ -1,26 +1,24 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import {
-  Truck,
-  Check,
-  ShieldCheck,
-  ArrowRight,
-  Plus,
-  Minus,
-  MapPin,
-  CreditCard,
-  Tv,
-  Radio,
-  Lock,
-  Sparkles,
-  PhoneCall,
-  AlertCircle,
-} from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { useSurakshaCart } from "@/lib/commerce/cart-context";
+import {
+ArrowRight,
+Check,
+CreditCard,
+Lock,
+MapPin,
+Minus,
+PhoneCall,
+Plus,
+Radio,
+ShieldCheck,
+Truck,
+Tv
+} from "lucide-react";
+import Link from "next/link";
+import { useRouter,useSearchParams } from "next/navigation";
+import { useEffect,useState } from "react";
 
 const PRESET_CONFIGS = [
   { tyres: 4, name: "4-Wheeler", axle: "2 Axles · LCV / Mini Truck", popular: false },

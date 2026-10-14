@@ -1,7 +1,7 @@
+import { Button } from "@/components/ui/button";
+import { ArrowRight,Home,Mail } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, AlertTriangle, RefreshCw, Home, Mail, ShieldAlert } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Server Error · Treel",

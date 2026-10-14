@@ -1,19 +1,16 @@
 "use client";
 
-import React, { Suspense } from "react";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+CheckCircle2,
+MapPin,
+PhoneCall,
+ShieldCheck,
+Truck
+} from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import {
-  CheckCircle2,
-  Truck,
-  ShieldCheck,
-  PhoneCall,
-  MapPin,
-  FileText,
-  Radio,
-  Tv,
-} from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { Suspense } from "react";
 
 function SurakshaOrderSuccessContent() {
   const searchParams = useSearchParams();

@@ -1,25 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { 
-  Search, 
-  Eye, 
-  RefreshCw, 
-  ShoppingBag, 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Calendar,
-  X,
-  Package
-} from "lucide-react";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { getAdminCheckouts,updateAdminCheckoutStatus } from "@/lib/admin/admin-actions";
 import { formatINR } from "@/lib/utils";
-import { getAdminCheckouts, updateAdminCheckoutStatus } from "@/lib/admin/admin-actions";
 import { MongoCheckout } from "@/types/admin";
+import {
+Eye,
+Mail,
+Package,
+Phone,
+RefreshCw,
+Search,
+X
+} from "lucide-react";
+import { useEffect,useState } from "react";
 
 export default function AdminOrdersPage() {
   const [checkouts, setCheckouts] = useState<MongoCheckout[]>([]);

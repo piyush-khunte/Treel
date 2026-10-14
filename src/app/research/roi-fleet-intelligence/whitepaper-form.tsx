@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
-import { Download, Loader2, CheckCircle2, AlertCircle, Eye, ArrowRight } from "lucide-react";
+import { CheckCircle2,Download,Eye,Loader2 } from "lucide-react";
+import React,{ useState } from "react";
 
 export function WhitepaperGatedForm() {
   const [formData, setFormData] = useState({

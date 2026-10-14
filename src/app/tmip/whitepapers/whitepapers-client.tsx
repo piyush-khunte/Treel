@@ -1,20 +1,15 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import Link from "next/link";
-import {
-  Filter,
-  FileText,
-  Search,
-  Lock,
-  Download,
-  Eye,
-  ArrowRight,
-  ShieldCheck,
-  FileSpreadsheet,
-} from "lucide-react";
-import { WhitepaperRecord } from "@/types/content";
 import { WhitepaperAccessModal } from "@/components/whitepapers/whitepaper-access-modal";
+import { WhitepaperRecord } from "@/types/content";
+import {
+Download,
+FileText,
+Filter,
+Search
+} from "lucide-react";
+import Link from "next/link";
+import { useMemo,useState } from "react";
 
 interface WhitepapersClientProps {
   initialWhitepapers?: WhitepaperRecord[];

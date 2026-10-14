@@ -1,58 +1,46 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
-import Link from "next/link";
-import { 
-  BookOpen, 
-  Plus, 
-  Search, 
-  Edit3, 
-  Trash2, 
-  RefreshCw, 
-  X, 
-  Save, 
-  Eye,
-  EyeOff,
-  Calendar,
-  CheckCircle2,
-  Clock,
-  ExternalLink,
-  AlertCircle,
-  FileText,
-  User,
-  Tag,
-  Truck,
-  Shield,
-  Sparkles,
-  Layers,
-  ChevronRight,
-  TrendingUp,
-  Quote,
-  ArrowUp,
-  ArrowDown,
-  Copy,
-  Check
-} from "lucide-react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import {
+createAdminCategoryContent,
+deleteAdminCategoryContent,
+getAdminCategoryContent,
+togglePublishAdminCategoryContent,
+updateAdminCategoryContent
+} from "@/lib/admin/admin-actions";
 import { copyToClipboardSafe } from "@/lib/utils/clipboard";
 import { getValidImageSrc } from "@/lib/utils/image-utils";
-import { 
-  getAdminCategoryContent, 
-  createAdminCategoryContent, 
-  updateAdminCategoryContent, 
-  deleteAdminCategoryContent,
-  togglePublishAdminCategoryContent
-} from "@/lib/admin/admin-actions";
-import { 
-  ContentCategoryType, 
-  TreelInsightArticle, 
-  TmipCaseStudy, 
-  SurakshaArticle, 
-  PersonalBlogArticle,
-  ArticleSection
+import {
+ContentCategoryType
 } from "@/types/content";
+import {
+AlertCircle,
+ArrowDown,
+ArrowUp,
+BookOpen,
+Check,
+CheckCircle2,
+Clock,
+Copy,
+Edit3,
+ExternalLink,
+FileText,
+Layers,
+Plus,
+RefreshCw,
+Save,
+Search,
+Shield,
+Sparkles,
+Trash2,
+Truck,
+X
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useCallback,useEffect,useMemo,useState } from "react";
 
 interface CategoryMeta {
   id: ContentCategoryType;
@@ -616,10 +604,10 @@ export default function AdminBlogsPage() {
 
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
-  const showFeedback = (type: "success" | "error", message: string) => {
+  const showFeedback = useCallback((type: "success" | "error", message: string) => {
     setFeedback({ type, message });
     setTimeout(() => setFeedback(null), 5000);
-  };
+  }, []);
 
   const handleCopyText = async (text: string, key: string, label: string) => {
     const res = await copyToClipboardSafe(text);
@@ -634,22 +622,7 @@ export default function AdminBlogsPage() {
     }
   };
 
-  // Load items for active category and refresh all category statistics
-  const loadContent = async (category = activeCategory) => {
-    setLoading(true);
-    const res = await getAdminCategoryContent(category);
-    if (res.success && res.data) {
-      setItems(res.data);
-    } else {
-      showFeedback("error", res.error || `Failed to load ${category} content`);
-    }
-    setLoading(false);
-
-    // Refresh counts for all categories in background
-    refreshAllCounts();
-  };
-
-  const refreshAllCounts = async () => {
+  const refreshAllCounts = useCallback(async () => {
     const cats: ContentCategoryType[] = ["treel_main", "tmip", "suraksha", "personal"];
     const countsMap: any = {};
     for (const cat of cats) {
@@ -663,13 +636,28 @@ export default function AdminBlogsPage() {
     if (Object.keys(countsMap).length > 0) {
       setCategoryCounts((prev) => ({ ...prev, ...countsMap }));
     }
-  };
+  }, []);
+
+  // Load items for active category and refresh all category statistics
+  const loadContent = useCallback(async (category = activeCategory) => {
+    setLoading(true);
+    const res = await getAdminCategoryContent(category);
+    if (res.success && res.data) {
+      setItems(res.data);
+    } else {
+      showFeedback("error", res.error || `Failed to load ${category} content`);
+    }
+    setLoading(false);
+
+    // Refresh counts for all categories in background
+    refreshAllCounts();
+  }, [activeCategory, refreshAllCounts, showFeedback]);
 
   useEffect(() => {
     loadContent(activeCategory);
     setSubFilter("ALL");
     setSearch("");
-  }, [activeCategory]);
+  }, [activeCategory, loadContent]);
 
   const handleCategorySwitch = (catId: ContentCategoryType) => {
     if (catId === activeCategory) return;
@@ -2275,14 +2263,13 @@ export default function AdminBlogsPage() {
                       className="bg-slate-950 border-white/10 text-white"
                     />
                     {getValidImageSrc(editingItem.image) && (
-                      <div className="mt-2 h-28 rounded-lg overflow-hidden border border-white/10 bg-slate-950">
-                        <img
+                      <div className="relative mt-2 h-28 rounded-lg overflow-hidden border border-white/10 bg-slate-950">
+                        <Image
                           src={getValidImageSrc(editingItem.image)!}
                           alt="Preview"
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).style.display = "none";
-                          }}
+                          fill
+                          unoptimized
+                          className="object-cover"
                         />
                       </div>
                     )}
@@ -2410,14 +2397,13 @@ export default function AdminBlogsPage() {
                       className="bg-slate-950 border-white/10 text-white"
                     />
                     {getValidImageSrc(editingItem.image) && (
-                      <div className="mt-2 h-28 rounded-lg overflow-hidden border border-white/10 bg-slate-950">
-                        <img
+                      <div className="relative mt-2 h-28 rounded-lg overflow-hidden border border-white/10 bg-slate-950">
+                        <Image
                           src={getValidImageSrc(editingItem.image)!}
                           alt="Preview"
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).style.display = "none";
-                          }}
+                          fill
+                          unoptimized
+                          className="object-cover"
                         />
                       </div>
                     )}

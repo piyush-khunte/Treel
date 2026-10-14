@@ -1,21 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { 
-  HelpCircle, 
-  ChevronDown, 
-  ChevronUp, 
-  ArrowRight, 
-  PhoneCall, 
-  MessageSquare, 
-  AlertTriangle, 
-  CheckCircle2, 
-  Wrench,
-  Radio,
-  RefreshCw
+import {
+ChevronDown,
+ChevronUp,
+HelpCircle
 } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function PersonalSupportTroubleshootingPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);

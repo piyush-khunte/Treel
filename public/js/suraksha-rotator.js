@@ -391,13 +391,21 @@
     el.addEventListener("focusin", function () { hovered = true; pause(); });
     el.addEventListener("focusout", function () { hovered = false; play(); });
     document.addEventListener("visibilitychange", function () {
-      document.hidden ? pause() : play();
+      if (document.hidden) {
+        pause();
+      } else {
+        play();
+      }
     });
 
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (entries) {
         visible = entries[0].isIntersecting;
-        visible ? play() : pause();
+        if (visible) {
+          play();
+        } else {
+          pause();
+        }
       }).observe(el);
     }
     play();

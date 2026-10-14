@@ -1,22 +1,16 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+Activity,
+Battery,
+Clock,
+Gauge,
+Moon,
+Radio,
+ShoppingCart,
+Thermometer
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { 
-  Gauge, 
-  Thermometer, 
-  Activity, 
-  Battery, 
-  Radio, 
-  Moon, 
-  Clock, 
-  CheckCircle2, 
-  ArrowRight, 
-  Car, 
-  Wrench, 
-  Compass, 
-  ShieldCheck,
-  ShoppingCart
-} from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Real-Time Monitoring · Personal TPMS",

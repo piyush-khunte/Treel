@@ -1,43 +1,36 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
-import Link from "next/link";
-import {
-  Briefcase,
-  Plus,
-  Search,
-  Edit3,
-  Trash2,
-  RefreshCw,
-  X,
-  Save,
-  Eye,
-  EyeOff,
-  ExternalLink,
-  AlertCircle,
-  CheckCircle2,
-  MapPin,
-  Clock,
-  Layers,
-  Building,
-  CheckSquare,
-  Sparkles,
-  Lock,
-  Unlock,
-  Archive,
-  ArrowRight
-} from "lucide-react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
-  getAdminCareersListAction,
-  saveJobAction,
-  deleteJobAction,
-  toggleJobPublishAction,
-  closeJobAction
+closeJobAction,
+deleteJobAction,
+getAdminCareersListAction,
+saveJobAction,
+toggleJobPublishAction
 } from "@/lib/admin/admin-actions";
 import { JobOpeningRecord } from "@/types/content";
+import {
+AlertCircle,
+Briefcase,
+CheckCircle2,
+Edit3,
+ExternalLink,
+Eye,
+EyeOff,
+Lock,
+MapPin,
+Plus,
+RefreshCw,
+Save,
+Search,
+Trash2,
+Unlock,
+X
+} from "lucide-react";
+import Link from "next/link";
+import { useCallback,useEffect,useMemo,useState } from "react";
 
 function slugify(text: string): string {
   return text
@@ -76,12 +69,12 @@ export default function AdminCareersPage() {
 
   const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
-  const showFeedback = (type: "success" | "error", message: string) => {
+  const showFeedback = useCallback((type: "success" | "error", message: string) => {
     setFeedback({ type, message });
     setTimeout(() => setFeedback(null), 6000);
-  };
+  }, []);
 
-  const loadJobs = async () => {
+  const loadJobs = useCallback(async () => {
     setLoading(true);
     const res = await getAdminCareersListAction();
     if (res.success && res.data) {
@@ -90,11 +83,11 @@ export default function AdminCareersPage() {
       showFeedback("error", res.error || "Failed to load careers openings.");
     }
     setLoading(false);
-  };
+  }, [showFeedback]);
 
   useEffect(() => {
     loadJobs();
-  }, []);
+  }, [loadJobs]);
 
   const handleCreate = () => {
     const today = new Date().toISOString().split("T")[0];

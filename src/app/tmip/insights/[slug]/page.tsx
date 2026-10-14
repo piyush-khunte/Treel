@@ -1,18 +1,16 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { slugifyAuthor } from "@/lib/authors/author-utils";
+import { getInsightBySlug,getPublishedInsights } from "@/lib/content/insights-storage";
+import {
+Activity,
+ArrowLeft,
+ArrowRight,
+Calendar,
+Clock
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { 
-  ArrowLeft, 
-  ArrowRight, 
-  Calendar, 
-  Clock, 
-  Layers, 
-  ShieldCheck, 
-  Activity 
-} from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { getInsightBySlug, getPublishedInsights } from "@/lib/content/insights-storage";
-import { slugifyAuthor } from "@/lib/authors/author-utils";
 
 export async function generateMetadata({
   params,

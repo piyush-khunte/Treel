@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import { ArrowRight,Calculator,CheckCircle2 } from "lucide-react";
 import Link from "next/link";
-import { ArrowRight, Calculator, Sparkles, CheckCircle2, ShieldCheck, Building2 } from "lucide-react";
+import { useState } from "react";
 
 const CONFIGURATIONS = [
   { label: "6-wheeler", desc: "2 Axles · 6 Tyre Sensors" },

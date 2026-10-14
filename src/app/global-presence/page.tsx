@@ -1,19 +1,17 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
+import {
+ArrowRight,
+Building2,
+Globe2,
+Mail,
+Radio,
+Server,
+ShieldCheck,
+ThermometerSnowflake
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { 
-  ArrowRight, 
-  Globe2, 
-  ShieldCheck, 
-  Cpu, 
-  Radio, 
-  Server, 
-  ThermometerSnowflake, 
-  CheckCircle2, 
-  Mail, 
-  Building2 
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Global Presence & Export · Treel Mobility Solutions",

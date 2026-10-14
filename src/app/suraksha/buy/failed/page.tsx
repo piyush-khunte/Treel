@@ -1,14 +1,13 @@
 "use client";
 
-import React, { Suspense } from "react";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { AlertCircle,PhoneCall,RotateCcw } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { AlertCircle, RotateCcw, PhoneCall } from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { Suspense } from "react";
 
 function SurakshaFailedContent() {
   const searchParams = useSearchParams();
-  const reason = searchParams.get("reason") || "payment_declined";
   const message =
     searchParams.get("message") ||
     "Payment could not be completed. Your card/account has not been debited.";

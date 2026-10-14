@@ -1,17 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { 
-  Star, 
-  CheckCircle2, 
-  ThumbsUp, 
-  Filter, 
-  MessageSquarePlus, 
-  ArrowRight,
-  ShoppingCart
+import {
+CheckCircle2,
+ShoppingCart,
+Star,
+ThumbsUp
 } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function PersonalReviewsPage() {
   const [activeFilter, setActiveFilter] = useState("All");

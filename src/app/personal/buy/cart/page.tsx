@@ -1,24 +1,23 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
-import {
-  ArrowRight,
-  Trash2,
-  ShoppingBag,
-  Plus,
-  Minus,
-  ShieldCheck,
-  Truck,
-  Tag,
-  Check,
-  X,
-  AlertCircle,
-  Sparkles,
-} from "lucide-react";
-import { useCart } from "@/lib/commerce/cart-context";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { AvailableCouponsModal } from "@/components/commerce/available-coupons-modal";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { useCart } from "@/lib/commerce/cart-context";
+import {
+AlertCircle,
+ArrowRight,
+Check,
+Minus,
+Plus,
+ShieldCheck,
+ShoppingBag,
+Sparkles,
+Tag,
+Trash2,
+Truck
+} from "lucide-react";
+import Link from "next/link";
+import React,{ useState } from "react";
 
 export default function CartPage() {
   const {

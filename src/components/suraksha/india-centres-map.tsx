@@ -1,23 +1,22 @@
 "use client";
 
-import React, { useState, useMemo, useEffect } from "react";
 import {
-  MapPin,
-  Phone,
-  Clock,
-  ShieldCheck,
-  CheckCircle2,
-  Layers,
-  ChevronRight,
-  Info
+CheckCircle2,
+ChevronRight,
+Clock,
+Layers,
+MapPin,
+Phone,
+ShieldCheck
 } from "lucide-react";
+import { useEffect,useMemo,useState } from "react";
 import {
-  SURAKSHA_CENTRES,
-  CENTRE_CLUSTERS,
-  INDIA_MAP_VIEWBOX,
-  INDIA_STATES_PATHS,
-  SurakshaCentre,
-  CentreCluster
+CENTRE_CLUSTERS,
+CentreCluster,
+INDIA_MAP_VIEWBOX,
+INDIA_STATES_PATHS,
+SURAKSHA_CENTRES,
+SurakshaCentre
 } from "./india-map-data";
 
 interface IndiaCentresMapProps {

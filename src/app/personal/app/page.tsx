@@ -1,24 +1,19 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+Apple,
+Bell,
+CheckCircle2,
+Clock,
+Gauge,
+Layers,
+Moon,
+Play,
+ShoppingCart,
+Sliders,
+Star
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { 
-  Smartphone, 
-  Apple, 
-  Play, 
-  Star, 
-  ShieldCheck, 
-  CheckCircle2, 
-  ArrowRight, 
-  Gauge, 
-  Bell, 
-  Layers, 
-  Clock, 
-  Moon, 
-  Sliders, 
-  Sparkles,
-  Download,
-  ShoppingCart
-} from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Download the App · Personal TPMS",

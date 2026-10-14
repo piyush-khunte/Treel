@@ -1,17 +1,16 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+Clock,
+ExternalLink,
+Mail,
+MapPin,
+Phone,
+Smartphone,
+Users
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { 
-  Phone, 
-  Smartphone, 
-  Mail, 
-  Users, 
-  MapPin, 
-  Clock, 
-  ExternalLink,
-  ShieldCheck
-} from "lucide-react";
 import { CorporateContactForm } from "./contact-form";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Contact Treel · Get in Touch",

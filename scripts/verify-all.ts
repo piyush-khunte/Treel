@@ -23,25 +23,23 @@ try {
   console.warn("Could not load .env:", e);
 }
 
-import { 
-  countWords, 
-  validateNoticeWordCount, 
-  validateAndNormalizeDriveUrl,
-  MAX_NOTICE_WORD_COUNT 
-} from "../src/lib/notices/notice-utils";
+import { createClient } from "@supabase/supabase-js";
 import {
-  getAllNotices,
-  saveNotice,
-  removeNotice
+getAllBlogsFromDb,
+getBlogBySlugFromDb,
+getPublishedBlogsFromDb,
+toSupabaseBlogPayload
+} from "../src/lib/blogs/blog-storage";
+import {
+getAllNotices,
+removeNotice,
+saveNotice
 } from "../src/lib/notices/notice-storage";
 import {
-  getAllBlogsFromDb,
-  getPublishedBlogsFromDb,
-  getBlogBySlugFromDb,
-  toSupabaseBlogPayload,
-  fromSupabaseBlogRow
-} from "../src/lib/blogs/blog-storage";
-import { createClient } from "@supabase/supabase-js";
+countWords,
+validateAndNormalizeDriveUrl,
+validateNoticeWordCount
+} from "../src/lib/notices/notice-utils";
 
 async function runVerification() {
   console.log("=================================================");

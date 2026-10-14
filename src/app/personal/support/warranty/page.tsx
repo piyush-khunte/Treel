@@ -1,23 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { 
-  ShieldCheck, 
-  ShieldAlert, 
-  CheckCircle2, 
-  HelpCircle, 
-  ChevronDown, 
-  ChevronUp, 
-  ArrowRight, 
-  Clock, 
-  FileText, 
-  PhoneCall, 
-  Upload, 
-  AlertTriangle,
-  Sparkles
+import {
+AlertTriangle,
+CheckCircle2,
+ChevronDown,
+ChevronUp,
+ShieldAlert,
+ShieldCheck
 } from "lucide-react";
+import React,{ useState } from "react";
 
 export default function PersonalSupportWarrantyPage() {
   // Registration Form State

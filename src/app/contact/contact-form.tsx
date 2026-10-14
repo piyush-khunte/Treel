@@ -1,20 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
-import { 
-  Send, 
-  Loader2, 
-  CheckCircle2, 
-  AlertCircle, 
-  User, 
-  Mail, 
-  Phone, 
-  Building2, 
-  MessageSquare, 
-  Truck,
-  RotateCcw
+import {
+AlertCircle,
+CheckCircle2,
+Loader2,
+RotateCcw,
+Send
 } from "lucide-react";
+import Link from "next/link";
+import React,{ useState } from "react";
 
 interface FormData {
   fullName: string;

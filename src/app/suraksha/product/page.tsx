@@ -1,24 +1,20 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import {
-  ArrowRight,
-  ShieldCheck,
-  CheckCircle2,
-  Tv,
-  Radio,
-  Lock,
-  Compass,
-  Cable,
-  BookOpen,
-  Award,
-  Sparkles,
-  Truck,
-  Wrench,
-  Check,
-} from "lucide-react";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
-import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
+import {
+ArrowRight,
+Award,
+BookOpen,
+Cable,
+Check,
+Compass,
+Lock,
+Radio,
+Truck,
+Tv
+} from "lucide-react";
+import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Suraksha Kit · Product Details · In-Cab Display + Tyre Sensors",

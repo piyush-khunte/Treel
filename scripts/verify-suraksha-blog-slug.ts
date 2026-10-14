@@ -1,9 +1,9 @@
 import {
-  getPublishedSurakshaArticles,
-  getPublishedSurakshaArticleBySlug,
-  getSurakshaArticleBySlug,
-  saveSurakshaArticle,
-  deleteSurakshaArticle,
+deleteSurakshaArticle,
+getPublishedSurakshaArticleBySlug,
+getPublishedSurakshaArticles,
+getSurakshaArticleBySlug,
+saveSurakshaArticle,
 } from "../src/lib/content/suraksha-storage";
 
 async function runTests() {
@@ -75,6 +75,7 @@ async function runTests() {
     excerpt: "This is a draft article that must not be publicly accessible",
     status: "Draft",
   });
+  assert(draftTest !== null && draftTest.slug === "draft-test-article", "Draft save succeeds");
 
   const publicDraftCheck = await getPublishedSurakshaArticleBySlug("draft-test-article");
   assert(

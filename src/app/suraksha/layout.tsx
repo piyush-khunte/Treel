@@ -6,11 +6,6 @@ import { SurakshaFloatingWhatsApp } from "@/components/suraksha/suraksha-floatin
 export default function SurakshaLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="suraksha-page min-h-screen bg-[#FEF3C7] text-[#451A03] font-rubik antialiased selection:bg-[#DC2626]/20 selection:text-[#451A03]">
-      {/* 8 Regional Baloo Google Fonts exclusively for Suraksha */}
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Baloo+Chettan+2:wght@500;600;700&family=Baloo+Bhai+2:wght@500;600;700&family=Baloo+Thambi+2:wght@500;600;700&family=Baloo+Tammudu+2:wght@500;600;700&family=Baloo+Tamma+2:wght@500;600;700&family=Baloo+Paaji+2:wght@500;600;700&family=Baloo+Da+2:wght@500;600;700&display=swap"
-      />
       {/* Suraksha Multilingual Rotator Zero-CLS CSS */}
       <style
         dangerouslySetInnerHTML={{

@@ -1,22 +1,17 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+AlertTriangle,
+BatteryLow,
+Flame,
+Layers,
+Play,
+ShoppingCart,
+Smartphone,
+TrendingDown,
+WifiOff
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { 
-  Bell, 
-  AlertTriangle, 
-  Flame, 
-  TrendingDown, 
-  BatteryLow, 
-  WifiOff, 
-  Sliders, 
-  Smartphone, 
-  Apple, 
-  Play, 
-  Layers, 
-  CheckCircle2, 
-  ArrowRight,
-  ShoppingCart
-} from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Instant Alerts · Personal TPMS",

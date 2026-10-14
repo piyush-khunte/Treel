@@ -1,25 +1,22 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import Link from "next/link";
-import { 
-  ArrowRight, 
-  MessageSquare, 
-  Play, 
-  Truck, 
-  MapPin, 
-  Clock, 
-  Star, 
-  ShieldCheck, 
-  CheckCircle2,
-  Filter,
-  Share2,
-  Sparkles,
-  Info
-} from "lucide-react";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
-import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
+import {
+ArrowRight,
+Clock,
+Filter,
+Info,
+MapPin,
+MessageSquare,
+Play,
+Share2,
+Star,
+Truck
+} from "lucide-react";
+import Link from "next/link";
+import { useMemo,useState } from "react";
 
 interface TestimonialVideo {
   id: string;

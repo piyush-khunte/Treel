@@ -1,17 +1,14 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+ArrowRight,
+HelpCircle,
+Mail,
+PhoneCall,
+Play,
+ShieldCheck
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { 
-  Play, 
-  HelpCircle, 
-  ShieldCheck, 
-  Mail, 
-  ArrowRight, 
-  PhoneCall, 
-  Clock, 
-  CheckCircle2,
-  ChevronRight
-} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Support · Personal TPMS",

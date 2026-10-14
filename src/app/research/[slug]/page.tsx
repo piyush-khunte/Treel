@@ -1,17 +1,12 @@
+import {
+ArrowRight,
+Calendar,
+ChevronRight,
+FileText,
+User
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { 
-  FileText, 
-  Calendar, 
-  Clock, 
-  User, 
-  ArrowRight, 
-  ChevronRight, 
-  BookOpen, 
-  ShieldCheck, 
-  Layers, 
-  Download 
-} from "lucide-react";
 import { WhitepaperGatedForm } from "../roi-fleet-intelligence/whitepaper-form";
 
 interface WhitepaperDetail {

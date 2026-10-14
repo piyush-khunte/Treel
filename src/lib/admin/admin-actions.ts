@@ -1,63 +1,60 @@
 'use server';
 
-import { createClient } from '@supabase/supabase-js';
-import { revalidatePath } from 'next/cache';
-import { 
-  MongoProduct, 
-  ProductBrand,
-  MongoCheckout, 
-  MongoCartItem,
-  MongoPayment, 
-  MongoBlog, 
-  MongoAnnualReturn,
-  NoticeItem,
-  AdminCoupon,
-  CouponCategory,
-  AdminConsentRecord
+import { getAdminSession } from '@/lib/admin/admin-auth';
+import {
+fromSupabaseBlogRow,
+getAllBlogsFromDb,
+getBlogBySlugFromDb,
+getPublishedBlogsFromDb,
+toSupabaseBlogPayload
+} from '@/lib/blogs/blog-storage';
+import {
+deleteCoupon,
+getAllCoupons,
+saveCoupon,
+toggleCouponStatus,
+} from '@/lib/commerce/coupon-storage';
+import {
+deleteProduct,
+getAllProducts,
+saveProduct,
+} from '@/lib/commerce/product-storage';
+import {
+deleteCaseStudy,
+getAllCaseStudies,
+saveCaseStudy
+} from '@/lib/content/casestudies-storage';
+import {
+deleteInsight,
+getAllInsights,
+saveInsight
+} from '@/lib/content/insights-storage';
+import {
+deleteSurakshaArticle,
+getAllSurakshaArticles,
+saveSurakshaArticle
+} from '@/lib/content/suraksha-storage';
+import { getAllNotices,removeNotice,saveNotice } from '@/lib/notices/notice-storage';
+import { validateAndNormalizeDriveUrl,validateNoticeWordCount } from '@/lib/notices/notice-utils';
+import { getAllConsentRecords,getConsentStats } from '@/lib/privacy/consent-storage';
+import {
+AdminConsentRecord,
+AdminCoupon,
+CouponCategory,
+MongoAnnualReturn,
+MongoBlog,
+MongoCartItem,
+MongoCheckout,
+MongoPayment,
+MongoProduct,
+NoticeItem,
+ProductBrand
 } from '@/types/admin';
 import {
-  getAllCoupons,
-  saveCoupon,
-  deleteCoupon,
-  toggleCouponStatus,
-} from '@/lib/commerce/coupon-storage';
-import { getAdminSession } from '@/lib/admin/admin-auth';
-import { getAllNotices, saveNotice, removeNotice } from '@/lib/notices/notice-storage';
-import { validateNoticeWordCount, validateAndNormalizeDriveUrl, MAX_NOTICE_WORD_COUNT } from '@/lib/notices/notice-utils';
-import { 
-  getAllBlogsFromDb, 
-  getPublishedBlogsFromDb, 
-  getBlogBySlugFromDb, 
-  toSupabaseBlogPayload, 
-  fromSupabaseBlogRow 
-} from '@/lib/blogs/blog-storage';
-import { getAllConsentRecords, getConsentStats } from '@/lib/privacy/consent-storage';
-import { 
-  ContentCategoryType, 
-  TreelInsightArticle, 
-  TmipCaseStudy, 
-  SurakshaArticle 
+ContentCategoryType
 } from '@/types/content';
-import { 
-  getAllInsights, 
-  saveInsight, 
-  deleteInsight 
-} from '@/lib/content/insights-storage';
-import { 
-  getAllCaseStudies, 
-  saveCaseStudy, 
-  deleteCaseStudy 
-} from '@/lib/content/casestudies-storage';
-import { 
-  getAllSurakshaArticles, 
-  saveSurakshaArticle, 
-  deleteSurakshaArticle 
-} from '@/lib/content/suraksha-storage';
-import {
-  getAllProducts,
-  saveProduct,
-  deleteProduct,
-} from '@/lib/commerce/product-storage';
+import { createClient } from '@supabase/supabase-js';
+import { revalidatePath } from 'next/cache';
 
 function getAdminClient() {
   const url = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder-treel.supabase.co').replace(/^['"]|['"]$/g, '');
@@ -773,7 +770,8 @@ export async function createAdminAnnualReturn(ret: Partial<MongoAnnualReturn>) {
 export async function updateAdminAnnualReturn(id: string, updates: Partial<MongoAnnualReturn>) {
   const supabase = getAdminClient();
   try {
-    const { _id, ...fields } = updates;
+    const fields = { ...updates };
+    delete fields._id;
     const { data, error } = await supabase
       .from('TreelEcommerce.annualreturns')
       .update(fields)
@@ -1253,6 +1251,7 @@ export async function deleteAdminCoupon(
   category?: CouponCategory,
   productId?: string | null
 ): Promise<{ success: boolean; error?: string }> {
+  void productId;
   const session = await getAdminSession();
   if (!session) {
     return { success: false, error: "Unauthorized. Admin login required." };
@@ -1277,6 +1276,8 @@ export async function toggleAdminCouponStatus(
   productId?: string | null,
   currentStatus?: "Active" | "Inactive"
 ): Promise<{ success: boolean; error?: string }> {
+  void productId;
+  void currentStatus;
   const session = await getAdminSession();
   if (!session) {
     return { success: false, error: "Unauthorized. Admin login required." };

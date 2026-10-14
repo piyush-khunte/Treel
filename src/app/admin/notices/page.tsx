@@ -1,40 +1,39 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { 
-  Bell, 
-  Plus, 
-  Search, 
-  Edit3, 
-  Trash2, 
-  RefreshCw, 
-  X, 
-  Save, 
-  CheckCircle2, 
-  Clock, 
-  Globe, 
-  FileText, 
-  AlertCircle,
-  ExternalLink,
-  Link as LinkIcon
-} from "lucide-react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { 
-  getAdminNotices, 
-  createAdminNotice, 
-  updateAdminNotice, 
-  deleteAdminNotice,
-  togglePublishAdminNotice
+import {
+createAdminNotice,
+deleteAdminNotice,
+getAdminNotices,
+togglePublishAdminNotice,
+updateAdminNotice
 } from "@/lib/admin/admin-actions";
-import { NoticeItem } from "@/types/admin";
-import { 
-  MAX_NOTICE_WORD_COUNT, 
-  countWords, 
-  validateNoticeWordCount, 
-  validateAndNormalizeDriveUrl 
+import {
+MAX_NOTICE_WORD_COUNT,
+countWords,
+validateAndNormalizeDriveUrl
 } from "@/lib/notices/notice-utils";
+import { NoticeItem } from "@/types/admin";
+import {
+AlertCircle,
+Bell,
+CheckCircle2,
+Clock,
+Edit3,
+ExternalLink,
+FileText,
+Globe,
+Link as LinkIcon,
+Plus,
+RefreshCw,
+Save,
+Search,
+Trash2,
+X
+} from "lucide-react";
+import { useCallback,useEffect,useState } from "react";
 
 export default function AdminNoticesPage() {
   const [notices, setNotices] = useState<NoticeItem[]>([]);
@@ -46,12 +45,12 @@ export default function AdminNoticesPage() {
   const [saving, setSaving] = useState(false);
   const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
-  const showFeedback = (type: "success" | "error", message: string) => {
+  const showFeedback = useCallback((type: "success" | "error", message: string) => {
     setFeedback({ type, message });
     setTimeout(() => setFeedback(null), 5000);
-  };
+  }, []);
 
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     setLoading(true);
     const res = await getAdminNotices();
     if (res.success && res.data) {
@@ -60,11 +59,11 @@ export default function AdminNoticesPage() {
       showFeedback("error", res.error || "Failed to load notices");
     }
     setLoading(false);
-  };
+  }, [showFeedback]);
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [loadData]);
 
   const handleEdit = (item: NoticeItem) => {
     setEditingItem({ 

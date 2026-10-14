@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Sliders, ShieldCheck, Check, AlertCircle, Trash2 } from "lucide-react";
 import {
-  getStoredConsent,
-  saveConsentPreference,
-  withdrawAllConsent,
-  ACCEPTED_ALL_CATEGORIES,
-  DEFAULT_CATEGORIES,
-  ConsentCategories,
-  StoredConsent,
+ACCEPTED_ALL_CATEGORIES,
+ConsentCategories,
+DEFAULT_CATEGORIES,
+getStoredConsent,
+saveConsentPreference,
+StoredConsent,
+withdrawAllConsent,
 } from "@/lib/privacy/cookie-consent";
+import { Check,Sliders,Trash2 } from "lucide-react";
+import { useEffect,useState } from "react";
 
 export function CookiePreferencesManager() {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,19 +1,18 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import {
-  Tag,
-  X,
-  Copy,
-  Check,
-  Sparkles,
-  Percent,
-  ShieldCheck,
-  AlertCircle,
-  Loader2,
-} from "lucide-react";
 import type { AvailableCouponItem } from "@/lib/commerce/coupon-validator";
 import { copyToClipboardSafe } from "@/lib/utils/clipboard";
+import {
+AlertCircle,
+Check,
+Copy,
+Loader2,
+Percent,
+ShieldCheck,
+Tag,
+X
+} from "lucide-react";
+import { useEffect,useState } from "react";
 
 interface AvailableCouponsModalProps {
   isOpen: boolean;

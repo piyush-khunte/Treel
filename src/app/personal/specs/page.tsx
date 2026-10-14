@@ -1,21 +1,17 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+AlertCircle,
+Award,
+Car,
+CheckCircle2,
+Download,
+Gauge,
+ShieldCheck,
+ShoppingCart,
+Smartphone
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { 
-  FileText, 
-  Download, 
-  ArrowRight, 
-  CheckCircle2, 
-  AlertCircle, 
-  ShieldCheck, 
-  Cpu, 
-  Smartphone, 
-  Car, 
-  Award,
-  Radio,
-  Gauge,
-  ShoppingCart
-} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Specifications · Personal TPMS",

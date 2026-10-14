@@ -1,28 +1,25 @@
 "use client";
 
-import React, { useState, useMemo, Suspense } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { useSearchParams, useRouter, redirect } from "next/navigation";
-import { 
-  CheckCircle2, 
-  ShoppingCart, 
-  ShieldCheck, 
-  Truck, 
-  Clock, 
-  Lock, 
-  ChevronRight, 
-  ArrowRight,
-  Sparkles,
-  Layers,
-  Wrench,
-  Package,
-  FileText
-} from "lucide-react";
-import { useCart } from "@/lib/commerce/cart-context";
-import { PERSONAL_PRODUCTS, PersonalProduct, getPersonalProductBySlug, normalizePersonalCategory } from "@/lib/data/personal-products";
-import { getValidImageSrc } from "@/lib/utils/image-utils";
 import { isSurakshaProductOrItem } from "@/lib/commerce/brand-validator";
+import { useCart } from "@/lib/commerce/cart-context";
+import { PERSONAL_PRODUCTS,PersonalProduct,getPersonalProductBySlug,normalizePersonalCategory } from "@/lib/data/personal-products";
+import { getValidImageSrc } from "@/lib/utils/image-utils";
+import {
+CheckCircle2,
+ChevronRight,
+Clock,
+Lock,
+Package,
+ShieldCheck,
+ShoppingCart,
+Sparkles,
+Truck,
+Wrench
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter,useSearchParams } from "next/navigation";
+import React,{ Suspense,useMemo,useState } from "react";
 
 function ProductDetailContent({ product }: { product: PersonalProduct }) {
   const router = useRouter();

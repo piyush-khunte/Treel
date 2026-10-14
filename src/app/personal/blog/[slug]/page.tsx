@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, Calendar, Clock, User, ShoppingCart } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { getPublicBlogBySlug, getPublicBlogs } from "@/lib/admin/admin-actions";
+import { getPublicBlogBySlug,getPublicBlogs } from "@/lib/admin/admin-actions";
 import { slugifyAuthor } from "@/lib/authors/author-utils";
 import { getValidImageSrc } from "@/lib/utils/image-utils";
+import { ArrowLeft,Calendar,Clock,ShoppingCart,User } from "lucide-react";
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export const revalidate = 60;
 
@@ -128,9 +129,12 @@ export default async function PersonalArticlePage({
             if (!validImageSrc) return null;
             return (
               <div className="rounded-2xl overflow-hidden border border-black/[0.08] shadow-sm mb-8">
-                <img
+                <Image
                   src={validImageSrc}
                   alt={article.title || "Personal blog post cover"}
+                  width={1200}
+                  height={630}
+                  unoptimized
                   className="w-full h-auto max-h-[460px] object-cover"
                 />
               </div>

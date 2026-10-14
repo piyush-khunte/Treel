@@ -1,25 +1,21 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+ArrowRight,
+Compass,
+Contrast,
+Eye,
+FileCheck2,
+FileText,
+Keyboard,
+Laptop,
+Layers,
+Mail,
+Phone,
+Subtitles,
+Volume2
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { 
-  CheckCircle2, 
-  HelpCircle, 
-  Mail, 
-  Phone, 
-  FileCheck2, 
-  AlertTriangle, 
-  Sparkles, 
-  Eye, 
-  Keyboard, 
-  Laptop, 
-  FileText, 
-  Volume2, 
-  Layers, 
-  Compass, 
-  Contrast, 
-  Subtitles, 
-  ArrowRight
-} from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Accessibility · Treel",

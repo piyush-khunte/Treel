@@ -1,18 +1,13 @@
+import {
+ArrowRight,
+BookOpen,
+Calendar,
+ChevronRight,
+FileText,
+User
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { 
-  FileText, 
-  Calendar, 
-  Clock, 
-  User, 
-  Download, 
-  CheckCircle2, 
-  ArrowRight, 
-  ShieldCheck, 
-  BookOpen, 
-  Building2,
-  ChevronRight
-} from "lucide-react";
 import { WhitepaperGatedForm } from "./whitepaper-form";
 
 export const metadata: Metadata = {

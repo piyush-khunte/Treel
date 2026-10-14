@@ -1,7 +1,7 @@
+import { AdminCoupon,CouponCategory } from "@/types/admin";
+import { createClient } from "@supabase/supabase-js";
 import fs from "fs";
 import path from "path";
-import { AdminCoupon, CouponCategory } from "@/types/admin";
-import { createClient } from "@supabase/supabase-js";
 
 function isSupabaseConfigured(): boolean {
   const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -280,7 +280,7 @@ export async function getAllCoupons(category?: CouponCategory): Promise<AdminCou
           console.error("Failed to parse TreelEcommerce.t_test coupons payload:", parseErr);
         }
       }
-    } catch (syncErr) {
+    } catch {
       // Fall back to local store
     }
   }

@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useId } from "react";
+import { Calculator,ChevronRight,RefreshCw,Sparkles } from "lucide-react";
 import Link from "next/link";
-import { ArrowRight, ChevronRight, Calculator, IndianRupee, Sparkles, TrendingUp, RefreshCw } from "lucide-react";
+import { useId,useState } from "react";
 
 interface TruckConfig {
   id: string;
@@ -77,7 +77,6 @@ export function SavingsCalculator() {
   const [fuelExpense, setFuelExpense] = useState<number>(95000);
   const [tyreExpense, setTyreExpense] = useState<number>(140000);
   const [roadsideEvents, setRoadsideEvents] = useState<number>(1);
-  const [calculated, setCalculated] = useState<boolean>(true);
 
   const selectedConfig = TRUCK_CONFIGS.find((c) => c.id === selectedConfigId) || TRUCK_CONFIGS[1];
 
@@ -104,7 +103,6 @@ export function SavingsCalculator() {
 
   // Total monthly savings
   const totalMonthlySavings = monthlyFuelSavings + monthlyTyreSavings + monthlyDowntimeSavings;
-  const annualTotalSavings = totalMonthlySavings * 12;
 
   // Payback period (in months)
   const paybackMonths = Math.max(1, Math.round((selectedConfig.kitCost / totalMonthlySavings) * 10) / 10);
@@ -257,7 +255,6 @@ export function SavingsCalculator() {
         <div className="pt-4 border-t border-[#451A03]/10 flex flex-wrap items-center gap-4">
           <button
             type="button"
-            onClick={() => setCalculated(true)}
             className="px-6 py-3.5 rounded-[4px] font-rubik font-bold text-sm shadow-md bg-[#DC2626] text-[#FEF3C7] hover:bg-[#B91C1C] transition-all flex items-center gap-2 cursor-pointer active:scale-[0.98]"
           >
             <Sparkles className="w-4 h-4" />

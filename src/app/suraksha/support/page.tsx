@@ -1,26 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
-import {
-  Phone,
-  PhoneCall,
-  Clock,
-  Wrench,
-  HelpCircle,
-  ShieldCheck,
-  CreditCard,
-  MapPin,
-  ChevronDown,
-  ArrowRight,
-  CheckCircle2,
-  Camera,
-  Truck,
-  MessageSquare,
-  AlertCircle
-} from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+ArrowRight,
+ChevronDown,
+Clock,
+CreditCard,
+HelpCircle,
+MapPin,
+MessageSquare,
+Phone,
+PhoneCall,
+ShieldCheck,
+Wrench
+} from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 // WhatsApp inline SVG icon
 function WhatsAppIcon({ className = "w-5 h-5 text-[#25D366]" }: { className?: string }) {

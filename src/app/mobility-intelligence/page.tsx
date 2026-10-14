@@ -1,8 +1,8 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
+import { ArrowRight,ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ChevronRight, Activity, Cpu, LineChart } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "What is Mobility Intelligence? · Treel",

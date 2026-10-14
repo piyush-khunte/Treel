@@ -1,26 +1,25 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { copyToClipboardSafe } from "@/lib/utils/clipboard";
+import {
+ArrowRight,
+Building2,
+Check,
+CheckCircle2,
+ChevronRight,
+Copy,
+FileText,
+HelpCircle,
+MapPin,
+MessageSquare,
+PhoneCall,
+ShieldCheck
+} from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import {
-  ArrowRight,
-  CheckCircle2,
-  ChevronRight,
-  Copy,
-  Check,
-  PhoneCall,
-  MessageSquare,
-  HelpCircle,
-  MapPin,
-  ShieldCheck,
-  FileText,
-  Clock,
-  Building2,
-} from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
-import { copyToClipboardSafe } from "@/lib/utils/clipboard";
+import { useEffect,useState } from "react";
 
 interface EmiApplicationDetails {
   referenceNumber: string;

@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
-import { ArrowRight, Calculator, CheckCircle2, TrendingUp, DollarSign } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function TMIPROICalculatorPage() {
   const [fleetSize, setFleetSize] = useState<number>(250);

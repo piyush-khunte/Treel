@@ -1,19 +1,18 @@
+import {
+Activity,
+ArrowRight,
+Box,
+CheckCircle2,
+Cpu,
+Layers,
+Lock,
+Radio,
+Server,
+ShieldCheck,
+Wrench
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ShieldCheck,
-  Activity,
-  Layers,
-  Cpu,
-  Radio,
-  Server,
-  Code2,
-  CheckCircle2,
-  Box,
-  Wrench,
-  Lock,
-} from "lucide-react";
 
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 

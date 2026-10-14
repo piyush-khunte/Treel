@@ -1,16 +1,16 @@
-import { NextRequest, NextResponse } from 'next/server';
-import {
-  isRazorpayConfigured,
-  verifyPaymentSignature,
-  isSesConfigured,
-  sendOrderConfirmationEmail,
-  sendPaymentReceiptEmail,
-  sendEmail,
-} from '@/lib/integrations';
-import { persistOrderToSupabase, getSupabaseAdminClient } from '@/lib/commerce/order-storage';
-import { syncOrderToShiprocket } from '@/lib/commerce/shiprocket-order-sync';
+import { validateCartBrandServer } from '@/lib/commerce/brand-validator';
 import { validateCouponServer } from '@/lib/commerce/coupon-validator';
-import { validateCartBrandServer, isSurakshaProductOrItem } from '@/lib/commerce/brand-validator';
+import { getSupabaseAdminClient,persistOrderToSupabase } from '@/lib/commerce/order-storage';
+import { syncOrderToShiprocket } from '@/lib/commerce/shiprocket-order-sync';
+import {
+isRazorpayConfigured,
+isSesConfigured,
+sendEmail,
+sendOrderConfirmationEmail,
+sendPaymentReceiptEmail,
+verifyPaymentSignature,
+} from '@/lib/integrations';
+import { NextRequest,NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   if (!isRazorpayConfigured()) {

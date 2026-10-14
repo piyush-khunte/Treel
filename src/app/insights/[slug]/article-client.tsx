@@ -1,15 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
-import { 
-  Link as LinkIcon, 
-  Mail, 
-  Check, 
-  Loader2, 
-  CheckCircle2
-} from "lucide-react";
 import { copyToClipboardSafe } from "@/lib/utils/clipboard";
+import {
+Check,
+CheckCircle2,
+Link as LinkIcon,
+Loader2,
+Mail
+} from "lucide-react";
+import React,{ useState } from "react";
 
 interface ArticleShareProps {
   title: string;

@@ -1,19 +1,11 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+CheckCircle2,
+Clock,
+Radio
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { 
-  Battery, 
-  BatteryCharging, 
-  Clock, 
-  ShieldCheck, 
-  CheckCircle2, 
-  ArrowRight, 
-  Wrench, 
-  AlertTriangle, 
-  Radio, 
-  RefreshCw,
-  ShoppingCart
-} from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "2-Year Battery Life · Personal TPMS",

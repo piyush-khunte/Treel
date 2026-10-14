@@ -1,7 +1,7 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { CartItem } from "@/types/database";
+import React,{ createContext,useContext,useEffect,useState } from "react";
 
 export interface AppliedCoupon {
   code: string;
@@ -214,7 +214,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     try {
       localStorage.removeItem("treel_guest_cart");
       localStorage.removeItem("treel_personal_coupon");
-    } catch (e) {}
+    } catch {}
   };
 
   const applyPersonalCoupon = async (code: string): Promise<{ success: boolean; message?: string; discountInr?: number }> => {
@@ -291,7 +291,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setPersonalAppliedCoupon(null);
     try {
       localStorage.removeItem("treel_personal_coupon");
-    } catch (e) {}
+    } catch {}
   };
 
   const personalTotalItems = personalItems.reduce((acc, i) => acc + i.quantity, 0);
@@ -369,7 +369,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setSurakshaAppliedCoupon(null);
     try {
       localStorage.removeItem("treel_suraksha_cart");
-    } catch (e) {}
+    } catch {}
   };
 
   const applySurakshaCoupon = async (code: string): Promise<{ success: boolean; message?: string; discountInr?: number }> => {
@@ -446,7 +446,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setSurakshaAppliedCoupon(null);
     try {
       localStorage.removeItem("treel_suraksha_coupon");
-    } catch (e) {}
+    } catch {}
   };
 
   const surakshaTotalItems = surakshaItems.reduce((acc, i) => acc + i.quantity, 0);

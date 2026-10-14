@@ -1,17 +1,10 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+Mail,
+MapPin
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { 
-  Shield, 
-  Lock, 
-  FileText, 
-  Mail, 
-  MapPin, 
-  Phone, 
-  ExternalLink, 
-  ChevronRight,
-  CheckCircle2
-} from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Privacy Policy  ·  Treel",

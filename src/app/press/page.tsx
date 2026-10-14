@@ -1,20 +1,15 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import Link from "next/link";
-import { 
-  ArrowRight, 
-  Search, 
-  Calendar, 
-  Newspaper, 
-  Mail, 
-  Download, 
-  ExternalLink,
-  ChevronRight,
-  Sparkles
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+ArrowRight,
+Download,
+Mail,
+Newspaper,
+Search
+} from "lucide-react";
+import Link from "next/link";
+import { useMemo,useState } from "react";
 
 interface PressRelease {
   slug: string;

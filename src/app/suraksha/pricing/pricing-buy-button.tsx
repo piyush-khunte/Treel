@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import { ArrowRight } from "lucide-react";
 import { useSurakshaCart } from "@/lib/commerce/cart-context";
+import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
+import React,{ useState } from "react";
 
 interface PricingBuyButtonProps {
   tyres: number;
@@ -16,7 +16,6 @@ interface PricingBuyButtonProps {
 
 export function PricingBuyButton({
   tyres,
-  type,
   title,
   price,
   sku,

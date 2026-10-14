@@ -1,42 +1,38 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
-import Link from "next/link";
-import {
-  Calendar,
-  Plus,
-  Search,
-  Edit3,
-  Trash2,
-  RefreshCw,
-  X,
-  Save,
-  Eye,
-  EyeOff,
-  ExternalLink,
-  AlertCircle,
-  CheckCircle2,
-  Clock,
-  MapPin,
-  Video,
-  Upload,
-  User,
-  ListPlus,
-  FileText,
-  Star,
-  ChevronRight,
-  Sparkles
-} from "lucide-react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
-  getAdminEventsListAction,
-  saveEventAction,
-  deleteEventAction,
-  toggleEventPublishAction
+deleteEventAction,
+getAdminEventsListAction,
+saveEventAction,
+toggleEventPublishAction
 } from "@/lib/admin/admin-actions";
-import { EventItemRecord, EventAgendaItem, EventSpeaker } from "@/types/content";
+import { EventAgendaItem,EventItemRecord,EventSpeaker } from "@/types/content";
+import {
+AlertCircle,
+Calendar,
+CheckCircle2,
+Clock,
+Edit3,
+ExternalLink,
+Eye,
+EyeOff,
+MapPin,
+Plus,
+RefreshCw,
+Save,
+Search,
+Star,
+Trash2,
+Upload,
+User,
+Video,
+X
+} from "lucide-react";
+import Link from "next/link";
+import { useCallback,useEffect,useMemo,useState } from "react";
 
 function slugify(text: string): string {
   return text
@@ -65,12 +61,12 @@ export default function AdminEventsPage() {
 
   const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
-  const showFeedback = (type: "success" | "error", message: string) => {
+  const showFeedback = useCallback((type: "success" | "error", message: string) => {
     setFeedback({ type, message });
     setTimeout(() => setFeedback(null), 6000);
-  };
+  }, []);
 
-  const loadEvents = async () => {
+  const loadEvents = useCallback(async () => {
     setLoading(true);
     const res = await getAdminEventsListAction();
     if (res.success && res.data) {
@@ -79,11 +75,11 @@ export default function AdminEventsPage() {
       showFeedback("error", res.error || "Failed to load events.");
     }
     setLoading(false);
-  };
+  }, [showFeedback]);
 
   useEffect(() => {
     loadEvents();
-  }, []);
+  }, [loadEvents]);
 
   const handleCreate = () => {
     const today = new Date().toISOString().split("T")[0];

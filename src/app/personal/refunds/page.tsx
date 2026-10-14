@@ -1,16 +1,9 @@
-import type { Metadata } from "next";
-import Link from "next/link";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { 
-  CreditCard, 
-  Clock, 
-  CheckCircle2, 
-  ShieldCheck, 
-  ArrowRight, 
-  PhoneCall, 
-  Mail,
-  RotateCcw
+import {
+CheckCircle2,
+CreditCard
 } from "lucide-react";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Refunds Policy · Personal TPMS · Treel",

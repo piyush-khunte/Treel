@@ -1,16 +1,11 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+AlertCircle,
+CheckCircle2,
+RotateCcw
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { 
-  RotateCcw, 
-  CheckCircle2, 
-  ShieldCheck, 
-  AlertCircle, 
-  ArrowRight, 
-  Mail, 
-  PhoneCall,
-  PackageCheck
-} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Returns Policy · Personal TPMS · Treel",

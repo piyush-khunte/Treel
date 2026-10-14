@@ -1,20 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
-import { 
-  ArrowRight, 
-  Calendar, 
-  Clock, 
-  User, 
-  Mail, 
-  Loader2, 
-  CheckCircle2, 
-  ChevronRight,
-  BookOpen
-} from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { slugifyAuthor } from "@/lib/authors/author-utils";
+import {
+ArrowRight,
+BookOpen,
+CheckCircle2,
+Loader2,
+Mail
+} from "lucide-react";
+import Link from "next/link";
+import React,{ useState } from "react";
 
 import { TreelInsightArticle } from "@/types/content";
 

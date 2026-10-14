@@ -1,20 +1,16 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
+import {
+Activity,
+ArrowRight,
+Cpu,
+Layers,
+Lock,
+Server,
+Zap
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { 
-  ArrowRight, 
-  ShieldCheck, 
-  Database, 
-  Lock, 
-  Server, 
-  Activity, 
-  FileText, 
-  CheckCircle2,
-  Cpu,
-  Layers,
-  Zap
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Data Infrastructure · Treel",

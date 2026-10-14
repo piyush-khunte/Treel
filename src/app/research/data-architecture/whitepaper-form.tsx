@@ -1,18 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
-import { 
-  Download, 
-  CheckCircle2, 
-  Loader2, 
-  Mail, 
-  Building2, 
-  User, 
-  Phone, 
-  Truck, 
-  Briefcase,
-  Eye
+import {
+CheckCircle2,
+Download,
+Loader2
 } from "lucide-react";
+import React,{ useState } from "react";
 
 const FREE_EMAIL_DOMAINS = [
   "gmail.com",

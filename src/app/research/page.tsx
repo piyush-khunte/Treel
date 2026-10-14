@@ -1,9 +1,9 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { getPublishedWhitepapers } from "@/lib/content/whitepapers-storage";
+import { ArrowRight,Sparkles } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ResearchLibrary } from "./research-client";
-import { ArrowRight, BookOpen, FileCheck, Layers, Sparkles } from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { getPublishedWhitepapers } from "@/lib/content/whitepapers-storage";
 
 export const metadata: Metadata = {
   title: "Research & Whitepapers  ·  Treel",

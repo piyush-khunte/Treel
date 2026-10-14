@@ -1,17 +1,15 @@
+import {
+ArrowRight,
+BatteryCharging,
+Bell,
+Clock,
+Gauge,
+ShieldCheck,
+Smartphone,
+Sparkles
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ShieldCheck,
-  Smartphone,
-  Gauge,
-  Bell,
-  Clock,
-  BatteryCharging,
-  CheckCircle2,
-  Sliders,
-  Sparkles,
-} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Personal TPMS — Bluetooth Tyre Pressure Monitoring | Treel",

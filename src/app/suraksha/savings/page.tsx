@@ -1,10 +1,9 @@
+import { SavingsCalculator } from "@/components/suraksha/savings-calculator";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, CheckCircle2, ShieldCheck, Activity, HelpCircle, ChevronRight, MessageSquare, PhoneCall, Check } from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
-import { SavingsCalculator } from "@/components/suraksha/savings-calculator";
 
 export const metadata: Metadata = {
   title: "Savings  \u00b7  Nine-Month Payback on Suraksha Kit  \u00b7  ROI Calculator",

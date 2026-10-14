@@ -1,7 +1,7 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { ArrowRight,ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ChevronRight, MessageSquare } from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Manish Ingale · Founder Note · Treel",

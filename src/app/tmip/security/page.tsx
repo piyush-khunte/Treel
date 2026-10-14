@@ -1,20 +1,10 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+ArrowRight,
+CheckCircle2
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { 
-  ShieldCheck, 
-  Lock, 
-  Server, 
-  FileCode, 
-  AlertTriangle, 
-  Key, 
-  CheckCircle2, 
-  ArrowRight,
-  Database,
-  RefreshCw,
-  Eye,
-  FileText
-} from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Security  ·  TMIP",

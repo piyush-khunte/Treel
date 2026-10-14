@@ -1,17 +1,10 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+ArrowRight,
+Truck
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { 
-  Truck, 
-  Clock, 
-  MapPin, 
-  ShieldCheck, 
-  CheckCircle2, 
-  ArrowRight, 
-  PhoneCall, 
-  Mail,
-  AlertCircle
-} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Shipping Policy · Personal TPMS · Treel",

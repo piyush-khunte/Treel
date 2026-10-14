@@ -1,8 +1,5 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, CheckCircle2, ShieldCheck, Activity, HelpCircle, ChevronRight, MessageSquare, PhoneCall, Check } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "[Category]  \u00b7  Treel Insights",

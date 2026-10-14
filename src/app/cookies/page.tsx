@@ -1,8 +1,7 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { CookiePreferencesManager } from "./cookie-preferences";
-import { Shield, Lock, Sliders, ExternalLink, Mail, Phone, MapPin, CheckCircle2, ChevronRight } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { Mail,MapPin,Phone,Sliders } from "lucide-react";
+import type { Metadata } from "next";
+import { CookiePreferencesManager } from "./cookie-preferences";
 
 export const metadata: Metadata = {
   title: "Cookie Policy  ·  Treel",

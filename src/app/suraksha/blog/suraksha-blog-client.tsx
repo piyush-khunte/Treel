@@ -198,6 +198,16 @@ const fallbackArticlesData: Article[] = [
   }
 ];
 
+const BASE_CATEGORIES = [
+  "All",
+  "Fuel efficiency",
+  "Safety",
+  "Business & GST",
+  "Route planning",
+  "Industry news",
+  "Maintenance",
+];
+
 interface SurakshaBlogClientProps {
   initialArticles?: SurakshaArticle[];
 }
@@ -237,19 +247,9 @@ export function SurakshaBlogClient({ initialArticles }: SurakshaBlogClientProps 
     );
   }, [articlesData]);
 
-  const baseCategories = [
-    "All",
-    "Fuel efficiency",
-    "Safety",
-    "Business & GST",
-    "Route planning",
-    "Industry news",
-    "Maintenance"
-  ];
-
   const categories = useMemo(() => {
     const dynamicCats = Array.from(new Set(articlesData.map((a) => a.category).filter(Boolean)));
-    return Array.from(new Set([...baseCategories, ...dynamicCats]));
+    return Array.from(new Set([...BASE_CATEGORIES, ...dynamicCats]));
   }, [articlesData]);
 
   const filteredArticles = useMemo(() => {

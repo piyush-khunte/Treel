@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
-import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowRight, CheckCircle2, ShieldCheck, PhoneCall, Building2 } from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { ArrowRight,Building2 } from "lucide-react";
+import { useRouter,useSearchParams } from "next/navigation";
+import React,{ Suspense,useEffect,useState } from "react";
 
 function SurakshaEMIApplyForm() {
   const router = useRouter();

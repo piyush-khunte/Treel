@@ -1,25 +1,20 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { 
-  ShieldCheck, 
-  Lock, 
-  Globe, 
-  FileCheck2, 
-  UserCheck, 
-  RefreshCw, 
-  Trash2, 
-  PauseCircle, 
-  DownloadCloud, 
-  ShieldAlert, 
-  SlidersHorizontal,
-  Mail, 
-  MapPin, 
-  Building2,
-  Info,
-  ExternalLink,
-  ChevronRight
-} from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+Building2,
+DownloadCloud,
+FileCheck2,
+Globe,
+Mail,
+MapPin,
+PauseCircle,
+RefreshCw,
+ShieldAlert,
+ShieldCheck,
+SlidersHorizontal,
+Trash2,
+UserCheck
+} from "lucide-react";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "GDPR · Treel",

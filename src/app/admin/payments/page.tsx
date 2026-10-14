@@ -1,21 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { 
-  CreditCard, 
-  Search, 
-  RefreshCw, 
-  ExternalLink, 
-  DollarSign, 
-  Calendar 
-} from "lucide-react";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { formatINR } from "@/lib/utils";
 import { getAdminPayments } from "@/lib/admin/admin-actions";
+import { formatINR } from "@/lib/utils";
 import { MongoPayment } from "@/types/admin";
+import {
+RefreshCw,
+Search
+} from "lucide-react";
+import { useEffect,useState } from "react";
 
 export default function AdminPaymentsPage() {
   const [payments, setPayments] = useState<MongoPayment[]>([]);

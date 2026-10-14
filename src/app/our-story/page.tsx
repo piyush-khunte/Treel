@@ -1,7 +1,7 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Calendar, ChevronRight } from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Our Story · Treel Mobility Solutions",
@@ -100,7 +100,7 @@ export default function OurStoryPage() {
       <section className="py-20 border-b border-white/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl space-y-12">
-            {milestones.map((item, idx) => (
+            {milestones.map((item) => (
               <div 
                 key={item.year}
                 className="relative pl-8 sm:pl-10 border-l-2 border-[#D5573B]/30 space-y-3 pb-8 last:pb-0"

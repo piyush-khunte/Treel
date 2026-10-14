@@ -24,38 +24,35 @@ try {
 }
 
 import {
-  getAllInsights,
-  getPublishedInsights,
-  getInsightBySlug,
-  saveInsight,
-  deleteInsight
-} from "../src/lib/content/insights-storage";
+createAdminCategoryContent,
+deleteAdminCategoryContent,
+getAdminCategoryContent,
+updateAdminCategoryContent
+} from "../src/lib/admin/admin-actions";
 import {
-  getAllCaseStudies,
-  getPublishedCaseStudies,
-  getCaseStudyBySlug,
-  saveCaseStudy,
-  deleteCaseStudy
-} from "../src/lib/content/casestudies-storage";
-import {
-  getAllSurakshaArticles,
-  getPublishedSurakshaArticles,
-  getSurakshaArticleById,
-  saveSurakshaArticle,
-  deleteSurakshaArticle
-} from "../src/lib/content/suraksha-storage";
-import {
-  getAllBlogsFromDb,
-  getPublishedBlogsFromDb,
-  getBlogBySlugFromDb
+getAllBlogsFromDb
 } from "../src/lib/blogs/blog-storage";
 import {
-  getAdminCategoryContent,
-  createAdminCategoryContent,
-  updateAdminCategoryContent,
-  deleteAdminCategoryContent,
-  togglePublishAdminCategoryContent
-} from "../src/lib/admin/admin-actions";
+deleteCaseStudy,
+getAllCaseStudies,
+getCaseStudyBySlug,
+getPublishedCaseStudies,
+saveCaseStudy
+} from "../src/lib/content/casestudies-storage";
+import {
+deleteInsight,
+getAllInsights,
+getInsightBySlug,
+getPublishedInsights,
+saveInsight
+} from "../src/lib/content/insights-storage";
+import {
+deleteSurakshaArticle,
+getAllSurakshaArticles,
+getPublishedSurakshaArticles,
+getSurakshaArticleById,
+saveSurakshaArticle
+} from "../src/lib/content/suraksha-storage";
 
 async function runContentCrudVerification() {
   console.log("=================================================");

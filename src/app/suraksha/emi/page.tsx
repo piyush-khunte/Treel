@@ -1,22 +1,16 @@
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+ArrowRight,
+Building,
+ChevronRight,
+CreditCard,
+FileCheck2,
+Sparkles
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ShieldCheck,
-  CheckCircle2,
-  FileCheck2,
-  Clock,
-  Sparkles,
-  HelpCircle,
-  ChevronRight,
-  Building,
-  CreditCard,
-  MapPin,
-  Truck,
-} from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { SurakshaEmiCalculator } from "./emi-calculator";
-import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 export const metadata: Metadata = {
   title: "Suraksha EMI Plans · Bajaj Finance Partnership · Zero-Cost Options",

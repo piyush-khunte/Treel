@@ -1,33 +1,31 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
-import { notFound } from "next/navigation";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Calendar,
-  Clock,
-  User,
-  BookOpen,
-  ShieldCheck,
-  CheckCircle2,
-  Wrench,
-  Fuel,
-  Navigation,
-  FileText,
-  AlertTriangle,
-  Share2,
-} from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
-import { slugifyAuthor } from "@/lib/authors/author-utils";
 import { getAdminSession } from "@/lib/admin/admin-auth";
+import { slugifyAuthor } from "@/lib/authors/author-utils";
+import {
+getPublishedSurakshaArticles,
+getSurakshaArticleBySlug
+} from "@/lib/content/suraksha-storage";
 import { getValidImageSrc } from "@/lib/utils/image-utils";
 import {
-  getPublishedSurakshaArticleBySlug,
-  getPublishedSurakshaArticles,
-  getSurakshaArticleBySlug,
-} from "@/lib/content/suraksha-storage";
+AlertTriangle,
+ArrowLeft,
+ArrowRight,
+BookOpen,
+Calendar,
+CheckCircle2,
+Clock,
+FileText,
+Fuel,
+Navigation,
+ShieldCheck,
+User,
+Wrench
+} from "lucide-react";
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export const revalidate = 60;
 export const dynamicParams = true;

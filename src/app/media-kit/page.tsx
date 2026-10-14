@@ -1,8 +1,8 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
+import { ArrowRight,Download,FileText,Layers,Palette,Shield,Sparkles } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Download, FileText, Image as ImageIcon, Sparkles, Shield, Palette, Layers } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Media Kit · Treel",

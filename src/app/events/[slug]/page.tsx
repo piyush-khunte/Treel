@@ -1,19 +1,17 @@
+import { getEventBySlug,getPublishedEvents } from "@/lib/content/events-storage";
+import {
+Calendar,
+CalendarPlus,
+ChevronRight,
+ExternalLink,
+MapPin,
+Video
+} from "lucide-react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Image from "next/image";
-import { 
-  ArrowRight, 
-  Calendar, 
-  MapPin, 
-  Users, 
-  Video, 
-  ChevronRight, 
-  CalendarPlus,
-  ExternalLink
-} from "lucide-react";
 import { EventRegisterForm } from "./event-register-form";
-import { getEventBySlug, getPublishedEvents } from "@/lib/content/events-storage";
 
 export async function generateStaticParams() {
   const events = await getPublishedEvents();
@@ -100,9 +98,12 @@ export default async function EventSlugPage({ params }: { params: Promise<{ slug
             {/* Event banner image if available */}
             {(event.bannerUrl || event.image) && (
               <div className="pt-2 rounded-xl overflow-hidden max-w-3xl">
-                <img
-                  src={event.bannerUrl || event.image}
+                <Image
+                  src={event.bannerUrl || event.image!}
                   alt={event.name}
+                  width={1200}
+                  height={600}
+                  unoptimized
                   className="w-full h-auto max-h-[380px] object-cover rounded-xl border border-white/10 shadow-lg"
                 />
               </div>

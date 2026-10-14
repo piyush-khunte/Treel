@@ -1,17 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { 
-  HelpCircle, 
-  ChevronDown, 
-  ChevronUp, 
-  ArrowRight, 
-  PhoneCall, 
-  Search,
-  MessageSquare
+import {
+ChevronDown,
+ChevronUp,
+HelpCircle,
+Search
 } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function PersonalFaqsPage() {
   const [activeCategory, setActiveCategory] = useState("All");

@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
-import { authenticateAdmin, signSessionToken, ADMIN_SESSION_COOKIE } from "@/lib/admin/admin-auth";
+import { ADMIN_SESSION_COOKIE,authenticateAdmin,signSessionToken } from "@/lib/admin/admin-auth";
+import { NextRequest,NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
     });
 
     return response;
-  } catch (error: any) {
+  } catch {
     return NextResponse.json(
       {
         success: false,

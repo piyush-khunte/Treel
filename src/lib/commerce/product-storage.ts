@@ -1,10 +1,10 @@
-import fs from "fs";
-import path from "path";
-import { MongoProduct, ProductBrand } from "@/types/admin";
-import { PERSONAL_PRODUCTS, PersonalProduct, normalizePersonalCategory } from "@/lib/data/personal-products";
+import { PERSONAL_PRODUCTS,PersonalProduct,normalizePersonalCategory } from "@/lib/data/personal-products";
 import { SURAKSHA_DEFAULT_PRODUCTS } from "@/lib/data/suraksha-products";
+import { MongoProduct,ProductBrand } from "@/types/admin";
 import { createClient } from "@supabase/supabase-js";
+import fs from "fs";
 import { revalidatePath } from "next/cache";
+import path from "path";
 
 export function resolveProductBrand(p: Partial<MongoProduct>): ProductBrand {
   const explicit = (p.brand || "").toLowerCase().trim();
@@ -305,7 +305,7 @@ export async function getAllProducts(
         writeLocalStore(products);
         items = products;
       }
-    } catch (err) {
+    } catch {
       // Suppress network errors and gracefully use localItems
     }
   }

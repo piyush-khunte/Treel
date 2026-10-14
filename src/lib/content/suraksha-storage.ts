@@ -1,8 +1,8 @@
-import fs from "fs";
-import path from "path";
+import { getValidImageSrc } from "@/lib/utils/image-utils";
 import { SurakshaArticle } from "@/types/content";
 import { createClient } from "@supabase/supabase-js";
-import { getValidImageSrc } from "@/lib/utils/image-utils";
+import fs from "fs";
+import path from "path";
 
 function getAdminClient() {
   const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder-treel.supabase.co";
@@ -285,7 +285,7 @@ export async function getAllSurakshaArticles(includeDrafts = true): Promise<Sura
         console.error("Failed to parse TreelEcommerce.t_test treel_suraksha_blog payload:", e);
       }
     }
-  } catch (err) {
+  } catch {
     // Suppress and fallback gracefully
   }
 

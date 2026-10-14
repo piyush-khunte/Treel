@@ -1,19 +1,17 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { getAuthorProfile,VERIFIED_AUTHORS } from "@/lib/authors/author-registry";
+import {
+ArrowLeft,
+ArrowRight,
+BookOpen,
+Building2,
+Calendar,
+CheckCircle2,
+MapPin
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { 
-  ArrowRight, 
-  BookOpen, 
-  MapPin, 
-  Building2, 
-  Calendar, 
-  Clock, 
-  User, 
-  CheckCircle2, 
-  ArrowLeft 
-} from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { getAuthorProfile, VERIFIED_AUTHORS } from "@/lib/authors/author-registry";
 
 export const revalidate = 60;
 

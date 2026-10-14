@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect } from "react";
-import Link from "next/link";
-import { Apple, ArrowRight, ExternalLink } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { Apple,ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { useEffect } from "react";
 
 export default function PersonalAppIosPage() {
   const appStoreUrl = "https://apps.apple.com/in/app/smart-tyre-car-bike/id1403399301";

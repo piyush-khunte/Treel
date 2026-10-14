@@ -1,7 +1,7 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { ArrowRight,Award,Bus,CheckCircle2,HardHat,Pickaxe,Truck } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, CheckCircle2, Building2, Truck, Bus, HardHat, Pickaxe, Award } from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Customers  ·  TMIP",

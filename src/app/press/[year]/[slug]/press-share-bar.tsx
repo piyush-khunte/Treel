@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { Share2, Check, Copy } from "lucide-react";
 import { copyToClipboardSafe } from "@/lib/utils/clipboard";
+import { Check,Copy } from "lucide-react";
+import { useState } from "react";
 
 export function PressShareBar({ headline, url }: { headline: string; url: string }) {
   const [copied, setCopied] = useState(false);

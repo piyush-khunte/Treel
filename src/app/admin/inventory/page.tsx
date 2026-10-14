@@ -1,38 +1,36 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { 
-  Package, 
-  Plus, 
-  Search, 
-  Edit3, 
-  Trash2, 
-  RefreshCw, 
-  CheckCircle2, 
-  ExternalLink,
-  X,
-  Save,
-  Image as ImageIcon,
-  Shield,
-  Layers,
-  Tag,
-  Car,
-  Bike,
-  Radio,
-  Disc
-} from "lucide-react";
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { formatINR } from "@/lib/utils";
-import { 
-  getAdminProducts, 
-  updateAdminProduct, 
-  createAdminProduct, 
-  deleteAdminProduct 
+import {
+createAdminProduct,
+deleteAdminProduct,
+getAdminProducts,
+updateAdminProduct
 } from "@/lib/admin/admin-actions";
-import { MongoProduct, ProductBrand } from "@/types/admin";
+import { formatINR } from "@/lib/utils";
+import { MongoProduct,ProductBrand } from "@/types/admin";
+import {
+Bike,
+Car,
+CheckCircle2,
+Disc,
+Edit3,
+ExternalLink,
+Image as ImageIcon,
+Layers,
+Plus,
+Radio,
+RefreshCw,
+Save,
+Search,
+Shield,
+Trash2,
+X
+} from "lucide-react";
+import { useEffect,useState } from "react";
 
 export default function AdminInventoryPage() {
   const [products, setProducts] = useState<MongoProduct[]>([]);

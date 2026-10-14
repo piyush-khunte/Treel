@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { PhoneCall } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, PhoneCall, CheckCircle2, ShieldCheck } from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
+import React,{ useState } from "react";
 
 const TIME_SLOTS = [
   "Any time during business hours (9 AM - 6 PM)",

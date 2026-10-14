@@ -1,17 +1,9 @@
+import {
+ArrowRight,
+ChevronRight
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { 
-  ArrowRight, 
-  ChevronRight, 
-  Calendar, 
-  MapPin, 
-  Share2, 
-  Mail, 
-  Phone, 
-  Building2, 
-  Check, 
-  Copy 
-} from "lucide-react";
 import { PressShareBar } from "./press-share-bar";
 
 interface PressReleaseDetail {

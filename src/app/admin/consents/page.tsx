@@ -1,31 +1,26 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, useTransition } from "react";
-import Link from "next/link";
-import { 
-  ShieldCheck, 
-  CheckCircle2, 
-  XCircle, 
-  Sliders, 
-  AlertTriangle, 
-  RefreshCw, 
-  Lock, 
-  Search, 
-  Filter, 
-  ChevronLeft, 
-  ChevronRight,
-  Info,
-  Copy,
-  Check,
-  X,
-  Globe,
-  Clock
-} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { getAdminCookieConsents } from "@/lib/admin/admin-actions";
-import { AdminConsentRecord } from "@/types/admin";
 import { copyToClipboardSafe } from "@/lib/utils/clipboard";
+import { AdminConsentRecord } from "@/types/admin";
+import {
+AlertTriangle,
+Check,
+CheckCircle2,
+ChevronLeft,
+ChevronRight,
+Copy,
+Filter,
+Globe,
+RefreshCw,
+Search,
+Sliders,
+X,
+XCircle
+} from "lucide-react";
+import { useEffect,useMemo,useState,useTransition } from "react";
 
 export default function AdminConsentsPage() {
   const [records, setRecords] = useState<AdminConsentRecord[]>([]);

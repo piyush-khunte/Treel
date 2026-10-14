@@ -1,42 +1,34 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
-import Link from "next/link";
-import {
-  FileText,
-  Plus,
-  Search,
-  Edit3,
-  Trash2,
-  RefreshCw,
-  X,
-  Save,
-  Eye,
-  EyeOff,
-  ExternalLink,
-  AlertCircle,
-  CheckCircle2,
-  Upload,
-  Download,
-  FileSpreadsheet,
-  Layers,
-  Sparkles,
-  Lock,
-  Unlock,
-  Star,
-  FileCode,
-  FileCheck
-} from "lucide-react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
-  getAdminWhitepapersListAction,
-  saveWhitepaperAction,
-  deleteWhitepaperAction,
-  toggleWhitepaperPublishAction
+deleteWhitepaperAction,
+getAdminWhitepapersListAction,
+saveWhitepaperAction,
+toggleWhitepaperPublishAction
 } from "@/lib/admin/admin-actions";
-import { WhitepaperRecord, WhitepaperFormat } from "@/types/content";
+import { WhitepaperFormat,WhitepaperRecord } from "@/types/content";
+import {
+AlertCircle,
+CheckCircle2,
+Download,
+Edit3,
+Eye,
+EyeOff,
+FileText,
+Plus,
+RefreshCw,
+Save,
+Search,
+Star,
+Trash2,
+Upload,
+X
+} from "lucide-react";
+import Link from "next/link";
+import { useCallback,useEffect,useMemo,useState } from "react";
 
 function slugify(text: string): string {
   return text
@@ -86,12 +78,12 @@ export default function AdminWhitepapersPage() {
 
   const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
-  const showFeedback = (type: "success" | "error", message: string) => {
+  const showFeedback = useCallback((type: "success" | "error", message: string) => {
     setFeedback({ type, message });
     setTimeout(() => setFeedback(null), 6000);
-  };
+  }, []);
 
-  const loadWhitepapers = async () => {
+  const loadWhitepapers = useCallback(async () => {
     setLoading(true);
     const res = await getAdminWhitepapersListAction();
     if (res.success && res.data) {
@@ -100,11 +92,11 @@ export default function AdminWhitepapersPage() {
       showFeedback("error", res.error || "Failed to load whitepapers.");
     }
     setLoading(false);
-  };
+  }, [showFeedback]);
 
   useEffect(() => {
     loadWhitepapers();
-  }, []);
+  }, [loadWhitepapers]);
 
   const handleCreate = () => {
     const newRecord: WhitepaperRecord = {

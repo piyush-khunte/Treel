@@ -1,7 +1,7 @@
-import fs from "fs";
-import path from "path";
 import { TreelInsightArticle } from "@/types/content";
 import { createClient } from "@supabase/supabase-js";
+import fs from "fs";
+import path from "path";
 
 function getAdminClient() {
   const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder-treel.supabase.co";
@@ -336,7 +336,7 @@ export async function getAllInsights(includeDrafts = true): Promise<TreelInsight
         console.error("Failed to parse TreelEcommerce.t_test treel_insight payload:", e);
       }
     }
-  } catch (err) {
+  } catch {
     // Suppress and fallback gracefully
   }
 

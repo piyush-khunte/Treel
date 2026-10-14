@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect } from "react";
-import Link from "next/link";
-import { Play, ArrowRight, ExternalLink } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { ExternalLink,Play } from "lucide-react";
+import Link from "next/link";
+import { useEffect } from "react";
 
 export default function PersonalAppAndroidPage() {
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.treel.android";

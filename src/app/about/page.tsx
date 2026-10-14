@@ -1,18 +1,14 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+ArrowRight,
+Award,
+ChevronRight,
+Database,
+Globe2,
+Sparkles
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { 
-  ArrowRight, 
-  ShieldCheck, 
-  Building2, 
-  Layers, 
-  Users, 
-  ChevronRight,
-  Database,
-  Sparkles,
-  Award,
-  Globe2
-} from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "About Treel — Building the Mobility Intelligence Category",

@@ -1,20 +1,16 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { 
-  ArrowRight, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Briefcase, 
-  MapPin, 
-  HeartHandshake, 
-  Award, 
-  Database, 
-  Compass,
-  GraduationCap
-} from "lucide-react";
-import { CareersInteractiveRoster } from "./careers-client";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { getPublishedJobs } from "@/lib/content/careers-storage";
+import {
+ArrowRight,
+Award,
+CheckCircle2,
+Compass,
+Database,
+HeartHandshake
+} from "lucide-react";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { CareersInteractiveRoster } from "./careers-client";
 
 export const metadata: Metadata = {
   title: "Careers at Treel  ·  Build Mobility Intelligence",

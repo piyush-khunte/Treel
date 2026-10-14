@@ -1,26 +1,24 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
-import {
-  ArrowRight,
-  Trash2,
-  Truck,
-  Plus,
-  Minus,
-  ShieldCheck,
-  Radio,
-  Tv,
-  Lock,
-  PhoneCall,
-  ShoppingBag,
-  Tag,
-  Sparkles,
-  Check,
-} from "lucide-react";
-import { useSurakshaCart } from "@/lib/commerce/cart-context";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { AvailableCouponsModal } from "@/components/commerce/available-coupons-modal";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { useSurakshaCart } from "@/lib/commerce/cart-context";
+import {
+ArrowRight,
+Check,
+Minus,
+PhoneCall,
+Plus,
+Radio,
+ShieldCheck,
+Sparkles,
+Tag,
+Trash2,
+Truck,
+Tv
+} from "lucide-react";
+import Link from "next/link";
+import React,{ useState } from "react";
 
 export default function SurakshaCartPage() {
   const {

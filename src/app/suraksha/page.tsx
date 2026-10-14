@@ -1,21 +1,17 @@
+import RegionalIndiaMap from "@/components/suraksha/regional-india-map";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
+import { WhatsAppCtaButton } from "@/components/ui/whatsapp-cta-button";
+import {
+ArrowRight,
+Fuel,
+PhoneCall,
+QrCode,
+Shield,
+Truck,
+Wrench
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Shield,
-  Fuel,
-  Wrench,
-  PhoneCall,
-  MapPin,
-  CheckCircle2,
-  AlertTriangle,
-  Sparkles,
-  QrCode,
-  Truck,
-} from "lucide-react";
-import RegionalIndiaMap from "@/components/suraksha/regional-india-map";
-import { WhatsAppCtaButton } from "@/components/ui/whatsapp-cta-button";
-import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 export const metadata: Metadata = {
   title: "Project Suraksha — Truck Tyre Safety & Savings Kit | Treel",

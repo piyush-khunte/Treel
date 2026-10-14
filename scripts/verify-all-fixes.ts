@@ -21,27 +21,27 @@ if (fs.existsSync(envPath)) {
     }
   }
 }
+process.env.ADMIN_BYPASS_AUTH = "true";
 
-import { getCaseStudyBySlug } from '../src/lib/content/casestudies-storage';
-import { getAuthorProfile } from '../src/lib/authors/author-registry';
 import {
-  getPublishedSurakshaArticles,
-  getPublishedSurakshaArticleBySlug,
-  getSurakshaArticleBySlug
-} from '../src/lib/content/suraksha-storage';
-import {
-  getAdminProducts,
-  createAdminProduct,
-  updateAdminProduct,
-  deleteAdminProduct,
-  getAdminCheckouts,
-  updateAdminCheckoutStatus,
-  getAdminAnnualReturns,
-  createAdminAnnualReturn,
-  deleteAdminAnnualReturn
+createAdminAnnualReturn,
+createAdminProduct,
+deleteAdminAnnualReturn,
+deleteAdminProduct,
+getAdminAnnualReturns,
+getAdminCheckouts,
+getAdminProducts,
+updateAdminCheckoutStatus,
+updateAdminProduct
 } from '../src/lib/admin/admin-actions';
-import { getPersonalProductBySlug } from '../src/lib/data/personal-products';
+import { getAuthorProfile } from '../src/lib/authors/author-registry';
 import { getProductBySlug } from '../src/lib/commerce/product-storage';
+import { getCaseStudyBySlug } from '../src/lib/content/casestudies-storage';
+import {
+getPublishedSurakshaArticleBySlug,
+getPublishedSurakshaArticles
+} from '../src/lib/content/suraksha-storage';
+import { getPersonalProductBySlug } from '../src/lib/data/personal-products';
 
 async function runAudit() {
   console.log('================================================================');
@@ -109,6 +109,7 @@ async function runAudit() {
     price: 3299,
     saleprice: 3999,
     category: 'Car Kit',
+    brand: 'personal' as const,
     slug: testSlug,
     productsku: testSku,
     image: 'https://example.com/test-sensor.png',

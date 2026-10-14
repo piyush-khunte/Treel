@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
-import { ArrowRight, HelpCircle, ChevronDown, ChevronUp } from "lucide-react";
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
-import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
+import { ChevronDown,ChevronUp,HelpCircle } from "lucide-react";
+import { useState } from "react";
 
 export default function SurakshaFAQsPage() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);

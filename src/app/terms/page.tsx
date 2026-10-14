@@ -1,21 +1,13 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+ChevronRight,
+FileText,
+Mail,
+MapPin,
+Phone
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { 
-  FileText, 
-  ShieldCheck, 
-  Scale, 
-  CheckCircle2, 
-  AlertCircle, 
-  Mail, 
-  MapPin, 
-  Phone, 
-  Building2,
-  ExternalLink,
-  ChevronRight,
-  Shield,
-  HelpCircle
-} from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Terms of Service · Treel",

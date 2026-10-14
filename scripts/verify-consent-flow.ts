@@ -19,17 +19,16 @@ if (fs.existsSync(envPath)) {
   }
 }
 
-import { 
-  getAllConsentRecords, 
-  saveConsentRecord, 
-  getConsentStats, 
-  normalizeConsentRecord 
-} from "../src/lib/privacy/consent-storage";
-import { 
-  DEFAULT_CATEGORIES, 
-  ACCEPTED_ALL_CATEGORIES 
-} from "../src/lib/privacy/cookie-consent";
 import { createClient } from "@supabase/supabase-js";
+import {
+getAllConsentRecords,
+getConsentStats,
+saveConsentRecord
+} from "../src/lib/privacy/consent-storage";
+import {
+ACCEPTED_ALL_CATEGORIES,
+DEFAULT_CATEGORIES
+} from "../src/lib/privacy/cookie-consent";
 
 async function runConsentVerification() {
   console.log("=================================================");

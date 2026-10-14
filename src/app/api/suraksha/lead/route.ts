@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import { isSesConfigured,sendEmail } from "@/lib/integrations";
 import { createClient } from "@supabase/supabase-js";
-import { isSesConfigured, sendEmail } from "@/lib/integrations";
+import { NextRequest,NextResponse } from "next/server";
 
 // Server-side in-memory idempotency cache (prevents rapid double-clicks within 30s)
 const recentSubmissions = new Map<string, number>();
@@ -292,6 +292,7 @@ export async function POST(req: NextRequest) {
         truck_config: rawTruckConfig || null,
         preferred_time: finalPreferredTime,
         preferred_language: finalCallLang,
+        page_language: finalPageLang,
         topic: finalTopic,
         contact_preference: finalContactPreference,
         message: finalMessage || null,

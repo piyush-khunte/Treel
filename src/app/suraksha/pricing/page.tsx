@@ -1,19 +1,17 @@
+import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import {
+ArrowRight,
+Building,
+Check,
+ChevronRight,
+Coffee,
+CreditCard,
+Sparkles,
+Truck
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ChevronRight,
-  Coffee,
-  Check,
-  X,
-  CreditCard,
-  Building,
-  Truck,
-  Sparkles,
-  PhoneCall,
-} from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 
 import { PricingBuyButton } from "./pricing-buy-button";
 

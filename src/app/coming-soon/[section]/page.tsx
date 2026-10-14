@@ -1,9 +1,9 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
+import { ArrowRight,Clock,Sparkles } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Sparkles, Clock, Globe, Smartphone, ShieldCheck } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { ComingSoonForm } from "./coming-soon-form";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 interface SectionConfig {
   title: string;

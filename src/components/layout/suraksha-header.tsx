@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, ShoppingCart } from "lucide-react";
-import { EcosystemBar } from "./ecosystem-bar";
 import { useSurakshaCart } from "@/lib/commerce/cart-context";
+import { ChevronDown,Menu,ShoppingCart,X } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { EcosystemBar } from "./ecosystem-bar";
 
 export function SurakshaHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -15,7 +15,6 @@ export function SurakshaHeader() {
   const [mobilePricingOpen, setMobilePricingOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const [mobileSupportOpen, setMobileSupportOpen] = useState(false);
-  const [mobileGetOpen, setMobileGetOpen] = useState(false);
 
   const pathname = usePathname();
   const { totalItems } = useSurakshaCart();

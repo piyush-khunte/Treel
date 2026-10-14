@@ -1,8 +1,7 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { ArrowRight,MessageSquare } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, CheckCircle2, ShieldCheck, Activity, HelpCircle, ChevronRight, MessageSquare, PhoneCall, Check } from "lucide-react";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "[Driver Name]  \u00b7  [Region] Testimonial  \u00b7  Suraksha",
