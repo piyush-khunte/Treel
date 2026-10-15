@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Building2, MapPin } from "lucide-react";
+import { ArrowRight, Building2, ExternalLink, MapPin } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { LeadershipTeam } from "./leadership-team";
 
@@ -130,14 +130,33 @@ export default function LeadershipPage() {
         </div>
       </section>
 
-      {/* Culture Photo Strip */}
-      <section className="py-20 border-b border-white/10">
+      {/* HQ Map Section */}
+      <section className="py-20 border-b border-white/10" aria-label="Treel Headquarters location">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-4">
-            <div className="w-full aspect-[21/9] sm:aspect-[24/9] rounded-lg bg-gradient-to-r from-white/[0.06] via-white/[0.02] to-white/[0.06] border border-white/[0.08] relative overflow-hidden flex items-end p-6">
-              <div className="flex items-center gap-2 text-xs font-jetbrains font-mono text-[#94A3B8] bg-[#0F1419]/80 backdrop-blur-sm px-3 py-1.5 rounded-[4px] border border-white/10">
-                <MapPin className="w-3.5 h-3.5 text-[#D5573B]" />
-                <span>Treel HQ · Pune, Maharashtra</span>
+            <div className="w-full aspect-[21/9] sm:aspect-[24/9] min-h-[240px] rounded-lg border border-white/[0.08] relative overflow-hidden bg-[#0F1419]">
+              <iframe
+                title="TREEL Mobility Solutions Pvt Ltd Location Map"
+                src="https://maps.google.com/maps?q=18.4656793,73.7797432+(TREEL%20Mobility%20Solutions%20Pvt%20Ltd)&t=m&z=17&hl=en&output=embed"
+                className="absolute inset-0 w-full h-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 pointer-events-none flex flex-wrap items-center justify-between gap-3 bg-gradient-to-t from-[#0F1419]/90 via-[#0F1419]/40 to-transparent">
+                <div className="flex items-center gap-2 text-xs font-jetbrains font-mono text-[#FAF7F2] bg-[#0F1419]/90 backdrop-blur-sm px-3 py-1.5 rounded-[4px] border border-white/10 shadow-sm pointer-events-auto">
+                  <MapPin className="w-3.5 h-3.5 text-[#D5573B] shrink-0" />
+                  <span>Treel HQ · Pune, Maharashtra</span>
+                </div>
+                <a
+                  href="https://www.google.com/maps/place/TREEL+Mobility+Solutions+Pvt+Ltd+%7C+Connected+TPMS+For+Cars+%26+Bikes/@18.4656793,73.7797432,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc295dee13682b9:0x4ef2d97acc01263d!8m2!3d18.4656793!4d73.7797432!16s%2Fg%2F11g1lj848x"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-1.5 text-xs font-jetbrains font-mono font-medium text-[#FAF7F2] bg-[#0F1419]/90 hover:bg-[#D5573B] backdrop-blur-sm px-3 py-1.5 rounded-[4px] border border-white/10 hover:border-[#D5573B] transition-colors shadow-sm pointer-events-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5573B] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1419]"
+                  aria-label="Get directions to TREEL Mobility Solutions Pvt Ltd on Google Maps (opens in a new tab)"
+                >
+                  <span>Get directions</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-[#D5573B] group-hover:text-[#FAF7F2] transition-colors" />
+                </a>
               </div>
             </div>
           </div>
