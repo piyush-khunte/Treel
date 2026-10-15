@@ -20,12 +20,20 @@
     "publicationStatus": "Published",
     "gated": true,
     "directUrl": "/tmip/whitepapers/roi-fleet-intelligence",
-    "downloadCount": 150,
+    "downloadCount": 152,
     "displayOnTmip": true,
     "displayOnResearch": true,
+    "category": "both",
+    "chapters": [
+      "01. Telemetry Ingestion & Baseline Fleet Pressure Discrepancy",
+      "02. Fuel Burn Correlated With Axle-Level Under-Inflation",
+      "03. Tread Wear Degradation Curves & Carcass Life Extension",
+      "04. Emergency Callout Preemption & Tyre Breakdown Elimination",
+      "05. Financial Payback Models Across 200+ Indian Fleets"
+    ],
     "year": "2026",
     "createdAt": "2026-10-01T09:00:00.000Z",
-    "updatedAt": "2026-10-14T11:18:03.777Z"
+    "updatedAt": "2026-10-15T09:40:00.000Z"
   },
   {
     "_id": "wp_1000_truck_case_study",
@@ -51,9 +59,17 @@
     "downloadCount": 98,
     "displayOnTmip": true,
     "displayOnResearch": true,
+    "category": "both",
+    "chapters": [
+      "01. Baseline Fleet Economics & Unplanned Downtime Analysis",
+      "02. Sensor Deployment & Depot Integration Timelines",
+      "03. Micro-leak Detection & Puncture Preemption Metrics",
+      "04. Fuel Consumption Variance by Axle Pressure Discrepancy",
+      "05. Total Payback Calculation & Depot ROI Matrix"
+    ],
     "year": "2026",
     "createdAt": "2026-10-02T10:00:00.000Z",
-    "updatedAt": "2026-10-14T11:18:03.779Z"
+    "updatedAt": "2026-10-15T09:40:00.000Z"
   },
   {
     "_id": "wp_vehicle_digital_twin",
@@ -79,9 +95,17 @@
     "downloadCount": 76,
     "displayOnTmip": true,
     "displayOnResearch": true,
+    "category": "both",
+    "chapters": [
+      "01. Physical State Ingestion & 24 Hz Edge Telemetry",
+      "02. Dynamic Thermal Accumulation Modeling",
+      "03. Carcass Stress Cycles & Retread Durability Predictability",
+      "04. Multi-Axle Differential Load Estimation",
+      "05. Cloud Inference & Maintenance Dispatch Automation"
+    ],
     "year": "2026",
     "createdAt": "2026-10-03T11:00:00.000Z",
-    "updatedAt": "2026-10-14T11:18:03.780Z"
+    "updatedAt": "2026-10-15T09:40:00.000Z"
   },
   {
     "_id": "wp_physics_tyre_pressure",
@@ -107,9 +131,16 @@
     "downloadCount": 54,
     "displayOnTmip": true,
     "displayOnResearch": true,
+    "category": "both",
+    "chapters": [
+      "01. Thermodynamics of Tyre Contact Patch & Rolling Resistance",
+      "02. Dynamic Pressure-Temperature Gas Law Correlation at Speed",
+      "03. Parasitic Fuel Burn Losses on Multi-Axle Combinations",
+      "04. Ambient Temperature Swings Across Indian Freight Corridors"
+    ],
     "year": "2026",
     "createdAt": "2026-09-15T08:00:00.000Z",
-    "updatedAt": "2026-10-14T11:18:03.780Z"
+    "updatedAt": "2026-10-15T09:40:00.000Z"
   },
   {
     "_id": "wp_iot_edge_ingestion",
@@ -135,9 +166,16 @@
     "downloadCount": 62,
     "displayOnTmip": true,
     "displayOnResearch": true,
+    "category": "both",
+    "chapters": [
+      "01. Sub-second BLE Telemetry Ingestion in Hostile Environments",
+      "02. Edge Ring Buffering & Zero Data-Loss Offline Aggregation",
+      "03. MQTT Optimization over Patchy 2G/4G Cellular Links",
+      "04. Power Budgeting and 5-Year Autonomous Battery Lifespans"
+    ],
     "year": "2026",
     "createdAt": "2026-08-20T08:00:00.000Z",
-    "updatedAt": "2026-10-14T11:18:03.781Z"
+    "updatedAt": "2026-10-15T09:40:00.000Z"
   },
   {
     "_id": "wp_time_series_infrastructure",
@@ -163,8 +201,86 @@
     "downloadCount": 43,
     "displayOnTmip": true,
     "displayOnResearch": true,
+    "category": "both",
+    "chapters": [
+      "01. High-Throughput Edge Ingestion & Store-and-Forward Buffering",
+      "02. Event Stream Architecture: De-duplication & Clock Drift Correction",
+      "03. Dual-State Persistence: Live Digital Twins vs. Historical Logs",
+      "04. Multi-Tenant Data Isolation & Role-Based Access Control",
+      "05. Regulatory Compliance & DPDP Act Data Governance"
+    ],
     "year": "2026",
     "createdAt": "2026-10-05T09:00:00.000Z",
-    "updatedAt": "2026-10-14T11:18:03.784Z"
+    "updatedAt": "2026-10-15T09:40:00.000Z"
+  },
+  {
+    "_id": "wp_predictive_maintenance_heavy",
+    "slug": "predictive-maintenance-heavy",
+    "title": "Predictive Maintenance in Heavy Haulage & Mining",
+    "excerpt": "Field telemetry analysis of extreme-load tippers and dump trucks operating in open-cast mining and severe infrastructure environments. Examines early detection of thermal carcass delamination under 50-ton axle stresses.",
+    "description": "Field telemetry analysis of extreme-load tippers and dump trucks operating in open-cast mining and severe infrastructure environments. Examines early detection of thermal carcass delamination under 50-ton axle stresses.",
+    "topic": "Predictive Maintenance",
+    "industry": "Mining",
+    "author": "Treel Heavy Haulage Telematics Group",
+    "length": "22 pages",
+    "publishDate": "November 2025",
+    "fileUrl": "/uploads/documents/tmip-iot-edge-ingestion.pdf",
+    "fileFormat": "PDF",
+    "fileSize": 881,
+    "fileSizeFormatted": "881 Bytes",
+    "originalFilename": "treel-predictive-maintenance-heavy.pdf",
+    "coverImage": "",
+    "isFeatured": false,
+    "publicationStatus": "Published",
+    "gated": true,
+    "directUrl": "/research/predictive-maintenance-heavy",
+    "downloadCount": 38,
+    "displayOnTmip": false,
+    "displayOnResearch": true,
+    "category": "treel_main",
+    "chapters": [
+      "01. Off-Highway Operating Environments & Extreme Thermal Stress",
+      "02. Sensor Resilience Under Severe Mechanical Shock & Submersion",
+      "03. Thermodynamic Pre-failure Signatures & Puncture Gradients",
+      "04. Operational Safety Protocols for High-Risk Haulage Routes"
+    ],
+    "year": "2025",
+    "createdAt": "2025-11-12T08:00:00.000Z",
+    "updatedAt": "2026-10-15T09:40:00.000Z"
+  },
+  {
+    "_id": "wp_infrastructure_construction_fleets",
+    "slug": "infrastructure-construction-fleets",
+    "title": "Fleet Operations in Infrastructure Construction",
+    "excerpt": "Performance benchmarks of transit mixers and construction tippers across severe ambient temperatures and unpaved haul roads. Details concrete transport uptime preservation and carcass salvage rates.",
+    "description": "Performance benchmarks of transit mixers and construction tippers across severe ambient temperatures and unpaved haul roads. Details concrete transport uptime preservation and carcass salvage rates.",
+    "topic": "Fleet Operations",
+    "industry": "Construction",
+    "author": "Treel Infrastructure Research Group",
+    "length": "20 pages",
+    "publishDate": "August 2025",
+    "fileUrl": "/uploads/documents/tmip-time-series-infrastructure.docx",
+    "fileFormat": "DOCX",
+    "fileSize": 222,
+    "fileSizeFormatted": "222 Bytes",
+    "originalFilename": "treel-infrastructure-construction-fleets.docx",
+    "coverImage": "",
+    "isFeatured": false,
+    "publicationStatus": "Published",
+    "gated": true,
+    "directUrl": "/research/infrastructure-construction-fleets",
+    "downloadCount": 29,
+    "displayOnTmip": false,
+    "displayOnResearch": true,
+    "category": "treel_main",
+    "chapters": [
+      "01. Construction Fleet Operating Challenges & Cycle Deadlines",
+      "02. Continuous Pressure Tracking in Heavy Slump Delivery",
+      "03. Carcass Preservation Across Unpaved Crushed Stone Roads",
+      "04. Economic Value of Extended Retread Cycles & Salvaged Carcasses"
+    ],
+    "year": "2025",
+    "createdAt": "2025-08-18T08:00:00.000Z",
+    "updatedAt": "2026-10-15T09:40:00.000Z"
   }
 ]

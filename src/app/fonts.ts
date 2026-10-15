@@ -30,11 +30,10 @@ export const spaceGrotesk = Space_Grotesk({
 });
 
 export const ibmPlexSans = IBM_Plex_Sans({
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "600"],
   subsets: ["latin"],
   variable: "--font-ibm-plex-sans",
   display: "swap",
-  preload: false,
 });
 
 export const jetbrainsMono = JetBrains_Mono({

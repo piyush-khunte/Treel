@@ -26,16 +26,6 @@ export function WhitepaperForm() {
     format: string;
   } | null>(null);
 
-  const freeEmailDomains = [
-    "gmail.com",
-    "yahoo.com",
-    "hotmail.com",
-    "outlook.com",
-    "icloud.com",
-    "aol.com",
-    "rediffmail.com",
-  ];
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -45,9 +35,9 @@ export function WhitepaperForm() {
       return;
     }
 
-    const domain = formData.email.split("@")[1]?.toLowerCase();
-    if (domain && freeEmailDomains.includes(domain)) {
-      setError("Please provide a business work email (free email domains are not accepted).");
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email.trim())) {
+      setError("Please provide a valid email address.");
       return;
     }
 
@@ -183,7 +173,7 @@ export function WhitepaperForm() {
 
         <div>
           <label className="block text-xs font-jetbrains text-[#94A3B8] mb-1.5 uppercase tracking-wide">
-            Work email <span className="text-[#3B82F6]">*</span>
+            Email <span className="text-[#3B82F6]">*</span>
           </label>
           <input
             type="email"
@@ -193,7 +183,7 @@ export function WhitepaperForm() {
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             className="w-full px-4 py-2.5 rounded-[3px] bg-[#050A17] border border-slate-400/20 text-sm text-[#F1F5F9] placeholder-slate-500 focus:outline-none focus:border-[#3B82F6]"
           />
-          <p className="text-[11px] text-[#64748B] mt-1 font-ibm-plex">Please use your business email address.</p>
+          <p className="text-[11px] text-[#64748B] mt-1 font-ibm-plex">We will send document access instructions to this email address.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

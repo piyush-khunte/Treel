@@ -1574,6 +1574,7 @@ export async function saveWhitepaperAction(
     const res = await saveWhitepaper(data);
     if (res.success && res.data) {
       revalidatePath('/tmip/whitepapers');
+      revalidatePath('/research');
       if (res.data.slug) {
         revalidatePath(`/tmip/whitepapers/${res.data.slug}`);
       }
@@ -1599,6 +1600,7 @@ export async function deleteWhitepaperAction(
     const res = await deleteWhitepaper(id);
     if (res.success) {
       revalidatePath('/tmip/whitepapers');
+      revalidatePath('/research');
       revalidatePath('/admin/whitepapers');
     }
     return res;
@@ -1625,6 +1627,7 @@ export async function toggleWhitepaperPublishAction(
     const res = await toggleWhitepaperPublish(id);
     if (res.success && res.data) {
       revalidatePath('/tmip/whitepapers');
+      revalidatePath('/research');
       if (res.data.slug) {
         revalidatePath(`/tmip/whitepapers/${res.data.slug}`);
       }

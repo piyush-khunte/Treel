@@ -4,31 +4,31 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
-deleteWhitepaperAction,
-getAdminWhitepapersListAction,
-saveWhitepaperAction,
-toggleWhitepaperPublishAction
+  deleteWhitepaperAction,
+  getAdminWhitepapersListAction,
+  saveWhitepaperAction,
+  toggleWhitepaperPublishAction,
 } from "@/lib/admin/admin-actions";
-import { WhitepaperFormat,WhitepaperRecord } from "@/types/content";
+import { WhitepaperFormat, WhitepaperRecord } from "@/types/content";
 import {
-AlertCircle,
-CheckCircle2,
-Download,
-Edit3,
-Eye,
-EyeOff,
-FileText,
-Plus,
-RefreshCw,
-Save,
-Search,
-Star,
-Trash2,
-Upload,
-X
+  AlertCircle,
+  CheckCircle2,
+  Download,
+  Edit3,
+  Eye,
+  EyeOff,
+  FileText,
+  Plus,
+  RefreshCw,
+  Save,
+  Search,
+  Star,
+  Trash2,
+  Upload,
+  X,
 } from "lucide-react";
 import Link from "next/link";
-import { useCallback,useEffect,useMemo,useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 function slugify(text: string): string {
   return text
@@ -45,7 +45,7 @@ const COMMON_TOPICS = [
   "Fleet Operations",
   "Case Study",
   "IoT & Telematics Hardware",
-  "Fuel & Energy Analytics"
+  "Fuel & Energy Analytics",
 ];
 
 const COMMON_INDUSTRIES = [
@@ -54,13 +54,14 @@ const COMMON_INDUSTRIES = [
   "Passenger Transport",
   "Construction",
   "Mining",
-  "OEM"
+  "OEM",
 ];
 
 export default function AdminWhitepapersPage() {
   const [whitepapers, setWhitepapers] = useState<WhitepaperRecord[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [filterChannel, setFilterChannel] = useState<string>("ALL");
   const [filterTopic, setFilterTopic] = useState<string>("ALL");
   const [filterIndustry, setFilterIndustry] = useState<string>("ALL");
   const [filterPub, setFilterPub] = useState<string>("ALL");
@@ -125,6 +126,14 @@ export default function AdminWhitepapersPage() {
       downloadCount: 0,
       displayOnTmip: true,
       displayOnResearch: true,
+      category: "both",
+      chapters: [
+        "01. Baseline Fleet Economics & Unplanned Downtime Analysis",
+        "02. Sensor Deployment & Telemetry Integration Timelines",
+        "03. Anomaly Classification & Micro-Leak Preemption",
+        "04. Fuel Consumption Attributed to Axle Pressure Discrepancy",
+        "05. Payback Realization Matrix & Deployment Model",
+      ],
       year: "2026",
     };
     setEditingItem(newRecord);
@@ -134,7 +143,17 @@ export default function AdminWhitepapersPage() {
   };
 
   const handleEdit = (item: WhitepaperRecord) => {
-    setEditingItem({ ...item });
+    setEditingItem({
+      ...item,
+      category: item.category || (item.displayOnTmip && item.displayOnResearch ? "both" : item.displayOnResearch ? "treel_main" : "tmip"),
+      chapters: item.chapters && item.chapters.length > 0 ? [...item.chapters] : [
+        "01. Baseline Fleet Economics & Unplanned Downtime Analysis",
+        "02. Sensor Deployment & Telemetry Integration Timelines",
+        "03. Anomaly Classification & Micro-Leak Preemption",
+        "04. Fuel Consumption Attributed to Axle Pressure Discrepancy",
+        "05. Payback Realization Matrix & Deployment Model",
+      ],
+    });
     setIsNew(false);
     setActiveTab("general");
     setModalOpen(true);
@@ -266,6 +285,7 @@ export default function AdminWhitepapersPage() {
       title: trimmedTitle,
       slug: finalSlug,
       excerpt: editingItem.excerpt.trim(),
+      chapters: editingItem.chapters?.filter((ch) => ch.trim().length > 0) || [],
     };
 
     const res = await saveWhitepaperAction(payload);
@@ -303,23 +323,35 @@ export default function AdminWhitepapersPage() {
         (w.excerpt && w.excerpt.toLowerCase().includes(search.toLowerCase())) ||
         (w.author && w.author.toLowerCase().includes(search.toLowerCase()));
 
+      const matchChannel =
+        filterChannel === "ALL" ||
+        (filterChannel === "treel_main" && (w.category === "treel_main" || (w.displayOnResearch && !w.displayOnTmip))) ||
+        (filterChannel === "tmip" && (w.category === "tmip" || (w.displayOnTmip && !w.displayOnResearch))) ||
+        (filterChannel === "both" && (w.category === "both" || (w.displayOnTmip && w.displayOnResearch)));
+
       const matchTopic = filterTopic === "ALL" || w.topic === filterTopic;
       const matchIndustry = filterIndustry === "ALL" || w.industry === filterIndustry;
       const matchPub = filterPub === "ALL" || w.publicationStatus === filterPub;
       const matchFormat = filterFormat === "ALL" || w.fileFormat === filterFormat;
 
-      return matchSearch && matchTopic && matchIndustry && matchPub && matchFormat;
+      return matchSearch && matchChannel && matchTopic && matchIndustry && matchPub && matchFormat;
     });
-  }, [whitepapers, search, filterTopic, filterIndustry, filterPub, filterFormat]);
+  }, [whitepapers, search, filterChannel, filterTopic, filterIndustry, filterPub, filterFormat]);
 
   const stats = useMemo(() => {
     return {
       total: whitepapers.length,
       published: whitepapers.filter((w) => w.publicationStatus === "Published").length,
-      drafts: whitepapers.filter((w) => w.publicationStatus === "Draft").length,
+      treelMain: whitepapers.filter((w) => w.category === "treel_main" || w.displayOnResearch !== false).length,
       downloads: whitepapers.reduce((sum, w) => sum + (w.downloadCount || 0), 0),
     };
   }, [whitepapers]);
+
+  const targetPublicUrl = editingItem
+    ? (editingItem.category === "treel_main" || (editingItem.displayOnResearch && !editingItem.displayOnTmip))
+      ? `/research/${editingItem.slug || "slug"}`
+      : `/tmip/whitepapers/${editingItem.slug || "slug"}`
+    : "/tmip/whitepapers";
 
   return (
     <div className="space-y-8">
@@ -331,11 +363,15 @@ export default function AdminWhitepapersPage() {
               <FileText className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white tracking-tight">Whitepapers & Research Publishing</h1>
+              <h1 className="text-2xl font-bold text-white tracking-tight">Whitepapers &amp; Research Publishing</h1>
               <p className="text-xs text-slate-400 font-mono">
                 Manage downloadable PDF/Word whitepapers, gated access documents, and research on{" "}
                 <Link href="/tmip/whitepapers" target="_blank" className="text-blue-400 hover:underline">
                   /tmip/whitepapers
+                </Link>
+                {" "}and{" "}
+                <Link href="/research" target="_blank" className="text-amber-400 hover:underline">
+                  /research
                 </Link>
               </p>
             </div>
@@ -394,7 +430,7 @@ export default function AdminWhitepapersPage() {
       {/* Stats Counter Bar */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <div className="bg-slate-900/60 border border-slate-800/80 rounded-xl p-3.5">
-          <div className="text-[11px] font-mono text-slate-400">Total Research Papers</div>
+          <div className="text-[11px] font-mono text-slate-400">Total Catalog Papers</div>
           <div className="text-xl font-bold text-white mt-1">{stats.total}</div>
         </div>
         <div className="bg-slate-900/60 border border-slate-800/80 rounded-xl p-3.5">
@@ -402,8 +438,8 @@ export default function AdminWhitepapersPage() {
           <div className="text-xl font-bold text-emerald-300 mt-1">{stats.published}</div>
         </div>
         <div className="bg-slate-900/60 border border-slate-800/80 rounded-xl p-3.5">
-          <div className="text-[11px] font-mono text-amber-400">Drafts (Internal)</div>
-          <div className="text-xl font-bold text-amber-300 mt-1">{stats.drafts}</div>
+          <div className="text-[11px] font-mono text-amber-400">Treel Main Research</div>
+          <div className="text-xl font-bold text-amber-300 mt-1">{stats.treelMain}</div>
         </div>
         <div className="bg-slate-900/60 border border-slate-800/80 rounded-xl p-3.5">
           <div className="text-[11px] font-mono text-blue-400">Total Leads / Access Requests</div>
@@ -432,6 +468,18 @@ export default function AdminWhitepapersPage() {
         </div>
 
         <div className="flex flex-wrap items-center gap-2 text-xs">
+          {/* Channel / Destination Filter */}
+          <select
+            value={filterChannel}
+            onChange={(e) => setFilterChannel(e.target.value)}
+            className="bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-slate-300 font-mono focus:outline-none focus:border-blue-500"
+          >
+            <option value="ALL">Channel: All</option>
+            <option value="treel_main">Treel Main (/research)</option>
+            <option value="tmip">TMIP (/tmip/whitepapers)</option>
+            <option value="both">Shared (Both)</option>
+          </select>
+
           {/* Topic Category Filter */}
           <select
             value={filterTopic}
@@ -497,7 +545,7 @@ export default function AdminWhitepapersPage() {
             <FileText className="w-10 h-10 text-slate-600 mx-auto" />
             <div className="text-sm font-medium text-slate-300">No whitepapers found</div>
             <p className="text-xs text-slate-500 max-w-sm mx-auto">
-              {search || filterTopic !== "ALL" || filterIndustry !== "ALL" || filterPub !== "ALL"
+              {search || filterChannel !== "ALL" || filterTopic !== "ALL" || filterIndustry !== "ALL" || filterPub !== "ALL"
                 ? "Try clearing your filters or search keywords."
                 : "Upload and publish your first technical whitepaper or research report."}
             </p>
@@ -515,8 +563,8 @@ export default function AdminWhitepapersPage() {
             <table className="w-full text-left text-sm border-collapse">
               <thead>
                 <tr className="border-b border-slate-800 bg-slate-950/60 text-[11px] font-mono uppercase tracking-wider text-slate-400">
-                  <th className="py-3.5 px-4">Whitepaper Title & Slug</th>
-                  <th className="py-3.5 px-4">Topic & Industry</th>
+                  <th className="py-3.5 px-4">Whitepaper Title &amp; Slug</th>
+                  <th className="py-3.5 px-4">Channel &amp; Topic</th>
                   <th className="py-3.5 px-4">Document File</th>
                   <th className="py-3.5 px-4">Visibility</th>
                   <th className="py-3.5 px-4">Downloads</th>
@@ -527,6 +575,11 @@ export default function AdminWhitepapersPage() {
                 {filteredWhitepapers.map((item) => {
                   const isPublished = item.publicationStatus === "Published";
                   const isPdf = item.fileFormat?.toUpperCase() === "PDF";
+                  const publicUrl = item.directUrl || (
+                    item.category === "treel_main" || (item.displayOnResearch && !item.displayOnTmip)
+                      ? `/research/${item.slug}`
+                      : `/tmip/whitepapers/${item.slug}`
+                  );
 
                   return (
                     <tr
@@ -555,27 +608,32 @@ export default function AdminWhitepapersPage() {
                         </div>
                       </td>
 
-                      {/* Topic & Industry */}
-                      <td className="py-4 px-4 text-xs space-y-1 whitespace-nowrap">
+                      {/* Channel & Topic */}
+                      <td className="py-4 px-4 text-xs space-y-1.5 whitespace-nowrap">
+                        <div className="flex flex-wrap gap-1">
+                          {(item.category === "treel_main" || (item.displayOnResearch && !item.displayOnTmip)) && (
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30 font-semibold">
+                              Treel Main
+                            </span>
+                          )}
+                          {(item.category === "tmip" || (item.displayOnTmip && !item.displayOnResearch)) && (
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/15 text-blue-300 border border-blue-500/30 font-semibold">
+                              TMIP
+                            </span>
+                          )}
+                          {(item.category === "both" || (item.displayOnTmip && item.displayOnResearch)) && (
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/15 text-purple-300 border border-purple-500/30 font-semibold">
+                              Shared (Both)
+                            </span>
+                          )}
+                        </div>
                         <div>
-                          <span className="inline-block text-[11px] font-mono px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/30">
+                          <span className="inline-block text-[11px] font-mono px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
                             {item.topic || "Research"}
                           </span>
                         </div>
                         <div className="text-[11px] font-mono text-slate-400">
                           Industry: {item.industry || "All"}
-                        </div>
-                        <div className="flex flex-wrap gap-1 pt-0.5">
-                          {item.displayOnTmip !== false && (
-                            <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-blue-500/10 text-blue-300 border border-blue-500/20">
-                              TMIP
-                            </span>
-                          )}
-                          {item.displayOnResearch !== false && (
-                            <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">
-                              Research
-                            </span>
-                          )}
                         </div>
                       </td>
 
@@ -633,6 +691,17 @@ export default function AdminWhitepapersPage() {
                       {/* Actions */}
                       <td className="py-4 px-4 text-right whitespace-nowrap">
                         <div className="inline-flex items-center gap-1.5">
+                          {/* Public Page View */}
+                          <a
+                            href={publicUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                            title="View Public Page"
+                          >
+                            <Eye className="w-4 h-4" />
+                          </a>
+
                           {/* Admin Direct Document View */}
                           {item.fileUrl && (
                             <a
@@ -640,7 +709,7 @@ export default function AdminWhitepapersPage() {
                               target="_blank"
                               rel="noreferrer"
                               className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
-                              title="Direct Admin Preview / Download File"
+                              title="Direct Document File View"
                             >
                               <Download className="w-4 h-4" />
                             </a>
@@ -682,7 +751,7 @@ export default function AdminWhitepapersPage() {
             <div>
               <h3 className="text-lg font-bold text-white">Delete Whitepaper?</h3>
               <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                Are you sure you want to delete this whitepaper from the library? This will remove
+                Are you sure you want to delete this whitepaper from the catalog? This will remove
                 public access. Any prior captured leads will remain safely preserved in the CRM.
               </p>
             </div>
@@ -724,7 +793,7 @@ export default function AdminWhitepapersPage() {
                     {isNew ? "Upload & Publish New Whitepaper" : `Edit: ${editingItem.title || "Whitepaper"}`}
                   </h2>
                   <div className="text-[11px] font-mono text-slate-400">
-                    {editingItem.slug ? `/tmip/whitepapers/${editingItem.slug}` : "Slug will be auto-generated"}
+                    Live URL: <span className="text-blue-300">{targetPublicUrl}</span>
                   </div>
                 </div>
               </div>
@@ -770,7 +839,7 @@ export default function AdminWhitepapersPage() {
                     : "border-transparent text-slate-400 hover:text-slate-200"
                 }`}
               >
-                Cover & Gating
+                Cover &amp; Access Controls
               </button>
               <button
                 type="button"
@@ -781,7 +850,7 @@ export default function AdminWhitepapersPage() {
                     : "border-transparent text-slate-400 hover:text-slate-200"
                 }`}
               >
-                SEO & Links
+                SEO &amp; Links
               </button>
             </div>
 
@@ -832,8 +901,41 @@ export default function AdminWhitepapersPage() {
                         required
                       />
                       <p className="text-[11px] text-slate-500 font-mono">
-                        Target URL: /tmip/whitepapers/{editingItem.slug || "slug"}
+                        Target URL: {targetPublicUrl}
                       </p>
+                    </div>
+
+                    {/* Channel / Placement */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-medium text-slate-300">
+                        Publishing Channel / Placement
+                      </label>
+                      <select
+                        value={editingItem.category || "both"}
+                        onChange={(e) => {
+                          const cat = e.target.value;
+                          let onTmip = true;
+                          let onResearch = true;
+                          if (cat === "treel_main") {
+                            onTmip = false;
+                            onResearch = true;
+                          } else if (cat === "tmip") {
+                            onTmip = true;
+                            onResearch = false;
+                          }
+                          setEditingItem({
+                            ...editingItem,
+                            category: cat,
+                            displayOnTmip: onTmip,
+                            displayOnResearch: onResearch,
+                          });
+                        }}
+                        className="w-full bg-slate-950 border border-slate-800 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+                      >
+                        <option value="both">Shared — Both Channels (/research &amp; /tmip/whitepapers)</option>
+                        <option value="treel_main">Treel Main Corporate Research (/research)</option>
+                        <option value="tmip">TMIP Enterprise Whitepapers (/tmip/whitepapers)</option>
+                      </select>
                     </div>
 
                     {/* Topic Category */}
@@ -894,7 +996,7 @@ export default function AdminWhitepapersPage() {
                     </div>
 
                     {/* Publish Date */}
-                    <div className="space-y-1.5">
+                    <div className="space-y-1.5 md:col-span-2">
                       <label className="text-xs font-medium text-slate-300">Display Publication Date</label>
                       <Input
                         value={editingItem.publishDate || ""}
@@ -923,7 +1025,7 @@ export default function AdminWhitepapersPage() {
                   {/* Detailed Description */}
                   <div className="space-y-1.5 pt-2">
                     <label className="text-xs font-medium text-slate-300">
-                      Full Paper Synopsis (Optional)
+                      Full Paper Synopsis / Abstract (Optional)
                     </label>
                     <textarea
                       rows={3}
@@ -934,10 +1036,72 @@ export default function AdminWhitepapersPage() {
                     />
                   </div>
 
+                  {/* Chapters / Table of Contents */}
+                  <div className="space-y-3 pt-3 border-t border-slate-800">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <label className="text-xs font-medium text-slate-300">
+                          Table of Contents / Chapters
+                        </label>
+                        <p className="text-[11px] text-slate-500">
+                          Displayed in the &ldquo;In this paper&rdquo; section on research detail pages.
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const nextNum = String((editingItem.chapters?.length || 0) + 1).padStart(2, "0");
+                          setEditingItem({
+                            ...editingItem,
+                            chapters: [...(editingItem.chapters || []), `${nextNum}. New Section Topic`],
+                          });
+                        }}
+                        className="inline-flex items-center gap-1 text-xs font-mono text-blue-400 hover:text-blue-300 px-2.5 py-1 rounded-md bg-blue-500/10 border border-blue-500/30 transition-colors"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Add Chapter</span>
+                      </button>
+                    </div>
+
+                    <div className="space-y-2">
+                      {(editingItem.chapters || []).map((ch, idx) => (
+                        <div key={idx} className="flex items-center gap-2">
+                          <span className="w-7 text-center font-mono text-xs text-slate-500 shrink-0">
+                            #{idx + 1}
+                          </span>
+                          <Input
+                            value={ch}
+                            onChange={(e) => {
+                              const nextChs = [...(editingItem.chapters || [])];
+                              nextChs[idx] = e.target.value;
+                              setEditingItem({ ...editingItem, chapters: nextChs });
+                            }}
+                            placeholder="e.g. 01. Telemetry Ingestion & Baseline"
+                            className="bg-slate-950 border-slate-800 text-white text-xs h-8 focus:border-blue-500"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const nextChs = (editingItem.chapters || []).filter((_, i) => i !== idx);
+                              setEditingItem({ ...editingItem, chapters: nextChs });
+                            }}
+                            className="p-1.5 text-slate-500 hover:text-rose-400 rounded hover:bg-slate-800 shrink-0"
+                            title="Remove Chapter"
+                          >
+                            <X className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      ))}
+                      {(!editingItem.chapters || editingItem.chapters.length === 0) && (
+                        <p className="text-xs text-slate-600 italic py-1">No chapters added yet. Click &ldquo;Add Chapter&rdquo; to add.</p>
+                      )}
+                    </div>
+                  </div>
+
                   {/* Route Placement & Visibility */}
                   <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-3 pt-3">
                     <label className="text-xs font-mono uppercase tracking-wider text-blue-400 font-semibold block">
-                      Public Placement &amp; Route Visibility
+                      Route Placement &amp; Visibility Controls
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-300">
                       <label className="flex items-center gap-2 cursor-pointer">
@@ -982,11 +1146,11 @@ export default function AdminWhitepapersPage() {
                         />
                       </div>
                       <div className="space-y-1">
-                        <label className="text-[11px] font-mono text-slate-400">Direct Page Route (Optional)</label>
+                        <label className="text-[11px] font-mono text-slate-400">Direct Page Route Override (Optional)</label>
                         <Input
                           value={editingItem.directUrl || ""}
                           onChange={(e) => setEditingItem({ ...editingItem, directUrl: e.target.value })}
-                          placeholder="e.g. /tmip/whitepapers/roi-fleet-intelligence"
+                          placeholder="e.g. /research/predictive-maintenance-heavy"
                           className="bg-slate-900 border-slate-800 text-white text-xs h-8 focus:border-blue-500"
                         />
                       </div>
@@ -1090,7 +1254,7 @@ export default function AdminWhitepapersPage() {
                 </div>
               )}
 
-              {/* TAB 3: Cover & Gating */}
+              {/* TAB 3: Cover & Access Controls */}
               {activeTab === "media" && (
                 <div className="space-y-6">
                   {/* Cover Image */}
@@ -1131,7 +1295,7 @@ export default function AdminWhitepapersPage() {
                   {/* Gating & Feature Toggles */}
                   <div className="pt-4 border-t border-slate-800 space-y-4">
                     <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold">
-                      Access & Publication Controls
+                      Access &amp; Publication Controls
                     </h4>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1164,10 +1328,10 @@ export default function AdminWhitepapersPage() {
                           />
                           <div>
                             <span className="text-xs text-slate-200 font-medium block">
-                              Require Business Email (Email-Gated)
+                              Require Email Verification (Email-Gated)
                             </span>
                             <span className="text-[11px] text-slate-500 block">
-                              Enforces lead capture before granting PDF / Word download.
+                              Captures lead credentials before granting download access.
                             </span>
                           </div>
                         </label>
@@ -1207,7 +1371,7 @@ export default function AdminWhitepapersPage() {
                     <Input
                       value={editingItem.directUrl || ""}
                       onChange={(e) => setEditingItem({ ...editingItem, directUrl: e.target.value })}
-                      placeholder="e.g. /tmip/whitepapers/roi-fleet-intelligence"
+                      placeholder="e.g. /research/roi-fleet-intelligence"
                       className="bg-slate-950 border-slate-800 text-white text-xs font-mono"
                     />
                     <p className="text-[11px] text-slate-500">
@@ -1225,7 +1389,7 @@ export default function AdminWhitepapersPage() {
                       <Input
                         value={editingItem.seoTitle || ""}
                         onChange={(e) => setEditingItem({ ...editingItem, seoTitle: e.target.value })}
-                        placeholder="Default falls back to Whitepaper Title | TMIP"
+                        placeholder="Default falls back to Whitepaper Title | Treel"
                         className="bg-slate-950 border-slate-800 text-white text-xs"
                       />
                     </div>

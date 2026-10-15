@@ -7,18 +7,6 @@ Loader2
 } from "lucide-react";
 import React,{ useState } from "react";
 
-const FREE_EMAIL_DOMAINS = [
-  "gmail.com",
-  "yahoo.com",
-  "hotmail.com",
-  "outlook.com",
-  "aol.com",
-  "icloud.com",
-  "zoho.com",
-  "mail.com",
-  "protonmail.com",
-  "yandex.com"
-];
 
 export function DataArchWhitepaperGatedForm() {
   const [fullName, setFullName] = useState("");
@@ -49,16 +37,11 @@ export function DataArchWhitepaperGatedForm() {
     }
 
     if (!workEmail.trim()) {
-      errs.workEmail = "Please enter your work email.";
+      errs.workEmail = "Please enter your email.";
     } else {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(workEmail)) {
-        errs.workEmail = "Please enter a valid work email address.";
-      } else {
-        const domain = workEmail.split("@")[1]?.toLowerCase();
-        if (domain && FREE_EMAIL_DOMAINS.includes(domain)) {
-          errs.workEmail = "Please provide an enterprise or work email (personal domains not accepted).";
-        }
+        errs.workEmail = "Please enter a valid email address.";
       }
     }
 
@@ -206,7 +189,7 @@ export function DataArchWhitepaperGatedForm() {
         {/* Work Email */}
         <div className="space-y-1.5">
           <label className="block text-xs font-mono uppercase tracking-wider text-[#94A3B8]">
-            Work email <span className="text-[#D5573B]">*</span>
+            Email <span className="text-[#D5573B]">*</span>
           </label>
           <div className="relative">
             <input

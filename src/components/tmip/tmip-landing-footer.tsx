@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { SocialLinks } from "@/components/layout/social-links";
 
 export function TmipLandingFooter() {
   return (
@@ -31,6 +32,7 @@ export function TmipLandingFooter() {
              <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
               <span>© 2026 Treel Mobility Solutions Private Limited. All rights reserved.</span>
             </div>
+            <SocialLinks variant="tmip" />
           </div>
 
           {/* Solutions Column */}

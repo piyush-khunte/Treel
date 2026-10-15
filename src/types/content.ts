@@ -191,6 +191,8 @@ export interface WhitepaperRecord {
   downloadCount?: number;
   displayOnTmip?: boolean;
   displayOnResearch?: boolean;
+  category?: "treel_main" | "tmip" | "both" | string;
+  chapters?: string[];
   year?: string;
   createdAt?: string;
   updatedAt?: string;

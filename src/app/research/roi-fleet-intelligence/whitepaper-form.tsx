@@ -3,7 +3,21 @@
 import { CheckCircle2,Download,Eye,Loader2 } from "lucide-react";
 import React,{ useState } from "react";
 
-export function WhitepaperGatedForm() {
+export interface WhitepaperGatedFormProps {
+  slug?: string;
+  whitepaperId?: string;
+  whitepaperTitle?: string;
+  paperFormat?: string;
+  pageCount?: string;
+}
+
+export function WhitepaperGatedForm({
+  slug = "roi-fleet-intelligence",
+  whitepaperId,
+  whitepaperTitle = "The Fleet ROI and Fuel Savings Paper",
+  paperFormat = "PDF",
+  pageCount = "28 Pages",
+}: WhitepaperGatedFormProps = {}) {
   const [formData, setFormData] = useState({
     fullName: "",
     workEmail: "",
@@ -32,7 +46,7 @@ export function WhitepaperGatedForm() {
       errs.fullName = "Please tell us your name.";
     }
     if (!formData.workEmail.trim()) {
-      errs.workEmail = "We need your work email to send the whitepaper.";
+      errs.workEmail = "We need your email to send the whitepaper.";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.workEmail.trim())) {
       errs.workEmail = "That doesn't look like a valid email address.";
     }
@@ -57,7 +71,8 @@ export function WhitepaperGatedForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          slug: "roi-fleet-intelligence",
+          whitepaperId: whitepaperId || undefined,
+          slug,
           email: formData.workEmail.trim().toLowerCase(),
           fullName: formData.fullName.trim(),
           company: formData.company.trim(),
@@ -106,10 +121,10 @@ export function WhitepaperGatedForm() {
             {accessResult.format} Document Ready
           </div>
           <div className="text-xs font-semibold text-white">
-            The Fleet ROI and Fuel Savings Paper
+            {whitepaperTitle}
           </div>
           <div className="text-[11px] font-mono text-slate-400">
-            Format: {accessResult.format} · 28 Pages
+            Format: {accessResult.format || paperFormat} · {pageCount}
           </div>
         </div>
 
@@ -165,7 +180,7 @@ export function WhitepaperGatedForm() {
       {/* Work email */}
       <div className="space-y-1.5">
         <label htmlFor="wp-workEmail" className="block text-xs font-mono uppercase text-[#FAF7F2]">
-          Work Email <span className="text-[#D5573B]">*</span>
+          Email <span className="text-[#D5573B]">*</span>
         </label>
         <input
           id="wp-workEmail"

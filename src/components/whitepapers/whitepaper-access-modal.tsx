@@ -86,22 +86,7 @@ export function WhitepaperAccessModal({
     const trimmedEmail = email.trim().toLowerCase();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!trimmedEmail || !emailRegex.test(trimmedEmail)) {
-      setFormError("Please enter a valid work email address.");
-      return;
-    }
-
-    const freeDomains = [
-      "gmail.com",
-      "yahoo.com",
-      "hotmail.com",
-      "outlook.com",
-      "icloud.com",
-      "aol.com",
-      "rediffmail.com",
-    ];
-    const domain = trimmedEmail.split("@")[1]?.toLowerCase();
-    if (domain && freeDomains.includes(domain)) {
-      setFormError("Please provide an enterprise or work email (personal domains not accepted).");
+      setFormError("Please enter a valid email address.");
       return;
     }
 
@@ -234,7 +219,7 @@ export function WhitepaperAccessModal({
 
                 <div>
                   <label className="text-[11px] font-mono text-[#94A3B8] uppercase block mb-1">
-                    Business Work Email <span className="text-rose-400">*</span>
+                    Email <span className="text-rose-400">*</span>
                   </label>
                   <input
                     type="email"

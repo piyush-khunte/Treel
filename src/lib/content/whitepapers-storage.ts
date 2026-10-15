@@ -170,7 +170,9 @@ export async function getWhitepaperBySlug(slug: string, allowDraft = false): Pro
     (w) =>
       w.slug.toLowerCase() === clean ||
       w._id.toLowerCase() === clean ||
-      (clean === "data-architecture" && (w.slug === "time-series-infrastructure-heavy-haul" || w.slug === "scaling-iot-across-indian-highways"))
+      (clean === "case-study-1000-truck" && w.slug === "1000-truck-case-study") ||
+      (clean === "vehicle-digital-twin" && w.slug === "vehicle-digital-twins-architecture") ||
+      (clean === "data-architecture" && w.slug === "time-series-infrastructure-heavy-haul")
   );
   if (!found) return null;
   if (!allowDraft && found.publicationStatus !== "Published") return null;
@@ -212,6 +214,11 @@ export async function saveWhitepaper(
 
     const fileSize = typeof data.fileSize === "number" ? data.fileSize : existing?.fileSize || 0;
 
+    const displayOnTmip = data.displayOnTmip !== undefined ? data.displayOnTmip : (existing?.displayOnTmip !== undefined ? existing.displayOnTmip : true);
+    const displayOnResearch = data.displayOnResearch !== undefined ? data.displayOnResearch : (existing?.displayOnResearch !== undefined ? existing.displayOnResearch : true);
+
+    const category = data.category || existing?.category || (displayOnTmip && displayOnResearch ? "both" : displayOnResearch ? "treel_main" : "tmip");
+
     const record: WhitepaperRecord = {
       _id: id,
       slug,
@@ -236,8 +243,10 @@ export async function saveWhitepaper(
       seoTitle: data.seoTitle || existing?.seoTitle,
       seoDescription: data.seoDescription || existing?.seoDescription,
       downloadCount: existing?.downloadCount || 0,
-      displayOnTmip: data.displayOnTmip !== undefined ? data.displayOnTmip : (existing?.displayOnTmip !== undefined ? existing.displayOnTmip : true),
-      displayOnResearch: data.displayOnResearch !== undefined ? data.displayOnResearch : (existing?.displayOnResearch !== undefined ? existing.displayOnResearch : true),
+      displayOnTmip,
+      displayOnResearch,
+      category,
+      chapters: data.chapters !== undefined ? data.chapters : (existing?.chapters || []),
       year: data.year || existing?.year || "2026",
       createdAt: existing?.createdAt || now,
       updatedAt: now,

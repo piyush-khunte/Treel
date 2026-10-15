@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { SocialLinks } from "./social-links";
 
 export type FooterVariant = "master" | "tmip" | "suraksha" | "personal";
 
@@ -129,8 +130,9 @@ export function Footer({ variant, className }: FooterProps) {
               ARAI &amp; ISO 9001:2015 Certified · Patents in India, US &amp; EU
             </p>
             <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
-            <span>© {new Date().getFullYear()} Treel Mobility Solutions Private Limited. All rights reserved.</span>
-          </div>
+              <span>© {new Date().getFullYear()} Treel Mobility Solutions Private Limited. All rights reserved.</span>
+            </div>
+            <SocialLinks variant={activeVariant} />
           </div>
 
           {/* Solutions */}

@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { SocialLinks } from "@/components/layout/social-links";
 
 export function SurakshaLandingFooter({ className = "" }: { className?: string }) {
   return (
@@ -27,6 +28,7 @@ export function SurakshaLandingFooter({ className = "" }: { className?: string }
             <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
               <span>© {new Date().getFullYear()} Treel Mobility Solutions Private Limited. All rights reserved.</span>
             </div>
+            <SocialLinks variant="suraksha" />
           </div>
 
           {/* Solutions */}

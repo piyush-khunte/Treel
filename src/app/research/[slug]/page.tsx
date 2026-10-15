@@ -1,12 +1,13 @@
 import {
-ArrowRight,
-Calendar,
-ChevronRight,
-FileText,
-User
+  ArrowRight,
+  Calendar,
+  ChevronRight,
+  FileText,
+  User,
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getAllWhitepapers, getWhitepaperBySlug } from "@/lib/content/whitepapers-storage";
 import { WhitepaperGatedForm } from "../roi-fleet-intelligence/whitepaper-form";
 
 interface WhitepaperDetail {
@@ -85,31 +86,46 @@ const PAPERS: Record<string, WhitepaperDetail> = {
   },
 };
 
-export function generateStaticParams() {
-  return Object.keys(PAPERS).map((slug) => ({ slug }));
+export async function generateStaticParams() {
+  const all = await getAllWhitepapers();
+  const staticSlugs = new Set([
+    ...Object.keys(PAPERS),
+    ...all.map((w) => w.slug),
+    "1000-truck-case-study",
+    "vehicle-digital-twins-architecture",
+    "predictive-maintenance-heavy",
+    "infrastructure-construction-fleets",
+  ]);
+  return Array.from(staticSlugs).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const paper = PAPERS[slug] || PAPERS["case-study-1000-truck"];
+  const dbPaper = await getWhitepaperBySlug(slug, true);
+  const fallback = PAPERS[slug] || PAPERS["case-study-1000-truck"];
+  const title = dbPaper?.title || fallback.title;
+  const rawDescription = dbPaper?.excerpt || dbPaper?.description || fallback.abstract;
+  const description = rawDescription.slice(0, 150) + "...";
+  const canonicalSlug = dbPaper?.slug || fallback.slug;
 
   return {
-    title: `${paper.title} · Treel Research`,
-    description: paper.abstract.slice(0, 150) + "...",
+    title: `${title} · Treel Research`,
+    description,
     alternates: {
-      canonical: `https://treel.in/research/${paper.slug}`,
+      canonical: `https://treel.in/research/${canonicalSlug}`,
     },
     openGraph: {
-      title: `${paper.title} · Treel Research`,
-      description: paper.abstract.slice(0, 150) + "...",
-      url: `https://treel.in/research/${paper.slug}`,
+      title: `${title} · Treel Research`,
+      description,
+      url: `https://treel.in/research/${canonicalSlug}`,
     },
   };
 }
 
 export default async function ResearchSlugPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const paper = PAPERS[slug] || {
+  const dbPaper = await getWhitepaperBySlug(slug, false);
+  const fallback = PAPERS[slug] || {
     slug,
     topic: "Mobility Intelligence",
     title: "Commercial Vehicle Digital Twin Research",
@@ -125,6 +141,17 @@ export default async function ResearchSlugPage({ params }: { params: Promise<{ s
     relatedSlugs: ["case-study-1000-truck", "vehicle-digital-twin"],
   };
 
+  const title = dbPaper?.title || fallback.title;
+  const topic = dbPaper?.topic || fallback.topic;
+  const date = dbPaper?.publishDate || dbPaper?.year || fallback.date;
+  const length = dbPaper?.length || fallback.length;
+  const abstract = dbPaper?.excerpt || dbPaper?.description || fallback.abstract;
+  const chapters = (dbPaper?.chapters && dbPaper.chapters.length > 0) ? dbPaper.chapters : fallback.chapters;
+  const author = dbPaper?.author || "Treel Research Team";
+  const fileFormat = dbPaper?.fileFormat || "PDF";
+  const whitepaperId = dbPaper?._id;
+  const targetSlug = dbPaper?.slug || slug;
+
   return (
     <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
       {/* 1. HEADER & HERO */}
@@ -137,34 +164,34 @@ export default async function ResearchSlugPage({ params }: { params: Promise<{ s
                 Research
               </Link>
               <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <span className="text-[#D5573B] truncate max-w-xs">{paper.title}</span>
+              <span className="text-[#D5573B] truncate max-w-xs">{title}</span>
             </div>
 
             <div className="flex items-center gap-3">
               <span className="text-xs font-mono uppercase px-3 py-0.5 rounded-[4px] bg-[#D5573B]/10 text-[#D5573B] border border-[#D5573B]/20 font-semibold tracking-wider">
-                {paper.topic}
+                {topic}
               </span>
             </div>
 
             <h1 className="font-fraunces text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
-              {paper.title}
+              {title}
             </h1>
 
             {/* Publication Details */}
             <div className="flex flex-wrap items-center gap-6 pt-4 border-t border-white/10 text-xs font-mono text-[#94A3B8]">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-[#D5573B]" />
-                <span>Published {paper.date}</span>
+                <span>Published {date}</span>
               </div>
               <span className="text-white/20">·</span>
               <div className="flex items-center gap-2">
                 <FileText className="w-4 h-4 text-[#D5573B]" />
-                <span>{paper.length}</span>
+                <span>{length}</span>
               </div>
               <span className="text-white/20">·</span>
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4 text-[#D5573B]" />
-                <span className="text-[#FAF7F2]">By Treel Research Team</span>
+                <span className="text-[#FAF7F2]">{author}</span>
               </div>
             </div>
           </div>
@@ -185,7 +212,7 @@ export default async function ResearchSlugPage({ params }: { params: Promise<{ s
                   What this paper covers
                 </h2>
                 <p className="text-base sm:text-lg text-[#94A3B8] leading-relaxed">
-                  {paper.abstract}
+                  {abstract}
                 </p>
               </div>
 
@@ -200,7 +227,7 @@ export default async function ResearchSlugPage({ params }: { params: Promise<{ s
                 </div>
 
                 <div className="space-y-3">
-                  {paper.chapters.map((chapter, idx) => (
+                  {chapters.map((chapter, idx) => (
                     <div 
                       key={idx}
                       className="p-4 rounded-lg bg-white/[0.02] border border-white/[0.08] text-sm text-[#FAF7F2] font-mono flex items-center gap-3"
@@ -228,7 +255,13 @@ export default async function ResearchSlugPage({ params }: { params: Promise<{ s
                   </p>
                 </div>
 
-                <WhitepaperGatedForm />
+                <WhitepaperGatedForm
+                  slug={targetSlug}
+                  whitepaperId={whitepaperId}
+                  whitepaperTitle={title}
+                  paperFormat={fileFormat}
+                  pageCount={length}
+                />
               </div>
             </div>
           </div>

@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { SocialLinks } from "@/components/layout/social-links";
 
 export function TpmsLandingFooter({ className = "" }: { className?: string }) {
   return (
@@ -28,8 +29,9 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               ARAI &amp; ISO 9001:2015 Certified · Patents in India, US &amp; EU
             </p>
             <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
-              <span>© 2026 Treel Mobility Solutions Private Limited. All rights reserved.</span>
+              <span>© {new Date().getFullYear()} Treel Mobility Solutions Private Limited. All rights reserved.</span>
             </div>
+            <SocialLinks variant="personal" />
           </div>
 
           {/* Solutions */}
