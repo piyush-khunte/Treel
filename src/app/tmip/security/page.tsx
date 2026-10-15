@@ -92,10 +92,6 @@ export default function TmipSecurityPage() {
       detail: "All operator actions, dashboard logins, and API calls logged immutably and queryable."
     },
     {
-      label: "API security",
-      detail: "Cryptographically signed webhooks, rate limiting, and zero-downtime key rotation."
-    },
-    {
       label: "Penetration testing",
       detail: "Quarterly independent black-box and white-box assessments by certified third-party security firms."
     },
