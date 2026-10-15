@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Building2, MapPin } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { LeadershipTeam } from "./leadership-team";
 
 export const metadata: Metadata = {
   title: "Leadership  ·  Treel",
@@ -17,29 +18,6 @@ export const metadata: Metadata = {
 };
 
 export default function LeadershipPage() {
-  const executives = [
-    {
-      name: "Nithin",
-      role: "Engineering Manager",
-      bio: "Leads the cloud infrastructure, edge computing pipelines, and real-time telemetry ingestion architecture supporting 68,000+ active vehicles."
-    },
-    {
-      name: "Atharv",
-      role: "Product Management",
-      bio: "Oversees the product roadmap for TMIP Enterprise, Project Suraksha, and Personal TPMS apps across iOS and Android."
-    },
-    {
-      name: "Pradnya Choudhary",
-      role: "Hardware Lead",
-      bio: "Directs embedded hardware engineering, ARAI sensor certification, and low-power RF sensor validation for commercial fleet durability."
-    },
-    {
-      name: "Imran Khan",
-      role: "Chief Financial Officer",
-      bio: "Manages financial strategy, capital allocation, enterprise procurement frameworks, and commercial operations across national hubs."
-    }
-  ];
-
   return (
     <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
       {/* Hero Section */}
@@ -115,38 +93,19 @@ export default function LeadershipPage() {
       </section>
 
       {/* Executive Team Grid */}
-      <section className="py-20 border-b border-white/10">
+      <section className="py-20 border-b border-white/10" id="executive-team">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-8">
-            <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">
-              Executive Team
-            </h2>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {executives.map((exec, idx) => (
-                <div key={idx} className="rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col justify-between shadow-sm">
-                  {/* Photo Visual Area */}
-                  <div className="w-full aspect-[4/5] bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-white/[0.01] border-b border-white/[0.08] relative overflow-hidden">
-                    <div className="absolute inset-0 bg-white/5 opacity-40" />
-                  </div>
-                  
-                  {/* Content Area */}
-                  <div className="p-6 space-y-3">
-                    <div>
-                      <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2]">
-                        {exec.name}
-                      </h3>
-                      <div className="text-xs font-jetbrains font-mono uppercase tracking-wider text-[#D5573B] mt-1 font-semibold">
-                        {exec.role}
-                      </div>
-                    </div>
-                    <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed font-inter">
-                      {exec.bio}
-                    </p>
-                  </div>
-                </div>
-              ))}
+          <div className="max-w-[1020px] mx-auto space-y-8">
+            <div className="space-y-2">
+              <div className="text-xs font-jetbrains font-mono uppercase tracking-widest text-[#D5573B] font-semibold">
+                LEADERSHIP ROSTER
+              </div>
+              <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">
+                Executive Team
+              </h2>
             </div>
+
+            <LeadershipTeam />
           </div>
         </div>
       </section>

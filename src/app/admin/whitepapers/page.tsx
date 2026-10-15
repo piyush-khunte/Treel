@@ -28,7 +28,7 @@ import {
   X,
 } from "lucide-react";
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 function slugify(text: string): string {
   return text
@@ -78,6 +78,10 @@ export default function AdminWhitepapersPage() {
   const [activeTab, setActiveTab] = useState<"general" | "document" | "media" | "seo">("general");
 
   const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(null);
+  const [modalFeedback, setModalFeedback] = useState<{ type: "success" | "error"; message: string } | null>(null);
+
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const coverInputRef = useRef<HTMLInputElement | null>(null);
 
   const showFeedback = useCallback((type: "success" | "error", message: string) => {
     setFeedback({ type, message });
@@ -139,6 +143,7 @@ export default function AdminWhitepapersPage() {
     setEditingItem(newRecord);
     setIsNew(true);
     setActiveTab("general");
+    setModalFeedback(null);
     setModalOpen(true);
   };
 
@@ -156,6 +161,7 @@ export default function AdminWhitepapersPage() {
     });
     setIsNew(false);
     setActiveTab("general");
+    setModalFeedback(null);
     setModalOpen(true);
   };
 
@@ -187,9 +193,40 @@ export default function AdminWhitepapersPage() {
 
   const handleDocumentUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    if (e.target) {
+      e.target.value = "";
+    }
     if (!file || !editingItem) return;
 
+    const MAX_FILE_SIZE = 50 * 1024 * 1024;
+    if (file.size > MAX_FILE_SIZE) {
+      setModalFeedback({
+        type: "error",
+        message: `File size exceeds the 50MB limit (${(file.size / (1024 * 1024)).toFixed(1)}MB). Please choose a smaller document.`,
+      });
+      return;
+    }
+
+    const lowerName = file.name.toLowerCase();
+    const isValidFormat =
+      lowerName.endsWith(".pdf") ||
+      lowerName.endsWith(".doc") ||
+      lowerName.endsWith(".docx") ||
+      file.type === "application/pdf" ||
+      file.type === "application/msword" ||
+      file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+
+    if (!isValidFormat) {
+      setModalFeedback({
+        type: "error",
+        message: "Invalid file format. Please upload a PDF (.pdf) or Microsoft Word document (.doc, .docx).",
+      });
+      return;
+    }
+
     setUploadingDoc(true);
+    setModalFeedback(null);
+
     try {
       const formData = new FormData();
       formData.append("file", file);
@@ -201,23 +238,35 @@ export default function AdminWhitepapersPage() {
       const data = await res.json();
 
       if (res.ok && data.success && data.url) {
-        setEditingItem({
-          ...editingItem,
-          fileUrl: data.url,
-          fileFormat: data.format as WhitepaperFormat,
-          fileSize: data.size,
-          fileSizeFormatted: data.sizeFormatted,
-          originalFilename: data.originalFilename,
+        setEditingItem((prev) => {
+          if (!prev) return null;
+          const cleanName = file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ").trim();
+          return {
+            ...prev,
+            fileUrl: data.url,
+            fileFormat: data.format as WhitepaperFormat,
+            fileSize: data.size,
+            fileSizeFormatted: data.sizeFormatted,
+            originalFilename: data.originalFilename,
+            title: prev.title?.trim() ? prev.title : cleanName,
+            slug: prev.slug?.trim() ? prev.slug : slugify(cleanName),
+          };
         });
-        showFeedback(
-          "success",
-          `Uploaded ${data.originalFilename} (${data.format}, ${data.sizeFormatted}) successfully.`
-        );
+        setModalFeedback({
+          type: "success",
+          message: `Uploaded "${data.originalFilename}" (${data.format}, ${data.sizeFormatted}) successfully.`,
+        });
       } else {
-        showFeedback("error", data.error || "Document upload failed.");
+        setModalFeedback({
+          type: "error",
+          message: data.error || "Document upload failed. Please try again.",
+        });
       }
     } catch (err: any) {
-      showFeedback("error", err.message || "Network error while uploading document.");
+      setModalFeedback({
+        type: "error",
+        message: err.message || "Network error while uploading document.",
+      });
     } finally {
       setUploadingDoc(false);
     }
@@ -225,9 +274,14 @@ export default function AdminWhitepapersPage() {
 
   const handleCoverUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    if (e.target) {
+      e.target.value = "";
+    }
     if (!file || !editingItem) return;
 
     setUploadingCover(true);
+    setModalFeedback(null);
+
     try {
       const formData = new FormData();
       formData.append("file", file);
@@ -238,17 +292,24 @@ export default function AdminWhitepapersPage() {
       });
       const data = await res.json();
 
-      if (res.ok && data.success && data.url) {
-        setEditingItem({
-          ...editingItem,
-          coverImage: data.url,
+      if (res.ok && (data.imageUrl || data.url)) {
+        const coverUrl = data.imageUrl || data.url;
+        setEditingItem((prev) => (prev ? { ...prev, coverImage: coverUrl } : null));
+        setModalFeedback({
+          type: "success",
+          message: "Cover image uploaded successfully.",
         });
-        showFeedback("success", "Cover image uploaded successfully.");
       } else {
-        showFeedback("error", data.error || "Cover image upload failed.");
+        setModalFeedback({
+          type: "error",
+          message: data.error || "Cover image upload failed.",
+        });
       }
     } catch (err: any) {
-      showFeedback("error", err.message || "Network error while uploading cover image.");
+      setModalFeedback({
+        type: "error",
+        message: err.message || "Network error while uploading cover image.",
+      });
     } finally {
       setUploadingCover(false);
     }
@@ -260,7 +321,8 @@ export default function AdminWhitepapersPage() {
 
     const trimmedTitle = (editingItem.title || "").trim();
     if (!trimmedTitle) {
-      showFeedback("error", "Whitepaper title is required.");
+      setModalFeedback({ type: "error", message: "Whitepaper title is required." });
+      setActiveTab("general");
       return;
     }
 
@@ -270,39 +332,57 @@ export default function AdminWhitepapersPage() {
     }
 
     if (!editingItem.excerpt?.trim()) {
-      showFeedback("error", "Short description / excerpt is required.");
+      setModalFeedback({ type: "error", message: "Short description / excerpt is required." });
+      setActiveTab("general");
       return;
     }
 
     if (!editingItem.fileUrl) {
-      showFeedback("error", "Please upload the actual document file (PDF, DOC, or DOCX) before saving.");
+      setModalFeedback({
+        type: "error",
+        message: "Please select and upload a document file (PDF, DOC, or DOCX) before saving.",
+      });
+      setActiveTab("document");
       return;
     }
 
     setSaving(true);
-    const payload: WhitepaperRecord = {
-      ...editingItem,
-      title: trimmedTitle,
-      slug: finalSlug,
-      excerpt: editingItem.excerpt.trim(),
-      chapters: editingItem.chapters?.filter((ch) => ch.trim().length > 0) || [],
-    };
+    setModalFeedback(null);
 
-    const res = await saveWhitepaperAction(payload);
-    if (res.success && res.data) {
-      if (isNew) {
-        setWhitepapers((prev) => [res.data!, ...prev]);
-        showFeedback("success", `Whitepaper "${res.data.title}" published to catalog.`);
+    try {
+      const payload: WhitepaperRecord = {
+        ...editingItem,
+        title: trimmedTitle,
+        slug: finalSlug,
+        excerpt: editingItem.excerpt.trim(),
+        chapters: editingItem.chapters?.filter((ch) => ch.trim().length > 0) || [],
+      };
+
+      const res = await saveWhitepaperAction(payload);
+      if (res.success && res.data) {
+        showFeedback(
+          "success",
+          isNew
+            ? `Whitepaper "${res.data.title}" uploaded and published to catalog.`
+            : `Whitepaper "${res.data.title}" updated successfully.`
+        );
+        setModalOpen(false);
+        setEditingItem(null);
+        await loadWhitepapers();
       } else {
-        setWhitepapers((prev) => prev.map((w) => (w._id === res.data!._id ? res.data! : w)));
-        showFeedback("success", `Whitepaper "${res.data.title}" updated successfully.`);
+        setModalFeedback({
+          type: "error",
+          message: res.error || "Failed to save whitepaper. Please review the fields and try again.",
+        });
       }
-      setModalOpen(false);
-      setEditingItem(null);
-    } else {
-      showFeedback("error", res.error || "Failed to save whitepaper.");
+    } catch (err: any) {
+      setModalFeedback({
+        type: "error",
+        message: err.message || "An unexpected error occurred while saving.",
+      });
+    } finally {
+      setSaving(false);
     }
-    setSaving(false);
   };
 
   // Filter calculation
@@ -391,12 +471,13 @@ export default function AdminWhitepapersPage() {
           </Button>
 
           <Button
+            type="button"
             onClick={handleCreate}
             size="sm"
             className="bg-blue-600 hover:bg-blue-500 text-white font-medium shadow-lg shadow-blue-600/20"
           >
-            <Plus className="w-4 h-4 mr-1.5" />
-            Upload New Whitepaper
+            <Upload className="w-4 h-4 mr-1.5" />
+            Upload Whitepaper
           </Button>
         </div>
       </div>
@@ -550,11 +631,12 @@ export default function AdminWhitepapersPage() {
                 : "Upload and publish your first technical whitepaper or research report."}
             </p>
             <Button
+              type="button"
               onClick={handleCreate}
               size="sm"
               className="bg-blue-600 hover:bg-blue-500 text-white font-medium mt-2"
             >
-              <Plus className="w-4 h-4 mr-1.5" />
+              <Upload className="w-4 h-4 mr-1.5" />
               Upload Whitepaper
             </Button>
           </div>
@@ -856,9 +938,101 @@ export default function AdminWhitepapersPage() {
 
             {/* Modal Form Body */}
             <form onSubmit={handleSave} className="flex-1 overflow-y-auto p-6 space-y-6">
+              {/* Modal Inline Error / Success Alert */}
+              {modalFeedback && (
+                <div
+                  className={`p-3.5 rounded-xl border flex items-center justify-between text-xs transition-all ${
+                    modalFeedback.type === "success"
+                      ? "bg-emerald-950/70 border-emerald-500/40 text-emerald-200"
+                      : "bg-rose-950/70 border-rose-500/40 text-rose-200"
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5">
+                    {modalFeedback.type === "success" ? (
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    ) : (
+                      <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+                    )}
+                    <span>{modalFeedback.message}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setModalFeedback(null)}
+                    className="text-slate-400 hover:text-white p-1 rounded"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              )}
+
               {/* TAB 1: General Metadata */}
               {activeTab === "general" && (
                 <div className="space-y-5">
+                  {/* Document Attachment Quick-Card on Tab 1 */}
+                  <div className={`p-4 rounded-xl border transition-all ${
+                    editingItem.fileUrl
+                      ? "border-blue-500/30 bg-blue-500/5"
+                      : "border-amber-500/30 bg-amber-500/5"
+                  }`}>
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`w-9 h-9 rounded-lg flex items-center justify-center font-mono font-bold text-xs ${
+                            editingItem.fileUrl
+                              ? "bg-blue-500/20 text-blue-400 border border-blue-500/40"
+                              : "bg-amber-500/20 text-amber-300 border border-amber-500/40"
+                          }`}
+                        >
+                          {editingItem.fileFormat || "PDF"}
+                        </div>
+                        <div>
+                          <div className="text-xs font-semibold text-white flex items-center gap-2">
+                            <span>Document Attachment</span>
+                            <span className="text-rose-400">*</span>
+                            {editingItem.fileUrl ? (
+                              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                                Ready to Publish
+                              </span>
+                            ) : (
+                              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                                Required File Missing
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[11px] text-slate-400 font-mono truncate max-w-sm sm:max-w-md mt-0.5">
+                            {editingItem.fileUrl
+                              ? `${editingItem.originalFilename || "Uploaded document"} (${editingItem.fileSizeFormatted || "Ready"})`
+                              : "Attach PDF, DOC, or DOCX document (Max 50MB)"}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2 self-start sm:self-auto">
+                        <Button
+                          type="button"
+                          size="sm"
+                          onClick={() => fileInputRef.current?.click()}
+                          disabled={uploadingDoc}
+                          className="bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium h-8"
+                        >
+                          <Upload className="w-3.5 h-3.5 mr-1.5" />
+                          {uploadingDoc
+                            ? "Uploading..."
+                            : editingItem.fileUrl
+                            ? "Replace Document"
+                            : "Upload Document"}
+                        </Button>
+                        <button
+                          type="button"
+                          onClick={() => setActiveTab("document")}
+                          className="text-xs text-slate-400 hover:text-white underline font-mono px-2 py-1"
+                        >
+                          File Details →
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Title */}
                     <div className="space-y-1.5 md:col-span-2">
@@ -1226,17 +1400,24 @@ export default function AdminWhitepapersPage() {
                       </p>
                     </div>
 
-                    <label className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold cursor-pointer transition-all shadow-md">
-                      <Upload className="w-4 h-4" />
-                      <span>{uploadingDoc ? "Processing..." : "Select File (PDF / DOC / DOCX)"}</span>
-                      <input
-                        type="file"
-                        accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                        onChange={handleDocumentUpload}
-                        disabled={uploadingDoc}
-                        className="hidden"
-                      />
-                    </label>
+                    <Button
+                      type="button"
+                      size="sm"
+                      onClick={() => fileInputRef.current?.click()}
+                      disabled={uploadingDoc}
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold cursor-pointer transition-all shadow-md h-auto"
+                    >
+                      <Upload className="w-4 h-4 mr-1" />
+                      <span>{uploadingDoc ? "Uploading Document..." : "Select File (PDF / DOC / DOCX)"}</span>
+                    </Button>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                      onChange={handleDocumentUpload}
+                      disabled={uploadingDoc}
+                      className="hidden"
+                    />
                   </div>
 
                   {/* Manual URL override if needed */}
@@ -1267,17 +1448,24 @@ export default function AdminWhitepapersPage() {
                         placeholder="https://... or /uploads/products/..."
                         className="bg-slate-950 border-slate-800 text-white font-mono text-xs flex-1"
                       />
-                      <label className="cursor-pointer inline-flex items-center gap-1.5 px-3 py-2 rounded-md bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 transition-colors shrink-0">
-                        <Upload className="w-3.5 h-3.5" />
+                      <Button
+                        type="button"
+                        size="sm"
+                        onClick={() => coverInputRef.current?.click()}
+                        disabled={uploadingCover}
+                        className="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium h-9 shrink-0"
+                      >
+                        <Upload className="w-3.5 h-3.5 mr-1.5" />
                         <span>{uploadingCover ? "Uploading..." : "Upload Cover"}</span>
-                        <input
-                          type="file"
-                          accept="image/*"
-                          onChange={handleCoverUpload}
-                          disabled={uploadingCover}
-                          className="hidden"
-                        />
-                      </label>
+                      </Button>
+                      <input
+                        ref={coverInputRef}
+                        type="file"
+                        accept="image/*"
+                        onChange={handleCoverUpload}
+                        disabled={uploadingCover}
+                        className="hidden"
+                      />
                     </div>
 
                     {editingItem.coverImage && (
@@ -1426,8 +1614,22 @@ export default function AdminWhitepapersPage() {
                   disabled={saving || uploadingDoc || uploadingCover}
                   className="bg-blue-600 hover:bg-blue-500 text-white font-medium"
                 >
-                  <Save className="w-4 h-4 mr-1.5" />
-                  {saving ? "Saving Changes..." : isNew ? "Publish Whitepaper" : "Save Changes"}
+                  {saving ? (
+                    <>
+                      <RefreshCw className="w-4 h-4 mr-1.5 animate-spin" />
+                      <span>{isNew ? "Publishing Whitepaper..." : "Saving Changes..."}</span>
+                    </>
+                  ) : uploadingDoc ? (
+                    <>
+                      <RefreshCw className="w-4 h-4 mr-1.5 animate-spin" />
+                      <span>Uploading Document...</span>
+                    </>
+                  ) : (
+                    <>
+                      {isNew ? <Upload className="w-4 h-4 mr-1.5" /> : <Save className="w-4 h-4 mr-1.5" />}
+                      <span>{isNew ? "Upload & Publish Whitepaper" : "Save Changes"}</span>
+                    </>
+                  )}
                 </Button>
               </div>
             </form>
