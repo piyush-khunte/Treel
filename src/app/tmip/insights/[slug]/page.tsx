@@ -1,5 +1,5 @@
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { slugifyAuthor } from "@/lib/authors/author-utils";
+import { slugifyAuthor, getLeadershipPhotoForAuthor } from "@/lib/authors/author-utils";
 import { getInsightBySlug,getPublishedInsights } from "@/lib/content/insights-storage";
 import {
 Activity,
@@ -10,6 +10,7 @@ Clock
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({
@@ -182,11 +183,25 @@ export default async function TmipInsightsSlugPage({
             </div>
 
             {/* Author Attribution Card */}
-            {article.author && (
-              <div className="p-8 rounded-[4px] bg-[#0B1220] border border-slate-400/10 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                <div className="w-16 h-16 rounded-full bg-blue-950/60 border border-blue-500/30 flex items-center justify-center font-space-grotesk text-xl font-bold text-[#93C5FD] shrink-0">
-                  {article.author.split(" ").map(n => n[0]).join("").slice(0, 2)}
-                </div>
+            {article.author && (() => {
+              const authorPhoto = getLeadershipPhotoForAuthor(article.author);
+              return (
+                <div className="p-8 rounded-[4px] bg-[#0B1220] border border-slate-400/10 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                  {authorPhoto ? (
+                    <div className="w-16 h-16 rounded-full border border-blue-500/30 relative overflow-hidden flex-shrink-0 bg-slate-900 shadow-md">
+                      <Image
+                        src={authorPhoto}
+                        alt={article.author}
+                        fill
+                        className="object-cover"
+                        sizes="64px"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-16 h-16 rounded-full bg-blue-950/60 border border-blue-500/30 flex items-center justify-center font-space-grotesk text-xl font-bold text-[#93C5FD] shrink-0">
+                      {article.author.split(" ").map(n => n[0]).join("").slice(0, 2)}
+                    </div>
+                  )}
                 <div className="space-y-2 flex-1">
                   <div>
                     <Link
@@ -208,7 +223,8 @@ export default async function TmipInsightsSlugPage({
                   )}
                 </div>
               </div>
-            )}
+            );
+          })()}
 
             {/* Navigation & CTA Controls */}
             <div className="pt-8 border-t border-slate-400/10 flex flex-col sm:flex-row items-center justify-between gap-4">

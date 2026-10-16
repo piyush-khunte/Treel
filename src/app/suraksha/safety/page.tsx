@@ -126,7 +126,7 @@ export default function SurakshaSafetyPage() {
                   Story 1: Driver: Narender K. · North India route
                 </div>
                 <p className="text-base text-[#451A03] italic font-medium leading-relaxed">
-                  "Highway drive from Pune to Mumbai, मुझे slow leak warning आई front-right tyre पर। Pull कर के रुका, और वहाँ nail लग गया था। अगर मैं चलता रहता तो 100 km/h पर blowout हो जाता। Suraksha ने family के साथ घर वापस लाने में help किया।"
+                  &ldquo;During a highway drive from Pune to Mumbai, I received a slow-leak warning for my front-right tyre. I pulled over and discovered a nail in the tyre. If I had continued driving at 100 km/h, it could have resulted in a tyre blowout. Suraksha helped me get home safely with my family.&rdquo;
                 </p>
               </div>
 

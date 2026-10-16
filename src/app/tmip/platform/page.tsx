@@ -35,7 +35,7 @@ const layers = [
   {
     num: "Layer 5",
     title: "Operator interface",
-    desc: "Executive dashboards, fleet dispatch consoles, REST/GraphQL APIs, real-time threshold & anomaly alerts, and exportable CFO reports.",
+    desc: "Executive dashboards, fleet dispatch consoles, real-time threshold & anomaly alerts, and exportable CFO reports.",
     badge: "CONSUMPTION & CONTROL",
     color: "#3B82F6",
     icon: Layers,

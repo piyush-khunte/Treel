@@ -54,7 +54,7 @@ export default function TmipSecurityPage() {
   const dataSecurityPoints = [
     {
       label: "Encryption in transit",
-      detail: "TLS 1.3 for all client connections, webhooks, and telemetry ingestion APIs."
+      detail: "TLS 1.3 for all client connections, webhooks, and telemetry."
     },
     {
       label: "Encryption at rest",
@@ -89,7 +89,7 @@ export default function TmipSecurityPage() {
     },
     {
       label: "Audit logging",
-      detail: "All operator actions, dashboard logins, and API calls logged immutably and queryable."
+      detail: "All operator actions, dashboard logins."
     },
     {
       label: "Penetration testing",
@@ -262,7 +262,7 @@ export default function TmipSecurityPage() {
                 Application
               </h2>
               <p className="text-[#94A3B8] text-base leading-relaxed font-ibm-plex">
-                Continuous software security enforcement across client dashboards and programmatic APIs:
+                Continuous software security enforcement across client dashboards:
               </p>
             </div>
 

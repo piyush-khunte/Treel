@@ -198,3 +198,91 @@ export interface WhitepaperRecord {
   updatedAt?: string;
 }
 
+export interface PressReleaseQuote {
+  text: string;
+  speaker: string;
+  role: string;
+}
+
+export type PressReleaseCategory = "Product Launch" | "Partnership" | "Milestone" | "Company News" | string;
+
+export interface PressItemRecord {
+  _id: string;
+  slug: string;
+  year: string;
+  date: string;
+  category: PressReleaseCategory;
+  headline: string;
+  excerpt: string;
+  city?: string;
+  leadParagraph?: string;
+  quote?: PressReleaseQuote;
+  bodyParagraphs?: string[];
+  relatedSlugs?: string[];
+  externalUrl?: string;
+  source?: string;
+  thumbnailUrl?: string;
+  isFeatured?: boolean;
+  publicationStatus: "Published" | "Draft";
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export type MediaKitCategory = "Brand Assets" | "Photography" | "Fact Sheet & Bios" | "All-in-One Package" | string;
+
+export interface MediaKitItemRecord {
+  _id: string;
+  title: string;
+  category: MediaKitCategory;
+  format: string;
+  description: string;
+  fileSize: string;
+  fileUrl: string;
+  details?: string;
+  file?: string;
+  order?: number;
+  iconName?: string;
+  publicationStatus: "Published" | "Draft";
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export type WarrantyRecordType = "registration" | "claim";
+
+export type WarrantyStatus =
+  | "Submitted"
+  | "Pending Review"
+  | "Under Review"
+  | "Approved"
+  | "Active"
+  | "Rejected"
+  | "Resolved";
+
+export interface WarrantyRecord {
+  _id: string;
+  registrationId: string;
+  type: WarrantyRecordType;
+  orderId: string;
+  customerEmail: string;
+  customerName?: string;
+  customerPhone?: string;
+  productName: string;
+  productCategory?: string;
+  coverageDuration: string;
+  coverageStatus: "Active" | "Expired" | "Pending";
+  purchaseDate?: string;
+  registeredAt: string;
+  // Specific to Claims
+  claimIssueType?: string;
+  claimDescription?: string;
+  claimResolution?: string;
+  // Admin & Lifecycle
+  status: WarrantyStatus;
+  adminNotes?: string;
+  reviewedBy?: string;
+  reviewedAt?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+

@@ -13,7 +13,9 @@ import {
   Bell,
   Cookie,
   Calendar,
-  Briefcase
+  Briefcase,
+  Newspaper,
+  FolderArchive
 } from "lucide-react";
 import { getAdminSession } from "@/lib/admin/admin-auth";
 import { AdminLogoutButton } from "./admin-logout-button";
@@ -115,6 +117,22 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             </Link>
 
             <Link
+              href="/admin/press"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors"
+            >
+              <Newspaper className="w-4 h-4 text-emerald-400" />
+              <span>Press & Media</span>
+            </Link>
+
+            <Link
+              href="/admin/media-kit"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors"
+            >
+              <FolderArchive className="w-4 h-4 text-purple-400" />
+              <span>Media Kit</span>
+            </Link>
+
+            <Link
               href="/admin/annual-returns"
               className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors"
             >
@@ -136,6 +154,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             >
               <Users className="w-4 h-4 text-amber-400" />
               <span>Leads & Inquiries</span>
+            </Link>
+
+            <Link
+              href="/admin/warranties"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors"
+            >
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <span>Warranty Management</span>
             </Link>
 
             <Link

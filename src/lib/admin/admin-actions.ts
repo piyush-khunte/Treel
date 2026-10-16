@@ -1644,3 +1644,304 @@ export async function toggleWhitepaperPublishAction(
 
 
 
+
+
+// ============================================================================
+// PRESS & MEDIA MANAGEMENT
+// ============================================================================
+
+export async function getAdminPressListAction(): Promise<{
+  success: boolean;
+  data?: import('@/types/content').PressItemRecord[];
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { getAllPressItems } = await import('@/lib/content/press-storage');
+    const items = await getAllPressItems(true);
+    return { success: true, data: items };
+  } catch (err: any) {
+    console.error('getAdminPressListAction error:', err);
+    return { success: false, error: err.message || 'Failed to fetch press items.' };
+  }
+}
+
+export async function savePressItemAction(
+  data: Partial<import('@/types/content').PressItemRecord>
+): Promise<{
+  success: boolean;
+  data?: import('@/types/content').PressItemRecord;
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { savePressItem } = await import('@/lib/content/press-storage');
+    const res = await savePressItem(data);
+    if (res.success && res.data) {
+      revalidatePath('/press');
+      revalidatePath('/admin/press');
+      if (res.data.slug) {
+        revalidatePath(`/press/${res.data.year || '2026'}/${res.data.slug}`);
+      }
+    }
+    return res;
+  } catch (err: any) {
+    console.error('savePressItemAction error:', err);
+    return { success: false, error: err.message || 'Failed to save press release.' };
+  }
+}
+
+export async function deletePressItemAction(
+  id: string
+): Promise<{ success: boolean; error?: string }> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { deletePressItem } = await import('@/lib/content/press-storage');
+    const res = await deletePressItem(id);
+    if (res.success) {
+      revalidatePath('/press');
+      revalidatePath('/admin/press');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('deletePressItemAction error:', err);
+    return { success: false, error: err.message || 'Failed to delete press release.' };
+  }
+}
+
+export async function togglePressPublishAction(
+  id: string
+): Promise<{
+  success: boolean;
+  data?: import('@/types/content').PressItemRecord;
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { togglePressPublish } = await import('@/lib/content/press-storage');
+    const res = await togglePressPublish(id);
+    if (res.success && res.data) {
+      revalidatePath('/press');
+      revalidatePath('/admin/press');
+      if (res.data.slug) {
+        revalidatePath(`/press/${res.data.year || '2026'}/${res.data.slug}`);
+      }
+    }
+    return res;
+  } catch (err: any) {
+    console.error('togglePressPublishAction error:', err);
+    return { success: false, error: err.message || 'Failed to toggle press release status.' };
+  }
+}
+
+// ============================================================================
+// MEDIA KIT MANAGEMENT
+// ============================================================================
+
+export async function getAdminMediaKitListAction(): Promise<{
+  success: boolean;
+  data?: import('@/types/content').MediaKitItemRecord[];
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { getAllMediaKitItems } = await import('@/lib/content/mediakit-storage');
+    const items = await getAllMediaKitItems(true);
+    return { success: true, data: items };
+  } catch (err: any) {
+    console.error('getAdminMediaKitListAction error:', err);
+    return { success: false, error: err.message || 'Failed to fetch media kit items.' };
+  }
+}
+
+export async function saveMediaKitItemAction(
+  data: Partial<import('@/types/content').MediaKitItemRecord>
+): Promise<{
+  success: boolean;
+  data?: import('@/types/content').MediaKitItemRecord;
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { saveMediaKitItem } = await import('@/lib/content/mediakit-storage');
+    const res = await saveMediaKitItem(data);
+    if (res.success && res.data) {
+      revalidatePath('/media-kit');
+      revalidatePath('/admin/media-kit');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('saveMediaKitItemAction error:', err);
+    return { success: false, error: err.message || 'Failed to save media kit asset.' };
+  }
+}
+
+export async function deleteMediaKitItemAction(
+  id: string
+): Promise<{ success: boolean; error?: string }> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { deleteMediaKitItem } = await import('@/lib/content/mediakit-storage');
+    const res = await deleteMediaKitItem(id);
+    if (res.success) {
+      revalidatePath('/media-kit');
+      revalidatePath('/admin/media-kit');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('deleteMediaKitItemAction error:', err);
+    return { success: false, error: err.message || 'Failed to delete media kit asset.' };
+  }
+}
+
+export async function toggleMediaKitPublishAction(
+  id: string
+): Promise<{
+  success: boolean;
+  data?: import('@/types/content').MediaKitItemRecord;
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { toggleMediaKitPublish } = await import('@/lib/content/mediakit-storage');
+    const res = await toggleMediaKitPublish(id);
+    if (res.success && res.data) {
+      revalidatePath('/media-kit');
+      revalidatePath('/admin/media-kit');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('toggleMediaKitPublishAction error:', err);
+    return { success: false, error: err.message || 'Failed to toggle media kit publish status.' };
+  }
+}
+
+
+// ============================================================================
+// WARRANTY MANAGEMENT
+// ============================================================================
+
+export async function getAdminWarrantyListAction(): Promise<{
+  success: boolean;
+  data?: import('@/types/content').WarrantyRecord[];
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { getAllWarranties } = await import('@/lib/content/warranty-storage');
+    const items = await getAllWarranties();
+    return { success: true, data: items };
+  } catch (err: any) {
+    console.error('getAdminWarrantyListAction error:', err);
+    return { success: false, error: err.message || 'Failed to fetch warranty records.' };
+  }
+}
+
+export async function saveWarrantyAction(
+  data: Partial<import('@/types/content').WarrantyRecord>
+): Promise<{
+  success: boolean;
+  data?: import('@/types/content').WarrantyRecord;
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { saveWarranty } = await import('@/lib/content/warranty-storage');
+    const res = await saveWarranty(data);
+    if (res.success && res.data) {
+      revalidatePath('/admin/warranties');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('saveWarrantyAction error:', err);
+    return { success: false, error: err.message || 'Failed to save warranty record.' };
+  }
+}
+
+export async function updateWarrantyStatusAction(
+  id: string,
+  status: import('@/types/content').WarrantyStatus,
+  adminNotes?: string
+): Promise<{
+  success: boolean;
+  data?: import('@/types/content').WarrantyRecord;
+  error?: string;
+}> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { updateWarrantyStatus } = await import('@/lib/content/warranty-storage');
+    const res = await updateWarrantyStatus(id, status, adminNotes, session.username);
+    if (res.success && res.data) {
+      revalidatePath('/admin/warranties');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('updateWarrantyStatusAction error:', err);
+    return { success: false, error: err.message || 'Failed to update warranty status.' };
+  }
+}
+
+export async function deleteWarrantyAction(
+  id: string
+): Promise<{ success: boolean; error?: string }> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { deleteWarranty } = await import('@/lib/content/warranty-storage');
+    const res = await deleteWarranty(id);
+    if (res.success) {
+      revalidatePath('/admin/warranties');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('deleteWarrantyAction error:', err);
+    return { success: false, error: err.message || 'Failed to delete warranty record.' };
+  }
+}

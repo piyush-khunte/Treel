@@ -11,6 +11,7 @@ MapPin
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 export const revalidate = 60;
@@ -101,11 +102,24 @@ export default async function AuthorProfilePage({
           {/* Profile Card Main Row */}
           <div className="flex flex-col md:flex-row items-start md:items-center gap-8 pt-4">
             {/* Avatar / Portrait Frame */}
-            <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl bg-gradient-to-br from-white/[0.12] via-white/[0.05] to-white/[0.02] border-2 border-white/15 relative overflow-hidden flex items-center justify-center shadow-xl shrink-0">
-              <span className="font-fraunces text-3xl sm:text-4xl font-medium text-[#FAF7F2]/90 tracking-wider">
-                {initials}
-              </span>
-            </div>
+            {profile.avatarUrl ? (
+              <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl border-2 border-white/15 relative overflow-hidden shadow-xl shrink-0 bg-slate-900">
+                <Image
+                  src={profile.avatarUrl}
+                  alt={profile.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 112px, 144px"
+                  priority
+                />
+              </div>
+            ) : (
+              <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl bg-gradient-to-br from-white/[0.12] via-white/[0.05] to-white/[0.02] border-2 border-white/15 relative overflow-hidden flex items-center justify-center shadow-xl shrink-0">
+                <span className="font-fraunces text-3xl sm:text-4xl font-medium text-[#FAF7F2]/90 tracking-wider">
+                  {initials}
+                </span>
+              </div>
+            )}
 
             {/* Author Meta Details */}
             <div className="space-y-4 max-w-3xl flex-1">

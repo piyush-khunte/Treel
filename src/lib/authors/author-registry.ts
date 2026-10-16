@@ -6,14 +6,16 @@ import {
   AuthorProfile, 
   AuthoredArticleItem, 
   slugifyAuthor, 
-  VERIFIED_AUTHORS 
+  VERIFIED_AUTHORS,
+  getLeadershipPhotoForAuthor
 } from "./author-utils";
 
 export { 
   type AuthorProfile, 
   type AuthoredArticleItem, 
   slugifyAuthor, 
-  VERIFIED_AUTHORS 
+  VERIFIED_AUTHORS,
+  getLeadershipPhotoForAuthor
 };
 
 export async function getAuthorProfile(slugOrName: string): Promise<{
@@ -148,6 +150,10 @@ export async function getAuthorProfile(slugOrName: string): Promise<{
       location: "Pune, India",
       bio: displayBio,
     };
+  }
+
+  if (profile) {
+    profile.avatarUrl = profile.avatarUrl || getLeadershipPhotoForAuthor(profile.name) || undefined;
   }
 
   return {

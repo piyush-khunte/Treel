@@ -165,7 +165,7 @@ export default function VehicleDigitalTwinPage() {
                 <div>
                   <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2]">Step 3 · Operators query</h3>
                   <p className="text-sm text-[#94A3B8] mt-2 leading-relaxed font-inter">
-                    Fleet operators access the Digital Twin through the TMIP dashboard, API integrations, or scheduled reports. They ask questions (&ldquo;which vehicles are due for tyre replacement in the next 30 days?&rdquo;) and get answers with the vehicle&apos;s own data as the source.
+                    Fleet operators access the Digital Twin through the TMIP dashboard, or scheduled reports. They ask questions (&ldquo;which vehicles are due for tyre replacement in the next 30 days?&rdquo;) and get answers with the vehicle&apos;s own data as the source.
                   </p>
                 </div>
               </div>
@@ -211,7 +211,7 @@ export default function VehicleDigitalTwinPage() {
               The Vehicle Digital Twin runs on TMIP.
             </h2>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-              TMIP is Treel&apos;s enterprise Vehicle Digital Twin platform. Every enterprise customer&apos;s fleet is represented as a portfolio of Digital Twins. The dashboard, the API, the alerts, the predictive maintenance, the ROI calculator all draw from these Twins.
+              TMIP is Treel&apos;s enterprise Vehicle Digital Twin platform. Every enterprise customer&apos;s fleet is represented as a portfolio of Digital Twins. The dashboard, the alerts, the predictive maintenance, the ROI calculator all draw from these Twins.
             </p>
             <div className="pt-2">
               <Link 

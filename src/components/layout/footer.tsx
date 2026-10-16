@@ -38,7 +38,8 @@ export function Footer({ variant, className }: FooterProps) {
       pathname.startsWith("/timp") ||
       pathname.startsWith("/lp/tmip") ||
       pathname.startsWith("/lp-tmip") ||
-      pathname.startsWith("/products/otr-tpms")
+      pathname.startsWith("/products/otr-tpms") ||
+      pathname.startsWith("/oem/commercial-vehicle")
     ) {
       activeVariant = "tmip";
     } else if (pathname.startsWith("/personal") || pathname.startsWith("/lp/tpms") || pathname.startsWith("/lp-tpms")) {

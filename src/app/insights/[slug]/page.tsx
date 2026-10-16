@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { 
   ArrowRight, 
   ChevronRight, 
@@ -8,7 +9,7 @@ import {
   BookOpen
 } from "lucide-react";
 import { ArticleShareBar, ArticleNewsletterForm } from "./article-client";
-import { slugifyAuthor } from "@/lib/authors/author-utils";
+import { slugifyAuthor, getLeadershipPhotoForAuthor } from "@/lib/authors/author-utils";
 
 interface InsightArticle {
   slug: string;
@@ -528,11 +529,26 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
             </div>
 
             {/* Author Bio Card */}
-            <div className="p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center gap-6">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-white/[0.01] border border-white/15 relative overflow-hidden flex-shrink-0 flex items-center justify-center font-fraunces text-2xl text-[#FAF7F2]/80">
-                {article.author.split(" ").map(n => n[0]).join("").slice(0, 2)}
-              </div>
-              <div className="space-y-2 flex-1">
+            {(() => {
+              const authorPhoto = getLeadershipPhotoForAuthor(article.author);
+              return (
+                <div className="p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                  {authorPhoto ? (
+                    <div className="w-20 h-20 rounded-full border border-white/15 relative overflow-hidden flex-shrink-0 bg-slate-900 shadow-md">
+                      <Image
+                        src={authorPhoto}
+                        alt={article.author}
+                        fill
+                        className="object-cover"
+                        sizes="80px"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-white/[0.01] border border-white/15 relative overflow-hidden flex-shrink-0 flex items-center justify-center font-fraunces text-2xl text-[#FAF7F2]/80">
+                      {article.author.split(" ").map(n => n[0]).join("").slice(0, 2)}
+                    </div>
+                  )}
+                  <div className="space-y-2 flex-1">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div>
                     <Link
@@ -558,6 +574,8 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
                 </p>
               </div>
             </div>
+          );
+        })()}
 
             {/* Newsletter Signup Module */}
             <ArticleNewsletterForm />

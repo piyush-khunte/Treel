@@ -153,12 +153,7 @@ export default function TmipPlatformTelemetryPage() {
               >
                 Book a demo <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link
-                href="/tmip/platform/integrations"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[3px] font-semibold text-sm transition-all border border-slate-400/20 text-[#F1F5F9] hover:bg-white/5 hover:border-slate-400/40"
-              >
-                Explore integrations <SlidersHorizontal className="w-4 h-4" />
-              </Link>
+             s
             </div>
           </div>
         </div>
@@ -271,7 +266,7 @@ export default function TmipPlatformTelemetryPage() {
               What operators see.
             </h2>
             <p className="text-[#94A3B8] text-base sm:text-lg mt-3 font-ibm-plex">
-              The TMIP live dashboard shows fleet-wide status, per-vehicle detail, and per-subsystem drill-down. Filter by region, route, driver, vehicle class. Alert thresholds are configurable. Export to CSV or push to your BI stack via API.
+              The TMIP live dashboard shows fleet-wide status, per-vehicle detail, and per-subsystem drill-down. Filter by region, route, driver, vehicle class. Alert thresholds are configurable. Export to CSV or push to your BI stack.
             </p>
           </div>
 

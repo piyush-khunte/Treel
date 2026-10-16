@@ -2,14 +2,15 @@
 
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
-AlertTriangle,
-CheckCircle2,
-ChevronDown,
-ChevronUp,
-ShieldAlert,
-ShieldCheck
+  AlertTriangle,
+  CheckCircle2,
+  ChevronDown,
+  ChevronUp,
+  Loader2,
+  ShieldAlert,
+  ShieldCheck,
 } from "lucide-react";
-import React,{ useState } from "react";
+import React, { useState } from "react";
 
 export default function PersonalSupportWarrantyPage() {
   // Registration Form State
@@ -17,6 +18,11 @@ export default function PersonalSupportWarrantyPage() {
   const [regEmail, setRegEmail] = useState("");
   const [regStep, setRegStep] = useState<"input" | "verified" | "completed">("input");
   const [regError, setRegError] = useState("");
+  const [regLoading, setRegLoading] = useState(false);
+  const [verifiedProduct, setVerifiedProduct] = useState("Personal TPMS (4-Tyre Kit)");
+  const [verifiedCustomerName, setVerifiedCustomerName] = useState("");
+  const [generatedRegId, setGeneratedRegId] = useState("");
+  const [isDuplicateReg, setIsDuplicateReg] = useState(false);
 
   // Claim Form State
   const [claimOrderId, setClaimOrderId] = useState("");
@@ -27,32 +33,120 @@ export default function PersonalSupportWarrantyPage() {
   const [claimResolution, setClaimResolution] = useState("Replacement");
   const [generatedClaimId, setGeneratedClaimId] = useState("");
   const [claimError, setClaimError] = useState("");
+  const [claimLoading, setClaimLoading] = useState(false);
 
   // FAQ Accordion State
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  const handleVerifyRegistration = (e: React.FormEvent) => {
+  const isValidEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  };
+
+  const handleVerifyRegistration = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!regOrderId.trim() || !regEmail.trim()) {
-      setRegError("Please enter both your Order ID and Email address.");
+    const cleanOrder = regOrderId.trim();
+    const cleanEmail = regEmail.trim();
+
+    if (!cleanOrder) {
+      setRegError("Please enter your Order ID.");
       return;
     }
+    if (!cleanEmail || !isValidEmail(cleanEmail)) {
+      setRegError("Please enter a valid email address.");
+      return;
+    }
+
     setRegError("");
-    setRegStep("verified");
+    setRegLoading(true);
+
+    try {
+      const res = await fetch("/api/warranty/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderId: cleanOrder, email: cleanEmail }),
+      });
+      const data = await res.json();
+
+      if (data.success && data.verified) {
+        setVerifiedProduct(data.productTitle || "Personal TPMS (4-Tyre Kit)");
+        setVerifiedCustomerName(data.customerName || "");
+        setRegStep("verified");
+      } else {
+        setRegError(data.error || "Unable to verify order. Please check your Order ID and Email.");
+      }
+    } catch {
+      setRegError("Network connection error. Please verify your internet and try again.");
+    } finally {
+      setRegLoading(false);
+    }
   };
 
-  const handleConfirmRegistration = () => {
-    setRegStep("completed");
+  const handleConfirmRegistration = async () => {
+    setRegError("");
+    setRegLoading(true);
+
+    try {
+      const res = await fetch("/api/warranty/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          orderId: regOrderId.trim(),
+          customerEmail: regEmail.trim(),
+          customerName: verifiedCustomerName || undefined,
+          productName: verifiedProduct,
+        }),
+      });
+      const data = await res.json();
+
+      if (data.success && data.data) {
+        setGeneratedRegId(data.data.registrationId || "WR-2026-ACTIVE");
+        setIsDuplicateReg(Boolean(data.isDuplicate));
+        setRegStep("completed");
+      } else {
+        setRegError(data.error || "Failed to confirm registration. Please try again.");
+      }
+    } catch {
+      setRegError("Failed to communicate with the server. Please try again.");
+    } finally {
+      setRegLoading(false);
+    }
   };
 
-  const handleVerifyClaim = (e: React.FormEvent) => {
+  const handleVerifyClaim = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!claimOrderId.trim() || !claimEmail.trim()) {
-      setClaimError("Please enter both your Order ID and Email address.");
+    const cleanOrder = claimOrderId.trim();
+    const cleanEmail = claimEmail.trim();
+
+    if (!cleanOrder) {
+      setClaimError("Please enter your Order ID.");
       return;
     }
+    if (!cleanEmail || !isValidEmail(cleanEmail)) {
+      setClaimError("Please enter a valid email address.");
+      return;
+    }
+
     setClaimError("");
-    setClaimStep("verified");
+    setClaimLoading(true);
+
+    try {
+      const res = await fetch("/api/warranty/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderId: cleanOrder, email: cleanEmail }),
+      });
+      const data = await res.json();
+
+      if (data.success && data.verified) {
+        setClaimStep("verified");
+      } else {
+        setClaimError(data.error || "Unable to verify order. Please check your Order ID and Email.");
+      }
+    } catch {
+      setClaimError("Network error. Please try again.");
+    } finally {
+      setClaimLoading(false);
+    }
   };
 
   const handleSubmitClaim = async (e: React.FormEvent) => {
@@ -61,61 +155,84 @@ export default function PersonalSupportWarrantyPage() {
       setClaimError("Please provide a brief description of the issue.");
       return;
     }
+
     setClaimError("");
+    setClaimLoading(true);
+
     try {
-      const res = await fetch("/api/contact", {
+      // 1. Save directly into persistent warranty database
+      const res = await fetch("/api/warranty/claim", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          fullName: claimEmail.split("@")[0] || "Customer",
-          email: claimEmail.trim(),
-          orderNumber: claimOrderId.trim(),
-          category: `Warranty Claim — ${claimIssueType}`,
-          subject: `[Warranty Claim] ${claimIssueType} (${claimResolution})`,
-          message: `${claimDesc.trim()}\n\nResolution requested: ${claimResolution}`,
-          description: claimDesc.trim(),
-          priority: "Standard — 2 business days",
-          consent: true,
-          lead_source: "Personal Support",
-          campaign_type: "personal_warranty_claim",
-          form_id: "personal_warranty_claim",
-          company: claimOrderId.trim() ? `Order #${claimOrderId.trim()}` : "Warranty Claimant",
-          landing_page: typeof window !== "undefined" ? window.location.href : "https://treel.in/personal/support/warranty",
-          page_path: "/personal/support/warranty",
+          orderId: claimOrderId.trim(),
+          customerEmail: claimEmail.trim(),
+          claimIssueType,
+          claimDescription: claimDesc.trim(),
+          claimResolution,
         }),
       });
+
       const data = await res.json();
-      const randomId = data?.ticketId || (data?.leadId ? (data.leadId.length > 8 ? `CLM-${data.leadId.slice(-6).toUpperCase()}` : data.leadId) : `CLM-${Math.floor(100000 + Math.random() * 900000)}`);
-      setGeneratedClaimId(randomId);
-      setClaimStep("submitted");
+
+      if (data.success && data.data) {
+        const claimId = data.claimId || data.data.registrationId;
+        setGeneratedClaimId(claimId);
+
+        // 2. Also notify support contact pipeline in background
+        fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            fullName: claimEmail.split("@")[0] || "Warranty Claimant",
+            email: claimEmail.trim(),
+            orderNumber: claimOrderId.trim(),
+            category: `Warranty Claim — ${claimIssueType}`,
+            subject: `[Warranty Claim: ${claimId}] ${claimIssueType} (${claimResolution})`,
+            message: `${claimDesc.trim()}\n\nResolution requested: ${claimResolution}\nClaim ID: ${claimId}`,
+            description: claimDesc.trim(),
+            priority: "High — Warranty Claim",
+            consent: true,
+            lead_source: "Personal Support",
+            campaign_type: "personal_warranty_claim",
+            form_id: "personal_warranty_claim",
+            company: `Order #${claimOrderId.trim()}`,
+            page_path: "/personal/support/warranty",
+          }),
+        }).catch(() => {});
+
+        setClaimStep("submitted");
+      } else {
+        setClaimError(data.error || "Failed to record warranty claim. Please try again.");
+      }
     } catch {
-      const randomId = `CLM-${Math.floor(100000 + Math.random() * 900000)}`;
-      setGeneratedClaimId(randomId);
-      setClaimStep("submitted");
+      setClaimError("Failed to submit claim. Please check your connection and retry.");
+    } finally {
+      setClaimLoading(false);
     }
   };
 
   const faqs = [
     {
       q: "How long is the warranty?",
-      a: "12 months from the date of purchase for all four smart sensors and ongoing firmware/app support."
+      a: "12 months from the date of purchase for all four smart sensors and ongoing firmware/app support.",
     },
     {
-      q: "What does \"full replacement\" cover?",
-      a: "If a sensor is deemed defective due to manufacturing or internal transducer faults, we ship a brand new replacement sensor directly to your address free of charge."
+      q: 'What does "full replacement" cover?',
+      a: "If a sensor is deemed defective due to manufacturing or internal transducer faults, we ship a brand new replacement sensor directly to your address free of charge.",
     },
     {
       q: "Do I need to ship the defective sensor back?",
-      a: "Sometimes, depending on the claim type and diagnostic requirements. Our support team will provide a pre-paid return label if physical inspection is required."
+      a: "Sometimes, depending on the claim type and diagnostic requirements. Our support team will provide a pre-paid return label if physical inspection is required.",
     },
     {
       q: "What if my sensor is more than 1 year old?",
-      a: "If the 1-year warranty period has lapsed, replacement sensors are available for direct single-unit purchase so you don't need to buy a full kit."
+      a: "If the 1-year warranty period has lapsed, replacement sensors are available for direct single-unit purchase so you don't need to buy a full kit.",
     },
     {
       q: "How do I extend my warranty?",
-      a: "Extended warranty options are not currently offered, but our team provides lifetime app updates and technical guidance."
-    }
+      a: "Extended warranty options are not currently offered, but our team provides lifetime app updates and technical guidance.",
+    },
   ];
 
   return (
@@ -132,7 +249,7 @@ export default function PersonalSupportWarrantyPage() {
                 { label: "Warranty" },
               ]}
             />
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em] inline-block">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
               WARRANTY & SUPPORT
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#111827] leading-[1.15]">
@@ -247,9 +364,10 @@ export default function PersonalSupportWarrantyPage() {
                     </label>
                     <input
                       type="text"
+                      required
                       value={regOrderId}
                       onChange={(e) => setRegOrderId(e.target.value)}
-                      placeholder="e.g. TR-98241"
+                      placeholder="e.g. TR-98241 or 677dffae..."
                       className="w-full px-4 py-3 rounded-xl border border-black/[0.12] text-sm font-medium text-[#111827] focus:outline-none focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
@@ -260,6 +378,7 @@ export default function PersonalSupportWarrantyPage() {
                     </label>
                     <input
                       type="email"
+                      required
                       value={regEmail}
                       onChange={(e) => setRegEmail(e.target.value)}
                       placeholder="you@email.com (used during purchase)"
@@ -269,45 +388,90 @@ export default function PersonalSupportWarrantyPage() {
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-full bg-[#2563EB] text-white font-bold text-sm hover:bg-[#1D4ED8] transition-all shadow-md cursor-pointer"
+                    disabled={regLoading}
+                    className="w-full py-3.5 rounded-full bg-[#2563EB] text-white font-bold text-sm hover:bg-[#1D4ED8] transition-all shadow-md cursor-pointer disabled:opacity-70 flex items-center justify-center gap-2"
                   >
-                    Verify Order →
+                    {regLoading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" /> Verifying Order...
+                      </>
+                    ) : (
+                      "Verify Order →"
+                    )}
                   </button>
                 </form>
               )}
 
               {regStep === "verified" && (
                 <div className="space-y-5">
-                  <div className="p-4 rounded-full bg-[#2563EB]/10 border border-[#2563EB]/20 space-y-2">
+                  {regError && (
+                    <div className="p-3 text-xs bg-red-50 text-red-700 rounded-lg border border-red-200">
+                      {regError}
+                    </div>
+                  )}
+                  <div className="p-5 rounded-2xl bg-[#2563EB]/10 border border-[#2563EB]/20 space-y-2">
                     <div className="text-xs font-bold text-blue-900">Order Verified: {regOrderId}</div>
-                    <div className="text-xs text-blue-800">
-                      Product: <strong>Personal TPMS (4-Tyre Kit)</strong><br />
+                    <div className="text-xs text-blue-800 leading-relaxed">
+                      Product: <strong>{verifiedProduct}</strong><br />
                       Registered to: <strong>{regEmail}</strong><br />
-                      Standard 1-Year Coverage: <strong>Active</strong>
+                      {verifiedCustomerName && (
+                        <>
+                          Customer Name: <strong>{verifiedCustomerName}</strong><br />
+                        </>
+                      )}
+                      Standard 1-Year Coverage: <strong>Active (12 Months Full Replacement)</strong>
                     </div>
                   </div>
 
-                  <button
-                    onClick={handleConfirmRegistration}
-                    className="w-full py-3.5 rounded-xl bg-emerald-600 text-white font-bold text-sm hover:bg-emerald-700 transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
-                  >
-                    <CheckCircle2 className="w-4 h-4" /> Confirm Registration
-                  </button>
+                  <div className="flex gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setRegStep("input")}
+                      disabled={regLoading}
+                      className="w-1/3 py-3.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-sm hover:bg-slate-50 transition-all cursor-pointer"
+                    >
+                      Back
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleConfirmRegistration}
+                      disabled={regLoading}
+                      className="w-2/3 py-3.5 rounded-xl bg-emerald-600 text-white font-bold text-sm hover:bg-emerald-700 transition-all shadow-md cursor-pointer flex items-center justify-center gap-2 disabled:opacity-70"
+                    >
+                      {regLoading ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" /> Registering...
+                        </>
+                      ) : (
+                        <>
+                          <CheckCircle2 className="w-4 h-4" /> Confirm Registration
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
               )}
 
               {regStep === "completed" && (
                 <div className="p-6 rounded-3xl bg-[#10B981]/10 border border-[#10B981]/20 text-center space-y-3">
                   <CheckCircle2 className="w-10 h-10 text-[#10B981] mx-auto" />
-                  <h3 className="font-bold text-emerald-950 text-lg">Warranty Registered!</h3>
-                  <p className="text-xs text-emerald-800 leading-relaxed">
-                    Confirmation sent to <strong>{regEmail}</strong>. Your 12-month full replacement coverage is now officially recorded.
+                  <div className="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-mono text-xs font-bold">
+                    Registration ID: {generatedRegId}
+                  </div>
+                  <h3 className="font-bold text-emerald-950 text-lg">
+                    {isDuplicateReg ? "Warranty Already Recorded!" : "Warranty Registered!"}
+                  </h3>
+                  <p className="text-xs text-emerald-800 leading-relaxed max-w-sm mx-auto">
+                    Confirmation recorded for <strong>{regEmail}</strong> (Order <strong>{regOrderId}</strong>). Your 12-month full replacement coverage is officially active in our database.
                   </p>
                   <button
                     onClick={() => {
                       setRegStep("input");
                       setRegOrderId("");
                       setRegEmail("");
+                      setVerifiedCustomerName("");
+                      setGeneratedRegId("");
+                      setRegError("");
                     }}
                     className="text-xs font-bold text-[#2563EB] hover:underline pt-2 inline-block cursor-pointer"
                   >
@@ -323,7 +487,7 @@ export default function PersonalSupportWarrantyPage() {
                 <div className="text-xs uppercase tracking-widest text-[#2563EB] font-extrabold mb-1">Step 2</div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#111827]">Submit a warranty claim</h2>
                 <p className="text-[#4B5563] text-sm mt-1">
-                  If something has gone wrong with your Personal TPMS, submit a claim below. We'll respond within 2 business days.
+                  If something has gone wrong with your Personal TPMS, submit a claim below. We&apos;ll respond within 2 business days.
                 </p>
               </div>
 
@@ -340,9 +504,10 @@ export default function PersonalSupportWarrantyPage() {
                     </label>
                     <input
                       type="text"
+                      required
                       value={claimOrderId}
                       onChange={(e) => setClaimOrderId(e.target.value)}
-                      placeholder="e.g. TR-98241"
+                      placeholder="e.g. TR-98241 or 677dffae..."
                       className="w-full px-4 py-3 rounded-xl border border-black/[0.12] text-sm font-medium text-[#111827] focus:outline-none focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
@@ -353,6 +518,7 @@ export default function PersonalSupportWarrantyPage() {
                     </label>
                     <input
                       type="email"
+                      required
                       value={claimEmail}
                       onChange={(e) => setClaimEmail(e.target.value)}
                       placeholder="you@email.com"
@@ -362,9 +528,16 @@ export default function PersonalSupportWarrantyPage() {
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-full bg-[#111827] text-white font-bold text-sm hover:bg-black transition-all shadow-md cursor-pointer"
+                    disabled={claimLoading}
+                    className="w-full py-3.5 rounded-full bg-[#111827] text-white font-bold text-sm hover:bg-black transition-all shadow-md cursor-pointer disabled:opacity-70 flex items-center justify-center gap-2"
                   >
-                    Verify Order & Continue →
+                    {claimLoading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" /> Verifying Order...
+                      </>
+                    ) : (
+                      "Verify Order & Continue →"
+                    )}
                   </button>
                 </form>
               )}
@@ -388,7 +561,7 @@ export default function PersonalSupportWarrantyPage() {
                       <option value="Sensor not working">Sensor not working</option>
                       <option value="App issue">App issue</option>
                       <option value="Physical damage (limited coverage)">Physical damage (limited coverage)</option>
-                      <option value="Battery issue (not covered but we can help)">Battery issue (guidance)</option>
+                      <option value="Battery issue (guidance)">Battery issue (guidance)</option>
                       <option value="Other">Other issue</option>
                     </select>
                   </div>
@@ -399,6 +572,7 @@ export default function PersonalSupportWarrantyPage() {
                     </label>
                     <textarea
                       rows={3}
+                      required
                       maxLength={2000}
                       value={claimDesc}
                       onChange={(e) => setClaimDesc(e.target.value)}
@@ -422,12 +596,29 @@ export default function PersonalSupportWarrantyPage() {
                     </select>
                   </div>
 
-                  <button
-                    type="submit"
-                    className="w-full py-3.5 rounded-full bg-[#2563EB] text-white font-bold text-sm hover:bg-[#1D4ED8] transition-all shadow-md cursor-pointer"
-                  >
-                    Submit Claim →
-                  </button>
+                  <div className="flex gap-3 pt-2">
+                    <button
+                      type="button"
+                      onClick={() => setClaimStep("input")}
+                      disabled={claimLoading}
+                      className="w-1/3 py-3.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-sm hover:bg-slate-50 transition-all cursor-pointer"
+                    >
+                      Back
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={claimLoading}
+                      className="w-2/3 py-3.5 rounded-xl bg-[#2563EB] text-white font-bold text-sm hover:bg-[#1D4ED8] transition-all shadow-md cursor-pointer disabled:opacity-70 flex items-center justify-center gap-2"
+                    >
+                      {claimLoading ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" /> Submitting Claim...
+                        </>
+                      ) : (
+                        "Submit Claim →"
+                      )}
+                    </button>
+                  </div>
                 </form>
               )}
 
@@ -438,7 +629,7 @@ export default function PersonalSupportWarrantyPage() {
                   </div>
                   <h3 className="font-bold text-[#111827] text-xl">Claim submitted.</h3>
                   <p className="text-xs text-[#4B5563] leading-relaxed">
-                    Your claim ID is <strong>{generatedClaimId}</strong>. We've emailed a confirmation to <strong>{claimEmail}</strong>. Our support team will respond within 2 business days. If your issue is urgent, call us at <strong>1800 833 0233</strong>.
+                    Your claim ID is <strong>{generatedClaimId}</strong> and has been recorded in our warranty system. Confirmation sent to <strong>{claimEmail}</strong>. Our support team will respond within 2 business days. If your issue is urgent, call us at <strong>1800 833 0233</strong>.
                   </p>
                   <button
                     onClick={() => {
@@ -446,6 +637,8 @@ export default function PersonalSupportWarrantyPage() {
                       setClaimOrderId("");
                       setClaimEmail("");
                       setClaimDesc("");
+                      setGeneratedClaimId("");
+                      setClaimError("");
                     }}
                     className="text-xs font-bold text-[#2563EB] hover:underline pt-2 inline-block cursor-pointer"
                   >
@@ -463,7 +656,7 @@ export default function PersonalSupportWarrantyPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl space-y-8">
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em] inline-block mb-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em] mb-3">
                 QUESTIONS & ANSWERS
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-[#111827] tracking-tight">

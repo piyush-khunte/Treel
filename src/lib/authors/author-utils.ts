@@ -33,6 +33,52 @@ export function slugifyAuthor(name?: string): string {
     .replace(/-+/g, "-");
 }
 
+import { TEAM_MEMBERS } from "@/lib/data/leadership";
+
+export function getLeadershipPhotoForAuthor(authorName?: string): string | null {
+  if (!authorName) return null;
+  const clean = authorName
+    .toLowerCase()
+    .replace(/^(mr\.|mrs\.|ms\.|dr\.)\s+/i, "")
+    .replace(/[^\w\s-]/g, "")
+    .trim();
+
+  for (const member of TEAM_MEMBERS) {
+    const memberClean = member.name
+      .toLowerCase()
+      .replace(/^(mr\.|mrs\.|ms\.|dr\.)\s+/i, "")
+      .replace(/[^\w\s-]/g, "")
+      .trim();
+
+    // Exact or normalized match
+    if (clean === memberClean) {
+      return member.image;
+    }
+
+    const cleanTokens = clean.split(/\s+/);
+    const memberTokens = memberClean.split(/\s+/);
+
+    if (cleanTokens.length > 1 && memberTokens.length > 1) {
+      const firstMatch = cleanTokens[0] === memberTokens[0] || (cleanTokens[0].startsWith("nith") && memberTokens[0].startsWith("nit"));
+      const lastMatch =
+        cleanTokens[cleanTokens.length - 1] === memberTokens[memberTokens.length - 1] ||
+        (cleanTokens[cleanTokens.length - 1].startsWith("chaudh") && memberTokens[memberTokens.length - 1].startsWith("chaudh")) ||
+        (cleanTokens[cleanTokens.length - 1].startsWith("choudh") && memberTokens[memberTokens.length - 1].startsWith("chaudh"));
+
+      if (firstMatch && lastMatch) {
+        return member.image;
+      }
+    }
+
+    // Single name match (e.g. "Nithin" -> "Mr. Nitin Karande")
+    if (cleanTokens.length === 1 && (cleanTokens[0] === "nithin" || cleanTokens[0] === "nitin") && memberTokens[0] === "nitin") {
+      return member.image;
+    }
+  }
+
+  return null;
+}
+
 export const VERIFIED_AUTHORS: Record<string, AuthorProfile> = {
   "manish-ingale": {
     slug: "manish-ingale",
@@ -49,6 +95,7 @@ export const VERIFIED_AUTHORS: Record<string, AuthorProfile> = {
     role: "Hardware Lead",
     company: "Treel Mobility Solutions",
     location: "Pune, India",
+    avatarUrl: "/images/leadership/pradnya-chaudhari.jpeg",
     bio: "Pradnya Choudhary directs embedded hardware engineering, ARAI sensor certification, and low-power RF sensor validation for commercial fleet durability under extreme Indian road conditions.",
   },
   "atharv": {
@@ -65,6 +112,7 @@ export const VERIFIED_AUTHORS: Record<string, AuthorProfile> = {
     role: "Chief Financial Officer",
     company: "Treel Mobility Solutions",
     location: "Pune, India",
+    avatarUrl: "/images/leadership/imran-khan.png",
     bio: "Manages financial strategy, capital allocation, enterprise procurement frameworks, and commercial operations across Treel's national mobility intelligence network.",
   },
   "nithin": {
@@ -73,6 +121,7 @@ export const VERIFIED_AUTHORS: Record<string, AuthorProfile> = {
     role: "Engineering Lead",
     company: "Treel Mobility Solutions",
     location: "Pune, India",
+    avatarUrl: "/images/leadership/nitin-karande.png",
     bio: "Specializes in edge computing, distributed firmware, and telemetry ingestion pipelines across commercial fleet networks and highway IoT infrastructure.",
   },
   "treel-mobility-team": {

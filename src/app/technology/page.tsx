@@ -169,28 +169,7 @@ export default function TechnologyPage() {
       </section>
 
       {/* 3. API-FIRST, ALWAYS */}
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <div className="w-12 h-12 rounded-xl bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B]">
-              <Code className="w-6 h-6" />
-            </div>
-            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
-              API-first, always.
-            </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-              The Treel platform is API-first. Every dashboard function is available programmatically. Integrations with Fleetx, Locus, LogiNext, SAP, Oracle, and custom TMS stacks are native, not adapted. If your fleet operates on an existing software stack, Treel fits cleanly into it.
-            </p>
-            <div className="pt-2">
-              <Button asChild variant="outline" className="border-white/20 text-[#FAF7F2] hover:border-[#D5573B] hover:text-[#D5573B]">
-                <Link href="/tmip/platform/integrations" className="inline-flex items-center gap-2">
-                  View TMS &amp; ERP integrations <ArrowRight className="w-4 h-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+     
 
       {/* 4. EXPLORE ARCHITECTURE LINKS */}
       <section className="py-20 border-b border-white/10 bg-[#121820]">
