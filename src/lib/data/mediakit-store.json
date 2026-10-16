@@ -162,5 +162,19 @@
     "publicationStatus": "Published",
     "createdAt": "2026-01-01T00:00:00.000Z",
     "updatedAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "mk_1792132375786",
+    "title": "test",
+    "category": "Brand Assets",
+    "format": "PDF Document",
+    "description": "",
+    "fileSize": "1.0 MB",
+    "fileUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRw8KKTAIURbFu6ZN-fIwv4Z_ICm6cO0W-4P0wB4mlrwsS1nzH13obP0-fY&s=10",
+    "order": 12,
+    "iconName": "FileText",
+    "publicationStatus": "Published",
+    "createdAt": "2026-10-16T06:34:07.317Z",
+    "updatedAt": "2026-10-16T06:34:07.317Z"
   }
 ]

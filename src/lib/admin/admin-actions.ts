@@ -953,6 +953,14 @@ export async function togglePublishAdminNotice(id: string, currentStatus: "Publi
 // ============================================================================
 // LEADS CRM
 // ============================================================================
+export type AdminLeadCategory =
+  | "campaign"
+  | "contact_form"
+  | "demo"
+  | "whitepaper"
+  | "suraksha"
+  | "support";
+
 export interface AdminLeadItem {
   id: string;
   name: string;
@@ -964,9 +972,23 @@ export interface AdminLeadItem {
   status: "New" | "Contacted" | "Qualified" | "Closed";
   time: string;
   rawId?: string;
+  category?: AdminLeadCategory;
+  isGeneralEnquiry?: boolean;
+  campaignType?: string;
+  formId?: string;
+  leadSource?: string;
+  pagePath?: string;
+  landingPage?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  message?: string;
+  subject?: string;
+  attributionMetadata?: Record<string, any>;
+  createdAt?: string;
 }
 
-export async function getAdminLeads(): Promise<{ success: boolean; data?: AdminLeadItem[]; error?: string }> {
+export async function getAdminLeads(categoryFilter?: string): Promise<{ success: boolean; data?: AdminLeadItem[]; error?: string }> {
   const supabase = getAdminClient();
   try {
     const { data, error } = await supabase
@@ -992,35 +1014,120 @@ export async function getAdminLeads(): Promise<{ success: boolean; data?: AdminL
         else relativeTime = `${Math.floor(diffMins / 1440)} days ago`;
       }
 
+      const cType = (item.campaign_type || "").toLowerCase();
+      const lSource = (item.lead_source || "").toLowerCase();
+      const fId = (item.form_id || "").toLowerCase();
+      const pPath = (item.page_path || "").toLowerCase();
+      const lPage = (item.landing_page || "").toLowerCase();
+      const uCamp = (item.utm_campaign || "").toLowerCase();
+
+      let meta: any = {};
+      try {
+        meta =
+          item.attribution_metadata ||
+          (typeof item.message === "string" && item.message.startsWith("{") ? JSON.parse(item.message) : {});
+      } catch {
+        meta = {};
+      }
+      const rawSubject = (meta?.subject || meta?.category || "").trim();
+
+      // Reliable classification based on schema & persisted fields
+      const isCampaign =
+        cType.includes("campaign") ||
+        lSource.includes("campaign") ||
+        lSource.includes("landing page") ||
+        lSource === "car_tpms_popup" ||
+        lSource === "suraksha emi apply" ||
+        fId === "suraksha_emi_apply" ||
+        fId === "bike_tpms_callback" ||
+        fId === "car_tpms_callback" ||
+        fId === "generic_tpms_callback" ||
+        fId === "events-subscription" ||
+        pPath.startsWith("/lp") ||
+        pPath.includes("/campaign") ||
+        pPath === "/suraksha/emi/apply" ||
+        pPath === "/events" ||
+        lPage.includes("/lp") ||
+        lPage.includes("/campaign") ||
+        Boolean(uCamp);
+
+      const isContactForm =
+        !isCampaign &&
+        (fId === "contact" ||
+          cType === "contact_form" ||
+          lSource === "general contact" ||
+          pPath === "/contact");
+
+      const isGeneralEnquiry =
+        isContactForm &&
+        (rawSubject === "" || rawSubject.toLowerCase().includes("general") || rawSubject.toLowerCase() === "general inquiry");
+
+      const isWhitepaper =
+        fId === "tmip_whitepaper_access" ||
+        cType === "tmip_whitepaper" ||
+        lSource === "whitepaper download" ||
+        pPath.includes("whitepaper");
+
+      const isDemo =
+        !isCampaign &&
+        !isWhitepaper &&
+        (fId === "tmip_demo" || lSource === "tmip demo" || pPath === "/tmip/demo");
+
+      const isSuraksha =
+        !isCampaign &&
+        (fId.startsWith("suraksha") ||
+          lSource.startsWith("suraksha") ||
+          cType.startsWith("suraksha") ||
+          pPath.startsWith("/suraksha"));
+
+      const isSupport =
+        !isCampaign &&
+        (fId.startsWith("personal_") ||
+          lSource === "personal support" ||
+          cType.startsWith("personal_") ||
+          pPath.startsWith("/personal/support"));
+
+      let category: AdminLeadCategory = "campaign";
+      if (isCampaign) {
+        category = "campaign";
+      } else if (isContactForm) {
+        category = "contact_form";
+      } else if (isWhitepaper) {
+        category = "whitepaper";
+      } else if (isDemo) {
+        category = "demo";
+      } else if (isSuraksha) {
+        category = "suraksha";
+      } else if (isSupport) {
+        category = "support";
+      }
+
+      // Display source label
       let source = "TMIP Demo";
-      if (item.lead_source === "TMIP Demo" || item.form_id === "tmip_demo" || item.page_path === "/tmip/demo") {
+      if (isCampaign) {
+        if (cType.includes("personal_tpms_2w") || lSource.includes("bike")) {
+          source = "Personal TPMS 2W Campaign";
+        } else if (cType.includes("personal_tpms_4w") || lSource.includes("car")) {
+          source = "Personal TPMS 4W Campaign";
+        } else if (cType.includes("personal_tpms_generic") || pPath === "/lp/tpms") {
+          source = "Personal TPMS Generic Campaign";
+        } else if (cType.includes("suraksha") || fId === "suraksha_emi_apply") {
+          source = "Suraksha EMI Apply";
+        } else if (fId === "events-subscription" || pPath === "/events") {
+          source = "TMIP Events Subscription";
+        } else {
+          source = "TMIP Campaign Lead";
+        }
+      } else if (isWhitepaper) {
+        source = "Whitepaper Download";
+      } else if (isDemo) {
         source = "TMIP Demo";
-      } else if (
-        item.lead_source === "Personal Support" ||
-        item.form_id === "personal_support_contact" ||
-        item.form_id === "personal_support" ||
-        item.form_id === "personal_warranty_claim" ||
-        item.campaign_type === "personal_support" ||
-        item.campaign_type === "personal_warranty_claim" ||
-        item.page_path?.startsWith("/personal/support")
-      ) {
-        source = "Personal Support";
-      } else if (item.lead_source === "General Contact" || item.form_id === "contact" || item.type === "contact" || item.page_path === "/contact") {
+      } else if (isContactForm) {
         source = "General Contact";
-      } else if (item.lead_source === "Suraksha Callback" || item.form_id === "suraksha_callback" || item.type === "suraksha_callback" || item.page_path === "/suraksha/callback") {
-        source = "Suraksha Callback";
-      } else if (item.lead_source === "Suraksha Contact" || item.form_id === "suraksha_contact" || item.type === "suraksha_contact" || item.page_path === "/suraksha/contact") {
-        source = "Suraksha Contact";
-      } else if (item.form_id === "tmip_footer_demo") {
-        source = "TMIP Footer Demo";
-      } else if (item.campaign_type === "tmip_campaign" || item.type === "tmip_campaign_lead") {
-        source = "TMIP Campaign Lead";
-      } else if (item.type === "personal_tpms_2w" || item.campaign_type === "personal_tpms_2w_campaign") {
-        source = "Personal TPMS 2W Campaign";
-      } else if (item.type === "suraksha_emi") {
-        source = "Suraksha EMI Apply";
-      } else if (item.type === "express_callback") {
-        source = "30s Express Callback";
+      } else if (isSuraksha) {
+        source = fId === "suraksha_contact" || lSource.includes("contact") ? "Suraksha Contact" : "Suraksha Callback";
+      } else if (isSupport) {
+        source = fId.includes("warranty") ? "Warranty Claim" : "Personal Support";
       } else if (item.lead_source) {
         source = item.lead_source;
       }
@@ -1031,26 +1138,19 @@ export async function getAdminLeads(): Promise<{ success: boolean; data?: AdminL
       else if (rawStatus === "qualified") status = "Qualified";
       else if (rawStatus === "closed") status = "Closed";
 
-      let meta: any = {};
-      try {
-        meta =
-          item.attribution_metadata ||
-          (typeof item.message === "string" && item.message.startsWith("{") ? JSON.parse(item.message) : {});
-      } catch {
-        meta = {};
-      }
-
       let vehiclesDisplay = "1-5";
       if (source === "TMIP Demo") {
         vehiclesDisplay = item.fleet_size ? `${item.fleet_size} Trucks` : meta?.vehicle_type || meta?.fleet_size_label || "Enterprise";
-      } else if (source === "Personal Support" || source.includes("Support")) {
+      } else if (source === "Personal Support" || source.includes("Support") || source.includes("Warranty")) {
         vehiclesDisplay = meta?.category || meta?.subject || "Support Inquiry";
       } else if (source === "General Contact") {
-        vehiclesDisplay = meta?.subject || (item.fleet_size ? `${item.fleet_size} Trucks` : "General");
+        vehiclesDisplay = rawSubject || (item.fleet_size ? `${item.fleet_size} Trucks` : "General");
       } else if (source === "Suraksha Callback") {
         vehiclesDisplay = "15-min Callback";
       } else if (source === "Suraksha Contact") {
         vehiclesDisplay = meta?.truck_config || meta?.topic || (item.fleet_size ? `${item.fleet_size} Trucks` : "Inquiry");
+      } else if (source === "Whitepaper Download") {
+        vehiclesDisplay = meta?.whitepaperTitle || "Whitepaper";
       } else if (item.fleet_size) {
         vehiclesDisplay = `${item.fleet_size} Vehicles`;
       } else if (item.type === "personal_tpms_2w" || item.campaign_type === "personal_tpms_2w_campaign") {
@@ -1073,8 +1173,36 @@ export async function getAdminLeads(): Promise<{ success: boolean; data?: AdminL
         vehicles: vehiclesDisplay,
         status,
         time: relativeTime,
+        category,
+        isGeneralEnquiry,
+        campaignType: item.campaign_type || undefined,
+        formId: item.form_id || undefined,
+        leadSource: item.lead_source || undefined,
+        pagePath: item.page_path || undefined,
+        landingPage: item.landing_page || undefined,
+        utmSource: item.utm_source || undefined,
+        utmMedium: item.utm_medium || undefined,
+        utmCampaign: item.utm_campaign || undefined,
+        message: typeof item.message === "string" ? item.message : undefined,
+        subject: rawSubject || undefined,
+        attributionMetadata: meta,
+        createdAt: item.created_at || undefined,
       };
     });
+
+    if (categoryFilter && categoryFilter !== "ALL") {
+      const filtered = formatted.filter((item) => {
+        if (categoryFilter === "CAMPAIGN") return item.category === "campaign";
+        if (categoryFilter === "GENERAL_ENQUIRY") return item.category === "contact_form" && item.isGeneralEnquiry;
+        if (categoryFilter === "CONTACT_FORM") return item.category === "contact_form";
+        if (categoryFilter === "DEMO") return item.category === "demo";
+        if (categoryFilter === "WHITEPAPER") return item.category === "whitepaper";
+        if (categoryFilter === "SURAKSHA") return item.category === "suraksha";
+        if (categoryFilter === "SUPPORT") return item.category === "support";
+        return true;
+      });
+      return { success: true, data: filtered };
+    }
 
     return { success: true, data: formatted };
   } catch (error: any) {
