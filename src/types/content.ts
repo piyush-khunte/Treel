@@ -285,4 +285,45 @@ export interface WarrantyRecord {
   updatedAt: string;
 }
 
+export type SubscriberStatus = "confirmed" | "unsubscribed";
+
+export interface InsightSubscriberRecord {
+  _id: string;
+  email: string;
+  status: SubscriberStatus;
+  token: string;
+  source: string;
+  interest?: string;
+  subscribedAt: string;
+  unsubscribedAt?: string | null;
+  confirmedAt?: string;
+  lastNotifiedAt?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type BroadcastStatus = "sent" | "partial" | "failed" | "test_mode" | "dry_run";
+
+export interface DeliveryLogEntry {
+  email: string;
+  status: "delivered" | "failed" | "skipped";
+  messageId?: string;
+  error?: string;
+}
+
+export interface BroadcastNotificationRecord {
+  _id: string;
+  articleSlug: string;
+  articleTitle: string;
+  articleExcerpt?: string;
+  sentAt: string;
+  recipientCount: number;
+  status: BroadcastStatus;
+  deliveredCount: number;
+  failedCount: number;
+  error?: string;
+  deliveryLogs?: DeliveryLogEntry[];
+  createdAt: string;
+}
+
 

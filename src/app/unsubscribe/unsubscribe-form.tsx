@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { Check, CheckCircle2, AlertCircle, ShieldAlert, RefreshCw, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import { Check, CheckCircle2, AlertCircle, ShieldAlert, RefreshCw, X, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface PreferenceOption {
@@ -46,6 +47,10 @@ const TRANSACTIONAL_NOTICES = [
 ];
 
 export function UnsubscribeForm() {
+  const searchParams = useSearchParams();
+  const tokenParam = searchParams.get("token") || "";
+  const emailParam = searchParams.get("email") || "";
+
   const [preferences, setPreferences] = useState<Record<string, boolean>>({
     product_updates: true,
     insights: true,
@@ -54,10 +59,21 @@ export function UnsubscribeForm() {
     marketing: false,
   });
 
-  const [emailInput, setEmailInput] = useState("");
+  const [emailInput, setEmailInput] = useState(emailParam);
+  const [tokenInput, setTokenInput] = useState(tokenParam);
   const [savedStatus, setSavedStatus] = useState<"idle" | "saved" | "unsubscribed_all">("idle");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showUnsubscribeModal, setShowUnsubscribeModal] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+
+  useEffect(() => {
+    if (emailParam && !emailInput) {
+      setEmailInput(emailParam);
+    }
+    if (tokenParam && !tokenInput) {
+      setTokenInput(tokenParam);
+    }
+  }, [emailParam, tokenParam, emailInput, tokenInput]);
 
   const togglePreference = (id: string) => {
     setPreferences((prev) => ({
@@ -69,21 +85,25 @@ export function UnsubscribeForm() {
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!emailInput.trim()) return;
+    if (!emailInput.trim() && !tokenInput.trim()) return;
     setIsSubmitting(true);
     try {
-      await fetch("/api/unsubscribe", {
+      const res = await fetch("/api/unsubscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: emailInput.trim(),
+          token: tokenInput.trim(),
           preferences,
           unsubscribeAll: false,
         }),
       });
+      const data = await res.json().catch(() => null);
+      setStatusMessage(data?.message || "Your email communication preferences have been saved.");
       setSavedStatus("saved");
     } catch (err) {
       console.warn("Preference update error:", err);
+      setStatusMessage("Your email communication preferences have been saved.");
       setSavedStatus("saved");
     } finally {
       setIsSubmitting(false);
@@ -91,18 +111,20 @@ export function UnsubscribeForm() {
   };
 
   const handleUnsubscribeAll = async () => {
-    if (!emailInput.trim()) return;
+    if (!emailInput.trim() && !tokenInput.trim()) return;
     setIsSubmitting(true);
     setShowUnsubscribeModal(false);
     try {
-      await fetch("/api/unsubscribe", {
+      const res = await fetch("/api/unsubscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: emailInput.trim(),
+          token: tokenInput.trim(),
           unsubscribeAll: true,
         }),
       });
+      const data = await res.json().catch(() => null);
       setPreferences({
         product_updates: false,
         insights: false,
@@ -110,9 +132,11 @@ export function UnsubscribeForm() {
         events: false,
         marketing: false,
       });
+      setStatusMessage(data?.message || "You have been unsubscribed from all Treel Insights communications.");
       setSavedStatus("unsubscribed_all");
     } catch (err) {
       console.warn("Unsubscribe all error:", err);
+      setStatusMessage("You have been unsubscribed from all Treel Insights communications.");
       setSavedStatus("unsubscribed_all");
     } finally {
       setIsSubmitting(false);
@@ -121,13 +145,37 @@ export function UnsubscribeForm() {
 
   return (
     <div className="space-y-12">
+      {tokenParam && savedStatus === "idle" && (
+        <div className="p-5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-start gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
+          <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+          <div className="space-y-1">
+            <h4 className="text-sm font-semibold text-[#FAF7F2]">Verified 1-Click Unsubscribe Link</h4>
+            <p className="text-xs sm:text-sm text-[#94A3B8]">
+              You were directed here with a secure token. You can opt out immediately by clicking below:
+            </p>
+            <div className="pt-2">
+              <Button
+                type="button"
+                variant="treel"
+                size="sm"
+                disabled={isSubmitting}
+                onClick={handleUnsubscribeAll}
+                className="cursor-pointer bg-rose-600 hover:bg-rose-700 text-white"
+              >
+                {isSubmitting ? "Processing..." : "Unsubscribe Immediately"}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {savedStatus === "saved" && (
         <div className="p-5 rounded-xl bg-[#D5573B]/10 border border-[#D5573B]/30 flex items-start gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
           <CheckCircle2 className="w-5 h-5 text-[#D5573B] shrink-0 mt-0.5" />
           <div className="space-y-1">
             <h4 className="text-sm font-semibold text-[#FAF7F2]">Preferences Successfully Saved</h4>
             <p className="text-xs sm:text-sm text-[#94A3B8]">
-              Your email communication preferences have been updated. Changes will propagate through our delivery systems within 24 hours.
+              {statusMessage || "Your email communication preferences have been updated."}
             </p>
           </div>
         </div>
@@ -137,9 +185,9 @@ export function UnsubscribeForm() {
         <div className="p-5 rounded-xl bg-white/[0.04] border border-white/[0.12] flex items-start gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
           <CheckCircle2 className="w-5 h-5 text-[#D5573B] shrink-0 mt-0.5" />
           <div className="space-y-1">
-            <h4 className="text-sm font-semibold text-[#FAF7F2]">You have been unsubscribed from all marketing emails</h4>
+            <h4 className="text-sm font-semibold text-[#FAF7F2]">Unsubscribed Successfully</h4>
             <p className="text-xs sm:text-sm text-[#94A3B8]">
-              You will no longer receive marketing communications, announcements, or editorial dispatches. Essential transactional emails related to your hardware or orders will still be delivered.
+              {statusMessage || "You will no longer receive marketing communications, announcements, or editorial dispatches. Essential transactional emails related to your hardware or orders will still be delivered."}
             </p>
           </div>
         </div>
@@ -154,12 +202,17 @@ export function UnsubscribeForm() {
             <input
               id="email"
               type="email"
-              required
+              required={!tokenInput}
               value={emailInput}
               onChange={(e) => setEmailInput(e.target.value)}
               placeholder="e.g. yourname@company.com"
               className="w-full max-w-md px-4 py-3 rounded-lg bg-black/40 border border-white/[0.12] text-[#FAF7F2] placeholder-[#94A3B8]/60 focus:outline-none focus:border-[#D5573B] transition-colors text-sm font-inter"
             />
+            {tokenInput && (
+              <p className="mt-1 text-[11px] font-mono text-emerald-400">
+                &bull; Security Token Attached: {tokenInput.substring(0, 12)}...
+              </p>
+            )}
           </div>
 
           <div className="pt-4 border-t border-white/[0.08]">

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { UnsubscribeForm } from "./unsubscribe-form";
@@ -50,7 +51,9 @@ export default function UnsubscribePage() {
       <section className="py-16 sm:py-20">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl">
-            <UnsubscribeForm />
+            <Suspense fallback={<div className="p-8 text-[#94A3B8] font-mono text-sm">Loading preferences...</div>}>
+              <UnsubscribeForm />
+            </Suspense>
 
             <div className="pt-12 text-center text-xs text-[#94A3B8] space-y-2">
               <p>

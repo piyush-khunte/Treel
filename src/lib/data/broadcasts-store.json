@@ -1,0 +1,60 @@
+[
+  {
+    "_id": "bcast_1792133458264_k56n",
+    "articleSlug": "test-unique-insight-1792133408789",
+    "articleTitle": "Autonomous Dispatch Test 1792133408789",
+    "articleExcerpt": "Test deck summary",
+    "sentAt": "2026-10-16T06:50:51.204Z",
+    "recipientCount": 3,
+    "status": "test_mode",
+    "deliveredCount": 3,
+    "failedCount": 0,
+    "deliveryLogs": [
+      {
+        "email": "arun.nair@fleetlogistics.in",
+        "status": "delivered",
+        "messageId": "simulated_msg_1792133451204_bqrhmq"
+      },
+      {
+        "email": "vikram.mehta@transportops.com",
+        "status": "delivered",
+        "messageId": "simulated_msg_1792133451204_r8lkeh"
+      },
+      {
+        "email": "priya.sharma@logixtech.in",
+        "status": "delivered",
+        "messageId": "simulated_msg_1792133451204_ibat4p"
+      }
+    ],
+    "createdAt": "2026-10-16T06:50:58.264Z"
+  },
+  {
+    "_id": "bcast_1792133430016_pxxm",
+    "articleSlug": "test-unique-insight-1792133408789",
+    "articleTitle": "Autonomous Dispatch Test 1792133408789",
+    "articleExcerpt": "Test deck summary",
+    "sentAt": "2026-10-16T06:50:22.911Z",
+    "recipientCount": 3,
+    "status": "test_mode",
+    "deliveredCount": 3,
+    "failedCount": 0,
+    "deliveryLogs": [
+      {
+        "email": "arun.nair@fleetlogistics.in",
+        "status": "delivered",
+        "messageId": "simulated_msg_1792133422911_2mdwv1"
+      },
+      {
+        "email": "vikram.mehta@transportops.com",
+        "status": "delivered",
+        "messageId": "simulated_msg_1792133422911_jbry0o"
+      },
+      {
+        "email": "priya.sharma@logixtech.in",
+        "status": "delivered",
+        "messageId": "simulated_msg_1792133422911_qy6b5s"
+      }
+    ],
+    "createdAt": "2026-10-16T06:50:30.016Z"
+  }
+]

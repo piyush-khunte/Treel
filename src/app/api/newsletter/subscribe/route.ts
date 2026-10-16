@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { isSesConfigured, sendNewsletterWelcomeEmail } from "@/lib/integrations";
+import { subscribeEmail } from "@/lib/content/subscriber-storage";
+import { getCanonicalSiteUrl } from "@/lib/content/insights-broadcast";
 
-// Rate limiting & idempotency cache (prevents duplicate clicks within 15 seconds)
+// Rate limiting & idempotency cache (prevents duplicate rapid clicks within 15 seconds)
 const recentSubscriptions = new Map<string, number>();
 
 function isRateLimited(email: string, windowMs = 15000): boolean {
@@ -32,7 +34,7 @@ export async function POST(req: NextRequest) {
 
     const rawEmail = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
     const source = typeof body.source === "string" ? body.source.trim() : "website_newsletter";
-    const interest = typeof body.interest === "string" ? body.interest.trim() : "Mobility Intelligence & Updates";
+    const interest = typeof body.interest === "string" ? body.interest.trim() : "Mobility Intelligence Research";
 
     if (!rawEmail) {
       return NextResponse.json(
@@ -51,12 +53,15 @@ export async function POST(req: NextRequest) {
 
     if (isRateLimited(rawEmail)) {
       return NextResponse.json(
-        { success: true, message: "You are already subscribed." },
+        { success: true, message: "You are already subscribed to Treel updates." },
         { status: 200 }
       );
     }
 
-    // Persist to Supabase leads / subscriber list
+    // 1. Persist to Global Unified Subscriber Storage (local store + Supabase sync)
+    const { subscriber, isNew, reactivated } = await subscribeEmail(rawEmail, source, interest);
+
+    // 2. Also log to Supabase leads table if configured for legacy lead CRM tracking
     let persistedLeadId: string | null = null;
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
     const supabaseKey = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
@@ -67,7 +72,7 @@ export async function POST(req: NextRequest) {
         const { data, error } = await supabase
           .from("leads")
           .insert({
-            full_name: "Newsletter Subscriber",
+            full_name: "Insights Subscriber",
             work_email: rawEmail,
             company_name: "Subscriber",
             source: source,
@@ -84,17 +89,21 @@ export async function POST(req: NextRequest) {
           persistedLeadId = String(data.id);
         }
       } catch (dbErr) {
-        console.warn("[Newsletter Subscription] Database persistence warning:", dbErr);
+        console.warn("[Newsletter Subscription] Database leads persistence warning:", dbErr);
       }
     }
 
-    // Trigger Amazon SES welcome confirmation email if configured
-    if (isSesConfigured()) {
+    // 3. Trigger Amazon SES welcome confirmation email if configured and subscriber is new/reactivated
+    if (isSesConfigured() && (isNew || reactivated)) {
       try {
+        const baseUrl = getCanonicalSiteUrl();
+        const unsubscribeUrl = `${baseUrl}/unsubscribe?token=${subscriber.token}&email=${encodeURIComponent(rawEmail)}`;
+
         await sendNewsletterWelcomeEmail({
           email: rawEmail,
           source,
           interest,
+          unsubscribeUrl,
         });
 
         if (persistedLeadId && supabaseUrl && supabaseKey) {
@@ -109,9 +118,17 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    const responseMessage = isNew
+      ? "Thank you for subscribing to Treel updates."
+      : reactivated
+      ? "Your subscription has been reactivated. Welcome back!"
+      : "You are already subscribed to Treel updates.";
+
     return NextResponse.json({
       success: true,
-      message: "Thank you for subscribing to Treel updates.",
+      message: responseMessage,
+      token: subscriber.token,
+      subscriberId: subscriber._id,
     });
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Internal subscription error";

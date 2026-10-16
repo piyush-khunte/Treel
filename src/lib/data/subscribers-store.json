@@ -1,0 +1,51 @@
+[
+  {
+    "_id": "sub_1792133470070_n5i4v",
+    "email": "fleet.tester.1792133465570@logistics-enterprises.in",
+    "status": "unsubscribed",
+    "token": "c285d6bdb96cd6c0eca2fcc5b481e81512768e455b799f72",
+    "source": "insights_portal",
+    "interest": "Mobility Intelligence Research",
+    "subscribedAt": "2026-10-16T06:51:10.069Z",
+    "confirmedAt": "2026-10-16T06:51:10.069Z",
+    "createdAt": "2026-10-16T06:51:10.069Z",
+    "updatedAt": "2026-10-16T06:51:17.924Z",
+    "unsubscribedAt": "2026-10-16T06:51:17.924Z"
+  },
+  {
+    "_id": "sub_seed_001",
+    "email": "arun.nair@fleetlogistics.in",
+    "status": "confirmed",
+    "token": "e7b8c2f1a4d9e03561a8b9c2d3e4f5a6b7c8d9e012345678",
+    "source": "insights_portal",
+    "interest": "Mobility Intelligence Research",
+    "subscribedAt": "2026-08-10T14:20:00.000Z",
+    "confirmedAt": "2026-08-10T14:20:00.000Z",
+    "createdAt": "2026-08-10T14:20:00.000Z",
+    "updatedAt": "2026-08-10T14:20:00.000Z"
+  },
+  {
+    "_id": "sub_seed_002",
+    "email": "vikram.mehta@transportops.com",
+    "status": "confirmed",
+    "token": "a1c2d3e4f5b6a7b8c9d0e1f2a3b4c5d6e7f8a9b012345678",
+    "source": "article_newsletter",
+    "interest": "Fleet Telematics & Sensor Edge",
+    "subscribedAt": "2026-08-18T09:15:00.000Z",
+    "confirmedAt": "2026-08-18T09:15:00.000Z",
+    "createdAt": "2026-08-18T09:15:00.000Z",
+    "updatedAt": "2026-08-18T09:15:00.000Z"
+  },
+  {
+    "_id": "sub_seed_003",
+    "email": "priya.sharma@logixtech.in",
+    "status": "confirmed",
+    "token": "f9e8d7c6b5a41234567890abcdef1234567890abcdef1234",
+    "source": "insights_portal",
+    "interest": "Mobility Intelligence Research",
+    "subscribedAt": "2026-09-02T11:45:00.000Z",
+    "confirmedAt": "2026-09-02T11:45:00.000Z",
+    "createdAt": "2026-09-02T11:45:00.000Z",
+    "updatedAt": "2026-09-02T11:45:00.000Z"
+  }
+]

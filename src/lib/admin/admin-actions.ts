@@ -1945,3 +1945,153 @@ export async function deleteWarrantyAction(
     return { success: false, error: err.message || 'Failed to delete warranty record.' };
   }
 }
+
+// ============================================================================
+// SUBSCRIBERS & BROADCAST MANAGEMENT
+// ============================================================================
+
+export async function getAdminSubscribersAction() {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { getAllSubscribers, getAllBroadcastLogs } = await import('@/lib/content/subscriber-storage');
+    const [subscribers, broadcasts] = await Promise.all([
+      getAllSubscribers(),
+      getAllBroadcastLogs(),
+    ]);
+
+    const activeCount = subscribers.filter((s) => s.status === 'confirmed').length;
+    const unsubscribedCount = subscribers.filter((s) => s.status === 'unsubscribed').length;
+
+    return {
+      success: true,
+      data: {
+        subscribers,
+        broadcasts,
+        stats: {
+          totalSubscribers: subscribers.length,
+          activeCount,
+          unsubscribedCount,
+          totalBroadcasts: broadcasts.length,
+        },
+      },
+    };
+  } catch (err: any) {
+    console.error('getAdminSubscribersAction error:', err);
+    return { success: false, error: err.message || 'Failed to fetch subscribers.' };
+  }
+}
+
+export async function unsubscribeAdminSubscriberAction(
+  query: { token?: string; email?: string }
+): Promise<{ success: boolean; message?: string; error?: string }> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { unsubscribeByTokenOrEmail } = await import('@/lib/content/subscriber-storage');
+    const result = await unsubscribeByTokenOrEmail(query);
+    if (result.success) {
+      revalidatePath('/admin/subscribers');
+    }
+    return {
+      success: result.success,
+      message: result.message,
+    };
+  } catch (err: any) {
+    console.error('unsubscribeAdminSubscriberAction error:', err);
+    return { success: false, error: err.message || 'Failed to unsubscribe user.' };
+  }
+}
+
+export async function deleteAdminSubscriberAction(idOrEmail: string) {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { deleteSubscriber } = await import('@/lib/content/subscriber-storage');
+    const ok = await deleteSubscriber(idOrEmail);
+    if (ok) {
+      revalidatePath('/admin/subscribers');
+    }
+    return { success: ok };
+  } catch (err: any) {
+    console.error('deleteAdminSubscriberAction error:', err);
+    return { success: false, error: err.message || 'Failed to delete subscriber.' };
+  }
+}
+
+export async function sendAdminTestBroadcastAction(articleSlug: string, testEmail: string) {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  if (!testEmail || !testEmail.trim()) {
+    return { success: false, error: 'Test recipient email is required.' };
+  }
+
+  try {
+    const { getInsightBySlug } = await import('@/lib/content/insights-storage');
+    const { dispatchInsightNotification } = await import('@/lib/content/insights-broadcast');
+
+    const article = await getInsightBySlug(articleSlug);
+    if (!article) {
+      return { success: false, error: `Insight article not found for slug "${articleSlug}".` };
+    }
+
+    const result = await dispatchInsightNotification(article, {
+      testEmail: testEmail.trim(),
+    });
+
+    return {
+      success: result.success,
+      data: result,
+      message: result.success
+        ? `Test notification sent successfully to ${testEmail}.`
+        : `Test notification failed: ${result.error || 'Unknown error'}`,
+    };
+  } catch (err: any) {
+    console.error('sendAdminTestBroadcastAction error:', err);
+    return { success: false, error: err.message || 'Failed to send test broadcast.' };
+  }
+}
+
+export async function triggerAdminBroadcastAction(articleSlug: string, force = false) {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { getInsightBySlug } = await import('@/lib/content/insights-storage');
+    const { dispatchInsightNotification } = await import('@/lib/content/insights-broadcast');
+
+    const article = await getInsightBySlug(articleSlug);
+    if (!article) {
+      return { success: false, error: `Insight article not found for slug "${articleSlug}".` };
+    }
+
+    const result = await dispatchInsightNotification(article, { force });
+
+    revalidatePath('/admin/subscribers');
+
+    return {
+      success: result.success,
+      data: result,
+      message: result.skipped
+        ? result.reason
+        : `Broadcast completed. Delivered: ${result.deliveredCount}, Failed: ${result.failedCount}.`,
+    };
+  } catch (err: any) {
+    console.error('triggerAdminBroadcastAction error:', err);
+    return { success: false, error: err.message || 'Failed to trigger broadcast.' };
+  }
+}

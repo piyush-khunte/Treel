@@ -413,6 +413,21 @@ export async function saveInsight(insight: Partial<TreelInsightArticle>): Promis
     console.error("Supabase sync error for insight:", err);
   }
 
+  // Trigger automated email broadcast to subscribers if article is newly published
+  const isNewlyPublished =
+    fullInsight.status === "Published" &&
+    (!existing || existing.status !== "Published");
+
+  if (isNewlyPublished) {
+    import("./insights-broadcast")
+      .then(({ dispatchInsightNotification }) => {
+        return dispatchInsightNotification(fullInsight);
+      })
+      .catch((broadcastErr) => {
+        console.warn("[Insight Auto-Broadcast Notification Warning]:", broadcastErr);
+      });
+  }
+
   return fullInsight;
 }
 

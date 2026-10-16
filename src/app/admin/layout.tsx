@@ -15,7 +15,8 @@ import {
   Calendar,
   Briefcase,
   Newspaper,
-  FolderArchive
+  FolderArchive,
+  Mail
 } from "lucide-react";
 import { getAdminSession } from "@/lib/admin/admin-auth";
 import { AdminLogoutButton } from "./admin-logout-button";
@@ -162,6 +163,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             >
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
               <span>Warranty Management</span>
+            </Link>
+
+            <Link
+              href="/admin/subscribers"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors"
+            >
+              <Mail className="w-4 h-4 text-rose-400" />
+              <span>Subscribers & Broadcasts</span>
             </Link>
 
             <Link
