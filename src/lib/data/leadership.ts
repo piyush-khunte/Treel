@@ -21,7 +21,7 @@ export const TEAM_MEMBERS: readonly TeamMember[] = [
     name: "Mrs. Pradnya Chaudhari",
     role: "Head of Design & Development",
     bio: "Leads end-to-end product architecture, design execution, and engineering strategy for Tyre Pressure Monitoring Systems (TPMS), overseeing hardware-software co-design from development to mass manufacturing and regulatory compliance. She leads R&D teams in developing next-generation sensor platforms that advance smart mobility across passenger vehicles and heavy-duty commercial fleets.",
-    image: "/images/leadership/pradnya-chaudhari.jpeg",
+    image: "/images/leadership/pradnya_chaudhari.png",
     linkedIn: "https://www.linkedin.com/in/pradnya-chaudhari-4b737839",
   },
   {
@@ -29,7 +29,7 @@ export const TEAM_MEMBERS: readonly TeamMember[] = [
     name: "Mr. Nitin Karande",
     role: "Head of Software Engineering",
     bio: "Leads software engineering and product development at Treel, specializing in automotive IoT, TPMS, telematics, and connected-vehicle solutions. His technical expertise spans Android, MEAN Stack development, AWS, desktop applications, and microservices architecture. He drives software architecture, end-to-end product development, technical delivery, and cross-functional engineering initiatives to build scalable and reliable mobility solutions.",
-    image: "/images/leadership/nitin-karande.png",
+    image: "/images/leadership/Nitin_Karande.png",
     linkedIn: "https://www.linkedin.com/in/nitin-karande-90ab837a",
   },
   {
@@ -53,7 +53,7 @@ export const TEAM_MEMBERS: readonly TeamMember[] = [
     name: "Mr. Dattatray Dudhe",
     role: "Production Incharge",
     bio: "Lead the Production team & responsibilities of all Manufacturing activities including Process, Planning, Resources, Maintenance. Total 32 years experience in Electronic manufacturing.",
-    image: "/images/leadership/dattatray-dudhe.png",
+    image: "/images/leadership/dattatray_dudhe.png",
     linkedIn: "https://www.linkedin.com/in/dattatray-dudhe-525436443",
   },
   {
