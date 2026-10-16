@@ -95,7 +95,11 @@ export function LeadershipTeam() {
               {/* Bottom aligned LinkedIn Link */}
               <div className="pt-3 border-t border-white/[0.08] mt-auto flex items-center justify-between">
                 <a
-                  href={member.linkedIn}
+                  href={
+                    member.linkedIn.startsWith("http")
+                      ? member.linkedIn
+                      : `https://${member.linkedIn}`
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Visit ${member.name}'s LinkedIn profile (opens in new tab)`}
