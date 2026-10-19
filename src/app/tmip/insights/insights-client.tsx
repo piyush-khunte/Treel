@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { slugifyAuthor } from "@/lib/authors/author-utils";
+import { AuthorAvatar } from "@/components/authors/author-avatar";
 
 interface InsightArticle {
   id: string;
@@ -138,6 +139,7 @@ export function InsightsClient() {
 
             <div className="pt-4 border-t border-slate-400/10 flex items-center justify-between text-xs font-jetbrains text-[#94A3B8]">
               <div className="flex items-center gap-2">
+                <AuthorAvatar name={article.author} size="sm" shape="circle" />
                 <Link
                   href={`/authors/${slugifyAuthor(article.author)}`}
                   className="text-[#F1F5F9] hover:text-[#3B82F6] hover:underline transition-colors font-medium"

@@ -2,6 +2,7 @@
 
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { slugifyAuthor } from "@/lib/authors/author-utils";
+import { AuthorAvatar } from "@/components/authors/author-avatar";
 import {
 ArrowRight,
 BookOpen,
@@ -199,15 +200,18 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
             {/* Byline & Read CTA */}
             <div className="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-white/10">
               <div className="flex items-center gap-4 text-xs sm:text-sm font-mono text-[#94A3B8]">
-                <span>
-                  By{" "}
-                  <Link 
-                    href={`/authors/${slugifyAuthor(featuredArticle.author)}`}
-                    className="text-[#FAF7F2] hover:text-[#D5573B] hover:underline transition-colors font-medium"
-                  >
-                    {featuredArticle.author}
-                  </Link>
-                </span>
+                <div className="flex items-center gap-2">
+                  <AuthorAvatar name={featuredArticle.author} size="sm" shape="circle" />
+                  <span>
+                    By{" "}
+                    <Link 
+                      href={`/authors/${slugifyAuthor(featuredArticle.author)}`}
+                      className="text-[#FAF7F2] hover:text-[#D5573B] hover:underline transition-colors font-medium"
+                    >
+                      {featuredArticle.author}
+                    </Link>
+                  </span>
+                </div>
                 <span>•</span>
                 <span>{featuredArticle.date}</span>
                 <span>•</span>
@@ -280,15 +284,18 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
                   </div>
 
                   <div className="pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-[#94A3B8]">
-                    <span>
-                      By{" "}
-                      <Link 
-                        href={`/authors/${slugifyAuthor(article.author)}`}
-                        className="text-[#FAF7F2] hover:text-[#D5573B] hover:underline transition-colors"
-                      >
-                        {article.author}
-                      </Link>
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <AuthorAvatar name={article.author} size="sm" shape="circle" />
+                      <span>
+                        By{" "}
+                        <Link 
+                          href={`/authors/${slugifyAuthor(article.author)}`}
+                          className="text-[#FAF7F2] hover:text-[#D5573B] hover:underline transition-colors"
+                        >
+                          {article.author}
+                        </Link>
+                      </span>
+                    </div>
                     <span>{article.readTime}</span>
                   </div>
                 </div>

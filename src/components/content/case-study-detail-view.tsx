@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ChevronRight, Clock, User } from "lucide-react";
 import { TmipCaseStudy } from "@/types/content";
 import { slugifyAuthor } from "@/lib/authors/author-utils";
+import { AuthorAvatar } from "@/components/authors/author-avatar";
 
 interface CaseStudyDetailViewProps {
   study: TmipCaseStudy;
@@ -270,9 +271,7 @@ export function CaseStudyDetailView({ study }: CaseStudyDetailViewProps) {
             {/* Author Profile / Research Attribution Card */}
             <div className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6] font-space-grotesk font-bold text-base shrink-0">
-                  TR
-                </div>
+                <AuthorAvatar name={authorName} size="md" shape="circle" />
                 <div>
                   <div className="text-[11px] font-jetbrains text-[#64748B] uppercase tracking-wider">
                     Author & Telemetry Research

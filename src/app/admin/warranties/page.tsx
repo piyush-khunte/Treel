@@ -14,12 +14,9 @@ import { WarrantyRecord, WarrantyStatus } from "@/types/content";
 import {
   AlertCircle,
   CheckCircle2,
-  Clock,
   Edit3,
   ExternalLink,
   Eye,
-  FileCheck2,
-  Filter,
   Plus,
   RefreshCw,
   Save,

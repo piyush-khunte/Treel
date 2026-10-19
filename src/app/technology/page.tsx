@@ -1,6 +1,6 @@
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
-import { ArrowRight,BrainCircuit,ChevronRight,Code,Cpu,Database,LayoutDashboard,Server } from "lucide-react";
+import { ArrowRight,BrainCircuit,ChevronRight,Cpu,Database,LayoutDashboard,Server } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 

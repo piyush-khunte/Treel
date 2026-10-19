@@ -63,7 +63,8 @@ export function getLeadershipPhotoForAuthor(authorName?: string): string | null 
       const lastMatch =
         cleanTokens[cleanTokens.length - 1] === memberTokens[memberTokens.length - 1] ||
         (cleanTokens[cleanTokens.length - 1].startsWith("chaudh") && memberTokens[memberTokens.length - 1].startsWith("chaudh")) ||
-        (cleanTokens[cleanTokens.length - 1].startsWith("choudh") && memberTokens[memberTokens.length - 1].startsWith("chaudh"));
+        (cleanTokens[cleanTokens.length - 1].startsWith("choudh") && memberTokens[memberTokens.length - 1].startsWith("chaudh")) ||
+        (cleanTokens[cleanTokens.length - 1].startsWith("chaudh") && memberTokens[memberTokens.length - 1].startsWith("choudh"));
 
       if (firstMatch && lastMatch) {
         return member.image;
@@ -95,7 +96,16 @@ export const VERIFIED_AUTHORS: Record<string, AuthorProfile> = {
     role: "Hardware Lead",
     company: "Treel Mobility Solutions",
     location: "Pune, India",
-    avatarUrl: "/images/leadership/pradnya-chaudhari.jpeg",
+    avatarUrl: "/images/leadership/pradnya_chaudhari.png",
+    bio: "Pradnya Choudhary directs embedded hardware engineering, ARAI sensor certification, and low-power RF sensor validation for commercial fleet durability under extreme Indian road conditions.",
+  },
+  "pradnya-chaudhari": {
+    slug: "pradnya-chaudhari",
+    name: "Pradnya Choudhary",
+    role: "Hardware Lead",
+    company: "Treel Mobility Solutions",
+    location: "Pune, India",
+    avatarUrl: "/images/leadership/pradnya_chaudhari.png",
     bio: "Pradnya Choudhary directs embedded hardware engineering, ARAI sensor certification, and low-power RF sensor validation for commercial fleet durability under extreme Indian road conditions.",
   },
   "atharv": {
@@ -121,8 +131,26 @@ export const VERIFIED_AUTHORS: Record<string, AuthorProfile> = {
     role: "Engineering Lead",
     company: "Treel Mobility Solutions",
     location: "Pune, India",
-    avatarUrl: "/images/leadership/nitin-karande.png",
+    avatarUrl: "/images/leadership/Nitin_Karande.png",
     bio: "Specializes in edge computing, distributed firmware, and telemetry ingestion pipelines across commercial fleet networks and highway IoT infrastructure.",
+  },
+  "mahesh-sakat": {
+    slug: "mahesh-sakat",
+    name: "Mahesh Sakat",
+    role: "Head of Quality",
+    company: "Treel Mobility Solutions",
+    location: "Pune, India",
+    avatarUrl: "/images/leadership/mahesh-sakat.jpeg",
+    bio: "Automotive quality professional with over 14 years of experience in quality management system, product development, supplier quality & manufacturing quality assurance.",
+  },
+  "suresh-fale": {
+    slug: "suresh-fale",
+    name: "Suresh Fale",
+    role: "Senior Manager Finance & HR, Admin",
+    company: "Treel Mobility Solutions",
+    location: "Pune, India",
+    avatarUrl: "/images/leadership/suresh-fale.png",
+    bio: "An accomplished finance professional with over 17 years of experience across accounting, finance, administration, human resources, taxation, and financial operations.",
   },
   "treel-mobility-team": {
     slug: "treel-mobility-team",

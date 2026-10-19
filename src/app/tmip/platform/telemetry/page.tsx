@@ -13,7 +13,6 @@ import {
   Fuel,
   Sliders,
   CheckCircle2,
-  SlidersHorizontal,
 } from "lucide-react";
 
 export const metadata: Metadata = {

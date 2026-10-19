@@ -11,8 +11,8 @@ MapPin
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
+import { AuthorAvatar } from "@/components/authors/author-avatar";
 
 export const revalidate = 60;
 
@@ -62,13 +62,6 @@ export default async function AuthorProfilePage({
     notFound();
   }
 
-  const initials = profile.name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-
   return (
     <div className="min-h-screen bg-[#0F1419] text-[#FAF7F2] font-inter selection:bg-[#D5573B]/20">
       {/* 1. Header / Profile Hero */}
@@ -102,24 +95,13 @@ export default async function AuthorProfilePage({
           {/* Profile Card Main Row */}
           <div className="flex flex-col md:flex-row items-start md:items-center gap-8 pt-4">
             {/* Avatar / Portrait Frame */}
-            {profile.avatarUrl ? (
-              <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl border-2 border-white/15 relative overflow-hidden shadow-xl shrink-0 bg-slate-900">
-                <Image
-                  src={profile.avatarUrl}
-                  alt={profile.name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 112px, 144px"
-                  priority
-                />
-              </div>
-            ) : (
-              <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl bg-gradient-to-br from-white/[0.12] via-white/[0.05] to-white/[0.02] border-2 border-white/15 relative overflow-hidden flex items-center justify-center shadow-xl shrink-0">
-                <span className="font-fraunces text-3xl sm:text-4xl font-medium text-[#FAF7F2]/90 tracking-wider">
-                  {initials}
-                </span>
-              </div>
-            )}
+            <AuthorAvatar
+              name={profile.name}
+              image={profile.avatarUrl}
+              size="xl"
+              shape="rounded"
+              priority
+            />
 
             {/* Author Meta Details */}
             <div className="space-y-4 max-w-3xl flex-1">

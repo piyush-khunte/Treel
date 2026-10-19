@@ -34,11 +34,19 @@ export async function getAuthorProfile(slugOrName: string): Promise<{
 
   const authoredArticles: AuthoredArticleItem[] = [];
 
+  const normalizeToken = (t: string) =>
+    slugifyAuthor(t)
+      .replace(/^(mr\.|mrs\.|ms\.|dr\.)-?/i, "")
+      .replace(/choudh/g, "chaudh")
+      .replace(/nithin/g, "nitin");
+
+  const normalizedKey = normalizeToken(normalizedSlug);
+
   // Match helper
   const isMatch = (authorName?: string) => {
     if (!authorName) return false;
-    const s = slugifyAuthor(authorName);
-    return s === normalizedSlug || s.includes(normalizedSlug) || normalizedSlug.includes(s);
+    const s = normalizeToken(authorName);
+    return s === normalizedKey || s.includes(normalizedKey) || normalizedKey.includes(s);
   };
 
   // Insights
@@ -153,7 +161,8 @@ export async function getAuthorProfile(slugOrName: string): Promise<{
   }
 
   if (profile) {
-    profile.avatarUrl = profile.avatarUrl || getLeadershipPhotoForAuthor(profile.name) || undefined;
+    const leadershipPhoto = getLeadershipPhotoForAuthor(profile.name);
+    profile.avatarUrl = leadershipPhoto || profile.avatarUrl || undefined;
   }
 
   return {
