@@ -126,7 +126,7 @@ export default function PersonalFeaturesAlertsPage() {
               Alert types.
             </h2>
             <p className="text-[#4B5563] text-base sm:text-lg">
-              Five distinct telemetry trigger scenarios engineered to prevent roadside breakdowns and tire structural damage.
+              Five distinct telemetry trigger scenarios engineered to prevent roadside breakdowns and tyre structural damage.
             </p>
           </div>
 

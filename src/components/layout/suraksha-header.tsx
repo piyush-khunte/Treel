@@ -1,7 +1,7 @@
 "use client";
 
 import { useSurakshaCart } from "@/lib/commerce/cart-context";
-import { ChevronDown,Menu,ShoppingCart,X } from "lucide-react";
+import { ChevronDown, Menu, ShoppingCart, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -38,34 +38,38 @@ export function SurakshaHeader() {
 
       {/* Main Suraksha Nav */}
       <div className="bg-[#FEF3C7]/95 backdrop-blur-md border-b-2 border-[#451A03]/10">
-        <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between relative">
+        <div className="w-full max-w-[1320px] mx-auto px-3 sm:px-6 lg:px-10 h-16 sm:h-20 flex items-center justify-between relative">
           {/* Brand Area */}
-          <div className="flex items-center gap-3 sm:gap-4 shrink-0 z-10 mr-2 xl:mr-4">
-            <Link href="/" className="flex items-center group">
+          <div className="flex items-center gap-2 sm:gap-4 shrink-0 z-10 min-w-0 mr-2 xl:mr-4">
+            <Link href="/" className="flex items-center group shrink-0">
               <Image
                 src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436567/Treel_New_Logo_Final_With_Favicon_Tagline.png"
                 alt="Treel"
                 width={160}
                 height={50}
-                className="h-9 sm:h-10 lg:h-11 xl:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                className="h-7 sm:h-9 lg:h-11 xl:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
                 priority
               />
             </Link>
 
-            <div className="h-7 sm:h-8 w-[1px] bg-[#451A03]/20 hidden sm:block" />
+            <div className="h-6 sm:h-8 w-[1px] bg-[#451A03]/20 hidden sm:block shrink-0" />
 
             {/* Brand Logo & Motion Mark */}
-            <Link href="/suraksha" className="suraksha-nav-brand group">
-              <div className="suraksha-nav-brand-mark group-hover:scale-105 transition-transform">
-                <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg" className="h-[24px] sm:h-[26px] w-auto">
+            <Link href="/suraksha" className="flex items-center gap-1.5 sm:gap-2.5 group shrink-0">
+              <div className="flex items-center group-hover:scale-105 transition-transform shrink-0">
+                <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg" className="h-5 sm:h-6 w-auto">
                   <rect x="5" y="4" width="90" height="9" rx="1.5" fill="#DC2626" />
                   <rect x="5" y="16" width="90" height="9" rx="1.5" fill="#EA580C" />
                   <rect x="5" y="28" width="90" height="9" rx="1.5" fill="#DC2626" />
                 </svg>
               </div>
-              <div>
-                <div className="suraksha-nav-brand-name">Suraksha</div>
-                <div className="suraksha-nav-parent">A Treel Product</div>
+              <div className="flex flex-col">
+                <span className="font-anton text-[16px] sm:text-[19px] lg:text-[20px] text-[#DC2626] uppercase leading-none tracking-tight">
+                  Suraksha
+                </span>
+                <span className="text-[7.5px] sm:text-[8.5px] font-rubik tracking-wider uppercase text-[#78350F] font-semibold mt-0.5 whitespace-nowrap hidden min-[360px]:block">
+                  A Treel Product
+                </span>
               </div>
             </Link>
           </div>
@@ -209,52 +213,44 @@ export function SurakshaHeader() {
             </div>
           </nav>
 
-          {/* GET SURAKSHA (CTAs) */}
-          <div className="hidden md:flex items-center gap-1.5 xl:gap-2 shrink-0 ml-1.5 xl:ml-3">
+          {/* Action Area: Desktop CTAs + Cart + Mobile Menu Toggle */}
+          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 z-10">
+            {/* Desktop CTAs */}
+            <div className="hidden lg:flex items-center gap-1.5 xl:gap-2 shrink-0">
+              <Link
+                href="/suraksha/pricing"
+                className="px-2.5 xl:px-3 py-1.5 xl:py-2 rounded font-rubik text-[10.5px] xl:text-xs font-bold bg-[#DC2626] text-white hover:bg-[#B91C1C] transition-all shadow-sm whitespace-nowrap"
+              >
+                Get Suraksha
+              </Link>
+              <Link
+                href="/suraksha/whatsapp"
+                className="px-2.5 xl:px-3 py-1.5 xl:py-2 rounded font-rubik text-[10.5px] xl:text-xs font-bold bg-[#16A34A] text-white hover:bg-[#15803D] transition-all shadow-sm whitespace-nowrap"
+              >
+                WhatsApp
+              </Link>
+            </div>
+
+            {/* Cart Icon (both mobile & desktop) */}
             <Link
               href="/suraksha/cart"
-              className="relative p-2 xl:p-2.5 rounded border border-[#451A03]/20 hover:bg-[#FFFBEB] text-[#451A03] transition-colors shrink-0"
+              className="relative p-2 sm:p-2.5 rounded border border-[#451A03]/20 hover:bg-[#FFFBEB] text-[#451A03] transition-colors shrink-0 flex items-center justify-center"
               aria-label="Suraksha Cart"
             >
-              <ShoppingCart className="w-4 h-4 text-[#451A03]" />
+              <ShoppingCart className="w-5 h-5 text-[#451A03]" />
               {totalItems > 0 && (
                 <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#DC2626] text-[#FEF3C7] text-[10px] font-bold rounded-full flex items-center justify-center font-mono animate-in zoom-in">
                   {totalItems}
                 </span>
               )}
             </Link>
-            <Link
-              href="/suraksha/pricing"
-              className="px-2 xl:px-3 py-1.5 xl:py-2 rounded font-rubik text-[10.5px] xl:text-xs font-bold bg-[#DC2626] text-white hover:bg-[#B91C1C] transition-all shadow-sm whitespace-nowrap"
-            >
-              Get Suraksha
-            </Link>
-            <Link
-              href="/suraksha/whatsapp"
-              className="px-2 xl:px-3 py-1.5 xl:py-2 rounded font-rubik text-[10.5px] xl:text-xs font-bold bg-[#16A34A] text-white hover:bg-[#15803D] transition-all shadow-sm whitespace-nowrap"
-            >
-              WhatsApp
-            </Link>
-          </div>
 
-          {/* Mobile Cart & menu toggle */}
-          <div className="lg:hidden flex items-center gap-2 z-10">
-            <Link
-              href="/suraksha/cart"
-              className="relative p-2 rounded border border-[#451A03]/20 text-[#451A03] hover:bg-[#FFFBEB] transition-colors"
-              aria-label="Suraksha Cart"
-            >
-              <ShoppingCart className="w-5 h-5 text-[#451A03]" />
-              {totalItems > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#DC2626] text-[#FEF3C7] text-[10px] font-bold rounded-full flex items-center justify-center font-mono">
-                  {totalItems}
-                </span>
-              )}
-            </Link>
+            {/* Mobile Hamburger Menu Toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2 rounded border border-[#451A03]/20 text-[#451A03] hover:bg-[#FFFBEB] transition-colors"
+              className="lg:hidden p-2 sm:p-2.5 rounded border border-[#451A03]/20 text-[#451A03] hover:bg-[#FFFBEB] transition-colors shrink-0 flex items-center justify-center"
               aria-label="Toggle Navigation Menu"
+              aria-expanded={mobileOpen}
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -263,7 +259,7 @@ export function SurakshaHeader() {
 
         {/* Mobile Drawer */}
         {mobileOpen && (
-          <div className="lg:hidden border-t border-[#451A03]/10 bg-[#FFFBEB] px-6 py-6 space-y-4 font-rubik shadow-xl max-h-[calc(100vh-120px)] overflow-y-auto">
+          <div className="lg:hidden border-t border-[#451A03]/10 bg-[#FFFBEB] px-4 sm:px-6 py-6 space-y-4 font-rubik shadow-xl max-h-[calc(100vh-100px)] overflow-y-auto">
             {/* Why Suraksha Accordion */}
             <div>
               <button

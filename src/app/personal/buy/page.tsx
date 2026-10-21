@@ -356,7 +356,7 @@ export default function PersonalBuyPage() {
               </div>
               <h4 className="font-bold text-[#111827] text-base group-hover:text-[#2563EB] transition-colors">How Treel TPMS Works →</h4>
               <p className="text-xs text-[#6B7280] mt-1.5 leading-relaxed">
-                Discover BLE transmission, continuous tire pressure monitoring, and smart leak detection algorithms.
+                Discover BLE transmission, continuous tyre pressure monitoring, and smart leak detection algorithms.
               </p>
             </Link>
 

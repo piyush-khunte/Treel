@@ -33,26 +33,26 @@ export function PersonalHeader() {
 
       {/* Main Nav */}
       <div className="border-b border-black/[0.06] bg-white/95 backdrop-blur-md font-manrope">
-        <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
+        <div className="w-full max-w-[1320px] mx-auto px-3 sm:px-6 lg:px-10 h-16 sm:h-20 flex items-center justify-between">
           {/* Brand Area */}
-          <div className="flex items-center gap-3 sm:gap-5 shrink-0 mr-3 xl:mr-5">
-            <Link href="/" className="flex items-center group">
+          <div className="flex items-center gap-2 sm:gap-4 shrink-0 min-w-0 mr-2 xl:mr-5">
+            <Link href="/" className="flex items-center group shrink-0">
               <Image
                 src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436567/Treel_New_Logo_Final_With_Favicon_Tagline.png"
                 alt="Treel"
                 width={160}
                 height={50}
-                className="h-9 sm:h-10 lg:h-11 xl:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                className="h-7 sm:h-9 lg:h-11 xl:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
                 priority
               />
             </Link>
 
-            <div className="h-7 sm:h-8 w-[1px] bg-black/[0.08] hidden sm:block" />
+            <div className="h-6 sm:h-8 w-[1px] bg-black/[0.08] hidden sm:block shrink-0" />
 
             {/* Personal TPMS Logo & Brand Mark */}
-            <Link href="/personal" className="flex items-center gap-2.5 sm:gap-3 group">
-              <div className="flex items-center group-hover:scale-105 transition-transform">
-                <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg" className="h-7 w-auto">
+            <Link href="/personal" className="flex items-center gap-1.5 sm:gap-2.5 group shrink-0">
+              <div className="flex items-center group-hover:scale-105 transition-transform shrink-0">
+                <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg" className="h-5 sm:h-6 lg:h-7 w-auto">
                   <g fill="#2563EB">
                     <rect x="12" y="8" width="76" height="5" rx="1" />
                     <rect x="12" y="18" width="76" height="5" rx="1" />
@@ -61,10 +61,10 @@ export function PersonalHeader() {
                 </svg>
               </div>
               <div className="flex flex-col">
-                <span className="font-manrope text-[17px] sm:text-[19px] font-extrabold tracking-tight text-[#111827] group-hover:text-[#2563EB] transition-colors whitespace-nowrap leading-none">
+                <span className="font-manrope text-[15px] sm:text-[18px] lg:text-[19px] font-extrabold tracking-tight text-[#111827] group-hover:text-[#2563EB] transition-colors whitespace-nowrap leading-none">
                   TPMS
                 </span>
-                <span className="text-[8px] sm:text-[8.5px] tracking-widest uppercase text-[#6B7280] font-bold mt-0.5 whitespace-nowrap">
+                <span className="text-[7.5px] sm:text-[8.5px] tracking-widest uppercase text-[#6B7280] font-bold mt-0.5 whitespace-nowrap hidden min-[360px]:block">
                   Smart Tyre Sensors
                 </span>
               </div>
@@ -211,9 +211,13 @@ export function PersonalHeader() {
             </div>
           </nav>
 
-          {/* Cart & Shop CTAs */}
-          <div className="flex items-center space-x-2.5 sm:space-x-3 shrink-0">
-            <Link href="/personal/buy/cart" className="relative p-2.5 rounded-full border border-black/[0.08] hover:bg-[#F3F4F6] text-[#111827] transition-colors shrink-0" aria-label="Cart">
+          {/* Cart, CTAs & Mobile Toggle Group */}
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0 z-10">
+            <Link
+              href="/personal/buy/cart"
+              className="relative p-2 sm:p-2.5 rounded-full border border-black/[0.08] hover:bg-[#F3F4F6] text-[#111827] transition-colors flex items-center justify-center shrink-0"
+              aria-label="Cart"
+            >
               <ShoppingCart className="w-5 h-5" />
               {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#2563EB] text-white text-[11px] font-bold rounded-full flex items-center justify-center animate-in zoom-in">
@@ -227,23 +231,22 @@ export function PersonalHeader() {
                 Buy Now <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </Link>
-          </div>
 
-          {/* Mobile toggle */}
-          <div className="lg:hidden flex items-center">
+            {/* Mobile hamburger menu toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2.5 rounded-full border border-black/[0.08] text-[#111827]"
+              className="lg:hidden p-2 sm:p-2.5 rounded-full border border-black/[0.08] text-[#111827] hover:bg-[#F3F4F6] transition-colors flex items-center justify-center shrink-0"
               aria-label="Toggle mobile menu"
+              aria-expanded={mobileOpen}
             >
-              {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
         </div>
 
         {/* Mobile Drawer */}
         {mobileOpen && (
-          <div className="lg:hidden border-t border-black/[0.06] bg-white px-6 py-6 space-y-3 text-sm font-semibold shadow-2xl font-manrope max-h-[calc(100vh-120px)] overflow-y-auto">
+          <div className="lg:hidden border-t border-black/[0.06] bg-white px-4 sm:px-6 py-6 space-y-3 text-sm font-semibold shadow-2xl font-manrope max-h-[calc(100vh-100px)] overflow-y-auto">
             <Link href="/personal/buy" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">
               Product Store
             </Link>

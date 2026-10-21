@@ -43,7 +43,7 @@ export const SEED_EVENTS: EventItemRecord[] = [
         time: "09:30 AM – 10:30 AM",
         title: "Keynote: Beyond GPS — Transforming Commercial Haulage with Wheel Telemetry",
         speaker: "Manish Ingale (Founder, Treel Mobility)",
-        desc: "An architectural deep-dive into how sensor ingestion at 24 Hz decodes tire degradation, axle balance, and fuel drag before physical breakdown occurs."
+        desc: "An architectural deep-dive into how sensor ingestion at 24 Hz decodes tyre degradation, axle balance, and fuel drag before physical breakdown occurs."
       },
       {
         time: "11:00 AM – 12:30 PM",

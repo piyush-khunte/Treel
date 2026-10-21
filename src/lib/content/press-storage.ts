@@ -145,7 +145,7 @@ export const SEED_PRESS_RELEASES: PressItemRecord[] = [
     date: "October 04, 2025",
     category: "Company News",
     headline: "Treel Inaugurates Advanced Mobility Hardware and RF Testing Lab in Pune",
-    excerpt: "The newly expanded Pune facility features dynamic tire-drum test rigs, environmental submersion tanks, and an RF chamber calibrated for long-range BLE commercial vehicle communications.",
+    excerpt: "The newly expanded Pune facility features dynamic tyre-drum test rigs, environmental submersion tanks, and an RF chamber calibrated for long-range BLE commercial vehicle communications.",
     city: "PUNE",
     leadParagraph: "Treel Mobility Solutions has inaugurated its expanded advanced hardware and wireless telematics research facility in Pune, Maharashtra. The facility expands Treel's testing throughput for heavy-duty commercial axle transducers and in-cab IoT hubs.",
     quote: {

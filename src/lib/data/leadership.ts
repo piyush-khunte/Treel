@@ -72,8 +72,8 @@ export const TEAM_MEMBERS: readonly TeamMember[] = [
   {
     order: 1,
     name: "Mr. Imran Khan",
-    role: "Head of Strategy/Finance",
-    bio: "Mr. Imran Khan is an accomplished finance professional with over 23 years of experience across Finance, Accounts, Taxation, Commercial and Operations. Associated with JK Tyre & Industries Ltd. since October 2015, he brings strong expertise in financial strategy, P&L management, FP&A, business performance, financial governance and cost optimization. With a strategic and business-oriented approach, he focuses on enhancing profitability, optimizing resources, strengthening financial controls and enabling informed decision-making. His leadership philosophy emphasizes financial discipline, operational excellence and sustainable value creation, positioning finance as a strategic driver of business growth and long-term organizational success.",
+    role: "Head of Finance and Strategy",
+    bio: "Mr. Imran Khan is an accomplished finance professional with over 2 decades of experience across Finance, Accounts, Taxation, Commercial and Operations. Associated with JK Tyre & Industries Ltd. since October 2015, he brings strong expertise in financial strategy, P&L management, FP&A, business performance, financial governance and cost optimization. With a strategic and business-oriented approach, he focuses on enhancing profitability, optimizing resources, strengthening financial controls and enabling informed decision-making. His leadership philosophy emphasizes financial discipline, operational excellence and sustainable value creation, positioning finance as a strategic driver of business growth and long-term organizational success.",
     image: "/images/leadership/imran-khan.png",
     linkedIn: "https://www.linkedin.com/in/imran-khan-82057672",
   },

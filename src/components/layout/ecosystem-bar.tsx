@@ -24,9 +24,9 @@ export function EcosystemBar() {
 
   return (
     <div className="bg-[#0B0F14] text-[#FAF7F2] text-xs py-1.5 border-b border-white/10 select-none z-50">
-      <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10 flex items-center justify-between">
+      <div className="w-full max-w-[1320px] mx-auto px-3 sm:px-6 lg:px-10 flex items-center justify-between">
         {/* Left: Ecosystem Links */}
-        <div className="flex items-center space-x-2.5 sm:space-x-3.5 xl:space-x-6 overflow-x-auto md:overflow-x-visible no-scrollbar py-0.5">
+        <div className="flex items-center space-x-2 sm:space-x-3.5 xl:space-x-6 overflow-x-auto md:overflow-x-visible no-scrollbar py-0.5">
           {/* Treel Corporate */}
           <Link prefetch={false} href="/"
             className={`transition-colors whitespace-nowrap font-medium text-xs ${
