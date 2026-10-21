@@ -129,6 +129,14 @@ export async function POST(req: NextRequest) {
       format: formatLabel,
       size: file.size,
       sizeFormatted: formatBytes(file.size),
+      data: {
+        fileUrl: publicUrl,
+        fileName: safeName,
+        originalName: file.name,
+        format: formatLabel,
+        fileSize: file.size,
+        fileSizeFormatted: formatBytes(file.size),
+      },
     });
   } catch (error: any) {
     console.error("Upload media asset error:", error);

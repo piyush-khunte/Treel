@@ -19,17 +19,16 @@ const SLIDES: SlideData[] = [
     id: "tmip",
     name: "TMIP Enterprise",
     category: "Fleet Intelligence",
-    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791434527/tmip.webp",
+    src: "/images/hero/tmip.webp",
     alt: "Treel TMIP — Enterprise Fleet Intelligence & Live Vehicle Digital Twin",
     href: "/tmip",
     tagline: "Every truck. A live Digital Twin.",
   },
-  
   {
     id: "tpms",
     name: "Personal TPMS",
     category: "Bikes, Cars & OTR",
-    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791434547/tpms.webp",
+    src: "/images/hero/tpms.webp",
     alt: "Treel TPMS — Real-time Tyre Pressure Monitoring for Every Tyre and Every Road",
     href: "/personal",
     tagline: "Real-time pressure & temperature alerts",
@@ -38,12 +37,11 @@ const SLIDES: SlideData[] = [
     id: "suraksha",
     name: "Suraksha Fleet",
     category: "Commercial Trucks",
-    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791434491/suraksha.webp",
+    src: "/images/hero/suraksha.webp",
     alt: "Treel Suraksha — DIY Fleet & Truck Safety for India's Owner-Drivers",
     href: "/suraksha",
     tagline: "Safety that fits in a driver's hands",
   },
-  
 ];
 
 const BAR_COLORS = ["#8A3F30", "#B04A34", "#D4573A"];

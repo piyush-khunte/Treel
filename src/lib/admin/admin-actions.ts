@@ -1918,8 +1918,8 @@ export async function saveMediaKitItemAction(
     const { saveMediaKitItem } = await import('@/lib/content/mediakit-storage');
     const res = await saveMediaKitItem(data);
     if (res.success && res.data) {
-      revalidatePath('/media-kit');
-      revalidatePath('/admin/media-kit');
+      revalidatePath('/media-kit', 'page');
+      revalidatePath('/admin/media-kit', 'page');
     }
     return res;
   } catch (err: any) {
@@ -1940,8 +1940,8 @@ export async function deleteMediaKitItemAction(
     const { deleteMediaKitItem } = await import('@/lib/content/mediakit-storage');
     const res = await deleteMediaKitItem(id);
     if (res.success) {
-      revalidatePath('/media-kit');
-      revalidatePath('/admin/media-kit');
+      revalidatePath('/media-kit', 'page');
+      revalidatePath('/admin/media-kit', 'page');
     }
     return res;
   } catch (err: any) {
@@ -1966,8 +1966,8 @@ export async function toggleMediaKitPublishAction(
     const { toggleMediaKitPublish } = await import('@/lib/content/mediakit-storage');
     const res = await toggleMediaKitPublish(id);
     if (res.success && res.data) {
-      revalidatePath('/media-kit');
-      revalidatePath('/admin/media-kit');
+      revalidatePath('/media-kit', 'page');
+      revalidatePath('/admin/media-kit', 'page');
     }
     return res;
   } catch (err: any) {

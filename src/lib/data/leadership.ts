@@ -7,6 +7,67 @@ export interface TeamMember {
   linkedIn: string;
 }
 
+export interface BoardMember {
+  order: number;
+  name: string;
+  role: string;
+  organization: string;
+  headline: string;
+  bio: string;
+  paragraphs: readonly string[];
+  image: string;
+}
+
+export const BOARD_MEMBERS: readonly BoardMember[] = [
+  {
+    order: 1,
+    name: "Mr. V. K. Misra",
+    role: "Technical Director",
+    organization: "JK Tyre & Industries Ltd.",
+    headline:
+      "Leveraging his profound knowledge and inventive spirit, Mr. Misra has been instrumental in steering JK Tyre's technological advancements, marking a significant contribution to India's tyre industry and beyond.",
+    bio: "Mr. V. K. Misra is the Technical Director of JK Tyre & Industries Ltd., responsible for overall control of technology issues and supporting the Company's expansion and modernization plans. He has played a key role in JK Tyre to spearhead Radial Technology, a pioneering effort of JK Tyre in India.",
+    paragraphs: [
+      "Mr. V. K. Misra is the Technical Director of JK Tyre & Industries Ltd., and is responsible for overall control of technology issues and supporting the Company's expansion and modernization plans. He has played a key role in JK Tyre to spearhead Radial Technology, a pioneering effort of JK Tyre in India.",
+      "Mr. Misra (B.Sc., FIRI) has vast experience in the tyre industry. He is actively involved in various academic institutions such as American Chemical Society, IRI and is presently functioning as Chairman of IRI, Karnataka Branch. He has also completed the CII - Exim Award Assessor Course and has participated in assessment as a lead assessor to study compliance to the Business Excellence Model of CII. He is a stand by assessor for the TQM division of CII.",
+      "He has keen interest in machine design and development and has various designs to his credit.",
+    ],
+    image: "/images/leadership/v-k-misra.png",
+  },
+  {
+    order: 2,
+    name: "Mr. Sanjeev Aggarwal",
+    role: "Chief Financial Officer",
+    organization: "JK Tyre & Industries Ltd.",
+    headline:
+      "Anchoring JK Tyre's financial helm, Mr. Aggarwal blends expertise in equity, debt, and structured finance with acclaimed leadership, steering the company's financial course with strategic foresight and integrity.",
+    bio: "Mr. Sanjeev Aggarwal, a rank holder Chartered Accountant of 1990 batch, is the Chief Financial Officer (CFO) at JK Tyre & Industries Ltd since February 2019. He has over 35 years of varied experience in finance, corporate accounts & tax, legal and commercial matters, having served in senior management roles as CFO/Group CFO for over 20 years.",
+    paragraphs: [
+      "Mr. Sanjeev Aggarwal, a rank holder Chartered Accountant of 1990 batch is the Chief Financial Officer (CFO) at JK Tyre & Industries Ltd since February 2019. He has over 35 years of varied experience in the field of finance, corporate accounts & tax, legal and commercial matters. He has extensive experience of raising funds – equity (IPOs, QIPs, PE) and debt (projects, working capital), trade finance, external commercial borrowings, structured finance and take-out financing. Over the years, he has handled several acquisitions (Indian and Overseas) and has managed Investors relations in large listed entities.",
+      "He has served in senior management roles as CFO/Group CFO for over 20 years across companies involved in various businesses, viz., auto ancillary, thermal power generation, cement, steel, synthetic yarn, packaging film, photographic products, telecom passive infrastructure etc. He has held board positions in several companies. In his long professional career, he has built strong relationships with banks, financial institutions, rating agencies, audit firms, investment bankers and law firms.",
+      "Mr. Aggarwal has long experience of establishing best corporate governance practices, effective systems & processes and internal controls and has proven track record of building & leading high-performing teams, capable of delivering in demanding environments.",
+      "Mr. Aggarwal was conferred the title of \"Most Influential CFOs of India\" by Chartered Institute of Management Accountants (CIMA) in June 2016. In 2016, he also joined 'Directors Club' and completed 'Accredited Independent Directors Certification Program' organized by SPJIMR. He has completed \"Executive Excellence Program\" at Harvard Business School, Boston, USA.",
+    ],
+    image: "/images/leadership/sanjeev-aggarwal.png",
+  },
+  {
+    order: 3,
+    name: "Mr. Srinivasu Allaphan",
+    role: "Director – Sales & Marketing",
+    organization: "JK Tyre & Industries Ltd.",
+    headline:
+      "A luminary in India's automotive sector, has been instrumental in propelling JK Tyre to new heights with his strategic vision in sales and marketing, drawing on his extensive industry experience.",
+    bio: "Having an exhaustive experience of over two decades in the Indian automotive industry, Mr. Srinivasu Allaphan is Director – Sales & Marketing at JK Tyre & Industries Ltd., responsible for the overall sales and marketing function of the Company. Previously associated with Hero MotoCorp as Head – National Sales & Distribution and Eicher Ltd.",
+    paragraphs: [
+      "Having an exhaustive experience of over two decades in the Indian automotive industry, Mr. Srinivasu Allaphan is considered a veteran in the sector.",
+      "In his current role as Director – Sales & Marketing at JK Tyre & Industries, he is responsible for the overall sales and marketing function of the Company.",
+      "Prior to his current stint, he was associated with Hero MotoCorp as Head – National Sales & Distribution, where he held multiple significant positions and played a key role in strengthening the sales & dealer network function. He started his career with Eicher Ltd in the marketing division.",
+      "He pursued Bachelors in Engineering and Masters in Management Studies from the University of Mysore. He has also undergone a senior leadership program from the Wharton Business School.",
+    ],
+    image: "/images/leadership/srinivasu-allaphan.png",
+  },
+] as const;
+
 export const TEAM_MEMBERS: readonly TeamMember[] = [
   {
     order: 1,

@@ -151,7 +151,7 @@ export default function ResearchRoiFleetIntelligencePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link 
-                href="/research"
+                href="/research/case-study-1000-truck"
                 className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group block"
               >
                 <div className="text-xs font-mono uppercase tracking-wider text-[#D5573B] mb-2 font-semibold">

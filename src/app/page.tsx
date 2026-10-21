@@ -116,8 +116,8 @@ export default function HomePage() {
             <h2 className="font-fraunces text-3xl sm:text-4xl lg:text-[52px] font-medium text-[#FAF7F2] tracking-tight leading-[1.05] mb-4">
               One architecture. Three audiences.
             </h2>
-            <p className="font-fraunces text-lg sm:text-xl font-normal leading-[1.45] text-[#94A3B8] italic">
-              Each product carries its own visual language, tone, and typography, calibrated for its audience. What binds them is the Motion Marks signature, the shared data infrastructure, and the operational DNA of Treel.
+            <p className="font-fraunces text-lg sm:text-xl font-normal leading-[1.45] text-[#94A3B8]">
+              Today Treel operates three product families on one shared data infrastructure. All three share the Vehicle Digital Twin architecture, the sensor family, and the operational DNA that binds Treel together.
             </p>
           </div>
 

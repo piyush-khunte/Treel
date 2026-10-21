@@ -151,11 +151,18 @@ export default function AdminMediaKitPage() {
       });
 
       const json = await res.json();
-      if (json.success && json.data) {
-        showFeedback("success", `File uploaded successfully: ${json.data.fileName}`);
+      const uploadedData = json.data || (json.url ? {
+        fileUrl: json.url,
+        fileName: json.filename,
+        fileSizeFormatted: json.sizeFormatted,
+        format: json.format,
+      } : null);
+
+      if (json.success && uploadedData) {
+        showFeedback("success", `File uploaded successfully: ${uploadedData.fileName || "Asset"}`);
 
         // Update editing item with uploaded file info
-        const ext = json.data.fileName.split(".").pop()?.toUpperCase() || "FILE";
+        const ext = (uploadedData.fileName || "").split(".").pop()?.toUpperCase() || "FILE";
         const formatGuess =
           ext === "ZIP"
             ? "ZIP Archive"
@@ -167,11 +174,11 @@ export default function AdminMediaKitPage() {
 
         setEditingItem({
           ...editingItem,
-          fileUrl: json.data.fileUrl,
-          fileSize: json.data.fileSizeFormatted || editingItem.fileSize,
+          fileUrl: uploadedData.fileUrl,
+          fileSize: uploadedData.fileSizeFormatted || editingItem.fileSize,
           format: editingItem.format || formatGuess,
-          file: json.data.fileName,
-          title: editingItem.title || json.data.fileName.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " "),
+          file: uploadedData.fileName,
+          title: editingItem.title || (uploadedData.fileName || "").replace(/\.[^/.]+$/, "").replace(/[-_]/g, " "),
         });
       } else {
         showFeedback("error", json.error || "Upload failed.");

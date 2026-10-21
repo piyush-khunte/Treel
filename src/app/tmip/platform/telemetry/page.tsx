@@ -152,7 +152,7 @@ export default function TmipPlatformTelemetryPage() {
               >
                 Book a demo <ArrowRight className="w-4 h-4" />
               </Link>
-             s
+           
             </div>
           </div>
         </div>
