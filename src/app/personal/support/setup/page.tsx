@@ -100,21 +100,33 @@ export default function PersonalSupportSetupPage() {
       </section>
 
       {/* Video Demo Section */}
-      <section className="py-16 border-b border-black/[0.06] bg-white">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl mx-auto rounded-3xl bg-[#111827] p-8 sm:p-12 text-white shadow-2xl text-center space-y-6 relative overflow-hidden">
-            <div className="w-16 h-16 rounded-full bg-[#2563EB] text-white flex items-center justify-center mx-auto shadow-lg hover:scale-110 transition-transform cursor-pointer">
-              <Play className="w-7 h-7 fill-white ml-1" />
-            </div>
-            <div className="space-y-2">
-              <h3 className="text-2xl font-bold text-white">3-Minute Installation Walkthrough</h3>
-              <p className="text-[#D1D5DB] text-sm max-w-md mx-auto">
-                Watch our quick visual guide demonstrating sensor mounting, anti-theft locking, and mobile pairing.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      
+<section className="py-16 border-b border-black/[0.06] bg-white">
+  <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
+    <a
+      href="https://youtu.be/tYUgbtc8Aik"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block max-w-4xl mx-auto rounded-3xl bg-[#111827] p-8 sm:p-12 text-white shadow-2xl text-center space-y-6 relative overflow-hidden hover:shadow-blue-900/20 transition-shadow"
+      aria-label="Watch the 3-minute installation walkthrough on YouTube"
+    >
+      <div className="w-16 h-16 rounded-full bg-[#2563EB] text-white flex items-center justify-center mx-auto shadow-lg hover:scale-110 transition-transform cursor-pointer">
+        <Play className="w-7 h-7 fill-white ml-1" />
+      </div>
+
+      <div className="space-y-2">
+        <h3 className="text-2xl font-bold text-white">
+          3-Minute Installation Walkthrough
+        </h3>
+        <p className="text-[#D1D5DB] text-sm max-w-md mx-auto">
+          Watch our quick visual guide demonstrating sensor mounting,
+          anti-theft locking, and mobile pairing.
+        </p>
+      </div>
+    </a>
+  </div>
+</section>
+
 
       {/* Six Steps Walkthrough Section */}
       <section className="py-20 border-b border-black/[0.06] bg-[#F9FAFB]">
