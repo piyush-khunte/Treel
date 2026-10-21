@@ -140,7 +140,7 @@ export default function SurakshaCheckoutPage() {
       return false;
     }
     const phoneClean = formData.phone.replace(/\D/g, "");
-    if (phoneClean.length !== 10 || !/^[6-9]/.test(phoneClean)) {
+    if (phoneClean.length !== 10 || !/^[6-9]\d{9}$/.test(phoneClean)) {
       setErrorMessage("Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.");
       return false;
     }
@@ -446,7 +446,9 @@ export default function SurakshaCheckoutPage() {
                     <input
                       type="tel"
                       required
-                      placeholder="e.g. 9876543210"
+                      inputMode="numeric"
+                      pattern="[0-9]{10}"
+                      placeholder="10-digit mobile number"
                       value={formData.phone}
                       onChange={(e) =>
                         setFormData({

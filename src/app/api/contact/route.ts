@@ -157,19 +157,20 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Optional phone formatting
+    // Optional phone formatting with strict 10-digit check
     const rawPhone = (
       typeof phone === "string" ? phone : typeof mobile === "string" ? mobile : typeof mobile_number === "string" ? mobile_number : ""
     ).trim();
     let normalizedPhone = "N/A";
     if (rawPhone) {
       const cleanDigits = rawPhone.replace(/\D/g, "");
-      const last10 = cleanDigits.slice(-10);
-      if (last10.length === 10) {
-        normalizedPhone = `+91${last10}`;
-      } else {
-        normalizedPhone = rawPhone;
+      if (/[a-zA-Z]/.test(rawPhone) || cleanDigits.length !== 10 || !/^[6-9]\d{9}$/.test(cleanDigits)) {
+        return NextResponse.json(
+          { success: false, error: "Please enter a valid 10-digit mobile number." },
+          { status: 400 }
+        );
       }
+      normalizedPhone = `+91${cleanDigits}`;
     }
 
     const isPersonalSupport =

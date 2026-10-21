@@ -100,6 +100,16 @@ export function WhitepaperAccessModal({
       return;
     }
 
+    if (phone.trim()) {
+      const cleanPhone = phone.replace(/\D/g, "");
+      if (cleanPhone.length !== 10 || !/^[6-9]\d{9}$/.test(cleanPhone)) {
+        setFormError("Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.");
+        return;
+      }
+    }
+
+
+
     if (!consent) {
       setFormError("Please accept document delivery consent to receive your whitepaper.");
       return;
@@ -274,9 +284,12 @@ export function WhitepaperAccessModal({
                 </label>
                 <input
                   type="tel"
+                  inputMode="numeric"
+                  maxLength={10}
+                  pattern="[0-9]{10}"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="e.g. +91 98220 54321"
+                  onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
+                  placeholder="10-digit mobile number"
                   className={`w-full px-3 py-2 rounded-[3px] bg-[#050A17] border border-slate-700/60 text-xs text-[#F1F5F9] placeholder-slate-500 focus:outline-none ${brandFocus}`}
                 />
               </div>

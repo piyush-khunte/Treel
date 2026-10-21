@@ -174,6 +174,14 @@ export default function AdminWarrantiesPage() {
       return;
     }
 
+    if (formCustomerPhone.trim()) {
+      const cleanPhone = formCustomerPhone.replace(/\D/g, "");
+      if (cleanPhone.length !== 10 || !/^[6-9]\d{9}$/.test(cleanPhone)) {
+        showFeedback("error", "Please enter a valid 10-digit customer mobile number starting with 6, 7, 8, or 9.");
+        return;
+      }
+    }
+
     setSaving(true);
 
     const payload: Partial<WarrantyRecord> = {
@@ -715,10 +723,12 @@ export default function AdminWarrantiesPage() {
                     Customer Phone
                   </label>
                   <Input
-                    type="text"
-                    placeholder="+91 98201 12345"
+                    type="tel"
+                    inputMode="numeric"
+                    maxLength={10}
+                    placeholder="10-digit mobile number"
                     value={formCustomerPhone}
-                    onChange={(e) => setFormCustomerPhone(e.target.value)}
+                    onChange={(e) => setFormCustomerPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
                     className="bg-slate-950 border-slate-800 text-xs font-mono text-white"
                   />
                 </div>

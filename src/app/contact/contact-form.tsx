@@ -8,7 +8,8 @@ RotateCcw,
 Send
 } from "lucide-react";
 import Link from "next/link";
-import React,{ useState } from "react";
+import React, { useState } from "react";
+import { isValidOptionalPhone, normalizePhone, PHONE_ERROR_MESSAGE } from "@/lib/validation/phone";
 
 interface FormData {
   fullName: string;
@@ -24,6 +25,7 @@ interface FormData {
 interface FormErrors {
   fullName?: string;
   email?: string;
+  phone?: string;
   subject?: string;
   message?: string;
   consent?: string;
@@ -61,6 +63,11 @@ export function CorporateContactForm() {
       newErrors.email = "We need an email address to respond.";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
       newErrors.email = "That doesn't look like a valid email address.";
+    }
+
+    // Phone validation (optional, but if provided must be a valid 10-digit number)
+    if (formData.phone && !isValidOptionalPhone(formData.phone)) {
+      newErrors.phone = PHONE_ERROR_MESSAGE;
     }
 
     // Subject required: "Please tell us what your message is about."
@@ -287,18 +294,31 @@ export function CorporateContactForm() {
             htmlFor="contact-phone" 
             className="block text-xs font-mono uppercase tracking-wider font-semibold text-[#FAF7F2]"
           >
-            Phone Number <span className="text-[#94A3B8] font-normal text-[11px]">(Optional, with country code)</span>
+            Phone Number <span className="text-[#94A3B8] font-normal text-[11px]">(Optional, 10-digit mobile)</span>
           </label>
           <div className="relative">
             <input
               id="contact-phone"
               name="phone"
               type="tel"
-              placeholder="+91 98765 43210"
+              inputMode="numeric"
+              maxLength={10}
+              pattern="[0-9]{10}"
+              placeholder="10-digit mobile number"
               value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              onChange={(e) => {
+                const clean = normalizePhone(e.target.value);
+                setFormData({ ...formData, phone: clean });
+                if (errors.phone) setErrors((prev) => ({ ...prev, phone: undefined }));
+              }}
               className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/15 focus:border-[#D5573B] focus:ring-1 focus:ring-[#D5573B] text-[#FAF7F2] placeholder-[#94A3B8]/50 text-sm outline-none transition-all"
             />
+            {errors.phone && (
+              <p className="text-xs text-red-400 mt-1.5 flex items-center gap-1.5">
+                <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                {errors.phone}
+              </p>
+            )}
           </div>
         </div>
 

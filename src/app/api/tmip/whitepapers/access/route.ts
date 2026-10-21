@@ -115,9 +115,17 @@ export async function POST(req: NextRequest) {
         : "Fleet Operator"
     );
 
-    const normalizedPhone = (
-      typeof phone === "string" && phone.trim() ? phone.trim() : "N/A"
-    );
+    let normalizedPhone = "N/A";
+    if (typeof phone === "string" && phone.trim()) {
+      const cleanPhone = phone.replace(/\D/g, "");
+      if (/[a-zA-Z]/.test(phone) || cleanPhone.length !== 10 || !/^[6-9]\d{9}$/.test(cleanPhone)) {
+        return NextResponse.json(
+          { success: false, error: "Please provide a valid 10-digit mobile number." },
+          { status: 400 }
+        );
+      }
+      normalizedPhone = `+91${cleanPhone}`;
+    }
 
     // 4. Rate Limiting & Idempotency check
     cleanupOldRequests();

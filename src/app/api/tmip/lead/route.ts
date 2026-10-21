@@ -152,7 +152,7 @@ export async function POST(req: NextRequest) {
     }
     const normalizedEmail = rawEmail;
 
-    // mobile_number (phone may be optional on /tmip/demo)
+    // mobile_number (phone may be optional on /tmip/demo, but strictly validated if provided)
     const rawPhone = (
       typeof mobile_number === "string"
         ? mobile_number
@@ -163,12 +163,17 @@ export async function POST(req: NextRequest) {
         : ""
     ).trim();
     let normalizedPhone = "N/A";
-    const cleanDigits = rawPhone.replace(/\D/g, "");
-    const last10 = cleanDigits.slice(-10);
-    if (last10.length === 10) {
-      normalizedPhone = `+91${last10}`;
-    } else if (rawPhone) {
-      normalizedPhone = rawPhone;
+    let last10 = "";
+    if (rawPhone) {
+      const cleanDigits = rawPhone.replace(/\D/g, "");
+      if (/[a-zA-Z]/.test(rawPhone) || cleanDigits.length !== 10 || !/^[6-9]\d{9}$/.test(cleanDigits)) {
+        return NextResponse.json(
+          { success: false, error: "Please provide a valid 10-digit mobile number." },
+          { status: 400 }
+        );
+      }
+      last10 = cleanDigits;
+      normalizedPhone = `+91${cleanDigits}`;
     }
 
     // company (required NOT NULL in public.leads)

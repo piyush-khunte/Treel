@@ -62,6 +62,14 @@ export default function SurakshaCallbackPage() {
       return;
     }
 
+    const cleanPhone = phone.replace(/\D/g, "");
+    if (cleanPhone.length !== 10 || !/^[6-9]\d{9}$/.test(cleanPhone)) {
+      setErrorMessage("Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.");
+      return;
+    }
+
+
+
     setIsSubmitting(true);
     setErrorMessage("");
 
@@ -197,9 +205,12 @@ export default function SurakshaCallbackPage() {
                   <input
                     type="tel"
                     required
+                    inputMode="numeric"
+                    maxLength={10}
+                    pattern="[0-9]{10}"
                     placeholder="10-digit mobile number"
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
                     className="w-full px-4 py-3 bg-white border-2 border-[#451A03]/20 rounded-[4px] text-[#451A03] placeholder-[#78350F]/50 focus:outline-none focus:border-[#DC2626] text-sm font-medium shadow-sm"
                   />
                 </div>

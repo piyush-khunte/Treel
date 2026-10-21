@@ -29,7 +29,10 @@ export function RoleApplicationForm({ roleTitle }: RoleApplicationFormProps) {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       errs.email = "Please enter a valid email address.";
     }
-    if (!phone.trim()) errs.phone = "Please enter your phone number with country code.";
+    const cleanPhone = phone.replace(/\D/g, "");
+    if (!cleanPhone || cleanPhone.length !== 10 || !/^[6-9]\d{9}$/.test(cleanPhone)) {
+      errs.phone = "Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.";
+    }
     if (!fileName) errs.resume = "Please attach your resume (PDF or DOCX, max 5MB).";
     if (!consent) errs.consent = "Please confirm your consent to process your application.";
     setErrors(errs);
@@ -134,9 +137,16 @@ export function RoleApplicationForm({ roleTitle }: RoleApplicationFormProps) {
             </label>
             <input
               type="tel"
+              inputMode="numeric"
+              maxLength={10}
+              pattern="[0-9]{10}"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder="+91 98765 43210"
+              onChange={(e) => {
+                const val = e.target.value.replace(/\D/g, "").slice(0, 10);
+                setPhone(val);
+                if (errors.phone) setErrors((prev) => { const rest = { ...prev }; delete rest.phone; return rest; });
+              }}
+              placeholder="10-digit mobile number"
               className="w-full px-4 py-3 rounded-lg bg-white/[0.05] border border-white/15 text-[#FAF7F2] placeholder-[#94A3B8]/50 text-sm focus:outline-none focus:border-[#D5573B] transition-all"
             />
             {errors.phone && <p className="text-xs text-[#D5573B] font-inter">{errors.phone}</p>}

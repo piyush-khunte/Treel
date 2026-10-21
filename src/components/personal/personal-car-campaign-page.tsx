@@ -196,7 +196,7 @@ export function PersonalCarCampaignPage() {
       setSubmitError("Please enter your full name.");
       return;
     }
-    if (phoneClean.length !== 10 || !/^[6-9]/.test(phoneClean)) {
+    if (phoneClean.length !== 10 || !/^[6-9]\d{9}$/.test(phoneClean)) {
       setSubmitError("Please enter a valid 10-digit mobile number.");
       return;
     }

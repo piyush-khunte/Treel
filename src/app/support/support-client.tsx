@@ -43,6 +43,16 @@ export function SupportClient() {
       return;
     }
 
+    if (phone.trim()) {
+      const cleanPhone = phone.replace(/\D/g, "");
+      if (cleanPhone.length !== 10 || !/^[6-9]\d{9}$/.test(cleanPhone)) {
+        setError("Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.");
+        return;
+      }
+    }
+
+
+
     setLoading(true);
 
     try {
@@ -168,8 +178,11 @@ export function SupportClient() {
               </label>
               <input
                 type="tel"
+                inputMode="numeric"
+                maxLength={10}
+                pattern="[0-9]{10}"
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
                 placeholder="10-digit mobile number"
                 className="w-full px-4 py-3 rounded-lg bg-[#0F1419] border border-white/10 text-sm text-[#FAF7F2] placeholder-[#64748B] focus:outline-none focus:border-[#D5573B] transition-colors"
               />

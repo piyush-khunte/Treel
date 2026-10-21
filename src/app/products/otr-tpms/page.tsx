@@ -502,12 +502,6 @@ export default function OtrTpmsPage() {
                   Every sensor reading on one live view, with alerts to the supervisor and the
                   operator cab.
                 </p>
-                <Link
-                  href="/tmip/features/tyres"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#9CC2FF] hover:text-white hover:underline transition-colors pt-2"
-                >
-                  Explore live site view →
-                </Link>
               </article>
 
               {/* Item 2 */}
@@ -518,12 +512,6 @@ export default function OtrTpmsPage() {
                 <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                   Remaining useful life and breakdown probability for every tyre and component.
                 </p>
-                <Link
-                  href="/tmip/features/predictive-intelligence"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#9CC2FF] hover:text-white hover:underline transition-colors pt-2"
-                >
-                  Explore predictive failure alerts →
-                </Link>
               </article>
 
               {/* Item 3 */}
@@ -534,12 +522,6 @@ export default function OtrTpmsPage() {
                 <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                   One view of which machines are fit for the next shift.
                 </p>
-                <Link
-                  href="/tmip/features/health-score"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#9CC2FF] hover:text-white hover:underline transition-colors pt-2"
-                >
-                  Explore fleet health score →
-                </Link>
               </article>
 
               {/* Item 4 */}
@@ -550,12 +532,6 @@ export default function OtrTpmsPage() {
                 <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                   Driver score covering overloading, overspeed on ramps and harsh operation.
                 </p>
-                <Link
-                  href="/tmip/features/driver-management"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#9CC2FF] hover:text-white hover:underline transition-colors pt-2"
-                >
-                  Explore operator behaviour →
-                </Link>
               </article>
 
               {/* Item 5 */}
@@ -583,12 +559,6 @@ export default function OtrTpmsPage() {
                 <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
                   TMIP learns each vehicle&apos;s normal pattern and flags anomalies early.
                 </p>
-                <Link
-                  href="/tmip/features/how-it-learns"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#9CC2FF] hover:text-white hover:underline transition-colors pt-2"
-                >
-                  Explore machine baselines →
-                </Link>
               </article>
             </div>
           </div>

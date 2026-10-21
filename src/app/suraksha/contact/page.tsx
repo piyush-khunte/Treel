@@ -38,8 +38,8 @@ export default function SurakshaContactPage() {
 
     // Validate 10-digit phone
     const cleanedPhone = formData.mobileNumber.replace(/\D/g, "");
-    if (cleanedPhone.length < 10) {
-      setErrorMsg("Please enter a valid 10-digit mobile number.");
+    if (cleanedPhone.length !== 10 || !/^[6-9]\d{9}$/.test(cleanedPhone)) {
+      setErrorMsg("Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.");
       return;
     }
 
@@ -286,10 +286,12 @@ export default function SurakshaContactPage() {
                       <input
                         type="tel"
                         required
+                        inputMode="numeric"
                         maxLength={10}
-                        placeholder="98XXXXXXXX"
+                        pattern="[0-9]{10}"
+                        placeholder="10-digit mobile number"
                         value={formData.mobileNumber}
-                        onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
+                        onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value.replace(/\D/g, "").slice(0, 10) })}
                         className="w-full px-4 py-3 bg-white border-2 border-[#451A03]/20 rounded-[4px] text-[#451A03] placeholder-[#78350F]/50 focus:outline-none focus:border-[#DC2626] text-sm font-medium shadow-xs"
                       />
                     </div>

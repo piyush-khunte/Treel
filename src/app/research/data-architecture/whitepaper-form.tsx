@@ -53,6 +53,15 @@ export function DataArchWhitepaperGatedForm() {
       errs.role = "Please select your primary role.";
     }
 
+    if (phone.trim()) {
+      const cleanPhone = phone.replace(/\D/g, "");
+      if (cleanPhone.length !== 10 || !/^[6-9]\d{9}$/.test(cleanPhone)) {
+        errs.phone = "Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.";
+      }
+    }
+
+
+
     if (!consent) {
       errs.consent = "You must consent to receive the research paper.";
     }
@@ -259,11 +268,21 @@ export function DataArchWhitepaperGatedForm() {
             </label>
             <input
               type="tel"
+              inputMode="numeric"
+              maxLength={10}
+              pattern="[0-9]{10}"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder="+91 98765 43210"
+              onChange={(e) => {
+                const clean = e.target.value.replace(/\D/g, "").slice(0, 10);
+                setPhone(clean);
+                if (errors.phone) setErrors((prev) => { const rest = { ...prev }; delete rest.phone; return rest; });
+              }}
+              placeholder="10-digit mobile number"
               className="w-full px-4 py-2.5 rounded-lg bg-white/[0.05] border border-white/15 text-[#FAF7F2] placeholder-[#94A3B8]/60 text-sm focus:outline-none focus:border-[#D5573B] transition-all"
             />
+            {errors.phone && (
+              <p className="text-xs text-[#D5573B] font-inter mt-1">{errors.phone}</p>
+            )}
           </div>
 
           <div className="space-y-1.5">

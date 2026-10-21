@@ -53,18 +53,18 @@ export default function ResearchDataArchitecturePage() {
 
   const relatedResearch = [
     {
-      slug: "roi-fleet-intelligence",
-      topic: "ROI & PAYBACK",
-      title: "The Fleet ROI and Fuel Savings Paper",
-      desc: "Financial and operational payback modelling across 200+ commercial vehicle fleets.",
-      pages: "24 pages"
+      slug: "research/vehicle-digital-twin",
+      topic: "VEHICLE DIGITAL TWIN",
+      title: "The Vehicle Digital Twin Technical Architecture Paper",
+      desc: "Mathematical and thermodynamic foundations converting raw wheel-end signals into predictive vehicle health state.",
+      pages: "32 pages"
     },
     {
-      slug: "customers/case-studies",
+      slug: "research/case-study-1000-truck",
       topic: "ENTERPRISE DEPLOYMENTS",
-      title: "The 1,000-Truck Case Study",
+      title: "The 1,000-Truck Case Study: Operational Payback in Week 11",
       desc: "Operational benchmarks and downtime reduction across national logistics prime movers.",
-      pages: "16 pages"
+      pages: "18 pages"
     },
     {
       slug: "insights/vehicle-digital-twins-architecture",

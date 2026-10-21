@@ -106,13 +106,13 @@ export async function POST(req: NextRequest) {
         : ""
     ).trim();
     const cleanDigits = rawMobile.replace(/\D/g, "");
-    const last10 = cleanDigits.slice(-10);
-    if (last10.length !== 10 || !/^[6-9]\d{9}$/.test(last10)) {
+    if (/[a-zA-Z]/.test(rawMobile) || cleanDigits.length !== 10 || !/^[6-9]\d{9}$/.test(cleanDigits)) {
       return NextResponse.json(
         { success: false, error: "Please provide a valid 10-digit Indian mobile number." },
         { status: 400 }
       );
     }
+    const last10 = cleanDigits;
     const normalizedMobile = `+91${last10}`;
 
     // work_email (required NOT NULL in public.leads)

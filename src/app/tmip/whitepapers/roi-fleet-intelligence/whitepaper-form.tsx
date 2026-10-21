@@ -41,6 +41,16 @@ export function WhitepaperForm() {
       return;
     }
 
+    if (formData.phone.trim()) {
+      const cleanPhone = formData.phone.replace(/\D/g, "");
+      if (cleanPhone.length !== 10 || !/^[6-9]\d{9}$/.test(cleanPhone)) {
+        setError("Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.");
+        return;
+      }
+    }
+
+
+
     if (!formData.consent) {
       setError("Please agree to receive the whitepaper and research communications.");
       return;
@@ -229,9 +239,12 @@ export function WhitepaperForm() {
             </label>
             <input
               type="tel"
-              placeholder="+91 98765 43210"
+              inputMode="numeric"
+              maxLength={10}
+              pattern="[0-9]{10}"
+              placeholder="10-digit mobile number"
               value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, "").slice(0, 10) })}
               className="w-full px-4 py-2.5 rounded-[3px] bg-[#050A17] border border-slate-400/20 text-sm text-[#F1F5F9] placeholder-slate-500 focus:outline-none focus:border-[#3B82F6]"
             />
           </div>
