@@ -139,32 +139,5 @@
     "publicationStatus": "Published",
     "createdAt": "2025-10-04T00:00:00.000Z",
     "updatedAt": "2025-10-04T00:00:00.000Z"
-  },
-  {
-    "_id": "press_cfo_payback_benchmark_report",
-    "slug": "cfo-payback-benchmark-report",
-    "year": "2024",
-    "date": "November 14, 2024",
-    "category": "Milestone",
-    "headline": "Treel Publishes 2-Year Enterprise Fleet Operational Cost Benchmark Study",
-    "excerpt": "Analysis of 30,000 commercial vehicles demonstrates a median payback period of under 9 months driven by fuel consumption reductions of 3.2% and tyre carcass life extensions of 18%.",
-    "city": "MUMBAI",
-    "leadParagraph": "Treel Mobility Solutions today published its landmark Two-Year Commercial Fleet Financial Benchmark, drawing on longitudinal telemetry from 30,000 heavy commercial vehicles across logistics, cement haulage, and bulk transport.",
-    "quote": {
-      "text": "Fleet CFOs often struggle to separate telemetry marketing claims from balance-sheet realities. This study delivers empirical, audited evidence that real-time tyre physics sensing pays for itself in under three quarters.",
-      "speaker": "Manish Ingale",
-      "role": "Founder & CEO, Treel Mobility Solutions"
-    },
-    "bodyParagraphs": [
-      "The benchmark study demonstrates that commercial fleets maintaining continuous tyre pressure compliance experience a median fuel efficiency improvement of 0.5% to 0.6% and extend radial tyre carcass life by an average of 18%.",
-      "Across monitored vehicles, emergency roadside tyre failures dropped by 88%, saving operators an estimated ₹42,000 per vehicle per annum in unscheduled transit downtime and emergency highway tyre changes."
-    ],
-    "relatedSlugs": [
-      "68000-commercial-vehicles-milestone",
-      "jk-tyre-telematics-partnership-expansion"
-    ],
-    "publicationStatus": "Published",
-    "createdAt": "2024-11-14T00:00:00.000Z",
-    "updatedAt": "2024-11-14T00:00:00.000Z"
   }
 ]
