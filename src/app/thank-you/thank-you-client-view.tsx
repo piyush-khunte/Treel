@@ -1,12 +1,34 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 export function ThankYouClientView() {
+  const firedRef = useRef(false);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const win = window as any;
       win.dataLayer = win.dataLayer || [];
+
+      // Fire Google Ads conversion snippet on mount if not already fired
+      if (!win.__gtag_conversion_fired && !firedRef.current) {
+        firedRef.current = true;
+        win.__gtag_conversion_fired = true;
+        if (typeof win.gtag === "function") {
+          win.gtag("event", "conversion", {
+            send_to: "AW-18528246360/XWzoCIuLz6QdENi0-oJF",
+          });
+        } else {
+          const gtag = (...args: any[]) => {
+            win.dataLayer.push(args);
+          };
+          win.gtag = gtag;
+          gtag("event", "conversion", {
+            send_to: "AW-18528246360/XWzoCIuLz6QdENi0-oJF",
+          });
+        }
+      }
+
       let first = true;
       try {
         first = !sessionStorage.getItem("treel_ty_seen");
@@ -19,6 +41,10 @@ export function ThankYouClientView() {
         page_path: "/thank-you",
         first_view: first,
       });
+
+      return () => {
+        win.__gtag_conversion_fired = false;
+      };
     }
   }, []);
 

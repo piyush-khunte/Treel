@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import {
   fraunces,
   inter,
@@ -78,6 +79,22 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${inter.variable} ${spaceGrotesk.variable} ${ibmPlexSans.variable} ${jetbrainsMono.variable} ${anton.variable} ${rubik.variable} ${baloo2.variable} ${manrope.variable}`}
     >
+      <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18528246360"
+          strategy="afterInteractive"
+        />
+        <Script id="google-tag-aw-18528246360" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'AW-18528246360');
+          `}
+        </Script>
+      </head>
       <body className="min-h-screen flex flex-col antialiased selection:bg-[#D5573B]/20 selection:text-[#FAF7F2]">
         <CartProvider>
           <a

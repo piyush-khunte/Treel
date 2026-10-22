@@ -16,6 +16,21 @@ export const metadata: Metadata = {
 export default function ThankYouPage() {
   return (
     <div className="min-h-screen bg-[#0F1419] text-[#FAF7F2] flex flex-col items-center justify-center px-4 sm:px-6 py-12 text-center selection:bg-[#D5573B]/20 selection:text-[#FAF7F2]">
+      {/* Event snippet for Submit Lead Form - AP conversion page */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.__gtag_conversion_fired = true;
+            if (typeof gtag === 'function') {
+              gtag('event', 'conversion', {'send_to': 'AW-18528246360/XWzoCIuLz6QdENi0-oJF'});
+            } else {
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){window.dataLayer.push(arguments);}
+              gtag('event', 'conversion', {'send_to': 'AW-18528246360/XWzoCIuLz6QdENi0-oJF'});
+            }
+          `,
+        }}
+      />
       <ThankYouTracker />
       <div className="w-full max-w-[800px] mx-auto flex flex-col items-center justify-center">
         {/* Checkmark Icon */}
