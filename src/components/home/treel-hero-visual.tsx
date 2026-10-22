@@ -19,7 +19,7 @@ const SLIDES: SlideData[] = [
     id: "tmip",
     name: "TMIP Enterprise",
     category: "Fleet Intelligence",
-    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1792650870/Fleet_Intelligence_Digital_Twin.pngs",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1792650870/Fleet_Intelligence_Digital_Twin.png",
     alt: "Treel TMIP — Enterprise Fleet Intelligence & Live Vehicle Digital Twin",
     href: "/tmip",
     tagline: "Every truck. A live Digital Twin.",
