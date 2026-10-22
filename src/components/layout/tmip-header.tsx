@@ -274,7 +274,6 @@ export function TmipHeader() {
                   <Link href="/tmip/platform/vehicle-digital-twin" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#3B82F6]">Vehicle Digital Twin</Link>
                   <Link href="/tmip/platform/telemetry" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#3B82F6]">Real-Time Telemetry</Link>
                   <Link href="/tmip/platform/predictive-maintenance" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#3B82F6]">Predictive Maintenance</Link>
-                  <Link href="/tmip/platform/integrations" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#3B82F6]">Integrations</Link>
                 </div>
               )}
             </div>

@@ -40,7 +40,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tmip/platform/vehicle-digital-twin`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/platform/telemetry`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/platform/predictive-maintenance`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/tmip/platform/integrations`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/solutions`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/solutions/logistics`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/solutions/passenger-transport`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },

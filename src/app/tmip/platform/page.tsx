@@ -118,12 +118,6 @@ const featureCards = [
     icon: Wrench,
   },
   {
-    title: "Integrations",
-    desc: "Plug-and-play connectors for major commercial transport management systems, telematics hubs, and enterprise ERPs.",
-    href: "/tmip/platform/integrations",
-    icon: Layers,
-  },
-  {
     title: "Security & compliance",
     desc: "Enterprise data governance, AES-256 encryption, role-based access control, and DPDP Act 2023 compliance.",
     href: "/tmip/security",
@@ -280,7 +274,7 @@ export default function TmipPlatformPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {featureCards.map((feat, idx) => {
               const Icon = feat.icon;
               return (
