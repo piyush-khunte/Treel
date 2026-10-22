@@ -1,35 +1,5 @@
 [
   {
-    "_id": "not_1791864103627",
-    "title": "test notice 13 October",
-    "description": "testing",
-    "publishedDate": "2026-10-13",
-    "status": "Published",
-    "category": "Corporate & Statutory",
-    "createdAt": "2026-10-13T04:02:11.223Z",
-    "updatedAt": "2026-10-13T04:02:11.223Z"
-  },
-  {
-    "_id": "not_1791871665831",
-    "title": "Test Notice 4",
-    "description": "test notice",
-    "publishedDate": "2026-10-13",
-    "status": "Published",
-    "category": "Corporate & Statutory",
-    "createdAt": "2026-10-13T06:07:59.709Z",
-    "updatedAt": "2026-10-13T06:07:59.709Z"
-  },
-  {
-    "_id": "not_1791800107397",
-    "title": "Test Notice",
-    "description": "test notice work flow edited",
-    "publishedDate": "2026-10-12",
-    "status": "Published",
-    "category": "Testing",
-    "createdAt": "2026-10-12T10:16:26.817Z",
-    "updatedAt": "2026-10-12T10:17:49.087Z"
-  },
-  {
     "_id": "not_101",
     "title": "Statutory Notice: Compliance & Audited Annual Financial Disclosures (FY 2025-26)",
     "description": "Notice is hereby given that the audited financial accounts and statutory filings of Treel Mobility Solutions Private Limited for the financial year have been adopted and submitted in compliance with applicable MCA corporate regulations.",

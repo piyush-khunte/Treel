@@ -1,32 +1,5 @@
 [
   {
-    "_id": "job_1791962770801",
-    "slug": "test",
-    "title": "test",
-    "team": "Engineering",
-    "location": "Pune, India (Hybrid)",
-    "type": "Full-time",
-    "workArrangement": "Hybrid",
-    "postedDate": "2026-10-14",
-    "roleSummary": "test",
-    "aboutTheRole": [
-      "test"
-    ],
-    "responsibilities": [
-      "Drive innovation and lead execution in this domain."
-    ],
-    "mustHaves": [
-      "Relevant professional experience in this technical area."
-    ],
-    "niceToHaves": [],
-    "whatYouGet": [],
-    "experienceLevel": "Mid-Senior Level",
-    "relatedSlugs": [],
-    "status": "Published",
-    "createdAt": "2026-10-14T07:26:22.400Z",
-    "updatedAt": "2026-10-14T08:40:28.190Z"
-  },
-  {
     "_id": "job_senior_embedded_engineer",
     "slug": "senior-embedded-engineer",
     "title": "Senior Embedded Firmware Engineer",

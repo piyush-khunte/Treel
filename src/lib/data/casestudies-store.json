@@ -1,45 +1,5 @@
 [
   {
-    "_id": "cs_1791957852833",
-    "slug": "test-blog-1",
-    "industry": "Logistics",
-    "fleetSize": "100-500",
-    "headline": "test blog 1",
-    "excerpt": "test blog 1",
-    "metricValue": "0.5–0.6% Fuel · 6.8% Tyre Life",
-    "metricLabel": "34% downtime drop across fleet units",
-    "isFeatured": true,
-    "status": "Published",
-    "sections": [],
-    "customerProfile": "",
-    "challenge": "",
-    "solution": "",
-    "quote": {
-      "text": "",
-      "author": "",
-      "title": ""
-    },
-    "author": "Treel Research",
-    "authorRole": "Mobility Intelligence Research Group",
-    "results": [
-      {
-        "value": "0.5–0.6%",
-        "label": "Fuel Savings",
-        "delta": "vs. pre-deployment baseline",
-        "desc": "Measured across active linehaul corridor operations."
-      },
-      {
-        "value": "6.8%",
-        "label": "Tyre-Life Extension",
-        "delta": "Fleet median improvement",
-        "desc": "Average steer and drive axle casing life extended before first retread."
-      }
-    ],
-    "content": "test 1",
-    "createdAt": "2026-10-14T06:04:12.833Z",
-    "updatedAt": "2026-10-14T06:04:12.833Z"
-  },
-  {
     "_id": "cs_1",
     "slug": "1000-truck-case-study",
     "industry": "Logistics",

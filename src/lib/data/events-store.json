@@ -1,28 +1,5 @@
 [
   {
-    "_id": "evt_1791962694659",
-    "slug": "test",
-    "name": "test",
-    "title": "test",
-    "type": "Conference",
-    "dateTime": "oct 14",
-    "startDate": "2026-10-28",
-    "location": "Online / Virtual",
-    "isOnline": true,
-    "excerpt": "test",
-    "about": [
-      "test"
-    ],
-    "agenda": [],
-    "speakers": [],
-    "materialLabel": "Download Presentation Deck",
-    "featured": false,
-    "status": "Upcoming",
-    "publicationStatus": "Published",
-    "createdAt": "2026-10-14T07:25:29.091Z",
-    "updatedAt": "2026-10-14T07:25:29.091Z"
-  },
-  {
     "_id": "evt_fleet_telematics_summit_2026",
     "slug": "fleet-telematics-summit-2026",
     "name": "National Commercial Fleet & Telematics Summit 2026",
