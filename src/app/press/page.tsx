@@ -1,6 +1,6 @@
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { getPublishedPressItems } from "@/lib/content/press-storage";
-import { Download, Mail } from "lucide-react";
+import { Download, Mail, Rss } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PressClient } from "./press-client";
@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   description: "Official press releases, product announcements, and corporate news from Treel Mobility Solutions. India's leader in connected commercial vehicle telematics.",
   alternates: {
     canonical: "https://treel.in/press",
+    types: {
+      "application/rss+xml": "https://treel.in/press/rss.xml",
+    },
   },
   openGraph: {
     title: "Press & Media · Treel",
@@ -41,10 +44,20 @@ export default async function PressPage() {
                 { label: "Press" },
               ]}
             />
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-between gap-4">
               <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
                 PRESS
               </span>
+              <a
+                href="/press/rss.xml"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Subscribe to Treel Press RSS Feed"
+                className="hidden items-center gap-1.5 px-3 py-1 rounded bg-white/[0.04] border border-white/10 hover:border-[#D5573B]/50 hover:bg-white/[0.08] text-xs font-mono text-[#FAF7F2] transition-colors"
+              >
+                <Rss className="w-3.5 h-3.5 text-[#D5573B]" />
+                <span>RSS Feed</span>
+              </a>
             </div>
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
               News from Treel.
@@ -76,11 +89,11 @@ export default async function PressPage() {
                 Media inquiries.
               </h2>
               <p className="text-base sm:text-lg text-[#94A3B8] leading-relaxed font-inter">
-                For interview requests, high-resolution product photography, executive commentary on commercial mobility trends, or fact-checking, please contact our communications team. We respond to media queries within one business day.
+                For interview requests, high-resolution product photography, executive commentary on commercial mobility trends, or fact-checking, please contact our communications team. We respond to media queries at the earliest.
               </p>
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
-                  href="/contact"
+                  href="/contact?subject=media"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-sm"
                 >
                   <Mail className="w-4 h-4" />
@@ -93,6 +106,15 @@ export default async function PressPage() {
                   <Download className="w-4 h-4" />
                   <span>Download media kit</span>
                 </Link>
+                <a
+                  href="/press/rss.xml"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden items-center gap-2 px-6 py-3 rounded-[4px] border border-white/20 text-[#FAF7F2] font-medium text-sm hover:border-[#D5573B] hover:text-[#D5573B] transition-all"
+                >
+                  <Rss className="w-4 h-4 text-[#D5573B]" />
+                  <span>RSS Feed</span>
+                </a>
               </div>
             </div>
 

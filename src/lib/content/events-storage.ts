@@ -31,6 +31,8 @@ export const SEED_EVENTS: EventItemRecord[] = [
     title: "National Commercial Fleet & Telematics Summit 2026",
     type: "Conference",
     dateTime: "14–16 October 2026 · 09:30 AM IST",
+    startDate: "2026-10-14T09:30:00+05:30",
+    endDate: "2026-10-16T18:00:00+05:30",
     location: "Hall 4, Pragati Maidan, New Delhi, India",
     isOnline: false,
     excerpt: "Keynote presentation on Vehicle Digital Twins and operational findings from 68,000 active commercial haulage vehicles.",
@@ -43,7 +45,7 @@ export const SEED_EVENTS: EventItemRecord[] = [
         time: "09:30 AM – 10:30 AM",
         title: "Keynote: Beyond GPS — Transforming Commercial Haulage with Wheel Telemetry",
         speaker: "Manish Ingale (Founder, Treel Mobility)",
-        desc: "An architectural deep-dive into how sensor ingestion at 24 Hz decodes tyre degradation, axle balance, and fuel drag before physical breakdown occurs."
+        desc: "An architectural deep-dive into how real-time edge sensor ingestion decodes tyre degradation, axle balance, and fuel drag before physical breakdown occurs."
       },
       {
         time: "11:00 AM – 12:30 PM",
@@ -55,7 +57,7 @@ export const SEED_EVENTS: EventItemRecord[] = [
         time: "02:00 PM – 03:30 PM",
         title: "Live Hardware & Digital Twin Demonstration",
         speaker: "Treel Systems Engineering Team",
-        desc: "Live interactive bench testing of IP69K military-rated sensors under high thermal and mechanical stress profiles."
+        desc: "Live interactive bench testing of IP67 environmental-rated sensors under high thermal and mechanical stress profiles."
       }
     ],
     speakers: [
@@ -85,6 +87,8 @@ export const SEED_EVENTS: EventItemRecord[] = [
     title: "Zero Roadside Blowouts: The Predictive Maintenance Playbook",
     type: "Webinar",
     dateTime: "12 November 2026 · 03:00 PM IST",
+    startDate: "2026-11-12T15:00:00+05:30",
+    endDate: "2026-11-12T16:15:00+05:30",
     location: "Online (Live Interactive Zoom with Q&A)",
     isOnline: true,
     excerpt: "Technical walkthrough on configuring sub-second thermal telemetry to flag micro-leaks before roadside tyre blowouts occur.",
@@ -133,9 +137,11 @@ export const SEED_EVENTS: EventItemRecord[] = [
     title: "Pune Commercial Mobility Engineering Roundtable",
     type: "In-person",
     dateTime: "4 December 2026 · 05:00 PM IST",
+    startDate: "2026-12-04T17:00:00+05:30",
+    endDate: "2026-12-04T20:00:00+05:30",
     location: "Treel R&D Centre, Baner Tech Park, Pune, Maharashtra",
     isOnline: false,
-    excerpt: "Engineering deep-dive with Treel hardware architects on IP69K sensor telemetry and high-vibration off-highway durability.",
+    excerpt: "Engineering deep-dive with Treel hardware architects on IP67 sensor telemetry and high-vibration off-highway durability.",
     about: [
       "An invitation-only technical roundtable bringing together Pune's premier automotive hardware, IoT, and embedded firmware engineers. Explore the challenges of sub-second sensor telemetry in harsh operating conditions across India's industrial freight routes.",
       "Tour Treel's hardware test laboratory, examine our latest ARAI-certified sensor prototypes, and network with engineers building the future of connected mobility."
@@ -151,7 +157,7 @@ export const SEED_EVENTS: EventItemRecord[] = [
         time: "05:45 PM – 07:00 PM",
         title: "Technical Panel: Hardware Resilience Under 60°C Road Temps and 50G Impacts",
         speaker: "Hardware Engineering Leads",
-        desc: "Designing IP69K electronics for multi-year maintenance-free service life on heavy commercial axles."
+        desc: "Designing IP67 electronics for multi-year maintenance-free service life on heavy commercial axles."
       },
       {
         time: "07:00 PM – 08:00 PM",
@@ -209,10 +215,10 @@ export const SEED_EVENTS: EventItemRecord[] = [
     updatedAt: "2026-06-01T00:00:00.000Z"
   },
   {
-    _id: "evt_past_jk_tyre_leadership",
-    slug: "jk-tyre-treel-logistics-leadership-conclave",
-    name: "JK Tyre & Treel Logistics Leadership Conclave",
-    title: "JK Tyre & Treel Logistics Leadership Conclave",
+    _id: "evt_past_treel_leadership",
+    slug: "treel-logistics-leadership-conclave",
+    name: "Treel Logistics Leadership Conclave",
+    title: "Treel Logistics Leadership Conclave",
     type: "Keynote",
     dateTime: "April 2026",
     location: "Bengaluru",

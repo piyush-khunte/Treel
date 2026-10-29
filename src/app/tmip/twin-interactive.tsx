@@ -168,10 +168,10 @@ export function TwinInteractive() {
   };
 
   return (
-    <div className="rounded-[6px] border border-[rgba(59,130,246,0.15)] bg-[rgba(59,130,246,0.03)] p-4 sm:p-6 lg:p-8 shadow-2xl overflow-hidden">
+    <div className="rounded-[6px] border border-[rgba(59,130,246,0.15)] bg-[rgba(59,130,246,0.03)] p-3 sm:p-4 lg:p-5 shadow-2xl overflow-hidden">
       {/* Central visualization (real TMIP image viewer with telemetry status) */}
       <div
-        className="w-full max-w-[1080px] mx-auto flex flex-col items-center justify-center relative bg-[#050A17]/80 rounded-[4px] border border-slate-400/10 p-3 sm:p-5 lg:p-6"
+        className="w-full max-w-[1080px] mx-auto flex flex-col items-center justify-center relative bg-[#050A17]/80 rounded-[4px] border border-slate-400/10 p-2 sm:p-3 lg:p-4"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
@@ -214,7 +214,7 @@ export function TwinInteractive() {
           </div>
 
           {/* Subtle View Indicator Dots */}
-          <div className="flex items-center justify-center gap-1.5 mt-3 sm:mt-4">
+          <div className="flex items-center justify-center gap-1.5 mt-2.5 sm:mt-3">
             {views.map((v, idx) => (
               <button
                 key={v.id}

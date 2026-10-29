@@ -5,13 +5,13 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Our Story · Treel Mobility Solutions",
-  description: "From an advanced automotive R&D idea in 2018 to India's largest connected commercial vehicle dataset in 2026. The Treel story, in milestones.",
+  description: "From a JK Tyre R&D idea in 2018 to India's largest connected commercial vehicle dataset in 2026. The Treel story, in milestones.",
   alternates: {
     canonical: "https://treel.in/our-story",
   },
   openGraph: {
     title: "Our Story · Treel Mobility Solutions",
-    description: "From an advanced automotive R&D idea in 2018 to India's largest connected commercial vehicle dataset in 2026. The Treel story, in milestones.",
+    description: "From a JK Tyre R&D idea in 2018 to India's largest connected commercial vehicle dataset in 2026. The Treel story, in milestones.",
     url: "https://treel.in/our-story",
   },
 };
@@ -22,7 +22,7 @@ export default function OurStoryPage() {
       year: "2018",
       title: "Founding & The Core Conviction",
       milestone: "Treel Mobility Solutions Private Limited incorporated on 12 April 2018.",
-      narrative: "Manish Ingale founds Treel in Pune with the conviction that India's commercial vehicles are producing more data than anyone is reading. First product: a ruggedized valve-stem tyre sensor. First bet: that the tyre is the entry point to the vehicle, not the destination.",
+      narrative: "Manish Ingale founds Treel in Pune with the backing of JK Tyre R&D and the conviction that India's commercial vehicles are producing more data than anyone is reading. First product: a ruggedized valve-stem tyre sensor. First bet: that the tyre is the entry point to the vehicle, not the destination.",
     },
     {
       year: "2019",
@@ -87,10 +87,10 @@ export default function OurStoryPage() {
             </div>
 
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.08]">
-              Eight years. One category.
+              Built in India. Defining a category.
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-inter max-w-3xl">
-              From an advanced automotive R&amp;D idea in 2018 to India&apos;s largest connected commercial vehicle dataset in 2026. The milestones that got us here.
+              From our founding in 2018 to India&apos;s largest connected commercial vehicle dataset. The milestones that got us here.
             </p>
           </div>
         </div>

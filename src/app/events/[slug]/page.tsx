@@ -1,4 +1,5 @@
-import { getEventBySlug,getPublishedEvents } from "@/lib/content/events-storage";
+import { getEventBySlug, getPublishedEvents } from "@/lib/content/events-storage";
+import { createEventCalendarLinks } from "@/lib/events/calendar-links";
 import {
 Calendar,
 CalendarPlus,
@@ -64,6 +65,7 @@ export default async function EventSlugPage({ params }: { params: Promise<{ slug
 
   const agenda = event.agenda || [];
   const speakers = event.speakers || [];
+  const calendarLinks = createEventCalendarLinks(event);
 
   return (
     <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
@@ -230,18 +232,20 @@ export default async function EventSlugPage({ params }: { params: Promise<{ slug
                 </div>
                 <div className="flex flex-wrap items-center gap-3">
                   <a
-                    href="https://calendar.google.com"
+                    href={calendarLinks.google}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
+                    title="Add to Google Calendar"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-white/[0.05] border border-white/10 text-xs font-medium text-[#FAF7F2] hover:bg-white/10 hover:border-[#D5573B] transition-colors"
                   >
                     <CalendarPlus className="w-4 h-4 text-[#D5573B]" />
                     <span>Google Calendar</span>
                   </a>
                   <a
-                    href="https://outlook.live.com"
+                    href={calendarLinks.outlook}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
+                    title="Add to Outlook Calendar"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-white/[0.05] border border-white/10 text-xs font-medium text-[#FAF7F2] hover:bg-white/10 hover:border-[#D5573B] transition-colors"
                   >
                     <CalendarPlus className="w-4 h-4 text-[#D5573B]" />
@@ -279,7 +283,15 @@ export default async function EventSlugPage({ params }: { params: Promise<{ slug
                     </a>
                   </div>
                 ) : (
-                  <EventRegisterForm eventName={event.name} dateTime={event.dateTime} />
+                  <EventRegisterForm
+                    eventName={event.name}
+                    eventSlug={event.slug}
+                    dateTime={event.dateTime}
+                    location={event.location}
+                    isOnline={event.isOnline}
+                    googleCalendarUrl={calendarLinks.google}
+                    outlookCalendarUrl={calendarLinks.outlook}
+                  />
                 )}
               </div>
             </div>

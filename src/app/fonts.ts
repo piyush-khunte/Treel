@@ -34,6 +34,7 @@ export const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
   variable: "--font-ibm-plex-sans",
   display: "swap",
+  preload: false,
 });
 
 export const jetbrainsMono = JetBrains_Mono({

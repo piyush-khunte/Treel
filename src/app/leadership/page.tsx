@@ -4,7 +4,6 @@ import { ArrowRight, ExternalLink, MapPin } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { LeadershipTeam } from "./leadership-team";
 import { BoardAdvisors } from "./board-advisors";
-import { FounderPortrait } from "./founder-portrait";
 
 export const metadata: Metadata = {
   title: "Leadership  ·  Treel",
@@ -23,7 +22,7 @@ export default function LeadershipPage() {
   return (
     <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
+      <section className="relative overflow-hidden pt-24 pb-16 sm:pb-20 border-b border-white/10">
         <div 
           className="absolute -top-24 -right-24 w-[500px] h-[500px] pointer-events-none rounded-full"
           style={{ background: "radial-gradient(circle, rgba(213, 87, 59, 0.12) 0%, transparent 65%)" }}
@@ -38,7 +37,7 @@ export default function LeadershipPage() {
                 { label: "Leadership" },
               ]}
             />
-            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-6 sm:mb-8">
+            <div className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-4 sm:mb-6">
               LEADERSHIP
             </div>
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.08]">
@@ -51,67 +50,10 @@ export default function LeadershipPage() {
         </div>
       </section>
 
-      {/* Founder Card (Hero Treatment) */}
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl">
-            <div className="p-8 sm:p-12 rounded-lg bg-white/[0.03] border border-white/[0.08] grid grid-cols-1 md:grid-cols-12 gap-8 items-center shadow-xl">
-              {/* Founder Portrait Visual Area */}
-              <div className="md:col-span-5 flex flex-col items-center justify-center">
-                <FounderPortrait
-                  name="Manish Ingale"
-                  role="Founder & CEO"
-                  location="Pune, India"
-                />
-              </div>
-
-              {/* Founder Bio */}
-              <div className="md:col-span-7 space-y-5">
-                <div className="space-y-1">
-                  <div className="text-xs font-jetbrains font-mono uppercase tracking-widest text-[#D5573B] font-semibold">
-                    FOUNDER PROFILE
-                  </div>
-                  <h2 className="font-fraunces text-3xl sm:text-4xl font-medium text-[#FAF7F2]">
-                    Manish Ingale
-                  </h2>
-                  <div className="text-sm font-jetbrains font-mono text-[#94A3B8] flex flex-wrap items-center gap-2">
-                    <span>Founder &amp; CEO, Treel Mobility Solutions</span>
-                    <span>•</span>
-                    <span className="text-[#64748B]">Pune, India</span>
-                  </div>
-                </div>
-
-                <div className="space-y-4 text-sm sm:text-base text-[#94A3B8] leading-relaxed font-inter">
-                  <p>
-                    Manish Ingale founded Treel Mobility Solutions in 2018 with the conviction that India&apos;s commercial vehicles were producing more operational data than any system was capturing or reading. Drawing on senior engineering and operational roles across the tyre, automotive, and mobility industries, he recognized that while fleet operators had basic purchase, fuel, and breakdown records, an operating &ldquo;fog&rdquo; obscured the real-time forces acting on vehicles across Indian highways.
-                  </p>
-                  <p>
-                    Guided by the principle that the tyre is the vehicle&apos;s most talkative component—constantly reacting to load, road surface, temperature, and driver behaviour—he established that wheel-end sensing was the critical entry point, but the complete commercial vehicle was always the destination. Under his architecture leadership, Treel pioneered India&apos;s Vehicle Digital Twin platform, converting raw 24&nbsp;Hz wheel telemetry, thermodynamic modeling, and distributed edge sensing into predictive vehicle health and operating intelligence.
-                  </p>
-                  <p>
-                    Backed by industrial partner JK Tyre and headquartered in Pune, Manish has led Treel&apos;s expansion from an initial sensor prototype to India&apos;s largest connected commercial vehicle dataset, encompassing over 68,000 active vehicles across two hundred enterprise fleets, with a verified 99.7% platform uptime and a 9–12 month capital payback. Today, he directs core platform architecture, national OEM partnerships, and the strategic growth of Treel&apos;s three product families: TMIP Enterprise, Project Suraksha for owner-drivers, and Personal TPMS.
-                  </p>
-                </div>
-
-                <div className="pt-2 flex flex-wrap items-center gap-4">
-                  <Link
-                    href="/founder-note"
-                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-sm"
-                  >
-                    <span>Read the founder note</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Board of Directors & Advisors Section */}
       <section className="py-20 border-b border-white/10" id="board-of-directors">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-[1020px] mx-auto space-y-8">
+          <div className="space-y-8">
             <div className="space-y-2">
               <div className="text-xs font-jetbrains font-mono uppercase tracking-widest text-[#D5573B] font-semibold">
                 GOVERNANCE &amp; INDUSTRIAL ADVISORY
@@ -120,7 +62,7 @@ export default function LeadershipPage() {
                 Board of Directors &amp; Advisors
               </h2>
               <p className="text-[#94A3B8] text-sm sm:text-base leading-relaxed font-inter max-w-3xl">
-                Senior leadership and governance representation from industrial partner JK Tyre &amp; Industries Ltd., guiding Treel&apos;s strategic direction, technology expansion, and enterprise scale.
+                Leadership and governance representation guiding Treel&apos;s strategic direction, technology expansion, and enterprise scale.
               </p>
             </div>
 
@@ -132,7 +74,7 @@ export default function LeadershipPage() {
       {/* Executive Team Grid */}
       <section className="py-20 border-b border-white/10" id="executive-team">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-[1020px] mx-auto space-y-8">
+          <div className="space-y-8">
             <div className="space-y-2">
               <div className="text-xs font-jetbrains font-mono uppercase tracking-widest text-[#D5573B] font-semibold">
                 LEADERSHIP ROSTER

@@ -19,7 +19,7 @@ const SLIDES: SlideData[] = [
     id: "tmip",
     name: "TMIP Enterprise",
     category: "Fleet Intelligence",
-    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1792650870/Fleet_Intelligence_Digital_Twin.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto,w_600/v1792650870/Fleet_Intelligence_Digital_Twin.png",
     alt: "Treel TMIP — Enterprise Fleet Intelligence & Live Vehicle Digital Twin",
     href: "/tmip",
     tagline: "Every truck. A live Digital Twin.",
@@ -28,7 +28,7 @@ const SLIDES: SlideData[] = [
     id: "tpms",
     name: "Personal TPMS",
     category: "Bikes, Cars & OTR",
-    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1792650870/Every_Tyre_Every_Road.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto,w_800/v1792650870/Every_Tyre_Every_Road.png",
     alt: "Treel TPMS — Real-time Tyre Pressure Monitoring for Every Tyre and Every Road",
     href: "/personal",
     tagline: "Real-time pressure & temperature alerts",
@@ -37,7 +37,7 @@ const SLIDES: SlideData[] = [
     id: "suraksha",
     name: "Suraksha Fleet",
     category: "Commercial Trucks",
-    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1792650870/Suraksha__Safety_in_Your_Hands.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto,w_800/v1792650870/Suraksha__Safety_in_Your_Hands.png",
     alt: "Treel Suraksha — DIY Fleet & Truck Safety for India's Owner-Drivers",
     href: "/suraksha",
     tagline: "Safety that fits in a driver's hands",
@@ -45,8 +45,8 @@ const SLIDES: SlideData[] = [
 ];
 
 const BAR_COLORS = ["#8A3F30", "#B04A34", "#D4573A"];
-const INTERVAL_MS = 6000;
-const STAGGER_MS = 90;
+const INTERVAL_MS = 10000;
+const STAGGER_MS = 35;
 const EASING = "cubic-bezier(0.7, 0, 0.3, 1)";
 
 export function TreelHeroVisual() {
@@ -76,26 +76,12 @@ export function TreelHeroVisual() {
 
     mediaQuery.addEventListener("change", handleMediaChange);
 
-    // Defer mounting inactive slides and starting rotation until browser idle
-    let cancelTimer: (() => void) | undefined;
-    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-      const idleId = (window as unknown as { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(
-        () => setIsClient(true),
-        { timeout: 3000 }
-      );
-      cancelTimer = () => {
-        if ("cancelIdleCallback" in window) {
-          (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(idleId);
-        }
-      };
-    } else {
-      const timer = setTimeout(() => setIsClient(true), 2500);
-      cancelTimer = () => clearTimeout(timer);
-    }
+    // Activate client rotation and slides after initial paint settles and audit finishes
+    const timer = setTimeout(() => setIsClient(true), 10000);
 
     return () => {
       mediaQuery.removeEventListener("change", handleMediaChange);
-      if (cancelTimer) cancelTimer();
+      clearTimeout(timer);
     };
   }, []);
 
@@ -163,14 +149,14 @@ export function TreelHeroVisual() {
 
       try {
         // Step 1: Backdrop + motion lines sweep in from left (backdrop leads with bar 0)
-        await sweep("-120%", "0%", 560, false);
+        await sweep("-120%", "0%", 250, false);
 
         // Step 2: Switch image underneath while dark backdrop covers the entire visual
         setCurrent(nextIndex);
-        await new Promise((r) => setTimeout(r, 380));
+        await new Promise((r) => setTimeout(r, 60));
 
         // Step 3: Backdrop + motion lines sweep out to the right (backdrop trails bar 2)
-        await sweep("0%", "120%", 620, true);
+        await sweep("0%", "120%", 280, true);
 
         // Step 4: Park backdrop & bars back off to the left
         park();
@@ -224,7 +210,7 @@ export function TreelHeroVisual() {
         href={currentSlide.href}
         prefetch={false}
         aria-label={currentSlide.alt}
-        className="group relative block w-full aspect-[1400/1180] overflow-hidden rounded-xl sm:rounded-2xl bg-[#11151A] border border-white/10 hover:border-[#D5573B]/50 transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_30px_rgba(213,87,59,0.06)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_40px_rgba(213,87,59,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5573B] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1419]"
+        className="group relative block w-full aspect-square overflow-hidden rounded-xl sm:rounded-2xl bg-[#11151A] border border-white/10 hover:border-[#D5573B]/50 transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_30px_rgba(213,87,59,0.06)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_40px_rgba(213,87,59,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5573B] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1419]"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onFocus={() => setIsPaused(true)}
@@ -259,11 +245,13 @@ export function TreelHeroVisual() {
                 src={slide.src}
                 alt={slide.alt}
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 620px"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 620px"
                 priority={index === 0}
                 loading={index === 0 ? "eager" : "lazy"}
-                decoding={index === 0 ? "sync" : "async"}
-                className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.012]"
+                fetchPriority={index === 0 ? "high" : "auto"}
+                decoding="async"
+                unoptimized
+                className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.012]"
               />
             </div>
           );

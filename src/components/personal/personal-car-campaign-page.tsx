@@ -317,12 +317,13 @@ export function PersonalCarCampaignPage() {
         <div className="wrap">
           <Link className="brand" href="/" aria-label="Treel home">
             <Image
-              src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436567/Treel_New_Logo_Final_With_Favicon_Tagline.png"
+              src="/images/treel-logo-final.webp"
               alt="Treel"
               width={160}
               height={50}
               className="h-8 sm:h-9 w-auto object-contain"
               priority
+              unoptimized
             />
             <span className="brand-divider" aria-hidden="true"></span>
             <span className="lockup">

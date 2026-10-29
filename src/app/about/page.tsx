@@ -9,16 +9,17 @@ Sparkles
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { OperationsPhotoGallery } from "@/components/about/operations-photo-gallery";
 
 export const metadata: Metadata = {
   title: "About Treel — Building the Mobility Intelligence Category",
-  description: "Treel Mobility Solutions is India's mobility intelligence company. Founded 2018 by Manish Ingale. Headquartered in Pune. 200+ enterprise customers, 68K vehicles under management.",
+  description: "Treel Mobility Solutions is India's mobility intelligence company. Founded 2018 by Manish Ingale. Backed by JK Tyre. Headquartered in Pune. 200+ enterprise customers, 68K vehicles under management.",
   alternates: {
     canonical: "https://treel.in/about",
   },
   openGraph: {
     title: "About Treel — Building the Mobility Intelligence Category",
-    description: "Treel Mobility Solutions is India's mobility intelligence company. Founded 2018 by Manish Ingale. Headquartered in Pune. 200+ enterprise customers, 68K vehicles under management.",
+    description: "Treel Mobility Solutions is India's mobility intelligence company. Founded 2018 by Manish Ingale. Backed by JK Tyre. Headquartered in Pune. 200+ enterprise customers, 68K vehicles under management.",
     url: "https://treel.in/about",
   },
 };
@@ -89,10 +90,13 @@ export default function AboutPage() {
               Why Treel exists.
             </h2>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-              In 2018, India had two hundred million commercial vehicles on the road and near-zero real-time data about any of them. Fleet owners knew what they had bought. They knew what they had paid for fuel. They knew when a truck broke down. Between those three data points was a fog.
+              In 2018, India had four million commercial vehicles on the road, but fleet operators had no clarity into real-time vehicle telemetry. Fleet owners knew what they had bought. They knew what they had paid for fuel. They knew when a truck broke down. Between those three data points, they had no clarity on daily operating conditions.
             </p>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-              Treel was founded to lift that fog. We started at the tyre because it is the vehicle&apos;s most talkative component, and because decades of engineering had gone into understanding what tyres try to tell you. The tyre was the entry point. The vehicle was always the destination.
+              Treel was founded to resolve that lack of clarity. We started at the tyre because it is the vehicle&apos;s most talkative component, and because JK Tyre had spent five decades understanding what tyres try to tell you. The tyre was the entry point. The vehicle was always the destination.
+            </p>
+            <p className="text-[#FAF7F2] text-base sm:text-lg leading-relaxed font-inter font-medium">
+              Today, our core purpose is framed around 360-degree vehicle visibility and emotional safety. By transforming commercial vehicles into queryable intelligence surfaces, we replace operational fear and highway vulnerability with absolute certainty—giving drivers peace of mind in the cabin, fleet managers predictable control, and families the emotional reassurance of a safe return.
             </p>
           </div>
         </div>
@@ -107,7 +111,7 @@ export default function AboutPage() {
                 One architecture. Three audiences.
               </h2>
               <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-                Today Treel operates three product families on one shared data infrastructure. TMIP serves enterprise fleets managing ten or more vehicles. Project Suraksha serves the owner-driver community, one truck at a time, in the vernacular of six regional clusters. Personal TPMS serves the consumer market on iOS and Android. All three share the Vehicle Digital Twin architecture, the sensor family, and the operational DNA that binds Treel together.
+                Today Treel operates three product families on one shared data infrastructure. TMIP serves enterprise fleets managing ten or more vehicles. Project Suraksha serves commercial vehicle owner-drivers, one truck at a time, across India&apos;s key highway freight corridors. All three share the Vehicle Digital Twin architecture, the sensor family, and the operational DNA that binds Treel together.
               </p>
             </div>
 
@@ -138,7 +142,7 @@ export default function AboutPage() {
                 <div>
                   <div className="font-jetbrains font-mono text-[10px] text-[#64748B] tracking-[0.12em] uppercase mb-2">CONSUMERS</div>
                   <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">Personal TPMS</h3>
-                  <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed">Smart Bluetooth tyre pressure monitoring kits for cars, SUVs, and motorcycles.</p>
+                  <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed">Smart Bluetooth tyre pressure monitoring kits. Fits any car or two-wheeler.</p>
                 </div>
                 <div className="mt-4 font-inter text-[13px] font-semibold text-[#D5573B] flex items-center gap-1 group-hover:gap-2 transition-all">
                   Explore Personal <ChevronRight className="w-3.5 h-3.5" />
@@ -194,6 +198,28 @@ export default function AboutPage() {
                 Meet the full leadership team <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section · Manufacturing Premises & Operations Photo Gallery */}
+      <OperationsPhotoGallery />
+
+      {/* Section · JK Tyre relationship */}
+      <section className="py-20 border-b border-white/10 bg-white/[0.01]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
+          <div className="max-w-4xl space-y-6">
+            <div className="flex items-center gap-2">
+              <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
+                PARTNERSHIP &amp; GOVERNANCE
+              </span>
+            </div>
+            <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">
+              A JK Tyre technology company.
+            </h2>
+            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
+              Treel is JK Tyre&apos;s technology arm for mobility intelligence. JK Tyre backs Treel with five decades of tyre engineering, national distribution reach, and the operational credibility that comes with one of India&apos;s most trusted commercial tyre brands. Treel operates independently on product, platform, and go-to-market decisions.
+            </p>
           </div>
         </div>
       </section>

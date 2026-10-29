@@ -32,7 +32,7 @@ const pillars = [
   {
     number: "01 · SAFETY",
     title: "FRONT-TYRE BLOWOUTS, PREVENTED.",
-    desc: "Real-time tyre pressure and temperature on the cabin display. See the warning before the blowout. Built for your family — because returning home safely from every trip matters.",
+    desc: "Real-time tyre pressure and temperature on the cabin display. Early warnings 24–48 hours ahead prevent catastrophic highway blowouts, saving hours of downtime and protecting the driver's life and livelihood.",
     color: "#DC2626",
     badgeBg: "bg-[#DC2626]/10 text-[#DC2626] border-[#DC2626]/30",
     icon: Shield,
@@ -117,7 +117,7 @@ export default function SurakshaPage() {
                   Built for your safety
                 </span>
                 <span className="text-[#78350F] font-rubik text-sm font-semibold">
-                  Made for the road.
+                  Protecting Lives &amp; Livelihoods.
                 </span>
               </div>
 

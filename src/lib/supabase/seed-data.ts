@@ -157,14 +157,14 @@ export const SEED_PRODUCTS: (Product & { variants: ProductVariant[] })[] = [
       "Rugged In-Cabin High-Contrast Driver Display",
       "Heavy-Duty Heavy Vehicle Valves (Tested on NH44, NH48)",
       "Zero-Downpayment Easy EMI Starting @ ₹1,199/month",
-      "Supported by 400+ JK Tyre & Suraksha Service Centres Across India"
+      "Supported by 400+ Authorized Suraksha Service Centres Across India"
     ],
     specs: {
       "Supported Configurations": "6-Tyre (16T), 10-Tyre (28T), 12-Tyre (35T), 14-Tyre (42T), 16-Tyre (48T), 22-Tyre (55T)",
       "Operating Pressure": "Up to 160 PSI",
       "Display Power": "12V / 24V Vehicle Battery Direct Connection",
       "Sensor Battery": "Heavy Duty Industrial Lithium (6+ Years)",
-      "Certifications": "ARAI Certified, IP69K Pressure Wash Rated"
+      "Certifications": "ARAI Certified, IP67 Environmental Sealing"
     },
     box_contents: [
       "6 to 22 × Heavy Commercial Internal Sensors",

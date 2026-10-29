@@ -34,9 +34,9 @@ export default function RoiFleetIntelligencePage() {
       />
 
       {/* Header & Breadcrumbs */}
-      <section className="relative z-10 pt-24 pb-16 border-b border-slate-400/10">
+      <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-6">
+          <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-3 sm:mb-4">
             <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
               TMIP
             </Link>
@@ -48,10 +48,10 @@ export default function RoiFleetIntelligencePage() {
             <span className="text-[#3B82F6] truncate">The Fleet ROI Paper</span>
           </nav>
 
-          <div className="max-w-4xl space-y-4">
+          <div className="max-w-4xl space-y-3 sm:space-y-4">
             <div className="flex flex-wrap items-center gap-3">
               <span className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
-                ROI & PAYBACK
+                ROI &amp; PAYBACK
               </span>
               <span className="border border-slate-400/20 bg-white/[0.03] px-2.5 py-0.5 rounded-[2px] text-xs font-jetbrains text-[#94A3B8]">
                 28 PAGES
@@ -74,15 +74,15 @@ export default function RoiFleetIntelligencePage() {
       </section>
 
       {/* Main Content Grid: Abstract/TOC on Left, Gated Form on Right */}
-      <section className="relative z-10 py-16 sm:py-20 border-b border-slate-400/10">
+      <section className="relative z-10 py-10 sm:py-12 lg:py-14 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left Column: Abstract & Table of Contents */}
-            <div className="lg:col-span-7 space-y-12">
+            <div className="lg:col-span-7 space-y-6 sm:space-y-8">
               {/* Abstract */}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <h2 className="font-space-grotesk text-2xl font-bold text-[#F1F5F9]">What this paper covers</h2>
-                <div className="space-y-4 text-base text-[#94A3B8] leading-relaxed font-ibm-plex">
+                <div className="space-y-3 text-base text-[#94A3B8] leading-relaxed font-ibm-plex">
                   <p>
                     Across two hundred commercial transport enterprises running 68,000+ heavy commercial vehicles, the
                     median payback period for the Treel Mobility Intelligence Platform (TMIP) is nine months. This
@@ -103,14 +103,14 @@ export default function RoiFleetIntelligencePage() {
               </div>
 
               {/* Table of Contents Preview */}
-              <div className="p-6 sm:p-8 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 space-y-6">
+              <div className="p-5 sm:p-7 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 space-y-4 sm:space-y-5">
                 <div className="flex items-center gap-2 text-xs font-jetbrains text-[#F59E0B] uppercase tracking-wider font-semibold">
                   <BookOpen className="w-4 h-4" />
                   <span>Table of Contents Preview</span>
                 </div>
                 <h3 className="font-space-grotesk text-xl font-bold text-[#F1F5F9]">In this paper</h3>
 
-                <ul className="space-y-3.5 text-sm text-[#CBD5E1] font-ibm-plex">
+                <ul className="space-y-2.5 text-sm text-[#CBD5E1] font-ibm-plex">
                   <li className="flex items-start gap-3">
                     <span className="font-jetbrains text-[#3B82F6] font-semibold">01</span>
                     <span>Executive Summary &amp; Cohort Methodology (200 Fleets, 68,412 Assets)</span>
@@ -143,7 +143,7 @@ export default function RoiFleetIntelligencePage() {
               </div>
 
               {/* Key Cohort Findings */}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <h3 className="font-space-grotesk text-xl font-bold text-[#F1F5F9]">Key Research Findings</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="p-4 rounded-[4px] bg-[#050A17] border border-slate-400/10 space-y-1">
@@ -175,10 +175,10 @@ export default function RoiFleetIntelligencePage() {
       </section>
 
       {/* Related Whitepapers Strip */}
-      <section className="relative z-10 py-16 sm:py-20 bg-[#0B1220]/40">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-8">
+      <section className="relative z-10 py-10 sm:py-12 bg-[#0B1220]/40">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="font-space-grotesk text-2xl font-bold text-[#F1F5F9]">Related Research &amp; Case Studies</h2>
+            <h2 className="font-space-grotesk text-xl sm:text-2xl font-bold text-[#F1F5F9]">Related Technical Research</h2>
             <Link
               href="/tmip/whitepapers"
               className="text-xs font-jetbrains text-[#3B82F6] hover:underline flex items-center gap-1 font-semibold"
@@ -189,30 +189,29 @@ export default function RoiFleetIntelligencePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between space-y-6">
-              <div className="space-y-3">
+            <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between space-y-5">
+              <div className="space-y-2.5">
                 <span className="text-[11px] font-jetbrains uppercase tracking-wider text-[#3B82F6] font-semibold">
-                  CASE STUDY
+                  PLATFORM TELEMETRY
                 </span>
                 <h3 className="font-space-grotesk text-lg font-bold text-[#F1F5F9]">
-                  1,000 trucks. 12 months. What changed.
+                  Real-Time Edge Telemetry &amp; Anomaly Ingestion
                 </h3>
                 <p className="text-xs text-[#94A3B8] font-ibm-plex leading-relaxed">
-                  The full operational story of a large logistics fleet running TMIP for one year. Deployment timeline,
-                  operating changes, and measured outcomes.
+                  How high-frequency sub-second sensor streams process real-time tyre pressure, vibration, and temperature profiles directly at the edge.
                 </p>
               </div>
               <Link
-                href="/tmip/customers/case-studies/1000-truck-case-study"
+                href="/tmip/platform/telemetry"
                 className="text-xs font-jetbrains font-semibold text-[#3B82F6] hover:text-white flex items-center gap-1.5"
               >
-                <span>Read case study</span>
+                <span>Read telemetry overview</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
 
-            <div className="p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between space-y-6">
-              <div className="space-y-3">
+            <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between space-y-5">
+              <div className="space-y-2.5">
                 <span className="text-[11px] font-jetbrains uppercase tracking-wider text-[#F59E0B] font-semibold">
                   ARCHITECTURE
                 </span>
@@ -225,32 +224,31 @@ export default function RoiFleetIntelligencePage() {
                 </p>
               </div>
               <Link
-                href="/tmip/platform"
+                href="/tmip/platform/vehicle-digital-twin"
                 className="text-xs font-jetbrains font-semibold text-[#3B82F6] hover:text-white flex items-center gap-1.5"
               >
-                <span>Explore platform</span>
+                <span>Explore architecture</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
 
-            <div className="p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between space-y-6">
-              <div className="space-y-3">
+            <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between space-y-5">
+              <div className="space-y-2.5">
                 <span className="text-[11px] font-jetbrains uppercase tracking-wider text-[#3B82F6] font-semibold">
-                  ENTERPRISE CUSTOMERS
+                  PREDICTIVE MAINTENANCE
                 </span>
                 <h3 className="font-space-grotesk text-lg font-bold text-[#F1F5F9]">
-                  Two Hundred Fleets. Sixty-Eight Thousand Vehicles.
+                  Early Degradation Diagnostics &amp; Lifecycle Prediction
                 </h3>
                 <p className="text-xs text-[#94A3B8] font-ibm-plex leading-relaxed">
-                  How leading enterprise logistics, cement, and passenger fleets across India deployed TMIP to stabilize
-                  tyre and fleet operating costs.
+                  Predictive maintenance algorithms detecting carcass fatigue, thermal anomalies, and pressure drift 24 to 48 hours prior to catastrophic failure.
                 </p>
               </div>
               <Link
-                href="/tmip/customers"
+                href="/tmip/platform/predictive-maintenance"
                 className="text-xs font-jetbrains font-semibold text-[#3B82F6] hover:text-white flex items-center gap-1.5"
               >
-                <span>View customer stories</span>
+                <span>Explore predictive intelligence</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>

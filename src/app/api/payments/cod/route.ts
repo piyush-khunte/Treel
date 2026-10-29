@@ -66,7 +66,11 @@ export async function POST(req: NextRequest) {
       const vid = (it.variant_id || "").toLowerCase();
       const sku = (it.sku || "").toUpperCase();
       const isSur = vid.startsWith("suraksha") || sku.includes("SURAKSHA") || it.vehicle_type === "truck";
-      const unitPrice = isSur ? 1700 : Number(it.price_inr || it.price) || 0;
+      let unitPrice = Number(it.price_inr || it.price) || 0;
+      if (isSur && unitPrice <= 1700) {
+        const sensors = Number(it.sensor_count) || (vid.match(/(\d+)w/) ? parseInt(vid.match(/(\d+)w/)[1], 10) : 1);
+        unitPrice = sensors * 1700;
+      }
       const q = Number(it.quantity) || 1;
       return acc + unitPrice * q;
     }, 0);

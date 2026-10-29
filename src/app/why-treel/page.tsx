@@ -22,7 +22,7 @@ export default function WhyTreelPage() {
       num: "01",
       icon: Database,
       title: "The largest connected commercial vehicle dataset in India.",
-      body: "Sixty-eight thousand vehicles under active management. Sub-second telemetry from each. Eight years of longitudinal data. The dataset is the moat, and it compounds every day.",
+      body: "Sixty-eight thousand vehicles under active management. Sub-second telemetry from each. Data from over 2 million tyres. The dataset is the moat, and it compounds every day.",
     },
     {
       num: "02",
@@ -124,6 +124,65 @@ export default function WhyTreelPage() {
         </div>
       </section>
 
+      {/* 3. WHY TREEL EXISTS: 360-DEGREE VISIBILITY & EMOTIONAL SAFETY */}
+      <section className="py-20 lg:py-24 border-b border-white/10 bg-gradient-to-b from-white/[0.02] to-transparent relative overflow-hidden">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
+          <div className="max-w-4xl space-y-6">
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-xs font-bold tracking-[0.2em] uppercase text-[#D5573B]">
+                CORE PURPOSE &amp; PHILOSOPHY
+              </span>
+            </div>
+            <h2 className="font-fraunces text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#FAF7F2] leading-[1.1]">
+              Why Treel exists: 360-degree vehicle visibility and emotional safety.
+            </h2>
+            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
+              Operating heavy commercial vehicles across thousands of kilometres of highways has historically meant enduring blind spots, anxiety, and midnight distress calls. We founded Treel on a foundational conviction: mobility should never operate in the dark.
+            </p>
+            <p className="text-[#FAF7F2] text-base sm:text-lg leading-relaxed font-inter font-medium">
+              Treel exists to deliver continuous 360-degree visibility that turns physical machine risk into deep emotional safety for everyone connected to the journey.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+              <div className="p-6 rounded-xl bg-white/[0.03] border border-white/10 space-y-3">
+                <div className="font-mono text-xs font-bold text-[#D5573B] uppercase tracking-wider">
+                  01 · For The Driver
+                </div>
+                <h3 className="font-fraunces text-lg text-[#FAF7F2] font-medium">
+                  Confidence in the Cabin
+                </h3>
+                <p className="text-xs text-[#94A3B8] leading-relaxed">
+                  Sub-second telemetry detects slow leaks and thermal stress hours before a blowout, giving drivers continuous peace of mind behind the wheel.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-xl bg-white/[0.03] border border-white/10 space-y-3">
+                <div className="font-mono text-xs font-bold text-[#D5573B] uppercase tracking-wider">
+                  02 · For The Fleet Operator
+                </div>
+                <h3 className="font-fraunces text-lg text-[#FAF7F2] font-medium">
+                  Zero Midnight Anxiety
+                </h3>
+                <p className="text-xs text-[#94A3B8] leading-relaxed">
+                  Real-time Digital Twin state eliminates the dread of unexpected breakdown calls, keeping routes predictable, profitable, and on schedule.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-xl bg-white/[0.03] border border-white/10 space-y-3">
+                <div className="font-mono text-xs font-bold text-[#D5573B] uppercase tracking-wider">
+                  03 · For The Family
+                </div>
+                <h3 className="font-fraunces text-lg text-[#FAF7F2] font-medium">
+                  Certainty of Safe Return
+                </h3>
+                <p className="text-xs text-[#94A3B8] leading-relaxed">
+                  At the end of every trip is a family waiting. True emotional safety means knowing their loved one and their livelihood are watched over every single kilometre.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* 4. CASE STUDY STRIP */}
       <section className="py-20 border-b border-white/10 bg-white/[0.01]">

@@ -58,7 +58,7 @@ const studies: CaseStudy[] = [
     slug: "open-cast-haulage-analytics",
     industry: "Mining",
     fleetSize: "100-500",
-    headline: "Preventing high-tonnage dumper downtime in central India mining corridors.",
+    headline: "Preventing heavy-duty dumper downtime in central India mining corridors.",
     excerpt:
       "Optimizing load-pressure distribution on rigid dump trucks operating in rugged, abrasive mining pits with unforgiving production schedules.",
     metricValue: "99.4% Uptime",

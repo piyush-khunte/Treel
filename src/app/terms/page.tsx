@@ -301,7 +301,7 @@ export default function TermsPage() {
                   7. Access to Third-Party Services
                 </h2>
                 <p>
-                  Our services and website may integrate with or provide links to third-party platforms, such as payment processors (Razorpay), shipping carriers (Shiprocket), telecommunication providers, vehicle dealerships, and tyre fitment centres (including JK Tyre Truck Wheels).
+                  Our services and website may integrate with or provide links to third-party platforms, such as payment processors (Razorpay), shipping carriers (Shiprocket), telecommunication providers, vehicle dealerships, and tyre fitment centres (including authorized Truck Wheels centres).
                 </p>
                 <p>
                   Treel does not control and is not responsible for the content, security, availability, or privacy practices of such third-party providers. Your access to third-party services is governed by the respective terms and privacy policies of those providers.

@@ -24,7 +24,7 @@ export default function SurakshaFAQsPage() {
     {
       cat: "Pricing",
       q: "What configurations does Suraksha support and what is included in the kit?",
-      a: "Suraksha is available for all commercial configurations: 6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, 16-wheeler, and 18-wheeler trailers. Every kit includes a solar-assisted in-cab display, high-precision wheel sensors, anti-theft mounting hardware, official JK Tyre warranty, and 24x7 helpline access. Contact your nearest Truck Wheels centre or chat on WhatsApp for current pricing and fleet offers."
+      a: "Suraksha is available for all commercial configurations: 6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, 16-wheeler, and 18-wheeler trailers. Every kit includes a solar-assisted in-cab display, high-precision wheel sensors, anti-theft mounting hardware, official 3-year warranty, and 24x7 helpline access. Contact your nearest Truck Wheels centre or chat on WhatsApp for current pricing and fleet offers."
     },
     {
       cat: "Pricing",
@@ -39,7 +39,7 @@ export default function SurakshaFAQsPage() {
     {
       cat: "Warranty",
       q: "How long is the warranty and what is the sensor battery life?",
-      a: "Suraksha sensors feature a 5-year internal battery life. The entire hardware kit is backed by a 3-year official JK Tyre replacement warranty serviceable at any Truck Wheels centre across India."
+      a: "Suraksha sensors feature a 5-year internal battery life. The entire hardware kit is backed by a 3-year official manufacturer replacement warranty serviceable nationwide."
     },
     {
       cat: "Product",

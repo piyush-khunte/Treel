@@ -29,6 +29,9 @@ export function TmipLandingFooter() {
             <p className="pt-2 text-xs text-[#64748B] font-jetbrains">
               ARAI &amp; ISO 9001:2015 Certified · Patents in India, US &amp; EU
             </p>
+            <p className="text-xs text-[#64748B] font-jetbrains">
+              IATF 16949 Certified
+            </p>
              <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
               <span>© 2026 Treel Mobility Solutions Private Limited. All rights reserved.</span>
             </div>
@@ -164,7 +167,7 @@ export function TmipLandingFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-[13px] text-[#94A3B8] !text-[#94A3B8] hover:!text-[#3B82F6] transition-colors">
+                <Link href="/contact?subject=tmip" className="text-[13px] text-[#94A3B8] !text-[#94A3B8] hover:!text-[#3B82F6] transition-colors">
                   Contact Us
                 </Link>
               </li>

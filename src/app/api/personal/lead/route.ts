@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { isSesConfigured, sendEmail } from "@/lib/integrations";
+import { isSesConfigured, sendEmail, sendPersonalLeadConfirmationEmail } from "@/lib/integrations";
 
 // Server-side in-memory idempotency cache (prevents rapid double-clicks within 30s)
 const recentSubmissions = new Map<string, number>();
@@ -298,7 +298,26 @@ export async function POST(req: NextRequest) {
         const secondEmail = process.env.TMIP_CAMPAIGN_SECOND_EMAIL?.trim();
         const ccList = secondEmail ? [secondEmail] : undefined;
 
-        const emailSubject = `[Personal TPMS 2W Lead] ${rawName} (${normalizedKit === "motorbike_kit" ? "Motorbike" : normalizedKit === "scooter_kit" ? "Scooter" : "2W Inquiry"}) - ${normalizedMobile}`;
+        const originPath = typeof page_path === "string" && page_path ? page_path : "/personal";
+        let tag = "PERSONAL TPMS LEAD";
+        let segmentTitle = "Personal TPMS Lead";
+
+        if (isCar) {
+          tag = `PERSONAL CAR TPMS LEAD - ${originPath}`;
+          segmentTitle = "Personal 4-Wheeler Car TPMS Lead";
+        } else if (isGeneric) {
+          tag = `PERSONAL TPMS LEAD - ${originPath}`;
+          segmentTitle = "Personal TPMS (Car & 2W) Lead";
+        } else {
+          tag = `PERSONAL 2W TPMS LEAD - ${originPath}`;
+          segmentTitle = "Personal 2-Wheeler TPMS Lead";
+        }
+
+        const vehicleOrKit = isCar
+          ? (normalizedVehicle || "4W Car")
+          : (normalizedKit === "motorbike_kit" ? "Motorbike" : normalizedKit === "scooter_kit" ? "Scooter" : "2W Kit");
+
+        const emailSubject = `[${tag}] ${rawName} — ${normalizedMobile} (${vehicleOrKit})`;
 
         const emailHtml = `
 <!DOCTYPE html>
@@ -326,8 +345,11 @@ export async function POST(req: NextRequest) {
 <body>
   <div class="card">
     <div class="header">
-      <h1>New Personal TPMS 2W Campaign Lead</h1>
-      <p>Received on ${new Date(timestamp).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })} IST</p>
+      <div style="font-family: monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #dbeafe; margin-bottom: 6px; font-weight: 700;">
+        ${tag}
+      </div>
+      <h1>New ${segmentTitle}</h1>
+      <p>Originating Page: <strong>${originPath}</strong> · Received on ${new Date(timestamp).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })} IST</p>
     </div>
     <div class="content">
       <div class="section-title">Contact & Vehicle Details</div>
@@ -407,6 +429,22 @@ export async function POST(req: NextRequest) {
           html: emailHtml,
           replyTo: rawEmail || undefined,
         });
+
+        // Dispatch confirmation email from hello@treel.in to the user
+        if (rawEmail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawEmail)) {
+          try {
+            await sendPersonalLeadConfirmationEmail({
+              name: rawName,
+              email: rawEmail,
+              phone: normalizedMobile,
+              vehicleType: rawVehicleType,
+              kit: normalizedKit,
+              city: normalizedCity || undefined,
+            });
+          } catch (userMailErr) {
+            console.warn("[Personal Lead] User confirmation email dispatch warning:", userMailErr);
+          }
+        }
 
         // Update email_notification_status to sent
         if (insertedLeadId && typeof insertedLeadId === "string" && !insertedLeadId.startsWith("PL-")) {

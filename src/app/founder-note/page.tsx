@@ -1,17 +1,17 @@
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { ArrowRight,ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Manish Ingale · Founder Note · Treel",
-  description: "Why Manish Ingale founded Treel: the moment India's commercial vehicles began producing more data than anyone was reading, and why the category moved from tyre monitoring to mobility intelligence.",
+  title: "What I saw before I started Treel · Manish Ingale, Founder · Treel",
+  description: "Why Manish Ingale founded Treel: from watching a truck driver check tyre pressure with a stick on a Maharashtra highway to operating Vehicle Digital Twins for 68,000 commercial vehicles.",
   alternates: {
     canonical: "https://treel.in/founder-note",
   },
   openGraph: {
-    title: "Manish Ingale · Founder Note · Treel",
-    description: "Why Manish Ingale founded Treel: the moment India's commercial vehicles began producing more data than anyone was reading, and why the category moved from tyre monitoring to mobility intelligence.",
+    title: "What I saw before I started Treel · Manish Ingale, Founder · Treel",
+    description: "Why Manish Ingale founded Treel: from watching a truck driver check tyre pressure with a stick on a Maharashtra highway to operating Vehicle Digital Twins for 68,000 commercial vehicles.",
     url: "https://treel.in/founder-note",
     type: "article",
     authors: ["Manish Ingale"],
@@ -93,15 +93,15 @@ export default function FounderNotePage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl space-y-8 text-base sm:text-lg text-[#CBD5E1] leading-relaxed font-inter">
             <p className="font-medium text-[#FAF7F2] text-xl sm:text-2xl font-fraunces leading-relaxed">
-              I remember the first time I watched a truck driver check his tyre pressure with a rock.
+              I remember the first time I watched a truck driver check his tyre pressure with a stick.
             </p>
 
             <p>
-              He held the rock in one hand, hit each tyre with a small, practiced strike, and listened. Not for anything specific — just for the sound to match what he expected. It matched all six times. He was satisfied. He drove off.
+              He held the stick in one hand, tapped each tyre with a short, practiced strike, and listened. He was not listening for anything specific. He only wanted the sound to match what he expected. It matched all six times. He was satisfied. He drove off.
             </p>
 
             <p>
-              That was fleet management in India, one truck at a time, on the side of a highway in Maharashtra. Multiply that moment by two hundred million commercial vehicles and you have the problem I started Treel to solve. Not the rock. The fog.
+              That was fleet management in India, one truck at a time, on the side of a highway in Maharashtra. Multiply that moment by nearly 40 lakh heavy trucks and you have the problem I started Treel to solve. Not the stick. The fog.
             </p>
 
             <p>
@@ -131,25 +131,25 @@ export default function FounderNotePage() {
             </p>
 
             <p>
-              But this is still Day One. India&apos;s commercial vehicle fleet will grow to three hundred million vehicles in the next decade. Every one of them is a signal. Every signal is an insight. Every insight, in the right operator&apos;s hands, becomes a decision that saves fuel, extends tyre life, prevents a blowout, or gets a shipment to its destination on time.
+              But this is still Day One. India&apos;s truck fleet keeps growing every year. Every truck is a signal. Every signal is an insight. Every insight, in the right operator&apos;s hands, becomes a decision that saves fuel, extends tyre life, prevents a blowout, or gets a shipment to its destination on time.
             </p>
 
             <p>
-              We are backed by one of India&apos;s most trusted commercial tyre manufacturing networks, which gives us five decades of tyre engineering, national distribution reach, and the operational credibility that only a real industrial partner can lend a young platform company. We operate independently on product, platform, and go-to-market. The relationship works because both sides are clear about what each does best.
+              Treel is an official partner of JK Tyre. That partnership gives us five decades of tyre engineering, national distribution reach, and the operational credibility that only a real industrial partner can lend a young platform company. We operate independently on product, platform, and go-to-market. The relationship works because both sides are clear about what each does best.
             </p>
 
             <div className="space-y-4 pt-4">
               <p>
-                If you are a fleet operator considering TMIP, know that we sell only when the payback math works for you. If it does not, we walk away.
+                If you need clear visibility across a large fleet, and a payback that holds up before you sign, choose <Link href="/tmip" className="text-[#3B82F6] hover:underline font-medium">TMIP</Link>. We sell only when the numbers work for you. If they do not, we walk away.
               </p>
               <p>
-                If you are an owner-driver considering Suraksha, know that we built it in the vernacular of your region, at a price that pays for itself in nine months, without asking you to download an app or pay a monthly fee.
+                If you drive your own truck and need tyre safety in your own language, with no app to download and no monthly fee, choose <Link href="/suraksha" className="text-[#F59E0B] hover:underline font-medium">Suraksha</Link>. It pays for itself in nine months.
               </p>
               <p>
-                If you are considering Personal TPMS for your car, know that it is the same underlying technology our enterprise customers trust their fleets to.
+                If you need peace of mind on your car&apos;s tyres, choose <Link href="/personal" className="text-[#10B981] hover:underline font-medium">Personal TPMS</Link>. It runs on the same technology our enterprise customers trust with their fleets.
               </p>
               <p>
-                If you are considering joining us, know that we are building something that has not been built in India before, and we have room for people who want to help build it.
+                If you want to build something India has not built before, <Link href="/about#team" className="text-[#D5573B] hover:underline font-medium">join us</Link>. We have room for people who want to help build it.
               </p>
             </div>
 
@@ -163,7 +163,7 @@ export default function FounderNotePage() {
 
             {/* Signature Block */}
             <div className="pt-10 border-t border-white/10 space-y-2">
-                <div className="font-fraunces text-2xl text-[#FAF7F2] font-medium pt-2">
+              <div className="font-fraunces text-2xl text-[#FAF7F2] font-medium pt-2">
                 Manish Ingale
               </div>
               <div className="text-xs font-mono text-[#94A3B8]">

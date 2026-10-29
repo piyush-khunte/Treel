@@ -20,16 +20,8 @@ function escapeHtml(str: string): string {
     .replace(/'/g, "&#039;");
 }
 
-export function getCanonicalSiteUrl(): string {
-  const envUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || process.env.VERCEL_URL;
-  if (envUrl) {
-    if (envUrl.startsWith("http://") || envUrl.startsWith("https://")) {
-      return envUrl.replace(/\/$/, "");
-    }
-    return `https://${envUrl.replace(/\/$/, "")}`;
-  }
-  return "https://treel.in";
-}
+export { getCanonicalSiteUrl } from "@/lib/utils/url";
+import { getCanonicalSiteUrl } from "@/lib/utils/url";
 
 export function generateInsightEmailHtml(
   article: TreelInsightArticle,

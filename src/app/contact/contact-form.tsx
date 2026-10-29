@@ -1,14 +1,16 @@
 "use client";
 
 import {
-AlertCircle,
-CheckCircle2,
-Loader2,
-RotateCcw,
-Send
+  AlertCircle,
+  CheckCircle2,
+  Globe2,
+  Loader2,
+  RotateCcw,
+  Send,
 } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import React, { Suspense, useEffect, useState } from "react";
 import { isValidOptionalPhone, normalizePhone, PHONE_ERROR_MESSAGE } from "@/lib/validation/phone";
 
 interface FormData {
@@ -17,6 +19,7 @@ interface FormData {
   phone: string;
   company: string;
   subject: string;
+  targetRegion: string;
   fleetSize: string;
   message: string;
   consent: boolean;
@@ -27,17 +30,21 @@ interface FormErrors {
   email?: string;
   phone?: string;
   subject?: string;
+  targetRegion?: string;
   message?: string;
   consent?: string;
 }
 
-export function CorporateContactForm() {
+function CorporateContactFormContent() {
+  const searchParams = useSearchParams();
+
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
     phone: "",
     company: "",
     subject: "General inquiry",
+    targetRegion: "",
     fleetSize: "Under 25 vehicles",
     message: "",
     consent: false,
@@ -47,40 +54,85 @@ export function CorporateContactForm() {
   const [serverError, setServerError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [submittedData, setSubmittedData] = useState<{ team: string; sla: string } | null>(null);
+  const [submittedData, setSubmittedData] = useState<{ team: string; sla: string; isExport?: boolean } | null>(null);
+
+  // Auto-detect and pre-select subject and target region from query parameters
+  useEffect(() => {
+    if (!searchParams) return;
+    const subjectParam = searchParams.get("subject") || searchParams.get("inquiry") || searchParams.get("type");
+    const regionParam = searchParams.get("region") || searchParams.get("country");
+
+    if (subjectParam) {
+      const lower = subjectParam.toLowerCase();
+      if (
+        lower.includes("export") ||
+        lower.includes("international") ||
+        lower.includes("global") ||
+        lower.includes("distributor")
+      ) {
+        setFormData((prev) => ({
+          ...prev,
+          subject: "Export & International Distribution Inquiry",
+          targetRegion: regionParam || prev.targetRegion,
+        }));
+      } else if (lower.includes("otr")) {
+        setFormData((prev) => ({ ...prev, subject: "OTR TPMS (Mining & Off-The-Road)" }));
+      } else if (lower.includes("suraksha")) {
+        setFormData((prev) => ({ ...prev, subject: "Suraksha Commercial Truck Kit inquiry" }));
+      } else if (lower.includes("tmip") || lower.includes("enterprise") || lower.includes("fleet")) {
+        setFormData((prev) => ({ ...prev, subject: "Enterprise sales (TMIP)" }));
+      } else if (lower.includes("personal") || lower.includes("consumer") || lower.includes("car") || lower.includes("bike") || lower.includes("tpms")) {
+        setFormData((prev) => ({ ...prev, subject: "Personal TPMS (Consumer Vehicles)" }));
+      } else if (lower.includes("media") || lower.includes("press")) {
+        setFormData((prev) => ({ ...prev, subject: "Media inquiry" }));
+      } else if (lower.includes("partner")) {
+        setFormData((prev) => ({ ...prev, subject: "Partnership inquiry" }));
+      }
+    } else if (regionParam) {
+      setFormData((prev) => ({
+        ...prev,
+        subject: "Export & International Distribution Inquiry",
+        targetRegion: regionParam,
+      }));
+    } else if (typeof document !== "undefined" && document.referrer && document.referrer.includes("global-presence")) {
+      setFormData((prev) => ({
+        ...prev,
+        subject: "Export & International Distribution Inquiry",
+      }));
+    }
+  }, [searchParams]);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    // Name required: "Please tell us your name."
+    // Name required
     if (!formData.fullName.trim()) {
       newErrors.fullName = "Please tell us your name.";
     }
 
-    // Email required: "We need an email address to respond."
-    // Email invalid: "That doesn't look like a valid email address."
+    // Email required & format
     if (!formData.email.trim()) {
       newErrors.email = "We need an email address to respond.";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
       newErrors.email = "That doesn't look like a valid email address.";
     }
 
-    // Phone validation (optional, but if provided must be a valid 10-digit number)
+    // Phone validation (optional, but strictly validated if provided)
     if (formData.phone && !isValidOptionalPhone(formData.phone)) {
       newErrors.phone = PHONE_ERROR_MESSAGE;
     }
 
-    // Subject required: "Please tell us what your message is about."
+    // Subject required
     if (!formData.subject.trim()) {
       newErrors.subject = "Please tell us what your message is about.";
     }
 
-    // Message required: "Please write your message."
+    // Message required
     if (!formData.message.trim()) {
       newErrors.message = "Please write your message.";
     }
 
-    // Consent required: "Please confirm your consent to proceed."
+    // Consent required
     if (!formData.consent) {
       newErrors.consent = "Please confirm your consent to proceed.";
     }
@@ -100,19 +152,33 @@ export function CorporateContactForm() {
     setIsSubmitting(true);
     setServerError("");
 
-    // Calculate routed team and SLA based on selected subject (from content.md)
-    let team = "general inquiries";
-    let sla = "within 2 business days";
+    const isExport = formData.subject === "Export & International Distribution Inquiry";
 
-    if (formData.subject === "Enterprise sales (TMIP)") {
+    // Calculate routed team and SLA based on selected subject
+    let team = "general inquiries";
+    let sla = "at earliest";
+
+    if (isExport) {
+      team = "International Business & Export Desk";
+      sla = "at earliest";
+    } else if (formData.subject === "Enterprise sales (TMIP)") {
       team = "enterprise sales";
-      sla = "within 4 business hours";
+      sla = "at earliest";
+    } else if (formData.subject === "Suraksha Commercial Truck Kit inquiry") {
+      team = "Suraksha fleet specialists";
+      sla = "at earliest";
+    } else if (formData.subject === "OTR TPMS (Mining & Off-The-Road)") {
+      team = "OTR industrial & mining applications team";
+      sla = "at earliest";
+    } else if (formData.subject === "Personal TPMS (Consumer Vehicles)") {
+      team = "consumer support team";
+      sla = "at earliest";
     } else if (formData.subject === "Media inquiry") {
       team = "media relations";
-      sla = "within 1 business day";
+      sla = "at earliest";
     } else if (formData.subject === "Partnership inquiry") {
       team = "partnerships";
-      sla = "within 2 business days";
+      sla = "at earliest";
     }
 
     try {
@@ -125,9 +191,25 @@ export function CorporateContactForm() {
           phone: formData.phone,
           company: formData.company,
           subject: formData.subject,
+          targetRegion: formData.targetRegion,
           fleetSize: formData.fleetSize,
           message: formData.message,
           consent: formData.consent,
+          lead_source: isExport
+            ? "Export / International Desk"
+            : formData.subject === "Enterprise sales (TMIP)"
+            ? "TMIP Enterprise Inquiry"
+            : formData.subject === "Suraksha Commercial Truck Kit inquiry"
+            ? "Suraksha Fleet Inquiry"
+            : formData.subject === "OTR TPMS (Mining & Off-The-Road)"
+            ? "OTR TPMS Inquiry"
+            : formData.subject === "Personal TPMS (Consumer Vehicles)"
+            ? "Personal TPMS Inquiry"
+            : formData.subject === "Media inquiry"
+            ? "Media & Press Inquiry"
+            : "Corporate Contact Form",
+          campaign_type: isExport ? "export_inquiry" : "contact_form",
+          form_id: isExport ? "contact_export_international" : "contact_corporate_form",
           landing_page: typeof window !== "undefined" ? window.location.href : "https://treel.in/contact",
           page_path: "/contact",
         }),
@@ -138,7 +220,7 @@ export function CorporateContactForm() {
         throw new Error(data.error || "Failed to send message. Please try again.");
       }
 
-      setSubmittedData({ team, sla });
+      setSubmittedData({ team, sla, isExport });
       setIsSubmitted(true);
       setErrors({});
       setServerError("");
@@ -157,6 +239,7 @@ export function CorporateContactForm() {
       phone: "",
       company: "",
       subject: "General inquiry",
+      targetRegion: "",
       fleetSize: "Under 25 vehicles",
       message: "",
       consent: false,
@@ -179,11 +262,16 @@ export function CorporateContactForm() {
         </div>
         
         <div className="space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#D5573B]/10 border border-[#D5573B]/30 text-xs font-mono text-[#D5573B] font-semibold uppercase tracking-wider">
+            {submittedData.isExport ? "Export & International Desk Priority" : "Routing Confirmed"}
+          </div>
           <h3 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">
-            Message received.
+            Inquiry received.
           </h3>
           <p className="text-[#94A3B8] text-base leading-relaxed font-inter">
-            Thanks for reaching out. Your message is with our {submittedData.team} team and you&apos;ll hear back {submittedData.sla}. If it&apos;s urgent, call us at{" "}
+            Thanks for reaching out. Your message has been routed to our{" "}
+            <strong className="text-white font-semibold">{submittedData.team}</strong> and an application engineer or regional lead will respond{" "}
+            <strong className="text-[#FAF7F2] font-semibold">{submittedData.sla}</strong>. If urgent, call our headquarters at{" "}
             <a href="tel:+918008330233" className="text-[#FAF7F2] font-semibold hover:text-[#D5573B] underline underline-offset-4">
               1800 833 0233
             </a>.
@@ -196,7 +284,7 @@ export function CorporateContactForm() {
             onClick={handleReset}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[4px] border border-white/20 text-sm font-semibold text-[#FAF7F2] hover:bg-white/10 transition-all cursor-pointer"
           >
-            <RotateCcw className="w-4 h-4" /> Send another note
+            <RotateCcw className="w-4 h-4" /> Send another inquiry
           </button>
         </div>
       </div>
@@ -215,6 +303,7 @@ export function CorporateContactForm() {
           <span>{serverError}</span>
         </div>
       )}
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {/* Full name (required) */}
         <div className="space-y-2">
@@ -229,6 +318,7 @@ export function CorporateContactForm() {
               id="contact-fullName"
               name="fullName"
               type="text"
+              autoComplete="name"
               required
               aria-required="true"
               aria-invalid={!!errors.fullName}
@@ -252,7 +342,7 @@ export function CorporateContactForm() {
           )}
         </div>
 
-        {/* Email (required, validated) */}
+        {/* Work email (required) */}
         <div className="space-y-2">
           <label 
             htmlFor="contact-email" 
@@ -265,6 +355,7 @@ export function CorporateContactForm() {
               id="contact-email"
               name="email"
               type="email"
+              autoComplete="email"
               required
               aria-required="true"
               aria-invalid={!!errors.email}
@@ -288,13 +379,13 @@ export function CorporateContactForm() {
           )}
         </div>
 
-        {/* Phone (optional, with country code) */}
+        {/* Phone (optional, with 10-digit validation) */}
         <div className="space-y-2">
           <label 
             htmlFor="contact-phone" 
             className="block text-xs font-mono uppercase tracking-wider font-semibold text-[#FAF7F2]"
           >
-            Phone Number <span className="text-[#94A3B8] font-normal text-[11px]">(Optional, 10-digit mobile)</span>
+            Phone Number <span className="text-[#94A3B8] font-normal text-[11px]">(Optional, mobile)</span>
           </label>
           <div className="relative">
             <input
@@ -302,9 +393,8 @@ export function CorporateContactForm() {
               name="phone"
               type="tel"
               inputMode="numeric"
-              maxLength={10}
-              pattern="[0-9]{10}"
-              placeholder="10-digit mobile number"
+              maxLength={15}
+              placeholder="Contact phone or mobile"
               value={formData.phone}
               onChange={(e) => {
                 const clean = normalizePhone(e.target.value);
@@ -328,14 +418,14 @@ export function CorporateContactForm() {
             htmlFor="contact-company" 
             className="block text-xs font-mono uppercase tracking-wider font-semibold text-[#FAF7F2]"
           >
-            Company <span className="text-[#94A3B8] font-normal text-[11px]">(Optional)</span>
+            Company / Organization <span className="text-[#94A3B8] font-normal text-[11px]">(Optional)</span>
           </label>
           <div className="relative">
             <input
               id="contact-company"
               name="company"
               type="text"
-              placeholder="e.g. VRL Logistics"
+              placeholder="e.g. VRL Logistics / Global Fleet"
               value={formData.company}
               onChange={(e) => setFormData({ ...formData, company: e.target.value })}
               className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/15 focus:border-[#D5573B] focus:ring-1 focus:ring-[#D5573B] text-[#FAF7F2] placeholder-[#94A3B8]/50 text-sm outline-none transition-all"
@@ -350,7 +440,7 @@ export function CorporateContactForm() {
           htmlFor="contact-subject" 
           className="block text-xs font-mono uppercase tracking-wider font-semibold text-[#FAF7F2]"
         >
-          Subject <span className="text-[#D5573B]">*</span>
+          Inquiry Classification / Subject <span className="text-[#D5573B]">*</span>
         </label>
         <select
           id="contact-subject"
@@ -366,10 +456,30 @@ export function CorporateContactForm() {
           }}
           className="w-full px-4 py-3 rounded-lg bg-[#182234] border border-white/15 focus:border-[#D5573B] focus:ring-1 focus:ring-[#D5573B] text-[#FAF7F2] text-sm outline-none transition-all cursor-pointer"
         >
-          <option value="General inquiry" className="bg-[#182234] text-[#FAF7F2]">General inquiry</option>
-          <option value="Enterprise sales (TMIP)" className="bg-[#182234] text-[#FAF7F2]">Enterprise sales (TMIP)</option>
-          <option value="Media inquiry" className="bg-[#182234] text-[#FAF7F2]">Media inquiry</option>
-          <option value="Partnership inquiry" className="bg-[#182234] text-[#FAF7F2]">Partnership inquiry</option>
+          <option value="General inquiry" className="bg-[#182234] text-[#FAF7F2]">
+            General inquiry (India &amp; Corporate)
+          </option>
+          <option value="Export & International Distribution Inquiry" className="bg-[#182234] text-[#FAF7F2] font-semibold text-[#D5573B]">
+            Export &amp; International Distribution Inquiry (Outside India)
+          </option>
+          <option value="Enterprise sales (TMIP)" className="bg-[#182234] text-[#FAF7F2]">
+            Enterprise sales (TMIP Fleet Platform)
+          </option>
+          <option value="Suraksha Commercial Truck Kit inquiry" className="bg-[#182234] text-[#FAF7F2]">
+            Suraksha Fleet &amp; Commercial Truck Kit inquiry
+          </option>
+          <option value="OTR TPMS (Mining & Off-The-Road)" className="bg-[#182234] text-[#FAF7F2]">
+            OTR TPMS (Mining, Construction &amp; Port Heavy Equipment)
+          </option>
+          <option value="Personal TPMS (Consumer Vehicles)" className="bg-[#182234] text-[#FAF7F2]">
+            Personal TPMS (Consumer Cars, Bikes &amp; Garage Fleets)
+          </option>
+          <option value="Media inquiry" className="bg-[#182234] text-[#FAF7F2]">
+            Media &amp; Press inquiry
+          </option>
+          <option value="Partnership inquiry" className="bg-[#182234] text-[#FAF7F2]">
+            Strategic Partnership inquiry
+          </option>
         </select>
         {errors.subject && (
           <p id="subject-error" className="text-red-400 text-xs flex items-center gap-1.5 pt-0.5">
@@ -379,6 +489,36 @@ export function CorporateContactForm() {
         )}
       </div>
 
+      {/* Target Region (conditional, appears when Subject = Export & International Distribution Inquiry) */}
+      {formData.subject === "Export & International Distribution Inquiry" && (
+        <div className="space-y-2 animate-in fade-in slide-in-from-top-2 duration-200 p-4 rounded-lg bg-[#D5573B]/5 border border-[#D5573B]/20">
+          <div className="flex items-center justify-between">
+            <label 
+              htmlFor="contact-targetRegion" 
+              className="text-xs font-mono uppercase tracking-wider font-semibold text-[#FAF7F2] flex items-center gap-1.5"
+            >
+              <Globe2 className="w-3.5 h-3.5 text-[#D5573B]" />
+              Target Country / Operating Region
+            </label>
+            <span className="text-[10px] font-mono uppercase bg-[#D5573B]/20 text-[#D5573B] px-2 py-0.5 rounded border border-[#D5573B]/30 font-semibold">
+              Export Desk Priority
+            </span>
+          </div>
+          <input
+            id="contact-targetRegion"
+            name="targetRegion"
+            type="text"
+            placeholder="e.g. European Union (Latvia/Poland), South America (Brazil), Africa, UAE, etc."
+            value={formData.targetRegion}
+            onChange={(e) => setFormData({ ...formData, targetRegion: e.target.value })}
+            className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/15 focus:border-[#D5573B] focus:ring-1 focus:ring-[#D5573B] text-[#FAF7F2] placeholder-[#94A3B8]/50 text-sm outline-none transition-all"
+          />
+          <p className="text-[11px] text-[#94A3B8] font-inter">
+            Inquiry will be routed directly to Treel&apos;s International Business Desk for OEM fitments, cross-border distributor agreements, and regional hardware certifications (SLA: at earliest).
+          </p>
+        </div>
+      )}
+
       {/* Fleet size (conditional, appears when Subject = Enterprise sales (TMIP)) */}
       {formData.subject === "Enterprise sales (TMIP)" && (
         <div className="space-y-2 animate-in fade-in slide-in-from-top-2 duration-200">
@@ -386,7 +526,7 @@ export function CorporateContactForm() {
             htmlFor="contact-fleetSize" 
             className="block text-xs font-mono uppercase tracking-wider font-semibold text-[#FAF7F2]"
           >
-            Fleet Size
+            Fleet Size (Commercial Vehicles)
           </label>
           <select
             id="contact-fleetSize"
@@ -497,5 +637,13 @@ export function CorporateContactForm() {
         </button>
       </div>
     </form>
+  );
+}
+
+export function CorporateContactForm() {
+  return (
+    <Suspense fallback={<div className="p-8 text-[#94A3B8] text-sm font-mono">Loading form...</div>}>
+      <CorporateContactFormContent />
+    </Suspense>
   );
 }

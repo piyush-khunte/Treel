@@ -46,7 +46,7 @@ const PAPERS: Record<string, WhitepaperDetail> = {
     length: "32 pages",
     abstract: "The mathematical and thermodynamic foundations of Treel's five-layer digital twin converting raw wheel-end sensor signals into predictive vehicle health state. Explores state accumulation, thermal decay curves, retread durability modeling, and real-time anomaly classification.",
     chapters: [
-      "01. Physical State Ingestion & 24 Hz Edge Telemetry",
+      "01. Physical State Ingestion & Real-Time Edge Telemetry",
       "02. Dynamic Thermal Accumulation Modeling",
       "03. Carcass Stress Cycles & Retread Durability Predictability",
       "04. Multi-Axle Differential Load Estimation",

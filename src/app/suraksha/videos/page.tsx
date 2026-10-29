@@ -360,7 +360,7 @@ export default function SurakshaVideosPage() {
 
       {/* INTERACTIVE VIDEO MODAL */}
       {activeVideo && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 sm:p-6 backdrop-blur-xs animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4 sm:p-6 backdrop-blur-md animate-in fade-in duration-200">
           <div className="bg-[#1C120C] border-2 border-[#DC2626] rounded-xl max-w-2xl w-full p-6 text-white space-y-4 shadow-2xl relative">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div>

@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 const challenges = [
   {
     title: "Extreme operating environments",
-    desc: "Abrasive dust, extreme ambient heat, heavy mechanical vibration, and continuous high-tonnage load cycles stress vehicle components beyond standard highway tolerances.",
+    desc: "Abrasive dust, extreme ambient heat, heavy mechanical vibration, and continuous heavy-duty shift load cycles stress vehicle components beyond standard highway tolerances.",
   },
   {
     title: "Off-highway telematics blind spots",
@@ -93,10 +93,10 @@ export default function TmipSolutionsConstructionPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 border-b border-slate-400/10 bg-[#080E1E]">
+      <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-4">
+          <div className="max-w-4xl space-y-4">
+            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-2">
               <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
                 TMIP
               </Link>
@@ -121,7 +121,7 @@ export default function TmipSolutionsConstructionPage() {
               the conditions that break most fleet software.
             </p>
 
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-wrap gap-4 pt-2">
               <Link
                 href="/tmip/demo"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[3px] font-semibold text-sm transition-all shadow-md bg-[#3B82F6] text-white hover:bg-[#2563EB]"
@@ -140,20 +140,20 @@ export default function TmipSolutionsConstructionPage() {
       </section>
 
       {/* Proof Band */}
-      <section className="relative z-10 py-12 border-b border-slate-400/10 bg-[#050A17]">
+      <section className="relative z-10 py-8 sm:py-10 border-b border-slate-400/10 bg-[#050A17]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
+            <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
               <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#10B981]">14% Lower</div>
               <div className="text-sm font-semibold text-[#F1F5F9] mt-1 font-ibm-plex">Tyre Scrap Rate</div>
               <div className="text-xs text-[#94A3B8] mt-1 font-ibm-plex">Preserving casing retreadability under harsh aggregate haulage</div>
             </div>
-            <div className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
+            <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
               <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#3B82F6]">31% Drop</div>
               <div className="text-sm font-semibold text-[#F1F5F9] mt-1 font-ibm-plex">Unscheduled Site Downtime</div>
               <div className="text-xs text-[#94A3B8] mt-1 font-ibm-plex">Preventing mid-pour mixer breakdowns and paving stoppages</div>
             </div>
-            <div className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
+            <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
               <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#F59E0B]">IP67 / ARAI</div>
               <div className="text-sm font-semibold text-[#F1F5F9] mt-1 font-ibm-plex">Certified Ruggedised IoT</div>
               <div className="text-xs text-[#94A3B8] mt-1 font-ibm-plex">Tested against dust immersion, washdown sprays, and shock</div>
@@ -163,9 +163,9 @@ export default function TmipSolutionsConstructionPage() {
       </section>
 
       {/* Industry Challenges Section */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
-          <div className="max-w-3xl space-y-4">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-6 sm:space-y-8">
+          <div className="max-w-3xl space-y-3">
             <h2 className="font-space-grotesk text-2xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Construction Operating Challenges
             </h2>
@@ -175,9 +175,9 @@ export default function TmipSolutionsConstructionPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {challenges.map((item, idx) => (
-              <div key={idx} className="p-6 rounded-[4px] bg-[#080E1E] border border-slate-400/10 space-y-3">
+              <div key={idx} className="p-5 sm:p-6 rounded-[4px] bg-[#080E1E] border border-slate-400/10 space-y-2.5">
                 <div className="w-8 h-8 rounded-[3px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-xs font-jetbrains font-bold text-[#3B82F6]">
                   0{idx + 1}
                 </div>
@@ -190,17 +190,17 @@ export default function TmipSolutionsConstructionPage() {
       </section>
 
       {/* TMIP's Fit Section */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#080E1E]">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7 space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-7 space-y-4">
               <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
                 RUGGEDISED FIT
               </div>
               <h2 className="font-space-grotesk text-2xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
                 What TMIP does for construction fleets.
               </h2>
-              <div className="space-y-4 text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex">
+              <div className="space-y-3 text-[#94A3B8] text-base leading-relaxed font-ibm-plex">
                 <p>
                   TMIP&apos;s sensor hardware is ARAI certified and benchmarked against international standards,
                   engineered specifically for construction operating conditions. Edge processing continues even when
@@ -213,7 +213,7 @@ export default function TmipSolutionsConstructionPage() {
               </div>
             </div>
 
-            <div className="lg:col-span-5 p-8 rounded-[4px] bg-[#050A17] border border-slate-400/10 space-y-6">
+            <div className="lg:col-span-5 p-6 sm:p-7 rounded-[4px] bg-[#050A17] border border-slate-400/10 space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-[4px] bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6]">
                   <HardHat className="w-5 h-5" />
@@ -224,7 +224,7 @@ export default function TmipSolutionsConstructionPage() {
                 </div>
               </div>
 
-              <div className="space-y-4 pt-2">
+              <div className="space-y-3 pt-1">
                 <div className="flex items-center justify-between p-3 rounded-[3px] bg-white/[0.02] border border-slate-400/10">
                   <span className="text-sm text-[#94A3B8] font-ibm-plex">Sensor Ingress Rating</span>
                   <span className="text-sm font-jetbrains font-bold text-[#10B981]">IP67 Dust & Jet Wash</span>
@@ -244,22 +244,22 @@ export default function TmipSolutionsConstructionPage() {
       </section>
 
       {/* Relevant Capabilities Section */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
-          <div className="max-w-3xl space-y-4">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-6 sm:space-y-8">
+          <div className="max-w-3xl space-y-3">
             <h2 className="font-space-grotesk text-2xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Relevant Capabilities
             </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex">
+            <p className="text-[#94A3B8] text-base leading-relaxed font-ibm-plex">
               Engineered to survive heavy vibrations, stone impacts, and dust-choked construction environments.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {capabilities.map((cap, i) => {
               const Icon = cap.icon;
               return (
-                <div key={i} className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10 space-y-3">
+                <div key={i} className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10 space-y-2.5">
                   <div className="w-10 h-10 rounded-[4px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6]">
                     <Icon className="w-5 h-5" />
                   </div>
@@ -272,80 +272,21 @@ export default function TmipSolutionsConstructionPage() {
         </div>
       </section>
 
-      {/* Construction Case Studies Section */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="max-w-2xl space-y-3">
-              <div className="text-xs font-jetbrains text-[#3B82F6] uppercase tracking-wider font-semibold">
-                PROVEN RESULTS
-              </div>
-              <h2 className="font-space-grotesk text-2xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
-                Construction operators running TMIP.
-              </h2>
-            </div>
-            <Link
-              href="/tmip/customers/case-studies"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#3B82F6] hover:underline"
-            >
-              View all case studies <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <div className="max-w-2xl">
-            {/* Case Study Card */}
-            <div className="p-8 rounded-[4px] bg-[#050A17] border border-slate-400/10 flex flex-col justify-between space-y-6">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <span className="border border-[#3B82F6]/30 bg-[#3B82F6]/10 px-3 py-1 rounded-[2px] text-xs font-jetbrains text-[#3B82F6] uppercase font-semibold">
-                    HIGHWAY INFRASTRUCTURE
-                  </span>
-                  <span className="text-xs font-jetbrains text-[#94A3B8]">280 Tippers & Mixers</span>
-                </div>
-                <h3 className="font-space-grotesk text-xl font-bold text-[#F1F5F9]">
-                  Extending tipper tyre life in severe dust-heavy quarry routes.
-                </h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed font-ibm-plex">
-                  Protecting heavy multi-axle transit tippers against severe puncture cycles and carcass fatigue during
-                  massive highway paving contracts across western Maharashtra.
-                </p>
-                <div className="flex items-center gap-6 pt-2 font-jetbrains text-sm">
-                  <div>
-                    <span className="text-[#10B981] font-bold">14% Lower</span>
-                    <span className="text-xs text-[#94A3B8] ml-1.5">Scrap rate</span>
-                  </div>
-                  <div>
-                    <span className="text-[#3B82F6] font-bold">31%</span>
-                    <span className="text-xs text-[#94A3B8] ml-1.5">Downtime drop</span>
-                  </div>
-                </div>
-              </div>
-              <Link
-                href="/tmip/customers/case-studies/quarry-transit-tippers"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#3B82F6] hover:underline"
-              >
-                Read full case study <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Band Section */}
-      <section className="relative z-10 py-20 bg-[#050A17]">
+      <section className="relative z-10 py-10 sm:py-14 bg-[#050A17]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="p-10 sm:p-14 rounded-[4px] bg-gradient-to-br from-[#080E1E] to-[#0B1220] border border-blue-500/30 text-center space-y-6 max-w-4xl mx-auto">
+          <div className="p-6 sm:p-10 rounded-[4px] bg-gradient-to-br from-[#080E1E] to-[#0B1220] border border-blue-500/30 text-center space-y-4 max-w-4xl mx-auto">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Engineered for demanding job sites.
             </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-ibm-plex">
+            <p className="text-[#94A3B8] text-base max-w-2xl mx-auto leading-relaxed font-ibm-plex">
               Consult with our industrial deployment team to evaluate ARAI-certified sensor fitment and offline edge
               gateways for your construction machinery.
             </p>
             <div className="pt-2">
               <Link
                 href="/tmip/demo"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-[3px] font-semibold text-base transition-all shadow-lg bg-[#3B82F6] text-white hover:bg-[#2563EB]"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[3px] font-semibold text-base transition-all shadow-lg bg-[#3B82F6] text-white hover:bg-[#2563EB]"
               >
                 Book a demo <ArrowRight className="w-5 h-5" />
               </Link>

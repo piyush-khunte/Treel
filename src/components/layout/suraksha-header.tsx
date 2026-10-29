@@ -27,7 +27,6 @@ export function SurakshaHeader() {
   const isProductActive = pathname === "/suraksha/product" || pathname.startsWith("/suraksha/how-it-works");
   const isPricingActive = pathname === "/suraksha/pricing" || pathname.startsWith("/suraksha/emi");
   const isCentresActive = pathname.startsWith("/suraksha/centres");
-  const isTestimonialsActive = pathname.startsWith("/suraksha/testimonials");
   const isResourcesActive = pathname.startsWith("/suraksha/faqs") || pathname.startsWith("/suraksha/videos") || pathname.startsWith("/suraksha/blog");
   const isSupportActive = pathname === "/suraksha/support" || pathname.startsWith("/suraksha/contact");
 
@@ -43,12 +42,13 @@ export function SurakshaHeader() {
           <div className="flex items-center gap-2 sm:gap-4 shrink-0 z-10 min-w-0 mr-2 xl:mr-4">
             <Link href="/" className="flex items-center group shrink-0">
               <Image
-                src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436567/Treel_New_Logo_Final_With_Favicon_Tagline.png"
+                src="/images/treel-logo-final.webp"
                 alt="Treel"
                 width={160}
                 height={50}
                 className="h-7 sm:h-9 lg:h-11 xl:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
                 priority
+                unoptimized
               />
             </Link>
 
@@ -158,15 +158,7 @@ export function SurakshaHeader() {
               Centres
             </Link>
 
-            {/* TESTIMONIALS */}
-            <Link
-              href="/suraksha/testimonials"
-              className={`transition-colors py-2 whitespace-nowrap ${
-                isTestimonialsActive ? "text-[#DC2626]" : "hover:text-[#DC2626]"
-              }`}
-            >
-              Testimonials
-            </Link>
+
 
             {/* RESOURCES */}
             <div className="relative group">
@@ -322,14 +314,7 @@ export function SurakshaHeader() {
               Centres
             </Link>
 
-            {/* Testimonials */}
-            <Link
-              href="/suraksha/testimonials"
-              onClick={() => setMobileOpen(false)}
-              className="block py-2 text-[#451A03] font-bold hover:text-[#DC2626]"
-            >
-              Testimonials
-            </Link>
+
 
             {/* Resources Accordion */}
             <div>

@@ -105,7 +105,7 @@ export const SEED_INSIGHTS: TreelInsightArticle[] = [
       ],
       pullQuote: {
         quote: "Tyre pressure is not a maintenance checklist item; it is an active thermodynamic variable directly controlling fleet fuel burn.",
-        attribution: "— Pradnya Choudhary, Hardware Lead"
+        attribution: "— Pradnya Choudhari, Hardware Lead"
       }
     },
     relatedSlugs: [
@@ -184,7 +184,7 @@ export const SEED_INSIGHTS: TreelInsightArticle[] = [
         {
           heading: "Highway Network Backing",
           paragraphs: [
-            "Through 400+ JK Tyre Highway Truck Centres across national highways, drivers receive free sensor inspections, warranty replacements, and emergency support within minutes of roadside alert triggers.",
+            "Through 400+ Highway Truck Centres across national highways, drivers receive free sensor inspections, warranty replacements, and emergency support within minutes of roadside alert triggers.",
             "Predictable monthly EMI structures ensure that safety technology is immediately accessible without upfront capital strain."
           ]
         }
@@ -248,7 +248,7 @@ export const SEED_INSIGHTS: TreelInsightArticle[] = [
     slug: "founding-conviction-2018-to-2026",
     category: "Founder Notes",
     categorySlug: "founder-notes",
-    title: "The Tyre Was the Entry Point: Reflections on Eight Years of Building Treel",
+    title: "The Tyre Was the Entry Point: Reflections on Building Treel: The Journey Since 2018",
     deck: "Reflecting on the journey from our first valve-stem sensor prototypes in Pune to operating India's largest connected commercial vehicle platform.",
     author: "Manish Ingale",
     authorRole: "Founder, Treel Mobility Solutions",
@@ -257,7 +257,7 @@ export const SEED_INSIGHTS: TreelInsightArticle[] = [
     publishIsoDate: "2026-06-18",
     readTime: "5 min read",
     status: "Published",
-    tldr: "Treel started with a fundamental realization: tyres touch the road, absorb every thermal and kinetic shock, and generate the truest indicator of vehicle physics. Eight years later, that sensor insight has grown into India's premier commercial vehicle intelligence platform.",
+    tldr: "Treel started with a fundamental realization: tyres touch the road, absorb every thermal and kinetic shock, and generate the truest indicator of vehicle physics. Today, that sensor insight has grown into India's premier commercial vehicle intelligence platform, monitoring over 2 million tyres.",
     body: {
       sections: [
         {

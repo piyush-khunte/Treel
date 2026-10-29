@@ -87,6 +87,10 @@ export async function POST(req: NextRequest) {
       priority,
       fleetSize,
       fleet_size,
+      targetRegion,
+      target_region,
+      country,
+      region,
       message,
       description,
       consent,
@@ -186,9 +190,39 @@ export async function POST(req: NextRequest) {
         ? `[Personal Support] ${rawCategory}`
         : "General inquiry";
 
+    const normalizedRegion = (
+      typeof targetRegion === "string"
+        ? targetRegion
+        : typeof target_region === "string"
+        ? target_region
+        : typeof country === "string"
+        ? country
+        : typeof region === "string"
+        ? region
+        : ""
+    ).trim();
+
+    const isExportInquiry =
+      normalizedSubject.toLowerCase().includes("export") ||
+      normalizedSubject.toLowerCase().includes("international") ||
+      (typeof lead_source === "string" && lead_source.toLowerCase().includes("export")) ||
+      (typeof form_id === "string" && form_id.toLowerCase().includes("export")) ||
+      (typeof page_path === "string" && page_path.includes("global-presence"));
+
+    const isEnterpriseTmip =
+      !isExportInquiry &&
+      (normalizedSubject.toLowerCase().includes("enterprise") ||
+        normalizedSubject.toLowerCase().includes("tmip") ||
+        (typeof lead_source === "string" && lead_source.toLowerCase().includes("tmip")));
+
+    const isMediaInquiry = !isExportInquiry && normalizedSubject.toLowerCase().includes("media");
+    const isPartnership = !isExportInquiry && normalizedSubject.toLowerCase().includes("partner");
+
     const normalizedCompany =
       typeof company === "string" && company.trim()
         ? company.trim()
+        : isExportInquiry
+        ? (normalizedRegion ? `International Inquirer (${normalizedRegion})` : "International Fleet / Distributor")
         : isPersonalSupport
         ? (rawOrderNumber ? `Order #${rawOrderNumber}` : "Personal TPMS Customer")
         : "Corporate / General Inquirer";
@@ -196,6 +230,10 @@ export async function POST(req: NextRequest) {
     const normalizedLeadSource =
       typeof lead_source === "string" && lead_source.trim()
         ? lead_source.trim()
+        : isExportInquiry
+        ? "Export / International Desk"
+        : isEnterpriseTmip
+        ? "TMIP Enterprise Inquiry"
         : isPersonalSupport
         ? "Personal Support"
         : "General Contact";
@@ -203,6 +241,10 @@ export async function POST(req: NextRequest) {
     const normalizedCampaignType =
       typeof campaign_type === "string" && campaign_type.trim()
         ? campaign_type.trim()
+        : isExportInquiry
+        ? "export_inquiry"
+        : isEnterpriseTmip
+        ? "enterprise_inquiry"
         : isPersonalSupport
         ? "personal_support"
         : "contact_form";
@@ -210,6 +252,8 @@ export async function POST(req: NextRequest) {
     const normalizedFormId =
       typeof form_id === "string" && form_id.trim()
         ? form_id.trim()
+        : isExportInquiry
+        ? "contact_export_international"
         : isPersonalSupport
         ? "personal_support_contact"
         : "contact";
@@ -263,13 +307,15 @@ export async function POST(req: NextRequest) {
       attribution_metadata: {
         subject: normalizedSubject,
         category: rawCategory || normalizedSubject,
+        target_region: normalizedRegion || null,
+        is_export: isExportInquiry,
         order_number: rawOrderNumber || null,
         priority: rawPriority || null,
         message: rawMessage,
         ticket_id: typeof ticketId === "string" ? ticketId : typeof ticket_id === "string" ? ticket_id : null,
         fleet_size_label: rawFleet || null,
         consent: true,
-        product_line: typeof product_line === "string" && product_line.trim() ? product_line.trim() : (isPersonalSupport ? "personal_tpms" : "general_contact"),
+        product_line: typeof product_line === "string" && product_line.trim() ? product_line.trim() : (isExportInquiry ? "export_telematics" : isPersonalSupport ? "personal_tpms" : "general_contact"),
       },
       email_notification_status: "skipped",
     };
@@ -298,27 +344,77 @@ export async function POST(req: NextRequest) {
       try {
         const primaryRecipient =
           process.env.SES_LEADS_EMAIL || process.env.SES_TO_EMAIL || process.env.SES_FROM_EMAIL || "support@treel.in";
-        const emailSubject = `[Contact Inquiry] ${normalizedName} — ${normalizedCompany} (${normalizedSubject})`;
+
+        const originPath = typeof page_path === "string" && page_path.trim() ? page_path.trim() : (isPersonalSupport ? "/personal/support/contact" : "/contact");
+
+        let emailSubject = "";
+        let classificationTag = "";
+        let accentBorder = "#3b82f6";
+        let priorityBadge = "";
+
+        if (isExportInquiry) {
+          classificationTag = "EXPORT & INTERNATIONAL INQUIRY";
+          accentBorder = "#d97706";
+          priorityBadge = "EXPORT DESK PRIORITY";
+          emailSubject = `[EXPORT INQUIRY - ${originPath}] ${normalizedName} — ${normalizedCompany}${normalizedRegion ? ` (${normalizedRegion})` : ""}`;
+        } else if (isEnterpriseTmip) {
+          classificationTag = "TMIP ENTERPRISE LEAD";
+          accentBorder = "#2563eb";
+          priorityBadge = "ENTERPRISE SALES";
+          emailSubject = `[TMIP ENTERPRISE LEAD - ${originPath}] ${normalizedName} — ${normalizedCompany}${parsedFleetSize ? ` (${parsedFleetSize} Trucks)` : ""}`;
+        } else if (isMediaInquiry) {
+          classificationTag = "MEDIA & PRESS INQUIRY";
+          accentBorder = "#7c3aed";
+          emailSubject = `[MEDIA INQUIRY - ${originPath}] ${normalizedName} — ${normalizedCompany}`;
+        } else if (isPartnership) {
+          classificationTag = "PARTNERSHIP INQUIRY";
+          accentBorder = "#059669";
+          emailSubject = `[PARTNERSHIP - ${originPath}] ${normalizedName} — ${normalizedCompany}`;
+        } else if (isPersonalSupport) {
+          classificationTag = "PERSONAL TPMS SUPPORT";
+          accentBorder = "#dc2626";
+          emailSubject = `[PERSONAL SUPPORT - ${rawCategory || "General"}] ${normalizedName} — ${rawOrderNumber ? `Order #${rawOrderNumber}` : normalizedPhone}`;
+        } else {
+          classificationTag = "GENERAL CORPORATE CONTACT";
+          accentBorder = "#475569";
+          emailSubject = `[GENERAL CONTACT - ${originPath}] ${normalizedName} — ${normalizedCompany} (${normalizedSubject})`;
+        }
 
         const emailHtml = `
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title>New Contact Form Inquiry</title>
+    <title>${classificationTag}</title>
   </head>
   <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #1e293b; background-color: #f8fafc; margin: 0; padding: 24px;">
     <div style="max-width: 620px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
-      <div style="background: #0f172a; padding: 24px; border-bottom: 3px solid #3b82f6;">
-        <h2 style="margin: 0; font-size: 20px; color: #ffffff; letter-spacing: -0.02em;">Treel — New Contact Form Inquiry</h2>
-        <p style="margin: 4px 0 0 0; font-size: 13px; color: #94a3b8; font-family: monospace;">Source: /contact · Subject: ${normalizedSubject}</p>
+      <div style="background: #0f172a; padding: 24px; border-bottom: 3px solid ${accentBorder};">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <span style="font-family: monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: ${accentBorder}; font-weight: 700;">
+            ${classificationTag}
+          </span>
+          ${priorityBadge ? `<span style="background: rgba(217, 119, 6, 0.2); color: #f59e0b; border: 1px solid rgba(217, 119, 6, 0.4); font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 3px; font-family: monospace;">${priorityBadge}</span>` : ''}
+        </div>
+        <h2 style="margin: 0; font-size: 20px; color: #ffffff; letter-spacing: -0.02em;">Treel — New Web Inquiry</h2>
+        <p style="margin: 6px 0 0 0; font-size: 13px; color: #94a3b8; font-family: monospace;">
+          Originating Source: <strong style="color: #ffffff;">${originPath}</strong> · Subject: ${normalizedSubject}
+        </p>
       </div>
       
       <div style="padding: 24px;">
         <h3 style="margin: 0 0 16px 0; font-size: 16px; color: #0f172a; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">Sender Information</h3>
         <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 24px;">
           <tr>
-            <td style="padding: 8px 0; width: 140px; color: #64748b; font-weight: 500;">Name:</td>
+            <td style="padding: 8px 0; width: 140px; color: #64748b; font-weight: 500;">Inquiry Type:</td>
+            <td style="padding: 8px 0; color: #0f172a; font-weight: 700;">${classificationTag}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Originating Page:</td>
+            <td style="padding: 8px 0; color: #2563eb; font-family: monospace; font-weight: 600;">${originPath}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Name:</td>
             <td style="padding: 8px 0; color: #0f172a; font-weight: 600;">${normalizedName}</td>
           </tr>
           <tr>
@@ -333,6 +429,7 @@ export async function POST(req: NextRequest) {
             <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Company:</td>
             <td style="padding: 8px 0; color: #0f172a; font-weight: 600;">${normalizedCompany}</td>
           </tr>
+          ${normalizedRegion ? `<tr><td style="padding: 8px 0; color: #64748b; font-weight: 500;">Target Region/Country:</td><td style="padding: 8px 0; color: #d97706; font-weight: 700;">${normalizedRegion}</td></tr>` : ''}
           ${parsedFleetSize ? `<tr><td style="padding: 8px 0; color: #64748b; font-weight: 500;">Fleet Size:</td><td style="padding: 8px 0; color: #059669; font-weight: 600;">${parsedFleetSize} Vehicles</td></tr>` : ''}
           <tr>
             <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Subject:</td>
@@ -357,7 +454,7 @@ export async function POST(req: NextRequest) {
           to: primaryRecipient,
           subject: emailSubject,
           html: emailHtml,
-          text: `New Contact Inquiry:\nName: ${normalizedName}\nEmail: ${rawEmail}\nPhone: ${normalizedPhone}\nCompany: ${normalizedCompany}\nSubject: ${normalizedSubject}\nMessage:\n${rawMessage}`,
+          text: `New ${classificationTag}:\nOriginating Page: ${originPath}\nName: ${normalizedName}\nEmail: ${rawEmail}\nPhone: ${normalizedPhone}\nCompany: ${normalizedCompany}${normalizedRegion ? `\nTarget Region: ${normalizedRegion}` : ''}\nSubject: ${normalizedSubject}\nMessage:\n${rawMessage}`,
           replyTo: rawEmail,
         });
 

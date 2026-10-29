@@ -1,17 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Baloo+Chettan+2:wght@500;600;700&family=Baloo+Bhai+2:wght@500;600;700&family=Baloo+Thambi+2:wght@500;600;700&family=Baloo+Tammudu+2:wght@500;600;700&family=Baloo+Tamma+2:wght@500;600;700&family=Baloo+Paaji+2:wght@500;600;700&family=Baloo+Da+2:wght@500;600;700&display=swap");
+/* Fonts handled via next/font in fonts.ts */
 @import "tailwindcss";
 
 @layer base {
   :root {
-    --font-fraunces: 'Fraunces', serif;
-    --font-inter: 'Inter', sans-serif;
-    --font-space-grotesk: 'Space Grotesk', sans-serif;
-    --font-ibm-plex-sans: 'IBM Plex Sans', sans-serif;
-    --font-jetbrains-mono: 'JetBrains Mono', monospace;
-    --font-anton: 'Anton', sans-serif;
-    --font-rubik: 'Rubik', sans-serif;
-    --font-baloo2: 'Baloo 2', cursive, sans-serif;
-    --font-manrope: 'Manrope', sans-serif;
+
+
+
+
+
+
+
+
+
 
     /* Master Brand Colors */
     --treel-dark: #0F1E19;
@@ -61,7 +61,7 @@
 
 /* Global Smooth & Animations */
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior omitted for performance */
 }
 
 body {
@@ -302,6 +302,10 @@ body {
   color: #D5573B;
   font-variation-settings: "opsz" 144;
   font-weight: 400;
+}
+
+.opsz-144 {
+  font-variation-settings: "opsz" 144;
 }
 
 .treel-hero-lede {

@@ -38,12 +38,13 @@ export function PersonalHeader() {
           <div className="flex items-center gap-2 sm:gap-4 shrink-0 min-w-0 mr-2 xl:mr-5">
             <Link href="/" className="flex items-center group shrink-0">
               <Image
-                src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436567/Treel_New_Logo_Final_With_Favicon_Tagline.png"
+                src="/images/treel-logo-final.webp"
                 alt="Treel"
                 width={160}
                 height={50}
                 className="h-7 sm:h-9 lg:h-11 xl:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
                 priority
+                unoptimized
               />
             </Link>
 

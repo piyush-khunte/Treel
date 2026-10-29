@@ -40,11 +40,11 @@ export function ScheduledClientView() {
   }, [searchParams]);
 
   return (
-    <div className="relative z-10 max-w-[880px] mx-auto px-6 py-16 sm:py-24 text-center">
+    <div className="relative z-10 max-w-[880px] mx-auto px-6 py-10 sm:py-14 text-center">
       {/* 1. Animated / Clean Green Checkmark Icon */}
-      <div className="mb-6 flex justify-center">
+      <div className="mb-4 sm:mb-5 flex justify-center">
         <svg
-          className="w-20 h-20 sm:w-24 sm:h-24"
+          className="w-16 h-16 sm:w-20 sm:h-20"
           viewBox="0 0 96 96"
           aria-hidden="true"
         >
@@ -69,20 +69,20 @@ export function ScheduledClientView() {
       </div>
 
       {/* 2. Clean TMIP Headline */}
-      <h1 className="font-space-grotesk text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] text-[#F1F5F9] leading-[1.08] mb-4">
+      <h1 className="font-space-grotesk text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] text-[#F1F5F9] leading-[1.08] mb-3">
         Thank you.
       </h1>
 
       {/* 3. Short Confirmation Message */}
-      <p className="text-[#94A3B8] text-lg sm:text-xl font-ibm-plex max-w-xl mx-auto mb-8 leading-relaxed">
+      <p className="text-[#94A3B8] text-base sm:text-lg font-ibm-plex max-w-xl mx-auto mb-6 leading-relaxed">
         Our team will reach out to schedule your 30-minute demo.
       </p>
 
       {/* 4. Action / Contact Buttons */}
-      <div className="flex flex-wrap items-center justify-center gap-3.5 mb-10">
+      <div className="flex flex-wrap items-center justify-center gap-3 mb-6 sm:mb-8">
         <a
           href="tel:18008330233"
-          className="inline-flex items-center justify-center gap-2.5 min-h-[50px] px-6 rounded-[3px] font-space-grotesk text-sm sm:text-base font-semibold bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-md transition-all"
+          className="inline-flex items-center justify-center gap-2.5 min-h-[46px] px-6 rounded-[3px] font-space-grotesk text-sm sm:text-base font-semibold bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-md transition-all"
         >
           <Phone className="w-4 h-4 shrink-0" />
           <span>Call toll-free <span className="font-mono">1800 833 0233</span></span>
@@ -90,7 +90,7 @@ export function ScheduledClientView() {
 
         <a
           href="mailto:hello@treel.in"
-          className="inline-flex items-center justify-center gap-2.5 min-h-[50px] px-6 rounded-[3px] font-space-grotesk text-sm sm:text-base font-semibold bg-transparent text-[#F1F5F9] border border-blue-900/40 hover:border-[#3B82F6] hover:text-[#3B82F6] transition-all"
+          className="inline-flex items-center justify-center gap-2.5 min-h-[46px] px-6 rounded-[3px] font-space-grotesk text-sm sm:text-base font-semibold bg-transparent text-[#F1F5F9] border border-blue-900/40 hover:border-[#3B82F6] hover:text-[#3B82F6] transition-all"
         >
           <Mail className="w-4 h-4 shrink-0" />
           <span>hello@treel.in</span>
@@ -98,7 +98,7 @@ export function ScheduledClientView() {
       </div>
 
       {/* 5. Trust / Certification Strip */}
-      <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-xs sm:text-sm font-medium text-[#94A3B8] mb-12">
+      <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-xs sm:text-sm font-medium text-[#94A3B8] mb-8">
         <span className="inline-flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-[#3B82F6]" />
           <span>ARAI &amp; ISO 9001:2015 certified</span>

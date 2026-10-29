@@ -421,7 +421,7 @@ export default function SurakshaHowItWorksPage() {
                   Does Suraksha work with any tyre brand?
                 </div>
                 <p className="text-sm text-[#78350F] leading-relaxed">
-                  Yes. Suraksha works with any commercial tyre brand, including JK Tyre, MRF, Apollo, CEAT, Bridgestone, Michelin, and all standard truck tyres.
+                  Yes. Suraksha works with any commercial tyre brand, including MRF, Apollo, CEAT, Bridgestone, Michelin, and all standard truck tyres.
                 </p>
               </div>
 

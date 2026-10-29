@@ -1,4 +1,5 @@
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
+import { getCanonicalSiteUrl } from '@/lib/utils/url';
 import { IntegrationResult } from '../common/types';
 import {
   ContactLeadData,
@@ -10,6 +11,12 @@ import {
   SupportAcknowledgementData,
   NewsletterWelcomeData,
   WhitepaperAccessEmailData,
+  TmipLeadConfirmationData,
+  SurakshaLeadConfirmationData,
+  PersonalLeadConfirmationData,
+  EventRegistrationConfirmationData,
+  WarrantyRegistrationConfirmationData,
+  WarrantyClaimConfirmationData,
 } from './types';
 
 let sesClientInstance: SESClient | null = null;
@@ -68,7 +75,8 @@ export async function sendEmail(
     };
   }
 
-  const fromEmail = payload.from || process.env.SES_FROM_EMAIL || process.env.FROM_EMAIL || 'hello@treel.in';
+  const rawFrom = payload.from || process.env.SES_FROM_EMAIL || process.env.FROM_EMAIL || 'hello@treel.in';
+  const fromEmail = rawFrom.includes('<') ? rawFrom : `Treel <${rawFrom}>`;
 
   const toAddresses = Array.isArray(payload.to) ? payload.to : [payload.to];
 
@@ -367,7 +375,7 @@ export async function sendOrderConfirmationEmail(
                               </td>
                               <td align="right" valign="top" style="color: #9ca3af;">
                                 <a href="https://treel.in" style="color: #ffffff; text-decoration: none; font-weight: 600;">Visit treel.in</a><br />
-                                <span style="font-size: 11px;">A JK Tyre Company</span>
+                                <span style="font-size: 11px;">Mobility Intelligence</span>
                               </td>
                             </tr>
                           </tbody>
@@ -401,6 +409,9 @@ export async function sendOrderConfirmationEmail(
 export async function sendSupportAcknowledgementEmail(
   data: SupportAcknowledgementData
 ): Promise<IntegrationResult<SendEmailResult>> {
+  const baseUrl = getCanonicalSiteUrl();
+  const unsubscribeUrl = `${baseUrl}/unsubscribe?email=${encodeURIComponent(data.email)}`;
+
   const html = `
     <!DOCTYPE html>
     <html lang="en">
@@ -486,7 +497,10 @@ export async function sendSupportAcknowledgementEmail(
                     <!-- Footer -->
                     <tr>
                       <td style="padding: 16px 24px; background-color: #f9fafb; border-top: 1px solid #e5e7eb; font-size: 11px; color: #9ca3af; text-align: center;">
-                        You are receiving this confirmation because you contacted Treel customer support. If you did not make this request, please disregard this email.
+                        You are receiving this confirmation because you contacted Treel customer support.<br />
+                        <span style="display: inline-block; margin-top: 4px;">
+                          To unsubscribe from further updates or manage email preferences, <a href="${escapeHtml(unsubscribeUrl)}" style="color: #2563eb; text-decoration: underline;">click here</a>.
+                        </span>
                       </td>
                     </tr>
                   </tbody>
@@ -499,7 +513,7 @@ export async function sendSupportAcknowledgementEmail(
     </html>
   `;
 
-  const text = `Thank You for Reaching Out to Mr. TREEL Support\n\nDear ${data.name},\n\nThank you for getting in touch with us! We have received your inquiry, and our support team is reviewing your request.\n\nSummary of your request:\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone || 'N/A'}\nPurpose: ${data.purpose || 'General Inquiry'}\nMessage:\n${data.message}\n\nBest regards,\nThe TREEL Support Team\nhello@treel.in | 1800 833 0233 | https://treel.in`;
+  const text = `Thank You for Reaching Out to Mr. TREEL Support\n\nDear ${data.name},\n\nThank you for getting in touch with us! We have received your inquiry, and our support team is reviewing your request.\n\nSummary of your request:\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone || 'N/A'}\nPurpose: ${data.purpose || 'General Inquiry'}\nMessage:\n${data.message}\n\nBest regards,\nThe TREEL Support Team\nhello@treel.in | 1800 833 0233 | https://treel.in\n\nTo manage preferences or unsubscribe from further updates:\n${unsubscribeUrl}`;
 
   return sendEmail({
     to: data.email,
@@ -515,7 +529,8 @@ export async function sendSupportAcknowledgementEmail(
 export async function sendNewsletterWelcomeEmail(
   data: NewsletterWelcomeData
 ): Promise<IntegrationResult<SendEmailResult>> {
-  const unsubscribeUrl = data.unsubscribeUrl || `https://treel.in/unsubscribe?email=${encodeURIComponent(data.email)}`;
+  const baseUrl = getCanonicalSiteUrl();
+  const unsubscribeUrl = data.unsubscribeUrl || `${baseUrl}/unsubscribe?email=${encodeURIComponent(data.email)}`;
 
   const html = `
     <!DOCTYPE html>
@@ -742,6 +757,610 @@ export async function sendWhitepaperAccessEmail(
   return sendEmail({
     to: data.email,
     subject: `Your Whitepaper: ${data.whitepaperTitle} · TMIP Research`,
+    html,
+    text,
+  });
+}
+
+
+/**
+ * Sends a confirmation email to a user who submitted a TMIP demo or enterprise lead request.
+ */
+export async function sendTmipLeadConfirmationEmail(
+  data: TmipLeadConfirmationData
+): Promise<IntegrationResult<SendEmailResult>> {
+  const greeting = data.name ? `Dear ${escapeHtml(data.name)},` : "Hello,";
+  const baseUrl = getCanonicalSiteUrl();
+  const unsubscribeUrl = `${baseUrl}/unsubscribe?email=${encodeURIComponent(data.email)}`;
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <title>Thank You for Contacting Treel TMIP</title>
+      </head>
+      <body style="margin: 0; padding: 0; background-color: #050a17; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #f1f5f9;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #050a17; padding: 32px 0;">
+          <tbody>
+            <tr>
+              <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%; background-color: #0b1220; border: 1px solid rgba(59, 130, 246, 0.25); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);">
+                  <tbody>
+                    <tr>
+                      <td style="padding: 24px 32px; background-color: #030712; border-bottom: 2px solid #3b82f6;">
+                        <span style="font-size: 20px; font-weight: 800; letter-spacing: 2px; color: #3b82f6;">TREEL TMIP</span>
+                        <span style="font-size: 11px; color: #94a3b8; margin-left: 8px; text-transform: uppercase; letter-spacing: 1px;">Enterprise Telematics</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 36px 32px;">
+                        <h2 style="font-size: 22px; color: #f1f5f9; margin: 0 0 16px 0; font-weight: 700;">
+                          Thank You for Your Enterprise Inquiry
+                        </h2>
+                        <p style="font-size: 14px; line-height: 1.6; color: #94a3b8; margin: 0 0 20px 0;">
+                          ${greeting}
+                        </p>
+                        <p style="font-size: 14px; line-height: 1.6; color: #cbd5e1; margin: 0 0 24px 0;">
+                          We have successfully received your request for Treel TMIP Tyre &amp; Mobility Intelligence. Our systems engineering and commercial fleet consulting team is reviewing your fleet parameters and will contact you at earliest to schedule your tailored demonstration.
+                        </p>
+
+                        <div style="background-color: #050a17; border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 6px; padding: 20px; margin-bottom: 24px;">
+                          <h3 style="color: #f1f5f9; font-size: 13px; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 1px; font-family: monospace;">
+                            Inquiry Summary
+                          </h3>
+                          <table width="100%" cellpadding="4" cellspacing="0" border="0" style="font-size: 13px; color: #cbd5e1;">
+                            <tbody>
+                              <tr>
+                                <td style="width: 130px; color: #64748b;">Full Name:</td>
+                                <td style="color: #f1f5f9; font-weight: 600;">${escapeHtml(data.name || "N/A")}</td>
+                              </tr>
+                              <tr>
+                                <td style="color: #64748b;">Work Email:</td>
+                                <td style="color: #3b82f6;">${escapeHtml(data.email)}</td>
+                              </tr>
+                              ${data.phone ? `<tr><td style="color: #64748b;">Phone:</td><td style="color: #f1f5f9;">${escapeHtml(data.phone)}</td></tr>` : ""}
+                              ${data.company ? `<tr><td style="color: #64748b;">Company:</td><td style="color: #f1f5f9; font-weight: 600;">${escapeHtml(data.company)}</td></tr>` : ""}
+                              ${data.fleetSize ? `<tr><td style="color: #64748b;">Fleet Size:</td><td style="color: #10b981; font-weight: 600;">${escapeHtml(String(data.fleetSize))} Commercial Vehicles</td></tr>` : ""}
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <p style="font-size: 13px; color: #94a3b8; line-height: 1.6; margin: 0 0 16px 0;">
+                          In the meantime, feel free to explore our technical research library at <a href="https://treel.in/tmip" style="color: #3b82f6; text-decoration: underline;">https://treel.in/tmip</a> or reply directly to this email if you have specific operational requirements.
+                        </p>
+
+                        <p style="margin: 24px 0 0 0; font-size: 13px; color: #cbd5e1;">
+                          Best regards,<br />
+                          <strong>The Treel TMIP Team</strong><br />
+                          <span style="color: #64748b; font-size: 12px;">Email: hello@treel.in · Toll-Free: 1800 833 0233</span>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 18px 32px; background-color: #030712; border-top: 1px solid rgba(59, 130, 246, 0.15); font-size: 11px; color: #64748b; text-align: center;">
+                        Treel Mobility Solutions Pvt. Ltd. | S.No.6/1B, NDA Road, Pune, Maharashtra 411023<br />
+                        <span style="display: inline-block; margin-top: 6px;">
+                          To unsubscribe from further updates or manage communication preferences, <a href="${escapeHtml(unsubscribeUrl)}" style="color: #d5573b; text-decoration: underline;">click here</a>.
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </body>
+    </html>
+  `;
+
+  const text = `Thank You for Your Interest in Treel TMIP\n\n${greeting}\n\nWe have received your enterprise inquiry for Treel TMIP Fleet Intelligence. Our team will review your fleet profile and get in touch within 24 business hours to schedule your demonstration.\n\nSummary:\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone || "N/A"}\nCompany: ${data.company || "N/A"}\nFleet Size: ${data.fleetSize || "N/A"}\n\nBest regards,\nThe Treel TMIP Team\nhello@treel.in | 1800 833 0233 | https://treel.in\n\nTo manage preferences or unsubscribe from further updates:\n${unsubscribeUrl}`;
+
+  return sendEmail({
+    to: data.email,
+    from: "Treel <hello@treel.in>",
+    subject: "Thank You for Your Interest in Treel TMIP · Confirmation",
+    html,
+    text,
+  });
+}
+
+/**
+ * Sends a confirmation email to a user who submitted a Suraksha fleet inquiry or callback request.
+ */
+export async function sendSurakshaLeadConfirmationEmail(
+  data: SurakshaLeadConfirmationData
+): Promise<IntegrationResult<SendEmailResult>> {
+  const greeting = data.name ? `Dear ${escapeHtml(data.name)},` : "Hello,";
+  const baseUrl = getCanonicalSiteUrl();
+  const unsubscribeUrl = `${baseUrl}/unsubscribe?email=${encodeURIComponent(data.email)}`;
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <title>Thank You for Contacting Treel Suraksha</title>
+      </head>
+      <body style="margin: 0; padding: 0; background-color: #0b0f19; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #f8fafc;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #0b0f19; padding: 32px 0;">
+          <tbody>
+            <tr>
+              <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%; background-color: #111827; border: 1px solid rgba(234, 88, 12, 0.3); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);">
+                  <tbody>
+                    <tr>
+                      <td style="padding: 24px 32px; background-color: #030712; border-bottom: 2px solid #ea580c;">
+                        <span style="font-size: 20px; font-weight: 800; letter-spacing: 2px; color: #f97316;">TREEL SURAKSHA</span>
+                        <span style="font-size: 11px; color: #9ca3af; margin-left: 8px; text-transform: uppercase; letter-spacing: 1px;">Commercial Fleet Safety</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 36px 32px;">
+                        <h2 style="font-size: 22px; color: #f8fafc; margin: 0 0 16px 0; font-weight: 700;">
+                          We Received Your Suraksha Request
+                        </h2>
+                        <p style="font-size: 14px; line-height: 1.6; color: #9ca3af; margin: 0 0 20px 0;">
+                          ${greeting}
+                        </p>
+                        <p style="font-size: 14px; line-height: 1.6; color: #e5e7eb; margin: 0 0 24px 0;">
+                          Thank you for reaching out to Treel Suraksha. Our commercial fleet consultant is preparing your tyre safety and fuel-saving assessment. A specialist will call you shortly on your registered number.
+                        </p>
+
+                        <div style="background-color: #030712; border: 1px solid rgba(234, 88, 12, 0.2); border-radius: 6px; padding: 20px; margin-bottom: 24px;">
+                          <h3 style="color: #f8fafc; font-size: 13px; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 1px; font-family: monospace;">
+                            Request Details
+                          </h3>
+                          <table width="100%" cellpadding="4" cellspacing="0" border="0" style="font-size: 13px; color: #e5e7eb;">
+                            <tbody>
+                              <tr>
+                                <td style="width: 140px; color: #9ca3af;">Name:</td>
+                                <td style="color: #f8fafc; font-weight: 600;">${escapeHtml(data.name || "Fleet Owner")}</td>
+                              </tr>
+                              ${data.phone ? `<tr><td style="color: #9ca3af;">Mobile:</td><td style="color: #f97316; font-weight: 600;">${escapeHtml(data.phone)}</td></tr>` : ""}
+                              ${data.city ? `<tr><td style="color: #9ca3af;">City / Hub:</td><td style="color: #f8fafc;">${escapeHtml(data.city)}</td></tr>` : ""}
+                              ${data.trucks ? `<tr><td style="color: #9ca3af;">Commercial Trucks:</td><td style="color: #10b981; font-weight: 600;">${escapeHtml(String(data.trucks))}</td></tr>` : ""}
+                              ${data.preferredTime ? `<tr><td style="color: #9ca3af;">Preferred Call Time:</td><td style="color: #f8fafc;">${escapeHtml(data.preferredTime)}</td></tr>` : ""}
+                              ${data.language ? `<tr><td style="color: #9ca3af;">Language:</td><td style="color: #f8fafc;">${escapeHtml(data.language)}</td></tr>` : ""}
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <p style="margin: 24px 0 0 0; font-size: 13px; color: #e5e7eb;">
+                          Best regards,<br />
+                          <strong>The Treel Suraksha Team</strong><br />
+                          <span style="color: #9ca3af; font-size: 12px;">Email: hello@treel.in · Toll-Free: 1800 833 0233</span>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 18px 32px; background-color: #030712; border-top: 1px solid rgba(234, 88, 12, 0.15); font-size: 11px; color: #6b7280; text-align: center;">
+                        Treel Mobility Solutions Pvt. Ltd. | S.No.6/1B, NDA Road, Pune, Maharashtra 411023<br />
+                        <span style="display: inline-block; margin-top: 6px;">
+                          To unsubscribe from further updates or manage communication preferences, <a href="${escapeHtml(unsubscribeUrl)}" style="color: #d5573b; text-decoration: underline;">click here</a>.
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </body>
+    </html>
+  `;
+
+  const text = `Thank You for Contacting Treel Suraksha\n\n${greeting}\n\nWe have received your request for Treel Suraksha commercial vehicle safety solutions. Our fleet specialist will contact you on your registered phone number.\n\nDetails:\nName: ${data.name}\nPhone: ${data.phone || "N/A"}\nCity: ${data.city || "N/A"}\nTrucks: ${data.trucks || "N/A"}\n\nBest regards,\nThe Treel Suraksha Team\nhello@treel.in | 1800 833 0233 | https://treel.in\n\nTo manage preferences or unsubscribe from further updates:\n${unsubscribeUrl}`;
+
+  return sendEmail({
+    to: data.email,
+    from: "Treel <hello@treel.in>",
+    subject: "Thank You for Contacting Treel Suraksha · Confirmation",
+    html,
+    text,
+  });
+}
+
+/**
+ * Sends a confirmation email to a user who submitted a Personal TPMS inquiry.
+ */
+export async function sendPersonalLeadConfirmationEmail(
+  data: PersonalLeadConfirmationData
+): Promise<IntegrationResult<SendEmailResult>> {
+  const greeting = data.name ? `Dear ${escapeHtml(data.name)},` : "Hello,";
+  const baseUrl = getCanonicalSiteUrl();
+  const unsubscribeUrl = `${baseUrl}/unsubscribe?email=${encodeURIComponent(data.email)}`;
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <title>Thank You for Contacting Treel Personal TPMS</title>
+      </head>
+      <body style="margin: 0; padding: 0; background-color: #0f1419; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #faf7f2;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #0f1419; padding: 32px 0;">
+          <tbody>
+            <tr>
+              <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%; background-color: #141b22; border: 1px solid rgba(213, 87, 59, 0.3); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);">
+                  <tbody>
+                    <tr>
+                      <td style="padding: 24px 32px; background-color: #090d11; border-bottom: 2px solid #d5573b;">
+                        <span style="font-size: 20px; font-weight: 800; letter-spacing: 2px; color: #d5573b;">TREEL</span>
+                        <span style="font-size: 11px; color: #94a3b8; margin-left: 8px; text-transform: uppercase; letter-spacing: 1px;">Smart TPMS for Cars &amp; Bikes</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 36px 32px;">
+                        <h2 style="font-size: 22px; color: #faf7f2; margin: 0 0 16px 0; font-weight: 700;">
+                          Thank You for Choosing Treel
+                        </h2>
+                        <p style="font-size: 14px; line-height: 1.6; color: #94a3b8; margin: 0 0 20px 0;">
+                          ${greeting}
+                        </p>
+                        <p style="font-size: 14px; line-height: 1.6; color: #cbd5e1; margin: 0 0 24px 0;">
+                          Thank you for your interest in Treel Personal TPMS wireless tyre monitoring systems. We have received your inquiry and our support team will reach out with kit availability, vehicle compatibility, and purchasing assistance.
+                        </p>
+
+                        <div style="background-color: #090d11; border: 1px solid rgba(213, 87, 59, 0.2); border-radius: 6px; padding: 20px; margin-bottom: 24px;">
+                          <h3 style="color: #faf7f2; font-size: 13px; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 1px; font-family: monospace;">
+                            Inquiry Overview
+                          </h3>
+                          <table width="100%" cellpadding="4" cellspacing="0" border="0" style="font-size: 13px; color: #cbd5e1;">
+                            <tbody>
+                              <tr>
+                                <td style="width: 140px; color: #64748b;">Full Name:</td>
+                                <td style="color: #faf7f2; font-weight: 600;">${escapeHtml(data.name || "Customer")}</td>
+                              </tr>
+                              <tr>
+                                <td style="color: #64748b;">Email:</td>
+                                <td style="color: #d5573b;">${escapeHtml(data.email)}</td>
+                              </tr>
+                              ${data.phone ? `<tr><td style="color: #64748b;">Phone:</td><td style="color: #faf7f2;">${escapeHtml(data.phone)}</td></tr>` : ""}
+                              ${data.kit || data.vehicleType ? `<tr><td style="color: #64748b;">Product / Kit:</td><td style="color: #10b981; font-weight: 600;">${escapeHtml(data.kit || data.vehicleType || "TPMS Kit")}</td></tr>` : ""}
+                              ${data.city ? `<tr><td style="color: #64748b;">Location:</td><td style="color: #faf7f2;">${escapeHtml(data.city)}</td></tr>` : ""}
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <p style="margin: 24px 0 0 0; font-size: 13px; color: #cbd5e1;">
+                          Best regards,<br />
+                          <strong>The Treel Personal Support Team</strong><br />
+                          <span style="color: #64748b; font-size: 12px;">Email: hello@treel.in · Toll-Free: 1800 833 0233 · https://treel.in</span>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 18px 32px; background-color: #090d11; border-top: 1px solid rgba(213, 87, 59, 0.15); font-size: 11px; color: #64748b; text-align: center;">
+                        Treel Mobility Solutions Pvt. Ltd. | S.No.6/1B, NDA Road, Pune, Maharashtra 411023<br />
+                        <span style="display: inline-block; margin-top: 6px;">
+                          To unsubscribe from further updates or manage communication preferences, <a href="${escapeHtml(unsubscribeUrl)}" style="color: #d5573b; text-decoration: underline;">click here</a>.
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </body>
+    </html>
+  `;
+
+  const text = `Thank You for Choosing Treel Personal TPMS\n\n${greeting}\n\nWe have received your inquiry for Treel Personal TPMS wireless tyre monitoring systems. Our support team will connect with you shortly.\n\nInquiry Details:\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone || "N/A"}\nKit: ${data.kit || data.vehicleType || "Personal TPMS"}\n\nBest regards,\nThe Treel Personal Support Team\nhello@treel.in | 1800 833 0233 | https://treel.in\n\nTo manage preferences or unsubscribe from further updates:\n${unsubscribeUrl}`;
+
+  return sendEmail({
+    to: data.email,
+    from: "Treel <hello@treel.in>",
+    subject: "Thank You for Your Interest in Treel Personal TPMS",
+    html,
+    text,
+  });
+}
+
+/**
+ * Sends an event registration confirmation email with session details and calendar buttons.
+ */
+export async function sendEventRegistrationConfirmationEmail(
+  data: EventRegistrationConfirmationData
+): Promise<IntegrationResult<SendEmailResult>> {
+  const greeting = data.name ? `Hi ${escapeHtml(data.name)},` : "Hello,";
+  const baseUrl = getCanonicalSiteUrl();
+  const unsubscribeUrl = `${baseUrl}/unsubscribe?email=${encodeURIComponent(data.email)}`;
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <title>Registration Confirmed: ${escapeHtml(data.eventName)}</title>
+      </head>
+      <body style="margin: 0; padding: 0; background-color: #0f1419; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #faf7f2;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #0f1419; padding: 32px 0;">
+          <tbody>
+            <tr>
+              <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%; background-color: #141b22; border: 1px solid rgba(213, 87, 59, 0.35); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);">
+                  <tbody>
+                    <tr>
+                      <td style="padding: 24px 32px; background-color: #090d11; border-bottom: 2px solid #d5573b;">
+                        <span style="font-size: 20px; font-weight: 800; letter-spacing: 2px; color: #faf7f2;">TREEL</span>
+                        <span style="font-size: 11px; color: #d5573b; margin-left: 8px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700;">EVENTS</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 36px 32px;">
+                        <div style="display: inline-block; padding: 4px 10px; background-color: rgba(213, 87, 59, 0.15); border: 1px solid rgba(213, 87, 59, 0.3); border-radius: 4px; font-size: 11px; font-family: monospace; color: #d5573b; font-weight: bold; text-transform: uppercase; margin-bottom: 16px;">
+                          OFFICIAL REGISTRATION CONFIRMED
+                        </div>
+                        <h2 style="font-size: 24px; color: #faf7f2; margin: 0 0 14px 0; font-weight: 700; line-height: 1.25;">
+                          ${escapeHtml(data.eventName)}
+                        </h2>
+                        <p style="font-size: 14px; line-height: 1.6; color: #94a3b8; margin: 0 0 24px 0;">
+                          ${greeting} Your seat has been reserved. Below are your session access details and direct links to save the event to your calendar.
+                        </p>
+
+                        <div style="background-color: #090d11; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 20px; margin-bottom: 28px;">
+                          <table width="100%" cellpadding="6" cellspacing="0" border="0" style="font-size: 14px; color: #cbd5e1;">
+                            <tbody>
+                              <tr>
+                                <td style="width: 120px; color: #64748b; font-weight: 600;">Date &amp; Time:</td>
+                                <td style="color: #faf7f2; font-weight: 600;">${escapeHtml(data.dateTime)}</td>
+                              </tr>
+                              <tr>
+                                <td style="color: #64748b; font-weight: 600;">Location:</td>
+                                <td style="color: #00e5ff;">${escapeHtml(data.location)}</td>
+                              </tr>
+                              ${data.company ? `<tr><td style="color: #64748b; font-weight: 600;">Attendee:</td><td style="color: #faf7f2;">${escapeHtml(data.name)} (${escapeHtml(data.company)})</td></tr>` : ""}
+                            </tbody>
+                          </table>
+                        </div>
+
+                        ${(data.googleCalendarUrl || data.outlookCalendarUrl) ? `
+                          <div style="text-align: center; margin-bottom: 28px; padding: 18px; background-color: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 6px;">
+                            <p style="font-size: 12px; font-family: monospace; text-transform: uppercase; color: #94a3b8; margin: 0 0 12px 0; font-weight: 600;">
+                              Add to your calendar
+                            </p>
+                            ${data.googleCalendarUrl ? `<a href="${escapeHtml(data.googleCalendarUrl)}" style="background-color: #d5573b; color: #ffffff; padding: 10px 20px; border-radius: 4px; font-size: 13px; font-weight: bold; text-decoration: none; display: inline-block; margin: 4px 6px;">Google Calendar</a>` : ""}
+                            ${data.outlookCalendarUrl ? `<a href="${escapeHtml(data.outlookCalendarUrl)}" style="background-color: rgba(255, 255, 255, 0.1); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.2); padding: 9px 18px; border-radius: 4px; font-size: 13px; font-weight: bold; text-decoration: none; display: inline-block; margin: 4px 6px;">Outlook Calendar</a>` : ""}
+                          </div>
+                        ` : ""}
+
+                        <p style="font-size: 12px; color: #64748b; line-height: 1.6; margin: 0;">
+                          Need to modify your attendee information or ask a technical question in advance? Simply email us at <a href="mailto:hello@treel.in" style="color: #d5573b;">hello@treel.in</a>.
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 18px 32px; background-color: #090d11; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 11px; color: #64748b; text-align: center;">
+                        Treel Mobility Solutions Pvt. Ltd. | S.No.6/1B, NDA Road, Pune, Maharashtra 411023<br />
+                        <span style="display: inline-block; margin-top: 6px;">
+                          To unsubscribe from further updates or manage communication preferences, <a href="${escapeHtml(unsubscribeUrl)}" style="color: #d5573b; text-decoration: underline;">click here</a>.
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </body>
+    </html>
+  `;
+
+  const text = `Registration Confirmed: ${data.eventName}\n\n${greeting}\n\nYour registration for ${data.eventName} has been confirmed.\n\nDate & Time: ${data.dateTime}\nLocation: ${data.location}\n\nWe look forward to seeing you.\n\nQuestions? Email hello@treel.in\nTreel Mobility Solutions Pvt. Ltd.\n\nTo manage preferences or unsubscribe from further updates:\n${unsubscribeUrl}`;
+
+  return sendEmail({
+    to: data.email,
+    from: "Treel <hello@treel.in>",
+    subject: `Registration Confirmed: ${data.eventName} · Treel Events`,
+    html,
+    text,
+  });
+}
+
+/**
+ * Sends a confirmation email when a customer registers their 12-month TPMS product warranty.
+ */
+export async function sendWarrantyRegistrationConfirmationEmail(
+  data: WarrantyRegistrationConfirmationData
+): Promise<IntegrationResult<SendEmailResult>> {
+  const greeting = data.customerName ? `Dear ${escapeHtml(data.customerName)},` : "Hello,";
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <title>Warranty Registration Confirmed: ${escapeHtml(data.registrationId)}</title>
+      </head>
+      <body style="margin: 0; padding: 0; background-color: #0f1419; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #faf7f2;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #0f1419; padding: 32px 0;">
+          <tbody>
+            <tr>
+              <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%; background-color: #141b22; border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);">
+                  <tbody>
+                    <tr>
+                      <td style="padding: 24px 32px; background-color: #090d11; border-bottom: 2px solid #10b981;">
+                        <span style="font-size: 20px; font-weight: 800; letter-spacing: 2px; color: #faf7f2;">TREEL</span>
+                        <span style="font-size: 11px; color: #10b981; margin-left: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">Warranty Desk</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 36px 32px;">
+                        <h2 style="font-size: 22px; color: #faf7f2; margin: 0 0 14px 0; font-weight: 700;">
+                          Warranty Protection Active
+                        </h2>
+                        <p style="font-size: 14px; line-height: 1.6; color: #94a3b8; margin: 0 0 20px 0;">
+                          ${greeting}
+                        </p>
+                        <p style="font-size: 14px; line-height: 1.6; color: #cbd5e1; margin: 0 0 24px 0;">
+                          Your product warranty registration has been approved. Your Treel TPMS hardware is now protected under our 12-Month Comprehensive Manufacturer Warranty.
+                        </p>
+
+                        <div style="background-color: #090d11; border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 6px; padding: 20px; margin-bottom: 24px;">
+                          <h3 style="color: #10b981; font-size: 13px; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 1px; font-family: monospace;">
+                            Warranty Certificate
+                          </h3>
+                          <table width="100%" cellpadding="4" cellspacing="0" border="0" style="font-size: 13px; color: #cbd5e1;">
+                            <tbody>
+                              <tr>
+                                <td style="width: 140px; color: #64748b;">Registration ID:</td>
+                                <td style="color: #faf7f2; font-weight: 700; font-family: monospace;">${escapeHtml(data.registrationId)}</td>
+                              </tr>
+                              <tr>
+                                <td style="color: #64748b;">Order ID:</td>
+                                <td style="color: #faf7f2; font-weight: 600;">${escapeHtml(data.orderId)}</td>
+                              </tr>
+                              <tr>
+                                <td style="color: #64748b;">Product:</td>
+                                <td style="color: #faf7f2;">${escapeHtml(data.productName)}</td>
+                              </tr>
+                              <tr>
+                                <td style="color: #64748b;">Coverage Duration:</td>
+                                <td style="color: #10b981; font-weight: 600;">12 Months (Active)</td>
+                              </tr>
+                              <tr>
+                                <td style="color: #64748b;">Registered Email:</td>
+                                <td style="color: #3b82f6;">${escapeHtml(data.customerEmail)}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <p style="margin: 24px 0 0 0; font-size: 13px; color: #cbd5e1;">
+                          Best regards,<br />
+                          <strong>Treel Warranty &amp; Customer Support</strong><br />
+                          <span style="color: #64748b; font-size: 12px;">Email: hello@treel.in · Helpline: 1800 833 0233 · https://treel.in</span>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 18px 32px; background-color: #090d11; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 11px; color: #64748b; text-align: center;">
+                        Treel Mobility Solutions Pvt. Ltd. | S.No.6/1B, NDA Road, Pune, Maharashtra 411023
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </body>
+    </html>
+  `;
+
+  const text = `Warranty Registration Confirmed: ${data.registrationId}\n\n${greeting}\n\nYour Treel TPMS product warranty has been registered successfully.\n\nRegistration ID: ${data.registrationId}\nOrder ID: ${data.orderId}\nProduct: ${data.productName}\nCoverage: 12 Months\nRegistered to: ${data.customerEmail}\n\nSupport helpline: 1800 833 0233 | hello@treel.in\nTreel Mobility Solutions Pvt. Ltd.`;
+
+  return sendEmail({
+    to: data.customerEmail,
+    from: "Treel <hello@treel.in>",
+    subject: `Warranty Registration Confirmed: ${data.registrationId} · Treel TPMS`,
+    html,
+    text,
+  });
+}
+
+/**
+ * Sends an acknowledgement email when a customer files a warranty service claim.
+ */
+export async function sendWarrantyClaimConfirmationEmail(
+  data: WarrantyClaimConfirmationData
+): Promise<IntegrationResult<SendEmailResult>> {
+  const greeting = data.customerName ? `Dear ${escapeHtml(data.customerName)},` : "Hello,";
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <title>Warranty Claim Ticket: ${escapeHtml(data.claimId)}</title>
+      </head>
+      <body style="margin: 0; padding: 0; background-color: #0f1419; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #faf7f2;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #0f1419; padding: 32px 0;">
+          <tbody>
+            <tr>
+              <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%; background-color: #141b22; border: 1px solid rgba(213, 87, 59, 0.3); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);">
+                  <tbody>
+                    <tr>
+                      <td style="padding: 24px 32px; background-color: #090d11; border-bottom: 2px solid #d5573b;">
+                        <span style="font-size: 20px; font-weight: 800; letter-spacing: 2px; color: #faf7f2;">TREEL</span>
+                        <span style="font-size: 11px; color: #d5573b; margin-left: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">Warranty Claim Desk</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 36px 32px;">
+                        <h2 style="font-size: 22px; color: #faf7f2; margin: 0 0 14px 0; font-weight: 700;">
+                          Warranty Claim Received
+                        </h2>
+                        <p style="font-size: 14px; line-height: 1.6; color: #94a3b8; margin: 0 0 20px 0;">
+                          ${greeting}
+                        </p>
+                        <p style="font-size: 14px; line-height: 1.6; color: #cbd5e1; margin: 0 0 24px 0;">
+                          We have received your warranty service request. Our technical operations desk will review your claim details and contact you at earliest with troubleshooting steps or replacement processing.
+                        </p>
+
+                        <div style="background-color: #090d11; border: 1px solid rgba(213, 87, 59, 0.2); border-radius: 6px; padding: 20px; margin-bottom: 24px;">
+                          <h3 style="color: #faf7f2; font-size: 13px; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 1px; font-family: monospace;">
+                            Claim Summary
+                          </h3>
+                          <table width="100%" cellpadding="4" cellspacing="0" border="0" style="font-size: 13px; color: #cbd5e1;">
+                            <tbody>
+                              <tr>
+                                <td style="width: 140px; color: #64748b;">Claim Ticket ID:</td>
+                                <td style="color: #d5573b; font-weight: 700; font-family: monospace;">${escapeHtml(data.claimId)}</td>
+                              </tr>
+                              <tr>
+                                <td style="color: #64748b;">Order ID:</td>
+                                <td style="color: #faf7f2; font-weight: 600;">${escapeHtml(data.orderId)}</td>
+                              </tr>
+                              <tr>
+                                <td style="color: #64748b;">Issue Type:</td>
+                                <td style="color: #faf7f2;">${escapeHtml(data.claimIssueType)}</td>
+                              </tr>
+                              <tr>
+                                <td valign="top" style="color: #64748b;">Description:</td>
+                                <td style="color: #94a3b8; white-space: pre-wrap;">${escapeHtml(data.claimDescription)}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <p style="margin: 24px 0 0 0; font-size: 13px; color: #cbd5e1;">
+                          Best regards,<br />
+                          <strong>Treel Technical Support Desk</strong><br />
+                          <span style="color: #64748b; font-size: 12px;">Email: hello@treel.in · Helpline: 1800 833 0233 · https://treel.in</span>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 18px 32px; background-color: #090d11; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 11px; color: #64748b; text-align: center;">
+                        Treel Mobility Solutions Pvt. Ltd. | S.No.6/1B, NDA Road, Pune, Maharashtra 411023
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </body>
+    </html>
+  `;
+
+  const text = `Warranty Claim Ticket Received: ${data.claimId}\n\n${greeting}\n\nWe have received your warranty service request.\n\nClaim Ticket ID: ${data.claimId}\nOrder ID: ${data.orderId}\nIssue: ${data.claimIssueType}\nDescription: ${data.claimDescription}\n\nOur support team will contact you at earliest.\n\nHelpline: 1800 833 0233 | hello@treel.in\nTreel Mobility Solutions Pvt. Ltd.`;
+
+  return sendEmail({
+    to: data.customerEmail,
+    from: "Treel <hello@treel.in>",
+    subject: `Warranty Claim Received: ${data.claimId} · Treel Support`,
     html,
     text,
   });

@@ -82,7 +82,7 @@ export default function PersonalSupportContactPage() {
     {
       icon: Mail,
       title: "Email",
-      desc: "Fill out the form below. We respond within 2 business days.",
+      desc: "Fill out the form below. We respond at earliest.",
       badge: "Written Inquiry"
     },
     {
@@ -121,7 +121,7 @@ export default function PersonalSupportContactPage() {
               Reach our support team.
             </h1>
             <p className="text-[#4B5563] text-lg sm:text-xl leading-relaxed font-normal max-w-3xl">
-              Response within 2 business days by email. Faster by phone during business hours.
+              Response at earliest by email. Faster by phone during business hours.
             </p>
           </div>
         </div>

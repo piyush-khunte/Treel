@@ -49,7 +49,7 @@ export const PRODUCTS_CATALOGUE: ProductVariant[] = [
       "Temperature Accuracy": "±1°C",
       "Wireless Protocol": "Bluetooth 5.0 Low Energy (BLE)",
       "Transmission Frequency": "2.4 GHz",
-      "Ingress Protection": "IP69K (High-pressure water & dust-proof)",
+      "Ingress Protection": "IP67 (Submersion & dust-proof)",
       "Sensor Weight": "24g per sensor",
       "Display Unit": "Monocrystalline Solar Glass Cockpit Display + USB-C"
     },
@@ -87,7 +87,7 @@ export const PRODUCTS_CATALOGUE: ProductVariant[] = [
       "Pressure Range": "0 - 99 PSI",
       "Temperature Range": "-40°C to +125°C",
       "Pressure Accuracy": "±0.1 PSI",
-      "Ingress Protection": "IP69K",
+      "Ingress Protection": "IP67",
       "Sensor Weight": "24g per sensor"
     },
     inTheBox: [
@@ -156,7 +156,7 @@ export const PRODUCTS_CATALOGUE: ProductVariant[] = [
     specs: {
       "Pressure Range": "0 - 150 PSI (Commercial CV Radial)",
       "Temperature Range": "-40°C to +135°C",
-      "Ingress Protection": "IP69K High-Heat & Grease Proof",
+      "Ingress Protection": "IP67 High-Heat & Grease Proof",
       "Display Unit": "12V/24V Heavy Cabin Siren Receiver Display"
     },
     inTheBox: [
@@ -190,7 +190,7 @@ export const PRODUCTS_CATALOGUE: ProductVariant[] = [
     specs: {
       "Pressure Range": "0 - 150 PSI",
       "Temperature Range": "-40°C to +135°C",
-      "Ingress Protection": "IP69K",
+      "Ingress Protection": "IP67",
       "Display Unit": "Dual-Axle Matrix Siren Display"
     },
     inTheBox: [
@@ -220,7 +220,7 @@ export interface HighwayCentre {
 export const HIGHWAY_CENTRES: HighwayCentre[] = [
   {
     id: "ctr-01",
-    name: "JK Tyre Truck Wheels — Sanjay Gandhi Transport Nagar",
+    name: "Truck Wheels — Sanjay Gandhi Transport Nagar",
     city: "New Delhi",
     state: "Delhi NCR",
     highway: "NH-44 (GT Road)",
@@ -304,7 +304,7 @@ export const HIGHWAY_CENTRES: HighwayCentre[] = [
   },
   {
     id: "ctr-07",
-    name: "JK Tyre Wheels & Safety — Transport Nagar Jaipur",
+    name: "Truck Wheels & Safety — Transport Nagar Jaipur",
     city: "Jaipur",
     state: "Rajasthan",
     highway: "NH-21 / NH-48",

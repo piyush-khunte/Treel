@@ -197,10 +197,10 @@ export function SurakshaEmiCalculator() {
                 <CheckCircle2 className="w-4 h-4 text-[#10B981] flex-shrink-0" />
                 <span>Documentation: Aadhar + Truck RC only</span>
               </div>
-              {/* <div className="flex items-center gap-2 text-[#451A03] font-semibold">
+              <div className="flex items-center gap-2 text-[#451A03] font-semibold">
                 <CheckCircle2 className="w-4 h-4 text-[#10B981] flex-shrink-0" />
-                <span>Official JK Tyre warranty pre-registered</span>
-              </div> */}
+                <span>Official manufacturer warranty pre-registered</span>
+              </div>
             </div>
           </div>
 

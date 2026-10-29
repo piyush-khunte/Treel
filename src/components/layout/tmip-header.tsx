@@ -11,7 +11,6 @@ export function TmipHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobilePlatformOpen, setMobilePlatformOpen] = useState(false);
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
-  const [mobileCustomersOpen, setMobileCustomersOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const [mobileSecurityOpen, setMobileSecurityOpen] = useState(false);
 
@@ -20,7 +19,6 @@ export function TmipHeader() {
   const isPlatformActive = pathname.startsWith("/tmip/platform");
   const isSolutionsActive = pathname.startsWith("/tmip/solutions");
   const isTpmsActive = pathname === "/timp/tpms";
-  const isCustomersActive = pathname.startsWith("/tmip/customers");
   const isRoiActive = pathname === "/tmip/roi-calculator";
   const isResourcesActive = pathname.startsWith("/tmip/whitepapers") || pathname.startsWith("/tmip/insights");
   const isSecurityActive = pathname.startsWith("/tmip/security") || pathname.startsWith("/tmip/compliance");
@@ -149,26 +147,7 @@ export function TmipHeader() {
               TPMS
             </Link>
 
-            {/* CUSTOMERS */}
-            <div className="relative group">
-              <Link
-                href="/tmip/customers"
-                className={`flex items-center gap-1 py-2 transition-colors whitespace-nowrap ${
-                  isCustomersActive ? "text-[#3B82F6] font-semibold" : "hover:text-[#3B82F6]"
-                }`}
-              >
-                <span>Customers</span>
-                <ChevronDown className="w-3.5 h-3.5 text-slate-500 group-hover:rotate-180 transition-transform" />
-              </Link>
-              <div className="absolute top-full left-0 w-60 p-2 bg-[#0B1220] rounded-xl shadow-2xl border border-blue-900/40 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                <Link href="/tmip/customers" className="block px-3 py-2 rounded-lg text-xs normal-case text-slate-300 hover:bg-[#3B82F6]/10 hover:text-[#3B82F6] transition-colors">
-                  Customer Stories
-                </Link>
-                <Link href="/tmip/customers/case-studies" className="block px-3 py-2 rounded-lg text-xs normal-case text-slate-300 hover:bg-[#3B82F6]/10 hover:text-[#3B82F6] transition-colors">
-                  Case Studies
-                </Link>
-              </div>
-            </div>
+
 
             {/* ROI CALCULATOR */}
             <Link
@@ -310,22 +289,7 @@ export function TmipHeader() {
               TPMS
             </Link>
 
-            {/* Customers Accordion */}
-            <div>
-              <button
-                onClick={() => setMobileCustomersOpen(!mobileCustomersOpen)}
-                className="w-full flex items-center justify-between py-2 text-white font-semibold uppercase tracking-wider text-xs"
-              >
-                <span>Customers</span>
-                <ChevronDown className={`w-4 h-4 transition-transform ${mobileCustomersOpen ? "rotate-180" : ""}`} />
-              </button>
-              {mobileCustomersOpen && (
-                <div className="pl-3 pb-2 space-y-1 text-xs text-slate-400 border-l border-blue-900/40 ml-1">
-                  <Link href="/tmip/customers" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#3B82F6]">Customer Stories</Link>
-                  <Link href="/tmip/customers/case-studies" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#3B82F6]">Case Studies</Link>
-                </div>
-              )}
-            </div>
+
 
             {/* ROI Calculator */}
             <Link 

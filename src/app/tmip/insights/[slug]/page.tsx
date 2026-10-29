@@ -1,13 +1,13 @@
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { slugifyAuthor } from "@/lib/authors/author-utils";
 import { AuthorAvatar } from "@/components/authors/author-avatar";
-import { getInsightBySlug,getPublishedInsights } from "@/lib/content/insights-storage";
+import { getInsightBySlug, getPublishedInsights } from "@/lib/content/insights-storage";
 import {
-Activity,
-ArrowLeft,
-ArrowRight,
-Calendar,
-Clock
+  Activity,
+  ArrowLeft,
+  ArrowRight,
+  Calendar,
+  Clock,
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -74,9 +74,9 @@ export default async function TmipInsightsSlugPage({
       />
 
       {/* Header & Hero Section */}
-      <header className="relative z-10 pt-24 pb-16 border-b border-slate-400/10">
+      <header className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
+          <div className="max-w-4xl space-y-4">
             <Breadcrumb
               variant="tmip"
               items={[
@@ -86,7 +86,7 @@ export default async function TmipInsightsSlugPage({
               ]}
             />
 
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-2.5">
               <span className="bg-[#3B82F6] text-white text-[11px] font-jetbrains font-bold px-2.5 py-0.5 rounded-[2px] uppercase tracking-wider">
                 {article.category || "FLEET INTELLIGENCE"}
               </span>
@@ -106,7 +106,7 @@ export default async function TmipInsightsSlugPage({
               </p>
             )}
 
-            <div className="flex flex-wrap items-center gap-4 text-xs font-jetbrains text-[#94A3B8] pt-2 border-t border-slate-400/10">
+            <div className="flex flex-wrap items-center gap-3 text-xs font-jetbrains text-[#94A3B8] pt-2 border-t border-slate-400/10">
               <Link
                 href={`/authors/${slugifyAuthor(article.author)}`}
                 className="text-[#F1F5F9] hover:text-[#3B82F6] transition-colors font-medium"
@@ -135,13 +135,13 @@ export default async function TmipInsightsSlugPage({
       </header>
 
       {/* Main Narrative Content */}
-      <div className="relative z-10 py-16 border-b border-slate-400/10">
+      <div className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-12">
+          <div className="max-w-4xl space-y-6 sm:space-y-8">
             
             {/* Key Takeaway Callout if present */}
             {article.tldr && (
-              <div className="p-6 rounded-[4px] bg-[#0B1220] border-l-4 border-[#3B82F6] border-y border-r border-slate-400/15 space-y-2">
+              <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border-l-4 border-[#3B82F6] border-y border-r border-slate-400/15 space-y-2">
                 <span className="font-jetbrains text-xs font-bold uppercase tracking-wider text-[#3B82F6]">
                   Key Takeaway
                 </span>
@@ -152,14 +152,14 @@ export default async function TmipInsightsSlugPage({
             )}
 
             {/* Article Sections */}
-            <div className="space-y-12">
+            <div className="space-y-6 sm:space-y-8">
               {article.body?.sections?.map((section, idx) => (
-                <div key={idx} className="space-y-5">
+                <div key={idx} className="space-y-3 sm:space-y-4">
                   <h2 className="font-space-grotesk text-2xl sm:text-3xl font-bold text-[#F1F5F9] tracking-tight">
                     {section.heading}
                   </h2>
 
-                  <div className="space-y-4 text-base sm:text-lg text-[#94A3B8] font-ibm-plex leading-relaxed">
+                  <div className="space-y-3 text-base sm:text-lg text-[#94A3B8] font-ibm-plex leading-relaxed">
                     {section.paragraphs.map((para, pIdx) => (
                       <p key={pIdx}>{para}</p>
                     ))}
@@ -167,7 +167,7 @@ export default async function TmipInsightsSlugPage({
 
                   {/* Inline Pull Quote after Section 1 if present */}
                   {idx === 0 && article.body?.pullQuote?.quote && (
-                    <div className="my-8 py-6 px-8 border-l-2 border-[#3B82F6] bg-blue-950/20 rounded-r-[4px] space-y-3">
+                    <div className="my-6 py-5 px-6 sm:px-8 border-l-2 border-[#3B82F6] bg-blue-950/20 rounded-r-[4px] space-y-2">
                       <blockquote className="font-space-grotesk text-xl sm:text-2xl italic font-normal text-[#93C5FD] leading-snug">
                         &ldquo;{article.body.pullQuote.quote}&rdquo;
                       </blockquote>
@@ -184,9 +184,9 @@ export default async function TmipInsightsSlugPage({
 
             {/* Author Attribution Card */}
             {article.author && (
-              <div className="p-8 rounded-[4px] bg-[#0B1220] border border-slate-400/10 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+              <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10 flex flex-col sm:flex-row items-start sm:items-center gap-5">
                 <AuthorAvatar name={article.author} size="md" shape="circle" />
-                <div className="space-y-2 flex-1">
+                <div className="space-y-1.5 flex-1">
                   <div>
                     <Link
                       href={`/authors/${slugifyAuthor(article.author)}`}
@@ -210,7 +210,7 @@ export default async function TmipInsightsSlugPage({
             )}
 
             {/* Navigation & CTA Controls */}
-            <div className="pt-8 border-t border-slate-400/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="pt-6 border-t border-slate-400/10 flex flex-col sm:flex-row items-center justify-between gap-4">
               <Link
                 href="/tmip/insights"
                 className="inline-flex items-center gap-2 text-sm font-jetbrains text-[#3B82F6] hover:text-[#60A5FA] transition-colors"
@@ -230,8 +230,8 @@ export default async function TmipInsightsSlugPage({
 
       {/* Related Insights Strip */}
       {relatedArticles.length > 0 && (
-        <section className="relative z-10 py-16 border-b border-slate-400/10 bg-[#0B1220]/40">
-          <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-8">
+        <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10 bg-[#0B1220]/40">
+          <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-6">
             <h2 className="font-space-grotesk text-2xl font-bold text-[#F1F5F9]">
               Related Telemetry Intelligence
             </h2>
@@ -240,9 +240,9 @@ export default async function TmipInsightsSlugPage({
                 <Link
                   key={idx}
                   href={`/tmip/insights/${rel.slug}`}
-                  className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between group"
+                  className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between group"
                 >
-                  <div className="space-y-3">
+                  <div className="space-y-2.5">
                     <span className="text-[10px] font-jetbrains uppercase tracking-wider text-[#3B82F6] font-semibold">
                       {rel.category}
                     </span>
@@ -253,7 +253,7 @@ export default async function TmipInsightsSlugPage({
                       {rel.deck}
                     </p>
                   </div>
-                  <div className="pt-4 border-t border-slate-400/10 flex items-center justify-between text-xs font-jetbrains text-[#94A3B8] mt-4">
+                  <div className="pt-3 border-t border-slate-400/10 flex items-center justify-between text-xs font-jetbrains text-[#94A3B8] mt-3">
                     <span>{rel.readTime}</span>
                     <span className="text-[#3B82F6] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                       Read <ArrowRight className="w-3 h-3" />

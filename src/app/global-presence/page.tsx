@@ -1,27 +1,28 @@
+import InteractiveWorldMap from "@/components/global/interactive-world-map";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import {
-ArrowRight,
-Building2,
-Globe2,
-Mail,
-Radio,
-Server,
-ShieldCheck,
-ThermometerSnowflake
+  Building2,
+  Globe2,
+  Radio,
+  Server,
+  ShieldCheck,
+  ThermometerSnowflake,
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Global Presence & Export · Treel Mobility Solutions",
-  description: "Treel's international export readiness, global telematics architecture, and commercial distribution network for automotive OEMs and commercial fleets worldwide.",
+  title: "Our Global Presence · Treel Mobility Solutions",
+  description:
+    "Treel's worldwide deployment footprint: Truck TPMS, TMIP, OTR Mining TPMS, Smart TBR, 2-Wheeler OEM, and Defense vehicle telemetry across Europe, South America, Africa, Middle East, and Asia.",
   alternates: {
     canonical: "https://treel.in/global-presence",
   },
   openGraph: {
-    title: "Global Presence & Export · Treel Mobility Solutions",
-    description: "Treel's international export readiness, global telematics architecture, and commercial distribution network for automotive OEMs and commercial fleets worldwide.",
+    title: "Our Global Presence · Treel Mobility Solutions",
+    description:
+      "Treel's worldwide deployment footprint: Truck TPMS, TMIP, OTR Mining TPMS, Smart TBR, 2-Wheeler OEM, and Defense vehicle telemetry across Europe, South America, Africa, Middle East, and Asia.",
     url: "https://treel.in/global-presence",
   },
 };
@@ -29,33 +30,51 @@ export const metadata: Metadata = {
 export default function GlobalPresencePage() {
   return (
     <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter min-h-screen">
-      {/* 1. HERO SECTION */}
+      {/* 1. TOP HEADER & INTERACTIVE WORLD MAP SECTION */}
       <section className="relative overflow-hidden pt-24 pb-20 border-b border-white/10">
-        <div 
-          className="absolute -top-24 -right-24 w-[500px] h-[500px] pointer-events-none rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(213, 87, 59, 0.12) 0%, transparent 65%)" }}
+        <div
+          className="absolute -top-24 -right-24 w-[600px] h-[600px] pointer-events-none rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(213, 87, 59, 0.12) 0%, transparent 65%)",
+          }}
           aria-hidden="true"
         />
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 relative z-10">
-          <div className="max-w-4xl space-y-6">
+        <div
+          className="absolute top-1/2 -left-32 w-[500px] h-[500px] pointer-events-none rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(0, 229, 255, 0.08) 0%, transparent 70%)",
+          }}
+          aria-hidden="true"
+        />
+
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 relative z-10 space-y-10">
+          {/* Top Header */}
+          <div className="max-w-4xl space-y-4">
             <Breadcrumb
               variant="corporate"
               items={[
                 { label: "Home", href: "/" },
-                { label: "Global Presence / Export" },
+                { label: "Our Global Presence" },
               ]}
             />
             <div className="flex items-center gap-3">
               <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
-                GLOBAL PRESENCE &amp; EXPORT
+                WORLDWIDE OPERATIONS &amp; EXPORT FOOTPRINT
               </span>
             </div>
             <h1 className="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.08]">
-              Engineering mobility intelligence for <span className="italic font-normal text-[#D5573B]">international markets.</span>
+              Our Global Presence
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-inter max-w-3xl">
-              Treel&apos;s tyre telematics sensors, vehicle digital twin platform, and enterprise intelligence systems are engineered for cross-border compatibility, regional regulatory compliance, and demanding operating environments worldwide.
+              From high-capacity European commercial linehauls to African open-cast mines, South American agribusiness corridors, and tactical defense fleets in the Middle East — discover how Treel delivers real-time tyre intelligence and specialized telematics hardware across international markets.
             </p>
+          </div>
+
+          {/* Interactive World Map Below the Header */}
+          <div className="w-full pt-2">
+            <InteractiveWorldMap />
           </div>
         </div>
       </section>
@@ -85,7 +104,7 @@ export default function GlobalPresencePage() {
                   Multi-Band Cellular &amp; RF Telemetry
                 </h3>
                 <p className="text-sm text-[#94A3B8] leading-relaxed">
-                  Support for global 4G LTE-M, NB-IoT, and 2G fallback frequencies, coupled with 433 MHz and Bluetooth LE sensor links, ensuring continuous data transmission across multi-country transit routes.
+                  Support for global 4G LTE-M and 2G fallback frequencies, coupled with industrial 433 MHz RF sensor links, ensuring continuous data transmission across multi-country transit routes.
                 </p>
               </div>
 
@@ -94,10 +113,10 @@ export default function GlobalPresencePage() {
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <h3 className="font-fraunces text-lg sm:text-xl font-medium text-[#FAF7F2]">
-                  International Compliance Standards
+                  Automotive &amp; Data Compliance Standards
                 </h3>
                 <p className="text-sm text-[#94A3B8] leading-relaxed">
-                  Engineered in conformity with international automotive EMC standards, IP67 environmental sealing specifications, and automotive grade manufacturing processes for OE integration.
+                  Engineered in strict conformity with <strong className="text-white font-medium">IATF 16949</strong> (automotive quality standard), <strong className="text-white font-medium">GDPR</strong> data privacy, <strong className="text-white font-medium">ISO 27001</strong> information security, <strong className="text-white font-medium">FCC</strong> and <strong className="text-white font-medium">CE</strong> radio/EMC certifications, alongside ECE R141 and <strong className="text-white font-medium">IP65 / IP67</strong> environmental sealing specifications.
                 </p>
               </div>
 
@@ -215,14 +234,13 @@ export default function GlobalPresencePage() {
               If you represent an automotive manufacturer, regional distributor, or commercial fleet operator outside India seeking technical specifications, export documentation, or deployment trials, connect with our international business team.
             </p>
             <div className="pt-4 flex flex-col sm:flex-row gap-4">
-              <Button asChild variant="treel" size="lg">
-                <Link href="/contact?subject=Export+Inquiry" className="inline-flex items-center gap-2">
-                  <Mail className="w-4 h-4" />
-                  Contact International Desk <ArrowRight className="w-4 h-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-white/20 text-[#FAF7F2] hover:bg-white/5">
-                <Link href="/contact" className="inline-flex items-center gap-2">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-white/20 text-[#FAF7F2] hover:bg-white/5"
+              >
+                <Link href="/contact?subject=export" className="inline-flex items-center gap-2">
                   <Building2 className="w-4 h-4" />
                   Corporate Headquarters
                 </Link>

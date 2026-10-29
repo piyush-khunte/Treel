@@ -1,5 +1,18 @@
 [
   {
+    "_id": "sub_1792730761816_jmxgj",
+    "email": "piyushkhunte82@gmail.com",
+    "status": "unsubscribed",
+    "token": "49a628d076ac4e1f37ba8bd2ae7e741422a85309d444eb68",
+    "source": "insights_portal",
+    "interest": "Mobility Intelligence Research",
+    "subscribedAt": "2026-10-23T04:46:01.816Z",
+    "confirmedAt": "2026-10-23T04:46:01.816Z",
+    "createdAt": "2026-10-23T04:46:01.816Z",
+    "updatedAt": "2026-10-24T10:42:31.437Z",
+    "unsubscribedAt": "2026-10-24T10:42:31.437Z"
+  },
+  {
     "_id": "sub_1792133470070_n5i4v",
     "email": "fleet.tester.1792133465570@logistics-enterprises.in",
     "status": "unsubscribed",

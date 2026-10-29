@@ -134,7 +134,7 @@ export const SEED_CASE_STUDIES: TmipCaseStudy[] = [
     isFeatured: false,
     status: "Published",
     customerProfile:
-      "A major highway engineering contractor executing multi-lane expressway and corridor paving packages. Their operations deploy 280 multi-axle tippers and heavy transit concrete mixers transporting crushed aggregate, gravel, and asphalt from crushing plants to active highway paving sectors.\n\nVehicles operate under intense 35-ton payloads across rugged quarry approaches, unpaved work sites, and paved highways, making tyre preservation and equipment availability critical to project timelines.",
+      "A major highway engineering contractor executing multi-lane expressway and corridor paving packages. Their operations deploy 280 multi-axle tippers and heavy transit concrete mixers transporting crushed aggregate, gravel, and asphalt from crushing plants to active highway paving sectors.\n\nVehicles operate under intense heavy-payload shifts across rugged quarry approaches, unpaved work sites, and paved highways, making tyre preservation and equipment availability critical to project timelines.",
     challenge:
       "Aggressive site conditions caused severe operational friction for the construction fleet:\n\n• Premature casing destruction: Jagged quarry rocks and under-inflation punctures caused deep sidewall flex and carcass fatigue, reducing casing retreadability to under 20%.\n• Paving train delays: When a transit mixer or tipper blew a tyre on a single-lane site haul road, continuous paving machines were forced to halt, risking concrete setting failures.\n• Heavy dust and vibration sensor failures: Third-party commercial telematics failed repeatedly due to fine stone dust immersion and severe suspension shocks.",
     solution:
@@ -177,7 +177,7 @@ export const SEED_CASE_STUDIES: TmipCaseStudy[] = [
     slug: "open-cast-haulage-analytics",
     industry: "Mining",
     fleetSize: "100-500",
-    headline: "Preventing high-tonnage dumper downtime in central India mining corridors.",
+    headline: "Preventing heavy-duty dumper downtime in central India mining corridors.",
     excerpt:
       "Optimizing load-pressure distribution on rigid dump trucks operating in rugged, abrasive mining pits with unforgiving production schedules.",
     metricValue: "99.4% Uptime",
@@ -185,9 +185,9 @@ export const SEED_CASE_STUDIES: TmipCaseStudy[] = [
     isFeatured: false,
     status: "Published",
     customerProfile:
-      "A premier open-cast mining contractor operating in central India, managing a dedicated fleet of over 180 rigid dump trucks, heavy tippers, and articulated excavators. Their operations haul overburden and high-grade mineral ore from pit floors to primary crushing plants across round-the-clock shift schedules.\n\nWith haul trucks operating on severe gradient ramps under 40+ ton payloads, wheel-end assemblies experience intense mechanical torque, abrasive rock friction, and high thermal stress.",
+      "A premier open-cast mining contractor operating in central India, managing a dedicated fleet of over 180 rigid dump trucks, heavy tippers, and articulated excavators. Their operations haul overburden and high-grade mineral ore from pit floors to primary crushing plants across round-the-clock shift schedules.\n\nWith haul trucks operating on severe gradient ramps under heavy-payload shifts, wheel-end assemblies experience intense mechanical torque, abrasive rock friction, and high thermal stress.",
     challenge:
-      "In high-tonnage mining, unscheduled downtime is measured in lakhs of rupees per hour. The operator faced three structural challenges:\n\n• Haul ramp bottlenecks: A single tyre failure on a steep, single-lane pit exit halted all trailing dumpers, freezing extraction cycles across the entire pit.\n• Cellular connectivity blackouts: Deep quarry excavations frequently lost cellular signal, causing legacy cloud telematics systems to drop warning signals.\n• Premature OTR tyre scrapping: Undetected slow leaks and uneven load-drag caused intense heat buildup, destroying multi-lakh tyre casings before their first scheduled retread.",
+      "In round-the-clock shift mining, unscheduled downtime is measured in lakhs of rupees per hour. The operator faced three structural challenges:\n\n• Haul ramp bottlenecks: A single tyre failure on a steep, single-lane pit exit halted all trailing dumpers, freezing extraction cycles across the entire pit.\n• Cellular connectivity blackouts: Deep quarry excavations frequently lost cellular signal, causing legacy cloud telematics systems to drop warning signals.\n• Premature OTR tyre scrapping: Undetected slow leaks and uneven load-drag caused intense heat buildup, destroying multi-lakh tyre casings before their first scheduled retread.",
     solution:
       "Treel deployed ARAI-certified, heavy-duty TMIP industrial sensors with IP68-rated enclosures across all wheel positions. The edge hardware included:\n\n• Offline Edge Buffer: On-vehicle edge gateways processing anomaly models locally with instant cab alarms during zero-signal runs.\n• Thermal Stress Models: Physics-informed algorithms that correlate ambient pit temperatures, axle load, and tyre inflation levels.",
     quote: {

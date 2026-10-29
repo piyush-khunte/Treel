@@ -36,7 +36,7 @@ const UNIT_PRICE_INR = 1700;
 export default function SurakshaBuyClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { addItem, updateQuantity, items } = useSurakshaCart();
+  const { addItem } = useSurakshaCart();
 
   // Parse initial tyre count from searchParams if provided (e.g. ?tyres=10 or ?qty=10)
   const queryTyres = parseInt(searchParams.get("tyres") || searchParams.get("qty") || "", 10);
@@ -56,28 +56,25 @@ export default function SurakshaBuyClient() {
   const handleProceedToCheckout = () => {
     setIsProcessing(true);
 
+    const kitPrice = tyreCount * UNIT_PRICE_INR;
+    const variantId = `suraksha_${tyreCount}w`;
+
     // Build standard Suraksha kit item
     const surakshaItem = {
-      variant_id: "suraksha-sensor-kit",
-      sku: `SKU-SURAKSHA-${tyreCount}TYRE`,
+      id: variantId,
+      variant_id: variantId,
+      sku: `SKU-SURAKSHA-${tyreCount}W`,
       name: `Treel Suraksha Commercial Safety Kit (${tyreCount} Tyres)`,
-      price_inr: UNIT_PRICE_INR,
-      mrp_inr: 2000,
-      quantity: tyreCount,
+      price_inr: kitPrice,
+      mrp_inr: Math.round(kitPrice * 1.18),
+      quantity: 1,
       sensor_count: tyreCount,
       vehicle_type: "truck",
       image_url:
         "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436567/Treel_New_Logo_Final_With_Favicon_Tagline.png",
     };
 
-    // If an existing suraksha item is in cart, update its quantity; otherwise add it
-    const existing = items.find((i) => i.variant_id === "suraksha-sensor-kit");
-    if (existing) {
-      updateQuantity("suraksha-sensor-kit", tyreCount);
-    } else {
-      addItem(surakshaItem);
-    }
-
+    addItem(surakshaItem);
     router.push("/suraksha/cart");
   };
 
@@ -265,8 +262,8 @@ export default function SurakshaBuyClient() {
                   <div className="flex items-start gap-3 p-3 rounded bg-[#FEF3C7] border border-[#451A03]/10">
                     <ShieldCheck className="w-5 h-5 text-[#047857] shrink-0 mt-0.5" />
                     <div>
-                      <div className="font-bold">JK Tyre Pre-Registered Warranty</div>
-                      <div className="text-xs text-[#78350F]">Instant replacement across 400+ Truck Wheels centres</div>
+                      <div className="font-bold">Official Pre-Registered Warranty</div>
+                      <div className="text-xs text-[#78350F]">Instant replacement across 400+ authorized centres</div>
                     </div>
                   </div>
                 </div>
@@ -347,7 +344,7 @@ export default function SurakshaBuyClient() {
                     disabled={isProcessing}
                     className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-[4px] font-rubik font-bold text-base transition-all shadow-md bg-[#DC2626] text-[#FEF3C7] hover:bg-[#B91C1C] active:scale-[0.98] cursor-pointer disabled:opacity-50"
                   >
-                    <span>{isProcessing ? "Redirecting to Checkout..." : `Proceed to Checkout (₹${totalPrice.toLocaleString("en-IN")})`}</span>
+                    <span>{isProcessing ? "Adding to Cart..." : `Add Kit to Cart & Proceed (₹${totalPrice.toLocaleString("en-IN")})`}</span>
                     <ArrowRight className="w-5 h-5" />
                   </button>
 

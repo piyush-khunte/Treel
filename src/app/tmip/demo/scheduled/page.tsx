@@ -43,8 +43,8 @@ export default function TmipDemoScheduledPage() {
 
 function ScheduledLoadingFallback() {
   return (
-    <div className="relative z-10 pt-24 pb-20 max-w-[1320px] mx-auto px-6 sm:px-10">
-      <div className="animate-pulse space-y-6 max-w-4xl">
+    <div className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 max-w-[1320px] mx-auto px-6 sm:px-10">
+      <div className="animate-pulse space-y-4 max-w-4xl">
         <div className="h-4 w-36 bg-blue-900/30 rounded" />
         <div className="h-10 w-96 bg-blue-900/30 rounded" />
         <div className="h-24 w-full bg-slate-800/20 rounded" />

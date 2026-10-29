@@ -14,6 +14,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { PricingBuyButton } from "./pricing-buy-button";
+import { SurakshaPricingCartBar } from "./suraksha-pricing-cart-bar";
 
 import { getAllProducts } from "@/lib/commerce/product-storage";
 
@@ -246,6 +247,9 @@ export default async function SurakshaPricingPage() {
         </div>
       </section>
 
+      {/* Floating Sticky Cart Bar */}
+      <SurakshaPricingCartBar />
+
       {/* Configurations by Truck Setup */}
       <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
@@ -332,6 +336,9 @@ export default async function SurakshaPricingPage() {
         </div>
       </section>
 
+      {/* Floating Sticky Cart Bar */}
+      <SurakshaPricingCartBar />
+
       {/* Cup of Tea Maths (Payback Framing) */}
       <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
@@ -364,6 +371,9 @@ export default async function SurakshaPricingPage() {
           </div>
         </div>
       </section>
+
+      {/* Floating Sticky Cart Bar */}
+      <SurakshaPricingCartBar />
 
       {/* What's Included (No Hidden Fees) */}
       <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
@@ -414,6 +424,9 @@ export default async function SurakshaPricingPage() {
           </div>
         </div>
       </section>
+
+      {/* Floating Sticky Cart Bar */}
+      <SurakshaPricingCartBar />
 
       {/* Payment Options */}
       <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
@@ -472,6 +485,9 @@ export default async function SurakshaPricingPage() {
         </div>
       </section>
 
+      {/* Floating Sticky Cart Bar */}
+      <SurakshaPricingCartBar />
+
       {/* Bulk Pricing for Fleet Operators */}
       <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
@@ -498,6 +514,9 @@ export default async function SurakshaPricingPage() {
           </div>
         </div>
       </section>
+
+      {/* Floating Sticky Cart Bar */}
+      <SurakshaPricingCartBar />
 
       {/* CTA Band */}
       <section className="py-20 bg-gradient-to-r from-[#DC2626] to-[#EA580C] text-[#FEF3C7]">
@@ -528,6 +547,11 @@ export default async function SurakshaPricingPage() {
           </div>
         </div>
       </section>
+          {/* Floating Sticky Cart Bar */}
+      <SurakshaPricingCartBar />
+
+      {/* Floating Sticky Cart Bar */}
+      <SurakshaPricingCartBar />
     </div>
   );
 }

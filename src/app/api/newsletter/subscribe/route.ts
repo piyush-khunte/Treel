@@ -93,10 +93,10 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // 3. Trigger Amazon SES welcome confirmation email if configured and subscriber is new/reactivated
-    if (isSesConfigured() && (isNew || reactivated)) {
+    // 3. Trigger Amazon SES welcome confirmation email from hello@treel.in to the subscriber
+    if (isSesConfigured()) {
       try {
-        const baseUrl = getCanonicalSiteUrl();
+        const baseUrl = getCanonicalSiteUrl(req);
         const unsubscribeUrl = `${baseUrl}/unsubscribe?token=${subscriber.token}&email=${encodeURIComponent(rawEmail)}`;
 
         await sendNewsletterWelcomeEmail({

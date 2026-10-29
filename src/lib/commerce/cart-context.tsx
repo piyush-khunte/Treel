@@ -1,7 +1,7 @@
 "use client";
 
 import { CartItem } from "@/types/database";
-import React,{ createContext,useContext,useEffect,useState } from "react";
+import React,{ createContext,useContext,useEffect,useState,useRef } from "react";
 
 export interface AppliedCoupon {
   code: string;
@@ -72,63 +72,95 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [surakshaCoupon, setSurakshaCoupon] = useState<string>("");
   const [surakshaAppliedCoupon, setSurakshaAppliedCoupon] = useState<AppliedCoupon | null>(null);
 
-  // Load from localStorage on client with strict brand sanitization
+  const isInitializedRef = useRef(false);
+
+  // Load from localStorage on client during browser idle to avoid blocking initial paint
   useEffect(() => {
-    try {
-      // Personal cart
-      const savedPersonal = localStorage.getItem("treel_guest_cart");
-      if (savedPersonal) {
-        const parsed = JSON.parse(savedPersonal);
-        if (Array.isArray(parsed)) {
-          const cleanPersonal = parsed.filter(isPersonalItem);
-          setPersonalItems(cleanPersonal);
-          if (cleanPersonal.length !== parsed.length) {
-            localStorage.setItem("treel_guest_cart", JSON.stringify(cleanPersonal));
+    const initCart = () => {
+      try {
+        // Personal cart
+        const savedPersonal = localStorage.getItem("treel_guest_cart");
+        if (savedPersonal) {
+          const parsed = JSON.parse(savedPersonal);
+          if (Array.isArray(parsed)) {
+            const cleanPersonal = parsed.filter(isPersonalItem);
+            setPersonalItems(cleanPersonal);
+            if (cleanPersonal.length !== parsed.length) {
+              localStorage.setItem("treel_guest_cart", JSON.stringify(cleanPersonal));
+            }
           }
         }
-      }
 
-      const savedPersonalCoupon = localStorage.getItem("treel_personal_coupon");
-      if (savedPersonalCoupon) {
-        try {
-          const parsedCoupon = JSON.parse(savedPersonalCoupon);
-          if (parsedCoupon && parsedCoupon.code) {
-            setPersonalCoupon(parsedCoupon.code);
-            setPersonalAppliedCoupon(parsedCoupon);
-          }
-        } catch {}
-      }
+        const savedPersonalCoupon = localStorage.getItem("treel_personal_coupon");
+        if (savedPersonalCoupon) {
+          try {
+            const parsedCoupon = JSON.parse(savedPersonalCoupon);
+            if (parsedCoupon && parsedCoupon.code) {
+              setPersonalCoupon(parsedCoupon.code);
+              setPersonalAppliedCoupon(parsedCoupon);
+            }
+          } catch {}
+        }
 
-      // Suraksha cart
-      const savedSuraksha = localStorage.getItem("treel_suraksha_cart");
-      if (savedSuraksha) {
-        const parsed = JSON.parse(savedSuraksha);
-        if (Array.isArray(parsed)) {
-          const cleanSuraksha = parsed.filter(isSurakshaItem);
-          setSurakshaItems(cleanSuraksha);
-          if (cleanSuraksha.length !== parsed.length) {
-            localStorage.setItem("treel_suraksha_cart", JSON.stringify(cleanSuraksha));
+        // Suraksha cart
+        const savedSuraksha = localStorage.getItem("treel_suraksha_cart");
+        if (savedSuraksha) {
+          const parsed = JSON.parse(savedSuraksha);
+          if (Array.isArray(parsed)) {
+            const cleanSuraksha = parsed.filter(isSurakshaItem);
+            const normalizedSuraksha = cleanSuraksha.map((item) => {
+              if (item.price_inr === 1700 && ((item.sensor_count && item.sensor_count > 1) || (item.quantity && item.quantity > 1))) {
+                const sensors = item.sensor_count || item.quantity || 6;
+                return {
+                  ...item,
+                  price_inr: sensors * 1700,
+                  mrp_inr: Math.round(sensors * 1700 * 1.18),
+                  quantity: 1,
+                  sensor_count: sensors,
+                };
+              }
+              return item;
+            });
+            setSurakshaItems(normalizedSuraksha);
+            localStorage.setItem("treel_suraksha_cart", JSON.stringify(normalizedSuraksha));
           }
         }
-      }
 
-      const savedSurakshaCoupon = localStorage.getItem("treel_suraksha_coupon");
-      if (savedSurakshaCoupon) {
-        try {
-          const parsedCoupon = JSON.parse(savedSurakshaCoupon);
-          if (parsedCoupon && parsedCoupon.code) {
-            setSurakshaCoupon(parsedCoupon.code);
-            setSurakshaAppliedCoupon(parsedCoupon);
-          }
-        } catch {}
+        const savedSurakshaCoupon = localStorage.getItem("treel_suraksha_coupon");
+        if (savedSurakshaCoupon) {
+          try {
+            const parsedCoupon = JSON.parse(savedSurakshaCoupon);
+            if (parsedCoupon && parsedCoupon.code) {
+              setSurakshaCoupon(parsedCoupon.code);
+              setSurakshaAppliedCoupon(parsedCoupon);
+            }
+          } catch {}
+        }
+      } catch (e) {
+        console.error("Failed to parse carts from storage", e);
+      } finally {
+        isInitializedRef.current = true;
       }
-    } catch (e) {
-      console.error("Failed to parse carts from storage", e);
+    };
+
+    if (typeof window !== "undefined") {
+      if ("requestIdleCallback" in window) {
+        const id = (window as unknown as { requestIdleCallback: (fn: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(initCart, { timeout: 1000 });
+        return () => {
+          if ("cancelIdleCallback" in window) {
+            (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(id);
+          }
+        };
+      } else {
+        const timer = setTimeout(initCart, 100);
+        return () => clearTimeout(timer);
+      }
     }
   }, []);
 
   // Save Personal items to localStorage
   useEffect(() => {
+    if (!isInitializedRef.current) return;
     try {
       const cleanPersonal = personalItems.filter(isPersonalItem);
       localStorage.setItem("treel_guest_cart", JSON.stringify(cleanPersonal));
@@ -139,6 +171,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   // Save Personal coupon to localStorage
   useEffect(() => {
+    if (!isInitializedRef.current) return;
     try {
       if (personalAppliedCoupon) {
         localStorage.setItem("treel_personal_coupon", JSON.stringify(personalAppliedCoupon));
@@ -152,6 +185,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   // Save Suraksha items to localStorage
   useEffect(() => {
+    if (!isInitializedRef.current) return;
     try {
       const cleanSuraksha = surakshaItems.filter(isSurakshaItem);
       localStorage.setItem("treel_suraksha_cart", JSON.stringify(cleanSuraksha));
@@ -162,6 +196,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   // Save Suraksha coupon to localStorage
   useEffect(() => {
+    if (!isInitializedRef.current) return;
     try {
       if (surakshaAppliedCoupon) {
         localStorage.setItem("treel_suraksha_coupon", JSON.stringify(surakshaAppliedCoupon));
@@ -329,12 +364,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         updated[existingIndex] = {
           ...updated[existingIndex],
           ...newItem,
-          quantity: newItem.quantity,
-          sensor_count: newItem.sensor_count || newItem.quantity,
+          quantity: (updated[existingIndex].quantity || 1) + (newItem.quantity || 1),
         };
         return updated;
       }
-      return [...cleanPrev, newItem];
+      return [...cleanPrev, { ...newItem, quantity: newItem.quantity || 1 }];
     });
   };
 
@@ -352,11 +386,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         i.variant_id === variantId
           ? {
               ...i,
-              id: `suraksha_${quantity}w`,
               quantity,
-              sensor_count: quantity,
-              name: `Treel Suraksha Commercial Safety Kit (${quantity} Tyres)`,
-              sku: `SKU-SURAKSHA-${quantity}W`,
             }
           : i
       )

@@ -37,9 +37,9 @@ export function ConsentScriptLoader() {
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-            strategy="afterInteractive"
+            strategy="lazyOnload"
           />
-          <Script id="google-analytics-consent" strategy="afterInteractive">
+          <Script id="google-analytics-consent" strategy="lazyOnload">
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
@@ -61,7 +61,7 @@ export function ConsentScriptLoader() {
 
       {/* Microsoft Clarity - only mounted if user explicitly consented to Analytics */}
       {allowAnalytics && clarityId && (
-        <Script id="microsoft-clarity" strategy="afterInteractive">
+        <Script id="microsoft-clarity" strategy="lazyOnload">
           {`
             (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};

@@ -143,10 +143,10 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 border-b border-slate-400/10 bg-[#080E1E]">
+      <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-4">
+          <div className="max-w-4xl space-y-4">
+            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-2">
               <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
                 TMIP
               </Link>
@@ -170,7 +170,7 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
               The Vehicle Digital Twin is TMIP&apos;s architectural core. It turns each vehicle in your fleet into a live software model — one that responds to state changes in real time and answers business questions in structured queries.
             </p>
 
-            <div className="pt-4 flex flex-wrap items-center gap-4">
+            <div className="pt-2 flex flex-wrap items-center gap-4">
               <Link
                 href="/tmip/demo"
                 className="px-7 py-3.5 rounded-[3px] font-space-grotesk font-semibold text-sm bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-lg shadow-[#3B82F6]/20 inline-flex items-center gap-2 transition-all duration-200"
@@ -189,17 +189,17 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
       </section>
 
       {/* Key Takeaway Section for AEO */}
-      <section className="relative z-10 py-16 border-b border-slate-400/10 bg-[#0B1220]/60">
+      <section className="relative z-10 py-6 sm:py-8 border-b border-slate-400/10 bg-[#0B1220]/60">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="p-8 rounded-[4px] bg-[#080E1E] border border-blue-500/20 max-w-4xl relative overflow-hidden">
+          <div className="p-5 sm:p-6 rounded-[4px] bg-[#080E1E] border border-blue-500/20 max-w-4xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center gap-2 mb-2.5">
               <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
               <span className="font-jetbrains text-[10px] tracking-[0.1em] uppercase text-[#3B82F6] font-semibold">
                 AT A GLANCE
               </span>
             </div>
-            <p className="font-ibm-plex text-[#F1F5F9] text-base sm:text-lg leading-relaxed">
+            <p className="font-ibm-plex text-[#F1F5F9] text-base sm:text-[17px] leading-relaxed">
               TMIP&apos;s Vehicle Digital Twin is a live software representation of a physical truck. State updates continuously from onboard sensors. History is immutable. Predictive models run against the Twin to forecast maintenance, cost, and risk. Fleet operators query the Twin like a database.
             </p>
           </div>
@@ -207,32 +207,32 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
       </section>
 
       {/* Section 1: How TMIP builds a Twin */}
-      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-3xl mb-12">
-            <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold mb-2">
+          <div className="max-w-3xl mb-6 sm:mb-8">
+            <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold mb-1.5">
               DIGITAL TWIN ANATOMY
             </div>
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#F1F5F9]">
               What lives inside a Vehicle Digital Twin.
             </h2>
-            <p className="font-ibm-plex text-[#94A3B8] text-base sm:text-lg mt-3 leading-[1.55]">
+            <p className="font-ibm-plex text-[#94A3B8] text-base sm:text-lg mt-2 leading-[1.55]">
               Every TMIP-managed vehicle has three layers of data structured as a persistent Digital Twin.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6">
             {layers.map((layer) => {
               const Icon = layer.icon;
               return (
                 <div
                   key={layer.title}
-                  className="p-8 rounded-[4px] bg-[#080E1E] border border-slate-400/10 hover:border-[#3B82F6]/40 transition-all duration-200 flex flex-col justify-between"
+                  className="p-6 rounded-[4px] bg-[#080E1E] border border-slate-400/10 hover:border-[#3B82F6]/40 transition-all duration-200 flex flex-col justify-between"
                 >
-                  <div className="space-y-4">
+                  <div className="space-y-3.5">
                     <div className="flex items-center justify-between">
-                      <div className="w-12 h-12 rounded-[4px] bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[#3B82F6]">
-                        <Icon className="w-6 h-6" />
+                      <div className="w-11 h-11 rounded-[4px] bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[#3B82F6]">
+                        <Icon className="w-5 h-5" />
                       </div>
                       <span
                         className={`text-[10px] font-jetbrains font-semibold px-2.5 py-0.5 rounded-[3px] border ${layer.accent}`}
@@ -241,7 +241,7 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
                       </span>
                     </div>
 
-                    <h3 className="font-space-grotesk text-2xl font-semibold text-[#F1F5F9]">
+                    <h3 className="font-space-grotesk text-xl font-semibold text-[#F1F5F9]">
                       {layer.title}
                     </h3>
 
@@ -250,7 +250,7 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-slate-400/10 space-y-2">
+                  <div className="pt-4 mt-4 border-t border-slate-400/10 space-y-1.5">
                     {layer.metrics.map((metric) => (
                       <div key={metric} className="flex items-center gap-2 text-xs font-jetbrains text-[#CBD5E1]">
                         <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981] flex-shrink-0" />
@@ -266,38 +266,38 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
       </section>
 
       {/* Section 2: How operators use it */}
-      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10 bg-[#080E1E]/50">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10 bg-[#080E1E]/50">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-3xl mb-12">
-            <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold mb-2">
+          <div className="max-w-3xl mb-6 sm:mb-8">
+            <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold mb-1.5">
               OPERATIONAL USE CASES
             </div>
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#F1F5F9]">
               What Vehicle Digital Twins let you do.
             </h2>
-            <p className="font-ibm-plex text-[#94A3B8] text-base sm:text-lg mt-3 leading-[1.55]">
+            <p className="font-ibm-plex text-[#94A3B8] text-base sm:text-lg mt-2 leading-[1.55]">
               Transforming complex multi-sensor telemetry into structured queries and proactive maintenance decisions.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
             {useCases.map((uc) => {
               const Icon = uc.icon;
               return (
                 <div
                   key={uc.title}
-                  className="p-8 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-[#3B82F6]/30 transition-all duration-200 space-y-4"
+                  className="p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-[#3B82F6]/30 transition-all duration-200 space-y-3"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-[4px] bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[#3B82F6]">
-                      <Icon className="w-5 h-5" />
+                    <div className="w-9 h-9 rounded-[4px] bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[#3B82F6]">
+                      <Icon className="w-4 h-4" />
                     </div>
-                    <h3 className="font-space-grotesk text-xl font-semibold text-[#F1F5F9]">
+                    <h3 className="font-space-grotesk text-lg font-semibold text-[#F1F5F9]">
                       {uc.title}
                     </h3>
                   </div>
 
-                  <div className="p-4 rounded-[3px] bg-[#050A17] border border-blue-500/20 font-jetbrains text-xs text-[#3B82F6] leading-relaxed">
+                  <div className="p-3.5 rounded-[3px] bg-[#050A17] border border-blue-500/20 font-jetbrains text-xs text-[#3B82F6] leading-relaxed">
                     {uc.query}
                   </div>
 
@@ -312,31 +312,31 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
       </section>
 
       {/* Section 3: ROI examples */}
-      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-3xl mb-12">
-            <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold mb-2">
+          <div className="max-w-3xl mb-6 sm:mb-8">
+            <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold mb-1.5">
               PROVEN RESULTS
             </div>
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#F1F5F9]">
               What the numbers look like.
             </h2>
-            <p className="font-ibm-plex text-[#94A3B8] text-base sm:text-lg mt-3 leading-[1.55]">
+            <p className="font-ibm-plex text-[#94A3B8] text-base sm:text-lg mt-2 leading-[1.55]">
               Median outcomes across TMIP deployments after 12 months:
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {roiMetrics.map((item) => (
               <div
                 key={item.label}
-                className="p-6 rounded-[4px] bg-[#080E1E] border border-slate-400/10 hover:border-[#3B82F6]/30 transition-all duration-200 flex flex-col justify-between"
+                className="p-5 sm:p-6 rounded-[4px] bg-[#080E1E] border border-slate-400/10 hover:border-[#3B82F6]/30 transition-all duration-200 flex flex-col justify-between"
               >
                 <div>
-                  <div className="font-space-grotesk text-3xl sm:text-4xl font-semibold text-[#F59E0B] mb-2 leading-none">
+                  <div className="font-space-grotesk text-3xl sm:text-4xl font-semibold text-[#F59E0B] mb-1.5 leading-none">
                     {item.value}
                   </div>
-                  <div className="font-space-grotesk text-base font-semibold text-[#F1F5F9] mb-2">
+                  <div className="font-space-grotesk text-base font-semibold text-[#F1F5F9] mb-1.5">
                     {item.label}
                   </div>
                   <p className="font-ibm-plex text-[#94A3B8] text-xs leading-relaxed">
@@ -350,10 +350,10 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
       </section>
 
       {/* Section 4: Related Features */}
-      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10 bg-[#080E1E]/50">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10 bg-[#080E1E]/50">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-3xl mb-12">
-            <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold mb-2">
+          <div className="max-w-3xl mb-6 sm:mb-8">
+            <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold mb-1.5">
               ECOSYSTEM
             </div>
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#F1F5F9]">
@@ -361,21 +361,21 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
             {relatedFeatures.map((feat) => (
               <Link
                 key={feat.title}
                 href={feat.href}
-                className="p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-[#3B82F6]/40 transition-all duration-200 group flex flex-col justify-between"
+                className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-[#3B82F6]/40 transition-all duration-200 group flex flex-col justify-between"
               >
                 <div>
                   <span className="text-[10px] font-jetbrains text-[#3B82F6] font-semibold uppercase tracking-wider">
                     {feat.tag}
                   </span>
-                  <h3 className="font-space-grotesk text-xl font-semibold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors mt-2 mb-3">
+                  <h3 className="font-space-grotesk text-xl font-semibold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors mt-2 mb-2.5">
                     {feat.title}
                   </h3>
-                  <p className="font-ibm-plex text-[#94A3B8] text-sm leading-relaxed mb-6">
+                  <p className="font-ibm-plex text-[#94A3B8] text-sm leading-relaxed mb-4">
                     {feat.desc}
                   </p>
                 </div>
@@ -389,9 +389,9 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
       </section>
 
       {/* CTA Band */}
-      <section className="relative z-10 py-20 lg:py-24 border-t border-[rgba(59,130,246,0.15)] bg-gradient-to-br from-[#3B82F6]/[0.06] to-[#F59E0B]/[0.04]">
+      <section className="relative z-10 py-10 sm:py-14 border-t border-[rgba(59,130,246,0.15)] bg-gradient-to-br from-[#3B82F6]/[0.06] to-[#F59E0B]/[0.04]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="p-8 sm:p-14 rounded-[4px] bg-[#0B1220]/80 border border-blue-500/20 text-center max-w-4xl mx-auto space-y-6">
+          <div className="p-6 sm:p-10 rounded-[4px] bg-[#0B1220]/80 border border-blue-500/20 text-center max-w-4xl mx-auto space-y-4">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-semibold tracking-[-0.02em] text-[#F1F5F9]">
               See a Vehicle Digital Twin on your fleet.
             </h2>
@@ -401,13 +401,13 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
             <div className="pt-2 flex flex-wrap justify-center gap-4">
               <Link
                 href="/tmip/demo"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-[3px] font-space-grotesk font-semibold text-sm sm:text-base bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-lg shadow-[#3B82F6]/20 transition-all duration-200"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[3px] font-space-grotesk font-semibold text-sm sm:text-base bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-lg shadow-[#3B82F6]/20 transition-all duration-200"
               >
                 Book a demo <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/tmip/whitepapers/vehicle-digital-twin"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-[3px] font-ibm-plex font-medium text-sm sm:text-base border border-[rgba(59,130,246,0.3)] text-[#F1F5F9] hover:bg-white/5 hover:border-white/40 transition-all duration-200"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[3px] font-ibm-plex font-medium text-sm sm:text-base border border-[rgba(59,130,246,0.3)] text-[#F1F5F9] hover:bg-white/5 hover:border-white/40 transition-all duration-200"
               >
                 Read the technical whitepaper
               </Link>

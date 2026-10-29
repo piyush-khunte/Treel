@@ -97,7 +97,7 @@
     "displayOnResearch": true,
     "category": "both",
     "chapters": [
-      "01. Physical State Ingestion & 24 Hz Edge Telemetry",
+      "01. Physical State Ingestion & Real-Time Edge Telemetry",
       "02. Dynamic Thermal Accumulation Modeling",
       "03. Carcass Stress Cycles & Retread Durability Predictability",
       "04. Multi-Axle Differential Load Estimation",
@@ -182,7 +182,7 @@
     "slug": "time-series-infrastructure-heavy-haul",
     "title": "High-Frequency Time-Series Data Infrastructure for Heavy Haul Fleets",
     "excerpt": "Technical deep-dive on sub-second sensor stream ingestion, multi-tenant Kafka partitioning, and low-latency digital twin state estimation.",
-    "description": "Technical documentation and architecture specification for ingesting 24 Hz sensor streams across tens of thousands of simultaneous vehicle connections.",
+    "description": "Technical documentation and architecture specification for ingesting real-time edge sensor streams across tens of thousands of simultaneous vehicle connections.",
     "topic": "Predictive Maintenance",
     "industry": "Construction",
     "author": "Cloud Telemetry & Infrastructure Team",

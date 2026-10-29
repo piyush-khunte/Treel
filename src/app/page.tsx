@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Radio, Cpu, ShieldCheck, BarChart3 } from "lucide-react";
 import { TreelHeroVisual } from "@/components/home/treel-hero-visual";
+import { ExplorePlatformVideoModal } from "@/components/home/explore-platform-video-modal";
 
 export const metadata: Metadata = {
   title: "Treel — Mobility Intelligence & Vehicle Digital Twin",
@@ -36,7 +37,7 @@ export default function HomePage() {
       />
 
       {/* 1. HERO SECTION */}
-      <section className="relative overflow-hidden pt-[100px] pb-[80px] lg:pt-[140px] lg:pb-[100px] border-b border-white/10 min-h-[calc(100vh-140px)] flex items-center">
+      <section className="relative overflow-hidden pt-8 pb-12 sm:pt-14 sm:pb-20 lg:pt-[120px] lg:pb-[100px] border-b border-white/10 min-h-0 lg:min-h-[calc(100vh-140px)] flex items-center">
         {/* Subtle Treel Red ambient radial glow */}
         <div 
           className="absolute -top-24 -right-24 w-[500px] h-[500px] pointer-events-none rounded-full"
@@ -52,25 +53,25 @@ export default function HomePage() {
                 THE MOBILITY INTELLIGENCE COMPANY
               </div>
 
-              <h1 className="font-fraunces text-5xl sm:text-7xl lg:text-[80px] xl:text-[88px] font-medium tracking-[-0.03em] text-[#FAF7F2] leading-[0.98] mb-6 sm:mb-8">
-                Turn Every Vehicle into <span className="italic text-[#D5573B] font-normal" style={{ fontVariationSettings: '"opsz" 144' }}>Operating Intelligence</span>
+              <h1
+                suppressHydrationWarning
+                className="font-fraunces text-[32px] sm:text-5xl lg:text-[76px] xl:text-[84px] font-medium tracking-[-0.03em] text-[#FAF7F2] leading-[1.08] sm:leading-[0.98] mb-5 sm:mb-8"
+              >
+                <span suppressHydrationWarning>{"Turn Every Vehicle into "}</span>
+                <span
+                  suppressHydrationWarning
+                  className="italic text-[#D5573B] font-normal opsz-144"
+                >
+                  Operating Intelligence
+                </span>
               </h1>
 
-              <p className="font-fraunces text-lg sm:text-[22px] font-normal leading-[1.45] text-[#94A3B8] mb-8 sm:mb-10 max-w-[560px]">
-                Treel operates India's largest connected commercial vehicle dataset. Three product families, one Vehicle Digital Twin architecture, and a single mission: turn raw motion into operating intelligence.
+              <p className="font-fraunces text-base sm:text-xl font-normal leading-[1.4] text-[#94A3B8] mb-6 sm:mb-10 max-w-[560px]">
+                Treel operates India's largest connected commercial vehicle dataset. Three product families, one architecture, and a single mission: turn raw motion into operating intelligence.
               </p>
 
               <div className="flex flex-wrap items-center gap-4">
-                <Link prefetch={false} href="/vehicle-digital-twin"
-                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all group shadow-sm"
-                >
-                  Explore the platform <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-                </Link>
-                <Link prefetch={false} href="/research/roi-fleet-intelligence"
-                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] border border-[#94A3B8]/30 hover:border-[#D5573B] text-[#FAF7F2] font-medium text-sm transition-all"
-                >
-                  Read the ROI paper
-                </Link>
+                <ExplorePlatformVideoModal />
               </div>
             </div>
 
@@ -145,7 +146,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <p className="text-[#CBD5E1] text-sm leading-[1.6] font-inter">
-                  Vehicle Digital Twin platform for fleet operators with ten or more vehicles. Cost per kilometre, uptime, predicted maintenance, in one dashboard.
+                  Vehicle Digital Twin platform for fleet operators with ten or more vehicles. Uptime, predicted maintenance, in one dashboard.
                 </p>
               </div>
               <div className="pt-8 font-inter text-[13px] font-semibold text-[#D5573B] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
@@ -174,7 +175,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <p className="text-[#CBD5E1] text-sm leading-[1.6] font-inter">
-                  A DIY tyre safety kit for India's owner-drivers. Safety, savings, simplicity. Six regional clusters, vernacular first, on the ground.
+                  A DIY tyre safety kit for India's owner-drivers. Safety, savings, simplicity.
                 </p>
               </div>
               <div className="pt-8 font-inter text-[13px] font-semibold text-[#D5573B] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
@@ -205,7 +206,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <p className="text-[#CBD5E1] text-sm leading-[1.6] font-inter">
-                  Real-time tyre pressure on your phone, vehicle infotainment screen, or dedicated display. Alerts before a puncture. Peace of mind before every drive. Fits any car or SUV.
+                  Real-time tyre pressure on your phone, vehicle infotainment screen, or dedicated display. Alerts before a puncture. Peace of mind before every drive. Fits any car or two-wheeler.
                 </p>
               </div>
               <div className="pt-8 font-inter text-[13px] font-semibold text-[#D5573B] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
@@ -226,10 +227,10 @@ export default function HomePage() {
                 THE COMPANY
               </div>
               <h2 className="font-fraunces text-3xl sm:text-4xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-tight leading-[1.12]">
-                Built on a decade of tyre data. Rebuilt as mobility intelligence.
+                Mobility Intelligence Built on Data from 2 Million+ Tyres.
               </h2>
               <p className="font-fraunces text-lg sm:text-xl font-normal leading-[1.45] text-[#94A3B8] italic">
-                Treel started with a tyre sensor. Today the same architecture operates as a full Vehicle Digital Twin across two hundred enterprise customers. The category has moved from monitoring components to reasoning about the vehicle. Treel is the company that moved it.
+                Treel is a pioneer in delivering a 360-degree view of connected vehicle telemetry, transforming data from over 2 million tyres into operational analysis that drives daily fleet performance and safety. The category has moved from monitoring components to reasoning about the vehicle. Treel is the company that moved it.
               </p>
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link prefetch={false} href="/founder-note"
@@ -251,15 +252,15 @@ export default function HomePage() {
                 <div className="w-8 h-8 rounded bg-[#D5573B]/10 flex items-center justify-center text-[#D5573B]">
                   <Radio className="w-4 h-4" />
                 </div>
-                <div className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">24 Hz</div>
-                <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">High-frequency steer-axle telemetry</div>
+                <div className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">30 Million</div>
+                <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Data points per day captured on platform</div>
               </div>
               <div className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-2 hover:border-white/20 transition-all">
                 <div className="w-8 h-8 rounded bg-[#3B82F6]/10 flex items-center justify-center text-[#3B82F6]">
                   <Cpu className="w-4 h-4" />
                 </div>
-                <div className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">IP69K</div>
-                <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Pressure-wash rated military sensors</div>
+                <div className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">70+ Critical Alerts</div>
+                <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Sent on average per day which could have been hazardous</div>
               </div>
               <div className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-2 hover:border-white/20 transition-all">
                 <div className="w-8 h-8 rounded bg-[#D5573B]/10 flex items-center justify-center text-[#D5573B]">

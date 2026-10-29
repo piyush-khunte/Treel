@@ -66,29 +66,33 @@ export default function SurakshaWhySurakshaPage() {
             </h2>
 
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-medium">
-              Every truck driver knows what a front-tyre blowout on the highway means. You lose control of the vehicle. Managing a loaded truck even at 60 km/h becomes nearly impossible. In the worst-case scenario, the driver&apos;s family only finds out through an emergency phone call.
+              Every commercial driver knows what a front-tyre blowout on an Indian highway means. At 60+ km/h, a 40-ton loaded truck pulls violently into the divider or oncoming traffic. In a split second, a driver&apos;s life, their cargo, and their family&apos;s sole livelihood are jeopardized.
             </p>
 
             <p className="text-[#78350F] text-base leading-relaxed">
-              Suraksha&apos;s purpose is simple: warn you before a blowout happens. The cabin display continuously shows the pressure and temperature of every tyre. When a slow leak begins or temperature spikes, the display flashes red and beeps. You can pull over, check the tyre in time, and stay safe.
+              Suraksha is engineered around human safety, time saved on the road, and protecting driver livelihoods. By continuously streaming real-time tyre pressure and temperature directly to an in-cab display, Suraksha warns drivers 24 to 48 hours before pressure anomalies or thermal stress cause blowouts. You eliminate roadside downtime, prevent dangerous night repairs, and guarantee safe arrival home to your family.
             </p>
 
             <div className="pt-2 border-t border-[#451A03]/10">
               <div className="text-xs font-bold uppercase tracking-wider text-[#78350F] mb-3">
-                Key safety facts:
+                National Highway Safety &amp; Livelihood Statistics:
               </div>
               <ul className="space-y-2.5 text-sm text-[#451A03]">
                 <li className="flex items-start gap-2">
                   <span className="text-[#DC2626] font-bold">•</span>
-                  <span>40% of truck accidents in India involve tyre failures (source: Ministry of Road Transport & Highways data)</span>
+                  <span><strong>~1.83–1.9 Lakh annual road fatalities in India:</strong> Official national transport data indicates that roughly 13% of highway road fatalities are directly tied to tyre failures, burst tyres, and catastrophic blowouts.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#DC2626] font-bold">•</span>
-                  <span>Front-tyre blowouts at 60+ km/h are among the deadliest single-vehicle accidents on Indian highways</span>
+                  <span><strong>Protecting Driver Livelihoods:</strong> For an owner-driver, a single catastrophic rollover destroys the truck that feeds the family. Suraksha serves as an indispensable human safety shield and financial safeguard.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#DC2626] font-bold">•</span>
-                  <span>80% of tyre failures show warning signs 24-48 hours before the actual failure — signs a driver cannot see without a sensor</span>
+                  <span><strong>24–48 Hour Early Warning:</strong> Over 80% of tyre failures begin with invisible thermal spikes or subtle pressure leaks detectable only through precision sensor telemetry.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#DC2626] font-bold">•</span>
+                  <span><strong>8–14 Hours Saved Per Route:</strong> Eliminates stranded breakdowns on unlit highway shoulders, protecting cargo commitments and keeping drivers safe.</span>
                 </li>
               </ul>
             </div>

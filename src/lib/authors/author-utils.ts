@@ -119,11 +119,11 @@ export const VERIFIED_AUTHORS: Record<string, AuthorProfile> = {
   "imran-khan": {
     slug: "imran-khan",
     name: "Imran Khan",
-    role: "Chief Financial Officer",
+    role: "Head of Finance & Strategy",
     company: "Treel Mobility Solutions",
     location: "Pune, India",
     avatarUrl: "/images/leadership/imran-khan.png",
-    bio: "Manages financial strategy, capital allocation, enterprise procurement frameworks, and commercial operations across Treel's national mobility intelligence network.",
+    bio: "Accomplished finance professional with over two decades of experience across Finance, Accounts, Taxation, Commercial and Operations. Associated with JK Tyre & Industries Ltd. since October 2015, bringing strong expertise in financial strategy, P&L management, FP&A, business performance, and cost optimization.",
   },
   "nithin": {
     slug: "nithin",
@@ -140,7 +140,7 @@ export const VERIFIED_AUTHORS: Record<string, AuthorProfile> = {
     role: "Head of Quality",
     company: "Treel Mobility Solutions",
     location: "Pune, India",
-    avatarUrl: "/images/leadership/mahesh-sakat.jpeg",
+    avatarUrl: "/images/leadership/mahesh-sakat.png",
     bio: "Automotive quality professional with over 14 years of experience in quality management system, product development, supplier quality & manufacturing quality assurance.",
   },
   "suresh-fale": {

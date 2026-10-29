@@ -20,12 +20,22 @@ export function CookieBanner() {
   const [customCategories, setCustomCategories] = useState<ConsentCategories>(DEFAULT_CATEGORIES);
 
   useEffect(() => {
-    const existing = getStoredConsent();
-    if (!existing) {
-      setHasConsent(false);
-    } else {
-      setHasConsent(true);
-      setCustomCategories(existing.categories);
+    const initConsent = () => {
+      const existing = getStoredConsent();
+      if (!existing) {
+        setHasConsent(false);
+      } else {
+        setHasConsent(true);
+        setCustomCategories(existing.categories);
+      }
+    };
+
+    if (typeof window !== "undefined") {
+      if ("requestIdleCallback" in window) {
+        (window as unknown as { requestIdleCallback: (fn: () => void) => void }).requestIdleCallback(initConsent);
+      } else {
+        setTimeout(initConsent, 100);
+      }
     }
 
     // Listen for custom open requests (e.g. from footer links)

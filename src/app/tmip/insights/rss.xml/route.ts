@@ -23,7 +23,7 @@ export async function GET() {
     },
     {
       title: "Deploying 1,000 Heavy Commercial Assets on the Western Logistics Corridor",
-      url: `${baseUrl}/tmip/customers/case-studies/1000-truck-case-study`,
+      url: `${baseUrl}/tmip/insights`,
       description:
         "Field engineering takeaways from equipping linehaul tractor-trailers across seven depot hubs under operational delivery schedules.",
       author: "hello@treel.in (Vikram Sengupta)",

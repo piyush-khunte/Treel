@@ -25,6 +25,9 @@ export function SurakshaLandingFooter({ className = "" }: { className?: string }
             <p className="text-xs text-[#64748B] font-manrope pt-2">
               ARAI &amp; ISO 9001:2015 Certified · Patents in India, US &amp; EU
             </p>
+            <p className="text-xs text-[#64748B] font-manrope">
+              IATF 16949 Certified
+            </p>
             <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
               <span>© {new Date().getFullYear()} Treel Mobility Solutions Private Limited. All rights reserved.</span>
             </div>
@@ -160,7 +163,7 @@ export function SurakshaLandingFooter({ className = "" }: { className?: string }
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors">
+                <Link href="/contact?subject=suraksha" className="text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors">
                   Contact Us
                 </Link>
               </li>

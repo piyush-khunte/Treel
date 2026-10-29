@@ -1,15 +1,15 @@
 import {
-Activity,
-ArrowRight,
-Box,
-CheckCircle2,
-Cpu,
-Layers,
-Lock,
-Radio,
-Server,
-ShieldCheck,
-Wrench
+  Activity,
+  ArrowRight,
+  Box,
+  CheckCircle2,
+  Cpu,
+  Layers,
+  Lock,
+  Radio,
+  Server,
+  ShieldCheck,
+  Wrench,
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -83,7 +83,6 @@ const differentiators = [
     title: "Predictive analytics",
     desc: "Built on longitudinal telemetry across 68,000+ commercial vehicles, not static high/low alert thresholds that cause operator alarm fatigue.",
   },
- 
   {
     title: "Sub-second telemetry",
     desc: "Live 180ms sensor-to-cloud latency streaming via 5G edge networks rather than 5-minute delayed polling intervals.",
@@ -126,12 +125,12 @@ const featureCards = [
 ];
 
 const integrations = [
-  "Fleetx",
-  "Locus",
-  "LogiNext",
-  "SAP",
-  "Oracle",
-  "+ your custom TMS",
+  "Enterprise ERP",
+  "Transport Management Systems",
+  "Telematics Gateways",
+  "Workshop Maintenance",
+  "CAN Bus Telemetry",
+  "Custom REST and Webhooks",
 ];
 
 export default function TmipPlatformPage() {
@@ -150,9 +149,9 @@ export default function TmipPlatformPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 border-b border-slate-400/10">
+      <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
+          <div className="max-w-4xl space-y-4">
             <Breadcrumb
               variant="tmip"
               items={[
@@ -166,7 +165,7 @@ export default function TmipPlatformPage() {
             <h1 className="font-space-grotesk text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] text-[#F1F5F9] leading-[1.12]">
               One architecture. Five layers. Every vehicle a signal.
             </h1>
-            <p className="font-ibm-plex text-lg sm:text-xl leading-[1.55] text-[#94A3B8] max-w-3xl">
+            <p className="font-ibm-plex text-base sm:text-xl leading-[1.55] text-[#94A3B8] max-w-3xl">
               TMIP is built on a five-layer architecture that turns raw sensor data into operating decisions. This is how
               the platform works, layer by layer.
             </p>
@@ -175,9 +174,9 @@ export default function TmipPlatformPage() {
       </section>
 
       {/* Section · The five-layer architecture */}
-      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10 bg-[#080E1E]/50">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
-          <div className="max-w-3xl space-y-4">
+      <section className="relative z-10 py-10 sm:py-12 lg:py-14 border-b border-slate-400/10 bg-[#080E1E]/50">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-6 sm:space-y-8">
+          <div className="max-w-3xl space-y-3">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#F1F5F9]">
               How TMIP is put together.
             </h2>
@@ -189,38 +188,38 @@ export default function TmipPlatformPage() {
           </div>
 
           {/* Architecture Diagram (5-layer vertical stack) */}
-          <div className="space-y-4 max-w-4xl">
+          <div className="space-y-3.5 max-w-4xl">
             {layers.map((layer, idx) => {
               const Icon = layer.icon;
               return (
                 <div
                   key={idx}
-                  className="p-6 sm:p-7 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-[#3B82F6]/40 transition-all duration-200 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-6"
+                  className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-[#3B82F6]/40 transition-all duration-200 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-5"
                 >
-                  <div className="flex items-start gap-4 sm:gap-5">
+                  <div className="flex items-start gap-4">
                     <div
-                      className="w-12 h-12 rounded-[4px] flex items-center justify-center shrink-0 border"
+                      className="w-11 h-11 rounded-[4px] flex items-center justify-center shrink-0 border"
                       style={{
                         backgroundColor: `${layer.color}15`,
                         borderColor: `${layer.color}40`,
                         color: layer.color,
                       }}
                     >
-                      <Icon className="w-6 h-6" />
+                      <Icon className="w-5 h-5" />
                     </div>
-                    <div className="space-y-1.5">
-                      <div className="flex items-center gap-3">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2.5">
                         <span className="font-jetbrains text-xs font-bold text-[#3B82F6] uppercase">{layer.num}</span>
-                        <span className="text-[10px] font-jetbrains px-2.5 py-0.5 rounded-[3px] bg-white/[0.04] border border-slate-400/10 text-[#94A3B8]">
+                        <span className="text-[10px] font-jetbrains px-2 py-0.5 rounded-[3px] bg-white/[0.04] border border-slate-400/10 text-[#94A3B8]">
                           {layer.badge}
                         </span>
                       </div>
-                      <h3 className="font-space-grotesk text-xl font-semibold text-[#F1F5F9]">{layer.title}</h3>
+                      <h3 className="font-space-grotesk text-lg font-semibold text-[#F1F5F9]">{layer.title}</h3>
                       <p className="font-ibm-plex text-sm text-[#94A3B8] leading-relaxed max-w-2xl">{layer.desc}</p>
                     </div>
                   </div>
 
-                  <div className="shrink-0 flex md:flex-col items-center md:items-end justify-between border-t md:border-t-0 border-slate-400/10 pt-3 md:pt-0">
+                  <div className="shrink-0 flex md:flex-col items-center md:items-end justify-between border-t md:border-t-0 border-slate-400/10 pt-2.5 md:pt-0">
                     <span className="text-[11px] font-jetbrains text-[#64748B]">Bi-directional Sync</span>
                     <span className="text-xs font-jetbrains text-[#10B981] font-semibold">Active · 99.7%</span>
                   </div>
@@ -232,9 +231,9 @@ export default function TmipPlatformPage() {
       </section>
 
       {/* Section · What you get across all five layers */}
-      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
-          <div className="max-w-3xl space-y-4">
+      <section className="relative z-10 py-10 sm:py-12 lg:py-14 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-6 sm:space-y-8">
+          <div className="max-w-3xl space-y-3">
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold">
               DIFFERENTIATORS
             </div>
@@ -243,13 +242,13 @@ export default function TmipPlatformPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {differentiators.map((item, idx) => (
               <div
                 key={idx}
-                className="p-8 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-[#3B82F6]/30 transition-all duration-200 space-y-4 flex flex-col justify-between"
+                className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-[#3B82F6]/30 transition-all duration-200 space-y-3 flex flex-col justify-between"
               >
-                <div className="space-y-3">
+                <div className="space-y-2.5">
                   <div className="w-8 h-8 rounded-[3px] bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6]">
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
@@ -263,9 +262,9 @@ export default function TmipPlatformPage() {
       </section>
 
       {/* Section · Feature detail links */}
-      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10 bg-[#080E1E]/50">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
-          <div className="max-w-3xl space-y-4">
+      <section className="relative z-10 py-10 sm:py-12 lg:py-14 border-b border-slate-400/10 bg-[#080E1E]/50">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-6 sm:space-y-8">
+          <div className="max-w-3xl space-y-3">
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold">
               CORE CAPABILITIES
             </div>
@@ -274,20 +273,20 @@ export default function TmipPlatformPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {featureCards.map((feat, idx) => {
               const Icon = feat.icon;
               return (
                 <Link
                   key={idx}
                   href={feat.href}
-                  className="p-8 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-[#3B82F6]/40 hover:-translate-y-1 transition-all duration-200 group flex flex-col justify-between space-y-6"
+                  className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-[#3B82F6]/40 hover:-translate-y-1 transition-all duration-200 group flex flex-col justify-between space-y-5"
                 >
-                  <div className="space-y-4">
-                    <div className="w-12 h-12 rounded-[4px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6] group-hover:bg-[#3B82F6] group-hover:text-[#050A17] transition-all">
-                      <Icon className="w-6 h-6" />
+                  <div className="space-y-3">
+                    <div className="w-11 h-11 rounded-[4px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6] group-hover:bg-[#3B82F6] group-hover:text-[#050A17] transition-all">
+                      <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="font-space-grotesk text-xl font-semibold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors">
+                    <h3 className="font-space-grotesk text-lg font-semibold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors">
                       {feat.title}
                     </h3>
                     <p className="font-ibm-plex text-sm text-[#94A3B8] leading-relaxed">{feat.desc}</p>
@@ -303,24 +302,22 @@ export default function TmipPlatformPage() {
       </section>
 
       {/* Section · Integration snapshot */}
-      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-10">
-          <div className="max-w-3xl space-y-4">
+      <section className="relative z-10 py-10 sm:py-12 lg:py-14 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-6">
+          <div className="max-w-3xl space-y-3">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#F1F5F9]">
               Native integrations, out of the box.
             </h2>
             <p className="font-ibm-plex text-base sm:text-lg leading-[1.55] text-[#94A3B8]">
-              TMIP integrates natively with the transport management systems fleet operators already use. Fleetx,
-              Locus, LogiNext, SAP, Oracle, and custom middleware are supported today. If your stack is not listed, we
-              build the integration.
+              TMIP integrates natively with the transport management systems, enterprise ERPs, telematics gateways, and workshop maintenance stacks fleet operators already use. If your fleet operates custom architecture or proprietary middleware, our systems engineering team provides custom connectors and webhooks out of the box.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
             {integrations.map((item, idx) => (
               <div
                 key={idx}
-                className="p-5 rounded-[3px] bg-[#0B1220]/80 border border-slate-400/10 flex items-center justify-center text-center font-jetbrains text-xs font-semibold text-[#CBD5E1] hover:border-[#3B82F6]/40 transition-colors"
+                className="p-4 rounded-[3px] bg-[#0B1220]/80 border border-slate-400/10 flex items-center justify-center text-center font-jetbrains text-xs font-semibold text-[#CBD5E1] hover:border-[#3B82F6]/40 transition-colors"
               >
                 {item}
               </div>
@@ -330,10 +327,10 @@ export default function TmipPlatformPage() {
       </section>
 
       {/* Section · Security snapshot */}
-      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10 bg-[#080E1E]">
+      <section className="relative z-10 py-10 sm:py-12 lg:py-14 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl p-8 sm:p-12 rounded-[4px] bg-[#0B1220]/90 border border-slate-400/10 shadow-2xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
-            <div className="space-y-4 max-w-2xl">
+          <div className="max-w-4xl p-6 sm:p-7 rounded-[4px] bg-[#0B1220]/90 border border-slate-400/10 shadow-2xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8">
+            <div className="space-y-3 max-w-2xl">
               <div className="flex items-center gap-2 text-xs font-jetbrains text-[#10B981] uppercase tracking-wider font-semibold">
                 <ShieldCheck className="w-4 h-4" />
                 <span>Enterprise Security &amp; Compliance</span>
@@ -350,7 +347,7 @@ export default function TmipPlatformPage() {
             <div className="shrink-0">
               <Link
                 href="/tmip/security"
-                className="px-7 py-3.5 rounded-[3px] font-ibm-plex font-medium text-sm text-[#F1F5F9] border border-[rgba(59,130,246,0.3)] hover:border-[#3B82F6] hover:bg-[#3B82F6]/[0.08] inline-flex items-center gap-2 transition-all duration-200"
+                className="px-6 py-3 rounded-[3px] font-ibm-plex font-medium text-sm text-[#F1F5F9] border border-[rgba(59,130,246,0.3)] hover:border-[#3B82F6] hover:bg-[#3B82F6]/[0.08] inline-flex items-center gap-2 transition-all duration-200"
               >
                 Read the security page <ArrowRight className="w-4 h-4" />
               </Link>
@@ -360,16 +357,16 @@ export default function TmipPlatformPage() {
       </section>
 
       {/* CTA band */}
-      <section className="relative z-10 py-20 lg:py-24 border-t border-[rgba(59,130,246,0.15)] bg-gradient-to-br from-[#3B82F6]/[0.06] to-[#F59E0B]/[0.04]">
+      <section className="relative z-10 py-10 sm:py-14 border-t border-[rgba(59,130,246,0.15)] bg-gradient-to-br from-[#3B82F6]/[0.06] to-[#F59E0B]/[0.04]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-3xl space-y-6">
+          <div className="max-w-3xl space-y-4 sm:space-y-5">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.02em] text-[#F1F5F9]">
               See it running on your fleet.
             </h2>
             <div className="pt-2">
               <Link
                 href="/tmip/demo"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-[3px] font-space-grotesk font-semibold text-sm sm:text-base bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-lg shadow-[#3B82F6]/20 transition-all duration-200"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[3px] font-space-grotesk font-semibold text-sm sm:text-base bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-lg shadow-[#3B82F6]/20 transition-all duration-200"
               >
                 Book a demo <ArrowRight className="w-4 h-4" />
               </Link>

@@ -1,4 +1,4 @@
-import { isSesConfigured,sendEmail } from "@/lib/integrations";
+import { isSesConfigured, sendEmail, sendSurakshaLeadConfirmationEmail } from "@/lib/integrations";
 import { createClient } from "@supabase/supabase-js";
 import { NextRequest,NextResponse } from "next/server";
 
@@ -130,6 +130,10 @@ export async function POST(req: NextRequest) {
     } = body;
 
     // 1. Validation & Normalization
+    const rawEmail = (
+      typeof body.email === "string" ? body.email : typeof body.work_email === "string" ? body.work_email : ""
+    ).trim().toLowerCase();
+
     const rawName = (
       typeof fullName === "string" ? fullName : typeof full_name === "string" ? full_name : typeof name === "string" ? name : ""
     ).trim();
@@ -327,8 +331,28 @@ export async function POST(req: NextRequest) {
       try {
         const primaryRecipient =
           process.env.SES_LEADS_EMAIL || process.env.SES_TO_EMAIL || process.env.SES_FROM_EMAIL || "support@treel.in";
-        const formTitle = isCallback ? "Suraksha Callback Request" : isContact ? "Suraksha Contact Inquiry" : "Suraksha Lead";
-        const emailSubject = `[${formTitle}] ${rawName} — ${normalizedPhone}${normalizedCity ? ` (${normalizedCity})` : ''}`;
+        const originPath = typeof finalPagePath === "string" && finalPagePath ? finalPagePath : "/suraksha";
+        let tag = "SURAKSHA LEAD";
+        let formTitle = "Suraksha Commercial Lead";
+
+        if (originPath.includes("/callback") || isCallback) {
+          tag = `SURAKSHA CALLBACK - /suraksha/callback`;
+          formTitle = "Suraksha Driver Callback Request";
+        } else if (originPath.includes("/contact") || isContact) {
+          tag = `SURAKSHA CONTACT - /suraksha/contact`;
+          formTitle = "Suraksha Dealer & Customer Contact";
+        } else if (originPath.includes("/emi") || finalFormId.includes("emi")) {
+          tag = `SURAKSHA EMI INQUIRY - /suraksha/emi`;
+          formTitle = "Suraksha EMI & Financing Application";
+        } else if (originPath.includes("/lp-suraksha") || (typeof finalCampaignType === "string" && finalCampaignType.includes("campaign"))) {
+          tag = `SURAKSHA CAMPAIGN LEAD - /lp-suraksha`;
+          formTitle = "Suraksha Digital Campaign Lead";
+        } else {
+          tag = `SURAKSHA LEAD - ${originPath}`;
+          formTitle = `Suraksha Inquiry (${originPath})`;
+        }
+
+        const emailSubject = `[${tag}] ${rawName} — ${normalizedPhone}${normalizedCity ? ` (${normalizedCity})` : ''}`;
 
         const emailHtml = `
 <!DOCTYPE html>
@@ -340,8 +364,16 @@ export async function POST(req: NextRequest) {
   <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #1e293b; background-color: #f8fafc; margin: 0; padding: 24px;">
     <div style="max-width: 620px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
       <div style="background: #0f172a; padding: 24px; border-bottom: 3px solid #f97316;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <span style="font-family: monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #fb923c; font-weight: 700;">
+            ${tag}
+          </span>
+          <span style="background: rgba(249, 115, 22, 0.2); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.4); font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 3px; font-family: monospace;">
+            SURAKSHA TRUCK
+          </span>
+        </div>
         <h2 style="margin: 0; font-size: 20px; color: #ffffff; letter-spacing: -0.02em;">Treel Suraksha — ${formTitle}</h2>
-        <p style="margin: 4px 0 0 0; font-size: 13px; color: #94a3b8; font-family: monospace;">Path: ${finalPagePath} · Form ID: ${finalFormId}</p>
+        <p style="margin: 6px 0 0 0; font-size: 13px; color: #94a3b8; font-family: monospace;">Originating Page: <strong style="color: #ffffff;">${originPath}</strong> · Form ID: ${finalFormId}</p>
       </div>
       
       <div style="padding: 24px;">
@@ -397,6 +429,24 @@ export async function POST(req: NextRequest) {
           html: emailHtml,
           text: `Suraksha Request:\nName: ${rawName}\nMobile: ${normalizedPhone}\nCity: ${normalizedCity}\nTrucks: ${rawTrucks}\nLanguage: ${finalCallLang}\nTime: ${finalPreferredTime}\nMessage: ${finalMessage}`,
         });
+
+        // Dispatch confirmation email from hello@treel.in to the user if email is provided
+        if (rawEmail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawEmail)) {
+          try {
+            await sendSurakshaLeadConfirmationEmail({
+              name: rawName,
+              email: rawEmail,
+              phone: normalizedPhone,
+              city: normalizedCity,
+              trucks: rawTrucks,
+              preferredTime: finalPreferredTime,
+              language: finalCallLang,
+              formType: formTitle,
+            });
+          } catch (userMailErr) {
+            console.warn("[Suraksha Lead] User confirmation email dispatch warning:", userMailErr);
+          }
+        }
 
         if (insertedLeadId && supabase) {
           await supabase

@@ -45,6 +45,21 @@
     "updatedAt": "2026-01-01T00:00:00.000Z"
   },
   {
+    "_id": "mk_brand_guidelines",
+    "title": "Brand Guidelines V3.1",
+    "category": "Brand Assets",
+    "format": "PDF Document",
+    "description": "Full specifications on color palette (Ink, Treel Red, Cream), typography, and tone.",
+    "fileSize": "8.5 MB",
+    "fileUrl": "/downloads/media-kit/treel-brand-guidelines.pdf",
+    "file": "treel-brand-guidelines.pdf",
+    "order": 4,
+    "iconName": "FileText",
+    "publicationStatus": "Published",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
     "_id": "mk_typography_guide",
     "title": "Typography & Specimen Guide",
     "category": "Brand Assets",

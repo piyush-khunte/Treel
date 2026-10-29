@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   description: "Download Treel brand assets, founder photos, product photography, and fact sheet. For press, partners, and industry analysts.",
   alternates: {
     canonical: "https://treel.in/media-kit",
+    types: {
+      "application/rss+xml": "https://treel.in/press/rss.xml",
+    },
   },
   openGraph: {
     title: "Media Kit · Treel",

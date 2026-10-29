@@ -351,12 +351,13 @@ export function PersonalGenericCampaignPage() {
         <div className="wrap">
           <Link className="brand" href="/" aria-label="Treel home">
             <Image
-              src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436567/Treel_New_Logo_Final_With_Favicon_Tagline.png"
+              src="/images/treel-logo-final.webp"
               alt="Treel"
               width={116}
               height={32}
               className="h-[28px] md:h-[32px] w-auto object-contain"
               priority
+              unoptimized
             />
             <span className="brand-divider" aria-hidden="true" />
             <span className="lockup">

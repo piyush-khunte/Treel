@@ -95,7 +95,7 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
     {
       slug: "founding-conviction-2018-to-2026",
       category: "Founder Notes",
-      title: "The Tyre Was the Entry Point: Reflections on Eight Years of Building Treel",
+      title: "The Tyre Was the Entry Point: Reflections on Building Treel: The Journey Since 2018",
       excerpt: "Reflecting on the journey from our first valve-stem sensor prototypes in Pune to operating India's largest connected commercial vehicle platform.",
       author: "Manish Ingale",
       date: "June 2026",

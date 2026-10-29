@@ -1,0 +1,37 @@
+[
+  {
+    "_id": "691590fa3849512110d7808c",
+    "pdf": "https://treel-ecommerce.s3.ap-south-1.amazonaws.com/pdfs/1763021050372_MGT-7A_2024-25.pdf",
+    "title": "Annual Returns FY-2025",
+    "date": "2025-10-15T23:24:26.597+00:00",
+    "__v": 0
+  },
+  {
+    "_id": "691590e53849512110d78088",
+    "pdf": "https://treel-ecommerce.s3.ap-south-1.amazonaws.com/pdfs/1763021029466_1735896949155_MGT-7A_2023-24.pdf",
+    "title": "Annual Returns FY-2024",
+    "date": "2025-10-15T23:24:26.597+00:00",
+    "__v": 0
+  },
+  {
+    "_id": "6777af64b5484da3db1c4e90",
+    "pdf": "https://treel-ecommerce.s3.ap-south-1.amazonaws.com/pdfs/1735896932521_Form_MGT-7A_FY-2023.pdf",
+    "title": "Annual Returns FY-2023",
+    "date": "2025-01-03T09:18:48.696+00:00",
+    "__v": 0
+  },
+  {
+    "_id": "6777af51b5484da3db1c4e8d",
+    "pdf": "https://treel-ecommerce.s3.ap-south-1.amazonaws.com/pdfs/1735896913279_MGT-7A-FY-2022.pdf",
+    "title": "Annual Returns FY-2022",
+    "date": "2025-01-03T09:18:48.696+00:00",
+    "__v": 0
+  },
+  {
+    "_id": "6777af40b5484da3db1c4e8a",
+    "pdf": "https://treel-ecommerce.s3.ap-south-1.amazonaws.com/pdfs/1735896896153_MGT-7A-FY-2021.pdf",
+    "title": "Annual Returns FY-2021",
+    "date": "2025-01-03T09:18:48.696+00:00",
+    "__v": 0
+  }
+]

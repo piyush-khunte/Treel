@@ -487,7 +487,7 @@ export default function PersonalSupportWarrantyPage() {
                 <div className="text-xs uppercase tracking-widest text-[#2563EB] font-extrabold mb-1">Step 2</div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#111827]">Submit a warranty claim</h2>
                 <p className="text-[#4B5563] text-sm mt-1">
-                  If something has gone wrong with your Personal TPMS, submit a claim below. We&apos;ll respond within 2 business days.
+                  If something has gone wrong with your Personal TPMS, submit a claim below. We&apos;ll respond at earliest.
                 </p>
               </div>
 
@@ -629,7 +629,7 @@ export default function PersonalSupportWarrantyPage() {
                   </div>
                   <h3 className="font-bold text-[#111827] text-xl">Claim submitted.</h3>
                   <p className="text-xs text-[#4B5563] leading-relaxed">
-                    Your claim ID is <strong>{generatedClaimId}</strong> and has been recorded in our warranty system. Confirmation sent to <strong>{claimEmail}</strong>. Our support team will respond within 2 business days. If your issue is urgent, call us at <strong>1800 833 0233</strong>.
+                    Your claim ID is <strong>{generatedClaimId}</strong> and has been recorded in our warranty system. Confirmation sent to <strong>{claimEmail}</strong>. Our support team will respond at earliest. If your issue is urgent, call us at <strong>1800 833 0233</strong>.
                   </p>
                   <button
                     onClick={() => {

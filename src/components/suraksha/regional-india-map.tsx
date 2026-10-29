@@ -1,11 +1,9 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import Link from "next/link";
 import { 
   MapPin, 
   Languages, 
-  ArrowRight, 
   Info 
 } from "lucide-react";
 import { 
@@ -435,18 +433,7 @@ export default function RegionalIndiaMap() {
             </div>
           </div>
 
-          {/* Quick CTA to Full Testimonials Route */}
-          <div className="pt-2 border-t border-[#451A03]/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <span className="text-xs font-bold text-[#78350F]">
-              Explore highway driver stories:
-            </span>
-            <Link
-              href="/suraksha/testimonials"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-[4px] bg-[#DC2626] text-white font-rubik text-xs font-bold uppercase tracking-wider hover:bg-[#B91C1C] transition-all shadow-sm cursor-pointer"
-            >
-              All Testimonials <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
+
         </div>
       </div>
     </div>

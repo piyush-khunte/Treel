@@ -33,9 +33,9 @@ export default function TmipWhitepapersSlugPage() {
       />
 
       {/* Header & Breadcrumb */}
-      <section className="relative z-10 pt-24 pb-16 border-b border-slate-400/10">
+      <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-6">
+          <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-3 sm:mb-4">
             <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
               TMIP
             </Link>
@@ -45,13 +45,13 @@ export default function TmipWhitepapersSlugPage() {
             </Link>
           </nav>
 
-          <div className="max-w-4xl space-y-4">
+          <div className="max-w-4xl space-y-3 sm:space-y-4">
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
               RESEARCH ARCHIVE
             </div>
 
             <h1 className="font-space-grotesk text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F1F5F9] leading-[1.12]">
-              TMIP Technical Papers & Research
+              TMIP Technical Papers &amp; Research
             </h1>
 
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex max-w-3xl">
@@ -63,17 +63,17 @@ export default function TmipWhitepapersSlugPage() {
       </section>
 
       {/* Featured Whitepapers Grid */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
+      <section className="relative z-10 py-10 sm:py-12 lg:py-14 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-6 sm:space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Link
               href="/tmip/whitepapers/roi-fleet-intelligence"
-              className="p-8 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between space-y-6 group"
+              className="p-6 sm:p-7 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between space-y-5 group"
             >
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="border border-blue-500/20 bg-blue-500/10 px-2 py-0.5 rounded-[2px] text-xs font-jetbrains text-blue-400 uppercase font-semibold">
-                    ROI & PAYBACK
+                    ROI &amp; PAYBACK
                   </span>
                   <span className="text-xs font-jetbrains text-[#94A3B8]">28 Pages</span>
                 </div>
@@ -93,9 +93,9 @@ export default function TmipWhitepapersSlugPage() {
 
             <Link
               href="/insights/vehicle-digital-twins-architecture"
-              className="p-8 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between space-y-6 group"
+              className="p-6 sm:p-7 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between space-y-5 group"
             >
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="border border-blue-500/20 bg-blue-500/10 px-2 py-0.5 rounded-[2px] text-xs font-jetbrains text-blue-400 uppercase font-semibold">
                     VEHICLE DIGITAL TWIN
@@ -117,26 +117,25 @@ export default function TmipWhitepapersSlugPage() {
             </Link>
 
             <Link
-              href="/tmip/customers/case-studies/1000-truck-case-study"
-              className="p-8 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between space-y-6 group"
+              href="/tmip/platform/telemetry"
+              className="p-6 sm:p-7 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between space-y-5 group"
             >
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="border border-blue-500/20 bg-blue-500/10 px-2 py-0.5 rounded-[2px] text-xs font-jetbrains text-blue-400 uppercase font-semibold">
-                    CASE STUDY
+                    EDGE TELEMETRY
                   </span>
-                  <span className="text-xs font-jetbrains text-[#94A3B8]">32 Pages</span>
+                  <span className="text-xs font-jetbrains text-[#94A3B8]">18 Pages</span>
                 </div>
                 <h3 className="font-space-grotesk text-xl font-bold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors">
-                  1,000 trucks. 12 months. What changed.
+                  Edge Telemetry &amp; Anomaly Streaming Architecture
                 </h3>
                 <p className="text-sm text-[#94A3B8] font-ibm-plex leading-relaxed">
-                  The full operational story of a large logistics fleet running TMIP for one year. Deployment timeline
-                  and measured outcomes.
+                  How high-frequency sub-second sensor packets are decoded, calibrated, and streamed to Vehicle Digital Twins.
                 </p>
               </div>
               <div className="flex items-center gap-2 text-sm font-semibold text-[#3B82F6]">
-                <span>Read full report</span>
+                <span>Read technical paper</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </div>
             </Link>
@@ -145,23 +144,22 @@ export default function TmipWhitepapersSlugPage() {
       </section>
 
       {/* CTA Band */}
-      <section className="relative z-10 py-20">
+      <section className="relative z-10 py-10 sm:py-14">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="p-10 sm:p-14 rounded-[4px] bg-[#0B1220]/90 border border-blue-500/30 text-center space-y-6 max-w-4xl mx-auto">
-            <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
+          <div className="p-8 sm:p-12 rounded-[4px] bg-[#0B1220]/90 border border-blue-500/30 text-center space-y-5 max-w-4xl mx-auto">
+            <h2 className="font-space-grotesk text-2xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Explore the TMIP Research Library
             </h2>
             <p className="text-[#94A3B8] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-ibm-plex">
-              Access all published technical papers, ROI models, and commercial case studies across multiple industry
-              verticals.
+              Access all published technical papers and ROI models across multiple industry verticals.
             </p>
             <div className="pt-2">
               <Link
                 href="/tmip/whitepapers"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-[3px] font-semibold text-base transition-all shadow-md bg-[#3B82F6] hover:bg-[#2563EB] text-white"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-[3px] font-semibold text-base transition-all shadow-md bg-[#3B82F6] hover:bg-[#2563EB] text-white"
               >
                 <span>Browse Whitepapers</span>
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>

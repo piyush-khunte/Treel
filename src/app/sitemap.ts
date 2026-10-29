@@ -38,6 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // 0.8 - TMIP Deep-Dive Pages
     { url: `${baseUrl}/tmip/platform`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/platform/vehicle-digital-twin`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/tmip/tpms`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/platform/telemetry`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/platform/predictive-maintenance`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/solutions`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
@@ -46,8 +47,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tmip/solutions/construction`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/solutions/mining`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/solutions/oem-fleet`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/tmip/customers`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/tmip/customers/case-studies`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/roi-calculator`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/demo`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/whitepapers`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },

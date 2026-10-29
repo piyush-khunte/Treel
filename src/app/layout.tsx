@@ -80,20 +80,55 @@ export default function RootLayout({
       className={`${fraunces.variable} ${inter.variable} ${spaceGrotesk.variable} ${ibmPlexSans.variable} ${jetbrainsMono.variable} ${anton.variable} ${rubik.variable} ${baloo2.variable} ${manrope.variable}`}
     >
       <head>
-        {/* Google tag (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18528246360"
-          strategy="afterInteractive"
+        
+        
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link
+          rel="preload"
+          as="image"
+          href="https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto,w_600/v1792650870/Fleet_Intelligence_Digital_Twin.png"
+          fetchPriority="high"
         />
-        <Script id="google-tag-aw-18528246360" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+        {process.env.NODE_ENV === "production" ? (
+          <Script id="google-tag-aw-18528246360" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-18528246360');
 
-            gtag('config', 'AW-18528246360');
-          `}
-        </Script>
+              (function() {
+                var loaded = false;
+                function loadGTM() {
+                  if (loaded) return;
+                  loaded = true;
+                  ['scroll', 'touchstart', 'pointerdown', 'keydown', 'click'].forEach(function(ev) {
+                    window.removeEventListener(ev, loadGTM, { passive: true });
+                  });
+                  var s = document.createElement('script');
+                  s.type = 'text/javascript';
+                  s.async = true;
+                  s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18528246360';
+                  var f = document.getElementsByTagName('script')[0];
+                  if (f && f.parentNode) {
+                    f.parentNode.insertBefore(s, f);
+                  } else {
+                    document.head.appendChild(s);
+                  }
+                }
+                ['scroll', 'touchstart', 'pointerdown', 'keydown', 'click'].forEach(function(ev) {
+                  window.addEventListener(ev, loadGTM, { passive: true, once: true });
+                });
+                if ('requestIdleCallback' in window) {
+                  window.requestIdleCallback(function() { setTimeout(loadGTM, 3500); });
+                } else {
+                  setTimeout(loadGTM, 4000);
+                }
+              })();
+            `}
+          </Script>
+        ) : null}
       </head>
       <body className="min-h-screen flex flex-col antialiased selection:bg-[#D5573B]/20 selection:text-[#FAF7F2]">
         <CartProvider>

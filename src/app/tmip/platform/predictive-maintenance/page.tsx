@@ -112,10 +112,10 @@ export default function TmipPlatformPredictiveMaintenancePage() {
       />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 border-b border-slate-400/10 bg-[#080E1E]">
+      <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-4">
+          <div className="max-w-4xl space-y-4">
+            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-2">
               <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
                 TMIP
               </Link>
@@ -131,15 +131,15 @@ export default function TmipPlatformPredictiveMaintenancePage() {
               PLATFORM · PREDICTIVE MAINTENANCE
             </div>
 
-            <h1 className="font-space-grotesk text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F1F5F9] leading-[1.15]">
+            <h1 className="font-space-grotesk text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F1F5F9] leading-[1.12]">
               Fix it before it breaks.
             </h1>
 
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-ibm-plex max-w-3xl">
-              TMIP's predictive maintenance layer runs machine learning models continuously against every Vehicle Digital Twin. Component wear is scored. Failure windows are forecast. Maintenance is scheduled during planned downtime, not at 3 AM.
+              TMIP&apos;s predictive maintenance layer runs machine learning models continuously against every Vehicle Digital Twin. Component wear is scored. Failure windows are forecast. Maintenance is scheduled during planned downtime, not at 3 AM.
             </p>
 
-            <div className="pt-4 flex flex-wrap items-center gap-4">
+            <div className="pt-2 flex flex-wrap items-center gap-4">
               <Link
                 href="/tmip/demo"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[3px] font-semibold text-sm transition-all shadow-md bg-[#3B82F6] text-white hover:bg-[#2563EB]"
@@ -158,29 +158,29 @@ export default function TmipPlatformPredictiveMaintenancePage() {
       </section>
 
       {/* Key Takeaway Section for AEO */}
-      <section className="relative z-10 py-16 border-b border-slate-400/10 bg-[#0B1220]/60">
+      <section className="relative z-10 py-6 sm:py-8 border-b border-slate-400/10 bg-[#0B1220]/60">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="p-8 rounded-[4px] bg-[#080E1E] border border-blue-500/20 max-w-4xl relative overflow-hidden">
+          <div className="p-5 sm:p-6 rounded-[4px] bg-[#080E1E] border border-blue-500/20 max-w-4xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center gap-2 mb-2.5">
               <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
               <span className="font-jetbrains text-xs uppercase tracking-widest text-[#3B82F6] font-semibold">
                 AT A GLANCE
               </span>
             </div>
-            <p className="text-[#F1F5F9] text-base sm:text-lg leading-relaxed font-ibm-plex">
-              TMIP's predictive maintenance models flag component failures 5–30 days in advance based on longitudinal Vehicle Digital Twin data. Fleet operators reduce unscheduled downtime by 30–40% and extend maintenance intervals safely.
+            <p className="text-[#F1F5F9] text-base sm:text-[17px] leading-relaxed font-ibm-plex">
+              TMIP&apos;s predictive maintenance models flag component failures 5–30 days in advance based on longitudinal Vehicle Digital Twin data. Fleet operators reduce unscheduled downtime by 30–40% and extend maintenance intervals safely.
             </p>
           </div>
         </div>
       </section>
 
       {/* Section 1: How the models work */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-8">
+          <div className="max-w-4xl space-y-6">
             <div>
-              <div className="font-jetbrains text-xs uppercase tracking-widest text-[#3B82F6] font-semibold mb-2">
+              <div className="font-jetbrains text-xs uppercase tracking-widest text-[#3B82F6] font-semibold mb-1.5">
                 ALGORITHMIC ARCHITECTURE
               </div>
               <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
@@ -189,15 +189,15 @@ export default function TmipPlatformPredictiveMaintenancePage() {
             </div>
 
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex">
-              Every Vehicle Digital Twin carries years of state history. Component wear follows patterns — patterns that vary by vehicle class, load, route, climate, and driver. TMIP's machine learning models study those patterns across sixty-eight thousand vehicles and apply the learning back to each individual Twin.
+              Every Vehicle Digital Twin carries years of state history. Component wear follows patterns — patterns that vary by vehicle class, load, route, climate, and driver. TMIP&apos;s machine learning models study those patterns across sixty-eight thousand vehicles and apply the learning back to each individual Twin.
             </p>
 
-            <div className="p-6 sm:p-8 rounded-[4px] bg-[#080E1E] border border-blue-500/20 space-y-4">
+            <div className="p-5 sm:p-6 rounded-[4px] bg-[#080E1E] border border-blue-500/20 space-y-3">
               <div className="flex items-center gap-2 text-xs font-jetbrains font-semibold uppercase tracking-wider text-[#3B82F6]">
                 <Sparkles className="w-4 h-4" />
                 Thresholds vs Predictions
               </div>
-              <p className="text-[#F1F5F9] text-base sm:text-lg leading-relaxed font-ibm-plex">
+              <p className="text-[#F1F5F9] text-base sm:text-[17px] leading-relaxed font-ibm-plex">
                 Predictions are not thresholds. A tyre reaching 4mm tread depth is a threshold. A tyre with a specific wear signature, on a specific route, at a specific load, at a specific ambient temperature, expected to reach service threshold in 14 days ± 3 days at 85% confidence — that is a prediction.
               </p>
             </div>
@@ -206,32 +206,32 @@ export default function TmipPlatformPredictiveMaintenancePage() {
       </section>
 
       {/* Section 2: Example predictions */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#080E1E]/50">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10 bg-[#080E1E]/50">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-3xl mb-12">
-            <div className="font-jetbrains text-xs uppercase tracking-widest text-[#3B82F6] font-semibold mb-2">
+          <div className="max-w-3xl mb-6 sm:mb-8">
+            <div className="font-jetbrains text-xs uppercase tracking-widest text-[#3B82F6] font-semibold mb-1.5">
               PREDICTIVE CAPABILITIES
             </div>
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               What TMIP predicts.
             </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg mt-3 font-ibm-plex">
+            <p className="text-[#94A3B8] text-base sm:text-lg mt-2 font-ibm-plex">
               The models forecast several categories of vehicle events.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {predictions.map((pred) => {
               const Icon = pred.icon;
               return (
                 <div
                   key={pred.title}
-                  className="p-8 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between"
+                  className="p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between"
                 >
-                  <div className="space-y-4">
+                  <div className="space-y-3.5">
                     <div className="flex items-center justify-between">
-                      <div className="w-12 h-12 rounded-[4px] bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[#3B82F6]">
-                        <Icon className="w-6 h-6" />
+                      <div className="w-11 h-11 rounded-[4px] bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[#3B82F6]">
+                        <Icon className="w-5 h-5" />
                       </div>
                       <span className="text-[11px] font-jetbrains font-semibold px-2.5 py-1 rounded-[2px] border border-blue-500/30 text-[#3B82F6] bg-blue-500/10">
                         {pred.horizon}
@@ -247,7 +247,7 @@ export default function TmipPlatformPredictiveMaintenancePage() {
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-slate-400/10 flex items-center gap-2 text-xs font-jetbrains text-[#CBD5E1]">
+                  <div className="pt-4 mt-4 border-t border-slate-400/10 flex items-center gap-2 text-xs font-jetbrains text-[#CBD5E1]">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981] flex-shrink-0" />
                     <span>{pred.confidence}</span>
                   </div>
@@ -259,27 +259,27 @@ export default function TmipPlatformPredictiveMaintenancePage() {
       </section>
 
       {/* Section 3: What operators see change */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-3xl mb-12">
-            <div className="font-jetbrains text-xs uppercase tracking-widest text-[#3B82F6] font-semibold mb-2">
+          <div className="max-w-3xl mb-6 sm:mb-8">
+            <div className="font-jetbrains text-xs uppercase tracking-widest text-[#3B82F6] font-semibold mb-1.5">
               MEASURABLE ROI
             </div>
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               The operating impact.
             </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg mt-3 font-ibm-plex">
+            <p className="text-[#94A3B8] text-base sm:text-lg mt-2 font-ibm-plex">
               Fleet operators running TMIP for 12 months see:
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
             {operatingImpacts.map((item) => {
               const Icon = item.icon;
               return (
                 <div
                   key={item.title}
-                  className="p-8 rounded-[4px] bg-[#080E1E] border border-slate-400/10 hover:border-blue-500/30 transition-all space-y-4"
+                  className="p-6 rounded-[4px] bg-[#080E1E] border border-slate-400/10 hover:border-blue-500/30 transition-all space-y-3"
                 >
                   <div className="flex items-center justify-between">
                     <div className="w-10 h-10 rounded-[4px] bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[#3B82F6]">
@@ -305,10 +305,10 @@ export default function TmipPlatformPredictiveMaintenancePage() {
       </section>
 
       {/* Section 4: Model validation */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#080E1E]/50">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10 bg-[#080E1E]/50">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <div className="font-jetbrains text-xs uppercase tracking-widest text-[#3B82F6] font-semibold mb-2">
+          <div className="max-w-4xl space-y-4">
+            <div className="font-jetbrains text-xs uppercase tracking-widest text-[#3B82F6] font-semibold mb-1.5">
               TRANSPARENT VALIDATION
             </div>
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
@@ -322,17 +322,17 @@ export default function TmipPlatformPredictiveMaintenancePage() {
       </section>
 
       {/* CTA Band */}
-      <section className="relative z-10 py-20 bg-[#080E1E]">
+      <section className="relative z-10 py-10 sm:py-14 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="p-10 sm:p-16 rounded-[4px] bg-gradient-to-br from-[#0B1220] to-[#050A17] border border-blue-500/30 relative overflow-hidden text-center max-w-4xl mx-auto">
-            <div className="space-y-6 max-w-2xl mx-auto">
+          <div className="p-6 sm:p-10 rounded-[4px] bg-gradient-to-br from-[#0B1220] to-[#050A17] border border-blue-500/30 relative overflow-hidden text-center max-w-4xl mx-auto">
+            <div className="space-y-4 max-w-2xl mx-auto">
               <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
                 Eliminate unscheduled breakdowns.
               </h2>
               <p className="text-[#94A3B8] text-base leading-relaxed font-ibm-plex">
                 Experience how machine learning models running against vehicle digital twins convert emergency stops into planned depot maintenance.
               </p>
-              <div className="pt-4 flex justify-center">
+              <div className="pt-2 flex justify-center">
                 <Link
                   href="/tmip/demo"
                   className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[3px] font-semibold text-sm transition-all shadow-md bg-[#3B82F6] text-white hover:bg-[#2563EB]"

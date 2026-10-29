@@ -72,9 +72,9 @@ export default function TmipSolutionsPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 border-b border-slate-400/10 bg-[#080E1E]">
+      <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
+          <div className="max-w-4xl space-y-4">
             <Breadcrumb
               variant="tmip"
               items={[
@@ -97,24 +97,24 @@ export default function TmipSolutionsPage() {
       </section>
 
       {/* Section · Industry cards */}
-      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {industryCards.map((card, idx) => {
               const Icon = card.icon;
               return (
                 <div
                   key={idx}
-                  className="p-8 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-[#3B82F6]/50 transition-all flex flex-col justify-between space-y-6 group"
+                  className="p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-[#3B82F6]/50 transition-all flex flex-col justify-between space-y-4 group"
                 >
-                  <div className="space-y-4">
-                    <div className="w-12 h-12 rounded-[4px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6] group-hover:bg-[#3B82F6] group-hover:text-white transition-all">
-                      <Icon className="w-6 h-6" />
+                  <div className="space-y-3">
+                    <div className="w-11 h-11 rounded-[4px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6] group-hover:bg-[#3B82F6] group-hover:text-white transition-all">
+                      <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="font-space-grotesk text-2xl font-bold text-[#F1F5F9]">{card.title}</h3>
-                    <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed font-ibm-plex">{card.body}</p>
+                    <h3 className="font-space-grotesk text-xl font-bold text-[#F1F5F9]">{card.title}</h3>
+                    <p className="text-sm text-[#94A3B8] leading-relaxed font-ibm-plex">{card.body}</p>
                   </div>
-                  <div className="pt-2">
+                  <div className="pt-1">
                     <Link
                       href={card.href}
                       className="inline-flex items-center gap-2 text-sm font-semibold text-[#3B82F6] group-hover:text-white transition-colors"
@@ -130,9 +130,9 @@ export default function TmipSolutionsPage() {
       </section>
 
       {/* Section · Industry-agnostic value */}
-      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10 bg-[#080E1E]">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
+          <div className="max-w-4xl space-y-4">
             <div className="inline-flex items-center gap-2 text-xs font-jetbrains text-[#F59E0B] uppercase tracking-wider font-semibold">
               <CheckCircle2 className="w-4 h-4" />
               <span>Universal Value Proposition</span>
@@ -151,9 +151,9 @@ export default function TmipSolutionsPage() {
       </section>
 
       {/* CTA band */}
-      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10 bg-[#050A17]">
+      <section className="relative z-10 py-10 sm:py-14 border-b border-slate-400/10 bg-[#050A17]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-3xl space-y-6">
+          <div className="max-w-3xl space-y-4">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F1F5F9]">
               See how TMIP fits your industry.
             </h2>
@@ -161,7 +161,7 @@ export default function TmipSolutionsPage() {
               Schedule a technical walk-through tailored to your vehicle specifications, route topologies, and depot
               workflows.
             </p>
-            <div className="pt-4">
+            <div className="pt-2">
               <Link
                 href="/tmip/demo"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[3px] font-semibold text-sm transition-all shadow-md bg-[#3B82F6] text-white hover:bg-[#2563EB]"

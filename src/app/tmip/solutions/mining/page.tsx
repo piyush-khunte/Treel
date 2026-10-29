@@ -72,7 +72,7 @@ const capabilities = [
   },
   {
     title: "Component-Level Cost Attribution",
-    desc: "Boardroom-ready financial telemetry attributing tyre and fuel costs per metric ton of ore hauled across specific mine sections and shifts.",
+    desc: "Boardroom-ready financial telemetry attributing tyre and fuel costs per shift across specific mine sections.",
     icon: BarChart3,
   },
 ];
@@ -93,10 +93,10 @@ export default function TmipSolutionsMiningPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 border-b border-slate-400/10 bg-[#080E1E]">
+      <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-4">
+          <div className="max-w-4xl space-y-4">
+            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-2">
               <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
                 TMIP
               </Link>
@@ -121,7 +121,7 @@ export default function TmipSolutionsMiningPage() {
               most enterprise software subscriptions cost per year.
             </p>
 
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-wrap gap-4 pt-2">
               <Link
                 href="/tmip/demo"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[3px] font-semibold text-sm transition-all shadow-md bg-[#3B82F6] text-white hover:bg-[#2563EB]"
@@ -140,20 +140,20 @@ export default function TmipSolutionsMiningPage() {
       </section>
 
       {/* Proof Band */}
-      <section className="relative z-10 py-12 border-b border-slate-400/10 bg-[#050A17]">
+      <section className="relative z-10 py-8 sm:py-10 border-b border-slate-400/10 bg-[#050A17]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
+            <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
               <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#10B981]">99.4%</div>
               <div className="text-sm font-semibold text-[#F1F5F9] mt-1 font-ibm-plex">Haul Fleet Availability</div>
               <div className="text-xs text-[#94A3B8] mt-1 font-ibm-plex">Sustaining round-the-clock shift productivity in central India pits</div>
             </div>
-            <div className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
+            <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
               <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#3B82F6]">22% Drop</div>
               <div className="text-sm font-semibold text-[#F1F5F9] mt-1 font-ibm-plex">Premature Tyre Scrap</div>
               <div className="text-xs text-[#94A3B8] mt-1 font-ibm-plex">Preventing destructive cut-and-chip failures on abrasive haul roads</div>
             </div>
-            <div className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
+            <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
               <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#F59E0B]">₹2.1 Cr</div>
               <div className="text-sm font-semibold text-[#F1F5F9] mt-1 font-ibm-plex">Annual Heavy Fleet Savings</div>
               <div className="text-xs text-[#94A3B8] mt-1 font-ibm-plex">Direct savings across high-value tyre assets and prevented downtime</div>
@@ -163,9 +163,9 @@ export default function TmipSolutionsMiningPage() {
       </section>
 
       {/* Industry Challenges Section */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
-          <div className="max-w-3xl space-y-4">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-6 sm:space-y-8">
+          <div className="max-w-3xl space-y-3">
             <h2 className="font-space-grotesk text-2xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Mining Operating Challenges
             </h2>
@@ -175,9 +175,9 @@ export default function TmipSolutionsMiningPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {challenges.map((item, idx) => (
-              <div key={idx} className="p-6 rounded-[4px] bg-[#080E1E] border border-slate-400/10 space-y-3">
+              <div key={idx} className="p-5 sm:p-6 rounded-[4px] bg-[#080E1E] border border-slate-400/10 space-y-2.5">
                 <div className="w-8 h-8 rounded-[3px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-xs font-jetbrains font-bold text-[#3B82F6]">
                   0{idx + 1}
                 </div>
@@ -190,17 +190,17 @@ export default function TmipSolutionsMiningPage() {
       </section>
 
       {/* TMIP's Fit Section */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#080E1E]">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7 space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-7 space-y-4">
               <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
                 MISSION-CRITICAL CAPABILITY
               </div>
               <h2 className="font-space-grotesk text-2xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
                 What TMIP does for mining fleets.
               </h2>
-              <div className="space-y-4 text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex">
+              <div className="space-y-3 text-[#94A3B8] text-base leading-relaxed font-ibm-plex">
                 <p>
                   Mining is the deployment class where every capability of TMIP matters simultaneously. Ruggedised
                   sensors survive the environment. Edge processing handles connectivity gaps. Predictive maintenance is
@@ -213,7 +213,7 @@ export default function TmipSolutionsMiningPage() {
               </div>
             </div>
 
-            <div className="lg:col-span-5 p-8 rounded-[4px] bg-[#050A17] border border-slate-400/10 space-y-6">
+            <div className="lg:col-span-5 p-6 sm:p-7 rounded-[4px] bg-[#050A17] border border-slate-400/10 space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-[4px] bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6]">
                   <Pickaxe className="w-5 h-5" />
@@ -224,13 +224,13 @@ export default function TmipSolutionsMiningPage() {
                 </div>
               </div>
 
-              <div className="space-y-4 pt-2">
+              <div className="space-y-3 pt-1">
                 <div className="flex items-center justify-between p-3 rounded-[3px] bg-white/[0.02] border border-slate-400/10">
                   <span className="text-sm text-[#94A3B8] font-ibm-plex">Haul Ramp Bottlenecks</span>
                   <span className="text-sm font-jetbrains font-bold text-[#10B981]">Zero Blowouts in 18 mo</span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-[3px] bg-white/[0.02] border border-slate-400/10">
-                  <span className="text-sm text-[#94A3B8] font-ibm-plex">Cost Per Ton Hauled</span>
+                  <span className="text-sm text-[#94A3B8] font-ibm-plex">Cost Per Shift</span>
                   <span className="text-sm font-jetbrains font-bold text-[#3B82F6]">-8.4% Operating Cost</span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-[3px] bg-white/[0.02] border border-slate-400/10">
@@ -244,22 +244,22 @@ export default function TmipSolutionsMiningPage() {
       </section>
 
       {/* Relevant Capabilities Section */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
-          <div className="max-w-3xl space-y-4">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-6 sm:space-y-8">
+          <div className="max-w-3xl space-y-3">
             <h2 className="font-space-grotesk text-2xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Relevant Capabilities
             </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex">
+            <p className="text-[#94A3B8] text-base leading-relaxed font-ibm-plex">
               Designed specifically for extreme payloads, abrasive gradients, and zero-connectivity mining pits.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {capabilities.map((cap, i) => {
               const Icon = cap.icon;
               return (
-                <div key={i} className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10 space-y-3">
+                <div key={i} className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10 space-y-2.5">
                   <div className="w-10 h-10 rounded-[4px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6]">
                     <Icon className="w-5 h-5" />
                   </div>
@@ -272,82 +272,23 @@ export default function TmipSolutionsMiningPage() {
         </div>
       </section>
 
-      {/* Mining Case Studies Section */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="max-w-2xl space-y-3">
-              <div className="text-xs font-jetbrains text-[#3B82F6] uppercase tracking-wider font-semibold">
-                PROVEN RESULTS
-              </div>
-              <h2 className="font-space-grotesk text-2xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
-                Mining operators running TMIP.
-              </h2>
-            </div>
-            <Link
-              href="/tmip/customers/case-studies"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#3B82F6] hover:underline"
-            >
-              View all case studies <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <div className="max-w-2xl">
-            {/* Case Study Card */}
-            <div className="p-8 rounded-[4px] bg-[#050A17] border border-slate-400/10 flex flex-col justify-between space-y-6">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <span className="border border-[#3B82F6]/30 bg-[#3B82F6]/10 px-3 py-1 rounded-[2px] text-xs font-jetbrains text-[#3B82F6] uppercase font-semibold">
-                    OPEN-CAST MINING
-                  </span>
-                  <span className="text-xs font-jetbrains text-[#94A3B8]">Rigid Dump Trucks</span>
-                </div>
-                <h3 className="font-space-grotesk text-xl font-bold text-[#F1F5F9]">
-                  Preventing high-tonnage dumper downtime in central India mining corridors.
-                </h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed font-ibm-plex">
-                  Optimizing load-pressure distribution on rigid dump trucks operating in rugged, abrasive mining pits
-                  with unforgiving production schedules.
-                </p>
-                <div className="flex items-center gap-6 pt-2 font-jetbrains text-sm">
-                  <div>
-                    <span className="text-[#10B981] font-bold">99.4%</span>
-                    <span className="text-xs text-[#94A3B8] ml-1.5">Uptime SLA</span>
-                  </div>
-                  <div>
-                    <span className="text-[#3B82F6] font-bold">₹2.1 Cr</span>
-                    <span className="text-xs text-[#94A3B8] ml-1.5">Annual savings</span>
-                  </div>
-                </div>
-              </div>
-              <Link
-                href="/tmip/customers/case-studies/open-cast-haulage-analytics"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#3B82F6] hover:underline"
-              >
-                Read full case study <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Band Section */}
-      <section className="relative z-10 py-20 bg-[#050A17]">
+      <section className="relative z-10 py-10 sm:py-14 bg-[#050A17]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="p-10 sm:p-14 rounded-[4px] bg-gradient-to-br from-[#080E1E] to-[#0B1220] border border-blue-500/30 text-center space-y-6 max-w-4xl mx-auto">
+          <div className="p-6 sm:p-10 rounded-[4px] bg-gradient-to-br from-[#080E1E] to-[#0B1220] border border-blue-500/30 text-center space-y-4 max-w-4xl mx-auto">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Eliminate high-cost mining downtime.
             </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-ibm-plex">
+            <p className="text-[#94A3B8] text-base max-w-2xl mx-auto leading-relaxed font-ibm-plex">
               Speak with our mining fleet engineers to evaluate edge telemetry hardware and live thermal stress models
               for your pit operations.
             </p>
             <div className="pt-2">
               <Link
                 href="/tmip/demo"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-[3px] font-semibold text-base transition-all shadow-lg bg-[#3B82F6] text-white hover:bg-[#2563EB]"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[3px] font-semibold text-base transition-all shadow-lg bg-[#3B82F6] text-white hover:bg-[#2563EB]"
               >
-                Book a demo <ArrowRight className="w-5 h-5" />
+                Book a demo <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>

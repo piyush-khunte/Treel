@@ -62,8 +62,8 @@ export default function UnsubscribePage() {
                   Privacy Policy
                 </Link>{" "}
                 or contact our Data Protection desk at{" "}
-                <a href="mailto:privacy@treel.in" className="text-[#D5573B] underline underline-offset-4 hover:text-[#C2492F] transition-colors">
-                  privacy@treel.in
+                <a href="mailto:dpo@treel.in" className="text-[#D5573B] underline underline-offset-4 hover:text-[#C2492F] transition-colors">
+                  dpo@treel.in
                 </a>
                 .
               </p>

@@ -1,5 +1,5 @@
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { Activity,ArrowRight,Car,Truck } from "lucide-react";
+import { Activity, ArrowRight, Car, Truck, Wrench } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -215,6 +215,49 @@ export default function ProductsPage() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Digital Tire Management Spotlight */}
+      <section className="py-16 border-b border-white/10 bg-[#0A0F1A]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
+          <div className="p-8 sm:p-10 rounded-xl border border-blue-500/30 bg-gradient-to-r from-blue-950/40 via-[#0B1220] to-[#0A0F1A] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+            <div className="space-y-4 max-w-3xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-[#3B82F6] font-semibold">
+                <Wrench className="w-3.5 h-3.5" />
+                WORKSHOP &amp; DEPOT TOOLING
+              </div>
+              <h2 className="font-fraunces text-2xl sm:text-3xl lg:text-4xl font-medium text-white tracking-tight">
+                Digital Tire Management (DTM)
+              </h2>
+              <p className="text-sm sm:text-base text-[#94A3B8] font-inter leading-relaxed">
+                Transform manual yard audits into automated telematics data points with Bluetooth-enabled tread depth and digital pressure inspection tools. Technicians capture millimeter-precise groove measurements and calibrated cold pressures in under 3 minutes per truck, synchronizing directly with TMIP Vehicle Digital Twins.
+              </p>
+              <div className="flex flex-wrap items-center gap-6 pt-2 font-mono text-xs text-slate-300">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-blue-400" />
+                  Bluetooth wireless sync
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                  Optical tread depth accuracy (±0.1 mm)
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-amber-400" />
+                  Automated retread forecasting
+                </span>
+              </div>
+            </div>
+            <div className="shrink-0 w-full lg:w-auto">
+              <Link
+                href="/products/otr-tpms#capabilities"
+                className="w-full lg:w-auto px-7 py-3.5 rounded-lg bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold text-sm transition-all shadow-md flex items-center justify-center gap-2"
+              >
+                <span>Explore Inspection Tools</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </div>

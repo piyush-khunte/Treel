@@ -124,9 +124,9 @@ export default function TmipSecurityPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-24 pb-20 border-b border-slate-400/10">
+      <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
+          <div className="max-w-4xl space-y-4">
             <Breadcrumb
               variant="tmip"
               items={[
@@ -137,7 +137,7 @@ export default function TmipSecurityPage() {
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
               SECURITY
             </div>
-            <h1 className="font-space-grotesk text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F1F5F9] leading-[1.15]">
+            <h1 className="font-space-grotesk text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F1F5F9] leading-[1.12]">
               How we protect the data your fleet runs on.
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-ibm-plex max-w-3xl">
@@ -148,10 +148,10 @@ export default function TmipSecurityPage() {
       </section>
 
       {/* Certifications */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-8">
-            <div className="space-y-3">
+          <div className="max-w-4xl space-y-6">
+            <div className="space-y-2">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
                 Certifications
               </h2>
@@ -164,9 +164,9 @@ export default function TmipSecurityPage() {
               {certifications.map((cert, idx) => (
                 <div 
                   key={idx} 
-                  className="p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 space-y-2 flex flex-col justify-between"
+                  className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 space-y-2 flex flex-col justify-between"
                 >
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     <div className="flex items-center justify-between">
                       <h3 className="font-space-grotesk text-lg font-bold text-[#F1F5F9]">
                         {cert.title}
@@ -187,10 +187,10 @@ export default function TmipSecurityPage() {
       </section>
 
       {/* Infrastructure */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#0B1220]/40">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10 bg-[#0B1220]/40">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-8">
-            <div className="space-y-3">
+          <div className="max-w-4xl space-y-6">
+            <div className="space-y-2">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
                 Infrastructure
               </h2>
@@ -199,11 +199,11 @@ export default function TmipSecurityPage() {
               </p>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-2.5">
               {infrastructurePoints.map((point, idx) => (
                 <div 
                   key={idx} 
-                  className="p-4 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 flex items-start gap-3.5"
+                  className="p-3.5 sm:p-4 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 flex items-start gap-3.5"
                 >
                   <div className="w-5 h-5 rounded-full bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6] shrink-0 mt-0.5">
                     <CheckCircle2 className="w-3.5 h-3.5" />
@@ -219,10 +219,10 @@ export default function TmipSecurityPage() {
       </section>
 
       {/* Data Security */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-8">
-            <div className="space-y-3">
+          <div className="max-w-4xl space-y-6">
+            <div className="space-y-2">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
                 Data
               </h2>
@@ -235,7 +235,7 @@ export default function TmipSecurityPage() {
               {dataSecurityPoints.map((item, idx) => (
                 <div 
                   key={idx} 
-                  className="p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 space-y-2"
+                  className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 space-y-1.5"
                 >
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-[#3B82F6]" />
@@ -254,10 +254,10 @@ export default function TmipSecurityPage() {
       </section>
 
       {/* Application Security */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#0B1220]/40">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10 bg-[#0B1220]/40">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-8">
-            <div className="space-y-3">
+          <div className="max-w-4xl space-y-6">
+            <div className="space-y-2">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
                 Application
               </h2>
@@ -270,7 +270,7 @@ export default function TmipSecurityPage() {
               {appSecurityPoints.map((item, idx) => (
                 <div 
                   key={idx} 
-                  className="p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 space-y-2"
+                  className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 space-y-1.5"
                 >
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-[#3B82F6]" />
@@ -289,23 +289,23 @@ export default function TmipSecurityPage() {
       </section>
 
       {/* Incident Response */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-8">
-            <div className="space-y-3">
+          <div className="max-w-4xl space-y-6">
+            <div className="space-y-2">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
                 Incident response
               </h2>
-              <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex">
+              <p className="text-[#94A3B8] text-base leading-relaxed font-ibm-plex">
                 Treel operates a 24/7 incident response process for security events. In the event of a confirmed security incident:
               </p>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-2.5">
               {incidentResponseSteps.map((step, idx) => (
                 <div 
                   key={idx} 
-                  className="p-4 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 flex items-start gap-4"
+                  className="p-3.5 sm:p-4 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 flex items-start gap-4"
                 >
                   <span className="w-6 h-6 rounded-[2px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6] font-jetbrains text-xs font-semibold shrink-0 mt-0.5">
                     {idx + 1}
@@ -321,20 +321,20 @@ export default function TmipSecurityPage() {
       </section>
 
       {/* Responsible Disclosure */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#0B1220]/40">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10 bg-[#0B1220]/40">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <div className="space-y-3">
+          <div className="max-w-4xl space-y-4">
+            <div className="space-y-2">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F1F5F9]">
                 Reporting a security concern
               </h2>
-              <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex">
+              <p className="text-[#94A3B8] text-base leading-relaxed font-ibm-plex">
                 If you have identified a security vulnerability in TMIP or Treel infrastructure, we would like to hear from you.
               </p>
             </div>
 
-            <div className="p-6 sm:p-8 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 space-y-3">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 text-sm font-ibm-plex">
+            <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 space-y-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-sm font-ibm-plex">
                 <div className="space-y-1">
                   <div className="text-xs font-jetbrains uppercase tracking-wider text-[#3B82F6]">Contact</div>
                   <a href="mailto:security@treel.in" className="text-[#F1F5F9] underline hover:text-[#3B82F6]">
@@ -352,9 +352,9 @@ export default function TmipSecurityPage() {
       </section>
 
       {/* Enterprise Security Documentation Package CTA */}
-      <section className="relative z-10 py-20">
+      <section className="relative z-10 py-10 sm:py-14">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl p-8 sm:p-12 rounded-[4px] bg-[#0B1220]/90 border border-blue-500/30 space-y-6">
+          <div className="max-w-4xl p-6 sm:p-10 rounded-[4px] bg-[#0B1220]/90 border border-blue-500/30 space-y-4">
             <div className="space-y-2">
               <h2 className="font-space-grotesk text-2xl sm:text-3xl font-bold text-[#F1F5F9]">
                 Full vendor assessment package

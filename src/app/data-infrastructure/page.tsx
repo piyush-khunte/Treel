@@ -1,26 +1,26 @@
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import {
-Activity,
-ArrowRight,
-Cpu,
-Layers,
-Lock,
-Server,
-Zap
+  Activity,
+  ArrowRight,
+  Cpu,
+  Layers,
+  Lock,
+  Server,
+  Zap,
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Data Infrastructure · Treel",
-  description: "Treel operates India's largest connected commercial vehicle dataset. 68,000 vehicles under active management, sub-second telemetry, eight years of longitudinal data. Infrastructure, governance, and privacy.",
+  description: "Treel operates India's largest connected commercial vehicle dataset. 68,000 vehicles under active management, sub-second telemetry, data from over 2 million tyres. Infrastructure, governance, and privacy.",
   alternates: {
     canonical: "https://treel.in/data-infrastructure",
   },
   openGraph: {
     title: "Data Infrastructure · Treel",
-    description: "Treel operates India's largest connected commercial vehicle dataset. 68,000 vehicles under active management, sub-second telemetry, eight years of longitudinal data. Infrastructure, governance, and privacy.",
+    description: "Treel operates India's largest connected commercial vehicle dataset. 68,000 vehicles under active management, sub-second telemetry, data from over 2 million tyres. Infrastructure, governance, and privacy.",
     url: "https://treel.in/data-infrastructure",
   },
 };
@@ -38,9 +38,9 @@ export default function DataInfrastructurePage() {
       detail: "Near-instantaneous wheel-end sensor ingestion"
     },
     {
-      value: "8 Years",
-      label: "Longitudinal vehicle dataset",
-      detail: "Empirical operational data from Indian highways"
+      value: "2M+",
+      label: "Connected tyres monitored",
+      detail: "Operational telemetry from Indian highways (Founded 2018)"
     },
     {
       value: "Billions",
@@ -91,7 +91,7 @@ export default function DataInfrastructurePage() {
               India&apos;s largest connected commercial vehicle dataset.
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-inter max-w-3xl">
-              68,412 vehicles under active management. Sub-second telemetry from each. Eight years of longitudinal data. This is the foundation Treel&apos;s mobility intelligence platform runs on.
+              68,412 vehicles under active management. Sub-second telemetry from each. Data from over 2 million tyres. This is the foundation Treel&apos;s mobility intelligence platform runs on.
             </p>
           </div>
         </div>
@@ -237,15 +237,13 @@ export default function DataInfrastructurePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {privacyPillars.map((p, idx) => (
-                <div key={idx} className="p-6 sm:p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 space-y-3 flex flex-col justify-between">
-                  <div className="space-y-2">
-                    <div className="w-8 h-8 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B] mb-2">
-                      <Lock className="w-4 h-4" />
-                    </div>
-                    <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2]">
-                      {p.title}
-                    </h3>
+                <div key={idx} className="p-6 sm:p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                  <div className="w-8 h-8 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B] mb-4">
+                    <Lock className="w-4 h-4" />
                   </div>
+                  <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] min-h-[3.25rem] sm:min-h-[3.5rem] mb-3">
+                    {p.title}
+                  </h3>
                   <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed font-inter">
                     {p.statement}
                   </p>
@@ -307,4 +305,4 @@ export default function DataInfrastructurePage() {
       </section>
     </div>
   );
-}
+}

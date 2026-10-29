@@ -93,10 +93,10 @@ export default function TmipSolutionsPassengerTransportPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-24 sm:pt-28 pb-20 sm:pb-24 border-b border-slate-400/10 bg-[#080E1E]">
+      <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
-            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-4">
+          <div className="max-w-4xl space-y-4">
+            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-2">
               <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
                 TMIP
               </Link>
@@ -121,7 +121,7 @@ export default function TmipSolutionsPassengerTransportPage() {
               Where the payload is people, the platform priorities shift.
             </p>
 
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-wrap gap-4 pt-2">
               <Link
                 href="/tmip/demo"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[3px] font-semibold text-sm transition-all shadow-md bg-[#3B82F6] text-white hover:bg-[#2563EB]"
@@ -140,20 +140,20 @@ export default function TmipSolutionsPassengerTransportPage() {
       </section>
 
       {/* Safety Proof Band */}
-      <section className="relative z-10 py-12 border-b border-slate-400/10 bg-[#050A17]">
+      <section className="relative z-10 py-8 sm:py-10 border-b border-slate-400/10 bg-[#050A17]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
+            <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
               <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#10B981]">0 Bursts</div>
               <div className="text-sm font-semibold text-[#F1F5F9] mt-1 font-ibm-plex">Zero Expressway Blowouts</div>
               <div className="text-xs text-[#94A3B8] mt-1 font-ibm-plex">Across 650 luxury intercity coaches over 18 continuous months</div>
             </div>
-            <div className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
+            <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
               <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#3B82F6]">99.6%</div>
               <div className="text-sm font-semibold text-[#F1F5F9] mt-1 font-ibm-plex">Schedule Reliability</div>
               <div className="text-xs text-[#94A3B8] mt-1 font-ibm-plex">Eliminating roadside breakdown passenger stranding events</div>
             </div>
-            <div className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
+            <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
               <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#F59E0B]">&lt;1.0s</div>
               <div className="text-sm font-semibold text-[#F1F5F9] mt-1 font-ibm-plex">Sub-Second Telemetry</div>
               <div className="text-xs text-[#94A3B8] mt-1 font-ibm-plex">Instantaneous audio-visual driver alerts on cab displays</div>
@@ -163,9 +163,9 @@ export default function TmipSolutionsPassengerTransportPage() {
       </section>
 
       {/* Industry Challenges Section */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
-          <div className="max-w-3xl space-y-4">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-6 sm:space-y-8">
+          <div className="max-w-3xl space-y-3">
             <h2 className="font-space-grotesk text-2xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Industry Challenges in Passenger Operations
             </h2>
@@ -175,9 +175,9 @@ export default function TmipSolutionsPassengerTransportPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {challenges.map((item, idx) => (
-              <div key={idx} className="p-6 rounded-[4px] bg-[#080E1E] border border-slate-400/10 space-y-3">
+              <div key={idx} className="p-5 sm:p-6 rounded-[4px] bg-[#080E1E] border border-slate-400/10 space-y-2.5">
                 <div className="w-8 h-8 rounded-[3px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-xs font-jetbrains font-bold text-[#3B82F6]">
                   0{idx + 1}
                 </div>
@@ -190,17 +190,17 @@ export default function TmipSolutionsPassengerTransportPage() {
       </section>
 
       {/* TMIP's Fit Section */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#080E1E]">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7 space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-7 space-y-4">
               <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
                 SAFETY-FIRST ARCHITECTURE
               </div>
               <h2 className="font-space-grotesk text-2xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
                 What TMIP does for passenger fleets.
               </h2>
-              <div className="space-y-4 text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex">
+              <div className="space-y-3 text-[#94A3B8] text-base leading-relaxed font-ibm-plex">
                 <p>
                   For passenger transport, TMIP&apos;s safety-relevant capabilities take precedence in the deployment
                   configuration. Tyre pressure and temperature alerts run at conservative thresholds. Driver behaviour
@@ -213,7 +213,7 @@ export default function TmipSolutionsPassengerTransportPage() {
               </div>
             </div>
 
-            <div className="lg:col-span-5 p-8 rounded-[4px] bg-[#050A17] border border-slate-400/10 space-y-6">
+            <div className="lg:col-span-5 p-6 sm:p-7 rounded-[4px] bg-[#050A17] border border-slate-400/10 space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-[4px] bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6]">
                   <Bus className="w-5 h-5" />
@@ -224,7 +224,7 @@ export default function TmipSolutionsPassengerTransportPage() {
                 </div>
               </div>
 
-              <div className="space-y-4 pt-2">
+              <div className="space-y-3 pt-1">
                 <div className="flex items-center justify-between p-3 rounded-[3px] bg-white/[0.02] border border-slate-400/10">
                   <span className="text-sm text-[#94A3B8] font-ibm-plex">Thermal Alert Lead Time</span>
                   <span className="text-sm font-jetbrains font-bold text-[#10B981]">18–25 min in advance</span>
@@ -244,22 +244,22 @@ export default function TmipSolutionsPassengerTransportPage() {
       </section>
 
       {/* Relevant Capabilities Section */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
-          <div className="max-w-3xl space-y-4">
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-6 sm:space-y-8">
+          <div className="max-w-3xl space-y-3">
             <h2 className="font-space-grotesk text-2xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Relevant Capabilities
             </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex">
+            <p className="text-[#94A3B8] text-base leading-relaxed font-ibm-plex">
               Focused entirely on rider safety, smooth transit dynamics, and uninterrupted service schedules.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {capabilities.map((cap, i) => {
               const Icon = cap.icon;
               return (
-                <div key={i} className="p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10 space-y-3">
+                <div key={i} className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10 space-y-2.5">
                   <div className="w-10 h-10 rounded-[4px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6]">
                     <Icon className="w-5 h-5" />
                   </div>
@@ -272,82 +272,23 @@ export default function TmipSolutionsPassengerTransportPage() {
         </div>
       </section>
 
-      {/* Passenger Transport Case Studies Section */}
-      <section className="relative z-10 py-20 border-b border-slate-400/10 bg-[#080E1E]">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="max-w-2xl space-y-3">
-              <div className="text-xs font-jetbrains text-[#3B82F6] uppercase tracking-wider font-semibold">
-                PROVEN RESULTS
-              </div>
-              <h2 className="font-space-grotesk text-2xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
-                Passenger transport operators running TMIP.
-              </h2>
-            </div>
-            <Link
-              href="/tmip/customers/case-studies"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#3B82F6] hover:underline"
-            >
-              View all case studies <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <div className="max-w-2xl">
-            {/* Case Study Card */}
-            <div className="p-8 rounded-[4px] bg-[#050A17] border border-slate-400/10 flex flex-col justify-between space-y-6">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <span className="border border-[#3B82F6]/30 bg-[#3B82F6]/10 px-3 py-1 rounded-[2px] text-xs font-jetbrains text-[#3B82F6] uppercase font-semibold">
-                    PASSENGER EXPRESS
-                  </span>
-                  <span className="text-xs font-jetbrains text-[#94A3B8]">650 Coaches</span>
-                </div>
-                <h3 className="font-space-grotesk text-xl font-bold text-[#F1F5F9]">
-                  Eliminating high-speed tyre failures across 650 luxury intercity coaches.
-                </h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed font-ibm-plex">
-                  How continuous sub-second pressure and heat telemetry eliminated thermal blowouts on high-speed western
-                  expressways, safeguarding passenger safety and route punctuality.
-                </p>
-                <div className="flex items-center gap-6 pt-2 font-jetbrains text-sm">
-                  <div>
-                    <span className="text-[#10B981] font-bold">0 Bursts</span>
-                    <span className="text-xs text-[#94A3B8] ml-1.5">Roadside incidents</span>
-                  </div>
-                  <div>
-                    <span className="text-[#3B82F6] font-bold">0.5–0.6%</span>
-                    <span className="text-xs text-[#94A3B8] ml-1.5">Fuel saved</span>
-                  </div>
-                </div>
-              </div>
-              <Link
-                href="/tmip/customers/case-studies/intercity-passenger-express"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#3B82F6] hover:underline"
-              >
-                Read full case study <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Band Section */}
-      <section className="relative z-10 py-20 bg-[#050A17]">
+      <section className="relative z-10 py-10 sm:py-14 bg-[#050A17]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="p-10 sm:p-14 rounded-[4px] bg-gradient-to-br from-[#080E1E] to-[#0B1220] border border-blue-500/30 text-center space-y-6 max-w-4xl mx-auto">
+          <div className="p-6 sm:p-10 rounded-[4px] bg-gradient-to-br from-[#080E1E] to-[#0B1220] border border-blue-500/30 text-center space-y-4 max-w-4xl mx-auto">
             <h2 className="font-space-grotesk text-3xl sm:text-4xl font-bold tracking-tight text-[#F1F5F9]">
               Protect your passengers and schedules.
             </h2>
-            <p className="text-[#94A3B8] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-ibm-plex">
+            <p className="text-[#94A3B8] text-base max-w-2xl mx-auto leading-relaxed font-ibm-plex">
               Schedule a consultation with our transit safety architects to deploy conservative alert thresholds and
               driver comfort metrics across your coach network.
             </p>
             <div className="pt-2">
               <Link
                 href="/tmip/demo"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-[3px] font-semibold text-base transition-all shadow-lg bg-[#3B82F6] text-white hover:bg-[#2563EB]"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[3px] font-semibold text-base transition-all shadow-lg bg-[#3B82F6] text-white hover:bg-[#2563EB]"
               >
-                Book a demo <ArrowRight className="w-5 h-5" />
+                Book a demo <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>

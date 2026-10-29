@@ -364,7 +364,7 @@ export default function AccessibilityPage() {
                   5. Report an accessibility issue
                 </h2>
                 <p>
-                  If you encounter an accessibility issue or need content in an alternative format, please contact us and we will respond within 5 business days.
+                  If you encounter an accessibility issue or need content in an alternative format, please contact us and we will respond at earliest.
                 </p>
 
                 <div className="p-6 sm:p-8 rounded-xl bg-white/[0.03] border border-white/[0.08] space-y-6">

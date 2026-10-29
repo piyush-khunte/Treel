@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { submitWarrantyClaimSubmission } from "@/lib/content/warranty-storage";
+import { isSesConfigured, sendWarrantyClaimConfirmationEmail } from "@/lib/integrations";
 
 export async function POST(req: NextRequest) {
   try {
@@ -56,6 +57,23 @@ export async function POST(req: NextRequest) {
         { success: false, error: res.error || "Failed to record warranty claim." },
         { status: 500 }
       );
+    }
+
+    // Dispatch confirmation email from hello@treel.in to customer
+    if (isSesConfigured() && res.data) {
+      try {
+        await sendWarrantyClaimConfirmationEmail({
+          claimId: res.data.registrationId,
+          orderId: res.data.orderId,
+          customerName: res.data.customerName || customerName || "Customer",
+          customerEmail: res.data.customerEmail,
+          customerPhone: res.data.customerPhone || customerPhone,
+          claimIssueType: res.data.claimIssueType || claimIssueType,
+          claimDescription: res.data.claimDescription || claimDescription,
+        });
+      } catch (mailErr) {
+        console.warn("[Warranty Claim] Confirmation email error:", mailErr);
+      }
     }
 
     return NextResponse.json({

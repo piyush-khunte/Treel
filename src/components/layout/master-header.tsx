@@ -22,7 +22,6 @@ export function MasterHeader() {
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [mobileTechOpen, setMobileTechOpen] = useState(false);
   const [mobileBrandsOpen, setMobileBrandsOpen] = useState(false);
-  const [mobileOemOpen, setMobileOemOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
 
   const pathname = usePathname();
@@ -30,7 +29,6 @@ export function MasterHeader() {
   // If on TMIP, Suraksha, Personal TPMS, Admin, OTR TPMS, or /lp landing pages, their dedicated headers handle main nav
   if (
     pathname.startsWith("/tmip") ||
-    pathname.startsWith("/timp") ||
     pathname.startsWith("/suraksha") ||
     pathname.startsWith("/personal") ||
     pathname.startsWith("/admin") ||
@@ -58,7 +56,6 @@ export function MasterHeader() {
   const isBrandsActive = 
     pathname === "/products" ||
     pathname.startsWith("/tmip") ||
-    pathname.startsWith("/timp") ||
     pathname.startsWith("/suraksha") ||
     pathname.startsWith("/personal");
 
@@ -86,10 +83,12 @@ export function MasterHeader() {
           {/* Brand Logo */}
           <Link prefetch={false} href="/" className="flex items-center group shrink-0 mr-2 xl:mr-5">
             <Image
-              src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436567/Treel_New_Logo_Final_With_Favicon_Tagline.png"
+              src="/images/treel-logo-final.webp"
               alt="Treel Mobility Solutions"
               width={160}
               height={50}
+              priority
+              unoptimized
               className="h-9 sm:h-10 lg:h-11 xl:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
             />
           </Link>
@@ -151,14 +150,14 @@ export function MasterHeader() {
               </div>
             </div>
 
-            {/* BRANDS & SOLUTIONS */}
+            {/*  SOLUTIONS */}
             <div className="relative group">
               <Link prefetch={false} href="/products" 
                 className={`flex items-center gap-1 py-2 transition-colors whitespace-nowrap ${
                   isBrandsActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"
                 }`}
               >
-                <span>Brands &amp; Solutions</span>
+                <span>Solutions</span>
                 <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform shrink-0" />
               </Link>
               <div className="absolute top-full left-0 w-80 p-2 bg-white rounded-2xl shadow-xl border border-slate-200/80 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
@@ -196,7 +195,7 @@ export function MasterHeader() {
                   </div>
                 </Link>
                 <div className="pt-2 mt-1 border-t border-slate-100">
-                  <Link prefetch={false} href="/timp/tpms" 
+                  <Link prefetch={false} href="/tmip/tpms" 
                     className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"
                   >
                     <div className="w-9 h-9 rounded-lg bg-[#D5573B]/10 flex items-center justify-center text-[#D5573B] shrink-0 mt-0.5">
@@ -237,42 +236,13 @@ export function MasterHeader() {
             </div>
 
             {/* OEM */}
-            <div className="relative group">
-              <Link prefetch={false} href="/oem"
-                className={`flex items-center gap-1 py-2 transition-colors whitespace-nowrap ${
-                  isOemActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"
-                }`}
-              >
-                <span>OEM</span>
-                <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform shrink-0" />
-              </Link>
-              <div className="absolute top-full left-0 w-64 p-2 bg-white rounded-xl shadow-xl border border-slate-200/80 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                <Link prefetch={false} href="/oem" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
-                  OEM Overview
-                </Link>
-                <Link prefetch={false} href="/oem/introduction" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
-                  Introduction
-                </Link>
-                <Link prefetch={false} href="/oem/two-wheeler" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
-                  Two-Wheeler
-                </Link>
-                <Link prefetch={false} href="/oem/four-wheeler" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
-                  Four-Wheeler
-                </Link>
-                <Link prefetch={false} href="/oem/commercial-vehicle" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
-                  Commercial Vehicle
-                </Link>
-                <Link prefetch={false} href="/oem/bus" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
-                  Bus
-                </Link>
-                <Link prefetch={false} href="/oem/mining" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
-                  Mining
-                </Link>
-                <Link prefetch={false} href="/oem/agriculture" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
-                  Agriculture
-                </Link>
-              </div>
-            </div>
+            <Link prefetch={false} href="/oem"
+              className={`py-2 transition-colors whitespace-nowrap ${
+                isOemActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"
+              }`}
+            >
+              OEM
+            </Link>
 
             {/* RESOURCES */}
             <div className="relative group">
@@ -386,7 +356,7 @@ export function MasterHeader() {
               )}
             </div>
 
-            {/* Brands & Solutions Mobile Accordion */}
+            {/*Solutions Mobile Accordion */}
             <div>
               <button 
                 onClick={() => setMobileBrandsOpen(!mobileBrandsOpen)}
@@ -400,34 +370,19 @@ export function MasterHeader() {
                   <Link prefetch={false} href="/tmip" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">TMIP Platform (Enterprise)</Link>
                   <Link prefetch={false} href="/suraksha" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Suraksha (Commercial)</Link>
                   <Link prefetch={false} href="/personal" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Personal TPMS (Consumer)</Link>
-                  <Link prefetch={false} href="/timp/tpms" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Commercial Vehicle TPMS</Link>
+                  <Link prefetch={false} href="/tmip/tpms" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Commercial Vehicle TPMS</Link>
                   <Link prefetch={false} href="/products/otr-tpms" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">OTR TPMS</Link>
                 </div>
               )}
             </div>
 
-            {/* OEM Mobile Accordion */}
-            <div>
-              <button 
-                onClick={() => setMobileOemOpen(!mobileOemOpen)}
-                className="w-full flex items-center justify-between py-2 text-slate-900 font-semibold"
-              >
-                <span>OEM</span>
-                <ChevronDown className={`w-4 h-4 transition-transform ${mobileOemOpen ? "rotate-180" : ""}`} />
-              </button>
-              {mobileOemOpen && (
-                <div className="pl-3 pb-2 space-y-1 text-xs text-slate-600 border-l-2 border-slate-100 ml-1">
-                  <Link prefetch={false} href="/oem" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">OEM Overview</Link>
-                  <Link prefetch={false} href="/oem/introduction" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Introduction</Link>
-                  <Link prefetch={false} href="/oem/two-wheeler" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Two-Wheeler</Link>
-                  <Link prefetch={false} href="/oem/four-wheeler" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Four-Wheeler</Link>
-                  <Link prefetch={false} href="/oem/commercial-vehicle" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Commercial Vehicle</Link>
-                  <Link prefetch={false} href="/oem/bus" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Bus</Link>
-                  <Link prefetch={false} href="/oem/mining" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Mining</Link>
-                  <Link prefetch={false} href="/oem/agriculture" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Agriculture</Link>
-                </div>
-              )}
-            </div>
+            {/* OEM */}
+            <Link prefetch={false} href="/oem" 
+              onClick={() => setMobileMenuOpen(false)} 
+              className="block py-2 text-slate-900 font-semibold hover:text-[#D5573B]"
+            >
+              OEM
+            </Link>
 
             {/* Resources Mobile Accordion */}
             <div>

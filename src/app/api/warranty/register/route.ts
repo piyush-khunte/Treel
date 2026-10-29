@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { registerWarrantySubmission } from "@/lib/content/warranty-storage";
+import { isSesConfigured, sendWarrantyRegistrationConfirmationEmail } from "@/lib/integrations";
 
 export async function POST(req: NextRequest) {
   try {
@@ -47,6 +48,22 @@ export async function POST(req: NextRequest) {
         { success: false, error: res.error || "Failed to save warranty registration." },
         { status: 500 }
       );
+    }
+
+    // 3. Dispatch confirmation email from hello@treel.in to customer
+    if (isSesConfigured() && res.data) {
+      try {
+        await sendWarrantyRegistrationConfirmationEmail({
+          registrationId: res.data.registrationId,
+          orderId: res.data.orderId,
+          customerName: res.data.customerName || customerName || "Customer",
+          customerEmail: res.data.customerEmail,
+          customerPhone: res.data.customerPhone || customerPhone,
+          productName: res.data.productName || productName || "Personal TPMS",
+        });
+      } catch (mailErr) {
+        console.warn("[Warranty Registration] Confirmation email error:", mailErr);
+      }
     }
 
     return NextResponse.json({

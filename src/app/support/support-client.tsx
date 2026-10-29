@@ -279,7 +279,7 @@ export function SupportClient() {
                 <a href="mailto:hello@treel.in" className="text-base font-medium text-white hover:text-[#D5573B] transition-colors">
                   hello@treel.in
                 </a>
-                <p className="text-xs text-[#94A3B8] mt-0.5">Avg response time: within 24 hours</p>
+                <p className="text-xs text-[#94A3B8] mt-0.5">Avg response time: at earliest</p>
               </div>
             </div>
 

@@ -85,7 +85,7 @@ export default function OtrTpmsPage() {
 
       {/* Background blueprint grid pattern */}
       <div
-        className="fixed inset-0 pointer-events-none opacity-40 z-0"
+        className="absolute inset-0 pointer-events-none opacity-40 z-0"
         style={{
           backgroundImage: `
             linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
@@ -198,12 +198,14 @@ export default function OtrTpmsPage() {
               }}
             >
               <Image
-                src="https://res.cloudinary.com/uwd11u7t/image/upload/v1792581725/Dark_Fleet_Dashboard_with_Mining_Truck_Telemetry.png"
+                src="https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto,w_1200/v1792581725/Dark_Fleet_Dashboard_with_Mining_Truck_Telemetry.png"
                 alt="TMIP Vehicle Digital Twin for a mining haul truck, showing health score, breakdown risk, component health and live status"
-                width={1486}
-                height={704}
+                width={1200}
+                height={568}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
                 className="w-full h-auto object-contain rounded-[2px]"
                 priority
+                fetchPriority="high"
               />
             </figure>
           </div>
@@ -468,6 +470,21 @@ export default function OtrTpmsPage() {
                       </p>
                     </div>
                   </li>
+
+                  <li className="py-6 grid grid-cols-[48px_1fr] gap-4 items-start">
+                    <span className="font-jetbrains text-sm font-semibold text-[#F59E0B] pt-1">
+                      05
+                    </span>
+                    <div>
+                      <h3 className="font-space-grotesk text-lg font-semibold text-white mb-1.5 flex items-center gap-2">
+                        <span>Digital Tire Management</span>
+                        <span className="text-[10px] font-jetbrains uppercase px-2 py-0.5 rounded bg-[#3B82F6]/20 text-[#3B82F6] border border-[#3B82F6]/30">Inspection Tools</span>
+                      </h3>
+                      <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
+                        Bluetooth-enabled tread depth and pressure digital inspection tools. Workshop and yard technicians record millimeter-precise groove measurements and calibrated cold pressures, syncing live to TMIP to automate retread scheduling and casing scrap analysis.
+                      </p>
+                    </div>
+                  </li>
                 </ol>
               </div>
             </div>
@@ -576,7 +593,7 @@ export default function OtrTpmsPage() {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 border-t border-slate-400/15">
+            <div className="grid grid-cols-1 md:grid-cols-3 border-t border-slate-400/15">
               {/* Item 1 */}
               <div className="p-7 sm:p-8 border-b md:border-r border-slate-400/15 grid grid-cols-[48px_1fr] gap-5 items-start">
                 <svg
@@ -598,7 +615,7 @@ export default function OtrTpmsPage() {
               </div>
 
               {/* Item 2 */}
-              <div className="p-7 sm:p-8 border-b border-slate-400/15 grid grid-cols-[48px_1fr] gap-5 items-start">
+              <div className="p-7 sm:p-8 border-b md:border-r border-slate-400/15 grid grid-cols-[48px_1fr] gap-5 items-start">
                 <svg
                   viewBox="0 0 40 40"
                   className="w-10 h-10 stroke-[#3B82F6] fill-none stroke-[1.6]"
@@ -619,26 +636,6 @@ export default function OtrTpmsPage() {
               </div>
 
               {/* Item 3 */}
-              <div className="p-7 sm:p-8 border-b md:border-r border-slate-400/15 grid grid-cols-[48px_1fr] gap-5 items-start">
-                <svg
-                  viewBox="0 0 40 40"
-                  className="w-10 h-10 stroke-[#3B82F6] fill-none stroke-[1.6]"
-                  aria-hidden="true"
-                >
-                  <circle cx="20" cy="22" r="13" />
-                  <path d="M20 22 28 14M8 22h3M29 22h3M20 10v3" />
-                </svg>
-                <div className="space-y-1.5">
-                  <h3 className="font-space-grotesk text-xl font-semibold text-white">
-                    Load-cycle monitoring
-                  </h3>
-                  <p className="text-[15.5px] text-[#94A3B8] leading-relaxed">
-                    Tonne-kilometre-per-hour tracking against each tyre&apos;s working limit.
-                  </p>
-                </div>
-              </div>
-
-              {/* Item 4 */}
               <div className="p-7 sm:p-8 border-b border-slate-400/15 grid grid-cols-[48px_1fr] gap-5 items-start">
                 <svg
                   viewBox="0 0 40 40"
@@ -681,53 +678,53 @@ export default function OtrTpmsPage() {
                   Mining
                 </h3>
                 <p className="text-[#94A3B8] text-base">
-                  Coal, iron ore and limestone haul fleets.
+                  Coal, iron ore, and heavy mineral extraction haul fleets.
                 </p>
                 <div className="font-jetbrains text-sm text-[#F59E0B] md:text-right">
                   <small className="block text-slate-500 text-[11px] mb-0.5">What matters most</small>
-                  tonnes per shift
+                  trips per shift
                 </div>
               </div>
 
-              {/* Construction */}
+              {/* Construction & Earthmovers */}
               <div className="py-7 grid grid-cols-1 md:grid-cols-[260px_1fr_240px] gap-4 md:gap-6 items-baseline">
                 <h3 className="font-space-grotesk text-[22px] font-semibold text-white">
-                  Construction and infrastructure
+                  Construction &amp; Earthmovers
                 </h3>
                 <p className="text-[#94A3B8] text-base">
-                  Highway, earthmoving and tipper fleets.
+                  Excavators, wheeled loaders, graders, heavy dumpers, and tipper fleets.
                 </p>
                 <div className="font-jetbrains text-sm text-[#F59E0B] md:text-right">
                   <small className="block text-slate-500 text-[11px] mb-0.5">What matters most</small>
-                  project timelines
+                  project cycle uptime
                 </div>
               </div>
 
               {/* Quarries */}
               <div className="py-7 grid grid-cols-1 md:grid-cols-[260px_1fr_240px] gap-4 md:gap-6 items-baseline">
                 <h3 className="font-space-grotesk text-[22px] font-semibold text-white">
-                  Quarries and aggregates
+                  Quarries
                 </h3>
                 <p className="text-[#94A3B8] text-base">
-                  Loader and dumper fleets.
+                  Aggregate haulers, stone quarries, front-end loaders, and articulated dumpers.
                 </p>
                 <div className="font-jetbrains text-sm text-[#F59E0B] md:text-right">
                   <small className="block text-slate-500 text-[11px] mb-0.5">What matters most</small>
-                  cost per tonne
+                  operating cost per hour
                 </div>
               </div>
 
-              {/* Ports */}
+              {/* Ports & Terminals */}
               <div className="py-7 grid grid-cols-1 md:grid-cols-[260px_1fr_240px] gap-4 md:gap-6 items-baseline">
                 <h3 className="font-space-grotesk text-[22px] font-semibold text-white">
-                  Ports and terminals
+                  Ports &amp; Terminals
                 </h3>
                 <p className="text-[#94A3B8] text-base">
-                  Terminal tractors and container-handling equipment.
+                  Terminal tractors, reach stackers, RTG cranes, and container-handling equipment.
                 </p>
                 <div className="font-jetbrains text-sm text-[#F59E0B] md:text-right">
                   <small className="block text-slate-500 text-[11px] mb-0.5">What matters most</small>
-                  turnaround time
+                  berth turnaround time
                 </div>
               </div>
 
@@ -749,9 +746,9 @@ export default function OtrTpmsPage() {
         </section>
 
         {/* ============================================================== */}
-        {/* 08 OUTCOMES AND PROOF                                          */}
+        {/* 08 OUTCOMES AND PROOF (Hidden until verified site metrics arrive) */}
         {/* ============================================================== */}
-        <section className="py-20 sm:py-24 border-b border-slate-400/15">
+        <section className="hidden py-20 sm:py-24 border-b border-slate-400/15" aria-hidden="true">
           <div className="max-w-[1200px] mx-auto px-6">
             <div className="mb-12">
               <div className="w-[60px] h-[3px] bg-[#3B82F6] mb-7" />
@@ -836,11 +833,13 @@ export default function OtrTpmsPage() {
               }}
             >
               <Image
-                src="https://res.cloudinary.com/uwd11u7t/image/upload/v1792581729/Integrated_Fleet_Tracking_System_Infographic.png"
+                src="https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto,w_1200/v1792581729/Integrated_Fleet_Tracking_System_Infographic.png"
                 alt="How TMIP connects mining and port equipment to a central command and analytics layer and on to management dashboards and maintenance alerts"
-                width={1408}
-                height={768}
+                width={1200}
+                height={675}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
                 className="w-full h-auto object-contain rounded-[2px]"
+                loading="lazy"
               />
             </figure>
 

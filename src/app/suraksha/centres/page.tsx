@@ -36,7 +36,7 @@ export default function SurakshaCentresPage() {
     const matchesType =
       selectedType === "All" ||
       c.category === selectedType ||
-      (selectedType === "JK Tyre Dealer" && c.subtype === "JK Tyre") ||
+      (selectedType === "Authorized Dealer" && c.subtype === "Treel Partner") ||
       (selectedType === "Truck Wheels Centre" && c.categoryCode === "TWC");
 
     return matchesSearch && matchesType;
@@ -110,7 +110,7 @@ export default function SurakshaCentresPage() {
             </div>
 
             <div className="flex flex-wrap gap-2 sm:gap-3 items-center text-xs font-bold uppercase tracking-wider">
-              {["All", "Truck Wheels Centre", "JK Tyre Dealer"].map((t) => (
+              {["All", "Truck Wheels Centre", "Treel Partner Dealer"].map((t) => (
                 <button
                   key={t}
                   onClick={() => setSelectedType(t)}

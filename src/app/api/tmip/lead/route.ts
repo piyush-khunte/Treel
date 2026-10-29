@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { isSesConfigured, sendEmail } from "@/lib/integrations";
+import { isSesConfigured, sendEmail, sendTmipLeadConfirmationEmail } from "@/lib/integrations";
 
 // Server-side in-memory idempotency cache (prevents rapid double-clicks within 30s)
 const recentSubmissions = new Map<string, number>();
@@ -347,23 +347,51 @@ export async function POST(req: NextRequest) {
           ccAddresses.push(secondRecipient.trim());
         }
 
-        const formDisplayName =
-          finalFormId === "tmip_footer_demo" ? "TMIP Footer Demo" : "TMIP Campaign Demo";
+        const originPath = typeof page_path === "string" && page_path.trim() ? page_path.trim() : (typeof landing_page === "string" && landing_page.includes("/lp-tmip") ? "/lp-tmip" : "/tmip/demo");
 
-        const emailSubject = `[${formDisplayName}] ${normalizedName} — ${normalizedCompany} (${parsedFleetSize ? `${parsedFleetSize} Trucks` : rawFleet || "Enterprise"})`;
+        let tag = "TMIP DEMO";
+        let formDisplayName = "TMIP Enterprise Demo";
+
+        if (originPath.includes("/lp-tmip") || finalFormId.includes("campaign") || (typeof campaign_type === "string" && campaign_type.includes("campaign"))) {
+          tag = `TMIP CAMPAIGN LEAD - ${originPath}`;
+          formDisplayName = `TMIP Campaign Quick Lead (${originPath})`;
+        } else if (originPath.includes("/demo") || finalFormId.includes("demo_page")) {
+          tag = `TMIP DEMO - /tmip/demo`;
+          formDisplayName = "TMIP Enterprise Demo Booking (/tmip/demo)";
+        } else if (finalFormId === "tmip_footer_demo" || originPath === "/tmip") {
+          tag = `TMIP FOOTER FORM - /tmip`;
+          formDisplayName = "TMIP Footer Enterprise Demo (/tmip)";
+        } else if (originPath.includes("roi-calculator")) {
+          tag = `TMIP ROI INQUIRY - /tmip/roi-calculator`;
+          formDisplayName = "TMIP ROI Calculator Analysis (/tmip/roi-calculator)";
+        } else {
+          tag = `TMIP ENTERPRISE LEAD - ${originPath}`;
+          formDisplayName = `TMIP Enterprise Inquiry (${originPath})`;
+        }
+
+        const fleetInfo = parsedFleetSize ? `${parsedFleetSize} Trucks` : rawFleet || "Enterprise Fleet";
+        const emailSubject = `[${tag}] ${normalizedName} — ${normalizedCompany} (${fleetInfo})`;
 
         const emailHtml = `
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title>New TMIP Campaign Lead</title>
+    <title>${formDisplayName}</title>
   </head>
   <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #1e293b; background-color: #f8fafc; margin: 0; padding: 24px;">
     <div style="max-width: 620px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
       <div style="background: #050a17; padding: 24px; border-bottom: 3px solid #3b82f6;">
-        <h2 style="margin: 0; font-size: 20px; color: #ffffff; letter-spacing: -0.02em;">Treel Mobility — New TMIP Campaign Lead</h2>
-        <p style="margin: 4px 0 0 0; font-size: 13px; color: #94a3b8; font-family: monospace;">Form: ${formDisplayName} · /lp-tmip</p>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <span style="font-family: monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #38bdf8; font-weight: 700;">
+            ${tag}
+          </span>
+          <span style="background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 3px; font-family: monospace;">
+            FLEET DEMO
+          </span>
+        </div>
+        <h2 style="margin: 0; font-size: 20px; color: #ffffff; letter-spacing: -0.02em;">Treel Mobility — New TMIP Fleet Lead</h2>
+        <p style="margin: 6px 0 0 0; font-size: 13px; color: #94a3b8; font-family: monospace;">Originating Page: <strong style="color: #ffffff;">${originPath}</strong> · Form: ${formDisplayName}</p>
       </div>
       
       <div style="padding: 24px;">
@@ -463,6 +491,23 @@ export async function POST(req: NextRequest) {
           html: emailHtml,
           replyTo: normalizedEmail,
         });
+
+        // Dispatch confirmation email from hello@treel.in to the recipient
+        if (normalizedEmail) {
+          try {
+            await sendTmipLeadConfirmationEmail({
+              name: normalizedName,
+              email: normalizedEmail,
+              company: normalizedCompany,
+              phone: normalizedPhone,
+              fleetSize: parsedFleetSize ?? undefined,
+              sourcePage: typeof landing_page === "string" ? landing_page : "/lp-tmip",
+              interest: typeof context === "string" ? context : undefined,
+            });
+          } catch (userMailErr) {
+            console.warn("[TMIP Lead] Customer confirmation email dispatch warning:", userMailErr);
+          }
+        }
 
         // Update email_notification_status to sent
         if (insertedLeadId && typeof insertedLeadId === "string" && !insertedLeadId.startsWith("TL-")) {

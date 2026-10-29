@@ -14,14 +14,14 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Personal TPMS — Bluetooth Tyre Pressure Monitoring | Treel",
   description:
-    "Real-time tyre pressure on your phone. Alerts before a puncture. ±0.5 PSI accuracy, 2-year battery, 10-minute setup. Fits any car or SUV. ₹8,999.",
+    "Real-time tyre pressure on your phone. Alerts before a puncture. ±0.5 PSI accuracy, 2-year battery, 10-minute setup. Fits any car or two-wheeler. ₹8,999.",
   alternates: {
     canonical: "https://treel.in/personal",
   },
   openGraph: {
     title: "Personal TPMS — Bluetooth Tyre Pressure Monitoring | Treel",
     description:
-      "Real-time tyre pressure on your phone. Alerts before a puncture. ±0.5 PSI accuracy, 2-year battery, 10-minute setup. Fits any car or SUV. ₹8,999.",
+      "Real-time tyre pressure on your phone. Alerts before a puncture. ±0.5 PSI accuracy, 2-year battery, 10-minute setup. Fits any car or two-wheeler. ₹8,999.",
     url: "https://treel.in/personal",
   },
 };
@@ -39,7 +39,7 @@ const features = [
   },
   {
     title: "10-minute setup",
-    desc: "Four sensors screw on to the valve stems. Pair with the app. Done. Any car, any SUV, any tyre. No mechanic needed.",
+    desc: "Four sensors screw on to the valve stems. Pair with the app. Done. Fits any car or two-wheeler, any tyre. No mechanic needed.",
     icon: Clock,
   },
   {
@@ -108,7 +108,7 @@ export default function PersonalPage() {
               <div className="flex items-center gap-4 pt-4 text-xs font-medium text-[#6B7280]">
                 <span>Available for iOS and Android</span>
                 <span>•</span>
-                <span>Works on any car or SUV</span>
+                <span>Fits any car or two-wheeler</span>
               </div>
             </div>
 
@@ -260,7 +260,7 @@ export default function PersonalPage() {
             </h2>
 
             <p className="text-[#4B5563] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-medium">
-              Real-time tyre monitoring for every personal vehicle. Fits any car or SUV. Ships within 48 hours.
+              Real-time tyre monitoring for every personal vehicle. Fits any car or two-wheeler. Ships within 48 hours.
             </p>
 
             {/* Price block */}

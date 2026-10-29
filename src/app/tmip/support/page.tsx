@@ -90,9 +90,9 @@ export default function TmipSupportPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-24 pb-20 border-b border-slate-400/10">
+      <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-6">
+          <div className="max-w-4xl space-y-4">
             <Breadcrumb
               variant="tmip"
               items={[
@@ -115,9 +115,9 @@ export default function TmipSupportPage() {
       </section>
 
       {/* Section · Support Tiers by Contract */}
-      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
-          <div className="max-w-3xl space-y-4">
+      <section className="relative z-10 py-10 sm:py-12 lg:py-14 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-6 sm:space-y-8">
+          <div className="max-w-3xl space-y-3">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#3B82F6]" />
               <span className="text-xs font-jetbrains uppercase tracking-widest text-[#3B82F6] font-semibold">
@@ -133,11 +133,11 @@ export default function TmipSupportPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
             {SUPPORT_TIERS.map((tier) => (
               <div
                 key={tier.id}
-                className={`relative rounded-[4px] p-8 flex flex-col justify-between transition-all duration-200 ${
+                className={`relative rounded-[4px] p-6 sm:p-7 flex flex-col justify-between transition-all duration-200 ${
                   tier.highlight
                     ? "bg-[#0B1528] border-2 border-[#3B82F6] shadow-[0_0_30px_rgba(59,130,246,0.15)] ring-1 ring-[#3B82F6]/50"
                     : "bg-[#0B1220]/80 border border-slate-400/10 hover:border-slate-400/25"
@@ -149,21 +149,21 @@ export default function TmipSupportPage() {
                   </div>
                 )}
 
-                <div className="space-y-6">
+                <div className="space-y-5">
                   {/* Tier Header */}
-                  <div className="space-y-1 border-b border-slate-400/10 pb-6">
+                  <div className="space-y-1 border-b border-slate-400/10 pb-4">
                     <h3 className="font-space-grotesk text-2xl font-bold text-[#F1F5F9]">{tier.tierName}</h3>
                     <div className="text-xs font-jetbrains text-[#94A3B8]">{tier.contractType}</div>
                   </div>
 
                   {/* SLA Highlight Block */}
-                  <div className="space-y-3 rounded-[3px] bg-white/[0.02] border border-slate-400/10 p-4">
+                  <div className="space-y-2.5 rounded-[3px] bg-white/[0.02] border border-slate-400/10 p-4">
                     <div className="flex items-center gap-2 text-xs font-jetbrains uppercase tracking-wider text-slate-400 font-semibold">
                       <Clock className="w-3.5 h-3.5 text-[#3B82F6]" />
                       <span>Response SLA</span>
                     </div>
 
-                    <div className="space-y-2 pt-1 text-xs font-ibm-plex">
+                    <div className="space-y-1.5 pt-1 text-xs font-ibm-plex">
                       <div className="flex items-start justify-between gap-2">
                         <span className="text-slate-400 font-jetbrains">Standard:</span>
                         <span className="text-[#F1F5F9] font-medium text-right">{tier.standardSla}</span>
@@ -180,7 +180,7 @@ export default function TmipSupportPage() {
                   </div>
 
                   {/* Channels & Coverage */}
-                  <div className="space-y-4 text-xs font-ibm-plex">
+                  <div className="space-y-3 text-xs font-ibm-plex">
                     <div className="space-y-1">
                       <div className="text-slate-500 font-jetbrains uppercase text-[10px] tracking-wider">
                         Channels
@@ -203,11 +203,11 @@ export default function TmipSupportPage() {
                   </div>
 
                   {/* Included Features */}
-                  <div className="space-y-2.5 pt-2 border-t border-slate-400/10">
+                  <div className="space-y-2 pt-2 border-t border-slate-400/10">
                     <div className="text-slate-500 font-jetbrains uppercase text-[10px] tracking-wider">
                       Included In Tier
                     </div>
-                    <ul className="space-y-2">
+                    <ul className="space-y-1.5">
                       {tier.features.map((feature, i) => (
                         <li key={i} className="flex items-start gap-2 text-xs text-[#94A3B8] leading-relaxed">
                           <CheckCircle2 className="w-3.5 h-3.5 text-[#3B82F6] shrink-0 mt-0.5" />
@@ -218,7 +218,7 @@ export default function TmipSupportPage() {
                   </div>
                 </div>
 
-                <div className="pt-8">
+                <div className="pt-6">
                   <Link
                     href="/contact?subject=Enterprise sales (TMIP)"
                     className={`w-full py-2.5 px-4 rounded-[3px] text-xs font-jetbrains font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
@@ -238,11 +238,11 @@ export default function TmipSupportPage() {
       </section>
 
       {/* How to Reach Support: Dual-Track Cards */}
-      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10 bg-[#0B1220]/40">
+      <section className="relative z-10 py-10 sm:py-12 lg:py-14 border-b border-slate-400/10 bg-[#0B1220]/40">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {/* For Existing Customers */}
-            <div className="p-8 sm:p-10 rounded-[4px] bg-[#0B1220]/90 border border-slate-400/15 flex flex-col justify-between space-y-6">
+            <div className="p-6 sm:p-8 rounded-[4px] bg-[#0B1220]/90 border border-slate-400/15 flex flex-col justify-between space-y-6">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-[3px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6]">
                   <Users className="w-6 h-6" />
@@ -266,7 +266,7 @@ export default function TmipSupportPage() {
                   <button
                     type="button"
                     disabled
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-[3px] font-semibold text-sm bg-slate-800/80 text-slate-400 border border-slate-700/60 cursor-not-allowed opacity-90 shadow-sm"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-[3px] font-semibold text-sm bg-slate-800/80 text-slate-400 border border-slate-700/60 cursor-not-allowed opacity-90 shadow-sm"
                     title="Customer portal authentication is provisioned per customer contract via corporate SSO"
                   >
                     <span>Access customer portal</span>
@@ -280,7 +280,7 @@ export default function TmipSupportPage() {
             </div>
 
             {/* For Prospects and General Inquiries */}
-            <div className="p-8 sm:p-10 rounded-[4px] bg-[#0B1220]/90 border border-slate-400/15 flex flex-col justify-between space-y-6">
+            <div className="p-6 sm:p-8 rounded-[4px] bg-[#0B1220]/90 border border-slate-400/15 flex flex-col justify-between space-y-6">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-[3px] bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
                   <Phone className="w-6 h-6" />
@@ -301,7 +301,7 @@ export default function TmipSupportPage() {
               <div className="pt-2">
                 <Link
                   href="/contact?subject=Enterprise sales (TMIP)"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[3px] font-semibold text-sm transition-all shadow-md bg-[#3B82F6] hover:bg-[#2563EB] text-white"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-[3px] font-semibold text-sm transition-all shadow-md bg-[#3B82F6] hover:bg-[#2563EB] text-white"
                 >
                   <span>Contact us</span>
                   <ArrowRight className="w-4 h-4" />
@@ -313,9 +313,9 @@ export default function TmipSupportPage() {
       </section>
 
       {/* Common Questions / FAQ Accordion */}
-      <section className="relative z-10 py-20 lg:py-24 border-b border-slate-400/10">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
-          <div className="max-w-3xl space-y-4">
+      <section className="relative z-10 py-10 sm:py-12 lg:py-14 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-6 sm:space-y-8">
+          <div className="max-w-3xl space-y-3">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#3B82F6]" />
               <span className="text-xs font-jetbrains uppercase tracking-widest text-[#3B82F6] font-semibold">

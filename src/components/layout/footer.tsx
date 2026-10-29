@@ -35,7 +35,6 @@ export function Footer({ variant, className }: FooterProps) {
   if (!variant && pathname) {
     if (
       pathname.startsWith("/tmip") ||
-      pathname.startsWith("/timp") ||
       pathname.startsWith("/lp/tmip") ||
       pathname.startsWith("/lp-tmip") ||
       pathname.startsWith("/products/otr-tpms") ||
@@ -46,6 +45,24 @@ export function Footer({ variant, className }: FooterProps) {
       activeVariant = "personal";
     } else {
       activeVariant = "master";
+    }
+  }
+
+  // Contextual routing for Contact Us link based on active section
+  let contactHref = "/contact";
+  if (pathname) {
+    if (pathname.startsWith("/products/otr-tpms")) {
+      contactHref = "/contact?subject=otr-tpms";
+    } else if (pathname.startsWith("/tmip") || pathname.startsWith("/lp/tmip") || pathname.startsWith("/lp-tmip")) {
+      contactHref = "/contact?subject=tmip";
+    } else if (pathname.startsWith("/suraksha") || pathname.startsWith("/lp/suraksha") || pathname.startsWith("/lp-suraksha")) {
+      contactHref = "/contact?subject=suraksha";
+    } else if (pathname.startsWith("/personal") || pathname.startsWith("/lp/tpms") || pathname.startsWith("/lp-tpms")) {
+      contactHref = "/contact?subject=personal";
+    } else if (pathname.startsWith("/global-presence")) {
+      contactHref = "/contact?subject=export";
+    } else if (pathname.startsWith("/press") || pathname.startsWith("/media-kit")) {
+      contactHref = "/contact?subject=media";
     }
   }
 
@@ -118,7 +135,7 @@ export function Footer({ variant, className }: FooterProps) {
           {/* Brand & Tagline */}
           <div className="lg:col-span-2 space-y-4">
             <Image
-              src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436559/treel_main_logo.jpg"
+              src="/images/treel-main-logo.jpg"
               alt="Treel"
               width={200}
               height={60}
@@ -129,6 +146,9 @@ export function Footer({ variant, className }: FooterProps) {
             </p>
             <p className={theme.certified || "text-xs text-[#64748B]"}>
               ARAI &amp; ISO 9001:2015 Certified · Patents in India, US &amp; EU
+            </p>
+            <p className={theme.certified || "text-xs text-[#64748B]"}>
+              IATF 16949 Certified
             </p>
             <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
               <span>© {new Date().getFullYear()} Treel Mobility Solutions Private Limited. All rights reserved.</span>
@@ -266,7 +286,7 @@ export function Footer({ variant, className }: FooterProps) {
                 </Link>
               </li>
               <li>
-                <Link prefetch={false} href="/contact" className={theme.link}>
+                <Link prefetch={false} href={contactHref} className={theme.link}>
                   Contact Us
                 </Link>
               </li>

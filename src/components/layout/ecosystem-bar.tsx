@@ -13,14 +13,19 @@ export function EcosystemBar() {
   const isCorporate =
     pathname === "/" ||
     (!pathname?.startsWith("/tmip") &&
-      !pathname?.startsWith("/timp") &&
       !pathname?.startsWith("/suraksha") &&
       !pathname?.startsWith("/personal") &&
       !pathname?.startsWith("/admin") &&
       !isOtr);
-  const isTmip = pathname?.startsWith("/tmip") || pathname?.startsWith("/timp");
+  const isTmip = pathname?.startsWith("/tmip");
   const isSuraksha = pathname?.startsWith("/suraksha");
   const isPersonal = pathname?.startsWith("/personal");
+
+  let contactHref = "/contact";
+  if (isOtr) contactHref = "/contact?subject=otr-tpms";
+  else if (isTmip) contactHref = "/contact?subject=tmip";
+  else if (isSuraksha) contactHref = "/contact?subject=suraksha";
+  else if (isPersonal) contactHref = "/contact?subject=personal";
 
   return (
     <div className="bg-[#0B0F14] text-[#FAF7F2] text-xs py-1.5 border-b border-white/10 select-none z-50">
@@ -89,10 +94,11 @@ export function EcosystemBar() {
           >
             <span className="w-4 h-4 inline-flex items-center justify-center shrink-0 overflow-hidden -translate-y-px">
               <Image
-                src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436547/otr-excavator-icon.png"
+                src="https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto,w_40/v1791436547/otr-excavator-icon.png"
                 alt="OTR TPMS"
                 width={20}
                 height={20}
+                loading="lazy"
                 className="w-5 h-5 max-w-none scale-125 object-contain"
               />
             </span>
@@ -102,7 +108,7 @@ export function EcosystemBar() {
 
         {/* Right: Parent Company & Support */}
         <div className="hidden md:flex items-center text-slate-300 text-xs shrink-0">
-          <Link prefetch={false} href="/contact"
+          <Link prefetch={false} href={contactHref}
             className="hover:text-[#D5573B] font-medium text-slate-300 transition-colors whitespace-nowrap"
           >
             Support & Inquiries

@@ -31,7 +31,7 @@ const FAQ_ITEMS: FAQItem[] = [
     category: "Integration",
     question: "Which transport management (TMS) and ERP platforms does TMIP support?",
     answer:
-      "TMIP integrates natively with enterprise platforms including SAP, Oracle, and commercial fleet management solutions like Fleetx, Locus, and LogiNext. Custom internal dispatch, maintenance ERPs, or BI dashboards (Power BI, Tableau) connect seamlessly via our open REST APIs.",
+      "TMIP integrates natively with enterprise platforms, commercial transport management systems, and fleet dispatch software. Custom internal dispatch systems, workshop maintenance ERPs, or BI dashboards connect seamlessly via our open REST APIs.",
   },
   {
     id: "faq-4",

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { getWhitepaperById, getWhitepaperBySlug, recordWhitepaperDownload } from "@/lib/content/whitepapers-storage";
 import { createWhitepaperAccessToken } from "@/lib/content/whitepaper-tokens";
-import { isSesConfigured, sendWhitepaperAccessEmail } from "@/lib/integrations/email/ses-client";
+import { isSesConfigured, sendEmail, sendWhitepaperAccessEmail } from "@/lib/integrations/email/ses-client";
 
 function getSupabaseClient() {
   const url = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "").replace(/^['"]|['"]$/g, "");
@@ -216,6 +216,35 @@ export async function POST(req: NextRequest) {
 
         if (emailRes.success) {
           emailStatus = "sent";
+          // Also dispatch streamlined lead notification to Treel sales inbox
+          try {
+            const internalRecipient = process.env.SES_LEADS_EMAIL || process.env.SES_TO_EMAIL || "support@treel.in";
+            await sendEmail({
+              to: internalRecipient,
+              subject: `[WHITEPAPER DOWNLOAD - /tmip/whitepapers] ${normalizedName} — ${normalizedCompany} (${whitepaper.title})`,
+              html: `
+                <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1e293b; background: #f8fafc; padding: 24px;">
+                  <div style="max-width: 600px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                    <div style="background: #0f172a; padding: 20px; border-bottom: 3px solid #3b82f6;">
+                      <span style="font-family: monospace; font-size: 11px; text-transform: uppercase; color: #38bdf8; font-weight: 700;">WHITEPAPER ACCESS REQUEST</span>
+                      <h2 style="margin: 4px 0 0; color: #ffffff; font-size: 18px;">New Whitepaper Download</h2>
+                      <p style="margin: 4px 0 0; font-size: 12px; color: #94a3b8; font-family: monospace;">Originating Page: /tmip/whitepapers</p>
+                    </div>
+                    <div style="padding: 20px;">
+                      <p><strong>Whitepaper:</strong> ${whitepaper.title}</p>
+                      <p><strong>Lead Name:</strong> ${normalizedName}</p>
+                      <p><strong>Email:</strong> ${rawEmail}</p>
+                      <p><strong>Phone:</strong> ${normalizedPhone || "Not provided"}</p>
+                      <p><strong>Company:</strong> ${normalizedCompany}</p>
+                    </div>
+                  </div>
+                </div>
+              `,
+              text: `New Whitepaper Download Request:\nOriginating Page: /tmip/whitepapers\nWhitepaper: ${whitepaper.title}\nName: ${normalizedName}\nEmail: ${rawEmail}\nPhone: ${normalizedPhone || 'N/A'}\nCompany: ${normalizedCompany}`,
+            });
+          } catch (internalErr) {
+            console.warn("Could not dispatch internal whitepaper notification:", internalErr);
+          }
         } else {
           emailStatus = "failed";
           emailErrorMessage = emailRes.error?.message || "Email provider dispatch failed.";

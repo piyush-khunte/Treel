@@ -44,8 +44,27 @@ export default function SurakshaSafetyPage() {
               हर टायर पर नज़र, हर सफ़र सुरक्षित।
             </SurakshaRotator>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              A front-tyre blowout on the highway can cost a life. Suraksha watches the pressure and temperature of every tyre and warns you early, so you can stop in time.
+              A front-tyre blowout on an Indian highway can cost a human life and shatter a family&apos;s sole livelihood. Suraksha continuously tracks the pressure and temperature of every tyre, alerting drivers 24–48 hours before failure so they can stop safely, save crucial transit time, and protect their vehicle.
             </p>
+
+            {/* National Road Safety & Livelihood Stat Box */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+              <div className="p-4 rounded-lg bg-[#FEF3C7] border-2 border-[#DC2626]/30">
+                <div className="font-anton text-2xl sm:text-3xl text-[#DC2626]">~1.83–1.9 LAKH</div>
+                <div className="text-xs font-bold text-[#451A03] uppercase tracking-wider mt-0.5">Annual Road Fatalities</div>
+                <p className="text-[11px] text-[#78350F] mt-1 leading-snug">National road statistics across Indian highways.</p>
+              </div>
+              <div className="p-4 rounded-lg bg-[#FEF3C7] border-2 border-[#DC2626]/30">
+                <div className="font-anton text-2xl sm:text-3xl text-[#DC2626]">~13% TIED TO TYRES</div>
+                <div className="text-xs font-bold text-[#451A03] uppercase tracking-wider mt-0.5">Catastrophic Failures</div>
+                <p className="text-[11px] text-[#78350F] mt-1 leading-snug">Caused by burst tyres, overheating, and sudden blowouts.</p>
+              </div>
+              <div className="p-4 rounded-lg bg-[#FEF3C7] border-2 border-[#DC2626]/30">
+                <div className="font-anton text-2xl sm:text-3xl text-[#DC2626]">LIVELIHOOD SHIELD</div>
+                <div className="text-xs font-bold text-[#451A03] uppercase tracking-wider mt-0.5">Zero Lost Days</div>
+                <p className="text-[11px] text-[#78350F] mt-1 leading-snug">Saves 8–14 hours per run and protects the family&apos;s truck.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -58,7 +58,7 @@ export const SEED_WARRANTIES: WarrantyRecord[] = [
     purchaseDate: "2026-02-14",
     registeredAt: "2026-02-15T14:30:00.000Z",
     status: "Active",
-    adminNotes: "Dealer invoice registration (JK Tyre Pune Hub). Approved.",
+    adminNotes: "Dealer invoice registration (Authorized Pune Hub). Approved.",
     createdAt: "2026-02-15T14:30:00.000Z",
     updatedAt: "2026-02-15T14:30:00.000Z",
   },

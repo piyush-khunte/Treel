@@ -24,6 +24,13 @@ export {
   sendShippingNotificationEmail,
   sendSupportAcknowledgementEmail,
   sendNewsletterWelcomeEmail,
+  sendWhitepaperAccessEmail,
+  sendTmipLeadConfirmationEmail,
+  sendSurakshaLeadConfirmationEmail,
+  sendPersonalLeadConfirmationEmail,
+  sendEventRegistrationConfirmationEmail,
+  sendWarrantyRegistrationConfirmationEmail,
+  sendWarrantyClaimConfirmationEmail,
 } from './email/ses-client';
 
 // Shiprocket Logistics Integration

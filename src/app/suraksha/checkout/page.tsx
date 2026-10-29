@@ -208,7 +208,7 @@ export default function SurakshaCheckoutPage() {
             customer: formData,
             notes: {
               brand: "suraksha",
-              truck_tyres: totalItems,
+              kits_count: totalItems,
               fleet_name: formData.fleetName || "",
             },
           }),
@@ -232,7 +232,7 @@ export default function SurakshaCheckoutPage() {
           amount: razorpayOrder.amount,
           currency: razorpayOrder.currency || "INR",
           name: "Treel Suraksha Commercial Safety",
-          description: `Suraksha ${totalItems}-Tyre Commercial Kit`,
+          description: `Suraksha Commercial Kits (${totalItems} ${totalItems === 1 ? "Kit" : "Kits"})`,
           image: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436567/Treel_New_Logo_Final_With_Favicon_Tagline.png",
           order_id: razorpayOrder.id,
           prefill: {
@@ -624,7 +624,7 @@ export default function SurakshaCheckoutPage() {
                     Commercial Checkout Summary
                   </div>
                   <h3 className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase mt-1">
-                    SURAKSHA {totalItems}-TYRE KIT
+                    SURAKSHA ORDER ({totalItems} {totalItems === 1 ? "KIT" : "KITS"})
                   </h3>
                 </div>
 
@@ -635,7 +635,7 @@ export default function SurakshaCheckoutPage() {
                       <div>
                         <div className="font-bold text-[#451A03]">{it.name}</div>
                         <div className="text-xs text-[#78350F]">
-                          {it.quantity} sensors @ ₹1,700/tyre
+                          {it.quantity} {it.quantity === 1 ? "Kit" : "Kits"} · ₹{it.price_inr.toLocaleString("en-IN")}/kit
                         </div>
                       </div>
                       <div className="font-anton text-lg text-[#DC2626]">
