@@ -1,0 +1,285 @@
+=== RENDER BLOCKING ===
+{
+  "id": "render-blocking-insight",
+  "title": "Render-blocking requests",
+  "description": "Requests are blocking the page's initial render, which may delay LCP. [Deferring or inlining](https://developer.chrome.com/docs/performance/insights/render-blocking) can move these network requests out of the critical path.",
+  "score": 0,
+  "scoreDisplayMode": "metricSavings",
+  "displayValue": "Est savings of 800 ms",
+  "details": {
+    "headings": [
+      {
+        "key": "url",
+        "label": "URL",
+        "valueType": "url"
+      },
+      {
+        "key": "totalBytes",
+        "label": "Transfer Size",
+        "valueType": "bytes"
+      },
+      {
+        "key": "wastedMs",
+        "label": "Duration",
+        "valueType": "timespanMs"
+      }
+    ],
+    "items": [
+      {
+        "totalBytes": 3548,
+        "url": "https://treel-orcin.vercel.app/_next/static/immutable/chunks/2vwsz0qzjj9g4.css",
+        "wastedMs": 175
+      },
+      {
+        "totalBytes": 35130,
+        "url": "https://treel-orcin.vercel.app/_next/static/immutable/chunks/23499182--_aw.css",
+        "wastedMs": 869
+      }
+    ],
+    "type": "table"
+  },
+  "metricSavings": {
+    "LCP": 0,
+    "FCP": 800
+  },
+  "guidanceLevel": 3
+}
+
+=== FORCED REFLOW ===
+{
+  "id": "forced-reflow-insight",
+  "title": "Forced reflow",
+  "description": "A forced reflow occurs when JavaScript queries geometric properties (such as `offsetWidth`) after styles have been invalidated by a change to the DOM state. This can result in poor performance. Learn more about [forced reflows](https://developer.chrome.com/docs/performance/insights/forced-reflow) and possible mitigations.",
+  "score": 0,
+  "scoreDisplayMode": "numeric",
+  "details": {
+    "items": [
+      {
+        "headings": [
+          {
+            "key": "source",
+            "label": "Source",
+            "valueType": "source-location"
+          },
+          {
+            "granularity": 1,
+            "key": "reflowTime",
+            "label": "Total reflow time",
+            "valueType": "ms"
+          }
+        ],
+        "items": [
+          {
+            "reflowTime": 61.236,
+            "source": {
+              "type": "text",
+              "value": "[unattributed]"
+            }
+          }
+        ],
+        "type": "table"
+      }
+    ],
+    "type": "list"
+  },
+  "guidanceLevel": 3
+}
+
+=== NETWORK DEPENDENCY TREE ===
+{
+  "id": "network-dependency-tree-insight",
+  "title": "Network dependency tree",
+  "description": "[Avoid chaining critical requests](https://developer.chrome.com/docs/performance/insights/network-dependency-tree) by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.",
+  "score": 0,
+  "scoreDisplayMode": "numeric",
+  "details": {
+    "items": [
+      {
+        "type": "list-section",
+        "value": {
+          "chains": {
+            "842367D0A61FB8D6485AD92EBA0C1DA6": {
+              "children": {
+                "14903.6": {
+                  "children": {
+                    "14903.81": {
+                      "children": {},
+                      "isLongest": true,
+                      "navStartToEndTime": 703,
+                      "transferSize": 41145,
+                      "url": "https://treel-orcin.vercel.app/_next/static/immutable/media/70bc3e132a0a741e-s.269kn9uafm0ti.woff2"
+                    }
+                  },
+                  "isLongest": true,
+                  "navStartToEndTime": 502,
+                  "transferSize": 3548,
+                  "url": "https://treel-orcin.vercel.app/_next/static/immutable/chunks/2vwsz0qzjj9g4.css"
+                },
+                "14903.7": {
+                  "children": {},
+                  "navStartToEndTime": 485,
+                  "transferSize": 35130,
+                  "url": "https://treel-orcin.vercel.app/_next/static/immutable/chunks/23499182--_aw.css"
+                }
+              },
+              "isLongest": true,
+              "navStartToEndTime": 303,
+              "transferSize": 17094,
+              "url": "https://treel-orcin.vercel.app/"
+            }
+          },
+          "longestChain": {
+            "duration": 703
+          },
+          "type": "network-tree"
+        }
+      },
+      {
+        "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+        "title": "Preconnected origins",
+        "type": "list-section",
+        "value": {
+          "headings": [
+            {
+              "key": "origin",
+              "label": "Origin",
+              "subItemsHeading": {
+                "key": "warning"
+              },
+              "valueType": "text"
+            },
+            {
+              "key": "source",
+              "label": "Source",
+              "valueType": "node"
+            }
+          ],
+          "items": [
+            {
+              "origin": "https://res.cloudinary.com/",
+              "source": {
+                "boundingRect": {
+                  "bottom": 0,
+                  "height": 0,
+                  "left": 0,
+                  "right": 0,
+                  "top": 0,
+                  "width": 0
+                },
+                "lhId": "page-1-LINK",
+                "nodeLabel": "head > link",
+                "path": "1,HTML,0,HEAD,49,LINK",
+                "selector": "head > link",
+                "snippet": "<link rel=\"preconnect\" href=\"https://res.cloudinary.com\" crossorigin=\"anonymous\">",
+                "type": "node"
+              },
+              "subItems": {
+                "items": [],
+                "type": "subitems"
+              }
+            }
+          ],
+          "type": "table"
+        }
+      },
+      {
+        "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4.",
+        "title": "Preconnect candidates",
+        "type": "list-section",
+        "value": {
+          "type": "text",
+          "value": "No additional origins are good candidates for preconnecting"
+        }
+      }
+    ],
+    "type": "list"
+  },
+  "metricSavings": {
+    "LCP": 0
+  },
+  "guidanceLevel": 1
+}
+
+=== IMAGE DELIVERY ===
+{
+  "id": "image-delivery-insight",
+  "title": "Improve image delivery",
+  "description": "Reducing the download time of images can improve the perceived load time of the page and LCP. [Learn more about optimizing image size](https://developer.chrome.com/docs/performance/insights/image-delivery)",
+  "score": 0.5,
+  "scoreDisplayMode": "metricSavings",
+  "displayValue": "Est savings of 9 KiB",
+  "details": {
+    "debugData": {
+      "type": "debugdata",
+      "wastedBytes": 9035
+    },
+    "headings": [
+      {
+        "key": "node",
+        "valueType": "node"
+      },
+      {
+        "key": "url",
+        "label": "URL",
+        "subItemsHeading": {
+          "key": "reason",
+          "valueType": "text"
+        },
+        "valueType": "url"
+      },
+      {
+        "key": "totalBytes",
+        "label": "Resource Size",
+        "valueType": "bytes"
+      },
+      {
+        "key": "wastedBytes",
+        "label": "Est Savings",
+        "subItemsHeading": {
+          "key": "wastedBytes",
+          "valueType": "bytes"
+        },
+        "valueType": "bytes"
+      }
+    ],
+    "items": [
+      {
+        "node": {
+          "boundingRect": {
+            "bottom": 91,
+            "height": 36,
+            "left": 24,
+            "right": 127,
+            "top": 55,
+            "width": 103
+          },
+          "lhId": "page-2-IMG",
+          "nodeLabel": "Treel Mobility Solutions",
+          "path": "1,HTML,1,BODY,2,HEADER,1,DIV,0,DIV,0,A,0,IMG",
+          "selector": "div.bg-[#FAF7F2]/95 > div.w-full > a.flex > img.h-9",
+          "snippet": "<img alt=\"Treel Mobility Solutions\" width=\"160\" height=\"50\" decoding=\"async\" data-nimg=\"1\" class=\"h-9 sm:h-10 lg:h-11 xl:h-12 w-auto object-contain transition-transform gro…\" style=\"color:transparent\" src=\"/images/treel-logo-final.webp\">",
+          "type": "node"
+        },
+        "subItems": {
+          "items": [
+            {
+              "reason": "This image file is larger than it needs to be (480x168) for its displayed dimensions (180x63). Use responsive images to reduce the image download size.",
+              "wastedBytes": 9035
+            }
+          ],
+          "type": "subitems"
+        },
+        "totalBytes": 10512,
+        "url": "https://treel-orcin.vercel.app/images/treel-logo-final.webp",
+        "wastedBytes": 9035
+      }
+    ],
+    "type": "table"
+  },
+  "metricSavings": {
+    "LCP": 0,
+    "FCP": 0
+  },
+  "guidanceLevel": 3
+}
+

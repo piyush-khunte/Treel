@@ -89,7 +89,7 @@ export default function RootLayout({
           as="image"
           type="image/webp"
           media="(max-width: 640px)"
-          href="https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_420/v1792650870/Fleet_Intelligence_Digital_Twin.png"
+          href="https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:eco,w_380/v1792650870/Fleet_Intelligence_Digital_Twin.png"
           fetchPriority="high"
         />
         <link

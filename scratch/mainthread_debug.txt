@@ -1,0 +1,114 @@
+=== DIAGNOSTICS ===
+{
+  "id": "diagnostics",
+  "title": "Diagnostics",
+  "description": "Collection of useful page vitals.",
+  "score": 1,
+  "scoreDisplayMode": "informative",
+  "details": {
+    "items": [
+      {
+        "mainDocumentTransferSize": 17094,
+        "maxRtt": 0.009454471080837527,
+        "maxServerLatency": 1,
+        "numFonts": 3,
+        "numRequests": 22,
+        "numScripts": 13,
+        "numStylesheets": 2,
+        "numTasks": 433,
+        "numTasksOver100ms": 0,
+        "numTasksOver10ms": 8,
+        "numTasksOver25ms": 2,
+        "numTasksOver500ms": 0,
+        "numTasksOver50ms": 2,
+        "rtt": 0.0007675863971136693,
+        "throughput": 20431745554.81834,
+        "totalByteWeight": 418851,
+        "totalTaskTime": 403.0429999999995
+      }
+    ],
+    "type": "debugdata"
+  }
+}
+
+=== MAIN THREAD WORK ===
+{
+  "id": "mainthread-work-breakdown",
+  "title": "Minimizes main-thread work",
+  "description": "Consider reducing the time spent parsing, compiling and executing JS. You may find delivering smaller JS payloads helps with this. [Learn how to minimize main-thread work](https://developer.chrome.com/docs/lighthouse/performance/mainthread-work-breakdown/)",
+  "score": 1,
+  "scoreDisplayMode": "metricSavings",
+  "displayValue": "0.5 s",
+  "details": {
+    "headings": [
+      {
+        "key": "groupLabel",
+        "label": "Category",
+        "valueType": "text"
+      },
+      {
+        "granularity": 1,
+        "key": "duration",
+        "label": "Time Spent",
+        "valueType": "ms"
+      }
+    ],
+    "items": [
+      {
+        "duration": 209.79599999999957,
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation"
+      },
+      {
+        "duration": 104.85959999999999,
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout"
+      },
+      {
+        "duration": 74.45400000000004,
+        "group": "other",
+        "groupLabel": "Other"
+      },
+      {
+        "duration": 59.695199999999986,
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation"
+      },
+      {
+        "duration": 24.714,
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS"
+      },
+      {
+        "duration": 10.132800000000003,
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering"
+      }
+    ],
+    "sortedBy": [
+      "duration"
+    ],
+    "type": "table"
+  },
+  "numericValue": 483.6515999999996,
+  "numericUnit": "millisecond",
+  "metricSavings": {
+    "TBT": 50
+  },
+  "guidanceLevel": 1
+}
+
+=== SCRIPT TREEMAP OR CHUNKS ===
+https://treel-orcin.vercel.app/_next/static/immutable/chunks/36k8in9a291ok.js : 3075 bytes
+https://treel-orcin.vercel.app/_next/static/immutable/chunks/28fkf9f9btak4.js : 8558 bytes
+https://treel-orcin.vercel.app/_next/static/immutable/chunks/23m24u2rpna6j.js : 37068 bytes
+https://treel-orcin.vercel.app/_next/static/immutable/chunks/257rhddtv2vp7.js : 73523 bytes
+https://treel-orcin.vercel.app/_next/static/immutable/chunks/31tcpybs-b989.js : 10573 bytes
+https://treel-orcin.vercel.app/_next/static/immutable/chunks/turbopack-1ns94-7bwx-em.js : 4695 bytes
+https://treel-orcin.vercel.app/_next/static/immutable/chunks/2corl6wyj4669.js : 4411 bytes
+https://treel-orcin.vercel.app/_next/static/immutable/chunks/0y361z3u6fowz.js : 9402 bytes
+https://treel-orcin.vercel.app/_next/static/immutable/chunks/2o4xuw_4m1_z3.js : 9466 bytes
+https://treel-orcin.vercel.app/_next/static/immutable/chunks/1chjswje9rk_f.js : 10475 bytes
+https://treel-orcin.vercel.app/_next/static/immutable/chunks/44azwnqsqteog.js : 12794 bytes
+https://treel-orcin.vercel.app/_next/static/immutable/chunks/29ocwh6gig8yd.js : 1928 bytes
+https://treel-orcin.vercel.app/_next/static/immutable/chunks/037-q38fjxnm5.js : 4833 bytes

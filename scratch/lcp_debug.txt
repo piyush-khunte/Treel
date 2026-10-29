@@ -1,0 +1,183 @@
+=== first-contentful-paint ===
+{
+  "id": "first-contentful-paint",
+  "title": "First Contentful Paint",
+  "description": "First Contentful Paint marks the time at which the first text or image is painted. [Learn more about the First Contentful Paint metric](https://developer.chrome.com/docs/lighthouse/performance/first-contentful-paint/).",
+  "score": 0.92,
+  "scoreDisplayMode": "numeric",
+  "displayValue": "1.7 s",
+  "numericValue": 1689.0781819621536,
+  "numericUnit": "millisecond",
+  "scoringOptions": {
+    "p10": 1800,
+    "median": 3000
+  }
+}
+
+=== largest-contentful-paint ===
+{
+  "id": "largest-contentful-paint",
+  "title": "Largest Contentful Paint",
+  "description": "Largest Contentful Paint marks the time at which the largest text or image is painted. [Learn more about the Largest Contentful Paint metric](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint/)",
+  "score": 0.65,
+  "scoreDisplayMode": "numeric",
+  "displayValue": "3.5 s",
+  "numericValue": 3451.182424578359,
+  "numericUnit": "millisecond",
+  "scoringOptions": {
+    "p10": 2500,
+    "median": 4000
+  }
+}
+
+=== lcp-breakdown-insight ===
+{
+  "items": [
+    {
+      "headings": [
+        {
+          "key": "label",
+          "label": "Subpart",
+          "valueType": "text"
+        },
+        {
+          "key": "duration",
+          "label": "Duration",
+          "valueType": "ms"
+        }
+      ],
+      "items": [
+        {
+          "duration": 3.186,
+          "label": "Time to first byte",
+          "subpart": "timeToFirstByte"
+        },
+        {
+          "duration": 279.415,
+          "label": "Resource load delay",
+          "subpart": "resourceLoadDelay"
+        },
+        {
+          "duration": 173.296,
+          "label": "Resource load duration",
+          "subpart": "resourceLoadDuration"
+        },
+        {
+          "duration": 1971.868,
+          "label": "Element render delay",
+          "subpart": "elementRenderDelay"
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "boundingRect": {
+        "bottom": 896,
+        "height": 362,
+        "left": 25,
+        "right": 387,
+        "top": 534,
+        "width": 362
+      },
+      "lhId": "page-0-IMG",
+      "nodeLabel": "Treel TMIP — Enterprise Fleet Intelligence & Live Vehicle Digital Twin",
+      "path": "1,HTML,1,BODY,3,MAIN,0,DIV,1,SECTION,1,DIV,0,DIV,1,DIV,0,DIV,0,A,1,DIV,0,PICTURE,1,IMG",
+      "selector": "a.group > div.absolute > picture.w-full > img.w-full",
+      "snippet": "<img src=\"https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_420/…\" alt=\"Treel TMIP — Enterprise Fleet Intelligence &amp; Live Vehicle Digital Twin\" width=\"650\" height=\"650\" fetchpriority=\"high\" loading=\"eager\" decoding=\"sync\" class=\"w-full h-full object-contain transition-transform duration-700 ease-out gr…\">",
+      "type": "node"
+    }
+  ],
+  "type": "list"
+}
+
+=== lcp-discovery-insight ===
+{
+  "items": [
+    {
+      "items": {
+        "eagerlyLoaded": {
+          "label": "LCP resources should not use loading=lazy",
+          "value": true
+        },
+        "priorityHinted": {
+          "label": "fetchpriority=high applied",
+          "value": true
+        },
+        "requestDiscoverable": {
+          "label": "Request is discoverable in initial document",
+          "value": true
+        }
+      },
+      "type": "checklist"
+    },
+    {
+      "boundingRect": {
+        "bottom": 896,
+        "height": 362,
+        "left": 25,
+        "right": 387,
+        "top": 534,
+        "width": 362
+      },
+      "lhId": "page-0-IMG",
+      "nodeLabel": "Treel TMIP — Enterprise Fleet Intelligence & Live Vehicle Digital Twin",
+      "path": "1,HTML,1,BODY,3,MAIN,0,DIV,1,SECTION,1,DIV,0,DIV,1,DIV,0,DIV,0,A,1,DIV,0,PICTURE,1,IMG",
+      "selector": "a.group > div.absolute > picture.w-full > img.w-full",
+      "snippet": "<img src=\"https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_420/…\" alt=\"Treel TMIP — Enterprise Fleet Intelligence &amp; Live Vehicle Digital Twin\" width=\"650\" height=\"650\" fetchpriority=\"high\" loading=\"eager\" decoding=\"sync\" class=\"w-full h-full object-contain transition-transform duration-700 ease-out gr…\">",
+      "type": "node"
+    }
+  ],
+  "type": "list"
+}
+
+=== metrics ===
+{
+  "items": [
+    {
+      "cumulativeLayoutShift": 0,
+      "cumulativeLayoutShiftMainFrame": 0,
+      "firstContentfulPaint": 1689,
+      "interactive": 3451,
+      "largestContentfulPaint": 3451,
+      "lcpLoadDelay": 601,
+      "lcpLoadDuration": 648,
+      "maxPotentialFID": 89,
+      "observedCumulativeLayoutShift": 0,
+      "observedCumulativeLayoutShiftMainFrame": 0,
+      "observedDomContentLoaded": 507,
+      "observedDomContentLoadedTs": 1151878948834,
+      "observedFirstContentfulPaint": 2428,
+      "observedFirstContentfulPaintAllFrames": 2428,
+      "observedFirstContentfulPaintAllFramesTs": 1151880870031,
+      "observedFirstContentfulPaintTs": 1151880870031,
+      "observedFirstPaint": 2428,
+      "observedFirstPaintTs": 1151880870031,
+      "observedFirstVisualChange": 2428,
+      "observedFirstVisualChangeTs": 1151880870266,
+      "observedLargestContentfulPaint": 2428,
+      "observedLargestContentfulPaintAllFrames": 2428,
+      "observedLargestContentfulPaintAllFramesTs": 1151880870031,
+      "observedLargestContentfulPaintTs": 1151880870031,
+      "observedLastVisualChange": 2722,
+      "observedLastVisualChangeTs": 1151881164266,
+      "observedLoad": 703,
+      "observedLoadTs": 1151879145726,
+      "observedNavigationStart": 0,
+      "observedNavigationStartTs": 1151878442266,
+      "observedSpeedIndex": 2433,
+      "observedSpeedIndexTs": 1151880875613,
+      "observedTimeOrigin": 0,
+      "observedTimeOriginTs": 1151878442266,
+      "observedTraceEnd": 4752,
+      "observedTraceEndTs": 1151883194340,
+      "speedIndex": 4364,
+      "timeToFirstByte": 601,
+      "totalBlockingTime": 39
+    },
+    {
+      "lcpInvalidated": false
+    }
+  ],
+  "type": "debugdata"
+}
+

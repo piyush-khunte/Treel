@@ -116,7 +116,7 @@ export function ExplorePlatformVideoModal({
         onClick={() => setIsOpen(true)}
         className={
           className ||
-          "inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all group shadow-sm cursor-pointer"
+          "inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] bg-[#C64529] text-white font-semibold text-sm hover:bg-[#B53D23] transition-all group shadow-sm cursor-pointer"
         }
         aria-haspopup="dialog"
         aria-expanded={isOpen}

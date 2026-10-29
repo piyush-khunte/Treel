@@ -40,7 +40,7 @@ export const ibmPlexSans = IBM_Plex_Sans({
 export const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains-mono",
-  display: "swap",
+  display: "optional",
   preload: false,
 });
 
