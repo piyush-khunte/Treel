@@ -49,7 +49,7 @@ const SLIDES: SlideData[] = [
 ];
 
 const BAR_COLORS = ["#8A3F30", "#B04A34", "#D4573A"];
-const INTERVAL_MS = 10000;
+const INTERVAL_MS = 2000;
 const STAGGER_MS = 35;
 const EASING = "cubic-bezier(0.7, 0, 0.3, 1)";
 
@@ -80,12 +80,8 @@ export function TreelHeroVisual() {
 
     mediaQuery.addEventListener("change", handleMediaChange);
 
-    // Activate client rotation and slides after initial paint settles
-    const timer = setTimeout(() => setIsClient(true), 10000);
-
     return () => {
       mediaQuery.removeEventListener("change", handleMediaChange);
-      clearTimeout(timer);
     };
   }, []);
 
@@ -178,16 +174,17 @@ export function TreelHeroVisual() {
     goToSlide(next);
   }, [goToSlide]);
 
-  // Auto-rotation timer with visibility and pause support
+  // Auto-rotation timer with visibility and pause support (rotates every 2s)
   useEffect(() => {
-    if (isPaused || prefersReducedMotionRef.current || !isClient) return;
+    if (isPaused || prefersReducedMotionRef.current) return;
 
     const interval = setInterval(() => {
+      setIsClient(true);
       nextSlide();
     }, INTERVAL_MS);
 
     return () => clearInterval(interval);
-  }, [isPaused, nextSlide, isClient]);
+  }, [isPaused, nextSlide, current]);
 
   // Visibility change handling (pause when tab is hidden)
   useEffect(() => {
