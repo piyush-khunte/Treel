@@ -1,0 +1,53 @@
+=== OPPORTUNITIES ===
+unused-javascript: Reduce unused JavaScript - savings: 300ms, score: 0
+
+=== CRITICAL DIAGNOSTICS ===
+forced-reflow-insight: Forced reflow ()
+image-delivery-insight: Improve image delivery (Est savings of 5 KiB)
+lcp-breakdown-insight: LCP breakdown ()
+legacy-javascript-insight: Legacy JavaScript (Est savings of 14 KiB)
+network-dependency-tree-insight: Network dependency tree ()
+render-blocking-insight: Render-blocking requests (Est savings of 740 ms)
+unused-javascript: Reduce unused JavaScript (Est savings of 49 KiB)
+
+=== LCP BREAKDOWN ===
+[
+  {
+    "duration": 4.183,
+    "label": "Time to first byte",
+    "subpart": "timeToFirstByte"
+  },
+  {
+    "duration": 395.015,
+    "label": "Resource load delay",
+    "subpart": "resourceLoadDelay"
+  },
+  {
+    "duration": 288.62,
+    "label": "Resource load duration",
+    "subpart": "resourceLoadDuration"
+  },
+  {
+    "duration": 1865.375,
+    "label": "Element render delay",
+    "subpart": "elementRenderDelay"
+  }
+]
+
+=== LCP ELEMENT ===
+{
+  "boundingRect": {
+    "bottom": 896,
+    "height": 362,
+    "left": 25,
+    "right": 387,
+    "top": 534,
+    "width": 362
+  },
+  "lhId": "page-0-IMG",
+  "nodeLabel": "Treel TMIP — Enterprise Fleet Intelligence & Live Vehicle Digital Twin",
+  "path": "1,HTML,1,BODY,3,MAIN,0,DIV,1,SECTION,1,DIV,0,DIV,1,DIV,0,DIV,0,A,1,DIV,0,PICTURE,1,IMG",
+  "selector": "a.group > div.absolute > picture.w-full > img.w-full",
+  "snippet": "<img src=\"https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:eco,w_380/v…\" alt=\"Treel TMIP — Enterprise Fleet Intelligence &amp; Live Vehicle Digital Twin\" width=\"650\" height=\"650\" fetchpriority=\"high\" loading=\"eager\" decoding=\"async\" class=\"w-full h-full object-contain sm:group-hover:scale-[1.012] sm:transition-tr…\">",
+  "type": "node"
+}

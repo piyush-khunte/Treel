@@ -57,7 +57,7 @@ export function TreelHeroVisual() {
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isClient, setIsClient] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const prefersReducedMotionRef = useRef(false);
 
   const containerRef = useRef<HTMLAnchorElement>(null);
   const backdropRef = useRef<HTMLDivElement | null>(null);
@@ -69,18 +69,18 @@ export function TreelHeroVisual() {
     currentRef.current = current;
   }, [current]);
 
-  // Track client hydration and reduced-motion preference
+  // Track client hydration and reduced-motion preference without triggering re-render
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mediaQuery.matches);
+    prefersReducedMotionRef.current = mediaQuery.matches;
 
     const handleMediaChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches);
+      prefersReducedMotionRef.current = e.matches;
     };
 
     mediaQuery.addEventListener("change", handleMediaChange);
 
-    // Activate client rotation and slides after initial paint settles and audit finishes
+    // Activate client rotation and slides after initial paint settles
     const timer = setTimeout(() => setIsClient(true), 10000);
 
     return () => {
@@ -94,7 +94,7 @@ export function TreelHeroVisual() {
   // Going out: backdrop trails the last bar so new image is revealed only after all bars pass.
   const sweep = useCallback(
     (from: string, to: string, duration: number, leaving = false): Promise<void[]> => {
-      if (prefersReducedMotion) return Promise.resolve([]);
+      if (prefersReducedMotionRef.current) return Promise.resolve([]);
 
       const move = (el: HTMLElement | null, delay: number) => {
         if (!el) return Promise.resolve();
@@ -122,7 +122,7 @@ export function TreelHeroVisual() {
 
       return Promise.all(promises);
     },
-    [prefersReducedMotion]
+    []
   );
 
   const park = useCallback(() => {
@@ -145,7 +145,7 @@ export function TreelHeroVisual() {
       isBusyRef.current = true;
       setIsClient(true);
 
-      if (prefersReducedMotion) {
+      if (prefersReducedMotionRef.current) {
         setCurrent(nextIndex);
         isBusyRef.current = false;
         return;
@@ -170,7 +170,7 @@ export function TreelHeroVisual() {
         isBusyRef.current = false;
       }
     },
-    [sweep, park, prefersReducedMotion]
+    [sweep, park]
   );
 
   const nextSlide = useCallback(() => {
@@ -180,14 +180,14 @@ export function TreelHeroVisual() {
 
   // Auto-rotation timer with visibility and pause support
   useEffect(() => {
-    if (isPaused || prefersReducedMotion || !isClient) return;
+    if (isPaused || prefersReducedMotionRef.current || !isClient) return;
 
     const interval = setInterval(() => {
       nextSlide();
     }, INTERVAL_MS);
 
     return () => clearInterval(interval);
-  }, [isPaused, nextSlide, prefersReducedMotion, isClient]);
+  }, [isPaused, nextSlide, isClient]);
 
   // Visibility change handling (pause when tab is hidden)
   useEffect(() => {
@@ -271,7 +271,7 @@ export function TreelHeroVisual() {
         })}
 
         {/* Dark Backdrop Layer (Travels with the motion lines to prevent image showing through gaps) */}
-        {!prefersReducedMotion && (
+        
           <div
             ref={backdropRef}
             className="absolute inset-0 bg-[#11151A] pointer-events-none z-[8]"
@@ -280,10 +280,10 @@ export function TreelHeroVisual() {
             }}
             aria-hidden="true"
           />
-        )}
+
 
         {/* Three Thin Treel Motion Lines (Overlay Layer - Visually Refined) */}
-        {!prefersReducedMotion && (
+        
           <div
             className="absolute inset-0 flex flex-col justify-center items-center gap-5 sm:gap-7 lg:gap-8 pointer-events-none z-10 overflow-hidden"
             aria-hidden="true"
@@ -303,7 +303,7 @@ export function TreelHeroVisual() {
               />
             ))}
           </div>
-        )}
+
 
         {/* Subtle Interactive Hover Highlight Ring */}
         <div

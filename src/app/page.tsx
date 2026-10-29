@@ -37,7 +37,7 @@ export default function HomePage() {
       />
 
       {/* 1. HERO SECTION */}
-      <section className="relative overflow-hidden pt-8 pb-12 sm:pt-14 sm:pb-20 lg:pt-[120px] lg:pb-[100px] border-b border-white/10 min-h-0 lg:min-h-[calc(100vh-140px)] flex items-center">
+      <section className="relative overflow-hidden pt-5 pb-8 sm:pt-14 sm:pb-20 lg:pt-[120px] lg:pb-[100px] border-b border-white/10 min-h-0 lg:min-h-[calc(100vh-140px)] flex items-center">
         {/* Subtle Treel Red ambient radial glow */}
         <div 
           className="absolute -top-24 -right-24 w-[500px] h-[500px] pointer-events-none rounded-full"
@@ -46,16 +46,16 @@ export default function HomePage() {
         />
 
         <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-[80px] items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-8 sm:gap-12 lg:gap-[80px] items-center">
             {/* Left Column: Typography & CTAs */}
             <div>
-              <div className="font-inter text-[12px] font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-6 sm:mb-8">
+              <div className="font-inter text-[12px] font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-3 sm:mb-8">
                 THE MOBILITY INTELLIGENCE COMPANY
               </div>
 
               <h1
                 suppressHydrationWarning
-                className="font-fraunces text-[32px] sm:text-5xl lg:text-[76px] xl:text-[84px] font-medium tracking-[-0.03em] text-[#FAF7F2] leading-[1.08] sm:leading-[0.98] mb-5 sm:mb-8"
+                className="font-fraunces text-[32px] sm:text-5xl lg:text-[76px] xl:text-[84px] font-medium tracking-[-0.03em] text-[#FAF7F2] leading-[1.08] sm:leading-[0.98] mb-3.5 sm:mb-8"
               >
                 <span suppressHydrationWarning>{"Turn Every Vehicle into "}</span>
                 <span
@@ -66,7 +66,7 @@ export default function HomePage() {
                 </span>
               </h1>
 
-              <p className="font-fraunces text-base sm:text-xl font-normal leading-[1.4] text-[#94A3B8] mb-6 sm:mb-10 max-w-[560px]">
+              <p className="font-fraunces text-base sm:text-xl font-normal leading-[1.4] text-[#94A3B8] mb-4 sm:mb-10 max-w-[560px]">
                 Treel operates India's largest connected commercial vehicle dataset. Three product families, one architecture, and a single mission: turn raw motion into operating intelligence.
               </p>
 
@@ -76,7 +76,7 @@ export default function HomePage() {
             </div>
 
             {/* Right Column: Treel Product Ecosystem Motion Visual */}
-            <div className="w-full flex justify-center items-center mt-6 lg:mt-0">
+            <div className="w-full flex justify-center items-center mt-4 lg:mt-0">
               <TreelHeroVisual />
             </div>
           </div>
