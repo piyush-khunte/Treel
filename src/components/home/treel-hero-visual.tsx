@@ -214,7 +214,7 @@ export function TreelHeroVisual() {
         href={currentSlide.href}
         prefetch={false}
         aria-label={currentSlide.alt}
-        className="group relative block w-full aspect-square overflow-hidden rounded-xl sm:rounded-2xl bg-[#11151A] border border-white/10 hover:border-[#D5573B]/50 transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_30px_rgba(213,87,59,0.06)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_40px_rgba(213,87,59,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5573B] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1419]"
+        className="group relative block w-full aspect-square overflow-hidden rounded-xl sm:rounded-2xl bg-[#11151A] border border-white/10 hover:border-[#D5573B]/50 sm:transition-all sm:duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_30px_rgba(213,87,59,0.06)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_40px_rgba(213,87,59,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5573B] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1419]"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onFocus={() => setIsPaused(true)}
@@ -222,7 +222,7 @@ export function TreelHeroVisual() {
       >
         {/* Subtle Ambient Radial Glow inside the card */}
         <div
-          className="absolute -top-12 -right-12 w-64 h-64 rounded-full pointer-events-none opacity-40 group-hover:opacity-75 transition-opacity duration-500 z-[1]"
+          className="absolute -top-12 -right-12 w-64 h-64 rounded-full pointer-events-none opacity-40 group-hover:opacity-75 sm:transition-opacity sm:duration-500 z-[1]"
           style={{
             background:
               "radial-gradient(circle, rgba(213, 87, 59, 0.25) 0%, transparent 70%)",
@@ -242,7 +242,9 @@ export function TreelHeroVisual() {
                 isClient ? "transition-all duration-500 ease-out" : ""
               } ${
                 isActive
-                  ? "opacity-100 scale-100 z-[2]"
+                  ? isClient
+                    ? "opacity-100 scale-100 z-[2]"
+                    : "opacity-100 z-[2]"
                   : "opacity-0 scale-[1.015] pointer-events-none z-[1]"
               }`}
               aria-hidden={!isActive}
@@ -260,7 +262,7 @@ export function TreelHeroVisual() {
                   height={650}
                   fetchPriority={index === 0 ? "high" : "auto"}
                   loading={index === 0 ? "eager" : "lazy"}
-                  decoding={index === 0 ? "sync" : "async"}
+                  decoding="async"
                   className="w-full h-full object-contain sm:group-hover:scale-[1.012] sm:transition-transform sm:duration-700 sm:ease-out"
                 />
               </picture>
@@ -305,7 +307,7 @@ export function TreelHeroVisual() {
 
         {/* Subtle Interactive Hover Highlight Ring */}
         <div
-          className="absolute inset-0 rounded-xl sm:rounded-2xl ring-1 ring-inset ring-white/10 group-hover:ring-[#D5573B]/30 pointer-events-none z-20 transition-all duration-300"
+          className="absolute inset-0 rounded-xl sm:rounded-2xl ring-1 ring-inset ring-white/10 group-hover:ring-[#D5573B]/30 pointer-events-none z-20 sm:transition-all sm:duration-300"
           aria-hidden="true"
         />
       </Link>

@@ -1,0 +1,126 @@
+=== LCP AUDIT ===
+undefined
+
+=== LCP BREAKDOWN ===
+{
+  "items": [
+    {
+      "headings": [
+        {
+          "key": "label",
+          "label": "Subpart",
+          "valueType": "text"
+        },
+        {
+          "key": "duration",
+          "label": "Duration",
+          "valueType": "ms"
+        }
+      ],
+      "items": [
+        {
+          "duration": 4.125,
+          "label": "Time to first byte",
+          "subpart": "timeToFirstByte"
+        },
+        {
+          "duration": 131.506,
+          "label": "Resource load delay",
+          "subpart": "resourceLoadDelay"
+        },
+        {
+          "duration": 326.64,
+          "label": "Resource load duration",
+          "subpart": "resourceLoadDuration"
+        },
+        {
+          "duration": 896.107,
+          "label": "Element render delay",
+          "subpart": "elementRenderDelay"
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "boundingRect": {
+        "bottom": 896,
+        "height": 362,
+        "left": 25,
+        "right": 387,
+        "top": 534,
+        "width": 362
+      },
+      "lhId": "page-0-IMG",
+      "nodeLabel": "Treel TMIP — Enterprise Fleet Intelligence & Live Vehicle Digital Twin",
+      "path": "1,HTML,1,BODY,3,MAIN,0,DIV,1,SECTION,1,DIV,0,DIV,1,DIV,0,DIV,0,A,1,DIV,0,PICTURE,1,IMG",
+      "selector": "a.group > div.absolute > picture.w-full > img.w-full",
+      "snippet": "<img src=\"https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_420/…\" alt=\"Treel TMIP — Enterprise Fleet Intelligence &amp; Live Vehicle Digital Twin\" width=\"650\" height=\"650\" fetchpriority=\"high\" loading=\"eager\" decoding=\"sync\" class=\"w-full h-full object-contain transition-transform duration-700 ease-out gr…\">",
+      "type": "node"
+    }
+  ],
+  "type": "list"
+}
+
+=== LCP DISCOVERY ===
+{
+  "items": [
+    {
+      "items": {
+        "eagerlyLoaded": {
+          "label": "LCP resources should not use loading=lazy",
+          "value": true
+        },
+        "priorityHinted": {
+          "label": "fetchpriority=high applied",
+          "value": true
+        },
+        "requestDiscoverable": {
+          "label": "Request is discoverable in initial document",
+          "value": true
+        }
+      },
+      "type": "checklist"
+    },
+    {
+      "boundingRect": {
+        "bottom": 896,
+        "height": 362,
+        "left": 25,
+        "right": 387,
+        "top": 534,
+        "width": 362
+      },
+      "lhId": "page-0-IMG",
+      "nodeLabel": "Treel TMIP — Enterprise Fleet Intelligence & Live Vehicle Digital Twin",
+      "path": "1,HTML,1,BODY,3,MAIN,0,DIV,1,SECTION,1,DIV,0,DIV,1,DIV,0,DIV,0,A,1,DIV,0,PICTURE,1,IMG",
+      "selector": "a.group > div.absolute > picture.w-full > img.w-full",
+      "snippet": "<img src=\"https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_420/…\" alt=\"Treel TMIP — Enterprise Fleet Intelligence &amp; Live Vehicle Digital Twin\" width=\"650\" height=\"650\" fetchpriority=\"high\" loading=\"eager\" decoding=\"sync\" class=\"w-full h-full object-contain transition-transform duration-700 ease-out gr…\">",
+      "type": "node"
+    }
+  ],
+  "type": "list"
+}
+
+=== NETWORK REQUESTS FOR LCP ===
+1ms -> 125ms (125ms): [Document] https://treel-orcin.vercel.app/ (17096 bytes, priority: VeryHigh)
+136ms -> 256ms (121ms): [Font] https://treel-orcin.vercel.app/_next/static/immutable/media/03bda585a99c6450-s.p.0glcd8n2pdab0.woff2 (37233 bytes, priority: High)
+136ms -> 281ms (146ms): [Font] https://treel-orcin.vercel.app/_next/static/immutable/media/83afe278b6a6bb3c-s.p.45535valc9rzk.woff2 (49105 bytes, priority: High)
+136ms -> 462ms (326ms): [Image] https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_420/v1792650870/Fleet_Intelligence_Digital_Twin.png (32313 bytes, priority: High)
+140ms -> 267ms (127ms): [Image] https://treel-orcin.vercel.app/images/treel-logo-final.webp (11090 bytes, priority: Low)
+136ms -> 267ms (131ms): [Stylesheet] https://treel-orcin.vercel.app/_next/static/immutable/chunks/2vwsz0qzjj9g4.css (3550 bytes, priority: VeryHigh)
+136ms -> 274ms (138ms): [Stylesheet] https://treel-orcin.vercel.app/_next/static/immutable/chunks/23499182--_aw.css (35132 bytes, priority: VeryHigh)
+141ms -> 253ms (112ms): [Script] https://treel-orcin.vercel.app/_next/static/immutable/chunks/36k8in9a291ok.js (3072 bytes, priority: Low)
+141ms -> 255ms (114ms): [Script] https://treel-orcin.vercel.app/_next/static/immutable/chunks/28fkf9f9btak4.js (8555 bytes, priority: Low)
+141ms -> 257ms (116ms): [Script] https://treel-orcin.vercel.app/_next/static/immutable/chunks/23m24u2rpna6j.js (37065 bytes, priority: Low)
+141ms -> 271ms (130ms): [Script] https://treel-orcin.vercel.app/_next/static/immutable/chunks/257rhddtv2vp7.js (73525 bytes, priority: Low)
+141ms -> 258ms (117ms): [Script] https://treel-orcin.vercel.app/_next/static/immutable/chunks/31tcpybs-b989.js (10570 bytes, priority: Low)
+141ms -> 253ms (112ms): [Script] https://treel-orcin.vercel.app/_next/static/immutable/chunks/turbopack-1ns94-7bwx-em.js (4697 bytes, priority: Low)
+141ms -> 282ms (141ms): [Script] https://treel-orcin.vercel.app/_next/static/immutable/chunks/2corl6wyj4669.js (4413 bytes, priority: Low)
+141ms -> 253ms (112ms): [Script] https://treel-orcin.vercel.app/_next/static/immutable/chunks/0y361z3u6fowz.js (9404 bytes, priority: Low)
+141ms -> 263ms (122ms): [Script] https://treel-orcin.vercel.app/_next/static/immutable/chunks/2o4xuw_4m1_z3.js (9464 bytes, priority: Low)
+141ms -> 253ms (112ms): [Script] https://treel-orcin.vercel.app/_next/static/immutable/chunks/1chjswje9rk_f.js (10477 bytes, priority: Low)
+141ms -> 258ms (117ms): [Script] https://treel-orcin.vercel.app/_next/static/immutable/chunks/44azwnqsqteog.js (12796 bytes, priority: Low)
+141ms -> 252ms (111ms): [Script] https://treel-orcin.vercel.app/_next/static/immutable/chunks/29ocwh6gig8yd.js (1925 bytes, priority: Low)
+141ms -> 261ms (120ms): [Script] https://treel-orcin.vercel.app/_next/static/immutable/chunks/037-q38fjxnm5.js (4835 bytes, priority: Low)
+337ms -> 381ms (43ms): [Font] https://treel-orcin.vercel.app/_next/static/immutable/media/70bc3e132a0a741e-s.269kn9uafm0ti.woff2 (41147 bytes, priority: VeryHigh)
+372ms -> 416ms (44ms): [Image] https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto,w_40/v1791436547/otr-excavator-icon.png (1341 bytes, priority: Low)

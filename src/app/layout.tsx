@@ -131,9 +131,9 @@ export default function RootLayout({
                   window.addEventListener(ev, loadGTM, { passive: true, once: true });
                 });
                 if ('requestIdleCallback' in window) {
-                  window.requestIdleCallback(function() { setTimeout(loadGTM, 5000); });
+                  window.requestIdleCallback(function() { setTimeout(loadGTM, 8000); });
                 } else {
-                  setTimeout(loadGTM, 6000);
+                  setTimeout(loadGTM, 8000);
                 }
               })();
             `}
