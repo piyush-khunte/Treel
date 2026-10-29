@@ -20,8 +20,8 @@ const SLIDES: SlideData[] = [
     id: "tmip",
     name: "TMIP Enterprise",
     category: "Fleet Intelligence",
-    src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_650/v1792650870/Fleet_Intelligence_Digital_Twin.png",
-    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:eco,w_340/v1792650870/Fleet_Intelligence_Digital_Twin.png",
+    src: "/images/home/fleet-digital-twin-desktop.webp",
+    mobileSrc: "/images/home/fleet-digital-twin-mobile.webp",
     alt: "Treel TMIP — Enterprise Fleet Intelligence & Live Vehicle Digital Twin",
     href: "/tmip",
     tagline: "Every truck. A live Digital Twin.",
@@ -350,7 +350,7 @@ export function TreelHeroVisual() {
                 {/* Text summary */}
                 <div className="flex items-center justify-between gap-1">
                   <span
-                    className={`font-jetbrains font-mono text-[10px] sm:text-[11px] font-medium tracking-wide truncate transition-colors duration-200 ${
+                    className={`font-mono text-[10px] sm:text-[11px] font-medium tracking-wide truncate transition-colors duration-200 ${
                       isActive
                         ? "text-[#FAF7F2] font-semibold"
                         : "text-[#94A3B8] group-hover:text-[#CBD5E1]"

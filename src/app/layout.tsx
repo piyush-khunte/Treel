@@ -89,7 +89,7 @@ export default function RootLayout({
           as="image"
           type="image/webp"
           media="(max-width: 640px)"
-          href="https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:eco,w_340/v1792650870/Fleet_Intelligence_Digital_Twin.png"
+          href="/images/home/fleet-digital-twin-mobile.webp"
           fetchPriority="high"
         />
         <link
@@ -97,7 +97,7 @@ export default function RootLayout({
           as="image"
           type="image/webp"
           media="(min-width: 641px)"
-          href="https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_650/v1792650870/Fleet_Intelligence_Digital_Twin.png"
+          href="/images/home/fleet-digital-twin-desktop.webp"
           fetchPriority="high"
         />
         {process.env.NODE_ENV === "production" ? (
