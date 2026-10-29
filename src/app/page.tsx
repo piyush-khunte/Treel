@@ -89,19 +89,19 @@ export default function HomePage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             <div className="border-l-2 border-[#D5573B] pl-5">
               <div className="font-fraunces text-4xl sm:text-5xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-[-0.03em] leading-none mb-2.5">68K</div>
-              <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Vehicles under active management</div>
+              <div className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Vehicles under active management</div>
             </div>
             <div className="border-l-2 border-[#D5573B] pl-5">
               <div className="font-fraunces text-4xl sm:text-5xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-[-0.03em] leading-none mb-2.5">200+</div>
-              <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Enterprise fleet customers</div>
+              <div className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Enterprise fleet customers</div>
             </div>
             <div className="border-l-2 border-[#D5573B] pl-5">
               <div className="font-fraunces text-4xl sm:text-5xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-[-0.03em] leading-none mb-2.5">99.7%</div>
-              <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Platform uptime, trailing 90 days</div>
+              <div className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Platform uptime, trailing 90 days</div>
             </div>
             <div className="border-l-2 border-[#D5573B] pl-5">
               <div className="font-fraunces text-4xl sm:text-5xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-[-0.03em] leading-none mb-2.5">9–12 mo</div>
-              <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Median payback (varies by application &amp; fleet operation)</div>
+              <div className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Median payback (varies by application &amp; fleet operation)</div>
             </div>
           </div>
         </div>
@@ -111,7 +111,7 @@ export default function HomePage() {
       <section className="py-20 sm:py-28 border-b border-white/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-2xl mb-14 sm:mb-16">
-            <div className="font-jetbrains font-mono text-[11px] font-medium tracking-[0.15em] uppercase text-[#D5573B] mb-3">
+            <div className="font-mono text-[11px] font-medium tracking-[0.15em] uppercase text-[#D5573B] mb-3">
               THREE PRODUCT FAMILIES
             </div>
             <h2 className="font-fraunces text-3xl sm:text-4xl lg:text-[52px] font-medium text-[#FAF7F2] tracking-tight leading-[1.05] mb-4">
@@ -141,7 +141,7 @@ export default function HomePage() {
                   <div className="font-fraunces text-2xl sm:text-[32px] font-medium text-[#FAF7F2] tracking-[-0.02em]">
                     TMIP
                   </div>
-                  <div className="font-jetbrains font-mono text-[10px] text-[#94A3B8] tracking-[0.12em] uppercase mt-1.5">
+                  <div className="font-mono text-[10px] text-[#94A3B8] tracking-[0.12em] uppercase mt-1.5">
                     ENTERPRISE FLEET INTELLIGENCE
                   </div>
                 </div>
@@ -170,7 +170,7 @@ export default function HomePage() {
                   <div className="font-fraunces text-2xl sm:text-[32px] font-medium text-[#FAF7F2] tracking-[-0.02em]">
                     Suraksha
                   </div>
-                  <div className="font-jetbrains font-mono text-[10px] text-[#94A3B8] tracking-[0.12em] uppercase mt-1.5">
+                  <div className="font-mono text-[10px] text-[#94A3B8] tracking-[0.12em] uppercase mt-1.5">
                     OWNER-DRIVER SAFETY KIT
                   </div>
                 </div>
@@ -201,7 +201,7 @@ export default function HomePage() {
                   <div className="font-fraunces text-2xl sm:text-[32px] font-medium text-[#FAF7F2] tracking-[-0.02em]">
                     Personal TPMS
                   </div>
-                  <div className="font-jetbrains font-mono text-[10px] text-[#94A3B8] tracking-[0.12em] uppercase mt-1.5">
+                  <div className="font-mono text-[10px] text-[#94A3B8] tracking-[0.12em] uppercase mt-1.5">
                     CONSUMER VEHICLE SAFETY
                   </div>
                 </div>
@@ -223,7 +223,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Column: Narrative */}
             <div className="space-y-6">
-              <div className="font-jetbrains font-mono text-[11px] font-medium tracking-[0.15em] uppercase text-[#D5573B]">
+              <div className="font-mono text-[11px] font-medium tracking-[0.15em] uppercase text-[#D5573B]">
                 THE COMPANY
               </div>
               <h2 className="font-fraunces text-3xl sm:text-4xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-tight leading-[1.12]">
@@ -253,28 +253,28 @@ export default function HomePage() {
                   <Radio className="w-4 h-4" />
                 </div>
                 <div className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">30 Million</div>
-                <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Data points per day captured on platform</div>
+                <div className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Data points per day captured on platform</div>
               </div>
               <div className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-2 hover:border-white/20 transition-all">
                 <div className="w-8 h-8 rounded bg-[#3B82F6]/10 flex items-center justify-center text-[#3B82F6]">
                   <Cpu className="w-4 h-4" />
                 </div>
                 <div className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">70+ Critical Alerts</div>
-                <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Sent on average per day which could have been hazardous</div>
+                <div className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Sent on average per day which could have been hazardous</div>
               </div>
               <div className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-2 hover:border-white/20 transition-all">
                 <div className="w-8 h-8 rounded bg-[#D5573B]/10 flex items-center justify-center text-[#D5573B]">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <div className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">ARAI</div>
-                <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Commercial automotive standard certification</div>
+                <div className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Commercial automotive standard certification</div>
               </div>
               <div className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-2 hover:border-white/20 transition-all">
                 <div className="w-8 h-8 rounded bg-[#10B981]/10 flex items-center justify-center text-[#10B981]">
                   <BarChart3 className="w-4 h-4" />
                 </div>
                 <div className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">99.98%</div>
-                <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Cloud telemetry ingestion SLA</div>
+                <div className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Cloud telemetry ingestion SLA</div>
               </div>
             </div>
           </div>

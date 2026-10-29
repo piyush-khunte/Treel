@@ -30,21 +30,34 @@ export function CookieBanner() {
       }
     };
 
-    if (typeof window !== "undefined") {
-      if ("requestIdleCallback" in window) {
-        (window as unknown as { requestIdleCallback: (fn: () => void) => void }).requestIdleCallback(initConsent);
-      } else {
-        setTimeout(initConsent, 100);
-      }
-    }
-
     // Listen for custom open requests (e.g. from footer links)
     const handleOpenModal = () => {
       setShowConfigModal(true);
     };
 
     window.addEventListener("treel_open_cookie_modal", handleOpenModal);
+
+    let fired = false;
+    const fireConsent = () => {
+      if (fired) return;
+      fired = true;
+      initConsent();
+      ["scroll", "touchstart", "pointerdown", "keydown", "click"].forEach((ev) => {
+        window.removeEventListener(ev, fireConsent);
+      });
+    };
+
+    const timer = setTimeout(fireConsent, 4500);
+
+    ["scroll", "touchstart", "pointerdown", "keydown", "click"].forEach((ev) => {
+      window.addEventListener(ev, fireConsent, { passive: true, once: true });
+    });
+
     return () => {
+      clearTimeout(timer);
+      ["scroll", "touchstart", "pointerdown", "keydown", "click"].forEach((ev) => {
+        window.removeEventListener(ev, fireConsent);
+      });
       window.removeEventListener("treel_open_cookie_modal", handleOpenModal);
     };
   }, []);

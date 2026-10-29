@@ -21,7 +21,7 @@ const SLIDES: SlideData[] = [
     name: "TMIP Enterprise",
     category: "Fleet Intelligence",
     src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_650/v1792650870/Fleet_Intelligence_Digital_Twin.png",
-    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:eco,w_380/v1792650870/Fleet_Intelligence_Digital_Twin.png",
+    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:eco,w_340/v1792650870/Fleet_Intelligence_Digital_Twin.png",
     alt: "Treel TMIP — Enterprise Fleet Intelligence & Live Vehicle Digital Twin",
     href: "/tmip",
     tagline: "Every truck. A live Digital Twin.",
@@ -31,7 +31,7 @@ const SLIDES: SlideData[] = [
     name: "Personal TPMS",
     category: "Bikes, Cars & OTR",
     src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_650/v1792650870/Every_Tyre_Every_Road.png",
-    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:eco,w_380/v1792650870/Every_Tyre_Every_Road.png",
+    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:eco,w_340/v1792650870/Every_Tyre_Every_Road.png",
     alt: "Treel TPMS — Real-time Tyre Pressure Monitoring for Every Tyre and Every Road",
     href: "/personal",
     tagline: "Real-time pressure & temperature alerts",
@@ -41,7 +41,7 @@ const SLIDES: SlideData[] = [
     name: "Suraksha Fleet",
     category: "Commercial Trucks",
     src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_650/v1792650870/Suraksha__Safety_in_Your_Hands.png",
-    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:eco,w_380/v1792650870/Suraksha__Safety_in_Your_Hands.png",
+    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:eco,w_340/v1792650870/Suraksha__Safety_in_Your_Hands.png",
     alt: "Treel Suraksha — DIY Fleet & Truck Safety for India's Owner-Drivers",
     href: "/suraksha",
     tagline: "Safety that fits in a driver's hands",
@@ -262,7 +262,7 @@ export function TreelHeroVisual() {
                   height={650}
                   fetchPriority={index === 0 ? "high" : "auto"}
                   loading={index === 0 ? "eager" : "lazy"}
-                  decoding="async"
+                  decoding={index === 0 ? "sync" : "async"}
                   className="w-full h-full object-contain sm:group-hover:scale-[1.012] sm:transition-transform sm:duration-700 sm:ease-out"
                 />
               </picture>
