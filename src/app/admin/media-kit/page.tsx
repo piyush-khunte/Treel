@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
+  deleteAllMediaKitItemsAction,
   deleteMediaKitItemAction,
   getAdminMediaKitListAction,
   saveMediaKitItemAction,
@@ -86,6 +87,8 @@ export default function AdminMediaKitPage() {
   // Delete State
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const [deleteAllConfirmOpen, setDeleteAllConfirmOpen] = useState(false);
+  const [deletingAll, setDeletingAll] = useState(false);
 
   // Feedback State
   const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(null);
@@ -234,6 +237,19 @@ export default function AdminMediaKitPage() {
     setDeleting(false);
   };
 
+  const handleDeleteAll = async () => {
+    setDeletingAll(true);
+    const res = await deleteAllMediaKitItemsAction();
+    if (res.success) {
+      showFeedback("success", "All media kit assets deleted.");
+      setDeleteAllConfirmOpen(false);
+      await loadItems();
+    } else {
+      showFeedback("error", res.error || "Failed to delete all assets.");
+    }
+    setDeletingAll(false);
+  };
+
   const handleTogglePublish = async (id: string) => {
     const res = await toggleMediaKitPublishAction(id);
     if (res.success && res.data) {
@@ -328,6 +344,19 @@ export default function AdminMediaKitPage() {
               Public Media Kit
             </Link>
           </Button>
+
+          {items.length > 0 && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setDeleteAllConfirmOpen(true)}
+              disabled={loading || deletingAll}
+              className="border-red-900/40 text-red-400 hover:bg-red-950/50 hover:text-red-300 text-xs font-mono gap-1.5"
+            >
+              <Trash2 className="w-3.5 h-3.5" />
+              Delete All
+            </Button>
+          )}
 
           <Button
             onClick={handleCreate}
@@ -555,6 +584,40 @@ export default function AdminMediaKitPage() {
                 className="bg-red-600 hover:bg-red-500 text-white text-xs font-semibold"
               >
                 {deleting ? "Deleting..." : "Confirm Delete"}
+              </Button>
+            </div>
+          </Card>
+        </div>
+      )}
+
+      {/* Delete ALL Confirmation Modal */}
+      {deleteAllConfirmOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <Card className="max-w-md w-full p-6 bg-slate-900 border-slate-800 space-y-4">
+            <div className="flex items-center gap-3 text-red-400">
+              <AlertCircle className="w-6 h-6" />
+              <h3 className="text-lg font-bold text-white">Delete All Media Assets?</h3>
+            </div>
+            <p className="text-xs text-slate-300 leading-relaxed">
+              Are you sure you want to permanently delete <strong className="text-white">all {items.length} media kit assets</strong>? They will be removed from local storage and cloud database. They will not reappear.
+            </p>
+            <div className="flex justify-end gap-3 pt-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setDeleteAllConfirmOpen(false)}
+                disabled={deletingAll}
+                className="border-slate-800 text-slate-300 hover:bg-slate-800 text-xs"
+              >
+                Cancel
+              </Button>
+              <Button
+                size="sm"
+                onClick={handleDeleteAll}
+                disabled={deletingAll}
+                className="bg-red-600 hover:bg-red-500 text-white text-xs font-semibold"
+              >
+                {deletingAll ? "Deleting All..." : "Yes, Delete Everything"}
               </Button>
             </div>
           </Card>

@@ -126,47 +126,8 @@ export default function SurakshaSafetyPage() {
         </div>
       </section>
 
-      {/* Driver Stories */}
-      <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
-        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="max-w-4xl space-y-8">
-            <div>
-              <div className="inline-block font-rubik text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-2">
-                TESTIMONIALS
-              </div>
-              <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                REAL DRIVER STORIES
-              </h2>
-            </div>
-
-            <div className="space-y-4">
-              <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-3">
-                <div className="text-xs font-bold uppercase tracking-wider text-[#DC2626]">
-                  Story 1: Driver: Narender K. · North India route
-                </div>
-                <p className="text-base text-[#451A03] italic font-medium leading-relaxed">
-                  &ldquo;During a highway drive from Pune to Mumbai, I received a slow-leak warning for my front-right tyre. I pulled over and discovered a nail in the tyre. If I had continued driving at 100 km/h, it could have resulted in a tyre blowout. Suraksha helped me get home safely with my family.&rdquo;
-                </p>
-              </div>
-
-              <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-2">
-                <div className="text-xs font-bold uppercase tracking-wider text-[#78350F]">
-                  Story 2: Driver:
-                </div>
-              </div>
-
-              <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 shadow-sm space-y-2">
-                <div className="text-xs font-bold uppercase tracking-wider text-[#78350F]">
-                  Story 3: Driver:
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Numbers */}
-      <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
+      <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">
             <div>
@@ -182,28 +143,28 @@ export default function SurakshaSafetyPage() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#DC2626]/20 shadow-sm space-y-2">
+              <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#DC2626]/20 shadow-sm space-y-2">
                 <div className="font-anton text-4xl text-[#DC2626]">40%</div>
                 <p className="text-sm text-[#451A03] font-medium leading-relaxed">
                   of truck accidents in India involve tyre failures (Source: Ministry of Road Transport & Highways)
                 </p>
               </div>
 
-              <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#DC2626]/20 shadow-sm space-y-2">
+              <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#DC2626]/20 shadow-sm space-y-2">
                 <div className="font-anton text-4xl text-[#DC2626]">80%</div>
                 <p className="text-sm text-[#451A03] font-medium leading-relaxed">
                   of tyre failures show warning signs 24-48 hours in advance
                 </p>
               </div>
 
-              <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#DC2626]/20 shadow-sm space-y-2">
+              <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#DC2626]/20 shadow-sm space-y-2">
                 <div className="font-anton text-4xl text-[#EA580C]">60 km/h</div>
                 <p className="text-sm text-[#451A03] font-medium leading-relaxed">
                   is the typical loaded truck highway speed where a blowout becomes life-threatening
                 </p>
               </div>
 
-              <div className="p-6 rounded-lg bg-[#FFFBEB] border-2 border-[#DC2626]/20 shadow-sm space-y-2">
+              <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#DC2626]/20 shadow-sm space-y-2">
                 <div className="font-anton text-4xl text-[#0891B2]">60%</div>
                 <p className="text-sm text-[#451A03] font-medium leading-relaxed">
                   of tyre-related fatalities are preventable with monitoring (industry estimates)
@@ -215,9 +176,9 @@ export default function SurakshaSafetyPage() {
       </section>
 
       {/* Family Promise */}
-      <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
+      <section className="py-20 border-b-2 border-[#451A03]/10 bg-[#FEF3C7]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="p-8 sm:p-12 rounded-lg bg-[#FEF3C7] border-3 border-[#DC2626] max-w-4xl space-y-6 shadow-md">
+          <div className="p-8 sm:p-12 rounded-lg bg-[#FFFBEB] border-3 border-[#DC2626] max-w-4xl space-y-6 shadow-md">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase">
               FAMILY FIRST
             </div>

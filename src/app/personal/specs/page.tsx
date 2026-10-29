@@ -1,27 +1,28 @@
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
-AlertCircle,
-Award,
-Car,
-CheckCircle2,
-Download,
-Gauge,
-ShieldCheck,
-ShoppingCart,
-Smartphone
+  AlertCircle,
+  Award,
+  Car,
+  CheckCircle2,
+  Gauge,
+  ShieldCheck,
+  ShoppingCart,
+  Smartphone,
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Specifications · Personal TPMS",
-  description: "Full technical specifications for Personal TPMS: sensor specs, app requirements, physical specs, warranty, compatibility, certifications. Download spec sheet PDF.",
+  description:
+    "Full technical specifications for Personal TPMS: sensor specs, app requirements, physical specs, warranty, compatibility, and certifications.",
   alternates: {
     canonical: "https://treel.in/personal/specs",
   },
   openGraph: {
     title: "Specifications · Personal TPMS",
-    description: "Full technical specifications for Personal TPMS: sensor specs, app requirements, physical specs, warranty, compatibility, certifications. Download spec sheet PDF.",
+    description:
+      "Full technical specifications for Personal TPMS: sensor specs, app requirements, physical specs, warranty, compatibility, and certifications.",
     url: "https://treel.in/personal/specs",
   },
 };
@@ -88,7 +89,7 @@ export default function PersonalSpecsPage() {
               The full spec sheet.
             </h1>
             <p className="text-[#4B5563] text-lg sm:text-xl leading-relaxed font-manrope font-medium max-w-3xl">
-              Everything technical about Personal TPMS. Sensors, app, physical, warranty, compatibility, certifications. Download as PDF at the bottom.
+              Everything technical about Personal TPMS. Sensors, app, physical, warranty, compatibility, and certifications.
             </p>
           </div>
         </div>
@@ -219,7 +220,9 @@ export default function PersonalSpecsPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="p-5 rounded-2xl bg-white border border-black/[0.06] flex items-center gap-3 shadow-xs">
                 <CheckCircle2 className="w-5 h-5 text-[#10B981] shrink-0" />
-                <span className="font-bold text-[#111827] text-sm">All standard passenger cars (sedan, hatchback, coupe)</span>
+                <span className="font-bold text-[#111827] text-sm">
+                  All standard passenger cars (sedan, hatchback, coupe)
+                </span>
               </div>
               <div className="p-5 rounded-2xl bg-white border border-black/[0.06] flex items-center gap-3 shadow-xs">
                 <CheckCircle2 className="w-5 h-5 text-[#10B981] shrink-0" />
@@ -231,7 +234,9 @@ export default function PersonalSpecsPage() {
               </div>
               <div className="p-5 rounded-2xl bg-white border border-black/[0.06] flex items-center gap-3 shadow-xs">
                 <CheckCircle2 className="w-5 h-5 text-[#10B981] shrink-0" />
-                <span className="font-bold text-[#111827] text-sm">Compact commercial vehicles when used for personal transport</span>
+                <span className="font-bold text-[#111827] text-sm">
+                  Compact commercial vehicles when used for personal transport
+                </span>
               </div>
             </div>
 
@@ -277,15 +282,6 @@ export default function PersonalSpecsPage() {
                   European conformity marking (for future EU sales)
                 </p>
               </div>
-            </div>
-
-            <div className="pt-4">
-              <a
-                href="/downloads/Treel-Personal-TPMS-SpecSheet.pdf"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-black/15 text-[#111827] font-manrope font-bold text-sm hover:bg-black/5 transition-all cursor-pointer shadow-xs"
-              >
-                <Download className="w-4 h-4 text-[#2563EB]" /> Download spec sheet PDF →
-              </a>
             </div>
           </div>
         </div>

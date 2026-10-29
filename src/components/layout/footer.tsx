@@ -158,9 +158,9 @@ export function Footer({ variant, className }: FooterProps) {
 
           {/* Solutions */}
           <div className="space-y-3">
-            <h5 className={theme.header}>
+            <h3 className={theme.header}>
               Solutions
-            </h5>
+            </h3>
             <ul className="space-y-2">
               <li>
                 <Link prefetch={false} href="/tmip" className={theme.link}>
@@ -187,9 +187,9 @@ export function Footer({ variant, className }: FooterProps) {
 
           {/* Technology */}
           <div className="space-y-3">
-            <h5 className={theme.header}>
+            <h3 className={theme.header}>
               Technology
-            </h5>
+            </h3>
             <ul className="space-y-2">
               <li>
                 <Link prefetch={false} href="/technology" className={theme.link}>
@@ -216,9 +216,9 @@ export function Footer({ variant, className }: FooterProps) {
 
           {/* Research & Media */}
           <div className="space-y-3">
-            <h5 className={theme.header}>
+            <h3 className={theme.header}>
               Intelligence
-            </h5>
+            </h3>
             <ul className="space-y-2">
               <li>
                 <Link prefetch={false} href="/research" className={theme.link}>
@@ -255,9 +255,9 @@ export function Footer({ variant, className }: FooterProps) {
 
           {/* Company */}
           <div className="space-y-3">
-            <h5 className={theme.header}>
+            <h3 className={theme.header}>
               Company
-            </h5>
+            </h3>
             <ul className="space-y-2">
               <li>
                 <Link prefetch={false} href="/about" className={theme.link}>

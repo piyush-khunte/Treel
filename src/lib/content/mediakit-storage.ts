@@ -195,14 +195,14 @@ function readLocalStore(): MediaKitItemRecord[] {
     if (fs.existsSync(STORE_PATH)) {
       const raw = fs.readFileSync(STORE_PATH, "utf-8");
       const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed) && parsed.length > 0) {
+      if (Array.isArray(parsed)) {
         return parsed;
       }
     }
   } catch (err) {
     console.error("readLocalStore error in mediakit-storage:", err);
   }
-  // Initialize with seed items if missing or empty
+  // Initialize with seed items only if file does not exist
   try {
     const dir = path.dirname(STORE_PATH);
     if (!fs.existsSync(dir)) {
@@ -248,26 +248,78 @@ function normalizeMediaKit(item: any): MediaKitItemRecord {
 }
 
 /**
+ * Checks if the media kit store has been initialized in Supabase.
+ */
+async function isMediaKitInitialized(supabase: ReturnType<typeof getAdminClient>): Promise<boolean> {
+  try {
+    const { data } = await supabase
+      .from("TreelEcommerce.t_test")
+      .select("_id")
+      .eq("testKey", "treel_mediakit_initialized")
+      .limit(1);
+    return Boolean(data && data.length > 0);
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Marks the media kit database as initialized so deleted items are never re-seeded.
+ */
+async function markMediaKitInitialized(supabase: ReturnType<typeof getAdminClient>): Promise<void> {
+  try {
+    const initialized = await isMediaKitInitialized(supabase);
+    if (!initialized) {
+      await supabase.from("TreelEcommerce.t_test").insert({
+        _id: "treel_mediakit_initialized",
+        testKey: "treel_mediakit_initialized",
+        item: "true",
+        qty: "initialized",
+      });
+    }
+  } catch (err) {
+    console.warn("markMediaKitInitialized warning:", err);
+  }
+}
+
+/**
  * Fetches the set of tombstone (deleted) IDs from Supabase.
+ * Collects from all matching rows to avoid PGRST116 multiple-row crash.
  */
 async function getTombstoneIds(supabase: ReturnType<typeof getAdminClient>): Promise<Set<string>> {
+  const tombstoneSet = new Set<string>();
   try {
     const tombRes = await supabase
       .from("TreelEcommerce.t_test")
-      .select("*")
-      .eq("testKey", "treel_mediakit_tombstones")
-      .maybeSingle();
+      .select("item")
+      .eq("testKey", "treel_mediakit_tombstones");
 
-    if (tombRes.data?.item) {
-      const parsed = JSON.parse(tombRes.data.item);
-      if (Array.isArray(parsed)) {
-        return new Set(parsed);
+    if (tombRes.data && Array.isArray(tombRes.data)) {
+      for (const row of tombRes.data) {
+        if (row.item) {
+          try {
+            const parsed = JSON.parse(row.item);
+            if (Array.isArray(parsed)) {
+              for (const id of parsed) {
+                if (typeof id === "string" && id.trim()) {
+                  tombstoneSet.add(id.trim());
+                }
+              }
+            } else if (typeof parsed === "string" && parsed.trim()) {
+              tombstoneSet.add(parsed.trim());
+            }
+          } catch {
+            if (typeof row.item === "string" && row.item.trim()) {
+              tombstoneSet.add(row.item.trim());
+            }
+          }
+        }
       }
     }
   } catch (err) {
     console.warn("Failed to retrieve mediakit tombstones from Supabase:", err);
   }
-  return new Set();
+  return tombstoneSet;
 }
 
 /**
@@ -275,16 +327,28 @@ async function getTombstoneIds(supabase: ReturnType<typeof getAdminClient>): Pro
  */
 async function addTombstoneId(supabase: ReturnType<typeof getAdminClient>, id: string): Promise<void> {
   try {
+    const cleanId = (id || "").trim();
+    if (!cleanId) return;
+
     const existingSet = await getTombstoneIds(supabase);
-    existingSet.add(id);
+    existingSet.add(cleanId);
     const arr = Array.from(existingSet);
 
-    await supabase.from("TreelEcommerce.t_test").upsert({
+    // Remove old tombstone rows to keep clean single row
+    await supabase
+      .from("TreelEcommerce.t_test")
+      .delete()
+      .eq("testKey", "treel_mediakit_tombstones");
+
+    // Insert clean consolidated tombstone row
+    await supabase.from("TreelEcommerce.t_test").insert({
       _id: "treel_mediakit_tombstones",
       testKey: "treel_mediakit_tombstones",
       item: JSON.stringify(arr),
       qty: "tombstones",
     });
+
+    await markMediaKitInitialized(supabase);
   } catch (err) {
     console.error("addTombstoneId error:", err);
   }
@@ -295,12 +359,20 @@ async function addTombstoneId(supabase: ReturnType<typeof getAdminClient>, id: s
  */
 async function removeTombstoneId(supabase: ReturnType<typeof getAdminClient>, id: string): Promise<void> {
   try {
+    const cleanId = (id || "").trim();
+    if (!cleanId) return;
+
     const existingSet = await getTombstoneIds(supabase);
-    if (existingSet.has(id)) {
-      existingSet.delete(id);
+    if (existingSet.has(cleanId)) {
+      existingSet.delete(cleanId);
       const arr = Array.from(existingSet);
 
-      await supabase.from("TreelEcommerce.t_test").upsert({
+      await supabase
+        .from("TreelEcommerce.t_test")
+        .delete()
+        .eq("testKey", "treel_mediakit_tombstones");
+
+      await supabase.from("TreelEcommerce.t_test").insert({
         _id: "treel_mediakit_tombstones",
         testKey: "treel_mediakit_tombstones",
         item: JSON.stringify(arr),
@@ -318,40 +390,61 @@ async function removeTombstoneId(supabase: ReturnType<typeof getAdminClient>, id
 export async function getAllMediaKitItems(includeDrafts = true): Promise<MediaKitItemRecord[]> {
   try {
     const supabase = getAdminClient();
-    const [tombstoneSet, res] = await Promise.all([
+    const [tombstoneSet, res, initialized] = await Promise.all([
       getTombstoneIds(supabase),
       supabase
         .from("TreelEcommerce.t_test")
         .select("*")
         .eq("testKey", "treel_mediakit"),
+      isMediaKitInitialized(supabase),
     ]);
 
     if (!res.error && res.data) {
       const items: MediaKitItemRecord[] = [];
+      const idsToDeleteFromCloud: string[] = [];
+
       for (const row of res.data) {
         try {
           if (row.item) {
             const parsed = normalizeMediaKit(JSON.parse(row.item));
             if (!tombstoneSet.has(parsed._id)) {
               items.push(parsed);
+            } else {
+              idsToDeleteFromCloud.push(parsed._id);
             }
           }
         } catch {}
       }
 
-      // If Supabase already has assets OR user has deleted assets (tombstones exist)
-      if (items.length > 0 || tombstoneSet.size > 0) {
+      // Cleanup any tombstoned items lingering in Supabase
+      if (idsToDeleteFromCloud.length > 0) {
+        Promise.resolve(
+          supabase
+            .from("TreelEcommerce.t_test")
+            .delete()
+            .eq("testKey", "treel_mediakit")
+            .in("_id", idsToDeleteFromCloud)
+        ).catch(() => {});
+      }
+
+      // If initialized OR has items OR has tombstones:
+      // NEVER re-seed! An empty array is the expected state when user deleted all items.
+      if (initialized || tombstoneSet.size > 0 || items.length > 0) {
+        if (!initialized) {
+          await markMediaKitInitialized(supabase);
+        }
         const sorted = items.sort((a, b) => (a.order || 0) - (b.order || 0));
         writeLocalStore(sorted);
         return includeDrafts ? sorted : sorted.filter((p) => p.publicationStatus === "Published");
       }
 
-      // First run initialization: Supabase has 0 rows and 0 tombstones
+      // Only on virgin first run (brand new DB with 0 rows, 0 tombstones, uninitialized)
+      await markMediaKitInitialized(supabase);
       const initialItems: MediaKitItemRecord[] = [];
       for (const s of SEED_MEDIA_KIT_ITEMS) {
         if (!tombstoneSet.has(s._id)) {
           initialItems.push(s);
-          await supabase.from("TreelEcommerce.t_test").upsert({
+          await supabase.from("TreelEcommerce.t_test").insert({
             _id: s._id,
             testKey: "treel_mediakit",
             item: JSON.stringify(s),
@@ -359,6 +452,7 @@ export async function getAllMediaKitItems(includeDrafts = true): Promise<MediaKi
           });
         }
       }
+      writeLocalStore(initialItems);
       return includeDrafts
         ? initialItems
         : initialItems.filter((p) => p.publicationStatus === "Published");
@@ -411,10 +505,18 @@ export async function saveMediaKitItem(data: Partial<MediaKitItemRecord>): Promi
   try {
     const supabase = getAdminClient();
 
-    // Ensure item is not blocked by tombstones
+    // Ensure item is not blocked by tombstones and system is initialized
     await removeTombstoneId(supabase, normalized._id);
+    await markMediaKitInitialized(supabase);
 
-    const upRes = await supabase.from("TreelEcommerce.t_test").upsert({
+    // Delete any existing row with this _id first to prevent duplicate rows
+    await supabase
+      .from("TreelEcommerce.t_test")
+      .delete()
+      .eq("testKey", "treel_mediakit")
+      .eq("_id", normalized._id);
+
+    const upRes = await supabase.from("TreelEcommerce.t_test").insert({
       _id: normalized._id,
       testKey: "treel_mediakit",
       item: JSON.stringify(normalized),
@@ -422,7 +524,7 @@ export async function saveMediaKitItem(data: Partial<MediaKitItemRecord>): Promi
     });
 
     if (upRes.error) {
-      console.error("saveMediaKitItem Supabase upsert error:", upRes.error);
+      console.error("saveMediaKitItem Supabase insert error:", upRes.error);
     }
   } catch (err) {
     console.warn("saveMediaKitItem Supabase sync warning:", err);
@@ -455,6 +557,9 @@ export async function deleteMediaKitItem(id: string): Promise<{ success: boolean
   try {
     const supabase = getAdminClient();
 
+    // Ensure system is marked as initialized so it never re-seeds on zero items
+    await markMediaKitInitialized(supabase);
+
     // Delete item row from Supabase
     await supabase
       .from("TreelEcommerce.t_test")
@@ -475,6 +580,55 @@ export async function deleteMediaKitItem(id: string): Promise<{ success: boolean
   } catch {}
 
   return { success: true };
+}
+
+/**
+ * Permanently deletes ALL media kit items across Supabase and local cache.
+ */
+export async function deleteAllMediaKitItems(): Promise<{ success: boolean; error?: string }> {
+  try {
+    const supabase = getAdminClient();
+    await markMediaKitInitialized(supabase);
+
+    // Collect all current items and seed items to tombstone
+    const all = await getAllMediaKitItems(true);
+    const existingTombstones = await getTombstoneIds(supabase);
+
+    for (const item of all) {
+      existingTombstones.add(item._id);
+    }
+    for (const seed of SEED_MEDIA_KIT_ITEMS) {
+      existingTombstones.add(seed._id);
+    }
+
+    // Delete all mediakit rows in Supabase
+    await supabase
+      .from("TreelEcommerce.t_test")
+      .delete()
+      .eq("testKey", "treel_mediakit");
+
+    // Replace tombstones with all IDs
+    const arr = Array.from(existingTombstones);
+    await supabase
+      .from("TreelEcommerce.t_test")
+      .delete()
+      .eq("testKey", "treel_mediakit_tombstones");
+
+    await supabase.from("TreelEcommerce.t_test").insert({
+      _id: "treel_mediakit_tombstones",
+      testKey: "treel_mediakit_tombstones",
+      item: JSON.stringify(arr),
+      qty: "tombstones",
+    });
+
+    // Clear local file store
+    writeLocalStore([]);
+
+    return { success: true };
+  } catch (err: any) {
+    console.error("deleteAllMediaKitItems error:", err);
+    return { success: false, error: err.message || "Failed to delete all media kit items." };
+  }
 }
 
 /**

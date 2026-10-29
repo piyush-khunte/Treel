@@ -99,6 +99,7 @@ export function EcosystemBar() {
                 width={20}
                 height={20}
                 loading="lazy"
+                unoptimized
                 className="w-5 h-5 max-w-none scale-125 object-contain"
               />
             </span>

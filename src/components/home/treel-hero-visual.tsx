@@ -9,6 +9,7 @@ interface SlideData {
   name: string;
   category: string;
   src: string;
+  mobileSrc?: string;
   alt: string;
   href: string;
   tagline: string;
@@ -19,7 +20,8 @@ const SLIDES: SlideData[] = [
     id: "tmip",
     name: "TMIP Enterprise",
     category: "Fleet Intelligence",
-    src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto,w_600/v1792650870/Fleet_Intelligence_Digital_Twin.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_650/v1792650870/Fleet_Intelligence_Digital_Twin.png",
+    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_420/v1792650870/Fleet_Intelligence_Digital_Twin.png",
     alt: "Treel TMIP — Enterprise Fleet Intelligence & Live Vehicle Digital Twin",
     href: "/tmip",
     tagline: "Every truck. A live Digital Twin.",
@@ -28,7 +30,8 @@ const SLIDES: SlideData[] = [
     id: "tpms",
     name: "Personal TPMS",
     category: "Bikes, Cars & OTR",
-    src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto,w_800/v1792650870/Every_Tyre_Every_Road.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_650/v1792650870/Every_Tyre_Every_Road.png",
+    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_420/v1792650870/Every_Tyre_Every_Road.png",
     alt: "Treel TPMS — Real-time Tyre Pressure Monitoring for Every Tyre and Every Road",
     href: "/personal",
     tagline: "Real-time pressure & temperature alerts",
@@ -37,7 +40,8 @@ const SLIDES: SlideData[] = [
     id: "suraksha",
     name: "Suraksha Fleet",
     category: "Commercial Trucks",
-    src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto,w_800/v1792650870/Suraksha__Safety_in_Your_Hands.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_650/v1792650870/Suraksha__Safety_in_Your_Hands.png",
+    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_420/v1792650870/Suraksha__Safety_in_Your_Hands.png",
     alt: "Treel Suraksha — DIY Fleet & Truck Safety for India's Owner-Drivers",
     href: "/suraksha",
     tagline: "Safety that fits in a driver's hands",
@@ -241,18 +245,23 @@ export function TreelHeroVisual() {
               }`}
               aria-hidden={!isActive}
             >
-              <Image
-                src={slide.src}
-                alt={slide.alt}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 620px"
-                priority={index === 0}
-                loading={index === 0 ? "eager" : "lazy"}
-                fetchPriority={index === 0 ? "high" : "auto"}
-                decoding="async"
-                unoptimized
-                className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.012]"
-              />
+              <picture className="w-full h-full flex items-center justify-center">
+                <source
+                  media="(max-width: 640px)"
+                  srcSet={slide.mobileSrc || slide.src}
+                  type="image/webp"
+                />
+                <img
+                  src={slide.src}
+                  alt={slide.alt}
+                  width={650}
+                  height={650}
+                  fetchPriority={index === 0 ? "high" : "auto"}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  decoding={index === 0 ? "sync" : "async"}
+                  className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.012]"
+                />
+              </picture>
             </div>
           );
         })}

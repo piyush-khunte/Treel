@@ -114,6 +114,8 @@ export function PersonalHeader() {
               </div>
             </div>
 
+
+
             {/* SPECS */}
             <Link 
               href="/personal/specs" 
@@ -271,6 +273,8 @@ export function PersonalHeader() {
                 </div>
               )}
             </div>
+
+
 
             <Link href="/personal/specs" onClick={() => setMobileOpen(false)} className="block py-2 text-[#111827] hover:text-[#2563EB]">
               Specs

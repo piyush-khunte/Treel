@@ -1,5 +1,45 @@
 [
   {
+    "id": "cons_d1f3f3056ce3469f",
+    "consentId": "cons_d1f3f3056ce3469f",
+    "status": "Rejected",
+    "decision": "Rejected Non-Essential",
+    "categories": "Necessary",
+    "rawCategories": {
+      "necessary": true,
+      "functional": false,
+      "analytics": false,
+      "marketing": false
+    },
+    "policyVersion": "2026-10-01",
+    "timestamp": "2026-10-29T06:01:01.529Z",
+    "formattedDate": "29 Oct 2026, 11:31 am IST",
+    "withdrawnAt": null,
+    "source": "Cookie Banner",
+    "pagePath": "/leadership",
+    "updatedAt": "2026-10-29T06:01:02.539Z"
+  },
+  {
+    "id": "cons_2d93a030d01b46f7",
+    "consentId": "cons_2d93a030d01b46f7",
+    "status": "Accepted",
+    "decision": "Accepted All",
+    "categories": "Necessary, Functional, Analytics, Marketing",
+    "rawCategories": {
+      "necessary": true,
+      "functional": true,
+      "analytics": true,
+      "marketing": true
+    },
+    "policyVersion": "2026-10-01",
+    "timestamp": "2026-10-29T05:51:26.891Z",
+    "formattedDate": "29 Oct 2026, 11:21 am IST",
+    "withdrawnAt": null,
+    "source": "Cookie Banner",
+    "pagePath": "/leadership",
+    "updatedAt": "2026-10-29T05:51:27.936Z"
+  },
+  {
     "id": "cons_6aeb5b34f85b4df7",
     "consentId": "cons_6aeb5b34f85b4df7",
     "status": "Accepted",

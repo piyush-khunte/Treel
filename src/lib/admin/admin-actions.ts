@@ -1986,6 +1986,26 @@ export async function deleteMediaKitItemAction(
   }
 }
 
+export async function deleteAllMediaKitItemsAction(): Promise<{ success: boolean; error?: string }> {
+  const session = await getAdminSession();
+  if (!session) {
+    return { success: false, error: 'Unauthorized. Admin login required.' };
+  }
+
+  try {
+    const { deleteAllMediaKitItems } = await import('@/lib/content/mediakit-storage');
+    const res = await deleteAllMediaKitItems();
+    if (res.success) {
+      revalidatePath('/media-kit', 'page');
+      revalidatePath('/admin/media-kit', 'page');
+    }
+    return res;
+  } catch (err: any) {
+    console.error('deleteAllMediaKitItemsAction error:', err);
+    return { success: false, error: err.message || 'Failed to delete all media kit assets.' };
+  }
+}
+
 export async function toggleMediaKitPublishAction(
   id: string
 ): Promise<{

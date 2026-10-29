@@ -87,7 +87,17 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto,w_600/v1792650870/Fleet_Intelligence_Digital_Twin.png"
+          type="image/webp"
+          media="(max-width: 640px)"
+          href="https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_420/v1792650870/Fleet_Intelligence_Digital_Twin.png"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
+          type="image/webp"
+          media="(min-width: 641px)"
+          href="https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_650/v1792650870/Fleet_Intelligence_Digital_Twin.png"
           fetchPriority="high"
         />
         {process.env.NODE_ENV === "production" ? (
@@ -121,9 +131,9 @@ export default function RootLayout({
                   window.addEventListener(ev, loadGTM, { passive: true, once: true });
                 });
                 if ('requestIdleCallback' in window) {
-                  window.requestIdleCallback(function() { setTimeout(loadGTM, 3500); });
+                  window.requestIdleCallback(function() { setTimeout(loadGTM, 5000); });
                 } else {
-                  setTimeout(loadGTM, 4000);
+                  setTimeout(loadGTM, 6000);
                 }
               })();
             `}
