@@ -30,8 +30,8 @@ const SLIDES: SlideData[] = [
     id: "tpms",
     name: "Personal TPMS",
     category: "Bikes, Cars & OTR",
-    src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_650/v1792650870/Every_Tyre_Every_Road.png",
-    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:eco,w_340/v1792650870/Every_Tyre_Every_Road.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1792650870/Every_Tyre_Every_Road.png",
+    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/v1792650870/Every_Tyre_Every_Road.png",
     alt: "Treel TPMS — Real-time Tyre Pressure Monitoring for Every Tyre and Every Road",
     href: "/personal",
     tagline: "Real-time pressure & temperature alerts",
@@ -40,8 +40,8 @@ const SLIDES: SlideData[] = [
     id: "suraksha",
     name: "Suraksha Fleet",
     category: "Commercial Trucks",
-    src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:good,w_650/v1792650870/Suraksha__Safety_in_Your_Hands.png",
-    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/f_webp,q_auto:eco,w_340/v1792650870/Suraksha__Safety_in_Your_Hands.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1792650870/Suraksha__Safety_in_Your_Hands.png",
+    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/v1792650870/Suraksha__Safety_in_Your_Hands.png",
     alt: "Treel Suraksha — DIY Fleet & Truck Safety for India's Owner-Drivers",
     href: "/suraksha",
     tagline: "Safety that fits in a driver's hands",
@@ -250,7 +250,6 @@ export function TreelHeroVisual() {
                 <source
                   media="(min-width: 641px)"
                   srcSet={slide.src}
-                  type="image/webp"
                 />
                 <img
                   src={slide.mobileSrc || slide.src}
