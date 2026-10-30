@@ -66,7 +66,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tmip/solutions/oem-fleet`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/roi-calculator`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/demo`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/tmip/demo/scheduled`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/whitepapers`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/whitepapers/roi-fleet-intelligence`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/whitepapers/vehicle-digital-twin`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },

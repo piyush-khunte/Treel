@@ -1,0 +1,62 @@
+# Treel
+
+> Treel is India's pioneer in Mobility Intelligence and Vehicle Digital Twin technology, transforming dynamic tyre physics and real-time vehicle telemetry into predictive fleet intelligence, commercial vehicle safety, and consumer TPMS solutions.
+
+Treel operates across three unified product verticals built upon a proprietary tyre-first vehicle digital twin architecture:
+- TMIP (Treel Mobility Intelligence Platform): Enterprise telematics and tyre intelligence for commercial fleets, passenger transport, mining, and OEMs.
+- Suraksha: In-cab tyre safety systems and real-time early warning displays for commercial trucks and heavy vehicles.
+- Personal TPMS: Bluetooth smart tyre pressure monitoring systems and mobile applications for passenger vehicles and two-wheelers.
+
+## Core Products & Solutions
+
+- [TMIP Enterprise Platform](https://treel.in/tmip): Enterprise fleet telematics, tyre sensor analytics, and predictive breakdown forecasting.
+- [TMIP Vehicle Digital Twin](https://treel.in/tmip/platform/vehicle-digital-twin): Physics-informed digital twin mirroring tyre and vehicle operational dynamics.
+- [TMIP Predictive Maintenance](https://treel.in/tmip/platform/predictive-maintenance): Machine-learning models predicting mechanical failure, irregular tyre wear, and blowouts.
+- [TMIP Telemetry & Sensor Integration](https://treel.in/tmip/platform/telemetry): High-throughput edge telemetry processing and sensor telemetry ingestion.
+- [Suraksha Commercial Fleet Safety](https://treel.in/suraksha): In-cab driver display and wheel-mounted sensors preventing roadside blowouts and tyre fires.
+- [Suraksha Easy EMI Financing](https://treel.in/suraksha/emi): Accessible financing and flexible EMI schemes for truck owners and transport operators.
+- [Personal TPMS](https://treel.in/personal): Smart Bluetooth tyre pressure and temperature monitoring for passenger cars and motorcycles.
+- [Personal Mobile App](https://treel.in/personal/app): Mobile companion app for real-time pressure monitoring, alerts, and tyre diagnostics on Android and iOS.
+
+## OEM Hub & Vehicle Segments
+
+- [OEM Solutions Overview](https://treel.in/oem): Integrated factory-fitted telematics, digital twin software, and sensor solutions for vehicle manufacturers.
+- [Commercial Vehicles](https://treel.in/oem/commercial-vehicle): Haulage, long-distance freight, and medium/heavy commercial trucks.
+- [Buses & Passenger Transit](https://treel.in/oem/bus): Intra-city and intercity mass transit passenger fleets.
+- [Four-Wheelers & Passenger Cars](https://treel.in/oem/four-wheeler): Automotive TPMS integration for passenger car OEMs.
+- [Two-Wheelers](https://treel.in/oem/two-wheeler): Compact sensor design and BLE telemetry for motorcycles and scooters.
+- [Mining & Heavy Haulage](https://treel.in/oem/mining): High-durability sensors for open-cast haulage, dumpers, and extreme environments.
+- [Agriculture & Off-Highway](https://treel.in/oem/agriculture): Soil-compaction monitoring and tyre pressure management for tractors and farm machinery.
+
+## Industry Applications
+
+- [Logistics & Long-Haul Freight](https://treel.in/tmip/solutions/logistics): Fuel optimization, tyre mileage maximization, and roadside breakdown elimination.
+- [Passenger Express & Intercity Fleets](https://treel.in/tmip/solutions/passenger-transport): Passenger safety, puncture prevention, and on-time service reliability.
+- [Infrastructure & Construction Fleets](https://treel.in/tmip/solutions/construction): Heavy tipper monitoring and severe-duty uptime preservation.
+- [Mining & Quarry Operations](https://treel.in/tmip/solutions/mining): High-load OTR tyre analytics and payload-pressure correlation.
+
+## Technology & Engineering
+
+- [Vehicle Digital Twin Architecture](https://treel.in/vehicle-digital-twin): Deep physics engine correlating tyre footprint pressure, temperature spikes, and vehicle velocity.
+- [Data Infrastructure](https://treel.in/data-infrastructure): High-concurrency telemetry streaming pipeline processing millions of vehicle data points daily.
+- [Technology Overview](https://treel.in/technology): Edge computing architecture, sensor telemetry, and cloud predictive analytics.
+- [Research & Engineering Papers](https://treel.in/research): Scientific publications and technical whitepapers on tyre mechanics and vehicle intelligence.
+
+## Company & Statutory
+
+- [About Treel](https://treel.in/about): Mission, corporate lineage (JK Tyre subsidiary), and engineering leadership.
+- [Leadership](https://treel.in/leadership): Executive team and industry advisory board.
+- [Our Story](https://treel.in/our-story): The founding journey of India's first tyre-centric telematics pioneer.
+- [Global Presence](https://treel.in/global-presence): Domestic footprint across Indian freight corridors and international presence.
+- [Careers](https://treel.in/careers): Engineering, data science, hardware, and commercial career opportunities.
+- [Press & Media](https://treel.in/press): Press releases, media coverage, and corporate announcements.
+
+## Optional
+
+- [ROI Calculator](https://treel.in/tmip/roi-calculator): Interactive payback and fleet savings estimator.
+- [Suraksha Fitment Centres](https://treel.in/suraksha/centres): Certified dealer and installation network across India.
+- [Personal TPMS Technical Specs](https://treel.in/personal/specs): Sensor dimensions, battery specifications, RF frequencies, and accuracy tolerances.
+- [Customer Case Studies](https://treel.in/tmip/whitepapers): Documented deployments across 1,000+ truck fleets and cold chain operators.
+- [Support & Contact](https://treel.in/support): Enterprise inquiries, customer care, and technical support.
+- [Privacy Policy](https://treel.in/privacy): Telemetry data governance, GDPR compliance, and privacy practices.
+- [Terms of Service](https://treel.in/terms): Platform usage and terms of service.
