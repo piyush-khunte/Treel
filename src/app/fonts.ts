@@ -25,50 +25,43 @@ export const inter = Inter({
 export const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
-  display: "optional",
-  preload: false,
+  display: "swap",
 });
 
 export const ibmPlexSans = IBM_Plex_Sans({
-  weight: ["400", "600"],
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-ibm-plex-sans",
-  display: "optional",
-  preload: false,
+  display: "swap",
 });
 
 export const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains-mono",
-  display: "optional",
-  preload: false,
+  display: "swap",
 });
 
 export const anton = Anton({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-anton",
-  display: "optional",
-  preload: false,
+  display: "swap",
 });
 
 export const rubik = Rubik({
   subsets: ["latin"],
   variable: "--font-rubik",
-  display: "optional",
-  preload: false,
+  display: "swap",
 });
 
 export const baloo2 = Baloo_2({
   subsets: ["latin", "devanagari"],
   variable: "--font-baloo2",
-  display: "optional",
-  preload: false,
+  display: "swap",
 });
 
 export const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-manrope",
-  display: "optional",
-  preload: false,
+  display: "swap",
 });

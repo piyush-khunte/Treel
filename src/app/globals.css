@@ -3,15 +3,15 @@
 
 @layer base {
   :root {
-
-
-
-
-
-
-
-
-
+    --font-fraunces: 'Fraunces', serif;
+    --font-inter: 'Inter', sans-serif;
+    --font-space-grotesk: 'Space Grotesk', sans-serif;
+    --font-ibm-plex-sans: 'IBM Plex Sans', sans-serif;
+    --font-jetbrains-mono: 'JetBrains Mono', monospace;
+    --font-anton: 'Anton', sans-serif;
+    --font-rubik: 'Rubik', sans-serif;
+    --font-baloo2: 'Baloo 2', cursive, sans-serif;
+    --font-manrope: 'Manrope', sans-serif;
 
     /* Master Brand Colors */
     --treel-dark: #0F1E19;

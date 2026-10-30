@@ -37,7 +37,7 @@ export default function HomePage() {
       />
 
       {/* 1. HERO SECTION */}
-      <section className="relative overflow-hidden pt-5 pb-8 sm:pt-14 sm:pb-20 lg:pt-[120px] lg:pb-[100px] border-b border-white/10 min-h-0 lg:min-h-[calc(100vh-140px)] flex items-center">
+      <section className="relative overflow-hidden pt-8 pb-12 sm:pt-14 sm:pb-20 lg:pt-[120px] lg:pb-[100px] border-b border-white/10 min-h-0 lg:min-h-[calc(100vh-140px)] flex items-center">
         {/* Subtle Treel Red ambient radial glow */}
         <div 
           className="absolute -top-24 -right-24 w-[500px] h-[500px] pointer-events-none rounded-full"
@@ -46,16 +46,16 @@ export default function HomePage() {
         />
 
         <div className="w-full max-w-[1320px] mx-auto px-6 sm:px-10 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-8 sm:gap-12 lg:gap-[80px] items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-[80px] items-center">
             {/* Left Column: Typography & CTAs */}
             <div>
-              <div className="font-inter text-[12px] font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-3 sm:mb-8">
+              <div className="font-inter text-[12px] font-semibold tracking-[0.25em] uppercase text-[#D5573B] mb-6 sm:mb-8">
                 THE MOBILITY INTELLIGENCE COMPANY
               </div>
 
               <h1
                 suppressHydrationWarning
-                className="font-fraunces text-[32px] sm:text-5xl lg:text-[76px] xl:text-[84px] font-medium tracking-[-0.03em] text-[#FAF7F2] leading-[1.08] sm:leading-[0.98] mb-3.5 sm:mb-8"
+                className="font-fraunces text-[32px] sm:text-5xl lg:text-[76px] xl:text-[84px] font-medium tracking-[-0.03em] text-[#FAF7F2] leading-[1.08] sm:leading-[0.98] mb-5 sm:mb-8"
               >
                 <span suppressHydrationWarning>{"Turn Every Vehicle into "}</span>
                 <span
@@ -66,7 +66,7 @@ export default function HomePage() {
                 </span>
               </h1>
 
-              <p className="font-fraunces text-base sm:text-xl font-normal leading-[1.4] text-[#94A3B8] mb-4 sm:mb-10 max-w-[560px]">
+              <p className="font-fraunces text-base sm:text-xl font-normal leading-[1.4] text-[#94A3B8] mb-6 sm:mb-10 max-w-[560px]">
                 Treel operates India's largest connected commercial vehicle dataset. Three product families, one architecture, and a single mission: turn raw motion into operating intelligence.
               </p>
 
@@ -76,7 +76,7 @@ export default function HomePage() {
             </div>
 
             {/* Right Column: Treel Product Ecosystem Motion Visual */}
-            <div className="w-full flex justify-center items-center mt-4 lg:mt-0">
+            <div className="w-full flex justify-center items-center mt-6 lg:mt-0">
               <TreelHeroVisual />
             </div>
           </div>
@@ -89,19 +89,19 @@ export default function HomePage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             <div className="border-l-2 border-[#D5573B] pl-5">
               <div className="font-fraunces text-4xl sm:text-5xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-[-0.03em] leading-none mb-2.5">68K</div>
-              <div className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Vehicles under active management</div>
+              <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Vehicles under active management</div>
             </div>
             <div className="border-l-2 border-[#D5573B] pl-5">
               <div className="font-fraunces text-4xl sm:text-5xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-[-0.03em] leading-none mb-2.5">200+</div>
-              <div className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Enterprise fleet customers</div>
+              <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Enterprise fleet customers</div>
             </div>
             <div className="border-l-2 border-[#D5573B] pl-5">
               <div className="font-fraunces text-4xl sm:text-5xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-[-0.03em] leading-none mb-2.5">99.7%</div>
-              <div className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Platform uptime, trailing 90 days</div>
+              <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Platform uptime, trailing 90 days</div>
             </div>
             <div className="border-l-2 border-[#D5573B] pl-5">
               <div className="font-fraunces text-4xl sm:text-5xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-[-0.03em] leading-none mb-2.5">9–12 mo</div>
-              <div className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Median payback (varies by application &amp; fleet operation)</div>
+              <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Median payback (varies by application &amp; fleet operation)</div>
             </div>
           </div>
         </div>
@@ -111,7 +111,7 @@ export default function HomePage() {
       <section className="py-20 sm:py-28 border-b border-white/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-2xl mb-14 sm:mb-16">
-            <div className="font-mono text-[11px] font-medium tracking-[0.15em] uppercase text-[#D5573B] mb-3">
+            <div className="font-jetbrains font-mono text-[11px] font-medium tracking-[0.15em] uppercase text-[#D5573B] mb-3">
               THREE PRODUCT FAMILIES
             </div>
             <h2 className="font-fraunces text-3xl sm:text-4xl lg:text-[52px] font-medium text-[#FAF7F2] tracking-tight leading-[1.05] mb-4">
@@ -141,7 +141,7 @@ export default function HomePage() {
                   <div className="font-fraunces text-2xl sm:text-[32px] font-medium text-[#FAF7F2] tracking-[-0.02em]">
                     TMIP
                   </div>
-                  <div className="font-mono text-[10px] text-[#94A3B8] tracking-[0.12em] uppercase mt-1.5">
+                  <div className="font-jetbrains font-mono text-[10px] text-[#64748B] tracking-[0.12em] uppercase mt-1.5">
                     ENTERPRISE FLEET INTELLIGENCE
                   </div>
                 </div>
@@ -149,7 +149,7 @@ export default function HomePage() {
                   Vehicle Digital Twin platform for fleet operators with ten or more vehicles. Uptime, predicted maintenance, in one dashboard.
                 </p>
               </div>
-              <div className="pt-8 font-inter text-[13px] font-semibold text-[#E26D54] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+              <div className="pt-8 font-inter text-[13px] font-semibold text-[#D5573B] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
                 Enter TMIP <span className="ml-1">→</span>
               </div>
             </Link>
@@ -170,7 +170,7 @@ export default function HomePage() {
                   <div className="font-fraunces text-2xl sm:text-[32px] font-medium text-[#FAF7F2] tracking-[-0.02em]">
                     Suraksha
                   </div>
-                  <div className="font-mono text-[10px] text-[#94A3B8] tracking-[0.12em] uppercase mt-1.5">
+                  <div className="font-jetbrains font-mono text-[10px] text-[#64748B] tracking-[0.12em] uppercase mt-1.5">
                     OWNER-DRIVER SAFETY KIT
                   </div>
                 </div>
@@ -178,7 +178,7 @@ export default function HomePage() {
                   A DIY tyre safety kit for India's owner-drivers. Safety, savings, simplicity.
                 </p>
               </div>
-              <div className="pt-8 font-inter text-[13px] font-semibold text-[#E26D54] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+              <div className="pt-8 font-inter text-[13px] font-semibold text-[#D5573B] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
                 Enter Suraksha <span className="ml-1">→</span>
               </div>
             </Link>
@@ -201,7 +201,7 @@ export default function HomePage() {
                   <div className="font-fraunces text-2xl sm:text-[32px] font-medium text-[#FAF7F2] tracking-[-0.02em]">
                     Personal TPMS
                   </div>
-                  <div className="font-mono text-[10px] text-[#94A3B8] tracking-[0.12em] uppercase mt-1.5">
+                  <div className="font-jetbrains font-mono text-[10px] text-[#64748B] tracking-[0.12em] uppercase mt-1.5">
                     CONSUMER VEHICLE SAFETY
                   </div>
                 </div>
@@ -209,7 +209,7 @@ export default function HomePage() {
                   Real-time tyre pressure on your phone, vehicle infotainment screen, or dedicated display. Alerts before a puncture. Peace of mind before every drive. Fits any car or two-wheeler.
                 </p>
               </div>
-              <div className="pt-8 font-inter text-[13px] font-semibold text-[#E26D54] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+              <div className="pt-8 font-inter text-[13px] font-semibold text-[#D5573B] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
                 Enter Personal <span className="ml-1">→</span>
               </div>
             </Link>
@@ -223,7 +223,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Column: Narrative */}
             <div className="space-y-6">
-              <div className="font-mono text-[11px] font-medium tracking-[0.15em] uppercase text-[#D5573B]">
+              <div className="font-jetbrains font-mono text-[11px] font-medium tracking-[0.15em] uppercase text-[#D5573B]">
                 THE COMPANY
               </div>
               <h2 className="font-fraunces text-3xl sm:text-4xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-tight leading-[1.12]">
@@ -234,7 +234,7 @@ export default function HomePage() {
               </p>
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link prefetch={false} href="/founder-note"
-                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] bg-[#C64529] text-white font-semibold text-sm hover:bg-[#B53D23] transition-all group shadow-sm"
+                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all group shadow-sm"
                 >
                   Read the founder note <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                 </Link>
@@ -253,28 +253,28 @@ export default function HomePage() {
                   <Radio className="w-4 h-4" />
                 </div>
                 <div className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">30 Million</div>
-                <div className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Data points per day captured on platform</div>
+                <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Data points per day captured on platform</div>
               </div>
               <div className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-2 hover:border-white/20 transition-all">
                 <div className="w-8 h-8 rounded bg-[#3B82F6]/10 flex items-center justify-center text-[#3B82F6]">
                   <Cpu className="w-4 h-4" />
                 </div>
                 <div className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">70+ Critical Alerts</div>
-                <div className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Sent on average per day which could have been hazardous</div>
+                <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Sent on average per day which could have been hazardous</div>
               </div>
               <div className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-2 hover:border-white/20 transition-all">
                 <div className="w-8 h-8 rounded bg-[#D5573B]/10 flex items-center justify-center text-[#D5573B]">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <div className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">ARAI</div>
-                <div className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Commercial automotive standard certification</div>
+                <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Commercial automotive standard certification</div>
               </div>
               <div className="p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-2 hover:border-white/20 transition-all">
                 <div className="w-8 h-8 rounded bg-[#10B981]/10 flex items-center justify-center text-[#10B981]">
                   <BarChart3 className="w-4 h-4" />
                 </div>
                 <div className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">99.98%</div>
-                <div className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Cloud telemetry ingestion SLA</div>
+                <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8]">Cloud telemetry ingestion SLA</div>
               </div>
             </div>
           </div>
