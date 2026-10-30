@@ -5,7 +5,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString();
 
   // Route definitions with priority mappings
-  const routes: { url: string; lastModified: string; changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never"; priority: number }[] = [
+  const routes: {
+    url: string;
+    lastModified: string;
+    changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
+    priority: number;
+  }[] = [
     // 1.0 - Master Homepage
     { url: `${baseUrl}/`, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
 
@@ -17,16 +22,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/mobility-intelligence`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/founder-note`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
 
-    // 0.8 - Master Core & Deep Dives
+    // 0.8 - Master Core & Corporate Deep Dives
     { url: `${baseUrl}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/leadership`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/our-story`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/why-treel`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/global-presence`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/products`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/products/otr-tpms`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/technology`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/data-infrastructure`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-
     { url: `${baseUrl}/careers`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/press`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/media-kit`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
@@ -34,13 +39,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/research`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/events`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/annual-reports`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/notices`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
 
-    // 0.8 - TMIP Deep-Dive Pages
+    // 0.8 - OEM Industry Hub & Segments
+    { url: `${baseUrl}/oem`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/oem/introduction`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/oem/commercial-vehicle`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/oem/bus`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/oem/four-wheeler`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/oem/two-wheeler`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/oem/mining`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/oem/agriculture`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+
+    // 0.8 - TMIP Enterprise Fleet Intelligence
     { url: `${baseUrl}/tmip/platform`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/platform/vehicle-digital-twin`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/tpms`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/platform/telemetry`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/platform/predictive-maintenance`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/tmip/features/maintenance`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/solutions`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/solutions/logistics`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/solutions/passenger-transport`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
@@ -49,25 +66,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tmip/solutions/oem-fleet`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/roi-calculator`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/demo`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/tmip/demo/scheduled`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/whitepapers`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/tmip/whitepapers/roi-fleet-intelligence`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/tmip/whitepapers/vehicle-digital-twin`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/insights`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/security`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/tmip/compliance`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/tmip/api`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
 
-    // 0.8 - Suraksha Deep-Dive Pages
+    // 0.8 - Suraksha Fleet Commercial Safety
     { url: `${baseUrl}/suraksha/buy`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/suraksha/cart`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/suraksha/product`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/suraksha/how-it-works`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/suraksha/pricing`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/suraksha/emi`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/suraksha/emi/apply`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/suraksha/why-suraksha`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/suraksha/safety`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/suraksha/savings`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/suraksha/simplicity`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/suraksha/centres`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/suraksha/testimonials`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/suraksha/faqs`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/suraksha/videos`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/suraksha/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
@@ -81,13 +99,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/personal/features/battery`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/personal/specs`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/personal/buy`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/personal/buy/cart`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     { url: `${baseUrl}/personal/reviews`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/personal/reviews/write`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/personal/faqs`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/personal/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/personal/app`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/personal/app/android`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/personal/app/ios`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/personal/track-order`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
 
-    // 0.5 - Support & Contact
+    // 0.8 - Research & Deep Telematics Architecture
+    { url: `${baseUrl}/research/data-architecture`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/research/roi-fleet-intelligence`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+
+    // 0.8 - Campaign Landing Pages
+    { url: `${baseUrl}/lp-suraksha`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/lp-tmip`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/lp-tpms`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/lp-tpms/bike`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/lp-tpms/car`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+
+    // 0.5 - Support & Inquiries
+    { url: `${baseUrl}/support`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${baseUrl}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${baseUrl}/tmip/support`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${baseUrl}/suraksha/support`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
