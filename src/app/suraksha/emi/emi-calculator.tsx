@@ -53,7 +53,7 @@ export function SurakshaEmiCalculator() {
         </div>
         <div>
           <h3 className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase">
-            EXPLORE EMI PLANS
+            Explore EMI plans
           </h3>
           <p className="text-xs font-semibold text-[#78350F]">
             Bajaj Finance financing plans &amp; tenure options

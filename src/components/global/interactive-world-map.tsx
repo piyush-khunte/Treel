@@ -113,7 +113,7 @@ export default function InteractiveWorldMap() {
             Connected Assets
           </div>
           <div className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">
-            68,000+ <span className="text-sm font-sans text-[#94A3B8]">Vehicles</span>
+            70,000+ <span className="text-sm font-sans text-[#94A3B8]">Vehicles</span>
           </div>
           <p className="text-xs text-[#94A3B8] mt-1">Live telematics streams</p>
         </div>

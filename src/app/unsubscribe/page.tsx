@@ -5,13 +5,17 @@ import { UnsubscribeForm } from "./unsubscribe-form";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
-  title: "Email Preferences & Unsubscribe · Treel",
+  title: "Email Preferences & Unsubscribe",
   description: "Manage your email communication preferences or unsubscribe from Treel communications.",
   alternates: {
     canonical: "https://treel.in/unsubscribe",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
   openGraph: {
-    title: "Email Preferences & Unsubscribe · Treel",
+    title: "Email Preferences & Unsubscribe",
     description: "Manage your email communication preferences or unsubscribe from Treel communications.",
     url: "https://treel.in/unsubscribe",
   },

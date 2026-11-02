@@ -214,7 +214,7 @@ export default function SurakshaTestimonialsPage() {
             </div>
 
             <h1 className="font-anton uppercase tracking-normal text-5xl sm:text-6xl lg:text-7xl text-[#451A03] leading-[0.95]">
-              WHAT DRIVERS <span className="italic text-[#DC2626]">SAY.</span>
+              What drivers <span className="italic text-[#DC2626]">say.</span>
             </h1>
 
             <SurakshaRotator
@@ -324,7 +324,7 @@ export default function SurakshaTestimonialsPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <h2 className="font-anton text-4xl sm:text-5xl uppercase tracking-tight text-[#451A03]">
-              VIDEO TESTIMONIALS
+              Video testimonials
             </h2>
             <p className="text-[#78350F] text-base sm:text-lg mt-2 font-medium">
               Ground reality from highway corridors across India. Listen directly to owner-drivers.
@@ -436,7 +436,7 @@ export default function SurakshaTestimonialsPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
           <div className="max-w-3xl">
             <h2 className="font-anton text-4xl sm:text-5xl uppercase tracking-tight text-[#451A03]">
-              REVIEWS FROM DRIVERS WHO PREFER TO WRITE
+              Reviews from drivers who prefer to write
             </h2>
             <p className="text-[#78350F] text-base sm:text-lg mt-2 font-medium">
               Operational feedback and written reviews from truck operators across India.
@@ -502,7 +502,7 @@ export default function SurakshaTestimonialsPage() {
             </div>
 
             <h2 className="font-anton text-4xl sm:text-5xl uppercase tracking-tight text-[#451A03]">
-              SHARE YOUR STORY
+              Share your story
             </h2>
 
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-medium">
@@ -526,7 +526,7 @@ export default function SurakshaTestimonialsPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton text-5xl sm:text-6xl font-normal tracking-tight text-[#FEF3C7] uppercase">
-              WRITE YOUR OWN SUCCESS STORY.
+              Write your own success story.
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto">

@@ -107,7 +107,7 @@ export default function SurakshaCartPage() {
               SURAKSHA COMMERCIAL CART
             </div>
             <h1 className="font-anton text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#451A03] leading-[0.95] uppercase">
-              YOUR SURAKSHA <span className="italic text-[#DC2626]">TRUCK KIT</span>
+              Your Suraksha <span className="italic text-[#DC2626]">truck kit</span>
             </h1>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-medium">
               Commercial TPMS kit priced transparently at <strong>₹1,700 per tyre</strong>. Review your configuration before proceeding to checkout.
@@ -126,7 +126,7 @@ export default function SurakshaCartPage() {
                   <Truck className="w-8 h-8" />
                 </div>
                 <h2 className="font-anton text-2xl sm:text-3xl text-[#451A03] uppercase">
-                  YOUR SURAKSHA CART IS EMPTY
+                  Your Suraksha cart is empty
                 </h2>
                 <p className="text-[#78350F] text-sm leading-relaxed font-medium">
                   Pick the tyre count for your commercial vehicle (6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, or multi-axle trailer).
@@ -276,7 +276,7 @@ export default function SurakshaCartPage() {
                       Commercial Order Summary
                     </div>
                     <h3 className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase mt-1">
-                      SURAKSHA ORDER TOTAL
+                      Suraksha order total
                     </h3>
                   </div>
 

@@ -36,7 +36,7 @@ export default function SurakshaHowItWorksPage() {
               HOW IT WORKS
             </div>
             <h1 className="font-anton uppercase tracking-wide text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95]">
-              FIFTEEN MINUTES.<br /><span className="italic text-[#DC2626]">THAT&apos;S ALL IT TAKES.</span>
+              Fifteen minutes.<br /><span className="italic text-[#DC2626]">That&apos;s all it takes.</span>
             </h1>
             <SurakshaRotator
               page="5.3"
@@ -94,7 +94,7 @@ export default function SurakshaHowItWorksPage() {
                   </div>
                   <div>
                     <h3 className="font-anton uppercase tracking-wide text-xl sm:text-2xl text-[#FEF3C7] drop-shadow-sm">
-                      15-MINUTE FITMENT WALKTHROUGH
+                      15-minute fitment walkthrough
                     </h3>
                     <p className="text-xs sm:text-sm text-[#FEF3C7]/80 font-medium">
                       In-Cab Display Mount · 4 Wheel Sensors · Automatic Calibration
@@ -134,7 +134,7 @@ export default function SurakshaHowItWorksPage() {
                 INSTALLATION PROCESS
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                THREE STEPS. FIFTEEN MINUTES. FITTED.
+                Three steps. Fifteen minutes. Fitted.
               </h2>
             </div>
 
@@ -148,7 +148,7 @@ export default function SurakshaHowItWorksPage() {
                       Step 1 · Buy
                     </span>
                   </div>
-                  <h3 className="font-anton text-2xl uppercase text-[#451A03]">GET YOUR KIT</h3>
+                  <h3 className="font-anton text-2xl uppercase text-[#451A03]">Get your kit</h3>
                   <p className="text-[#78350F] text-sm leading-relaxed">
                     Pick up your kit at any Truck Wheels centre, or order on WhatsApp for direct delivery. Easy EMI is available through Bajaj Finance.
                   </p>
@@ -167,7 +167,7 @@ export default function SurakshaHowItWorksPage() {
                       Step 2 · Install
                     </span>
                   </div>
-                  <h3 className="font-anton text-2xl uppercase text-[#451A03]">GET IT FITTED</h3>
+                  <h3 className="font-anton text-2xl uppercase text-[#451A03]">Get it fitted</h3>
                   <p className="text-[#78350F] text-sm leading-relaxed">
                     Visit any roadside puncture shop or Truck Wheels centre. In fifteen minutes, the display is mounted in your cabin and the sensors are secured to your tyre valves.
                   </p>
@@ -186,7 +186,7 @@ export default function SurakshaHowItWorksPage() {
                       Step 3 · Monitor
                     </span>
                   </div>
-                  <h3 className="font-anton text-2xl uppercase text-[#451A03]">MONITOR IN REAL TIME</h3>
+                  <h3 className="font-anton text-2xl uppercase text-[#451A03]">Monitor in real time</h3>
                   <p className="text-[#78350F] text-sm leading-relaxed">
                     The in-cabin display continuously shows tyre pressure and temperature. If an issue develops, the display beeps and alerts you. No app or subscription required.
                   </p>
@@ -209,7 +209,7 @@ export default function SurakshaHowItWorksPage() {
                 IN-CAB EXPERIENCE
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                WHAT THE DISPLAY SHOWS
+                What the display shows
               </h2>
               <p className="text-[#78350F] text-lg mt-2 font-medium">
                 Continuous tyre telemetry right in front of the driver.
@@ -313,7 +313,7 @@ export default function SurakshaHowItWorksPage() {
                 ALERT SYSTEM
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                CRITICAL ALERT TYPES
+                Critical alert types
               </h2>
             </div>
 
@@ -367,7 +367,7 @@ export default function SurakshaHowItWorksPage() {
                 CARE & MAINTENANCE
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                MAINTENANCE BEST PRACTICES
+                Maintenance best practices
               </h2>
               <p className="text-[#78350F] text-lg mt-2 font-medium">
                 Simple care guidelines for peak reliability.
@@ -479,7 +479,7 @@ export default function SurakshaHowItWorksPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton uppercase tracking-wide text-5xl sm:text-6xl font-normal tracking-tight text-[#FEF3C7]">
-              READY TO INSTALL?
+              Ready to install?
             </h2>
             <div className="pt-2 flex flex-wrap justify-center gap-4">
               <Link

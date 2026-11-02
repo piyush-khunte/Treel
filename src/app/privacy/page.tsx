@@ -7,13 +7,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy  ·  Treel",
+  title: "Privacy Policy",
   description: "Treel's privacy policy. How we collect, use, share, and protect your personal data. Compliant with India DPDP Act 2023.",
   alternates: {
     canonical: "https://treel.in/privacy",
   },
   openGraph: {
-    title: "Privacy Policy  ·  Treel",
+    title: "Privacy Policy",
     description: "Treel's privacy policy. How we collect, use, share, and protect your personal data. Compliant with India DPDP Act 2023.",
     url: "https://treel.in/privacy",
   },

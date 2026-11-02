@@ -6,8 +6,8 @@ import Link from "next/link";
 import { PressClient } from "./press-client";
 
 export const metadata: Metadata = {
-  title: "Press & Media · Treel",
-  description: "Official press releases, product announcements, and corporate news from Treel Mobility Solutions. India's leader in connected commercial vehicle telematics.",
+  title: "Press & Media",
+  description: "Official press releases, product launches, and corporate updates from Treel Mobility Solutions, India's connected commercial vehicle telematics leader.",
   alternates: {
     canonical: "https://treel.in/press",
     types: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Press & Media · Treel",
+    title: "Press & Media",
     description: "Official press releases, product announcements, and corporate news from Treel Mobility Solutions.",
     url: "https://treel.in/press",
   },

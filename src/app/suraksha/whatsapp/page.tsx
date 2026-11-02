@@ -20,14 +20,14 @@ import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 export const metadata: Metadata = {
   title: "WhatsApp Suraksha · Direct Chat with Support",
   description:
-    "Chat with Suraksha directly on WhatsApp. 24/7 automated responses, business hours human support. Product info, configuration quotes, EMI, installation, and warranty details.",
+    "Chat with Suraksha on WhatsApp. 24/7 automated assistance and human support. Get configuration quotes, EMI approval, installation hubs, and warranty info.",
   alternates: {
     canonical: "https://treel.in/suraksha/whatsapp",
   },
   openGraph: {
     title: "WhatsApp Suraksha · Direct Chat with Support",
     description:
-      "Chat with Suraksha directly on WhatsApp. 24/7 automated responses, business hours human support. Product info, configuration quotes, EMI, installation, and warranty details.",
+      "Chat with Suraksha on WhatsApp. 24/7 automated assistance and human support. Get configuration quotes, EMI approval, installation hubs, and warranty info.",
     url: "https://treel.in/suraksha/whatsapp",
   },
 };
@@ -119,8 +119,8 @@ export default function SurakshaWhatsappPage() {
             </div>
 
             <h1 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95] uppercase">
-              CHAT ON <br />
-              <span className="italic text-[#DC2626]">WHATSAPP.</span>
+              Chat on <br />
+              <span className="italic text-[#DC2626]">WhatsApp.</span>
             </h1>
 
             <SurakshaRotator
@@ -155,7 +155,7 @@ export default function SurakshaWhatsappPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              WHAT YOU CAN DO ON WHATSAPP
+              What you can do on WhatsApp
             </h2>
             <p className="text-[#78350F] text-lg mt-3 font-medium">
               Our dedicated support channel is available 24/7 to answer questions and assist drivers nationwide.
@@ -194,7 +194,7 @@ export default function SurakshaWhatsappPage() {
               RESPONSE TIMELINE
             </div>
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              WHATSAPP RESPONSE TIMES
+              WhatsApp response times
             </h2>
           </div>
 
@@ -235,7 +235,7 @@ export default function SurakshaWhatsappPage() {
           <div className="max-w-4xl mx-auto space-y-8 text-center">
             <div>
               <h2 className="font-anton text-3xl sm:text-4xl font-normal tracking-tight text-[#451A03] uppercase">
-                ALTERNATIVE CONTACT
+                Alternative contact
               </h2>
               <p className="text-[#78350F] text-base mt-2 font-medium">
                 Prefer not to use WhatsApp? These options are also available:

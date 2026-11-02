@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -11,21 +12,22 @@ import {
   AlertTriangle,
   UserCheck,
   Fuel,
-  Sliders,
+  BatteryCharging,
+  Navigation,
   CheckCircle2,
 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Real-Time Telemetry · TMIP",
   description:
-    "TMIP captures sub-second telemetry across every vehicle in your fleet. Pressure, temperature, load, fuel, driver behaviour. One live dashboard, six subsystems.",
+    "TMIP captures sub-second fleet telemetry: pressure, temperature, fuel, battery, trips, and driver metrics across six subsystems in one live dashboard.",
   alternates: {
     canonical: "https://treel.in/tmip/platform/telemetry",
   },
   openGraph: {
     title: "Real-Time Telemetry · TMIP",
     description:
-      "TMIP captures sub-second telemetry across every vehicle in your fleet. Pressure, temperature, load, fuel, driver behaviour. One live dashboard, six subsystems.",
+      "TMIP captures sub-second fleet telemetry: pressure, temperature, fuel, battery, trips, and driver metrics across six subsystems in one live dashboard.",
     url: "https://treel.in/tmip/platform/telemetry",
   },
 };
@@ -34,7 +36,7 @@ const subsystems = [
   {
     title: "Tyres",
     desc: "Pressure, temperature, tread state, and sidewall integrity measured directly from internal wheel-end sensors.",
-    metrics: ["0–200 PSI range", "-40°C to +125°C", "Vibration spectra"],
+    metrics: ["0–200 PSI range", "-40°C to +125°C", "Thermal anomaly alerts"],
     icon: Gauge,
   },
   {
@@ -44,22 +46,22 @@ const subsystems = [
     icon: Fuel,
   },
   {
-    title: "Engine",
-    desc: "Live RPM, engine coolant temperature, oil pressure dynamics, and ignition duty cycles.",
+    title: "Engine Diagnostics",
+    desc: "Live RPM, engine coolant temperature, oil pressure dynamics, and ignition duty cycles via CAN-bus.",
     metrics: ["CAN-bus J1939", "Coolant threshold alerts", "Duty cycle logging"],
     icon: Activity,
   },
   {
-    title: "Driveline",
-    desc: "Gear engagement states, clutch slip behaviour, transmission temperature, and axle load distribution.",
-    metrics: ["Torque demand", "Clutch fatigue", "Transmission health"],
-    icon: Sliders,
+    title: "Battery Health",
+    desc: "Terminal voltage trends, cranking health, dynamic charge state, and internal resistance degradation.",
+    metrics: ["Cranking voltage curve", "State of Charge (SoC)", "Alternator output"],
+    icon: BatteryCharging,
   },
   {
-    title: "Brakes",
-    desc: "Friction pad wear indicators, brake application frequency, ABS activation telemetry, and brake drag detection.",
-    metrics: ["Pad thickness score", "Thermal build-up", "ABS trigger rate"],
-    icon: AlertTriangle,
+    title: "Trips",
+    desc: "Journey tracking across long-haul corridors, route segment speeds, idle intervals, and transit progress.",
+    metrics: ["Corridor timeline", "Active transit hours", "Route attribution"],
+    icon: Navigation,
   },
   {
     title: "Driver",
@@ -71,7 +73,7 @@ const subsystems = [
 
 const alerts = [
   {
-    type: "Tyre pressure low",
+    type: "Low Tyre Pressure Alert",
     badge: "Immediate Action",
     badgeColor: "border-red-500/30 text-red-400 bg-red-500/10",
     vehicle: "MH-12-AB-3456",
@@ -81,13 +83,23 @@ const alerts = [
     icon: ShieldAlert,
   },
   {
-    type: "Predictive maintenance",
-    badge: "Planned Maintenance",
-    badgeColor: "border-amber-500/30 text-amber-400 bg-amber-500/10",
+    type: "High Tyre Temperature Alert",
+    badge: "Immediate Action",
+    badgeColor: "border-red-500/30 text-red-400 bg-red-500/10",
     vehicle: "Fleet KA-53 vehicles",
-    reading: "Brake pad wear projected to reach service threshold in 8–12 days",
-    recommended: "Schedule brake service within scheduled maintenance window",
-    assigned: "Fleet Manager",
+    reading: "Rear-right dual tyre at 96°C — Suspected Brake Jamming",
+    recommended: "Inspect wheel-end for dragging brake caliper immediately",
+    assigned: "Fleet Workshop",
+    icon: AlertTriangle,
+  },
+  {
+    type: "Low Tyre Temperature Alert",
+    badge: "Anomaly Detected",
+    badgeColor: "border-amber-500/30 text-amber-400 bg-amber-500/10",
+    vehicle: "DL-01-EF-9012",
+    reading: "Cold-chain trailer inner wheel running 15°C below ambient corridor mean",
+    recommended: "Verify sensor calibration and hub cap integrity at next depot",
+    assigned: "Maintenance Ops",
     icon: Activity,
   },
   {
@@ -121,17 +133,15 @@ export default function TmipPlatformTelemetryPage() {
       <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-4">
-            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-2">
-              <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
-                TMIP
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <Link href="/tmip/platform" className="hover:text-[#F1F5F9] transition-colors">
-                Platform
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <span className="text-[#3B82F6]">Telemetry</span>
-            </nav>
+            <Breadcrumb
+              variant="tmip"
+              items={[
+                { label: "TMIP", href: "/tmip" },
+                { label: "Platform", href: "/tmip/platform" },
+                { label: "Telemetry", href: "/tmip/platform/telemetry" },
+              ]}
+              className="mb-2"
+            />
 
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
               PLATFORM · TELEMETRY
@@ -245,7 +255,7 @@ export default function TmipPlatformTelemetryPage() {
                   Leading Indicator Protection
                 </h4>
                 <p className="text-[#94A3B8] text-sm leading-relaxed font-ibm-plex">
-                  Detects micro-pressure loss curves, rapid temperature escalations, and driveline anomalies instantly — triggering automated depot work orders before breakdowns happen.
+                  Detects micro-pressure loss curves, rapid temperature escalations, and thermal anomalies instantly — triggering automated depot work orders before breakdowns happen.
                 </p>
               </div>
             </div>
@@ -273,7 +283,7 @@ export default function TmipPlatformTelemetryPage() {
               <div className="flex items-center gap-3">
                 <div className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse" />
                 <span className="font-jetbrains text-sm font-semibold text-[#F1F5F9]">
-                  LIVE TELEMETRY STREAM · 68,000+ ASSETS ACTIVE
+                  LIVE TELEMETRY STREAM · 70,000+ VEHICLES ACTIVE
                 </span>
               </div>
               <div className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8]">
@@ -323,7 +333,7 @@ export default function TmipPlatformTelemetryPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {alerts.map((al) => {
               const Icon = al.icon;
               return (

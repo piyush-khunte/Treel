@@ -137,10 +137,13 @@ export default function TMIPDemoPage() {
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-jetbrains uppercase tracking-wider text-[#94A3B8] mb-1.5">
+                    <label htmlFor="fullName" className="block text-xs font-jetbrains uppercase tracking-wider text-[#94A3B8] mb-1.5">
                       Full name *
                     </label>
                     <input
+                      id="fullName"
+                      name="fullName"
+                      aria-label="Full name"
                       type="text"
                       required
                       placeholder="Your name"
@@ -151,10 +154,13 @@ export default function TMIPDemoPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-jetbrains uppercase tracking-wider text-[#94A3B8] mb-1.5">
+                    <label htmlFor="workEmail" className="block text-xs font-jetbrains uppercase tracking-wider text-[#94A3B8] mb-1.5">
                       Work email *
                     </label>
                     <input
+                      id="workEmail"
+                      name="workEmail"
+                      aria-label="Work email"
                       type="email"
                       required
                       placeholder="you@company.com"
@@ -167,10 +173,13 @@ export default function TMIPDemoPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-jetbrains uppercase tracking-wider text-[#94A3B8] mb-1.5">
+                    <label htmlFor="company" className="block text-xs font-jetbrains uppercase tracking-wider text-[#94A3B8] mb-1.5">
                       Company name *
                     </label>
                     <input
+                      id="company"
+                      name="company"
+                      aria-label="Company name"
                       type="text"
                       required
                       placeholder="Company name"
@@ -181,10 +190,13 @@ export default function TMIPDemoPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-jetbrains uppercase tracking-wider text-[#94A3B8] mb-1.5">
+                    <label htmlFor="role" className="block text-xs font-jetbrains uppercase tracking-wider text-[#94A3B8] mb-1.5">
                       Your role *
                     </label>
                     <select
+                      id="role"
+                      name="role"
+                      aria-label="Your role"
                       value={formData.role}
                       onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                       className="w-full px-3.5 py-2.5 bg-[#050A17] border border-slate-400/20 rounded-[3px] text-[#F1F5F9] focus:outline-none focus:border-[#3B82F6] text-sm"
@@ -202,10 +214,13 @@ export default function TMIPDemoPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-jetbrains uppercase tracking-wider text-[#94A3B8] mb-1.5">
+                    <label htmlFor="fleetSize" className="block text-xs font-jetbrains uppercase tracking-wider text-[#94A3B8] mb-1.5">
                       Fleet size *
                     </label>
                     <select
+                      id="fleetSize"
+                      name="fleetSize"
+                      aria-label="Fleet size"
                       value={formData.fleetSize}
                       onChange={(e) => setFormData({ ...formData, fleetSize: e.target.value })}
                       className="w-full px-3.5 py-2.5 bg-[#050A17] border border-slate-400/20 rounded-[3px] text-[#F1F5F9] focus:outline-none focus:border-[#3B82F6] text-sm"
@@ -219,10 +234,13 @@ export default function TMIPDemoPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-jetbrains uppercase tracking-wider text-[#94A3B8] mb-1.5">
+                    <label htmlFor="vehicleType" className="block text-xs font-jetbrains uppercase tracking-wider text-[#94A3B8] mb-1.5">
                       Vehicle type *
                     </label>
                     <select
+                      id="vehicleType"
+                      name="vehicleType"
+                      aria-label="Vehicle type"
                       value={formData.vehicleType}
                       onChange={(e) => setFormData({ ...formData, vehicleType: e.target.value })}
                       className="w-full px-3.5 py-2.5 bg-[#050A17] border border-slate-400/20 rounded-[3px] text-[#F1F5F9] focus:outline-none focus:border-[#3B82F6] text-sm"
@@ -238,10 +256,13 @@ export default function TMIPDemoPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-jetbrains uppercase tracking-wider text-[#94A3B8] mb-1.5">
+                  <label htmlFor="context" className="block text-xs font-jetbrains uppercase tracking-wider text-[#94A3B8] mb-1.5">
                     Additional context or specific goals (optional)
                   </label>
                   <textarea
+                    id="context"
+                    name="context"
+                    aria-label="Additional context or specific goals"
                     rows={3}
                     placeholder="What are you specifically trying to solve? Any TMIP capabilities you want us to focus on?"
                     value={formData.context}

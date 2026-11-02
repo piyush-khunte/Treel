@@ -17,14 +17,14 @@ UserCheck
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "GDPR · Treel",
+  title: "GDPR Compliance",
   description:
     "Treel's GDPR readiness for future European Union deployments. Data subject rights, data protection officer contact, and lawful bases for processing.",
   alternates: {
     canonical: "https://treel.in/gdpr",
   },
   openGraph: {
-    title: "GDPR · Treel",
+    title: "GDPR Compliance",
     description:
       "Treel's GDPR readiness for future European Union deployments. Data subject rights, data protection officer contact, and lawful bases for processing.",
     url: "https://treel.in/gdpr",

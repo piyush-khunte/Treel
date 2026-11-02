@@ -320,7 +320,7 @@ export const GLOBAL_COUNTRIES: CountryPresence[] = [
       "Suraksha Commercial Operations",
     ],
     description:
-      "Global corporate headquarters, core sensor R&D, firmware engineering, and central cloud telemetry infrastructure managing 68,000+ connected vehicles and 2M+ tyres daily.",
+      "Global corporate headquarters, core sensor R&D, firmware engineering, and central cloud telemetry infrastructure managing 70,000+ vehicles under active management and 2M+ tyres daily.",
     highlight: "Global Engineering & Central Operations",
     coordinates: { lat: 20.5937, lng: 78.9629, x: 731.8, y: 211.2 },
     labelConfig: { anchor: "left", dx: 14, dy: 12 },

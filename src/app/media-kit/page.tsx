@@ -15,7 +15,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Media Kit · Treel",
+  title: "Media Kit",
   description: "Download Treel brand assets, founder photos, product photography, and fact sheet. For press, partners, and industry analysts.",
   alternates: {
     canonical: "https://treel.in/media-kit",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Media Kit · Treel",
+    title: "Media Kit",
     description: "Download Treel brand assets, founder photos, product photography, and fact sheet. For press, partners, and industry analysts.",
     url: "https://treel.in/media-kit",
   },

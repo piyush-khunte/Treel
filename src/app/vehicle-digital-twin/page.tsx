@@ -10,14 +10,14 @@ import {
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
-  title: "What is a Vehicle Digital Twin?  ·  Treel",
-  description: "A Vehicle Digital Twin is a live software model of a physical vehicle, updated in real time from onboard sensors. It turns each vehicle into a queryable object. Definition, architecture, and business value, explained by Treel.",
+  title: "What is a Vehicle Digital Twin?",
+  description: "A Vehicle Digital Twin is a live software model of a physical vehicle, updated in real time from sensors into a queryable object. Explained by Treel.",
   alternates: {
     canonical: "https://treel.in/vehicle-digital-twin",
   },
   openGraph: {
-    title: "What is a Vehicle Digital Twin?  ·  Treel",
-    description: "A Vehicle Digital Twin is a live software model of a physical vehicle, updated in real time from onboard sensors. It turns each vehicle into a queryable object. Definition, architecture, and business value, explained by Treel.",
+    title: "What is a Vehicle Digital Twin?",
+    description: "A Vehicle Digital Twin is a live software model of a physical vehicle, updated in real time from sensors into a queryable object. Explained by Treel.",
     url: "https://treel.in/vehicle-digital-twin",
   },
 };
@@ -48,7 +48,7 @@ export default function VehicleDigitalTwinPage() {
               What is a Vehicle Digital Twin?
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-inter max-w-3xl">
-              A <strong className="text-white font-semibold">Vehicle Digital Twin is a live software model of a physical vehicle, continuously updated in real time from onboard sensors</strong>. Every subsystem — engine, tyres, fuel, driveline, brakes, electrical — is represented as queryable data. Fleet operators reason about the vehicle the way software engineers reason about their data warehouse: with structured queries, alerts, analytics, and predictive models.
+              A <strong className="text-white font-semibold">Vehicle Digital Twin is a live software model of a physical vehicle, continuously updated in real time from onboard sensors</strong>. Every subsystem — tyres, fuel, engine diagnostics, battery health, trips, driver behaviour — is represented as queryable data. Fleet operators reason about the vehicle the way software engineers reason about their data warehouse: with structured queries, alerts, analytics, and predictive models.
             </p>
           </div>
         </div>
@@ -62,7 +62,7 @@ export default function VehicleDigitalTwinPage() {
               AT A GLANCE
             </div>
             <p className="text-[#FAF7F2] text-base sm:text-lg leading-relaxed font-inter">
-              A Vehicle Digital Twin is a live software model of a physical vehicle. It receives real-time data from onboard sensors, represents every subsystem as queryable data, and enables predictive analytics on component health, driver behaviour, and operating cost. TMIP is Treel&apos;s Vehicle Digital Twin platform, operating across 68,000 vehicles in India.
+              A Vehicle Digital Twin is a live software model of a physical vehicle. It receives real-time data from onboard sensors, represents every subsystem as queryable data, and enables predictive analytics on component health, driver behaviour, and operating cost. TMIP is Treel&apos;s Vehicle Digital Twin platform, operating with 70,000+ vehicles under active management in India.
             </p>
           </div>
         </div>
@@ -91,7 +91,7 @@ export default function VehicleDigitalTwinPage() {
                   The State Layer
                 </h3>
                 <p className="text-sm text-[#94A3B8] leading-relaxed font-inter">
-                  Captures what is true about the vehicle right now: tyre pressures, temperatures, fuel level, load, engine parameters, brake wear, driver behaviour signals. This layer updates continuously as sensors report.
+                  Captures what is true about the vehicle right now: tyre pressures, temperatures, fuel level, battery health, engine diagnostics, trip parameters, driver behaviour signals. This layer updates continuously as sensors report.
                 </p>
               </div>
 
@@ -163,7 +163,7 @@ export default function VehicleDigitalTwinPage() {
                   03
                 </div>
                 <div>
-                  <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2]">Step 3 · Operators query</h3>
+                  <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2]">Step 3 · Check All Reports</h3>
                   <p className="text-sm text-[#94A3B8] mt-2 leading-relaxed font-inter">
                     Fleet operators access the Digital Twin through the TMIP dashboard, or scheduled reports. They ask questions (&ldquo;which vehicles are due for tyre replacement in the next 30 days?&rdquo;) and get answers with the vehicle&apos;s own data as the source.
                   </p>
@@ -233,7 +233,7 @@ export default function VehicleDigitalTwinPage() {
               Related reading
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link href="/research/roi-fleet-intelligence" className="p-6 sm:p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group block">
                 <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">Read the technical whitepaper</h3>
                 <p className="text-xs text-[#94A3B8] mt-2">Deep dive into ROI analysis and telemetry architecture.</p>
@@ -247,14 +247,6 @@ export default function VehicleDigitalTwinPage() {
                 <p className="text-xs text-[#94A3B8] mt-2">Moving from monitoring components to reasoning about vehicles.</p>
                 <div className="mt-4 font-semibold text-xs text-[#D5573B] flex items-center gap-1 group-hover:gap-2 transition-all">
                   Learn more <ChevronRight className="w-3.5 h-3.5" />
-                </div>
-              </Link>
-
-              <Link href="/tmip" className="p-6 sm:p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group block">
-                <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">Explore TMIP</h3>
-                <p className="text-xs text-[#94A3B8] mt-2">Enterprise fleet platform features and integrations.</p>
-                <div className="mt-4 font-semibold text-xs text-[#D5573B] flex items-center gap-1 group-hover:gap-2 transition-all">
-                  Explore <ChevronRight className="w-3.5 h-3.5" />
                 </div>
               </Link>
             </div>

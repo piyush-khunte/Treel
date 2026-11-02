@@ -4,14 +4,14 @@ import { ArrowRight, Database, Award, ShieldCheck, Cpu, TrendingUp, DollarSign, 
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
-  title: "Why Treel · The Mobility Intelligence Choice",
-  description: "Six reasons enterprise fleet operators, owner-drivers, and consumers choose Treel: data scale, category authority, industrial backing, technical depth, customer proof, financial rigour.",
+  title: "Why Choose Us — The Mobility Intelligence Choice",
+  description: "Six reasons fleet operators, drivers, and consumers choose Treel: data scale, category authority, industrial backing, proof, and financial rigour.",
   alternates: {
     canonical: "https://treel.in/why-treel",
   },
   openGraph: {
-    title: "Why Treel · The Mobility Intelligence Choice",
-    description: "Six reasons enterprise fleet operators, owner-drivers, and consumers choose Treel: data scale, category authority, industrial backing, technical depth, customer proof, financial rigour.",
+    title: "Why Choose Us — The Mobility Intelligence Choice",
+    description: "Six reasons fleet operators, drivers, and consumers choose Treel: data scale, category authority, industrial backing, proof, and financial rigour.",
     url: "https://treel.in/why-treel",
   },
 };
@@ -22,7 +22,7 @@ export default function WhyTreelPage() {
       num: "01",
       icon: Database,
       title: "The largest connected commercial vehicle dataset in India.",
-      body: "Sixty-eight thousand vehicles under active management. Sub-second telemetry from each. Data from over 2 million tyres. The dataset is the moat, and it compounds every day.",
+      body: "70,000+ vehicles under active management. Sub-second telemetry from each. Data from over 2 million tyres. The dataset is the moat, and it compounds every day.",
     },
     {
       num: "02",
@@ -46,7 +46,7 @@ export default function WhyTreelPage() {
       num: "05",
       icon: TrendingUp,
       title: "Customer proof.",
-      body: "Two hundred enterprise customers. Nine-month median payback. 99.7 percent platform uptime, trailing 90 days. The numbers earn the brand its position. Nothing here is aspirational.",
+      body: "Two hundred enterprise customers. 9 to 12 months median payback. 99.7 percent platform uptime, trailing 90 days. The numbers earn the brand its position. Nothing here is aspirational.",
     },
     {
       num: "06",
@@ -84,7 +84,7 @@ export default function WhyTreelPage() {
               Six reasons the mobility intelligence category runs on Treel.
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-inter max-w-3xl">
-              You have options in the fleet intelligence space. Here is why two hundred enterprise fleets, sixty-eight thousand vehicles, and an entire owner-driver community have chosen Treel to run on.
+              You have options in the fleet intelligence space. Here is why two hundred enterprise fleets, 70,000+ vehicles under active management, and an entire owner-driver community have chosen Treel to run on.
             </p>
           </div>
         </div>

@@ -119,7 +119,7 @@ export default function SurakshaContactPage() {
             </div>
 
             <h1 className="font-anton uppercase tracking-normal text-5xl sm:text-6xl lg:text-7xl text-[#451A03] leading-[0.95]">
-              TALK TO US.
+              Talk to us.
             </h1>
 
             <SurakshaRotator
@@ -220,7 +220,7 @@ export default function SurakshaContactPage() {
 
                 <div className="space-y-2">
                   <h2 className="font-anton text-3xl sm:text-4xl uppercase tracking-normal text-[#451A03]">
-                    THANK YOU! MESSAGE RECEIVED.
+                    Thank you! Message received.
                   </h2>
                   <p className="text-[#78350F] text-base leading-relaxed font-medium max-w-lg mx-auto">
                     Your message has reached our support team. We will call or message you on WhatsApp within 4 business hours. For urgent highway assistance, call toll-free at 1800 833 0233.
@@ -247,7 +247,7 @@ export default function SurakshaContactPage() {
               <>
                 <div className="space-y-2 border-b border-[#451A03]/10 pb-4">
                   <h2 className="font-anton text-3xl sm:text-4xl uppercase tracking-normal text-[#451A03]">
-                    SEND A MESSAGE — WE WILL CALL YOU
+                    Send a message — we will call you
                   </h2>
                   <p className="text-[#78350F] text-sm font-medium">
                     Fill in your contact details and inquiry below, and our team will get in touch in your preferred language.
@@ -433,7 +433,7 @@ export default function SurakshaContactPage() {
                   <MapPin className="w-5 h-5" />
                 </div>
                 <h3 className="font-anton text-2xl uppercase tracking-normal text-[#451A03]">
-                  NEAREST CENTRE FINDER
+                  Nearest centre finder
                 </h3>
                 <p className="text-sm text-[#78350F] leading-relaxed">
                   Locate an authorized fitment hub or Truck Wheels centre near you:
@@ -455,7 +455,7 @@ export default function SurakshaContactPage() {
                   <MessageCircle className="w-5 h-5 text-[#25D366]" />
                 </div>
                 <h3 className="font-anton text-2xl uppercase tracking-normal text-[#451A03]">
-                  WHATSAPP SHORTCUT
+                  WhatsApp shortcut
                 </h3>
                 <p className="text-sm text-[#78350F] leading-relaxed">
                   For our fastest response, send us a direct message on WhatsApp.
@@ -478,7 +478,7 @@ export default function SurakshaContactPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton text-5xl sm:text-6xl font-normal tracking-tight text-[#FEF3C7] uppercase">
-              THE SURAKSHA TEAM IS HERE FOR YOU.
+              The Suraksha team is here for you.
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto">

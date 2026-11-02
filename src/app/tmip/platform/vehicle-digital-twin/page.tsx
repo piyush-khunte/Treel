@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -17,14 +18,14 @@ import {
 export const metadata: Metadata = {
   title: "Vehicle Digital Twin · TMIP",
   description:
-    "The Vehicle Digital Twin is the architectural core of TMIP. A live software model of every truck in your fleet, continuously updated, deeply queryable. See how it works.",
+    "The Vehicle Digital Twin is the core of TMIP: a live software model of every truck in your fleet, continuously updated and deeply queryable. Learn more.",
   alternates: {
     canonical: "https://treel.in/tmip/platform/vehicle-digital-twin",
   },
   openGraph: {
     title: "Vehicle Digital Twin · TMIP",
     description:
-      "The Vehicle Digital Twin is the architectural core of TMIP. A live software model of every truck in your fleet, continuously updated, deeply queryable. See how it works.",
+      "The Vehicle Digital Twin is the core of TMIP: a live software model of every truck in your fleet, continuously updated and deeply queryable. Learn more.",
     url: "https://treel.in/tmip/platform/vehicle-digital-twin",
   },
 };
@@ -33,7 +34,7 @@ const layers = [
   {
     title: "State layer",
     badge: "Real-Time Telemetry",
-    desc: "Real-time snapshot of every subsystem. Tyre pressures, temperatures, loads. Fuel level, engine parameters, brake wear. Driver behaviour indicators. Location and route context. State updates sub-second as sensors report.",
+    desc: "Real-time snapshot of every subsystem: tyres, fuel, engine diagnostics, battery health, trips, and driver behaviour. State updates sub-second as sensors report.",
     icon: Activity,
     accent: "border-blue-500/30 text-[#3B82F6] bg-blue-500/10",
     metrics: ["Sub-second frequency", "6 subsystems", "0–200 PSI range"],
@@ -100,7 +101,7 @@ const roiMetrics = [
     detail: "Unscheduled roadside tyre and mechanical breakdowns eliminated",
   },
   {
-    value: "9-month",
+    value: "9–12 mo",
     label: "Median payback",
     detail: "Full deployment capital payback across commercial vehicle classes",
   },
@@ -109,7 +110,7 @@ const roiMetrics = [
 const relatedFeatures = [
   {
     title: "Real-time telemetry",
-    desc: "Sub-second IoT telemetry across six vehicle subsystems. Pressure, temperature, load, fuel, and driveline.",
+    desc: "Sub-second IoT telemetry across six vehicle subsystems: tyres, fuel, engine diagnostics, battery health, trips, and driver behaviour.",
     href: "/tmip/platform/telemetry",
     tag: "Platform Core",
   },
@@ -146,17 +147,15 @@ export default function TmipPlatformVehicleDigitalTwinPage() {
       <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-4">
-            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-2">
-              <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
-                TMIP
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <Link href="/tmip/platform" className="hover:text-[#F1F5F9] transition-colors">
-                Platform
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <span className="text-[#3B82F6]">Vehicle Digital Twin</span>
-            </nav>
+            <Breadcrumb
+              variant="tmip"
+              items={[
+                { label: "TMIP", href: "/tmip" },
+                { label: "Platform", href: "/tmip/platform" },
+                { label: "Vehicle Digital Twin", href: "/tmip/platform/vehicle-digital-twin" },
+              ]}
+              className="mb-2"
+            />
 
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
               PLATFORM · VEHICLE DIGITAL TWIN

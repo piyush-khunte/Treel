@@ -64,7 +64,7 @@ export default function SurakshaCentresPage() {
               {centres.length} AUTHORISED FITMENT CENTRES
             </div>
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
-              FIND YOUR <span className="italic text-[#DC2626]">NEAREST CENTRE.</span>
+              Find your <span className="italic text-[#DC2626]">nearest centre.</span>
             </h1>
             <SurakshaRotator
               page="5.12"

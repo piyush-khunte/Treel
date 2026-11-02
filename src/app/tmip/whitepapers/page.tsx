@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
@@ -42,13 +43,14 @@ export default async function TmipWhitepapersPage() {
       <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-4">
-            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-2 sm:mb-3">
-              <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
-                TMIP
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
-              <span className="text-[#3B82F6]">Whitepapers</span>
-            </nav>
+            <Breadcrumb
+              variant="tmip"
+              items={[
+                { label: "TMIP", href: "/tmip" },
+                { label: "Whitepapers", href: "/tmip/whitepapers" },
+              ]}
+              className="mb-2 sm:mb-3"
+            />
 
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
               WHITEPAPERS &amp; RESEARCH

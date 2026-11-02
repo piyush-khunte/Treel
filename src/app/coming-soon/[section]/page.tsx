@@ -62,7 +62,7 @@ export async function generateMetadata({
   const title = config ? config.title : formatSectionTitle(section);
 
   return {
-    title: `${title} · Coming Soon · Treel`,
+    title: `${title} — Coming Soon`,
     description: config
       ? config.teaser
       : `${title} is currently under development on the Treel roadmap. Subscribe for release updates.`,
@@ -70,7 +70,7 @@ export async function generateMetadata({
       canonical: `https://treel.in/coming-soon/${section}`,
     },
     openGraph: {
-      title: `${title} · Coming Soon · Treel`,
+      title: `${title} — Coming Soon`,
       description: config
         ? config.teaser
         : `${title} is currently under development on the Treel roadmap. Subscribe for release updates.`,

@@ -19,14 +19,14 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 export const metadata: Metadata = {
   title: "Platform Overview  ·  TMIP",
   description:
-    "The TMIP platform architecture: five layers from sensor to interface. Vehicle Digital Twin at the core. API-first. Real-time telemetry, predictive maintenance, integrations.",
+    "The TMIP platform architecture: five layers from sensor to interface. Vehicle Digital Twin at core. API-first real-time telemetry and maintenance.",
   alternates: {
     canonical: "https://treel.in/tmip/platform",
   },
   openGraph: {
     title: "Platform Overview  ·  TMIP",
     description:
-      "The TMIP platform architecture: five layers from sensor to interface. Vehicle Digital Twin at the core. API-first. Real-time telemetry, predictive maintenance, integrations.",
+      "The TMIP platform architecture: five layers from sensor to interface. Vehicle Digital Twin at core. API-first real-time telemetry and maintenance.",
     url: "https://treel.in/tmip/platform",
   },
 };
@@ -81,7 +81,7 @@ const differentiators = [
   },
   {
     title: "Predictive analytics",
-    desc: "Built on longitudinal telemetry across 68,000+ commercial vehicles, not static high/low alert thresholds that cause operator alarm fatigue.",
+    desc: "Built on longitudinal telemetry across 70,000+ vehicles under active management, not static high/low alert thresholds that cause operator alarm fatigue.",
   },
   {
     title: "Sub-second telemetry",
@@ -106,7 +106,7 @@ const featureCards = [
   },
   {
     title: "Real-time telemetry",
-    desc: "Sub-second streaming of pressure, temperature, load, and velocity across your entire multi-depot fleet.",
+    desc: "Sub-second streaming of pressure, temperature, battery, trips, and engine diagnostics across your entire multi-depot fleet.",
     href: "/tmip/platform/telemetry",
     icon: Activity,
   },

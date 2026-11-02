@@ -35,7 +35,7 @@ export default function SurakshaSimplicityPage() {
               SIMPLICITY
             </div>
             <h1 className="font-anton uppercase tracking-wide text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95]">
-              FIT AT ANY PUNCTURE SHOP.<br /><span className="italic text-[#DC2626]">WATCH IN YOUR CABIN.</span>
+              Fit at any puncture shop.<br /><span className="italic text-[#DC2626]">Watch in your cabin.</span>
             </h1>
             <SurakshaRotator
               page="5.11"
@@ -59,7 +59,7 @@ export default function SurakshaSimplicityPage() {
                 HASSLE-FREE PROMISE
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                WHAT SURAKSHA DOES NOT REQUIRE
+                What Suraksha does not require
               </h2>
               <p className="text-[#78350F] text-base mt-2 font-medium">
                 No extra complexity, no hidden dependencies:
@@ -134,7 +134,7 @@ export default function SurakshaSimplicityPage() {
                 FAST INSTALLATION
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                15 MINUTES, 3 SIMPLE STEPS
+                15 minutes, 3 simple steps
               </h2>
               <p className="text-[#78350F] text-base mt-2 font-medium">
                 Step-by-step visual:
@@ -289,7 +289,7 @@ export default function SurakshaSimplicityPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FEF3C7]">
-              THAT IS TRUE SIMPLICITY.
+              That is true simplicity.
             </h2>
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
               Get your kit, install in 15 minutes, and drive with complete peace of mind.

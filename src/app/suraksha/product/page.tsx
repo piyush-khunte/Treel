@@ -19,14 +19,14 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Suraksha Kit · Product Details · In-Cab Display + Tyre Sensors",
   description:
-    "Suraksha safety kit for trucks: 1 in-cab display + tyre sensors as per truck configuration. ARAI certified. 3-year sensor warranty. Fits any truck, any tyre brand.",
+    "Suraksha safety kit for trucks: 1 in-cab display + tyre sensors per truck layout. ARAI certified with 3-year warranty. Fits any truck and tyre brand.",
   alternates: {
     canonical: "https://treel.in/suraksha/product",
   },
   openGraph: {
     title: "Suraksha Kit · Product Details · In-Cab Display + Tyre Sensors",
     description:
-      "Suraksha safety kit for trucks: 1 in-cab display + tyre sensors as per truck configuration. ARAI certified. 3-year sensor warranty. Fits any truck, any tyre brand.",
+      "Suraksha safety kit for trucks: 1 in-cab display + tyre sensors per truck layout. ARAI certified with 3-year warranty. Fits any truck and tyre brand.",
     url: "https://treel.in/suraksha/product",
   },
 };
@@ -114,8 +114,85 @@ const differentiators = [
 ];
 
 export default function SurakshaProductPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Suraksha Commercial Truck TPMS Kit",
+    image: "https://treel.in/images/treel-main-logo.jpg",
+    description:
+      "Suraksha safety kit for Indian commercial trucks with in-cab wireless display and 4 to 18 tyre sensors.",
+    sku: "TREEL-SURAKSHA-KIT",
+    mpn: "TRL-SRK-01",
+    brand: {
+      "@type": "Brand",
+      name: "Treel",
+    },
+    offers: {
+      "@type": "Offer",
+      url: "https://treel.in/suraksha/product",
+      price: "1700",
+      priceCurrency: "INR",
+      priceValidUntil: "2027-12-31",
+      itemCondition: "https://schema.org/NewCondition",
+      availability: "https://schema.org/InStock",
+      seller: {
+        "@type": "Organization",
+        name: "Treel Mobility Solutions",
+      },
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: "1700",
+        priceCurrency: "INR",
+        unitText: "per tyre sensor",
+        referenceQuantity: {
+          "@type": "QuantitativeValue",
+          value: "1",
+          unitCode: "C62",
+        },
+      },
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "IN",
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: 15,
+        returnMethod: "https://schema.org/ReturnByMail",
+        returnFees: "https://schema.org/FreeReturn",
+      },
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingRate: {
+          "@type": "MonetaryAmount",
+          value: "0",
+          currency: "INR",
+        },
+        shippingDestination: {
+          "@type": "DefinedRegion",
+          addressCountry: "IN",
+        },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: {
+            "@type": "QuantitativeValue",
+            minValue: 0,
+            maxValue: 1,
+            unitCode: "d",
+          },
+          transitTime: {
+            "@type": "QuantitativeValue",
+            minValue: 2,
+            maxValue: 5,
+            unitCode: "d",
+          },
+        },
+      },
+    },
+  };
   return (
     <div className="bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-16 pb-16 sm:pt-20 sm:pb-24 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
@@ -133,7 +210,7 @@ export default function SurakshaProductPage() {
             </div>
 
             <h1 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95] uppercase">
-              WHAT&apos;S IN THE BOX?
+              What&apos;s in the box?
             </h1>
 
             <SurakshaRotator
@@ -155,7 +232,7 @@ export default function SurakshaProductPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              INCLUDED IN THE KIT
+              Included in the kit
             </h2>
             <p className="text-[#DC2626] font-rubik text-lg font-bold mt-2">
               What ships in the box
@@ -235,7 +312,7 @@ export default function SurakshaProductPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              WHAT MAKES SURAKSHA DIFFERENT
+              What makes Suraksha different
             </h2>
             <p className="text-[#DC2626] font-rubik text-lg font-bold mt-2">
               What Suraksha does that others don&apos;t.
@@ -274,7 +351,7 @@ export default function SurakshaProductPage() {
             </div>
 
             <h2 className="font-anton text-4xl sm:text-5xl font-normal text-[#451A03] uppercase">
-              3-YEAR SENSOR WARRANTY
+              3-year sensor warranty
             </h2>
 
             <p className="text-[#DC2626] font-rubik text-lg font-bold">
@@ -297,7 +374,7 @@ export default function SurakshaProductPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton text-5xl sm:text-6xl font-normal tracking-tight text-[#FEF3C7] uppercase">
-              READY TO INSTALL?
+              Ready to install?
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto">

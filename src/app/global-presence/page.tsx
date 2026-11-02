@@ -13,16 +13,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Our Global Presence · Treel Mobility Solutions",
+  title: "Our Global Presence",
   description:
-    "Treel's worldwide deployment footprint: Truck TPMS, TMIP, OTR Mining TPMS, Smart TBR, 2-Wheeler OEM, and Defense vehicle telemetry across Europe, South America, Africa, Middle East, and Asia.",
+    "Explore Treel's global footprint: Truck TPMS, TMIP, OTR Mining, and OEM vehicle telemetry across Europe, South America, Africa, Middle East, and Asia.",
   alternates: {
     canonical: "https://treel.in/global-presence",
   },
   openGraph: {
-    title: "Our Global Presence · Treel Mobility Solutions",
+    title: "Our Global Presence",
     description:
-      "Treel's worldwide deployment footprint: Truck TPMS, TMIP, OTR Mining TPMS, Smart TBR, 2-Wheeler OEM, and Defense vehicle telemetry across Europe, South America, Africa, Middle East, and Asia.",
+      "Explore Treel's global footprint: Truck TPMS, TMIP, OTR Mining, and OEM vehicle telemetry across Europe, South America, Africa, Middle East, and Asia.",
     url: "https://treel.in/global-presence",
   },
 };

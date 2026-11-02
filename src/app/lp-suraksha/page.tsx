@@ -7,7 +7,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Suraksha Truck Tyre Safety Kit | TPMS for Trucks | Treel",
+  title: "Suraksha Truck Tyre Safety Kit | TPMS for Trucks",
   description:
     "Suraksha by Treel: an in-cab display and tyre sensors that warn truck drivers before a tyre fails. Fits any truck in 15 minutes. Easy EMI available.",
   robots: {

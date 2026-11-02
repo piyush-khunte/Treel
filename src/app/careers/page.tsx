@@ -13,14 +13,14 @@ import Link from "next/link";
 import { CareersInteractiveRoster } from "./careers-client";
 
 export const metadata: Metadata = {
-  title: "Careers at Treel  ·  Build Mobility Intelligence",
-  description: "Careers at Treel Mobility Solutions. Open engineering, product, and go-to-market roles. Build India's mobility intelligence platform from Pune. See what's open.",
+  title: "Careers — Build Mobility Intelligence",
+  description: "Explore open engineering, product, and growth roles at Treel Mobility Solutions in Pune. Help build India's leading mobility intelligence platform.",
   alternates: {
     canonical: "https://treel.in/careers",
   },
   openGraph: {
-    title: "Careers at Treel  ·  Build Mobility Intelligence",
-    description: "Careers at Treel Mobility Solutions. Open engineering, product, and go-to-market roles. Build India's mobility intelligence platform from Pune. See what's open.",
+    title: "Careers — Build Mobility Intelligence",
+    description: "Explore open engineering, product, and growth roles at Treel Mobility Solutions in Pune. Help build India's leading mobility intelligence platform.",
     url: "https://treel.in/careers",
   },
 };

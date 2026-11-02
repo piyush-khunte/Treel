@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { InsightsClientView } from "./insights-client";
 
 export const metadata: Metadata = {
-  title: "Insights  ·  Mobility Intelligence Thinking from Treel",
-  description: "Analysis, commentary, and long-form thinking on mobility intelligence, fleet operations, and India's commercial vehicle industry from Treel's team and founder.",
+  title: "Mobility Intelligence Insights & Perspectives",
+  description: "In-depth analysis and commentary on mobility intelligence, fleet operations, and India's commercial vehicle sector from Treel's leadership team.",
   alternates: {
     canonical: "https://treel.in/insights",
   },
   openGraph: {
-    title: "Insights  ·  Mobility Intelligence Thinking from Treel",
-    description: "Analysis, commentary, and long-form thinking on mobility intelligence, fleet operations, and India's commercial vehicle industry from Treel's team and founder.",
+    title: "Mobility Intelligence Insights & Perspectives",
+    description: "In-depth analysis and commentary on mobility intelligence, fleet operations, and India's commercial vehicle sector from Treel's leadership team.",
     url: "https://treel.in/insights",
   },
 };

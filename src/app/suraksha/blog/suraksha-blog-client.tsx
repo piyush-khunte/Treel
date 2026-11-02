@@ -288,7 +288,7 @@ export function SurakshaBlogClient({ initialArticles }: SurakshaBlogClientProps 
             </div>
 
             <h1 className="font-anton uppercase tracking-normal text-5xl sm:text-6xl lg:text-7xl text-[#451A03] leading-[0.95]">
-              THE DRIVERS&apos; <span className="italic text-[#DC2626]">BLOG.</span>
+              The drivers&apos; <span className="italic text-[#DC2626]">blog.</span>
             </h1>
 
             <SurakshaRotator
@@ -489,7 +489,7 @@ export function SurakshaBlogClient({ initialArticles }: SurakshaBlogClientProps 
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="space-y-2 max-w-2xl">
                 <h3 className="font-anton text-3xl sm:text-4xl uppercase tracking-normal text-[#451A03]">
-                  WANT BLOG UPDATES?
+                  Want blog updates?
                 </h3>
                 <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-medium">
                   Get new articles sent directly to WhatsApp. No spam, just practical trucking guidance.
@@ -512,7 +512,7 @@ export function SurakshaBlogClient({ initialArticles }: SurakshaBlogClientProps 
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton text-5xl sm:text-6xl font-normal tracking-tight text-[#FEF3C7] uppercase">
-              SAFETY AND SAVINGS GO HAND IN HAND.
+              Safety and savings go hand in hand.
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto">

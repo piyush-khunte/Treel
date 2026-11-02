@@ -13,14 +13,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Data Infrastructure · Treel",
-  description: "Treel operates India's largest connected commercial vehicle dataset. 68,000 vehicles under active management, sub-second telemetry, data from over 2 million tyres. Infrastructure, governance, and privacy.",
+  title: "Data Infrastructure",
+  description: "India's largest fleet dataset: sub-second telemetry from 70,000+ vehicles and 2M+ tyres, built for enterprise scale, data governance, and DPDP compliance.",
   alternates: {
     canonical: "https://treel.in/data-infrastructure",
   },
   openGraph: {
-    title: "Data Infrastructure · Treel",
-    description: "Treel operates India's largest connected commercial vehicle dataset. 68,000 vehicles under active management, sub-second telemetry, data from over 2 million tyres. Infrastructure, governance, and privacy.",
+    title: "Data Infrastructure",
+    description: "India's largest fleet dataset: sub-second telemetry from 70,000+ vehicles and 2M+ tyres, built for enterprise scale, data governance, and DPDP compliance.",
     url: "https://treel.in/data-infrastructure",
   },
 };
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export default function DataInfrastructurePage() {
   const metrics = [
     {
-      value: "68,412",
+      value: "70,000+",
       label: "Vehicles under active management",
       detail: "Continuous telemetry reporting from commercial fleets"
     },
@@ -91,7 +91,7 @@ export default function DataInfrastructurePage() {
               India&apos;s largest connected commercial vehicle dataset.
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-inter max-w-3xl">
-              68,412 vehicles under active management. Sub-second telemetry from each. Data from over 2 million tyres. This is the foundation Treel&apos;s mobility intelligence platform runs on.
+              70,000+ vehicles under active management. Sub-second telemetry from each. Data from over 2 million tyres. This is the foundation Treel&apos;s mobility intelligence platform runs on.
             </p>
           </div>
         </div>
@@ -106,7 +106,7 @@ export default function DataInfrastructurePage() {
                 What the numbers mean.
               </h2>
               <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-                Sixty-eight thousand vehicles report to the Treel platform continuously. Each vehicle generates several million telemetry points per year. Across the fleet, we process billions of measurements. This is not a research dataset. It is an operating dataset that fleets bet their business on every day.
+                Over 70,000 vehicles under active management report to the Treel platform continuously. Each vehicle generates several million telemetry points per year. Across the fleet, we process billions of measurements. This is not a research dataset. It is an operating dataset that fleets bet their business on every day.
               </p>
             </div>
 

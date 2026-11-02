@@ -30,19 +30,19 @@ export async function generateMetadata({
 
   if (!profile) {
     return {
-      title: "Author Not Found · Treel",
+      title: "Author Not Found",
       description: "The requested author profile could not be found.",
     };
   }
 
   return {
-    title: `${profile.name} · Author Profile · Treel Mobility Solutions`,
+    title: `${profile.name} — Author Profile`,
     description: profile.bio,
     alternates: {
       canonical: `https://treel.in/authors/${profile.slug}`,
     },
     openGraph: {
-      title: `${profile.name} · Treel Mobility Solutions`,
+      title: `${profile.name} — Author Profile`,
       description: profile.bio,
       url: `https://treel.in/authors/${profile.slug}`,
       type: "profile",

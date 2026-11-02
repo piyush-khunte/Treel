@@ -13,13 +13,13 @@ import Link from "next/link";
 import { CorporateContactForm } from "./contact-form";
 
 export const metadata: Metadata = {
-  title: "Contact Treel · Get in Touch",
+  title: "Contact Us — Get in Touch",
   description: "Contact Treel Mobility Solutions. Enterprise sales, media inquiries, partnerships, general questions. Toll-free 1800 833 0233 or email hello@treel.in.",
   alternates: {
     canonical: "https://treel.in/contact",
   },
   openGraph: {
-    title: "Contact Treel · Get in Touch",
+    title: "Contact Us — Get in Touch",
     description: "Contact Treel Mobility Solutions. Enterprise sales, media inquiries, partnerships, general questions. Toll-free 1800 833 0233 or email hello@treel.in.",
     url: "https://treel.in/contact",
   },

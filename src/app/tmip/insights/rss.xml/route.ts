@@ -6,7 +6,7 @@ export async function GET() {
 
   const articles = [
     {
-      title: "The Fleet ROI Paper — How TMIP customers reach payback in nine months",
+      title: "The Fleet ROI Paper — How TMIP customers reach payback in 9 to 12 months",
       url: `${baseUrl}/tmip/whitepapers/roi-fleet-intelligence`,
       description:
         "The economics of mobility intelligence deployment across two hundred TMIP customers. Payback drivers, ROI attribution, and what fuel-and-tyre economics look like when you can see them at vehicle level.",

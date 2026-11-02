@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
@@ -35,15 +36,15 @@ export default function TmipWhitepapersSlugPage() {
       {/* Header & Breadcrumb */}
       <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-3 sm:mb-4">
-            <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
-              TMIP
-            </Link>
-            <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
-            <Link href="/tmip/whitepapers" className="hover:text-[#F1F5F9] transition-colors">
-              Whitepapers
-            </Link>
-          </nav>
+          <Breadcrumb
+            variant="tmip"
+            items={[
+              { label: "TMIP", href: "/tmip" },
+              { label: "Whitepapers", href: "/tmip/whitepapers" },
+              { label: "Research Archive" },
+            ]}
+            className="mb-3 sm:mb-4"
+          />
 
           <div className="max-w-4xl space-y-3 sm:space-y-4">
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
@@ -78,7 +79,7 @@ export default function TmipWhitepapersSlugPage() {
                   <span className="text-xs font-jetbrains text-[#94A3B8]">28 Pages</span>
                 </div>
                 <h3 className="font-space-grotesk text-xl font-bold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors">
-                  The Fleet ROI Paper — How TMIP customers reach payback in nine months
+                  The Fleet ROI Paper — How TMIP customers reach payback in 9 to 12 months
                 </h3>
                 <p className="text-sm text-[#94A3B8] font-ibm-plex leading-relaxed">
                   The economics of mobility intelligence deployment across 200+ enterprise fleets. Payback drivers and

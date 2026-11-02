@@ -17,14 +17,14 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "OEM Solutions & Factory Integration · Treel",
+  title: "OEM Solutions & Factory Integration",
   description:
-    "Treel OEM automotive integration solutions across two-wheeler, four-wheeler, commercial vehicle, bus, mining, and agriculture sectors. Factory-grade TPMS, CAN-bus protocols, and digital twin telemetry.",
+    "Treel OEM automotive integration across 2W, 4W, commercial vehicle, and bus sectors. Factory-grade TPMS, CAN-bus protocols, and digital twin telemetry.",
   alternates: {
     canonical: "https://treel.in/oem",
   },
   openGraph: {
-    title: "OEM Solutions & Factory Integration · Treel",
+    title: "OEM Solutions & Factory Integration",
     description:
       "Factory-grade tyre pressure monitoring, connected telemetry, and digital twin systems engineered for automotive manufacturers.",
     url: "https://treel.in/oem",

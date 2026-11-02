@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 ArrowRight,
 BookOpen,
@@ -11,14 +12,14 @@ import Link from "next/link";
 import { WhitepaperGatedForm } from "./whitepaper-form";
 
 export const metadata: Metadata = {
-  title: "The Fleet ROI and Fuel Savings Paper  ·  Treel Research",
-  description: "Comprehensive financial and operational analysis of mobility intelligence and real-time tyre telemetry across commercial vehicle fleets in India. 24-page whitepaper.",
+  title: "The Fleet ROI and Fuel Savings Paper — Research",
+  description: "Financial and operational analysis of mobility intelligence and real-time tyre telemetry across commercial vehicle fleets in India. 24-page whitepaper.",
   alternates: {
     canonical: "https://treel.in/research/roi-fleet-intelligence",
   },
   openGraph: {
-    title: "The Fleet ROI and Fuel Savings Paper  ·  Treel Research",
-    description: "Comprehensive financial and operational analysis of mobility intelligence and real-time tyre telemetry across commercial vehicle fleets in India. 24-page whitepaper.",
+    title: "The Fleet ROI and Fuel Savings Paper — Research",
+    description: "Financial and operational analysis of mobility intelligence and real-time tyre telemetry across commercial vehicle fleets in India. 24-page whitepaper.",
     url: "https://treel.in/research/roi-fleet-intelligence",
   },
 };
@@ -31,13 +32,13 @@ export default function ResearchRoiFleetIntelligencePage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             {/* Breadcrumb */}
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-[#94A3B8]">
-              <Link href="/research" className="hover:text-white transition-colors">
-                Research
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <span className="text-[#D5573B]">The Fleet ROI and Fuel Savings Paper</span>
-            </nav>
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Research", href: "/research" },
+                { label: "The Fleet ROI and Fuel Savings Paper", href: "/research/roi-fleet-intelligence" },
+              ]}
+            />
 
             <div className="border text-[#D5573B] bg-[#D5573B]/10 border-[#D5573B]/20 font-mono text-xs uppercase tracking-widest font-semibold px-2.5 py-0.5 rounded-[4px] inline-block">
               ROI &amp; PAYBACK
@@ -78,10 +79,10 @@ export default function ResearchRoiFleetIntelligencePage() {
                   What this paper covers
                 </h2>
                 <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-                  A comprehensive financial and operational analysis of mobility intelligence and real-time tyre telemetry across commercial vehicle fleets in India. Based on longitudinal empirical data from 200+ enterprise deployments and 68,000 connected vehicles under active management.
+                  A comprehensive financial and operational analysis of mobility intelligence and real-time tyre telemetry across commercial vehicle fleets in India. Based on longitudinal empirical data from 200+ enterprise deployments and 70,000+ vehicles under active management.
                 </p>
                 <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-                  This paper breaks down the exact mechanics of 0.5–0.6% fuel savings, 5–7% tyre life extension, and 30–40% reduction in unscheduled downtime, validating the 9-month median capital payback for enterprise fleet operators.
+                  This paper breaks down the exact mechanics of 0.5–0.6% fuel savings, 5–7% tyre life extension, and 30–40% reduction in unscheduled downtime, validating the 9 to 12 months median capital payback for enterprise fleet operators.
                 </p>
               </div>
 
@@ -107,7 +108,7 @@ export default function ResearchRoiFleetIntelligencePage() {
                   </li>
                   <li className="flex items-start gap-3 text-sm sm:text-base text-[#94A3B8]">
                     <span className="font-mono text-xs text-[#D5573B] font-bold mt-1">04</span>
-                    <span>Field Telemetry Findings from 68,000 Monitored Wheels</span>
+                    <span>Field Telemetry Findings from 70,000+ Vehicles Under Active Management</span>
                   </li>
                   <li className="flex items-start gap-3 text-sm sm:text-base text-[#94A3B8]">
                     <span className="font-mono text-xs text-[#D5573B] font-bold mt-1">05</span>

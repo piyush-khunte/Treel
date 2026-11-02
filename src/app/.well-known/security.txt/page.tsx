@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "security.txt \u00b7 Treel",
+  title: "security.txt",
   description: "Treel mobility intelligence platform.",
   alternates: {
     canonical: "https://treel.in/.well-known/security.txt",
   },
   openGraph: {
-    title: "security.txt \u00b7 Treel",
+    title: "security.txt",
     description: "Treel mobility intelligence platform.",
     url: "https://treel.in/.well-known/security.txt",
   },

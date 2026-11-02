@@ -6,13 +6,13 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Why Suraksha  \u00b7  Safety, Savings, Simplicity for Truck Owner-Drivers",
-  description: "Three reasons truck owner-drivers install Suraksha. Safety for the driver. Savings for the business. Simplicity for the family. Full breakdown of each pillar.",
+  description: "Three reasons truck owner-drivers choose Suraksha: driver safety on highways, proven fuel and tyre savings, and simplicity for your fleet operations.",
   alternates: {
     canonical: "https://treel.in/suraksha/why-suraksha",
   },
   openGraph: {
     title: "Why Suraksha  \u00b7  Safety, Savings, Simplicity for Truck Owner-Drivers",
-    description: "Three reasons truck owner-drivers install Suraksha. Safety for the driver. Savings for the business. Simplicity for the family. Full breakdown of each pillar.",
+    description: "Three reasons truck owner-drivers choose Suraksha: driver safety on highways, proven fuel and tyre savings, and simplicity for your fleet operations.",
     url: "https://treel.in/suraksha/why-suraksha",
   },
 };
@@ -35,7 +35,7 @@ export default function SurakshaWhySurakshaPage() {
               WHY SURAKSHA?
             </div>
             <h1 className="font-anton uppercase tracking-wide text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95]">
-              SAFETY. SAVINGS.<br /><span className="italic text-[#DC2626]">SIMPLICITY.</span>
+              Safety. Savings.<br /><span className="italic text-[#DC2626]">Simplicity.</span>
             </h1>
             <SurakshaRotator
               page="5.8"
@@ -62,7 +62,7 @@ export default function SurakshaWhySurakshaPage() {
             </div>
 
             <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal text-[#451A03]">
-              FRONT-TYRE BLOWOUTS, PREVENTED.
+              Front-tyre blowouts, prevented.
             </h2>
 
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-medium">
@@ -130,7 +130,7 @@ export default function SurakshaWhySurakshaPage() {
             </div>
 
             <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal text-[#451A03]">
-              NINE MONTHS. FULL PAYBACK.
+              9 to 12 months. Full payback.
             </h2>
 
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-medium">
@@ -155,7 +155,7 @@ export default function SurakshaWhySurakshaPage() {
 
             <div className="pt-2 border-t border-[#451A03]/10">
               <div className="text-xs font-bold uppercase tracking-wider text-[#78350F] mb-3">
-                Nine-month payback calculation:
+                9 to 12 months payback calculation:
               </div>
               <ul className="space-y-2 text-sm text-[#451A03]">
                 <li className="flex items-start gap-2">
@@ -174,7 +174,7 @@ export default function SurakshaWhySurakshaPage() {
             </div>
 
             <p className="text-sm font-semibold text-[#451A03]">
-              Total 9-month savings: Typically ₹40,000–₹70,000, easily exceeding initial kit investment.
+              Total 9 to 12 months savings: Typically ₹40,000–₹70,000, easily exceeding initial kit investment.
             </p>
 
             <div className="pt-4 border-t-2 border-[#EA580C]/20 flex items-center justify-between flex-wrap gap-4">
@@ -204,7 +204,7 @@ export default function SurakshaWhySurakshaPage() {
             </div>
 
             <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal text-[#451A03]">
-              FIT AT ANY PUNCTURE SHOP. WATCH IN YOUR CABIN.
+              Fit at any puncture shop. Watch in your cabin.
             </h2>
 
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-medium">
@@ -271,7 +271,7 @@ export default function SurakshaWhySurakshaPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FEF3C7]">
-              THREE PROMISES. ONE COMPLETE KIT.<br />COMPLETE SAFETY.
+              Three promises. One complete kit.<br />Complete safety.
             </h2>
             <div className="pt-2 flex flex-wrap justify-center gap-4">
               <Link

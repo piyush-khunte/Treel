@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -5,14 +6,14 @@ import { TmipHeader } from "@/components/layout/tmip-header";
 import { ChevronDown } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "OTR TPMS for Mining, Construction and Ports | Treel",
+  title: "OTR TPMS for Mining, Construction and Ports",
   description:
     "Tyre pressure monitoring built for mining, quarry and port fleets. OTR TPMS sensors feed TMIP, which predicts tyre failures before they stop production.",
   alternates: {
     canonical: "https://treel.in/products/otr-tpms",
   },
   openGraph: {
-    title: "OTR TPMS for Mining, Construction and Ports | Treel",
+    title: "OTR TPMS for Mining, Construction and Ports",
     description:
       "Tyre pressure monitoring built for mining, quarry and port fleets. OTR TPMS sensors feed TMIP, which predicts tyre failures before they stop production.",
     url: "https://treel.in/products/otr-tpms",
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "OTR TPMS for Mining, Construction and Ports | Treel",
+    title: "OTR TPMS for Mining, Construction and Ports",
     description:
       "Tyre pressure monitoring built for mining, quarry and port fleets. OTR TPMS sensors feed TMIP, which predicts tyre failures before they stop production.",
   },
@@ -111,13 +112,14 @@ export default function OtrTpmsPage() {
 
           <div className="max-w-[1240px] mx-auto px-6">
             {/* Breadcrumb */}
-            <nav className="font-jetbrains text-xs text-[#94A3B8] mb-6 sm:mb-8" aria-label="Breadcrumb">
-              <Link href="/products" className="hover:text-white transition-colors">
-                Products
-              </Link>
-              <span className="mx-2 text-slate-600">/</span>
-              <span className="text-[#3B82F6]">OTR TPMS</span>
-            </nav>
+            <Breadcrumb
+              variant="tmip"
+              items={[
+                { label: "Products", href: "/products" },
+                { label: "OTR TPMS", href: "/products/otr-tpms" },
+              ]}
+              className="mb-6 sm:mb-8"
+            />
 
             {/* 2-Column Main Hero: Left = Badge + Headline, Right = Paragraph + CTAs */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">

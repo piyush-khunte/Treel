@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -25,19 +26,21 @@ export async function generateMetadata({ params }: { params: Promise<{ "role-slu
 
   if (!role || role.status === "Draft") {
     return {
-      title: "Role Not Found · Careers at Treel",
+      title: "Role Not Found — Careers",
       description: "The requested career opening could not be found.",
     };
   }
 
+  const roleTitle = role.seoTitle ? role.seoTitle.replace(/\s*·\s*Treel.*$/i, "").replace(/\s*·\s*Careers at Treel.*$/i, "") : `${role.title} · Careers`;
+
   return {
-    title: role.seoTitle || `${role.title} · Careers at Treel`,
+    title: roleTitle,
     description: role.seoDescription || role.roleSummary,
     alternates: {
       canonical: `https://treel.in/careers/${role.slug}`,
     },
     openGraph: {
-      title: role.seoTitle || `${role.title} · Careers at Treel`,
+      title: roleTitle,
       description: role.seoDescription || role.roleSummary,
       url: `https://treel.in/careers/${role.slug}`,
     },
@@ -78,15 +81,14 @@ export default async function CareersRoleSlugPage({ params }: { params: Promise<
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             {/* Breadcrumb Navigation */}
-            <div className="flex items-center gap-2 text-xs font-mono text-[#94A3B8]">
-              <Link href="/careers" className="hover:text-[#FAF7F2] transition-colors">
-                Careers
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <span className="text-[#D5573B] font-medium">{role.team}</span>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <span className="text-[#FAF7F2] truncate max-w-xs">{role.title}</span>
-            </div>
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Careers", href: "/careers" },
+                { label: role.team },
+                { label: role.title, href: `/careers/${role.slug}` },
+              ]}
+            />
 
             {/* Role Title (H1) */}
             <h1 className="font-fraunces text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#FAF7F2] leading-[1.12]">

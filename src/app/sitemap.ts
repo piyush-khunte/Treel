@@ -1,8 +1,10 @@
 import { MetadataRoute } from "next";
+import insightsData from "@/lib/data/insights-store.json";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://treel.in";
-  const now = new Date().toISOString();
+  const releaseDate = "2026-10-30T00:00:00.000Z";
+  const now = releaseDate;
 
   // Route definitions with priority mappings
   const routes: {
@@ -32,14 +34,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/products/otr-tpms`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/technology`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/data-infrastructure`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/careers`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/careers`, lastModified: "2026-10-14T07:26:08.570Z", changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/press`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/media-kit`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/insights`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
+    { url: `${baseUrl}/insights`, lastModified: "2026-09-01T00:00:00.000Z", changeFrequency: "daily", priority: 0.8 },
     { url: `${baseUrl}/research`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/events`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/annual-reports`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/notices`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/events`, lastModified: "2026-10-14T00:00:00.000Z", changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/annual-reports`, lastModified: "2025-10-15T23:24:26.597Z", changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/notices`, lastModified: "2026-10-12T10:18:51.894Z", changeFrequency: "monthly", priority: 0.8 },
 
     // 0.8 - OEM Industry Hub & Segments
     { url: `${baseUrl}/oem`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
@@ -62,13 +64,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tmip/solutions/logistics`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/solutions/passenger-transport`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/solutions/construction`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/tmip/solutions/mining`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/solutions/oem-fleet`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/roi-calculator`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/demo`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/tmip/whitepapers`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/tmip/whitepapers/roi-fleet-intelligence`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/tmip/whitepapers/vehicle-digital-twin`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/tmip/whitepapers`, lastModified: "2026-10-15T09:40:00.000Z", changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/tmip/whitepapers/roi-fleet-intelligence`, lastModified: "2026-10-15T09:40:00.000Z", changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/insights`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tmip/security`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/tmip/compliance`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
@@ -143,5 +143,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/personal/refunds`, lastModified: now, changeFrequency: "monthly", priority: 0.3 },
   ];
 
-  return routes;
+  const insightRoutes: MetadataRoute.Sitemap = (insightsData as Array<{ slug: string; publishIsoDate?: string }>).map((article) => ({
+    url: `${baseUrl}/insights/${article.slug}`,
+    lastModified: article.publishIsoDate ? `${article.publishIsoDate}T00:00:00.000Z` : releaseDate,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...routes, ...insightRoutes];
 }

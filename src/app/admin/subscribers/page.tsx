@@ -6,7 +6,7 @@ import { getPublishedInsights } from "@/lib/content/insights-storage";
 import { AdminSubscribersClient } from "./subscribers-client";
 
 export const metadata: Metadata = {
-  title: "Subscribers & Notifications · Treel Admin",
+  title: "Subscribers & Notifications — Admin",
   description: "Manage global newsletter subscribers and Amazon SES email broadcasts.",
 };
 

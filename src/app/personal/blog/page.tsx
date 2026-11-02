@@ -3,13 +3,13 @@ import { getPublicBlogs } from "@/lib/admin/admin-actions";
 import { PersonalBlogClient } from "./personal-blog-client";
 
 export const metadata: Metadata = {
-  title: "The Personal TPMS Blog · Tyre Care & Road Safety | Treel",
+  title: "The Personal TPMS Blog · Tyre Care & Road Safety",
   description: "Practical tyre care tips, road safety insights, product updates, and consumer vehicle maintenance advice from the Treel team.",
   alternates: {
     canonical: "https://treel.in/personal/blog",
   },
   openGraph: {
-    title: "The Personal TPMS Blog · Treel",
+    title: "The Personal TPMS Blog",
     description: "Practical tyre care tips, road safety insights, product updates, and consumer vehicle maintenance advice from the Treel team.",
     url: "https://treel.in/personal/blog",
   },

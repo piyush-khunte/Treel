@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
@@ -7,14 +8,14 @@ import { getPublishedCaseStudies } from "@/lib/content/casestudies-storage";
 export const metadata: Metadata = {
   title: "Case Studies  ·  TMIP Customers",
   description:
-    "Real customer stories from TMIP deployments. Logistics, passenger transport, construction, mining. Outcomes measured in fuel savings, tyre life, uptime, cost per kilometre.",
+    "Real customer stories from TMIP deployments across logistics, transit, and construction. Measured in fuel savings, tyre life, uptime, and CPK gains.",
   alternates: {
     canonical: "https://treel.in/tmip/customers/case-studies",
   },
   openGraph: {
     title: "Case Studies  ·  TMIP Customers",
     description:
-      "Real customer stories from TMIP deployments. Logistics, passenger transport, construction, mining. Outcomes measured in fuel savings, tyre life, uptime, cost per kilometre.",
+      "Real customer stories from TMIP deployments across logistics, transit, and construction. Measured in fuel savings, tyre life, uptime, and CPK gains.",
     url: "https://treel.in/tmip/customers/case-studies",
   },
 };
@@ -42,17 +43,15 @@ export default async function TmipCustomersCaseStudiesPage() {
       <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-4">
-            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-2 sm:mb-3">
-              <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
-                TMIP
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <Link href="/tmip/customers" className="hover:text-[#F1F5F9] transition-colors">
-                Customers
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <span className="text-[#3B82F6]">Case Studies</span>
-            </nav>
+            <Breadcrumb
+              variant="tmip"
+              items={[
+                { label: "TMIP", href: "/tmip" },
+                { label: "Customers", href: "/tmip/customers" },
+                { label: "Case Studies", href: "/tmip/customers/case-studies" },
+              ]}
+              className="mb-2 sm:mb-3"
+            />
 
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
               CASE STUDIES

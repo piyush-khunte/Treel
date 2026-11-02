@@ -149,7 +149,7 @@ export const PRODUCTS_CATALOGUE: ProductVariant[] = [
     features: [
       "Cabin blowout siren & high-visibility red strobe alert",
       "Heavy-duty industrial RF sensors rated for 150 PSI",
-      "Nine months guaranteed payback on diesel & tyre scrap savings",
+      "9 to 12 months guaranteed payback on diesel & tyre scrap savings",
       "Instant 0% downpayment EMI from ₹1,666/month",
       "15-minute roadside installation at 400+ highway centres"
     ],

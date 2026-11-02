@@ -4,7 +4,7 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Agriculture OEM Solutions · Treel Mobility Solutions",
+  title: "Agriculture OEM Solutions",
   description: "Tractor and agricultural machinery tyre telemetry, soil compaction management, and farm telematics for agricultural OEMs.",
   alternates: {
     canonical: "https://treel.in/oem/agriculture",

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { PersonalCarCampaignPage } from "@/components/personal/personal-car-campaign-page";
 
 export const metadata: Metadata = {
-  title: "TPMS for Car | Car Tyre Pressure Sensor | Treel",
+  title: "TPMS for Car | Car Tyre Pressure Sensor",
   description:
     "Treel car TPMS: clamp-in valve sensors watch all four tyres 24/7, with alerts on your phone or an in-cabin display. 5-year sensor warranty. Enquire today.",
   robots: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    title: "Treel TPMS for cars: a tyre pressure sensor in every tyre",
+    title: "Car TPMS — Real-Time Bluetooth Tyre Pressure Monitoring",
     description:
       "Treel car TPMS: clamp-in valve sensors watch all four tyres 24/7, with alerts on your phone or an in-cabin display. 5-year sensor warranty. Enquire today.",
     url: "https://treel.in/lp-tpms/car",

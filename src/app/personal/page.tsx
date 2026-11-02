@@ -12,14 +12,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Personal TPMS — Bluetooth Tyre Pressure Monitoring | Treel",
+  title: "Personal TPMS — Bluetooth Tyre Pressure Monitoring",
   description:
     "Real-time tyre pressure on your phone. Alerts before a puncture. ±0.5 PSI accuracy, 2-year battery, 10-minute setup. Fits any car or two-wheeler. ₹8,999.",
   alternates: {
     canonical: "https://treel.in/personal",
   },
   openGraph: {
-    title: "Personal TPMS — Bluetooth Tyre Pressure Monitoring | Treel",
+    title: "Personal TPMS — Bluetooth Tyre Pressure Monitoring",
     description:
       "Real-time tyre pressure on your phone. Alerts before a puncture. ±0.5 PSI accuracy, 2-year battery, 10-minute setup. Fits any car or two-wheeler. ₹8,999.",
     url: "https://treel.in/personal",

@@ -18,14 +18,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Accessibility · Treel",
+  title: "Accessibility",
   description:
     "Treel's commitment to accessibility. Our WCAG 2.2 Level AA target, current status, and how to report accessibility issues.",
   alternates: {
     canonical: "https://treel.in/accessibility",
   },
   openGraph: {
-    title: "Accessibility · Treel",
+    title: "Accessibility",
     description:
       "Treel's commitment to accessibility. Our WCAG 2.2 Level AA target, current status, and how to report accessibility issues.",
     url: "https://treel.in/accessibility",

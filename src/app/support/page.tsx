@@ -3,7 +3,7 @@ import { SupportClient } from "./support-client";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
-  title: "Customer Support & Diagnostics · Treel",
+  title: "Customer Support & Diagnostics",
   description: "Treel official customer support. TPMS diagnostics, installation help, sensor pairing, and warranty assistance. Call toll-free 1800 833 0233.",
   alternates: {
     canonical: "https://treel.in/support",

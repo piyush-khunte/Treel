@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -96,17 +97,15 @@ export default function TmipSolutionsConstructionPage() {
       <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-4">
-            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-2">
-              <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
-                TMIP
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <Link href="/tmip/solutions" className="hover:text-[#F1F5F9] transition-colors">
-                Solutions
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <span className="text-[#3B82F6]">Construction</span>
-            </nav>
+            <Breadcrumb
+              variant="tmip"
+              items={[
+                { label: "TMIP", href: "/tmip" },
+                { label: "Solutions", href: "/tmip/solutions" },
+                { label: "Construction", href: "/tmip/solutions/construction" },
+              ]}
+              className="mb-2"
+            />
 
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
               SOLUTIONS · CONSTRUCTION
@@ -154,7 +153,7 @@ export default function TmipSolutionsConstructionPage() {
               <div className="text-xs text-[#94A3B8] mt-1 font-ibm-plex">Preventing mid-pour mixer breakdowns and paving stoppages</div>
             </div>
             <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
-              <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#F59E0B]">IP67 / ARAI</div>
+              <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#F59E0B]">IP65 / ARAI</div>
               <div className="text-sm font-semibold text-[#F1F5F9] mt-1 font-ibm-plex">Certified Ruggedised IoT</div>
               <div className="text-xs text-[#94A3B8] mt-1 font-ibm-plex">Tested against dust immersion, washdown sprays, and shock</div>
             </div>
@@ -227,15 +226,15 @@ export default function TmipSolutionsConstructionPage() {
               <div className="space-y-3 pt-1">
                 <div className="flex items-center justify-between p-3 rounded-[3px] bg-white/[0.02] border border-slate-400/10">
                   <span className="text-sm text-[#94A3B8] font-ibm-plex">Sensor Ingress Rating</span>
-                  <span className="text-sm font-jetbrains font-bold text-[#10B981]">IP67 Dust & Jet Wash</span>
+                  <span className="text-sm font-jetbrains font-bold text-[#10B981]">IP65 Dust & Jet Wash</span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-[3px] bg-white/[0.02] border border-slate-400/10">
                   <span className="text-sm text-[#94A3B8] font-ibm-plex">Offline Edge Buffer</span>
-                  <span className="text-sm font-jetbrains font-bold text-[#3B82F6]">Up to 72 hrs on-chip</span>
+                  <span className="text-sm font-jetbrains font-bold text-[#3B82F6]">Up to 45 Days</span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-[3px] bg-white/[0.02] border border-slate-400/10">
                   <span className="text-sm text-[#94A3B8] font-ibm-plex">Typical Payback Window</span>
-                  <span className="text-sm font-jetbrains font-bold text-[#F59E0B]">7.4 Months</span>
+                  <span className="text-sm font-jetbrains font-bold text-[#F59E0B]">9 to 12 Months</span>
                 </div>
               </div>
             </div>

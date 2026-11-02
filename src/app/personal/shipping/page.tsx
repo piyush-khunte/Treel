@@ -7,13 +7,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Shipping Policy · Personal TPMS · Treel",
+  title: "Shipping Policy · Personal TPMS",
   description: "Personal TPMS shipping details. Delivery times across India, shipping charges, tracking, and delivery partner information.",
   alternates: {
     canonical: "https://treel.in/personal/shipping",
   },
   openGraph: {
-    title: "Shipping Policy · Personal TPMS · Treel",
+    title: "Shipping Policy · Personal TPMS",
     description: "Personal TPMS shipping details. Delivery times across India, shipping charges, tracking, and delivery partner information.",
     url: "https://treel.in/personal/shipping",
   },

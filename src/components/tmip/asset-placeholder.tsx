@@ -44,7 +44,7 @@ const ASSET_REGISTRY: Record<TmipAssetId, AssetMeta> = {
     dims: "794 × 424",
     source: "tmip-asset-2.jpg",
     imageSrc: "/images/tmip-asset-2.jpg",
-    description: "X-ray blueprint skeleton with Gold engine/driveline highlighting and Green wheel sensors."
+    description: "X-ray blueprint skeleton with Gold engine diagnostics highlighting and Green wheel sensors."
   },
   "TMIP-ASSET-03": {
     id: "TMIP-ASSET-03",

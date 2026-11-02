@@ -6,14 +6,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Savings  \u00b7  Nine-Month Payback on Suraksha Kit  \u00b7  ROI Calculator",
-  description: "Suraksha kit pays back in 9 months through fuel savings (0.5–0.6%), tyre life extension (5-7%), and roadside downtime avoidance. Calculate your truck's savings.",
+  title: "Savings  \u00b7  9 to 12 Months Payback on Suraksha Kit  \u00b7  ROI Calculator",
+  description: "Suraksha pays back in 9 to 12 months through fuel savings, 5-7% tyre life extension, and roadside blowout avoidance. Calculate your truck's savings today.",
   alternates: {
     canonical: "https://treel.in/suraksha/savings",
   },
   openGraph: {
-    title: "Savings  \u00b7  Nine-Month Payback on Suraksha Kit  \u00b7  ROI Calculator",
-    description: "Suraksha kit pays back in 9 months through fuel savings (0.5–0.6%), tyre life extension (5-7%), and roadside downtime avoidance. Calculate your truck's savings.",
+    title: "Savings  \u00b7  9 to 12 Months Payback on Suraksha Kit  \u00b7  ROI Calculator",
+    description: "Suraksha pays back in 9 to 12 months through fuel savings, 5-7% tyre life extension, and roadside blowout avoidance. Calculate your truck's savings today.",
     url: "https://treel.in/suraksha/savings",
   },
 };
@@ -36,7 +36,7 @@ export default function SurakshaSavingsPage() {
               SAVINGS
             </div>
             <h1 className="font-anton uppercase tracking-wide text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95]">
-              9–12 MONTHS.<br /><span className="italic text-[#DC2626]">FULL PAYBACK.</span>
+              9–12 months.<br /><span className="italic text-[#DC2626]">Full payback.</span>
             </h1>
             <SurakshaRotator
               page="5.10"
@@ -60,7 +60,7 @@ export default function SurakshaSavingsPage() {
                 SAVINGS BREAKDOWN
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                WHERE THE SAVINGS COME FROM
+                Where the savings come from
               </h2>
               <p className="text-[#78350F] text-base mt-2 font-medium">
                 Three savings buckets with detailed explanations:
@@ -97,7 +97,7 @@ export default function SurakshaSavingsPage() {
                   <div className="font-bold text-[#451A03]">Numbers:</div>
                   <div>• Set of truck tyres cost: ₹2,00,000-₹3,50,000</div>
                   <div className="font-bold text-[#EA580C]">• 5-7% extension over tyre lifecycle: ₹10,000-₹24,500 savings per tyre cycle</div>
-                  <div>• Typical tyre cycle: 18-24 months for heavy commercial use</div>
+
                   <div>• Monthly effective savings: ₹500-₹1,500</div>
                 </div>
               </div>
@@ -134,7 +134,7 @@ export default function SurakshaSavingsPage() {
                 ESTIMATE YOUR ROI
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                CALCULATE YOUR TRUCK'S SAVINGS
+                Calculate your truck's savings
               </h2>
               <p className="text-[#78350F] text-base mt-2 font-medium">
                 Adjust the parameters below to see estimated diesel savings, tyre life extensions, and exact payback timing for your commercial vehicle.
@@ -198,7 +198,7 @@ export default function SurakshaSavingsPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FEF3C7]">
-              9-MONTH PAYBACK · PEACE OF MIND FOR LESS THAN A DAILY CUP OF TEA
+              9 to 12 months payback · Peace of mind for less than a daily cup of tea
             </h2>
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
               With a 3-year warranty and zero monthly subscriptions, Suraksha's daily operational cost is less than a cup of roadside tea—and within 9 to 12 months, fuel and tyre savings recover your entire investment.

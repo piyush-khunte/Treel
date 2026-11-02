@@ -5,14 +5,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Technology · Treel Platform Architecture",
-  description: "The Treel technology stack: proprietary sensors, edge processing, cloud infrastructure, machine learning, and the Vehicle Digital Twin architecture that powers TMIP.",
+  title: "Technology & Platform Architecture",
+  description: "The Treel technology stack: proprietary sensors, edge gateways, cloud ML infrastructure, and the Vehicle Digital Twin architecture powering TMIP.",
   alternates: {
     canonical: "https://treel.in/technology",
   },
   openGraph: {
-    title: "Technology · Treel Platform Architecture",
-    description: "The Treel technology stack: proprietary sensors, edge processing, cloud infrastructure, machine learning, and the Vehicle Digital Twin architecture that powers TMIP.",
+    title: "Technology & Platform Architecture",
+    description: "The Treel technology stack: proprietary sensors, edge gateways, cloud ML infrastructure, and the Vehicle Digital Twin architecture powering TMIP.",
     url: "https://treel.in/technology",
   },
 };
@@ -182,7 +182,7 @@ export default function TechnologyPage() {
               <Link href="/data-infrastructure" className="p-6 sm:p-8 rounded-xl bg-[#0F1419] border border-white/10 hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group block">
                 <div className="text-xs uppercase tracking-widest text-[#94A3B8] font-mono mb-2">Ingestion &amp; Storage</div>
                 <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">Data infrastructure</h3>
-                <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed">68,000+ active commercial vehicles and sub-second ingestion latency.</p>
+                <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed">70,000+ vehicles under active management and sub-second ingestion latency.</p>
                 <div className="mt-4 font-semibold text-xs text-[#D5573B] flex items-center gap-1 group-hover:gap-2 transition-all">
                   Learn more <ChevronRight className="w-3.5 h-3.5" />
                 </div>

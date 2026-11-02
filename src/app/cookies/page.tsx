@@ -4,13 +4,13 @@ import type { Metadata } from "next";
 import { CookiePreferencesManager } from "./cookie-preferences";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy  ·  Treel",
+  title: "Cookie Policy",
   description: "How Treel uses cookies and similar technologies on treel.in. Cookie categories, consent management, and how to update your preferences.",
   alternates: {
     canonical: "https://treel.in/cookies",
   },
   openGraph: {
-    title: "Cookie Policy  ·  Treel",
+    title: "Cookie Policy",
     description: "How Treel uses cookies and similar technologies on treel.in. Cookie categories, consent management, and how to update your preferences.",
     url: "https://treel.in/cookies",
   },

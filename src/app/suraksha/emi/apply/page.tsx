@@ -126,7 +126,7 @@ function SurakshaEMIApplyForm() {
               EMI APPLICATION
             </div>
             <h1 className="font-anton text-4xl sm:text-5xl lg:text-6xl uppercase tracking-wider text-[#451A03] leading-[1.15]">
-              APPLY IN <span className="italic text-[#EA580C]">4 STEPS.</span>
+              Apply in <span className="italic text-[#EA580C]">4 steps.</span>
             </h1>
             <SurakshaRotator
               page="5.6"

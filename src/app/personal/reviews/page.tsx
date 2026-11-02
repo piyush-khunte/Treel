@@ -319,7 +319,7 @@ function ReviewsContent() {
                 REVIEWS &amp; RATINGS
               </div>
               <h1 className="font-manrope text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#111827] leading-[1.12]">
-                What customers say.
+                Customer Reviews &amp; Ratings for Treel Personal TPMS
               </h1>
               <p className="text-[#4B5563] text-lg sm:text-xl leading-relaxed font-manrope font-medium">
                 Verified reviews from Personal TPMS drivers across India. Real highway and city experiences with tyre pressure and temperature safety.
@@ -645,7 +645,37 @@ function ReviewsContent() {
 
 export default function PersonalReviewsPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-white" />}>
+    <Suspense
+      fallback={
+        <div className="bg-white text-[#111827] font-manrope min-h-screen">
+          <section className="relative pt-24 pb-16 border-b border-black/[0.06] bg-[#F9FAFB]">
+            <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
+              <div className="max-w-3xl space-y-6">
+                <Breadcrumb
+                  variant="personal"
+                  items={[
+                    { label: "Personal TPMS", href: "/personal" },
+                    { label: "Reviews" },
+                  ]}
+                />
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/5 text-[#2563EB] font-manrope text-xs font-bold uppercase tracking-[0.15em]">
+                  REVIEWS &amp; RATINGS
+                </div>
+                <h1 className="font-manrope text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#111827] leading-[1.12]">
+                  Customer Reviews &amp; Ratings for Treel Personal TPMS
+                </h1>
+                <p className="text-[#4B5563] text-lg sm:text-xl leading-relaxed font-manrope font-medium">
+                  Verified reviews from Personal TPMS drivers across India. Real highway and city experiences with tyre pressure and temperature safety.
+                </p>
+              </div>
+            </div>
+          </section>
+          <div className="py-24 text-center text-sm font-semibold text-[#6B7280]">
+            Loading customer reviews...
+          </div>
+        </div>
+      }
+    >
       <ReviewsContent />
     </Suspense>
   );

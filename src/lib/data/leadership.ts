@@ -46,7 +46,7 @@ bio: "Manish Ingale founded Treel Mobility Solutions in 2018 with the conviction
 paragraphs: [
 "Manish Ingale founded Treel Mobility Solutions in 2018 with the conviction that India's commercial vehicles were producing vast operational data that went uncaptured. Drawing on engineering and operational leadership across tyre and mobility sectors, he pioneered India's Vehicle Digital Twin platform.",
 "Guided by the principle that the tyre is the vehicle's most talkative component—constantly reacting to load, road surface, temperature, and driver behaviour—he established wheel-end sensing as the critical foundation for complete commercial vehicle digital twins, converting real-time edge telemetry into predictive operating intelligence.",
-"Headquartered in Pune, Manish has led Treel's expansion across over 68,000 active commercial vehicles and two hundred enterprise fleets, directing platform architecture, national OEM partnerships, and the growth of TMIP Enterprise, Suraksha Fleet, and Personal TPMS.",
+"Headquartered in Pune, Manish has led Treel's expansion across 70,000+ vehicles under active management and two hundred enterprise fleets, directing platform architecture, national OEM partnerships, and the growth of TMIP Enterprise, Suraksha Fleet, and Personal TPMS.",
 ],
     image: "/images/leadership/manish-ingale.png",
 },

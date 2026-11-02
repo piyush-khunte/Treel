@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  trailingSlash: false,
   reactStrictMode: false,
   poweredByHeader: false,
   compress: true,
@@ -46,6 +47,17 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Retire Mining: Redirect /tmip/solutions/mining to /products/otr-tpms
+      {
+        source: "/tmip/solutions/mining",
+        destination: "/products/otr-tpms",
+        permanent: true,
+      },
+      {
+        source: "/tmip/solutions/mining/:path*",
+        destination: "/products/otr-tpms",
+        permanent: true,
+      },
       // Old landing page 301 permanent redirects to new canonical URLs
       {
         source: "/lp/tmip",

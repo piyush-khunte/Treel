@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ThankYouTracker } from "./thank-you-tracker";
 
 export const metadata: Metadata = {
-  title: "Thank you | Treel",
+  title: "Thank you",
   description: "Thank you for contacting Treel. We'll be in touch soon.",
   robots: {
     index: false,

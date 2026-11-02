@@ -2,44 +2,44 @@ import RegionalIndiaMap from "@/components/suraksha/regional-india-map";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { WhatsAppCtaButton } from "@/components/ui/whatsapp-cta-button";
 import {
-ArrowRight,
-Fuel,
-PhoneCall,
-QrCode,
-Shield,
-Truck,
-Wrench
+  ArrowRight,
+  Fuel,
+  PhoneCall,
+  QrCode,
+  Shield,
+  Truck,
+  Wrench
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Project Suraksha — Truck Tyre Safety & Savings Kit | Treel",
+  title: "Project Suraksha — Truck Tyre Safety & Savings Kit",
   description:
-    "Suraksha safety kit for Indian trucks. Real-time tyre pressure display in cabin. Fifteen-minute install at any Truck Wheels centre. Nine-month payback. Made by Treel.",
+    "Suraksha safety kit for Indian trucks. Real-time in-cab tyre pressure display. 15-minute install at Truck Wheels. 9 to 12 months payback. By Treel.",
   alternates: {
     canonical: "https://treel.in/suraksha",
   },
   openGraph: {
-    title: "Project Suraksha — Truck Tyre Safety & Savings Kit | Treel",
+    title: "Project Suraksha — Truck Tyre Safety & Savings Kit",
     description:
-      "Suraksha safety kit for Indian trucks. Real-time tyre pressure display in cabin. Fifteen-minute install at any Truck Wheels centre. Nine-month payback. Made by Treel.",
+      "Suraksha safety kit for Indian trucks. Real-time in-cab tyre pressure display. 15-minute install at Truck Wheels. 9 to 12 months payback. By Treel.",
     url: "https://treel.in/suraksha",
   },
 };
 
 const pillars = [
   {
-    number: "01 · SAFETY",
-    title: "FRONT-TYRE BLOWOUTS, PREVENTED.",
+    number: "01 · Safety",
+    title: "Front-tyre blowouts, prevented.",
     desc: "Real-time tyre pressure and temperature on the cabin display. Early warnings 24–48 hours ahead prevent catastrophic highway blowouts, saving hours of downtime and protecting the driver's life and livelihood.",
     color: "#DC2626",
     badgeBg: "bg-[#DC2626]/10 text-[#DC2626] border-[#DC2626]/30",
     icon: Shield,
   },
   {
-    number: "02 · SAVINGS",
-    title: "NINE MONTHS. FULL PAYBACK.",
+    number: "02 · Savings",
+    title: "9 to 12 months. Full payback.",
     desc: "0.5 to 0.6 percent fuel savings. Five to seven percent tyre-life extension. Zero roadside towing fees. The kit pays for itself in nine to twelve months.",
     accent: "FULL PAYBACK",
     color: "#EA580C",
@@ -47,8 +47,8 @@ const pillars = [
     icon: Fuel,
   },
   {
-    number: "03 · SIMPLICITY",
-    title: "FIT AT ANY PUNCTURE SHOP. WATCH IN YOUR CABIN.",
+    number: "03 · Simplicity",
+    title: "Fit at any puncture shop. Watch in your cabin.",
     desc: "Fifteen-minute installation at any Truck Wheels centre or roadside puncture shop. No app to download.",
     badge: "No monthly fee. No subscription.",
     color: "#0891B2",
@@ -62,16 +62,73 @@ export default function SurakshaPage() {
     "@context": "https://schema.org",
     "@type": "Product",
     name: "Suraksha Truck TPMS Safety Kit",
+    image: "https://treel.in/images/treel-main-logo.jpg",
+    description:
+      "Suraksha safety kit for Indian commercial trucks with in-cab wireless display and 4 to 18 tyre sensors.",
+    sku: "TREEL-SURAKSHA-KIT",
+    mpn: "TRL-SRK-01",
     brand: {
       "@type": "Brand",
       name: "Treel",
     },
-    description:
-      "Suraksha safety kit for Indian commercial trucks with in-cab wireless display and 4 to 18 tyre sensors.",
     offers: {
       "@type": "Offer",
-      availability: "https://schema.org/InStock",
       url: "https://treel.in/suraksha",
+      price: "1700",
+      priceCurrency: "INR",
+      priceValidUntil: "2027-12-31",
+      availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
+      seller: {
+        "@type": "Organization",
+        name: "Treel Mobility Solutions",
+      },
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: "1700",
+        priceCurrency: "INR",
+        unitText: "per tyre sensor",
+        referenceQuantity: {
+          "@type": "QuantitativeValue",
+          value: "1",
+          unitCode: "C62",
+        },
+      },
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "IN",
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: 15,
+        returnMethod: "https://schema.org/ReturnByMail",
+        returnFees: "https://schema.org/FreeReturn",
+      },
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingRate: {
+          "@type": "MonetaryAmount",
+          value: "0",
+          currency: "INR",
+        },
+        shippingDestination: {
+          "@type": "DefinedRegion",
+          addressCountry: "IN",
+        },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: {
+            "@type": "QuantitativeValue",
+            minValue: 0,
+            maxValue: 1,
+            unitCode: "d",
+          },
+          transitTime: {
+            "@type": "QuantitativeValue",
+            minValue: 2,
+            maxValue: 5,
+            unitCode: "d",
+          },
+        },
+      },
     },
   };
 
@@ -95,9 +152,9 @@ export default function SurakshaPage() {
 
               <div className="space-y-2">
                 <h1 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95] uppercase">
-                  SAFETY <br />
-                  FITS <span className="italic text-[#DC2626]">ANY</span> <br />
-                  TRUCK.
+                  Safety <br />
+                  fits <span className="italic text-[#DC2626]">any</span> <br />
+                  truck.
                 </h1>
                 <SurakshaRotator
                   page="5.1"
@@ -108,7 +165,7 @@ export default function SurakshaPage() {
               </div>
 
               <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-2xl">
-                Shows tyre pressure. Pays for itself in nine months. Installs in fifteen minutes. Fits any truck, anywhere in India.
+                Shows tyre pressure. Pays for itself in 9 to 12 months. Installs in fifteen minutes. Fits any truck, anywhere in India.
               </p>
 
               {/* Value Statement Pill */}
@@ -194,10 +251,10 @@ export default function SurakshaPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-14">
             <div className="inline-block font-rubik text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-2">
-              THREE REASONS DRIVERS INSTALL SURAKSHA
+              Three reasons drivers install Suraksha
             </div>
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              THREE REASONS DRIVERS INSTALL SURAKSHA.
+              Three reasons drivers install Suraksha.
             </h2>
             <p className="text-[#78350F] text-lg mt-3 font-medium">
               Safety for the driver. Savings for the business. Simplicity for the family. Same kit, three promises kept.
@@ -256,10 +313,10 @@ export default function SurakshaPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <div className="inline-block font-rubik text-xs font-bold uppercase tracking-widest text-[#DC2626] mb-2">
-              SIX REGIONAL CLUSTERS
+              Six regional clusters
             </div>
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              INDIA-WIDE. CLUSTER-TUNED.
+              India-wide. Cluster-tuned.
             </h2>
             <p className="text-[#78350F] text-lg mt-3 font-medium">
               Suraksha ships in the vernacular of each cluster. Same product, same protection, six voices. Language of the driver, wherever the driver runs.
@@ -275,8 +332,8 @@ export default function SurakshaPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h2 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#FEF3C7] leading-[0.95] uppercase">
-              NINE MONTHS.<br />
-              FULL PAYBACK.
+              9 to 12 months.<br />
+              Full payback.
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl leading-relaxed font-medium max-w-2xl mx-auto">

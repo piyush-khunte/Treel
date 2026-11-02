@@ -6,13 +6,13 @@ import Link from "next/link";
 import { ResearchLibrary } from "./research-client";
 
 export const metadata: Metadata = {
-  title: "Research & Whitepapers  ·  Treel",
+  title: "Research & Whitepapers",
   description: "Treel research library: whitepapers, case studies, and technical papers on mobility intelligence, Vehicle Digital Twin, and fleet ROI. Free downloads.",
   alternates: {
     canonical: "https://treel.in/research",
   },
   openGraph: {
-    title: "Research & Whitepapers  ·  Treel",
+    title: "Research & Whitepapers",
     description: "Treel research library: whitepapers, case studies, and technical papers on mobility intelligence, Vehicle Digital Twin, and fleet ROI. Free downloads.",
     url: "https://treel.in/research",
   },

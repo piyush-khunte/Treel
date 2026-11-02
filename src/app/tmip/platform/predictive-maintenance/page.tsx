@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -19,14 +20,14 @@ import {
 export const metadata: Metadata = {
   title: "Predictive Maintenance · TMIP",
   description:
-    "TMIP's predictive maintenance models forecast component failure days or weeks in advance. Reduce unscheduled downtime by 30-40%. Extend maintenance intervals with confidence.",
+    "TMIP's predictive models forecast component failures days in advance, cutting unscheduled downtime by 30-40% and extending fleet maintenance intervals.",
   alternates: {
     canonical: "https://treel.in/tmip/platform/predictive-maintenance",
   },
   openGraph: {
     title: "Predictive Maintenance · TMIP",
     description:
-      "TMIP's predictive maintenance models forecast component failure days or weeks in advance. Reduce unscheduled downtime by 30-40%. Extend maintenance intervals with confidence.",
+      "TMIP's predictive models forecast component failures days in advance, cutting unscheduled downtime by 30-40% and extending fleet maintenance intervals.",
     url: "https://treel.in/tmip/platform/predictive-maintenance",
   },
 };
@@ -40,10 +41,10 @@ const predictions = [
     icon: Gauge,
   },
   {
-    title: "Brake component wear",
-    horizon: "20–60 days in advance",
-    confidence: "Dynamic threshold estimation",
-    desc: "Forecasts brake pad replacement windows using cumulative deceleration events, friction temperature accumulation, and duty cycles.",
+    title: "Suspected Brake Jamming",
+    horizon: "Immediate warning",
+    confidence: "Thermal & rotational drag anomaly",
+    desc: "Identifies dragging brake shoes, stuck calipers, and anomalous wheel-end thermal spikes before tyre burst or hub damage occurs.",
     icon: AlertTriangle,
   },
   {
@@ -115,17 +116,15 @@ export default function TmipPlatformPredictiveMaintenancePage() {
       <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-4">
-            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-2">
-              <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
-                TMIP
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <Link href="/tmip/platform" className="hover:text-[#F1F5F9] transition-colors">
-                Platform
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <span className="text-[#3B82F6]">Predictive Maintenance</span>
-            </nav>
+            <Breadcrumb
+              variant="tmip"
+              items={[
+                { label: "TMIP", href: "/tmip" },
+                { label: "Platform", href: "/tmip/platform" },
+                { label: "Predictive Maintenance", href: "/tmip/platform/predictive-maintenance" },
+              ]}
+              className="mb-2"
+            />
 
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
               PLATFORM · PREDICTIVE MAINTENANCE
@@ -189,7 +188,7 @@ export default function TmipPlatformPredictiveMaintenancePage() {
             </div>
 
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex">
-              Every Vehicle Digital Twin carries years of state history. Component wear follows patterns — patterns that vary by vehicle class, load, route, climate, and driver. TMIP&apos;s machine learning models study those patterns across sixty-eight thousand vehicles and apply the learning back to each individual Twin.
+              Every Vehicle Digital Twin carries years of state history. Component wear follows patterns — patterns that vary by vehicle class, load, route, climate, and driver. TMIP&apos;s machine learning models study those patterns across 70,000+ vehicles under active management and apply the learning back to each individual Twin.
             </p>
 
             <div className="p-5 sm:p-6 rounded-[4px] bg-[#080E1E] border border-blue-500/20 space-y-3">

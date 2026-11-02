@@ -49,7 +49,7 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
     slug: "vehicle-digital-twins-architecture",
     category: "Mobility Intelligence",
     title: "From Telemetry to Reasoning: The Architecture of Vehicle Digital Twins",
-    excerpt: "How sub-second sensor signals from 68,000 commercial vehicles transform into predictive maintenance models and operational capital for modern fleet enterprises.",
+    excerpt: "How sub-second sensor signals from 70,000+ vehicles under active management transform into predictive maintenance models and operational capital for modern fleet enterprises.",
     author: "Manish Ingale",
     date: "September 2026",
     readTime: "6 min read"
@@ -86,7 +86,7 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
     {
       slug: "cfo-guide-to-fleet-payback",
       category: "Industry Analysis",
-      title: "The CFO Guide to Fleet Telemetry: Measuring the 9-Month Payback",
+      title: "The CFO Guide to Fleet Telemetry: Measuring the 9 to 12 Months Payback",
       excerpt: "Breaking down the capital allocation math of smart sensors versus tyre replacements, downtime penalties, and fuel theft mitigation.",
       author: "Imran Khan",
       date: "July 2026",

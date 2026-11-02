@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -15,16 +16,16 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Commercial Vehicle TPMS · TMIP · Treel Mobility Solutions",
+  title: "Commercial Vehicle TPMS · TMIP",
   description:
-    "Heavy commercial vehicle tyre telematics, multi-axle pressure and temperature monitoring, and digital twin systems for commercial vehicle fleets and manufacturers.",
+    "Commercial vehicle tyre telematics, multi-axle pressure and temperature monitoring, and digital twin systems for commercial fleets and manufacturers.",
   alternates: {
     canonical: "https://treel.in/tmip/tpms",
   },
   openGraph: {
-    title: "Commercial Vehicle TPMS · TMIP · Treel Mobility Solutions",
+    title: "Commercial Vehicle TPMS · TMIP",
     description:
-      "Heavy commercial vehicle tyre telematics, multi-axle pressure and temperature monitoring, and digital twin systems for commercial vehicle fleets and manufacturers.",
+      "Commercial vehicle tyre telematics, multi-axle pressure and temperature monitoring, and digital twin systems for commercial fleets and manufacturers.",
     url: "https://treel.in/tmip/tpms",
   },
 };
@@ -119,17 +120,14 @@ export default function CommercialVehicleTpmsPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-4">
             {/* Breadcrumb Navigation */}
-            <div className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8]">
-              <Link href="/" className="hover:text-white transition-colors">
-                Home
-              </Link>
-              <span>/</span>
-              <Link href="/tmip" className="hover:text-white transition-colors">
-                TMIP
-              </Link>
-              <span>/</span>
-              <span className="text-[#3B82F6]">Commercial Vehicle TPMS</span>
-            </div>
+            <Breadcrumb
+              variant="tmip"
+              items={[
+                { label: "Home", href: "/" },
+                { label: "TMIP", href: "/tmip" },
+                { label: "Commercial Vehicle TPMS" },
+              ]}
+            />
 
             {/* Eyebrow */}
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
@@ -173,10 +171,10 @@ export default function CommercialVehicleTpmsPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="border-l-2 border-[#3B82F6] pl-5 space-y-1">
               <div className="font-space-grotesk text-3xl sm:text-4xl font-semibold text-[#F59E0B] tracking-[-0.02em]">
-                68,000+
+                70,000+
               </div>
               <div className="font-jetbrains text-[10px] sm:text-[11px] uppercase tracking-wider text-[#94A3B8]">
-                Vehicles Under Management
+                Vehicles Under Active Management
               </div>
             </div>
             <div className="border-l-2 border-[#3B82F6] pl-5 space-y-1">
@@ -197,7 +195,7 @@ export default function CommercialVehicleTpmsPage() {
             </div>
             <div className="border-l-2 border-[#3B82F6] pl-5 space-y-1">
               <div className="font-space-grotesk text-3xl sm:text-4xl font-semibold text-[#F59E0B] tracking-[-0.02em]">
-                9 Months
+                9 to 12 Months
               </div>
               <div className="font-jetbrains text-[10px] sm:text-[11px] uppercase tracking-wider text-[#94A3B8]">
                 Median Payback Period

@@ -18,7 +18,7 @@ export function TmipHeader() {
 
   const isPlatformActive = pathname.startsWith("/tmip/platform");
   const isSolutionsActive = pathname.startsWith("/tmip/solutions");
-  const isTpmsActive = pathname === "/timp/tpms";
+  const isTpmsActive = pathname === "/tmip/tpms" || pathname.startsWith("/tmip/tpms");
   const isRoiActive = pathname === "/tmip/roi-calculator";
   const isResourcesActive = pathname.startsWith("/tmip/whitepapers") || pathname.startsWith("/tmip/insights");
   const isSecurityActive = pathname.startsWith("/tmip/security") || pathname.startsWith("/tmip/compliance");
@@ -100,7 +100,9 @@ export function TmipHeader() {
                 <Link href="/tmip/platform/predictive-maintenance" className="block px-3 py-2 rounded-lg text-xs normal-case text-slate-300 hover:bg-[#3B82F6]/10 hover:text-[#3B82F6] transition-colors">
                   Predictive Maintenance
                 </Link>
-                
+                <Link href="/tmip/tpms" className="block px-3 py-2 rounded-lg text-xs normal-case text-slate-300 hover:bg-[#3B82F6]/10 hover:text-[#3B82F6] transition-colors">
+                  Fleet TPMS &amp; Sensors
+                </Link>
               </div>
             </div>
 
@@ -128,23 +130,23 @@ export function TmipHeader() {
                 <Link href="/tmip/solutions/construction" className="block px-3 py-2 rounded-lg text-xs normal-case text-slate-300 hover:bg-[#3B82F6]/10 hover:text-[#3B82F6] transition-colors">
                   Construction &amp; Heavy
                 </Link>
-                <Link href="/tmip/solutions/mining" className="block px-3 py-2 rounded-lg text-xs normal-case text-slate-300 hover:bg-[#3B82F6]/10 hover:text-[#3B82F6] transition-colors">
-                  Mining &amp; Quarry
-                </Link>
                 <Link href="/tmip/solutions/oem-fleet" className="block px-3 py-2 rounded-lg text-xs normal-case text-slate-300 hover:bg-[#3B82F6]/10 hover:text-[#3B82F6] transition-colors">
                   OEM Fleet Intelligence
                 </Link>
               </div>
             </div>
 
-            {/* TPMS */}
+            {/* FLEET TPMS */}
             <Link
-              href="/timp/tpms"
-              className={`py-2 transition-colors whitespace-nowrap ${
+              href="/tmip/tpms"
+              className={`py-2 transition-colors whitespace-nowrap flex items-center gap-1.5 ${
                 isTpmsActive ? "text-[#3B82F6] font-semibold" : "hover:text-[#3B82F6]"
               }`}
             >
-              TPMS
+              <span>Fleet TPMS</span>
+              <span className="text-[9px] font-jetbrains uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#3B82F6]/15 text-[#3B82F6] border border-[#3B82F6]/30 hidden xl:inline-block">
+                IoT
+              </span>
             </Link>
 
 
@@ -253,6 +255,7 @@ export function TmipHeader() {
                   <Link href="/tmip/platform/vehicle-digital-twin" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#3B82F6]">Vehicle Digital Twin</Link>
                   <Link href="/tmip/platform/telemetry" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#3B82F6]">Real-Time Telemetry</Link>
                   <Link href="/tmip/platform/predictive-maintenance" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#3B82F6]">Predictive Maintenance</Link>
+                  <Link href="/tmip/tpms" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#3B82F6]">Fleet TPMS &amp; Sensors</Link>
                 </div>
               )}
             </div>
@@ -272,21 +275,23 @@ export function TmipHeader() {
                   <Link href="/tmip/solutions/logistics" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#3B82F6]">Logistics &amp; Express</Link>
                   <Link href="/tmip/solutions/passenger-transport" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#3B82F6]">Passenger Transport</Link>
                   <Link href="/tmip/solutions/construction" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#3B82F6]">Construction &amp; Heavy</Link>
-                  <Link href="/tmip/solutions/mining" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#3B82F6]">Mining &amp; Quarry</Link>
                   <Link href="/tmip/solutions/oem-fleet" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#3B82F6]">OEM Fleet Intelligence</Link>
                 </div>
               )}
             </div>
 
-            {/* TPMS */}
+            {/* Fleet TPMS */}
             <Link 
-              href="/timp/tpms" 
+              href="/tmip/tpms" 
               onClick={() => setMobileMenuOpen(false)}
-              className={`block py-2 font-semibold uppercase tracking-wider text-xs transition-colors ${
+              className={`block py-2 font-semibold uppercase tracking-wider text-xs transition-colors flex items-center justify-between ${
                 isTpmsActive ? "text-[#3B82F6]" : "text-white hover:text-[#3B82F6]"
               }`}
             >
-              TPMS
+              <span>Fleet TPMS</span>
+              <span className="text-[10px] font-mono text-[#3B82F6] bg-[#3B82F6]/10 px-2 py-0.5 rounded border border-[#3B82F6]/25">
+                IoT Hardware
+              </span>
             </Link>
 
 

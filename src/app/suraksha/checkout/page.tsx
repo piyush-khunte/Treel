@@ -393,7 +393,7 @@ export default function SurakshaCheckoutPage() {
               <Lock className="w-3.5 h-3.5" /> SECURE 256-BIT ENCRYPTED COMMERCIAL CHECKOUT
             </div>
             <h1 className="font-anton text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              DELIVERY &amp; TRUCK <span className="italic text-[#DC2626]">ORDER DETAILS</span>
+              Delivery &amp; truck <span className="italic text-[#DC2626]">order details</span>
             </h1>
           </div>
         </div>
@@ -624,7 +624,7 @@ export default function SurakshaCheckoutPage() {
                     Commercial Checkout Summary
                   </div>
                   <h3 className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase mt-1">
-                    SURAKSHA ORDER ({totalItems} {totalItems === 1 ? "KIT" : "KITS"})
+                    Suraksha order ({totalItems} {totalItems === 1 ? "kit" : "kits"})
                   </h3>
                 </div>
 

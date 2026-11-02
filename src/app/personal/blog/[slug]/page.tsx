@@ -34,13 +34,13 @@ export async function generateMetadata({
   const result = await getPublicBlogBySlug(slug);
   const article = result.data;
 
-  if (!article) return { title: "Article Not Found · Treel Personal TPMS" };
+  if (!article) return { title: "Article Not Found — Personal TPMS Blog" };
 
   const metaTitle = article.metatitle || article.title;
   const metaDesc = article.metadescription || article.description;
 
   return {
-    title: `${metaTitle} · Treel Personal TPMS Blog`,
+    title: `${metaTitle} — Blog`,
     description: metaDesc,
     alternates: {
       canonical: `https://treel.in/personal/blog/${article.slug}`,

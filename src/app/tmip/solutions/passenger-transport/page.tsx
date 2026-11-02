@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -96,17 +97,15 @@ export default function TmipSolutionsPassengerTransportPage() {
       <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-4">
-            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-2">
-              <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
-                TMIP
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <Link href="/tmip/solutions" className="hover:text-[#F1F5F9] transition-colors">
-                Solutions
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <span className="text-[#3B82F6]">Passenger Transport</span>
-            </nav>
+            <Breadcrumb
+              variant="tmip"
+              items={[
+                { label: "TMIP", href: "/tmip" },
+                { label: "Solutions", href: "/tmip/solutions" },
+                { label: "Passenger Transport", href: "/tmip/solutions/passenger-transport" },
+              ]}
+              className="mb-2"
+            />
 
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
               SOLUTIONS · PASSENGER TRANSPORT
@@ -145,7 +144,7 @@ export default function TmipSolutionsPassengerTransportPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
             <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
               <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#10B981]">0 Bursts</div>
-              <div className="text-sm font-semibold text-[#F1F5F9] mt-1 font-ibm-plex">Zero Expressway Blowouts</div>
+              <div className="text-sm font-semibold text-[#F1F5F9] mt-1 font-ibm-plex">Zero Tyre Bursts due to high temperature and pressure</div>
               <div className="text-xs text-[#94A3B8] mt-1 font-ibm-plex">Across 650 luxury intercity coaches over 18 continuous months</div>
             </div>
             <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
@@ -154,7 +153,7 @@ export default function TmipSolutionsPassengerTransportPage() {
               <div className="text-xs text-[#94A3B8] mt-1 font-ibm-plex">Eliminating roadside breakdown passenger stranding events</div>
             </div>
             <div className="p-5 sm:p-6 rounded-[4px] bg-[#0B1220] border border-slate-400/10">
-              <div className="font-space-grotesk text-3xl sm:text-4xl font-bold text-[#F59E0B]">&lt;1.0s</div>
+              <div className="font-space-grotesk text-2xl sm:text-3xl font-bold text-[#F59E0B]">Less than 6.0 seconds</div>
               <div className="text-sm font-semibold text-[#F1F5F9] mt-1 font-ibm-plex">Sub-Second Telemetry</div>
               <div className="text-xs text-[#94A3B8] mt-1 font-ibm-plex">Instantaneous audio-visual driver alerts on cab displays</div>
             </div>

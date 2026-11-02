@@ -4,14 +4,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Treel Products · TMIP, Suraksha, Personal TPMS",
-  description: "Three products from Treel Mobility Solutions: TMIP for enterprise fleets, Project Suraksha for owner-drivers, Personal TPMS for consumers. One architecture, three audiences.",
+  title: "Connected Vehicle Products — TMIP, Suraksha & Personal TPMS",
+  description: "Three products from Treel: TMIP for enterprise fleets, Suraksha for truck owner-drivers, Personal TPMS for consumers. One architecture, three audiences.",
   alternates: {
     canonical: "https://treel.in/products",
   },
   openGraph: {
-    title: "Treel Products · TMIP, Suraksha, Personal TPMS",
-    description: "Three products from Treel Mobility Solutions: TMIP for enterprise fleets, Project Suraksha for owner-drivers, Personal TPMS for consumers. One architecture, three audiences.",
+    title: "Connected Vehicle Products — TMIP, Suraksha & Personal TPMS",
+    description: "Three products from Treel: TMIP for enterprise fleets, Suraksha for truck owner-drivers, Personal TPMS for consumers. One architecture, three audiences.",
     url: "https://treel.in/products",
   },
 };

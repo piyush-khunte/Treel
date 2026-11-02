@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Truck, Bus, HardHat, Pickaxe, Award, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Truck, Bus, HardHat, Award, CheckCircle2 } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Solutions by Industry  ·  TMIP",
   description:
-    "TMIP for logistics, passenger transport, construction, mining, and OEM fleet operators. Same platform, industry-tuned deployments.",
+    "TMIP for logistics, passenger transport, construction, and OEM fleet operators. Same platform, industry-tuned deployments.",
   alternates: {
     canonical: "https://treel.in/tmip/solutions",
   },
   openGraph: {
     title: "Solutions by Industry  ·  TMIP",
     description:
-      "TMIP for logistics, passenger transport, construction, mining, and OEM fleet operators. Same platform, industry-tuned deployments.",
+      "TMIP for logistics, passenger transport, construction, and OEM fleet operators. Same platform, industry-tuned deployments.",
     url: "https://treel.in/tmip/solutions",
   },
 };
@@ -41,16 +41,9 @@ const industryCards = [
     cta: "See construction",
   },
   {
-    icon: Pickaxe,
-    title: "Mining",
-    body: "Off-highway mining fleets where downtime costs are extreme and maintenance windows are unforgiving.",
-    href: "/tmip/solutions/mining",
-    cta: "See mining",
-  },
-  {
     icon: Award,
     title: "OEM fleet",
-    body: "OEM-branded fleet solutions for Tata, Mahindra, and other commercial vehicle manufacturers. Integrated at the vehicle-delivery stage.",
+    body: "OEM-branded fleet solutions for commercial vehicle manufacturers. Integrated at the vehicle-delivery stage.",
     href: "/tmip/solutions/oem-fleet",
     cta: "See OEM fleet",
   },
@@ -86,10 +79,10 @@ export default function TmipSolutionsPage() {
               SOLUTIONS
             </div>
             <h1 className="font-space-grotesk text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F1F5F9] leading-[1.12]">
-              One platform. Five industries.
+              One platform. Four industries.
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed max-w-3xl font-ibm-plex">
-              TMIP serves fleet operators across five commercial vehicle industries. The platform is the same. The
+              TMIP serves fleet operators across four commercial vehicle industries. The platform is the same. The
               deployments are tuned to how each industry actually runs its fleet.
             </p>
           </div>
@@ -99,7 +92,7 @@ export default function TmipSolutionsPage() {
       {/* Section · Industry cards */}
       <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {industryCards.map((card, idx) => {
               const Icon = card.icon;
               return (

@@ -2,13 +2,13 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "[Category]  \u00b7  Treel Insights",
+  title: "[Category] Articles — Insights",
   description: "Insights and analysis on [category] from Treel Mobility Solutions.",
   alternates: {
     canonical: "https://treel.in/insights/category/[category-slug]",
   },
   openGraph: {
-    title: "[Category]  \u00b7  Treel Insights",
+    title: "[Category] Articles — Insights",
     description: "Insights and analysis on [category] from Treel Mobility Solutions.",
     url: "https://treel.in/insights/category/[category-slug]",
   },

@@ -6,13 +6,13 @@ import { LeadershipTeam } from "./leadership-team";
 import { BoardAdvisors } from "./board-advisors";
 
 export const metadata: Metadata = {
-  title: "Leadership  ·  Treel",
+  title: "Leadership",
   description: "The team leading Treel Mobility Solutions. Founder Manish Ingale and the executive team building India's mobility intelligence company.",
   alternates: {
     canonical: "https://treel.in/leadership",
   },
   openGraph: {
-    title: "Leadership  ·  Treel",
+    title: "Leadership",
     description: "The team leading Treel Mobility Solutions. Founder Manish Ingale and the executive team building India's mobility intelligence company.",
     url: "https://treel.in/leadership",
   },

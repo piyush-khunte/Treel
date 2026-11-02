@@ -111,7 +111,7 @@ export function WhitepaperForm() {
             {accessResult.format} Document Ready
           </div>
           <div className="text-sm font-semibold text-white">
-            The Fleet ROI Paper — How TMIP customers reach payback in nine months
+            The Fleet ROI Paper — How TMIP customers reach payback in 9 to 12 months
           </div>
           <div className="text-[11px] font-mono text-slate-400">
             Format: {accessResult.format} · 28 pages

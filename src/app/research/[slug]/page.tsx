@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
   ArrowRight,
   Calendar,
@@ -109,13 +110,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const canonicalSlug = dbPaper?.slug || fallback.slug;
 
   return {
-    title: `${title} · Treel Research`,
+    title: `${title} — Research`,
     description,
     alternates: {
       canonical: `https://treel.in/research/${canonicalSlug}`,
     },
     openGraph: {
-      title: `${title} · Treel Research`,
+      title: `${title} — Research`,
       description,
       url: `https://treel.in/research/${canonicalSlug}`,
     },
@@ -159,13 +160,13 @@ export default async function ResearchSlugPage({ params }: { params: Promise<{ s
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             {/* Breadcrumb Navigation */}
-            <div className="flex items-center gap-2 text-xs font-mono text-[#94A3B8]">
-              <Link href="/research" className="hover:text-[#FAF7F2] transition-colors">
-                Research
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <span className="text-[#D5573B] truncate max-w-xs">{title}</span>
-            </div>
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Research", href: "/research" },
+                { label: title, href: `/research/${targetSlug}` },
+              ]}
+            />
 
             <div className="flex items-center gap-3">
               <span className="text-xs font-mono uppercase px-3 py-0.5 rounded-[4px] bg-[#D5573B]/10 text-[#D5573B] border border-[#D5573B]/20 font-semibold tracking-wider">

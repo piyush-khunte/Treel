@@ -5,14 +5,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "What is Mobility Intelligence? · Treel",
-  description: "Mobility intelligence is the category that replaces tyre monitoring for fleet operators. It treats every vehicle as a queryable data object. Definition, adoption, and why the category emerged.",
+  title: "What is Mobility Intelligence?",
+  description: "Mobility intelligence replaces basic tyre monitoring for fleet operators by treating each vehicle as a queryable data object. Category guide by Treel.",
   alternates: {
     canonical: "https://treel.in/mobility-intelligence",
   },
   openGraph: {
-    title: "What is Mobility Intelligence? · Treel",
-    description: "Mobility intelligence is the category that replaces tyre monitoring for fleet operators. It treats every vehicle as a queryable data object. Definition, adoption, and why the category emerged.",
+    title: "What is Mobility Intelligence?",
+    description: "Mobility intelligence replaces basic tyre monitoring for fleet operators by treating each vehicle as a queryable data object. Category guide by Treel.",
     url: "https://treel.in/mobility-intelligence",
   },
 };
@@ -83,7 +83,7 @@ export default function MobilityIntelligencePage() {
               Mobility intelligence is the operational category that treats every vehicle as a queryable data object rather than a monitored component.
             </p>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter max-w-3xl">
-              It replaces the older &ldquo;tyre monitoring&rdquo; and &ldquo;fleet telematics&rdquo; categories with an architecture built around the Vehicle Digital Twin. Treel is the company that operates this category in India across 68,000+ commercial vehicles.
+              It replaces the older &ldquo;tyre monitoring&rdquo; and &ldquo;fleet telematics&rdquo; categories with an architecture built around the Vehicle Digital Twin. Treel is the company that operates this category in India with 70,000+ vehicles under active management.
             </p>
           </div>
         </div>
@@ -112,7 +112,7 @@ export default function MobilityIntelligencePage() {
                 From tyre monitoring to mobility intelligence.
               </h2>
               <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-                Ten years ago, the fleet intelligence category was called tyre monitoring. Sensors on tyres reported pressure and temperature. Fleet owners received alerts when a tyre needed attention. It was useful, but small.
+                Ten years ago, the fleet intelligence category was called just a dot on a map. Sensors on tyres reported pressure and temperature. Fleet owners received alerts when a tyre needed attention. It was useful, but small.
               </p>
               <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
                 Five years ago, the category expanded into fleet telematics. GPS, fuel data, and driver behaviour joined the mix. Fleet owners could see where their trucks were and how they were being driven. Better, but still fragmented across separate tools.

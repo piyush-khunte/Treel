@@ -163,8 +163,8 @@ export default function SurakshaSupportPage() {
             </div>
 
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
-              NEED HELP?<br />
-              <span className="italic text-[#0891B2]">WE'RE HERE.</span>
+              Need help?<br />
+              <span className="italic text-[#0891B2]">We're here.</span>
             </h1>
 
             <div className="space-y-2 max-w-3xl">
@@ -190,7 +190,7 @@ export default function SurakshaSupportPage() {
               DIRECT CHANNELS
             </span>
             <h2 className="font-anton text-3xl sm:text-4xl text-[#451A03] uppercase">
-              CHOOSE YOUR SUPPORT CHANNEL
+              Choose your support channel
             </h2>
             <p className="text-[#78350F] text-base font-medium">
               Call toll-free, message us on WhatsApp, or request a fast callback in your preferred language.
@@ -341,7 +341,7 @@ export default function SurakshaSupportPage() {
               SELF-SERVICE & GUIDES
             </span>
             <h2 className="font-anton text-3xl sm:text-4xl text-[#451A03] uppercase">
-              EXPLORE HELP BY TOPIC
+              Explore help by topic
             </h2>
             <p className="text-[#78350F] text-base font-medium">
               Find technical documentation, 15-minute installation guides, EMI terms, or authorized fitment hubs.
@@ -394,7 +394,7 @@ export default function SurakshaSupportPage() {
                 QUICK ANSWERS
               </span>
               <h2 className="font-anton text-3xl sm:text-4xl text-[#451A03] uppercase">
-                COMMON QUESTIONS
+                Common questions
               </h2>
               <p className="text-[#78350F] text-base font-medium">
                 Frequently asked questions from truck drivers, mechanics, and fleet owners.
@@ -426,16 +426,22 @@ export default function SurakshaSupportPage() {
                       />
                     </button>
 
-                    {isOpen && (
+
                       <div
                         id={`faq-answer-${faq.id}`}
                         role="region"
                         aria-labelledby={`faq-btn-${faq.id}`}
-                        className="px-6 pb-6 pt-1 text-[#78350F] text-sm sm:text-base leading-relaxed font-rubik border-t border-[#451A03]/10 font-medium"
+                        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+                          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                        }`}
                       >
-                        {faq.answer}
+                        <div className="overflow-hidden">
+                          <div className="px-6 pb-6 pt-1 text-[#78350F] text-sm sm:text-base leading-relaxed font-rubik border-t border-[#451A03]/10 font-medium">
+                            {faq.answer}
+                          </div>
+                        </div>
                       </div>
-                    )}
+
                   </div>
                 );
               })}
@@ -466,7 +472,7 @@ export default function SurakshaSupportPage() {
                 HASSLE-FREE REPLACEMENT
               </div>
               <h2 className="font-anton text-3xl sm:text-4xl text-[#451A03] uppercase">
-                WARRANTY CLAIM
+                Warranty claim
               </h2>
               <p className="text-[#451A03] text-base sm:text-lg font-medium leading-relaxed max-w-2xl mx-auto">
                 Experiencing an issue with a sensor or display? Send these 3 details on WhatsApp for immediate replacement assistance:
@@ -530,7 +536,7 @@ export default function SurakshaSupportPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h2 className="font-anton text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-white leading-tight">
-              PROBLEM SOLVED IN MINUTES.
+              Problem solved in minutes.
             </h2>
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium">
               Chat on WhatsApp for our fastest response.

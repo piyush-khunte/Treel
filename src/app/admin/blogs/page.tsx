@@ -317,7 +317,7 @@ const SECTION_TEMPLATES: Record<string, { label: string; sections: { heading: st
         },
         {
           heading: "Empirical Corridor Telemetry Dataset",
-          content: "Findings from 68,000 active commercial vehicles across national highway freight corridors..."
+          content: "Findings from 70,000+ vehicles under active management across national highway freight corridors..."
         },
         {
           heading: "Total Cost of Ownership & ROI Modeling",

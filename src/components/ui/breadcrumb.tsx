@@ -12,6 +12,7 @@ export interface BreadcrumbProps {
   items: BreadcrumbItem[];
   variant?: "corporate" | "tmip" | "suraksha" | "personal";
   className?: string;
+  currentUrl?: string;
 }
 
 const variantStyles = {
@@ -41,34 +42,68 @@ const variantStyles = {
   },
 };
 
-export function Breadcrumb({ items, variant = "corporate", className }: BreadcrumbProps) {
+export function Breadcrumb({ items, variant = "corporate", className, currentUrl }: BreadcrumbProps) {
   if (!items || items.length === 0) return null;
 
   const styles = variantStyles[variant] || variantStyles.corporate;
 
+  const breadcrumbListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => {
+      const position = index + 1;
+      let itemUrl = item.href
+        ? item.href.startsWith("http")
+          ? item.href
+          : `https://treel.in${item.href}`
+        : undefined;
+
+      if (!itemUrl && index === items.length - 1 && currentUrl) {
+        itemUrl = currentUrl.startsWith("http")
+          ? currentUrl
+          : `https://treel.in${currentUrl}`;
+      }
+
+      return {
+        "@type": "ListItem",
+        position,
+        name: item.label,
+        ...(itemUrl ? { item: itemUrl } : {}),
+      };
+    }),
+  };
+
   return (
-    <nav aria-label="Breadcrumb" className={cn("overflow-x-auto py-1", styles.nav, className)}>
-      <ol className="flex items-center gap-2 flex-wrap sm:flex-nowrap list-none p-0 m-0">
-        {items.map((item, index) => {
-          const isLast = index === items.length - 1;
-          return (
-            <li key={index} className="inline-flex items-center gap-2 shrink-0">
-              {index > 0 && (
-                <ChevronRight className={styles.separator} aria-hidden="true" />
-              )}
-              {isLast || !item.href ? (
-                <span aria-current="page" className={styles.active}>
-                  {item.label}
-                </span>
-              ) : (
-                <Link href={item.href} className={styles.link}>
-                  {item.label}
-                </Link>
-              )}
-            </li>
-          );
-        })}
-      </ol>
-    </nav>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbListJsonLd),
+        }}
+      />
+      <nav aria-label="Breadcrumb" className={cn("overflow-x-auto py-1", styles.nav, className)}>
+        <ol className="flex items-center gap-2 flex-wrap sm:flex-nowrap list-none p-0 m-0">
+          {items.map((item, index) => {
+            const isLast = index === items.length - 1;
+            return (
+              <li key={index} className="inline-flex items-center gap-2 shrink-0">
+                {index > 0 && (
+                  <ChevronRight className={styles.separator} aria-hidden="true" />
+                )}
+                {isLast || !item.href ? (
+                  <span aria-current="page" className={styles.active}>
+                    {item.label}
+                  </span>
+                ) : (
+                  <Link href={item.href} className={styles.link}>
+                    {item.label}
+                  </Link>
+                )}
+              </li>
+            );
+          })}
+        </ol>
+      </nav>
+    </>
   );
 }

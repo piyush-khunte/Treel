@@ -125,14 +125,21 @@ export function SupportFaqAccordion() {
                 <ChevronDown className="w-4 h-4" />
               </div>
             </button>
-            {isOpen && (
+            <div
+              id={`faq-answer-${item.id}`}
+              className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+              }`}
+            >
+              <div className="overflow-hidden">
               <div
                 id={`faq-answer-${item.id}`}
                 className="px-6 pb-6 pt-1 text-sm text-[#94A3B8] leading-relaxed font-ibm-plex border-t border-slate-400/5"
               >
                 {item.answer}
               </div>
-            )}
+              </div>
+            </div>
           </div>
         );
       })}

@@ -4,7 +4,7 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Mining OEM Solutions · Treel Mobility Solutions",
+  title: "Mining OEM Solutions",
   description: "Heavy off-the-road (OTR) tyre telematics, load-cycle monitoring, and severe environment sensors for mining vehicle manufacturers.",
   alternates: {
     canonical: "https://treel.in/oem/mining",

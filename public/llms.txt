@@ -33,7 +33,7 @@ Treel operates across three unified product verticals built upon a proprietary t
 - [Logistics & Long-Haul Freight](https://treel.in/tmip/solutions/logistics): Fuel optimization, tyre mileage maximization, and roadside breakdown elimination.
 - [Passenger Express & Intercity Fleets](https://treel.in/tmip/solutions/passenger-transport): Passenger safety, puncture prevention, and on-time service reliability.
 - [Infrastructure & Construction Fleets](https://treel.in/tmip/solutions/construction): Heavy tipper monitoring and severe-duty uptime preservation.
-- [Mining & Quarry Operations](https://treel.in/tmip/solutions/mining): High-load OTR tyre analytics and payload-pressure correlation.
+- [OTR Mining & Quarry TPMS](https://treel.in/products/otr-tpms): High-load OTR tyre analytics, rugged sensors, and severe-duty pressure-temperature telemetry.
 
 ## Technology & Engineering
 

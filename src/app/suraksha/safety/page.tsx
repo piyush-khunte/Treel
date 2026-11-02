@@ -6,13 +6,13 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Truck Safety  \u00b7  Front-Tyre Blowouts Prevented  \u00b7  Suraksha",
-  description: "Prevent front-tyre blowouts before they happen. Suraksha real-time pressure and temperature monitoring alerts you 24-48 hours before a tyre fails. For your family's safety.",
+  description: "Prevent highway front-tyre blowouts. Suraksha real-time pressure and temperature monitoring alerts you 24–48 hours before a tyre fails. Built for safety.",
   alternates: {
     canonical: "https://treel.in/suraksha/safety",
   },
   openGraph: {
     title: "Truck Safety  \u00b7  Front-Tyre Blowouts Prevented  \u00b7  Suraksha",
-    description: "Prevent front-tyre blowouts before they happen. Suraksha real-time pressure and temperature monitoring alerts you 24-48 hours before a tyre fails. For your family's safety.",
+    description: "Prevent highway front-tyre blowouts. Suraksha real-time pressure and temperature monitoring alerts you 24–48 hours before a tyre fails. Built for safety.",
     url: "https://treel.in/suraksha/safety",
   },
 };
@@ -35,7 +35,7 @@ export default function SurakshaSafetyPage() {
               SAFETY
             </div>
             <h1 className="font-anton uppercase tracking-wide text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95]">
-              THE WARNING<br /><span className="italic text-[#DC2626]">BEFORE THE BLOWOUT.</span>
+              The warning<br /><span className="italic text-[#DC2626]">before the blowout.</span>
             </h1>
             <SurakshaRotator
               page="5.9"
@@ -78,7 +78,7 @@ export default function SurakshaSafetyPage() {
                 DETECTION SYSTEM
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                WHAT SURAKSHA DETECTS
+                What Suraksha detects
               </h2>
               <p className="text-[#78350F] text-base mt-2 font-medium">
                 Three categories with examples:
@@ -135,7 +135,7 @@ export default function SurakshaSafetyPage() {
                 STATISTICS
               </div>
               <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#451A03]">
-                KEY SAFETY METRICS
+                Key safety metrics
               </h2>
               <p className="text-[#78350F] text-base mt-2 font-medium">
                 Critical highway data that every commercial vehicle operator should know:
@@ -184,7 +184,7 @@ export default function SurakshaSafetyPage() {
             </div>
 
             <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl font-normal text-[#451A03]">
-              BUILT FOR YOUR FAMILY
+              Built for your family
             </h2>
 
             <p className="text-[#451A03] text-lg sm:text-xl leading-relaxed font-medium">
@@ -209,7 +209,7 @@ export default function SurakshaSafetyPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton uppercase tracking-wide text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FEF3C7]">
-              INSTALL SURAKSHA FOR YOUR FAMILY
+              Install Suraksha for your family
             </h2>
             <div className="pt-2 flex flex-wrap justify-center gap-4">
               <Link

@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Award, Factory, Cpu, ShieldCheck, CheckCircle2, ChevronRight } from "lucide-react";
@@ -59,17 +60,15 @@ export default function TmipSolutionsOemFleetPage() {
       <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10 bg-[#080E1E]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-4">
-            <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-2">
-              <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
-                TMIP
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <Link href="/tmip/solutions" className="hover:text-[#F1F5F9] transition-colors">
-                Solutions
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <span className="text-[#3B82F6]">OEM Fleet</span>
-            </nav>
+            <Breadcrumb
+              variant="tmip"
+              items={[
+                { label: "TMIP", href: "/tmip" },
+                { label: "Solutions", href: "/tmip/solutions" },
+                { label: "OEM Fleet", href: "/tmip/solutions/oem-fleet" },
+              ]}
+              className="mb-2"
+            />
 
             <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-medium">
               SOLUTIONS · OEM FLEET
@@ -139,7 +138,7 @@ export default function TmipSolutionsOemFleetPage() {
               How we work with OEM partners.
             </h2>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-ibm-plex">
-              OEM engagements are handled directly by Treel&apos;s founder and executive team. This is not a
+              OEM engagements are handled directly by Treel&apos;s executive team. This is not a
               self-service offering. Every OEM partnership is structured around the OEM&apos;s product roadmap,
               distribution model, and customer relationships.
             </p>

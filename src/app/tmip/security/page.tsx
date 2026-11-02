@@ -8,13 +8,13 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Security  ·  TMIP",
-  description: "TMIP security posture: certifications, infrastructure security, data security, application security, incident response, responsible disclosure. For enterprise buyers.",
+  description: "TMIP enterprise security: ISO 27001 certifications, infrastructure and cloud data protection, application security, and incident response governance.",
   alternates: {
     canonical: "https://treel.in/tmip/security",
   },
   openGraph: {
     title: "Security  ·  TMIP",
-    description: "TMIP security posture: certifications, infrastructure security, data security, application security, incident response, responsible disclosure. For enterprise buyers.",
+    description: "TMIP enterprise security: ISO 27001 certifications, infrastructure and cloud data protection, application security, and incident response governance.",
     url: "https://treel.in/tmip/security",
   },
 };
@@ -141,7 +141,7 @@ export default function TmipSecurityPage() {
               How we protect the data your fleet runs on.
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-ibm-plex max-w-3xl">
-              TMIP is trusted by two hundred enterprise fleets with sixty-eight thousand vehicles under management. That trust is built on a security posture designed for enterprise buyers. Below is what we do, in detail.
+              TMIP is trusted by two hundred enterprise fleets with 70,000+ vehicles under active management. That trust is built on a security posture designed for enterprise buyers. Below is what we do, in detail.
             </p>
           </div>
         </div>

@@ -91,8 +91,8 @@ export function SurakshaCallbackSuccessView() {
               CALLBACK CONFIRMED
             </div>
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
-              DHANYAWAAD!<br />
-              <span className="italic text-[#0891B2]">WE WILL CALL YOU.</span>
+              Dhanyawaad!<br />
+              <span className="italic text-[#0891B2]">We will call you.</span>
             </h1>
             <p className="font-anton uppercase text-xl sm:text-2xl text-[#78350F] tracking-wide">
               Thanks. We'll call you.
@@ -217,7 +217,7 @@ export function SurakshaCallbackSuccessView() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl space-y-6">
             <h2 className="font-anton uppercase tracking-normal text-3xl sm:text-4xl text-[#451A03]">
-              AAGE KYA HOGA?
+              Aage kya hoga?
             </h2>
             <div className="space-y-4">
               <div className="p-5 sm:p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#451A03]/15 flex items-start gap-4">

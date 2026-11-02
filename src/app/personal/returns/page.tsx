@@ -8,13 +8,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Returns Policy · Personal TPMS · Treel",
+  title: "Returns Policy · Personal TPMS",
   description: "Personal TPMS return policy. 7-day return window for unopened kits. Return process, eligibility, and refund timeline.",
   alternates: {
     canonical: "https://treel.in/personal/returns",
   },
   openGraph: {
-    title: "Returns Policy · Personal TPMS · Treel",
+    title: "Returns Policy · Personal TPMS",
     description: "Personal TPMS return policy. 7-day return window for unopened kits. Return process, eligibility, and refund timeline.",
     url: "https://treel.in/personal/returns",
   },

@@ -6,13 +6,13 @@ CreditCard
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Refunds Policy · Personal TPMS · Treel",
+  title: "Refunds Policy · Personal TPMS",
   description: "Personal TPMS refund policy. Eligibility, process, timeline, and Razorpay refund cycle. For online orders from treel.in.",
   alternates: {
     canonical: "https://treel.in/personal/refunds",
   },
   openGraph: {
-    title: "Refunds Policy · Personal TPMS · Treel",
+    title: "Refunds Policy · Personal TPMS",
     description: "Personal TPMS refund policy. Eligibility, process, timeline, and Razorpay refund cycle. For online orders from treel.in.",
     url: "https://treel.in/personal/refunds",
   },

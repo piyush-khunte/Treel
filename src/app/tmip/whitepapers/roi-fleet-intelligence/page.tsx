@@ -1,17 +1,18 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ChevronRight, BookOpen, Clock } from "lucide-react";
 import { WhitepaperForm } from "./whitepaper-form";
 
 export const metadata: Metadata = {
-  title: "The Fleet ROI Paper — How TMIP customers reach payback in nine months · TMIP Whitepaper",
+  title: "The Fleet ROI Paper — How TMIP customers reach payback in 9 to 12 months · TMIP Whitepaper",
   description:
     "The economics of mobility intelligence deployment across two hundred TMIP customers. Payback drivers, ROI attribution, and vehicle-level economics.",
   alternates: {
     canonical: "https://treel.in/tmip/whitepapers/roi-fleet-intelligence",
   },
   openGraph: {
-    title: "The Fleet ROI Paper — How TMIP customers reach payback in nine months · TMIP Whitepaper",
+    title: "The Fleet ROI Paper — How TMIP customers reach payback in 9 to 12 months · TMIP Whitepaper",
     description:
       "The economics of mobility intelligence deployment across two hundred TMIP customers. Payback drivers, ROI attribution, and vehicle-level economics.",
     url: "https://treel.in/tmip/whitepapers/roi-fleet-intelligence",
@@ -36,17 +37,15 @@ export default function RoiFleetIntelligencePage() {
       {/* Header & Breadcrumbs */}
       <section className="relative z-10 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-slate-400/10">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
-          <nav className="flex items-center gap-2 text-xs font-jetbrains text-[#94A3B8] mb-3 sm:mb-4">
-            <Link href="/tmip" className="hover:text-[#F1F5F9] transition-colors">
-              TMIP
-            </Link>
-            <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
-            <Link href="/tmip/whitepapers" className="hover:text-[#F1F5F9] transition-colors">
-              Whitepapers
-            </Link>
-            <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
-            <span className="text-[#3B82F6] truncate">The Fleet ROI Paper</span>
-          </nav>
+          <Breadcrumb
+            variant="tmip"
+            items={[
+              { label: "TMIP", href: "/tmip" },
+              { label: "Whitepapers", href: "/tmip/whitepapers" },
+              { label: "The Fleet ROI Paper", href: "/tmip/whitepapers/roi-fleet-intelligence" },
+            ]}
+            className="mb-3 sm:mb-4"
+          />
 
           <div className="max-w-4xl space-y-3 sm:space-y-4">
             <div className="flex flex-wrap items-center gap-3">
@@ -63,7 +62,7 @@ export default function RoiFleetIntelligencePage() {
             </div>
 
             <h1 className="font-space-grotesk text-3xl sm:text-5xl font-bold tracking-tight text-[#F1F5F9] leading-[1.15]">
-              The Fleet ROI Paper — How TMIP customers reach payback in nine months
+              The Fleet ROI Paper — How TMIP customers reach payback in 9 to 12 months
             </h1>
 
             <p className="text-sm font-jetbrains text-[#94A3B8]">
@@ -84,8 +83,8 @@ export default function RoiFleetIntelligencePage() {
                 <h2 className="font-space-grotesk text-2xl font-bold text-[#F1F5F9]">What this paper covers</h2>
                 <div className="space-y-3 text-base text-[#94A3B8] leading-relaxed font-ibm-plex">
                   <p>
-                    Across two hundred commercial transport enterprises running 68,000+ heavy commercial vehicles, the
-                    median payback period for the Treel Mobility Intelligence Platform (TMIP) is nine months. This
+                    Across two hundred commercial transport enterprises running 70,000+ vehicles under active management, the
+                    median payback period for the Treel Mobility Intelligence Platform (TMIP) is 9 to 12 months. This
                     empirical research paper dissects the unit economics behind that timeline.
                   </p>
                   <p>
@@ -113,7 +112,7 @@ export default function RoiFleetIntelligencePage() {
                 <ul className="space-y-2.5 text-sm text-[#CBD5E1] font-ibm-plex">
                   <li className="flex items-start gap-3">
                     <span className="font-jetbrains text-[#3B82F6] font-semibold">01</span>
-                    <span>Executive Summary &amp; Cohort Methodology (200 Fleets, 68,412 Assets)</span>
+                    <span>Executive Summary &amp; Cohort Methodology (200 Fleets, 70,000+ Vehicles Under Active Management)</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="font-jetbrains text-[#3B82F6] font-semibold">02</span>

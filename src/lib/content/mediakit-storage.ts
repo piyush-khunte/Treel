@@ -163,7 +163,7 @@ export const SEED_MEDIA_KIT_ITEMS: MediaKitItemRecord[] = [
     title: "Company Fact Sheet",
     category: "Fact Sheet & Bios",
     format: "PDF Document",
-    description: "One-page summary of founding, funding, product families, 68,000+ vehicle dataset, key metrics, and Pune headquarters info.",
+    description: "One-page summary of founding, funding, product families, 70,000+ vehicles under active management dataset, key metrics, and Pune headquarters info.",
     fileSize: "1.4 MB",
     fileUrl: "/downloads/media-kit/treel-company-fact-sheet.pdf",
     file: "treel-company-fact-sheet.pdf",

@@ -1,5 +1,25 @@
 [
   {
+    "id": "cons_2b621a4ede404cbc",
+    "consentId": "cons_2b621a4ede404cbc",
+    "status": "Accepted",
+    "decision": "Accepted All",
+    "categories": "Necessary, Functional, Analytics, Marketing",
+    "rawCategories": {
+      "necessary": true,
+      "functional": true,
+      "analytics": true,
+      "marketing": true
+    },
+    "policyVersion": "2026-10-01",
+    "timestamp": "2026-10-30T09:45:44.745Z",
+    "formattedDate": "30 Oct 2026, 03:15 pm IST",
+    "withdrawnAt": null,
+    "source": "Cookie Banner",
+    "pagePath": "/tmip",
+    "updatedAt": "2026-10-30T09:45:46.302Z"
+  },
+  {
     "id": "cons_d1f3f3056ce3469f",
     "consentId": "cons_d1f3f3056ce3469f",
     "status": "Rejected",

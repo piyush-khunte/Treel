@@ -87,19 +87,58 @@ export function CookieBanner() {
 
   return (
     <>
-      {/* Banner popup at bottom */}
+      {/* Banner popup at bottom - compact bottom bar on mobile, floating card on desktop */}
       {!hasConsent && !showConfigModal && (
         <aside
           aria-label="Cookie and Privacy Consent"
-          className="fixed bottom-6 left-6 right-6 sm:right-auto sm:max-w-md z-50 bg-[#0F1419] text-[#FAF7F2] p-5 rounded-2xl shadow-2xl border border-[#D5573B]/30 animate-in slide-in-from-bottom-5 duration-300"
+          className="fixed bottom-0 inset-x-0 sm:bottom-6 sm:left-6 sm:inset-x-auto sm:max-w-md z-50 bg-[#0F1419]/95 sm:bg-[#0F1419] backdrop-blur-md sm:backdrop-blur-none text-[#FAF7F2] py-2.5 px-3 sm:p-5 shadow-2xl border-t sm:border border-[#D5573B]/30 sm:rounded-2xl animate-in slide-in-from-bottom duration-300"
         >
-          <div className="flex items-start gap-3">
+          {/* Mobile compact bottom bar (< sm) */}
+          <div className="flex flex-col gap-2 sm:hidden">
+            <p className="text-[11px] text-slate-300 leading-tight">
+              We use cookies to improve your experience. Review our{" "}
+              <Link href="/cookies" prefetch={false} className="text-[#D5573B] underline hover:text-[#FAF7F2]">
+                Cookie Policy
+              </Link>.
+            </p>
+            <div className="flex items-center justify-between gap-1.5 pt-0.5">
+              <div className="flex items-center gap-1.5">
+                <Button
+                  onClick={handleAcceptAll}
+                  variant="treel"
+                  size="sm"
+                  className="text-[10px] h-6 px-2.5 font-semibold bg-[#D5573B] hover:bg-[#CB4831] text-white cursor-pointer"
+                >
+                  Accept All
+                </Button>
+                <Button
+                  onClick={handleRejectAll}
+                  variant="outline"
+                  size="sm"
+                  className="text-[10px] h-6 px-2 border-white/20 text-slate-200 hover:bg-white/10 hover:text-white cursor-pointer"
+                >
+                  Essential Only
+                </Button>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowConfigModal(true)}
+                className="text-[10px] text-slate-400 hover:text-white underline underline-offset-2 px-1 py-0.5 cursor-pointer flex items-center gap-1 shrink-0"
+              >
+                <Sliders className="w-2.5 h-2.5" />
+                Preferences
+              </button>
+            </div>
+          </div>
+
+          {/* Desktop floating card (>= sm) */}
+          <div className="hidden sm:flex sm:items-start gap-3">
             <div className="p-2 rounded-xl bg-[#D5573B]/20 text-[#D5573B] shrink-0 mt-0.5">
               <Cookie className="w-5 h-5" />
             </div>
-            <div className="space-y-2.5">
+            <div className="space-y-2.5 w-full">
               <h4 className="text-sm font-semibold font-fraunces text-[#FAF7F2]">
-                Cookie & Telemetry Privacy
+                Cookie &amp; Telemetry Privacy
               </h4>
               <p className="text-xs text-slate-300 leading-relaxed">
                 We use strictly necessary cookies to ensure site security and basic functions. With your consent, we also use optional telemetry and analytics cookies to optimize performance. Review our{" "}
@@ -107,7 +146,7 @@ export function CookieBanner() {
                   Cookie Policy
                 </Link>.
               </p>
-              <div className="flex flex-wrap items-center gap-2 pt-1">
+              <div className="flex items-center gap-2 pt-1">
                 <Button
                   onClick={handleAcceptAll}
                   variant="treel"
@@ -127,7 +166,7 @@ export function CookieBanner() {
                 <button
                   type="button"
                   onClick={() => setShowConfigModal(true)}
-                  className="text-xs text-slate-400 hover:text-white underline underline-offset-2 px-1 py-1 cursor-pointer flex items-center gap-1"
+                  className="text-xs text-slate-400 hover:text-white underline underline-offset-2 px-1 py-1 cursor-pointer flex items-center gap-1 ml-auto"
                 >
                   <Sliders className="w-3 h-3" />
                   Preferences

@@ -6,13 +6,13 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { getPublicNotices } from "@/lib/admin/admin-actions";
 
 export const metadata: Metadata = {
-  title: "Notice Board · Treel Mobility Solutions",
+  title: "Notice Board",
   description: "Official corporate announcements, statutory notices, and regulatory disclosures of Treel Mobility Solutions Private Limited.",
   alternates: {
     canonical: "https://treel.in/notices",
   },
   openGraph: {
-    title: "Notice Board · Treel Mobility Solutions",
+    title: "Notice Board",
     description: "Official corporate announcements, statutory notices, and regulatory disclosures of Treel Mobility Solutions Private Limited.",
     url: "https://treel.in/notices",
   },

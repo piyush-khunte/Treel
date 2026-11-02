@@ -4,6 +4,7 @@ import { isSurakshaProductOrItem } from "@/lib/commerce/brand-validator";
 import { useCart } from "@/lib/commerce/cart-context";
 import { PERSONAL_PRODUCTS,PersonalProduct,getPersonalProductBySlug,normalizePersonalCategory } from "@/lib/data/personal-products";
 import { getValidImageSrc } from "@/lib/utils/image-utils";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 CheckCircle2,
 ChevronRight,
@@ -146,13 +147,15 @@ function ProductDetailContent({ product }: { product: PersonalProduct }) {
       <section className="pt-24 pb-16 border-b border-black/[0.06]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           {/* Breadcrumbs */}
-          <div className="flex items-center gap-2 text-xs font-semibold text-[#6B7280] uppercase tracking-wider mb-8 overflow-x-auto">
-            <Link href="/personal" className="hover:text-[#2563EB] transition-colors shrink-0">Personal TPMS</Link>
-            <ChevronRight className="w-3.5 h-3.5 text-[#9CA3AF] shrink-0" />
-            <Link href="/personal/buy" className="hover:text-[#2563EB] transition-colors shrink-0">Product Store</Link>
-            <ChevronRight className="w-3.5 h-3.5 text-[#9CA3AF] shrink-0" />
-            <span className="text-[#111827] truncate shrink-0">{product.title}</span>
-          </div>
+          <Breadcrumb
+            variant="personal"
+            items={[
+              { label: "Personal TPMS", href: "/personal" },
+              { label: "Product Store", href: "/personal/buy" },
+              { label: product.title, href: `/personal/product?slug=${product.slug}` },
+            ]}
+            className="mb-8"
+          />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
             {/* Gallery Column */}
@@ -474,18 +477,17 @@ function ProductDetailWrapper() {
   const slugParam = searchParams.get("slug");
 
   const [product, setProduct] = useState<PersonalProduct | null>(() => {
-    if (!slugParam) return null;
+    if (!slugParam) return PERSONAL_PRODUCTS[0] || null;
     const initial = getPersonalProductBySlug(slugParam);
     if (initial && (initial.brand === "suraksha" || isSurakshaProductOrItem(initial))) {
-      return null;
+      return PERSONAL_PRODUCTS[0] || null;
     }
-    return initial || null;
+    return initial || PERSONAL_PRODUCTS[0] || null;
   });
-  const [loading, setLoading] = useState<boolean>(!product);
+  const [loading, setLoading] = useState<boolean>(false);
 
   React.useEffect(() => {
     if (!slugParam) {
-      router.replace("/personal/buy");
       return;
     }
 
@@ -505,35 +507,37 @@ function ProductDetailWrapper() {
             return;
           }
         }
-        setProduct((prev) => {
-          if (!prev) {
-            router.replace("/personal/buy");
-          }
-          return prev;
-        });
+        setProduct((prev) => prev || PERSONAL_PRODUCTS[0]);
         setLoading(false);
       })
       .catch(() => {
-        setProduct((prev) => {
-          if (!prev) {
-            router.replace("/personal/buy");
-          }
-          return prev;
-        });
+        setProduct((prev) => prev || PERSONAL_PRODUCTS[0]);
         setLoading(false);
       });
   }, [slugParam, router]);
 
   if (loading) {
     return (
-      <div className="py-24 text-center text-sm font-bold text-[#6B7280]">
-        Loading product details...
+      <div className="py-24 text-center max-w-[1320px] mx-auto px-6">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#111827] leading-tight mb-3">
+          Personal TPMS Smart Tyre Pressure Monitoring System
+        </h1>
+        <p className="text-sm font-bold text-[#6B7280]">Loading product details...</p>
       </div>
     );
   }
 
   if (!product) {
-    return null;
+    return (
+      <div className="py-24 text-center max-w-[1320px] mx-auto px-6">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#111827] leading-tight mb-3">
+          Personal TPMS Smart Tyre Pressure Monitoring System
+        </h1>
+        <p className="text-sm text-[#6B7280]">
+          Product not found. <Link href="/personal/buy" className="text-[#2563EB] underline font-bold">Browse all Personal TPMS products</Link>
+        </p>
+      </div>
+    );
   }
 
   return <ProductDetailContent product={product} />;
@@ -541,11 +545,16 @@ function ProductDetailWrapper() {
 
 export default function PersonalProductPage() {
   return (
-    <Suspense fallback={
-      <div className="py-24 text-center text-sm font-bold text-[#6B7280]">
-        Loading product details...
-      </div>
-    }>
+    <Suspense
+      fallback={
+        <div className="py-24 text-center max-w-[1320px] mx-auto px-6">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#111827] leading-tight mb-3">
+            Personal TPMS Smart Tyre Pressure Monitoring System
+          </h1>
+          <p className="text-sm font-bold text-[#6B7280]">Loading product details...</p>
+        </div>
+      }
+    >
       <ProductDetailWrapper />
     </Suspense>
   );

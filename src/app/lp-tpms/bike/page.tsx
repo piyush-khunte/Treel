@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { PersonalCampaignPage } from "@/components/personal/personal-campaign-page";
 
 export const metadata: Metadata = {
-  title: "TPMS for Bikes & Two-Wheelers | Smart Tyre Pressure Sensors | Treel",
+  title: "TPMS for Bikes & Two-Wheelers | Smart Tyre Pressure Sensors",
   description:
     "Treel TPMS for bikes and scooters: live tyre pressure and temperature on your phone, early leak alerts and a 3-year sensor warranty. ARAI certified.",
   robots: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    title: "Treel TPMS for Bikes and Two-Wheelers",
+    title: "Smart TPMS for Bikes & Two-Wheelers — Tyre Sensors",
     description:
       "Treel TPMS for bikes and scooters: live tyre pressure and temperature on your phone, early leak alerts and a 3-year sensor warranty. ARAI certified.",
     url: "https://treel.in/lp-tpms/bike",

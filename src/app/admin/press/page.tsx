@@ -641,7 +641,7 @@ export default function AdminPressPage() {
                     <Input
                       type="text"
                       required
-                      placeholder="e.g. Treel Surpasses 68,000 Connected Commercial Vehicles..."
+                      placeholder="e.g. Treel Surpasses 70,000+ Vehicles Under Active Management..."
                       value={editingItem.headline}
                       onChange={(e) => {
                         const val = e.target.value;

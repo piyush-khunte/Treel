@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { 
@@ -45,7 +46,7 @@ const ARTICLES: Record<string, InsightArticle> = {
     category: "Mobility Intelligence",
     categorySlug: "mobility-intelligence",
     title: "From Telemetry to Reasoning: The Architecture of Vehicle Digital Twins",
-    deck: "How sub-second sensor signals from 68,000 commercial vehicles transform into predictive maintenance models and operational capital for modern fleet enterprises.",
+    deck: "How sub-second sensor signals from 70,000+ vehicles transform into predictive maintenance models and operational capital for commercial fleet enterprises.",
     author: "Manish Ingale",
     authorRole: "Founder, Treel Mobility Solutions",
     authorBio: "Manish Ingale founded Treel in 2018 with the conviction that India's commercial vehicles were producing more data than any company was reading. With deep engineering roots across the tyre and mobility industries, he leads Treel's architecture from Pune.",
@@ -68,7 +69,7 @@ const ARTICLES: Record<string, InsightArticle> = {
             "To answer questions of economic risk and physical endurance, Treel structures each connected commercial vehicle as a three-layer digital twin:",
             "1. Physical State Layer (Edge Ingestion): High-frequency telemetry sampled directly at the wheel-end by smart rim sensors and valve-stem transducers. Signals include calibrated internal air chamber temperature, tyre cavity pressure, rotational dynamics, and localized vibration signatures.",
             "2. Operational History Layer (State Accumulation): Telemetry without context is uncalibrated. This layer continuously computes cumulative thermal stress cycles, pressure-decay gradients, retread integrity indexes, and terrain severity ratings across thousands of operational kilometers.",
-            "3. Predictive Intelligence Layer (Inference & Action): Machine learning models benchmark live vehicle telemetry against empirical failure baselines from over 68,000 active commercial vehicles. Slow micro-leaks are flagged 48 hours before pressure drops to critical thresholds, allowing fleet dispatchers to schedule maintenance during scheduled turnaround windows rather than suffering emergency roadside punctures."
+            "3. Predictive Intelligence Layer (Inference & Action): Machine learning models benchmark live vehicle telemetry against empirical failure baselines from 70,000+ vehicles under active management. Slow micro-leaks are flagged 48 hours before pressure drops to critical thresholds, allowing fleet dispatchers to schedule maintenance during scheduled turnaround windows rather than suffering emergency roadside punctures."
           ]
         },
         {
@@ -139,7 +140,7 @@ const ARTICLES: Record<string, InsightArticle> = {
     deck: "How Treel smart sensors store, deduplicate, and burst-sync vehicle data during prolonged cellular blackouts across rural freight highways.",
     author: "Nithin",
     authorRole: "Engineering Manager, Treel Mobility Solutions",
-    authorBio: "Nithin leads cloud infrastructure, edge computing pipelines, and real-time telemetry ingestion architecture supporting 68,000+ active vehicles at Treel.",
+    authorBio: "Nithin leads cloud infrastructure, edge computing pipelines, and real-time telemetry ingestion architecture supporting 70,000+ vehicles under active management at Treel.",
     date: "August 2026",
     publishIsoDate: "2026-08-01",
     readTime: "8 min read",
@@ -217,7 +218,7 @@ const ARTICLES: Record<string, InsightArticle> = {
     slug: "cfo-guide-to-fleet-payback",
     category: "Industry Analysis",
     categorySlug: "industry-analysis",
-    title: "The CFO Guide to Fleet Telemetry: Measuring the 9-Month Payback",
+    title: "The CFO Guide to Fleet Telemetry: Measuring the 9 to 12 Months Payback",
     deck: "Breaking down the capital allocation math of smart sensors versus tyre replacements, downtime penalties, and fuel theft mitigation.",
     author: "Imran Khan",
     authorRole: "Chief Financial Officer, Treel Mobility Solutions",
@@ -225,7 +226,7 @@ const ARTICLES: Record<string, InsightArticle> = {
     date: "July 2026",
     publishIsoDate: "2026-07-10",
     readTime: "7 min read",
-    tldr: "Hardware investments in commercial vehicle intelligence amortize rapidly. Direct fuel savings (0.5% avg) and tyre casing preservation (18% avg) generate full capital payback in under 9 months for heavy commercial vehicles.",
+    tldr: "Hardware investments in commercial vehicle intelligence amortize rapidly. Direct fuel savings (0.5% avg) and tyre casing preservation (18% avg) generate full capital payback in 9 to 12 months for heavy commercial vehicles.",
     body: {
       sections: [
         {
@@ -236,7 +237,7 @@ const ARTICLES: Record<string, InsightArticle> = {
           ]
         },
         {
-          heading: "The 9-Month Payback Model",
+          heading: "The 9 to 12 Months Payback Model",
           paragraphs: [
             "Across multi-axle tippers and line-haul prime movers, the combined financial impact of 0.5% fuel optimization and 18% tyre life extension delivers a return on hardware investment in 8.4 to 9.2 months.",
             "Beyond direct line items, eliminating roadside downtime penalties and preventing catastrophic wheel-end fires dramatically reduces enterprise insurance premiums and contract SLA disputes."
@@ -280,7 +281,7 @@ const ARTICLES: Record<string, InsightArticle> = {
           heading: "Building for Indian Realities",
           paragraphs: [
             "We engineered sensors capable of withstanding monsoon water submersion, 60°C asphalt heat, and extreme vibration on unpaved mining haul roads.",
-            "Today, with over 68,000 connected commercial vehicles and partnerships across major OEMs, Treel proves that category-defining deep tech can be conceived, engineered, and scaled from Pune for the world."
+            "Today, with over 70,000 vehicles under active management and partnerships across major OEMs, Treel proves that category-defining deep tech can be conceived, engineered, and scaled from Pune for the world."
           ]
         }
       ],
@@ -310,19 +311,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!article || article.status === "Draft") {
     return {
-      title: "Article Not Found · Treel Insights",
+      title: "Article Not Found — Insights",
       description: "The requested insight article could not be found.",
     };
   }
 
   return {
-    title: `${article.title}  ·  Treel Insights`,
+    title: article.title,
     description: article.deck,
     alternates: {
       canonical: `https://treel.in/insights/${article.slug}`,
     },
     openGraph: {
-      title: `${article.title}  ·  Treel Insights`,
+      title: article.title,
       description: article.deck,
       url: `https://treel.in/insights/${article.slug}`,
       type: "article",
@@ -378,15 +379,14 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             {/* Breadcrumb Navigation */}
-            <div className="flex items-center gap-2 text-xs font-mono text-[#94A3B8]">
-              <Link href="/insights" className="hover:text-[#FAF7F2] transition-colors">
-                Insights
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <Link href={`/insights/category/${article.categorySlug}`} className="text-[#D5573B] hover:underline">
-                {article.category}
-              </Link>
-            </div>
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Insights", href: "/insights" },
+                { label: article.category, href: `/insights/category/${article.categorySlug}` },
+                { label: article.title, href: `/insights/${article.slug}` },
+              ]}
+            />
 
             {/* Category Tag */}
             <div className="inline-block px-2.5 py-0.5 rounded-[4px] bg-[#D5573B]/10 border border-[#D5573B]/20 text-[#D5573B] font-mono text-xs uppercase tracking-widest font-semibold">

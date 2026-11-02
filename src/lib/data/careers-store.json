@@ -56,7 +56,7 @@
     "type": "Full-time",
     "workArrangement": "Onsite",
     "postedDate": "August 2026",
-    "roleSummary": "Architect high-throughput telemetry ingestion pipelines and distributed state engines powering Vehicle Digital Twins for 68,000+ trucks.",
+    "roleSummary": "Architect high-throughput telemetry pipelines and distributed state engines powering Vehicle Digital Twins for 70,000+ commercial vehicles at scale.",
     "aboutTheRole": [
       "Treel ingests millions of telemetry events every day from tens of thousands of commercial vehicles hauling freight across national highways. As Staff Backend Engineer, you will own the architectural foundation of our high-scale telemetry ingestion pipeline and the distributed Vehicle Digital Twin state model.",
       "You will work alongside machine learning researchers, data platform engineers, and front-end architects to ensure sub-second event processing, logical tenant isolation, and highly performant analytical queries for our enterprise TMIP customers."

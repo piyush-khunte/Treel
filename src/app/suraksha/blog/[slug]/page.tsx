@@ -362,7 +362,7 @@ export default async function SurakshaArticleDetailPage({
                   MORE PRACTICAL GUIDANCE
                 </span>
                 <h2 className="font-anton text-3xl sm:text-4xl uppercase tracking-normal text-[#451A03]">
-                  RECOMMENDED READS FOR HIGHWAY DRIVERS
+                  Recommended reads for highway drivers
                 </h2>
               </div>
               <Link
@@ -425,7 +425,7 @@ export default async function SurakshaArticleDetailPage({
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton text-5xl sm:text-6xl font-normal tracking-tight text-[#FEF3C7] uppercase">
-              SAFETY AND SAVINGS GO HAND IN HAND.
+              Safety and savings go hand in hand.
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto">

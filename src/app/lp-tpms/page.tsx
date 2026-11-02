@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { PersonalGenericCampaignPage } from "@/components/personal/personal-generic-campaign-page";
 
 export const metadata: Metadata = {
-  title: "TPMS for Car & Bike | Tyre Pressure Sensor | Treel",
+  title: "TPMS for Car & Bike | Tyre Pressure Sensor",
   description:
-    "Treel TPMS: tyre pressure monitoring sensors for cars and bikes, with live pressure and temperature in the free TREEL CARE app. ARAI certified. Enquire today.",
+    "Treel TPMS sensors for cars and bikes: real-time tyre pressure and temperature in the free TREEL CARE app. ARAI certified. Enquire for your vehicle.",
   robots: {
     index: false,
     follow: true,
@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    title: "Treel TPMS for cars and bikes: tyre pressure, live on your phone",
+    title: "Smart TPMS for Cars & Bikes — Real-Time Tyre Monitoring",
     description:
-      "Treel TPMS: tyre pressure monitoring sensors for cars and bikes, with live pressure and temperature in the free TREEL CARE app. ARAI certified. Enquire today.",
+      "Treel TPMS sensors for cars and bikes: real-time tyre pressure and temperature in the free TREEL CARE app. ARAI certified. Enquire for your vehicle.",
     url: "https://treel.in/lp-tpms",
     siteName: "Treel",
     locale: "en_IN",

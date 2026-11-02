@@ -4,13 +4,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Server Error · Treel",
+  title: "Server Error",
   description: "Our telemetry systems encountered an unexpected condition. Please retry your request.",
   alternates: {
     canonical: "https://treel.in/500",
   },
   openGraph: {
-    title: "Server Error · Treel",
+    title: "Server Error",
     description: "Our telemetry systems encountered an unexpected condition. Please retry your request.",
     url: "https://treel.in/500",
   },

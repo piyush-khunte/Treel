@@ -23,7 +23,7 @@ interface AdVariant {
 
 const VARIANTS: Record<string, AdVariant> = {
   tpms: {
-    h1: "Tyre pressure management that pays back in nine months.",
+    h1: "Tyre pressure management that pays back in 9 to 12 months.",
     lede: "TMIP monitors pressure, temperature and remaining life on every wheel, then links tyre health to the rest of the vehicle, so your fleet catches failures before they reach the highway.",
   },
   maintenance: {
@@ -36,7 +36,7 @@ const VARIANTS: Record<string, AdVariant> = {
   },
   cost: {
     h1: "Cut cost per kilometre across every vehicle.",
-    lede: "TMIP brings fuel, tyre, maintenance and downtime into one live cost-per-km view, by vehicle, route, driver and region. Median payback across TMIP fleets is nine months.",
+    lede: "TMIP brings fuel, tyre, maintenance and downtime into one live cost-per-km view, by vehicle, route, driver and region. Median payback across TMIP fleets is 9 to 12 months.",
   },
   digitaltwin: {
     h1: "The Vehicle Digital Twin for enterprise fleets.",
@@ -101,7 +101,7 @@ const SLIDES = [
     alt: "TMIP Tyre Pressure Monitoring System view per wheel showing pressure, temperature and remaining useful life",
     caption:
       "Per-wheel telemetry: real-time pressure, thermal signatures and remaining useful life.",
-    badge: "Tyre Life +7% · Median Payback 9 mo",
+    badge: "Tyre Life +7% · Median Payback 9–12 mo",
   },
   {
     src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436260/Vehicle_Status_Engine_TPMS_TrendView_Temp_-_New.png",
@@ -115,7 +115,7 @@ const SLIDES = [
     alt: "TMIP Multi-Fleet Overview Grid across national routes, depots and vehicle categories",
     caption:
       "Fleet-wide visibility: aggregate uptime, active alerts and driver safety scores.",
-    badge: "68,000+ Vehicles Under Management",
+    badge: "70,000+ Vehicles Under Active Management",
   },
   {
     src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436259/AlertStatus_Status_Performance_-_New.png",
@@ -129,7 +129,7 @@ const SLIDES = [
     alt: "TMIP Executive Operations Dashboard showing total cost per kilometre and ROI metrics",
     caption:
       "Executive mobility intelligence: true cost per kilometre by vehicle, route and driver.",
-    badge: "Median Payback 9 Months",
+    badge: "Median Payback 9 to 12 Months",
   },
   {
     src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436260/Vehicle_Status_Engine_TPMS_TrendView_Temp_1_-_New.png",
@@ -228,13 +228,13 @@ const FEATURE_SLIDES = [
     description:
       "Every truck becomes a Vehicle Digital Twin: a live record of component health, tyre state, fuel and driver behaviour, turned into the number your CFO asks for, true cost per kilometre by vehicle class, route, driver and region.",
     mstats: [
-      { value: "68,412", label: "Vehicles under management" },
+      { value: "70,000+", label: "Vehicles under active management" },
       { value: "99.7%", label: "Platform uptime" },
-      { value: "9 mo", label: "Median payback" },
+      { value: "9–12 mo", label: "Median payback" },
     ],
     image: {
       src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1791436103/mobility-intelligence.jpg",
-      alt: "TMIP Vehicle Digital Twin: a 3D truck showing battery, engine, tyres, brakes, fuel and driveline health",
+      alt: "TMIP Vehicle Digital Twin: a 3D truck showing battery health, engine diagnostics, tyres, fuel and trips",
       width: 858,
       height: 547,
     },
@@ -995,11 +995,11 @@ export function TmipLandingPage() {
             {/* Readout Metrics */}
             <div aria-label="Platform results" className="readout">
               <div>
-                <strong>68,412</strong>
-                <span>Vehicles under management</span>
+                <strong>70,000+</strong>
+                <span>Vehicles under active management</span>
               </div>
               <div>
-                <strong>9 mo</strong>
+                <strong>9–12 mo</strong>
                 <span>Median payback period</span>
               </div>
               <div>
@@ -2003,7 +2003,7 @@ export function TmipLandingPage() {
                 </span>
                 <span>
                   <span className="cmp-m">Without TMIP</span>
-                  It shows up later as worn brakes, worn tyres and higher diesel
+                  It shows up later as worn components, premature tyre wear and higher diesel
                   bills.
                 </span>
               </div>
@@ -2121,7 +2121,7 @@ export function TmipLandingPage() {
               <span>Additional fuel savings</span>
             </div>
             <div>
-              <strong>9 months</strong>
+              <strong>9 to 12 months</strong>
               <span>Median payback period</span>
             </div>
           </div>
@@ -2336,7 +2336,7 @@ export function TmipLandingPage() {
               </li>
               <li>
                 <strong>Construction &amp; heavy</strong>
-                <span>High-load tyre and brake wear</span>
+                <span>High-load tyre and component wear</span>
               </li>
               <li>
                 <strong>Mining &amp; quarry</strong>
@@ -2431,7 +2431,7 @@ export function TmipLandingPage() {
                 Pricing depends on fleet size, vehicle mix and the modules you
                 need. You&apos;ll get a clear quote after the demo, alongside
                 the payback estimate for your fleet. Across TMIP fleets, the
-                median payback period is nine months.
+                median payback period is 9 to 12 months.
               </p>
             </details>
             <details>
@@ -2448,8 +2448,7 @@ export function TmipLandingPage() {
               <p>
                 TMIP is built by Treel Mobility Solutions.
                 Treel is ARAI and ISO 9001:2015 certified, holds patents in
-                India, the US and the EU, and has more than 68,000 vehicles
-                under management.
+                India, the US and the EU, and has 70,000+ vehicles under active management.
               </p>
             </details>
           </div>

@@ -1415,7 +1415,7 @@ Mobility intelligence is the category that replaces tyre monitoring and fleet te
 
 ## From tyre monitoring to mobility intelligence.
 
-Ten years ago, the fleet intelligence category was called tyre monitoring. Sensors on tyres reported pressure and temperature. Fleet owners received alerts when a tyre needed attention. It was useful, but small.
+Ten years ago, the fleet intelligence category was called just a dot on a map. Sensors on tyres reported pressure and temperature. Fleet owners received alerts when a tyre needed attention. It was useful, but small.
 
 Five years ago, the category expanded into fleet telematics. GPS, fuel data, and driver behaviour joined the mix. Fleet owners could see where their trucks were and how they were being driven. Better, but still fragmented across separate tools.
 
@@ -1779,7 +1779,7 @@ Request technical integration protocols, AIS-140 compliance details, and pilot v
 
 Heavy commercial vehicle tyre telematics, multi-axle pressure and temperature monitoring, and digital twin telemetry engineered for medium and heavy truck manufacturers and enterprise fleet operators.
 
-[Inquire for Commercial Fleets ](/contact) [Explore TMIP Enterprise Platform](/tmip) 68,000+ Vehicles Under Management 85%+ Blowout Incident Reduction 5–7% Tyre-Life Extension 9 Months Median Payback Period CAPABILITIES
+[Inquire for Commercial Fleets ](/contact) [Explore TMIP Enterprise Platform](/tmip) 70,000+ Vehicles Under Active Management 85%+ Blowout Incident Reduction 5–7% Tyre-Life Extension 9 to 12 Months Median Payback Period CAPABILITIES
 
 ## Purpose-built for commercial vehicle operations.
 
@@ -4017,7 +4017,7 @@ Works alongside the dispatch and ERP systems already running your site.
 
 ## Built for the fleets that work off the highway.
 
-### Mining
+
 
 Coal, iron ore, and heavy mineral extraction haul fleets.
 
@@ -6479,9 +6479,9 @@ The models forecast several categories of vehicle events.
 
 ±3–5 day confidence intervals 20–60 days in advance
 
-### Brake component wear
+### Suspected Brake Jamming
 
-Pad replacement 20-60 days in advance. Forecasts wear rates using cumulative deceleration telemetry, friction temperature accumulation, and duty cycles.
+Identifies dragging brake shoes, stuck calipers, and anomalous wheel-end thermal spikes before tyre burst or hub damage occurs.
 
 Pad replacement window 30–90 days in advance
 
@@ -6777,9 +6777,9 @@ Predicts remaining tread life and casing fatigue based on route thermal profiles
 
 ±3–5 day confidence intervals 20–60 days in advance
 
-### Brake component wear
+### Suspected Brake Jamming
 
-Forecasts brake pad replacement windows using cumulative deceleration events, friction temperature accumulation, and duty cycles.
+Identifies dragging brake shoes, stuck calipers, and anomalous wheel-end thermal spikes before tyre burst or hub damage occurs.
 
 Dynamic threshold estimation 30–90 days in advance
 
@@ -6883,17 +6883,17 @@ Live RPM, engine coolant temperature, oil pressure dynamics, and ignition duty c
 
 CAN-bus J1939 Coolant threshold alerts Duty cycle logging
 
-### Driveline
+### Battery Health
 
-Gear engagement states, clutch slip behaviour, transmission temperature, and axle load distribution.
+Terminal voltage trends, cranking health, dynamic charge state, and internal resistance degradation.
 
-Torque demand Clutch fatigue Transmission health
+Cranking voltage curve State of Charge (SoC) Alternator output
 
-### Brakes
+### Trips
 
-Friction pad wear indicators, brake application frequency, ABS activation telemetry, and brake drag detection.
+Journey tracking across long-haul corridors, route segment speeds, idle intervals, and transit progress.
 
-Pad thickness score Thermal build-up ABS trigger rate
+Corridor timeline Active transit hours Route attribution
 
 ### Driver
 
@@ -6937,7 +6937,7 @@ Front-left tyre at 28 PSI (threshold: 32 PSI) Recommended: Pull for inspection w
 
 ### Predictive maintenance
 
-Brake pad wear projected to reach service threshold in 8–12 days Recommended: Schedule brake service within scheduled maintenance window Assigned: Fleet Manager Coaching Review Driver ID 4517
+Rear-right dual tyre at 96°C — Suspected Brake Jamming Recommended: Inspect wheel-end for dragging brake caliper immediately Assigned: Fleet Workshop Coaching Review Driver ID 4517
 
 ### Driver behaviour
 
@@ -7261,9 +7261,9 @@ Enterprise buyers evaluating TMIP often need to complete vendor security assessm
 
 SOLUTIONS
 
-# One platform. Five industries.
+# One platform. Four industries.
 
-TMIP serves fleet operators across five commercial vehicle industries. The platform is the same. The deployments are tuned to how each industry actually runs its fleet.
+TMIP serves fleet operators across four commercial vehicle industries. The platform is the same. The deployments are tuned to how each industry actually runs its fleet.
 
 ### Logistics
 
@@ -7283,15 +7283,15 @@ Ready-mix concrete, tipper, and construction equipment fleets operating in deman
 
 [See construction ](/tmip/solutions/construction)
 
-### Mining
 
-Off-highway mining fleets where downtime costs are extreme and maintenance windows are unforgiving.
 
-[See mining ](/tmip/solutions/mining)
+
+
+
 
 ### OEM fleet
 
-OEM-branded fleet solutions for Tata, Mahindra, and other commercial vehicle manufacturers. Integrated at the vehicle-delivery stage.
+OEM-branded fleet solutions for commercial vehicle manufacturers. Integrated at the vehicle-delivery stage.
 
 [See OEM fleet ](/tmip/solutions/oem-fleet) Universal Value Proposition
 
@@ -7323,7 +7323,7 @@ SOLUTIONS · CONSTRUCTION
 
 TMIP for construction fleets. Ready-mix concrete, tippers, and heavy construction equipment operating in the conditions that break most fleet software.
 
-[Book a demo ](/tmip/demo) [Explore Hardware & Edge Stack](/tmip/platform) 14% Lower Tyre Scrap Rate Preserving casing retreadability under harsh aggregate haulage 31% Drop Unscheduled Site Downtime Preventing mid-pour mixer breakdowns and paving stoppages IP67 / ARAI Certified Ruggedised IoT Tested against dust immersion, washdown sprays, and shock
+[Book a demo ](/tmip/demo) [Explore Hardware & Edge Stack](/tmip/platform) 14% Lower Tyre Scrap Rate Preserving casing retreadability under harsh aggregate haulage 31% Drop Unscheduled Site Downtime Preventing mid-pour mixer breakdowns and paving stoppages IP65 / ARAI Certified Ruggedised IoT Tested against dust immersion, washdown sprays, and shock
 
 ## Construction Operating Challenges
 
@@ -7367,7 +7367,7 @@ TMIP&#x27;s sensor hardware is ARAI certified and benchmarked against internatio
 
 Alert thresholds are tuned for off-highway wear patterns, differentiating normal heavy-load temperature rises from dangerous casing separations and slow puncture deflations.
 
-Site Durability Metrics Construction Field Benchmark Sensor Ingress Rating IP67 Dust & Jet Wash Offline Edge Buffer Up to 72 hrs on-chip Typical Payback Window 7.4 Months
+Site Durability Metrics Construction Field Benchmark Sensor Ingress Rating IP65 Dust & Jet Wash Offline Edge Buffer Up to 45 Days Typical Payback Window 9 to 12 Months
 
 ## Relevant Capabilities
 
@@ -7635,7 +7635,7 @@ Direct Executive Partnership
 
 ## How we work with OEM partners.
 
-OEM engagements are handled directly by Treel&#x27;s founder and executive team. This is not a self-service offering. Every OEM partnership is structured around the OEM&#x27;s product roadmap, distribution model, and customer relationships.
+OEM engagements are handled directly by Treel&#x27;s executive team. This is not a self-service offering. Every OEM partnership is structured around the OEM&#x27;s product roadmap, distribution model, and customer relationships.
 
 ## Explore an OEM partnership.
 
@@ -7661,7 +7661,7 @@ SOLUTIONS · PASSENGER TRANSPORT
 
 TMIP for passenger transport fleets. Buses, corporate transport, school transport, inter-city operators. Where the payload is people, the platform priorities shift.
 
-[Book a demo ](/tmip/demo) [View Safety Architecture](/tmip/platform) 0 Bursts Zero Expressway Blowouts Across 650 luxury intercity coaches over 18 continuous months 99.6% Schedule Reliability Eliminating roadside breakdown passenger stranding events <1.0s Sub-Second Telemetry Instantaneous audio-visual driver alerts on cab displays
+[Book a demo ](/tmip/demo) [View Safety Architecture](/tmip/platform) 0 Bursts Zero Tyre Bursts due to high temperature and pressure Across 650 luxury intercity coaches over 18 continuous months 99.6% Schedule Reliability Eliminating roadside breakdown passenger stranding events Less than 6.0 seconds Sub-Second Telemetry Instantaneous audio-visual driver alerts on cab displays
 
 ## Industry Challenges in Passenger Operations
 
@@ -7887,7 +7887,7 @@ Detailed answers on deployment onboarding, TMS/ERP integration, support ticket e
 
 Heavy commercial vehicle tyre telematics, multi-axle pressure and temperature monitoring, and digital twin telemetry engineered for medium and heavy truck manufacturers and enterprise fleet operators.
 
-[Inquire for Commercial Fleets ](/contact?subject=tmip) [Explore TMIP Enterprise Platform](/tmip) 68,000+ Vehicles Under Management 85%+ Blowout Incident Reduction 5–7% Tyre-Life Extension 9 Months Median Payback Period CAPABILITIES
+[Inquire for Commercial Fleets ](/contact?subject=tmip) [Explore TMIP Enterprise Platform](/tmip) 70,000+ Vehicles Under Active Management 85%+ Blowout Incident Reduction 5–7% Tyre-Life Extension 9 to 12 Months Median Payback Period CAPABILITIES
 
 ## Purpose-built for commercial vehicle operations.
 
@@ -8181,7 +8181,7 @@ CATEGORY DEFINITION
 
 # What is a Vehicle Digital Twin?
 
-A Vehicle Digital Twin is a live software model of a physical vehicle, continuously updated in real time from onboard sensors . Every subsystem — engine, tyres, fuel, driveline, brakes, electrical — is represented as queryable data. Fleet operators reason about the vehicle the way software engineers reason about their data warehouse: with structured queries, alerts, analytics, and predictive models.
+A Vehicle Digital Twin is a live software model of a physical vehicle, continuously updated in real time from onboard sensors . Every subsystem — tyres, fuel, engine diagnostics, battery health, trips, driver behaviour — is represented as queryable data. Fleet operators reason about the vehicle the way software engineers reason about their data warehouse: with structured queries, alerts, analytics, and predictive models.
 
 AT A GLANCE
 
@@ -8193,7 +8193,7 @@ A Vehicle Digital Twin holds three layers of information about the physical vehi
 
 ### The State Layer
 
-Captures what is true about the vehicle right now: tyre pressures, temperatures, fuel level, load, engine parameters, brake wear, driver behaviour signals. This layer updates continuously as sensors report.
+Captures what is true about the vehicle right now: tyre pressures, temperatures, fuel level, battery health, engine diagnostics, trip parameters, driver behaviour signals. This layer updates continuously as sensors report.
 
 ### The History Layer
 
@@ -8219,7 +8219,7 @@ Each vehicle has its own persistent Digital Twin. As telemetry arrives, the Twin
 
 03
 
-### Step 3 · Operators query
+### Step 3 · Check All Reports
 
 Fleet operators access the Digital Twin through the TMIP dashboard, or scheduled reports. They ask questions (“which vehicles are due for tyre replacement in the next 30 days?”) and get answers with the vehicle&#x27;s own data as the source.
 

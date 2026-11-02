@@ -12,14 +12,14 @@ import Link from "next/link";
 import { OperationsPhotoGallery } from "@/components/about/operations-photo-gallery";
 
 export const metadata: Metadata = {
-  title: "About Treel — Building the Mobility Intelligence Category",
-  description: "Treel Mobility Solutions is India's mobility intelligence company. Founded 2018 by Manish Ingale. Backed by JK Tyre. Headquartered in Pune. 200+ enterprise customers, 68K vehicles under management.",
+  title: "About Us — Building the Mobility Intelligence Category",
+  description: "India's mobility intelligence leader, founded in 2018 by Manish Ingale and backed by JK Tyre. Powering 70,000+ commercial vehicles across 200+ fleets.",
   alternates: {
     canonical: "https://treel.in/about",
   },
   openGraph: {
-    title: "About Treel — Building the Mobility Intelligence Category",
-    description: "Treel Mobility Solutions is India's mobility intelligence company. Founded 2018 by Manish Ingale. Backed by JK Tyre. Headquartered in Pune. 200+ enterprise customers, 68K vehicles under management.",
+    title: "About Us — Building the Mobility Intelligence Category",
+    description: "India's mobility intelligence leader, founded in 2018 by Manish Ingale and backed by JK Tyre. Powering 70,000+ commercial vehicles across 200+ fleets.",
     url: "https://treel.in/about",
   },
 };

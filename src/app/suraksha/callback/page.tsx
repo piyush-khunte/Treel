@@ -148,7 +148,7 @@ export default function SurakshaCallbackPage() {
               CALLBACK REQUEST
             </div>
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
-              HUM <span className="italic text-[#0891B2]">CALL KARENGE.</span>
+              Hum <span className="italic text-[#0891B2]">call karenge.</span>
             </h1>
             <SurakshaRotator
               page="5.19"

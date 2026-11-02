@@ -31,7 +31,7 @@ function SurakshaFailedContent() {
 
       <div className="space-y-3">
         <h1 className="font-anton text-4xl sm:text-5xl text-[#451A03] uppercase">
-          PAYMENT <span className="text-[#DC2626]">UNSUCCESSFUL</span>
+          Payment <span className="text-[#DC2626]">unsuccessful</span>
         </h1>
         <p className="text-[#78350F] text-base font-medium max-w-md mx-auto">
           {message}

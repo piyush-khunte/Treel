@@ -252,11 +252,17 @@ export default function PersonalFaqsPage() {
                         {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                       </div>
                     </button>
-                    {isExpanded && (
+                    <div
+                      className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+                        isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
                       <div className="px-6 pb-6 pt-1 text-sm text-[#4B5563] leading-relaxed border-t border-black/[0.04]">
                         <p className="pl-8">{faq.a}</p>
                       </div>
-                    )}
+                      </div>
+                    </div>
                   </div>
                 );
               })

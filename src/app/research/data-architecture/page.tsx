@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 ArrowRight,
 BookOpen,
@@ -11,13 +12,13 @@ import Link from "next/link";
 import { DataArchWhitepaperGatedForm } from "./whitepaper-form";
 
 export const metadata: Metadata = {
-  title: "Data Architecture & Telemetry Ingestion at Enterprise Scale  ·  Treel Research",
+  title: "Data Architecture & Telemetry Ingestion at Enterprise Scale — Research",
   description: "Technical whitepaper on Treel's distributed IoT data architecture, sub-second telemetry ingestion, dual-state persistence, and Vehicle Digital Twin engine.",
   alternates: {
     canonical: "https://treel.in/research/data-architecture",
   },
   openGraph: {
-    title: "Data Architecture & Telemetry Ingestion at Enterprise Scale  ·  Treel Research",
+    title: "Data Architecture & Telemetry Ingestion at Enterprise Scale — Research",
     description: "Technical whitepaper on Treel's distributed IoT data architecture, sub-second telemetry ingestion, dual-state persistence, and Vehicle Digital Twin engine.",
     url: "https://treel.in/research/data-architecture",
   },
@@ -82,13 +83,13 @@ export default function ResearchDataArchitecturePage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             {/* Breadcrumb Navigation */}
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-[#94A3B8]">
-              <Link href="/research" className="hover:text-white transition-colors">
-                Research
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <span className="text-[#D5573B]">Data Architecture &amp; Telemetry Ingestion</span>
-            </nav>
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Research", href: "/research" },
+                { label: "Data Architecture & Telemetry Ingestion", href: "/research/data-architecture" },
+              ]}
+            />
 
             <div className="border text-[#D5573B] bg-[#D5573B]/10 border-[#D5573B]/20 font-mono text-xs uppercase tracking-widest font-semibold px-2.5 py-0.5 rounded-[4px] inline-block">
               DATA INFRASTRUCTURE
@@ -129,7 +130,7 @@ export default function ResearchDataArchitecturePage() {
                   What this paper covers
                 </h2>
                 <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-                  An architectural deep dive into the engineering foundations powering India&apos;s largest connected commercial vehicle dataset. Based on longitudinal empirical telemetry across 68,000+ active commercial vehicles, this paper details the distributed pipeline required to ingest, validate, and reason over sub-second sensor signals in real time.
+                  An architectural deep dive into the engineering foundations powering India&apos;s largest connected commercial vehicle dataset. Based on longitudinal empirical telemetry across 70,000+ vehicles under active management, this paper details the distributed pipeline required to ingest, validate, and reason over sub-second sensor signals in real time.
                 </p>
                 <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
                   We explore edge store-and-forward resilience across cellular dead zones on Indian freight highways, dual-state database persistence separating queryable hot digital twins from immutable append-only telemetry history, tenant cryptographic isolation, and regulatory compliance under the India DPDP Act 2023.

@@ -5,14 +5,14 @@ import { SurakshaBlogClient } from "./suraksha-blog-client";
 export const metadata: Metadata = {
   title: "The Drivers' Blog · Suraksha",
   description:
-    "Practical tips on fuel efficiency, monsoon safety, route planning, GST for owner-drivers and industry updates, written in simple language for the trucking community.",
+    "Practical tips on fuel efficiency, tyre safety, route planning, and GST for truck owner-drivers, written in simple language for India's trucking fleet.",
   alternates: {
     canonical: "https://treel.in/suraksha/blog",
   },
   openGraph: {
     title: "The Drivers' Blog · Suraksha",
     description:
-      "Practical tips on fuel efficiency, monsoon safety, route planning, GST for owner-drivers and industry updates, written in simple language for the trucking community.",
+      "Practical tips on fuel efficiency, tyre safety, route planning, and GST for truck owner-drivers, written in simple language for India's trucking fleet.",
     url: "https://treel.in/suraksha/blog",
   },
 };

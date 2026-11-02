@@ -180,7 +180,7 @@ export default function SurakshaTestimonialsSlugPage() {
       <section className="py-16 bg-[#FEF3C7]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
-            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">FIT SURAKSHA ON YOUR TRUCK.<br /><span className="italic text-[#DC2626]">JOIN DRIVERS LIKE [DRIVER].</span></h2>
+            <h2 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl lg:text-4xl text-[#451A03]">Fit Suraksha on your truck.<br /><span className="italic text-[#DC2626]">Join drivers like [DRIVER].</span></h2>
             <div className="pt-2">
               <Link href="/suraksha/centres" className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] font-rubik font-bold text-xs uppercase tracking-wider transition-all shadow-md bg-[#DC2626] text-white hover:bg-[#B91C1C]">
                 Nearest Centre <ArrowRight className="w-4 h-4" />

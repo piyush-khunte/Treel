@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { getEventBySlug, getPublishedEvents } from "@/lib/content/events-storage";
 import { createEventCalendarLinks } from "@/lib/events/calendar-links";
 import {
@@ -25,21 +26,22 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!event || event.publicationStatus === "Draft") {
     return {
-      title: "Event Not Found · Treel Events",
+      title: "Event Not Found — Events",
       description: "The requested event could not be found.",
     };
   }
 
   const desc = event.seoDescription || (event.about && event.about[0] ? event.about[0].slice(0, 150) + "..." : event.excerpt);
+  const eventTitle = event.seoTitle ? event.seoTitle.replace(/\s*·\s*Treel.*$/i, "") : `${event.name} · Events`;
 
   return {
-    title: event.seoTitle || `${event.name} · Treel Events`,
+    title: eventTitle,
     description: desc || "Treel Mobility event details and registration.",
     alternates: {
       canonical: `https://treel.in/events/${event.slug}`,
     },
     openGraph: {
-      title: event.seoTitle || `${event.name} · Treel Events`,
+      title: eventTitle,
       description: desc || "Treel Mobility event details and registration.",
       url: `https://treel.in/events/${event.slug}`,
       images: event.bannerUrl || event.image ? [{ url: event.bannerUrl || event.image! }] : undefined,
@@ -74,13 +76,13 @@ export default async function EventSlugPage({ params }: { params: Promise<{ slug
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             {/* Breadcrumb */}
-            <div className="flex items-center gap-2 text-xs font-mono text-[#94A3B8]">
-              <Link href="/events" className="hover:text-[#FAF7F2] transition-colors">
-                Events
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <span className="text-[#D5573B] truncate max-w-xs">{event.name}</span>
-            </div>
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Events", href: "/events" },
+                { label: event.name, href: `/events/${event.slug}` },
+              ]}
+            />
 
             <div className="flex items-center gap-3">
               <span className="text-xs font-mono uppercase px-3 py-1 rounded-[4px] bg-[#D5573B]/10 text-[#D5573B] border border-[#D5573B]/20 font-semibold tracking-wider">

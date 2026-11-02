@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { getPressItemBySlug, getPublishedPressItems } from "@/lib/content/press-storage";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
@@ -25,20 +26,20 @@ export async function generateMetadata({
 
   if (!release) {
     return {
-      title: "Press Release Not Found · Treel",
+      title: "Press Release Not Found",
     };
   }
 
   const excerpt = release.leadParagraph || release.excerpt || release.headline;
 
   return {
-    title: `${release.headline} · Treel Press`,
+    title: release.headline,
     description: excerpt.slice(0, 150) + "...",
     alternates: {
       canonical: `https://treel.in/press/${year}/${slug}`,
     },
     openGraph: {
-      title: `${release.headline} · Treel Press`,
+      title: release.headline,
       description: excerpt.slice(0, 150) + "...",
       url: `https://treel.in/press/${year}/${slug}`,
       type: "article",
@@ -98,17 +99,14 @@ export default async function PressReleasePage({
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             {/* Breadcrumb Navigation */}
-            <div className="flex items-center gap-2 text-xs font-mono text-[#94A3B8]">
-              <Link href="/press" className="hover:text-[#FAF7F2] transition-colors">
-                Press
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <Link href="/press" className="hover:text-[#FAF7F2] transition-colors">
-                {release.year || year}
-              </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-              <span className="text-[#D5573B] truncate max-w-xs">{release.category}</span>
-            </div>
+            <Breadcrumb
+              variant="corporate"
+              items={[
+                { label: "Press", href: "/press" },
+                { label: String(release.year || year), href: "/press" },
+                { label: release.category, href: `/press/${release.year || year}/${slug}` },
+              ]}
+            />
 
             <div className="flex items-center gap-3">
               <span className="text-xs font-mono uppercase px-3 py-0.5 rounded-[4px] bg-[#D5573B]/10 text-[#D5573B] border border-[#D5573B]/20 font-semibold tracking-wider">
@@ -179,7 +177,7 @@ export default async function PressReleasePage({
                 About Treel Mobility Solutions
               </h3>
               <p className="text-sm text-[#94A3B8] leading-relaxed">
-                Treel Mobility Solutions Private Limited is the mobility intelligence company operating India&apos;s largest connected commercial vehicle dataset. Founded in 2018, Treel serves two hundred enterprise customers with sixty-eight thousand vehicles under active management. Its three product families — TMIP for enterprise fleets, Project Suraksha for owner-drivers, and Personal TPMS for consumers — operate on a shared Vehicle Digital Twin architecture. Headquartered in Pune. Learn more at{" "}
+                Treel Mobility Solutions Private Limited is the mobility intelligence company operating India&apos;s largest connected commercial vehicle dataset. Founded in 2018, Treel serves two hundred enterprise customers with 70,000+ vehicles under active management. Its three product families — TMIP for enterprise fleets, Project Suraksha for owner-drivers, and Personal TPMS for consumers — operate on a shared Vehicle Digital Twin architecture. Headquartered in Pune. Learn more at{" "}
                 <Link href="/" className="text-[#D5573B] underline hover:text-[#FAF7F2]">
                   treel.in
                 </Link>.

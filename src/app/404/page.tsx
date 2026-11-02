@@ -4,13 +4,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Page Not Found · Treel",
+  title: "Page Not Found",
   description: "The page you are looking for is not found on treel.in.",
   alternates: {
     canonical: "https://treel.in/404",
   },
   openGraph: {
-    title: "Page Not Found · Treel",
+    title: "Page Not Found",
     description: "The page you are looking for is not found on treel.in.",
     url: "https://treel.in/404",
   },

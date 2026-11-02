@@ -1,12 +1,12 @@
+import { ibmPlexSans } from "@/app/fonts";
 import React from "react";
 import { TmipConditionalHeader } from "@/components/layout/tmip-conditional-header";
 
 export default function TmipLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="tmip-page min-h-screen bg-[#050A17] text-[#F1F5F9] font-ibm-plex antialiased selection:bg-[#3B82F6]/30 selection:text-white">
+    <div className={`tmip-page min-h-screen bg-[#050A17] text-[#F1F5F9] font-ibm-plex antialiased selection:bg-[#3B82F6]/30 selection:text-white ${ibmPlexSans.variable}`}>
       <TmipConditionalHeader />
       <main>{children}</main>
     </div>
   );
 }
-

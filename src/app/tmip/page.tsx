@@ -1,12 +1,28 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Activity, Clock, BarChart3, Box, Globe } from "lucide-react";
+import {
+  ArrowRight,
+  Activity,
+  Clock,
+  BarChart3,
+  Box,
+  Globe,
+  Radio,
+  Cpu,
+  Database,
+  Layers,
+  Network,
+  ShieldCheck,
+  CheckCircle2,
+  Gauge,
+  Thermometer,
+} from "lucide-react";
 import { TwinInteractive } from "./twin-interactive";
 
 export const metadata: Metadata = {
-  title: "TMIP Fleet Telematics & Vehicle Digital Twin | Treel",
+  title: "TMIP Fleet Telematics & Vehicle Digital Twin",
   description:
-    "TMIP is Treel's Vehicle Digital Twin platform for enterprise fleets. Real-time telemetry, predictive maintenance, cost per kilometre. 68,000+ vehicles under management. 9-month median payback.",
+    "Treel's Vehicle Digital Twin platform for fleets. Sub-second telemetry, predictive maintenance, and 9 to 12 months payback across 70,000+ vehicles.",
   robots: {
     index: true,
     follow: true,
@@ -15,9 +31,9 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip",
   },
   openGraph: {
-    title: "TMIP Fleet Telematics & Vehicle Digital Twin | Treel",
+    title: "TMIP Fleet Telematics & Vehicle Digital Twin",
     description:
-      "TMIP is Treel's Vehicle Digital Twin platform for enterprise fleets. Real-time telemetry, predictive maintenance, cost per kilometre. 68,000+ vehicles under management. 9-month median payback.",
+      "Treel's Vehicle Digital Twin platform for fleets. Sub-second telemetry, predictive maintenance, and 9 to 12 months payback across 70,000+ vehicles.",
     url: "https://treel.in/tmip",
   },
 };
@@ -25,8 +41,8 @@ export const metadata: Metadata = {
 const capabilities = [
   {
     icon: Activity,
-    title: "Operational Profitability & CPK",
-    body: "Turn commercial fleet assets into high-margin profit centres. TMIP drives down Cost Per Kilometre (CPK) through tyre lifecycle extension, fuel optimization, and verified 9-month capital payback.",
+    title: "Real-Time Telemetry",
+    body: "Sub-second updates across the fleet. Pressure, temperature, engine diagnostics, fuel consumption, and driver behaviour, all rendered in one live dashboard.",
   },
   {
     icon: Clock,
@@ -71,57 +87,117 @@ export default function TmipPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-8 lg:gap-14 items-center">
             {/* Left Column: Headline & Value Proposition */}
             <div>
-              <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] mb-3 sm:mb-4 font-medium">
-                ENTERPRISE FLEET INTELLIGENCE
+              <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] mb-3 sm:mb-4 font-medium flex flex-wrap items-center gap-2">
+                <span>ENTERPRISE FLEET INTELLIGENCE</span>
+                <span className="text-slate-600">·</span>
+                <Link href="/tmip/tpms" className="text-[#3B82F6] hover:underline font-semibold">
+                  FLEET TPMS &amp; SENSORS →
+                </Link>
               </div>
               <h1 className="font-space-grotesk text-4xl sm:text-6xl lg:text-[72px] xl:text-[84px] font-semibold tracking-[-0.03em] text-[#F1F5F9] leading-[1.02] mb-4 sm:mb-5">
                 The Vehicle Digital Twin for <span className="text-[#3B82F6] italic">enterprise fleets</span>.
               </h1>
               <p className="font-ibm-plex text-lg sm:text-[20px] leading-[1.55] text-[#94A3B8] max-w-[580px] mb-6 sm:mb-8">
-                Maximized operational profitability, drastically reduced unscheduled downtime, and proven cost-effectiveness across sixty-eight thousand commercial vehicles. Built for fleet operators and CFOs who measure in rupees saved per kilometre, not vanity dashboards.
+                Powered by precision <Link href="/tmip/tpms" className="text-[#3B82F6] hover:underline font-medium">fleet TPMS sensors</Link> and sub-second CAN telemetry, TMIP models each vehicle as a real-time digital twin. Delivering maximized operational profitability, drastically reduced unscheduled downtime, and proven cost-effectiveness with 70,000+ vehicles under active management.
               </p>
-              <div className="flex flex-wrap items-center gap-4">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4">
                 <Link
                   href="/tmip/demo"
-                  className="px-7 py-3.5 rounded-[3px] font-space-grotesk font-semibold text-sm bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-lg shadow-[#3B82F6]/20 inline-flex items-center gap-2 transition-all duration-200"
+                  className="px-6 sm:px-7 py-3.5 rounded-[3px] font-space-grotesk font-semibold text-sm bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-lg shadow-[#3B82F6]/20 inline-flex items-center gap-2 transition-all duration-200"
                 >
                   Book a 30-minute demo <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
-                  href="/tmip/roi-calculator"
-                  className="px-7 py-3.5 rounded-[3px] font-ibm-plex font-medium text-sm text-[#F1F5F9] border border-[rgba(59,130,246,0.3)] hover:border-[#3B82F6] hover:bg-[#3B82F6]/[0.08] inline-flex items-center transition-all duration-200"
+                  href="/tmip/tpms"
+                  className="px-5 sm:px-6 py-3.5 rounded-[3px] font-ibm-plex font-medium text-sm text-[#F1F5F9] border border-[#3B82F6]/40 hover:border-[#3B82F6] hover:bg-[#3B82F6]/10 inline-flex items-center gap-2 transition-all duration-200"
                 >
-                  Calculate your ROI
+                  <Activity className="w-4 h-4 text-[#3B82F6]" />
+                  Explore Fleet TPMS
+                </Link>
+                <Link
+                  href="/tmip/roi-calculator"
+                  className="px-5 sm:px-6 py-3.5 rounded-[3px] font-ibm-plex font-medium text-sm text-[#94A3B8] hover:text-[#F1F5F9] inline-flex items-center transition-all duration-200"
+                >
+                  Calculate ROI →
                 </Link>
               </div>
             </div>
 
-            {/* Right Column: TMIP Signature Visual */}
-            <div className="hidden lg:flex justify-center items-center p-6 xl:p-10 select-none" aria-hidden="true">
-              <svg
-                viewBox="0 0 380 220"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-full max-w-[420px] h-auto"
-              >
-                <defs>
-                  <filter id="tmipHeroGlow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feGaussianBlur stdDeviation="6" />
-                  </filter>
-                </defs>
-                {/* Subtle blueprint glow */}
-                <g fill="#3B82F6" filter="url(#tmipHeroGlow)" opacity="0.25">
-                  <rect x="30" y="32" width="320" height="36" rx="4" opacity="0.55" />
-                  <rect x="30" y="92" width="320" height="36" rx="4" opacity="0.8" />
-                  <rect x="30" y="152" width="320" height="36" rx="4" />
-                </g>
-                {/* Precision TMIP Motion Marks */}
-                <g fill="#3B82F6">
-                  <rect x="30" y="32" width="320" height="36" rx="4" opacity="0.55" />
-                  <rect x="30" y="92" width="320" height="36" rx="4" opacity="0.8" />
-                  <rect x="30" y="152" width="320" height="36" rx="4" />
-                </g>
-              </svg>
+            {/* Right Column: TMIP Vehicle Digital Twin Architecture Card */}
+            <div className="hidden lg:flex justify-center items-center p-4 xl:p-8 select-none" aria-hidden="true">
+              <div className="w-full max-w-[460px] rounded-lg bg-[#080E1E]/90 border border-[#3B82F6]/30 p-6 space-y-4 shadow-2xl shadow-[#3B82F6]/10 relative overflow-hidden backdrop-blur-md">
+                <div className="absolute top-0 right-0 w-48 h-48 bg-[#3B82F6]/10 rounded-full blur-3xl pointer-events-none" />
+                
+                {/* Header bar */}
+                <div className="flex items-center justify-between border-b border-slate-700/50 pb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse" />
+                    <span className="font-jetbrains text-xs tracking-wider text-[#94A3B8] uppercase font-semibold">
+                      VEHICLE DIGITAL TWIN · LIVE STREAM
+                    </span>
+                  </div>
+                  <span className="font-jetbrains text-[10px] text-[#3B82F6] font-mono bg-[#3B82F6]/10 border border-[#3B82F6]/25 px-2 py-0.5 rounded">
+                    sub-second telemetry
+                  </span>
+                </div>
+
+                {/* 3 Active Telemetry Layers (Replaces the 3 blank bars) */}
+                <div className="space-y-3 pt-1">
+                  {/* Layer 1: Sensing */}
+                  <div className="p-3.5 rounded-[4px] bg-[#0B1528] border border-blue-500/20 hover:border-blue-500/40 transition-colors flex items-center justify-between">
+                    <div className="space-y-0.5">
+                      <div className="font-jetbrains text-[10px] tracking-wider text-[#3B82F6] uppercase font-semibold">
+                        LAYER 01 · PHYSICAL SENSING
+                      </div>
+                      <div className="font-space-grotesk text-sm font-semibold text-[#F1F5F9]">
+                        Tyres · Fuel · Engine CAN J1939
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="font-jetbrains text-xs font-bold text-[#10B981]">118 PSI · 54°C</div>
+                      <div className="font-jetbrains text-[10px] text-[#94A3B8]">0.8s interval</div>
+                    </div>
+                  </div>
+
+                  {/* Layer 2: Twin State */}
+                  <div className="p-3.5 rounded-[4px] bg-[#0B1528] border border-blue-500/30 hover:border-blue-500/50 transition-colors flex items-center justify-between">
+                    <div className="space-y-0.5">
+                      <div className="font-jetbrains text-[10px] tracking-wider text-[#3B82F6] uppercase font-semibold">
+                        LAYER 02 · DIGITAL TWIN REASONING
+                      </div>
+                      <div className="font-space-grotesk text-sm font-semibold text-[#F1F5F9]">
+                        Thermal Dynamics &amp; Casing Wear
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="font-jetbrains text-xs font-bold text-[#3B82F6]">SYNCHRONIZED</div>
+                      <div className="font-jetbrains text-[10px] text-[#94A3B8]">70,000+ nodes</div>
+                    </div>
+                  </div>
+
+                  {/* Layer 3: Predictive Decision */}
+                  <div className="p-3.5 rounded-[4px] bg-[#0B1528] border border-blue-500/40 hover:border-blue-500/60 transition-colors flex items-center justify-between">
+                    <div className="space-y-0.5">
+                      <div className="font-jetbrains text-[10px] tracking-wider text-[#F59E0B] uppercase font-semibold">
+                        LAYER 03 · DISPATCH &amp; PREDICTION
+                      </div>
+                      <div className="font-space-grotesk text-sm font-semibold text-[#F1F5F9]">
+                        Predictive Maintenance Window
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="font-jetbrains text-xs font-bold text-[#F59E0B]">24–48h ALERT</div>
+                      <div className="font-jetbrains text-[10px] text-[#94A3B8]">Zero blowouts</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer status bar */}
+                <div className="pt-2 flex items-center justify-between text-[11px] font-jetbrains text-[#94A3B8] border-t border-slate-700/50">
+                  <span>Payback: <strong className="text-[#F1F5F9]">9–12 Months</strong></span>
+                  <span className="text-[#10B981] font-medium">● Active Fleet Edge Gateway</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -133,10 +209,10 @@ export default function TmipPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             <div className="border-l-2 border-[#3B82F6] pl-5 space-y-1.5">
               <div className="font-space-grotesk text-3xl sm:text-4xl lg:text-[40px] font-semibold text-[#F59E0B] tracking-[-0.03em] leading-none mb-1.5">
-                68,412
+                70,000+
               </div>
               <div className="font-jetbrains text-[10px] sm:text-[11px] tracking-[0.1em] uppercase text-[#94A3B8] leading-[1.4]">
-                Vehicles under management
+                Vehicles under active management
               </div>
               <div className="font-jetbrains text-[10px] sm:text-[11px] text-[#10B981] font-medium mt-0.5">
                 +247 this quarter
@@ -169,7 +245,7 @@ export default function TmipPage() {
 
             <div className="border-l-2 border-[#3B82F6] pl-5 space-y-1.5">
               <div className="font-space-grotesk text-3xl sm:text-4xl lg:text-[40px] font-semibold text-[#F59E0B] tracking-[-0.03em] leading-none mb-1.5">
-                9 mo
+                9–12 mo
               </div>
               <div className="font-jetbrains text-[10px] sm:text-[11px] tracking-[0.1em] uppercase text-[#94A3B8] leading-[1.4]">
                 Payback period
@@ -178,6 +254,56 @@ export default function TmipPage() {
                 Median across cohort
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Fleets / Logos Band */}
+      <section className="relative z-10 py-10 sm:py-12 border-b border-slate-400/10 bg-[#060B18]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div className="font-jetbrains text-[10px] sm:text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold">
+                TRUSTED BY 200+ ENTERPRISE FLEET OPERATORS
+              </div>
+              <h2 className="font-space-grotesk text-xl sm:text-2xl font-semibold text-[#F1F5F9] mt-1">
+                Active deployments across commercial haulage corridors
+              </h2>
+            </div>
+            <Link
+              href="/tmip/customers"
+              className="font-jetbrains text-xs uppercase tracking-wider text-[#3B82F6] hover:underline flex items-center gap-1 self-start sm:self-auto"
+            >
+              View customer case studies <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 pt-2">
+            {[
+              { name: "National Linehaul", fleet: "1,200+ Trucks", type: "Heavy Commercial Logistics" },
+              { name: "Express Cargo Networks", fleet: "850 Multi-Axle", type: "Pan-India Freight" },
+              { name: "Cold-Chain Logistics", fleet: "420 Reefer Units", type: "Temp-Controlled Transit" },
+              { name: "Intercity Express Lines", fleet: "650 Coaches", type: "Passenger Transport" },
+              { name: "Infrastructure Ready-Mix", fleet: "500 Mixers", type: "Heavy Construction" },
+              { name: "Open-Cast Mining Belts", fleet: "280 Dumpers", type: "Mining & Industrial" },
+            ].map((client) => (
+              <div
+                key={client.name}
+                className="p-4 rounded-lg bg-[#080E1E] border border-blue-900/30 hover:border-[#3B82F6]/50 transition-all flex flex-col justify-between space-y-2 group shadow-sm"
+              >
+                <div className="font-space-grotesk font-semibold text-sm text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors leading-tight">
+                  {client.name}
+                </div>
+                <div className="pt-2 border-t border-slate-800/80 space-y-0.5">
+                  <div className="font-jetbrains text-[11px] font-bold text-[#F59E0B]">
+                    {client.fleet}
+                  </div>
+                  <div className="font-jetbrains text-[10px] text-[#94A3B8]">
+                    {client.type}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -236,6 +362,117 @@ export default function TmipPage() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Enterprise Integrations Band */}
+      <section className="relative z-10 py-12 sm:py-16 border-b border-slate-400/10 bg-[#060B18]">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-8">
+          <div className="max-w-3xl space-y-3">
+            <div className="font-jetbrains text-[10px] sm:text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] font-semibold">
+              ENTERPRISE TELEMATICS &amp; ERP INTEGRATIONS
+            </div>
+            <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#F1F5F9] tracking-[-0.02em]">
+              Connects seamlessly into your existing fleet stack.
+            </h2>
+            <p className="font-ibm-plex text-sm sm:text-base text-[#94A3B8] leading-[1.6]">
+              TMIP ingests real-time CAN bus telemetry and exports enriched tyre, fuel, and trip intelligence directly into enterprise ERPs, TMS platforms, and government-mandated tracking systems.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {[
+              {
+                protocol: "CAN Bus J1939",
+                category: "Vehicle Telematics",
+                desc: "Direct ECU and gateway integration for engine RPM, speed, brake events, and fuel rate telemetry.",
+              },
+              {
+                protocol: "SAP & Oracle ERP",
+                category: "Enterprise Systems",
+                desc: "Automated work orders, scrap tyre accounting, inventory management, and CPKM audit trails.",
+              },
+              {
+                protocol: "AIS-140 FMS",
+                category: "Regulatory Compliance",
+                desc: "Certified panic button, GPS, and SOS tracking feed for national highway compliance.",
+              },
+              {
+                protocol: "Cloud & Data Lakes",
+                category: "AWS / Azure / GCP",
+                desc: "Direct Parquet, Kafka streams, or webhook ingest into your proprietary data warehouse.",
+              },
+              {
+                protocol: "REST & Webhooks",
+                category: "Developer APIs",
+                desc: "Full OpenAPI v3 specification with sub-second alert webhooks for mission-critical dispatch.",
+              },
+            ].map((integ) => (
+              <div
+                key={integ.protocol}
+                className="p-5 rounded-lg bg-[#080E1E] border border-blue-900/30 hover:border-[#3B82F6]/50 transition-all flex flex-col justify-between space-y-3 group"
+              >
+                <div className="space-y-1.5">
+                  <div className="font-jetbrains text-[10px] uppercase tracking-wider text-[#3B82F6] font-semibold">
+                    {integ.category}
+                  </div>
+                  <h3 className="font-space-grotesk font-semibold text-base text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors">
+                    {integ.protocol}
+                  </h3>
+                  <p className="font-ibm-plex text-xs text-[#94A3B8] leading-relaxed">
+                    {integ.desc}
+                  </p>
+                </div>
+                <div className="pt-2 border-t border-slate-800/80 flex items-center gap-1.5 font-jetbrains text-[11px] text-emerald-400">
+                  <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0" /> Ready to deploy
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Fleet TPMS Spotlight */}
+      <section className="relative z-10 py-12 sm:py-16 border-b border-slate-400/10">
+        <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
+          <div className="p-8 sm:p-10 rounded-xl bg-gradient-to-r from-blue-950/40 via-[#080E1E] to-blue-950/20 border border-blue-600/30 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <div className="max-w-2xl space-y-3">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#3B82F6]/10 border border-[#3B82F6]/20 font-jetbrains text-[11px] font-semibold text-[#3B82F6] uppercase tracking-wider">
+                <Radio className="w-3.5 h-3.5 animate-pulse text-[#3B82F6]" /> Hardware + Software Ecosystem
+              </div>
+              <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#F1F5F9] tracking-[-0.02em]">
+                Commercial Fleet TPMS &amp; Bluetooth Sensors
+              </h2>
+              <p className="font-ibm-plex text-sm sm:text-base text-[#94A3B8] leading-relaxed">
+                Ruggedized internal and valve-mount Bluetooth TPMS sensors engineered for Indian commercial haulage. Real-time temperature, pressure, and blowout-prevention telemetry streaming straight into the TMIP cloud.
+              </p>
+              <div className="flex flex-wrap gap-4 pt-2">
+                <div className="flex items-center gap-2 font-jetbrains text-xs text-[#F1F5F9]">
+                  <Gauge className="w-4 h-4 text-[#3B82F6]" /> 0–180 PSI commercial range
+                </div>
+                <div className="flex items-center gap-2 font-jetbrains text-xs text-[#F1F5F9]">
+                  <Thermometer className="w-4 h-4 text-[#F59E0B]" /> High-temp threshold alerts
+                </div>
+                <div className="flex items-center gap-2 font-jetbrains text-xs text-[#F1F5F9]">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" /> IP67 ruggedized enclosure
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
+              <Link
+                href="/tmip/tpms"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-[3px] font-space-grotesk font-semibold text-sm bg-[#3B82F6] text-[#050A17] hover:bg-[#2563EB] shadow-lg shadow-[#3B82F6]/20 transition-all duration-200"
+              >
+                Explore Fleet TPMS <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/tmip/demo"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-[3px] font-space-grotesk font-medium text-sm border border-slate-700 hover:border-slate-500 text-[#F1F5F9] transition-all duration-200"
+              >
+                Request Hardware Sample
+              </Link>
+            </div>
           </div>
         </div>
       </section>

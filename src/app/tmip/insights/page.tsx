@@ -5,14 +5,14 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { InsightsClient } from "./insights-client";
 
 export const metadata: Metadata = {
-  title: "TMIP Insights  ·  Treel",
+  title: "TMIP Insights",
   description:
     "TMIP-specific insights: product deep-dives, deployment lessons, fleet analytics techniques, and commentary from Treel's engineering and operations team.",
   alternates: {
     canonical: "https://treel.in/tmip/insights",
   },
   openGraph: {
-    title: "TMIP Insights  ·  Treel",
+    title: "TMIP Insights",
     description:
       "TMIP-specific insights: product deep-dives, deployment lessons, fleet analytics techniques, and commentary from Treel's engineering and operations team.",
     url: "https://treel.in/tmip/insights",
@@ -55,11 +55,11 @@ export default function TmipInsightsPage() {
             </div>
 
             <h1 className="font-space-grotesk text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F1F5F9] leading-[1.12]">
-              The Fleet ROI Paper — How TMIP customers reach payback in nine months
+              The Fleet ROI Paper — How TMIP customers reach payback in 9 to 12 months
             </h1>
 
             <p className="text-base sm:text-xl text-[#94A3B8] leading-relaxed font-ibm-plex max-w-3xl">
-              An empirical analysis of fleet economics across 200 enterprises and 68,000+ assets. How vehicle digital twin
+              An empirical analysis of fleet economics across 200 enterprises and 70,000+ vehicles under active management. How vehicle digital twin
               telemetry correlates tyre pressure disciplines directly to 0.5–0.6% fuel savings and full capital payback.
             </p>
 

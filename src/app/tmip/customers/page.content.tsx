@@ -6,14 +6,14 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Customers  ·  TMIP",
   description:
-    "Two hundred enterprise fleet operators run on TMIP. Sixty-eight thousand vehicles under management. See the customers, the industries, and the outcomes.",
+    "Two hundred enterprise fleet operators run on TMIP. 70,000+ vehicles under active management. See the customers, the industries, and the outcomes.",
   alternates: {
     canonical: "https://treel.in/tmip/customers",
   },
   openGraph: {
     title: "Customers  ·  TMIP",
     description:
-      "Two hundred enterprise fleet operators run on TMIP. Sixty-eight thousand vehicles under management. See the customers, the industries, and the outcomes.",
+      "Two hundred enterprise fleet operators run on TMIP. 70,000+ vehicles under active management. See the customers, the industries, and the outcomes.",
     url: "https://treel.in/tmip/customers",
   },
 };
@@ -93,7 +93,7 @@ export default function TmipCustomersPage() {
               CUSTOMERS
             </div>
             <h1 className="font-space-grotesk text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F1F5F9] leading-[1.12]">
-              Two hundred fleets. Sixty-eight thousand vehicles.
+              Two hundred fleets. 70,000+ vehicles under active management.
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed max-w-3xl font-ibm-plex">
               TMIP&apos;s customer base spans logistics, passenger transport, construction, and mining fleet
@@ -110,9 +110,9 @@ export default function TmipCustomersPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <div className="space-y-1">
               <div className="font-space-grotesk text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F1F5F9] tracking-tight">
-                68,412
+                70,000+
               </div>
-              <div className="text-xs sm:text-sm text-[#94A3B8] font-ibm-plex">Vehicles under management</div>
+              <div className="text-xs sm:text-sm text-[#94A3B8] font-ibm-plex">Vehicles under active management</div>
               <div className="text-xs font-jetbrains text-[#10B981] font-medium">Pan-India deployed</div>
             </div>
 
@@ -266,7 +266,7 @@ export default function TmipCustomersPage() {
               Join them.
             </h2>
             <p className="text-[#94A3B8] text-base leading-relaxed font-ibm-plex">
-              Find out how TMIP can generate positive net operating payback across your fleet within nine months.
+              Find out how TMIP can generate positive net operating payback across your fleet within 9 to 12 months.
             </p>
             <div className="pt-2">
               <Link

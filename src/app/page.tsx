@@ -5,14 +5,16 @@ import { TreelHeroVisual } from "@/components/home/treel-hero-visual";
 import { ExplorePlatformVideoModal } from "@/components/home/explore-platform-video-modal";
 
 export const metadata: Metadata = {
-  title: "Treel — Mobility Intelligence & Vehicle Digital Twin",
-  description: "Treel operates India's largest connected commercial vehicle dataset. Three product families, one Vehicle Digital Twin architecture. Turn raw motion into operating intelligence.",
+  title: {
+    absolute: "Treel · Mobility Intelligence & Vehicle Digital Twin",
+  },
+  description: "India's largest connected commercial vehicle dataset. Three product families, one Vehicle Digital Twin platform. Turn vehicle motion into intelligence.",
   alternates: {
     canonical: "https://treel.in/",
   },
   openGraph: {
-    title: "Treel — Mobility Intelligence & Vehicle Digital Twin",
-    description: "Treel operates India's largest connected commercial vehicle dataset. Three product families, one Vehicle Digital Twin architecture. Turn raw motion into operating intelligence.",
+    title: "Treel · Mobility Intelligence & Vehicle Digital Twin",
+    description: "India's largest connected commercial vehicle dataset. Three product families, one Vehicle Digital Twin platform. Turn vehicle motion into intelligence.",
     url: "https://treel.in/",
     images: [{ url: "/images/og/treel-og.jpg", width: 1200, height: 630, alt: "Treel Mobility Intelligence" }],
   },
@@ -88,7 +90,7 @@ export default function HomePage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             <div className="border-l-2 border-[#D5573B] pl-5">
-              <div className="font-fraunces text-4xl sm:text-5xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-[-0.03em] leading-none mb-2.5">68K</div>
+              <div className="font-fraunces text-4xl sm:text-5xl lg:text-[48px] font-medium text-[#FAF7F2] tracking-[-0.03em] leading-none mb-2.5">70,000+</div>
               <div className="font-jetbrains font-mono text-[11px] uppercase tracking-[0.08em] text-[#94A3B8] leading-relaxed">Vehicles under active management</div>
             </div>
             <div className="border-l-2 border-[#D5573B] pl-5">

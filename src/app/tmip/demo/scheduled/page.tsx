@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { ScheduledClientView } from "./scheduled-client-view";
 
 export const metadata: Metadata = {
-  title: "Thank You · TMIP · Treel",
+  title: "Demo Scheduled · TMIP",
   description: "Thank you for requesting a TMIP demo. Your demo request has been received.",
   robots: {
     index: false,
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/demo/scheduled",
   },
   openGraph: {
-    title: "Thank You · TMIP · Treel",
+    title: "Demo Scheduled · TMIP",
     description: "Thank you for requesting a TMIP demo. Your demo request has been received.",
     url: "https://treel.in/tmip/demo/scheduled",
   },

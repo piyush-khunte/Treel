@@ -12,13 +12,13 @@ import { EventSubscribeForm } from "./event-subscribe-form";
 import { getPublishedEvents } from "@/lib/content/events-storage";
 
 export const metadata: Metadata = {
-  title: "Events · Where you can meet Treel",
+  title: "Events & Summits — Conferences & Industry Expos",
   description: "Upcoming conferences, webinars, product demos, and industry meetups. If we're in your city, come by.",
   alternates: {
     canonical: "https://treel.in/events",
   },
   openGraph: {
-    title: "Events · Where you can meet Treel",
+    title: "Events & Summits — Conferences & Industry Expos",
     description: "Upcoming conferences, webinars, product demos, and industry meetups. If we're in your city, come by.",
     url: "https://treel.in/events",
   },

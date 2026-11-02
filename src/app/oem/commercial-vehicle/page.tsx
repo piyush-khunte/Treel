@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Commercial Vehicle TPMS · Treel Mobility Solutions",
+  title: "Commercial Vehicle TPMS",
   description:
-    "Heavy commercial vehicle tyre telematics, multi-axle pressure and temperature monitoring, and digital twin systems for commercial vehicle fleets and manufacturers.",
+    "Commercial vehicle tyre telematics, multi-axle pressure and temperature monitoring, and digital twin systems for commercial fleets and manufacturers.",
   alternates: {
     canonical: "https://treel.in/oem/commercial-vehicle",
   },
@@ -170,10 +170,10 @@ export default function OemCommercialVehiclePage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="border-l-2 border-[#3B82F6] pl-5 space-y-1">
               <div className="font-space-grotesk text-3xl sm:text-4xl font-semibold text-[#F59E0B] tracking-[-0.02em]">
-                68,000+
+                70,000+
               </div>
               <div className="font-jetbrains text-[10px] sm:text-[11px] uppercase tracking-wider text-[#94A3B8]">
-                Vehicles Under Management
+                Vehicles Under Active Management
               </div>
             </div>
             <div className="border-l-2 border-[#3B82F6] pl-5 space-y-1">
@@ -194,7 +194,7 @@ export default function OemCommercialVehiclePage() {
             </div>
             <div className="border-l-2 border-[#3B82F6] pl-5 space-y-1">
               <div className="font-space-grotesk text-3xl sm:text-4xl font-semibold text-[#F59E0B] tracking-[-0.02em]">
-                9 Months
+                9 to 12 Months
               </div>
               <div className="font-jetbrains text-[10px] sm:text-[11px] uppercase tracking-wider text-[#94A3B8]">
                 Median Payback Period

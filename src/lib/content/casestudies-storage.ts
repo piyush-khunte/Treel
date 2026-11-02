@@ -191,7 +191,7 @@ export const SEED_CASE_STUDIES: TmipCaseStudy[] = [
     solution:
       "Treel deployed ARAI-certified, heavy-duty TMIP industrial sensors with IP68-rated enclosures across all wheel positions. The edge hardware included:\n\n• Offline Edge Buffer: On-vehicle edge gateways processing anomaly models locally with instant cab alarms during zero-signal runs.\n• Thermal Stress Models: Physics-informed algorithms that correlate ambient pit temperatures, axle load, and tyre inflation levels.",
     quote: {
-      text: "In an open-cast pit, one stalled dumper stops twenty other trucks behind it. TMIP gave us the offline reliability we needed to catch heat spikes before a tyre blew on the ramp. It paid for itself in less than nine months.",
+      text: "In an open-cast pit, one stalled dumper stops twenty other trucks behind it. TMIP gave us the offline reliability we needed to catch heat spikes before a tyre blew on the ramp. It paid for itself in 9 to 12 months.",
       author: "Operations Director",
       title: "Heavy Mining & Infrastructure Group"
     },
@@ -218,7 +218,7 @@ export const SEED_CASE_STUDIES: TmipCaseStudy[] = [
         value: "8.2 mo",
         label: "Capital Payback",
         delta: "Full deployment payback",
-        desc: "Hardware installation, on-site edge gateways, and platform subscriptions fully amortized in under nine months."
+        desc: "Hardware installation, on-site edge gateways, and platform subscriptions fully amortized in 9 to 12 months."
       }
     ],
     content: `<h3>What changed</h3><p>Within 90 days of deployment, the mining operation achieved continuous sub-second visibility into wheel temperatures and pressure dynamics across all shifts.</p><p>Catastrophic tyre blowouts on active haul ramps dropped to zero over the 18-month evaluation period. Mine superintendents received predictive alerts allowing drivers to pull into maintenance lay-bys before casings suffered permanent structural damage.</p><h3>Life on TMIP</h3><p>Today, the central mine dispatch room tracks real-time thermal curves for every active dumper. Shift handover reports highlight vehicles operating near threshold tolerances, allowing workshop crews to perform targeted tyre pressure balancing and wheel rotation during scheduled shift changes.</p>`

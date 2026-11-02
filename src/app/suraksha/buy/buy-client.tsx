@@ -110,7 +110,7 @@ export default function SurakshaBuyClient() {
             </div>
 
             <h1 className="font-anton text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#451A03] leading-[0.95] uppercase">
-              GET SURAKSHA FOR <span className="italic text-[#DC2626]">YOUR TRUCK</span>
+              Buy Treel Suraksha <span className="italic text-[#DC2626]">Truck TPMS Safety Kit</span>
             </h1>
 
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-medium max-w-3xl">
@@ -135,7 +135,7 @@ export default function SurakshaBuyClient() {
                     STEP 1
                   </div>
                   <h2 className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase">
-                    SELECT NUMBER OF TYRES / WHEELS
+                    Select number of tyres / wheels
                   </h2>
                   <p className="text-[#78350F] text-xs sm:text-sm font-medium mt-1">
                     Pick your truck setup or adjust the exact tyre count using the counter.
@@ -231,7 +231,7 @@ export default function SurakshaBuyClient() {
               {/* What Ships in Your Kit */}
               <div className="p-6 sm:p-8 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 shadow-sm space-y-4">
                 <h3 className="font-anton text-xl sm:text-2xl font-normal text-[#451A03] uppercase">
-                  WHAT&apos;S INCLUDED IN YOUR {tyreCount}-TYRE KIT
+                  What&apos;s included in your {tyreCount}-tyre kit
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2 text-sm text-[#451A03]">
@@ -291,7 +291,7 @@ export default function SurakshaBuyClient() {
                     Order Summary
                   </div>
                   <h3 className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase mt-1">
-                    SURAKSHA {tyreCount}-TYRE KIT
+                    Suraksha {tyreCount}-tyre kit
                   </h3>
                 </div>
 
@@ -324,7 +324,7 @@ export default function SurakshaBuyClient() {
                 {/* Total Display */}
                 <div>
                   <div className="flex justify-between items-baseline">
-                    <span className="font-anton text-lg text-[#451A03] uppercase">TOTAL PAYABLE:</span>
+                    <span className="font-anton text-lg text-[#451A03] uppercase">Total payable:</span>
                     <div className="text-right">
                       <div className="font-anton text-3xl sm:text-4xl text-[#DC2626]">
                         ₹{totalPrice.toLocaleString("en-IN")}

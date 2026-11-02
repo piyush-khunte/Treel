@@ -4,14 +4,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "What I saw before I started Treel · Manish Ingale, Founder · Treel",
-  description: "Why Manish Ingale founded Treel: from watching a truck driver check tyre pressure with a stick on a Maharashtra highway to operating Vehicle Digital Twins for 68,000 commercial vehicles.",
+  title: "Founder's Note — The Origin of Vehicle Digital Twins · Manish Ingale",
+  description: "Why Manish Ingale founded Treel: from watching highway tyre checks with a stick to operating Vehicle Digital Twins for 70,000+ vehicles under management.",
   alternates: {
     canonical: "https://treel.in/founder-note",
   },
   openGraph: {
-    title: "What I saw before I started Treel · Manish Ingale, Founder · Treel",
-    description: "Why Manish Ingale founded Treel: from watching a truck driver check tyre pressure with a stick on a Maharashtra highway to operating Vehicle Digital Twins for 68,000 commercial vehicles.",
+    title: "Founder's Note — The Origin of Vehicle Digital Twins · Manish Ingale",
+    description: "Why Manish Ingale founded Treel: from watching highway tyre checks with a stick to operating Vehicle Digital Twins for 70,000+ vehicles under management.",
     url: "https://treel.in/founder-note",
     type: "article",
     authors: ["Manish Ingale"],
@@ -127,7 +127,7 @@ export default function FounderNotePage() {
             </p>
 
             <p>
-              Two hundred enterprise customers now trust us with sixty-eight thousand vehicles. Our platform is up 99.7 percent of the time. Our median customer sees their investment pay back in nine months. These are not the numbers of an experiment. They are the numbers of a company that has moved from a hypothesis to an operating category.
+              Two hundred enterprise customers now trust us with 70,000+ vehicles under active management. Our platform is up 99.7 percent of the time. Our median customer sees their investment pay back in 9 to 12 months. These are not the numbers of an experiment. They are the numbers of a company that has moved from a hypothesis to an operating category.
             </p>
 
             <p>
@@ -143,7 +143,7 @@ export default function FounderNotePage() {
                 If you need clear visibility across a large fleet, and a payback that holds up before you sign, choose <Link href="/tmip" className="text-[#3B82F6] hover:underline font-medium">TMIP</Link>. We sell only when the numbers work for you. If they do not, we walk away.
               </p>
               <p>
-                If you drive your own truck and need tyre safety in your own language, with no app to download and no monthly fee, choose <Link href="/suraksha" className="text-[#F59E0B] hover:underline font-medium">Suraksha</Link>. It pays for itself in nine months.
+                If you drive your own truck and need tyre safety in your own language, with no app to download and no monthly fee, choose <Link href="/suraksha" className="text-[#F59E0B] hover:underline font-medium">Suraksha</Link>. It pays for itself in 9 to 12 months.
               </p>
               <p>
                 If you need peace of mind on your car&apos;s tyres, choose <Link href="/personal" className="text-[#10B981] hover:underline font-medium">Personal TPMS</Link>. It runs on the same technology our enterprise customers trust with their fleets.
@@ -191,7 +191,7 @@ export default function FounderNotePage() {
               </Link>
               <Link href="/our-story" className="p-6 sm:p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group block">
                 <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">Our Story</h3>
-                <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed">Eight years of milestones from Pune to 68,000 commercial vehicles.</p>
+                <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed">Eight years of milestones from Pune to 70,000+ vehicles under active management.</p>
                 <div className="mt-4 font-semibold text-xs text-[#D5573B] flex items-center gap-1 group-hover:gap-2 transition-all">
                   Explore timeline <ChevronRight className="w-3.5 h-3.5" />
                 </div>

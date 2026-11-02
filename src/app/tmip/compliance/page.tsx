@@ -4,14 +4,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Certifications & Compliance · TMIP | Treel Mobility",
-  description: "TMIP automotive and enterprise compliance posture: IATF 16949, ISO 27001, GDPR, India DPDP Act 2023, FCC & CE telematics certifications, and IP65/IP67 environmental ratings.",
+  title: "Certifications & Compliance · TMIP",
+  description: "TMIP enterprise compliance: IATF 16949, ISO 27001, GDPR, India DPDP Act 2023, FCC & CE telematics certifications, and IP65/IP67 environmental ratings.",
   alternates: {
     canonical: "https://treel.in/tmip/compliance",
   },
   openGraph: {
-    title: "Certifications & Compliance · TMIP | Treel Mobility",
-    description: "TMIP automotive and enterprise compliance posture: IATF 16949, ISO 27001, GDPR, India DPDP Act 2023, FCC & CE telematics certifications, and IP65/IP67 environmental ratings.",
+    title: "Certifications & Compliance · TMIP",
+    description: "TMIP enterprise compliance: IATF 16949, ISO 27001, GDPR, India DPDP Act 2023, FCC & CE telematics certifications, and IP65/IP67 environmental ratings.",
     url: "https://treel.in/tmip/compliance",
   },
 };

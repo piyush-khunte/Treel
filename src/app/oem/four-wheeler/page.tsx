@@ -4,7 +4,7 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Four-Wheeler OEM Solutions · Treel Mobility Solutions",
+  title: "Four-Wheeler OEM Solutions",
   description: "Factory-fit TPMS and connected vehicle intelligence for passenger car manufacturers.",
   alternates: {
     canonical: "https://treel.in/oem/four-wheeler",

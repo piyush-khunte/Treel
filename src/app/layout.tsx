@@ -4,12 +4,7 @@ import {
   fraunces,
   inter,
   spaceGrotesk,
-  ibmPlexSans,
   jetbrainsMono,
-  anton,
-  rubik,
-  baloo2,
-  manrope,
 } from "./fonts";
 import "./globals.css";
 import { MasterHeader } from "@/components/layout/master-header";
@@ -30,7 +25,7 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   description:
-    "Treel transforms dynamic tyre physics and vehicle telemetry into predictive mobility intelligence. Solutions for Enterprise Fleets (TMIP), Commercial Trucks (Suraksha), and Consumer TPMS.",
+    "Treel turns tyre physics and telemetry into predictive mobility intelligence. Solutions for Enterprise Fleets (TMIP), Suraksha, and Consumer TPMS.",
   keywords: [
     "Treel",
     "TPMS",
@@ -77,7 +72,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${inter.variable} ${spaceGrotesk.variable} ${ibmPlexSans.variable} ${jetbrainsMono.variable} ${anton.variable} ${rubik.variable} ${baloo2.variable} ${manrope.variable}`}
+      className={`${inter.variable} ${fraunces.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         

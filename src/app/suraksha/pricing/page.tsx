@@ -1,14 +1,14 @@
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
-ArrowRight,
-Building,
-Check,
-ChevronRight,
-Coffee,
-CreditCard,
-Sparkles,
-Truck
+  ArrowRight,
+  Building,
+  Check,
+  ChevronRight,
+  Coffee,
+  CreditCard,
+  Sparkles,
+  Truck
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -24,14 +24,14 @@ export const revalidate = 0;
 export const metadata: Metadata = {
   title: "Suraksha Kit · Configurations & Pricing · ₹1,700/Tyre",
   description:
-    "Suraksha safety kit pricing at ₹1,700 per tyre for 6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, 16-wheeler, and 18-wheeler trucks. No hidden fees. 3-year warranty included.",
+    "Suraksha kit pricing at ₹1,700 per tyre for 6W, 10W, 12W, 14W, 16W, and 18W commercial trucks. No hidden fees. Official 3-year replacement warranty.",
   alternates: {
     canonical: "https://treel.in/suraksha/pricing",
   },
   openGraph: {
     title: "Suraksha Kit · Configurations & Pricing · ₹1,700/Tyre",
     description:
-      "Suraksha safety kit pricing at ₹1,700 per tyre for 6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, 16-wheeler, and 18-wheeler trucks. No hidden fees. 3-year warranty included.",
+      "Suraksha kit pricing at ₹1,700 per tyre for 6W, 10W, 12W, 14W, 16W, and 18W commercial trucks. No hidden fees. Official 3-year replacement warranty.",
     url: "https://treel.in/suraksha/pricing",
   },
 };
@@ -210,8 +210,58 @@ export default async function SurakshaPricingPage() {
     console.error("Failed to load dynamic Suraksha products for pricing page:", err);
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Suraksha Commercial Truck TPMS Kit",
+    image: "https://treel.in/images/treel-main-logo.jpg",
+    description:
+      "Suraksha safety kit pricing for Indian commercial trucks. Standardized at ₹1,700 per tyre sensor across 6W, 10W, 12W, 14W, 16W, and 18W configurations.",
+    sku: "TREEL-SURAKSHA-KIT",
+    mpn: "TRL-SRK-01",
+    brand: {
+      "@type": "Brand",
+      name: "Treel",
+    },
+    offers: {
+      "@type": "AggregateOffer",
+      url: "https://treel.in/suraksha/pricing",
+      priceCurrency: "INR",
+      lowPrice: "10200",
+      highPrice: "30600",
+      offerCount: displayConfigs.length.toString(),
+      offers: displayConfigs.map((cfg) => ({
+        "@type": "Offer",
+        name: cfg.title,
+        price: cfg.price.toString(),
+        priceCurrency: "INR",
+        availability: "https://schema.org/InStock",
+        itemCondition: "https://schema.org/NewCondition",
+        seller: {
+          "@type": "Organization",
+          name: "Treel Mobility Solutions",
+        },
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          price: "1700",
+          priceCurrency: "INR",
+          unitText: "per tyre sensor",
+          referenceQuantity: {
+            "@type": "QuantitativeValue",
+            value: "1",
+            unitCode: "C62",
+          },
+        },
+      })),
+    },
+  };
+
   return (
     <div className="bg-[#FEF3C7] text-[#451A03] font-rubik selection:bg-[#DC2626]/20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-16 pb-16 sm:pt-20 sm:pb-24 border-b-2 border-[#451A03]/10 bg-[#FFFBEB]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
@@ -229,8 +279,8 @@ export default async function SurakshaPricingPage() {
             </div>
 
             <h1 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95] uppercase">
-              PRICED FOR YOUR TRUCK.<br />
-              <span className="italic text-[#DC2626]">NO HIDDEN FEES.</span>
+              Priced for your truck.<br />
+              <span className="italic text-[#DC2626]">No hidden fees.</span>
             </h1>
 
             <SurakshaRotator
@@ -255,7 +305,7 @@ export default async function SurakshaPricingPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              CONFIGURATIONS BY TRUCK SETUP
+              Configurations by truck setup
             </h2>
             <p className="text-[#78350F] text-base mt-2 font-medium">
               Standard Indian commercial vehicle kit options priced at ₹1,700 per tyre.
@@ -353,8 +403,8 @@ export default async function SurakshaPricingPage() {
             </div>
 
             <h2 className="font-anton text-4xl sm:text-5xl font-normal text-[#451A03] uppercase leading-tight">
-              9 MONTHS PAYBACK.<br />
-              <span className="italic text-[#EA580C]">LESS THAN A DAILY CUP OF TEA.</span>
+              9 to 12 months payback.<br />
+              <span className="italic text-[#EA580C]">Less than a daily cup of tea.</span>
             </h2>
 
             <p className="text-[#78350F] text-lg leading-relaxed font-medium">
@@ -380,7 +430,7 @@ export default async function SurakshaPricingPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              EVERYTHING INCLUDED
+              Everything included
             </h2>
             <p className="text-[#DC2626] font-rubik text-lg font-bold mt-2">
               Everything included in the kit
@@ -433,7 +483,7 @@ export default async function SurakshaPricingPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              PAYMENT OPTIONS
+              Payment options
             </h2>
           </div>
 
@@ -493,7 +543,7 @@ export default async function SurakshaPricingPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="p-8 sm:p-12 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/20 max-w-4xl space-y-6">
             <h2 className="font-anton text-3xl sm:text-4xl font-normal text-[#451A03] uppercase">
-              FOR FLEET OPERATORS
+              For fleet operators
             </h2>
 
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-medium">
@@ -523,7 +573,7 @@ export default async function SurakshaPricingPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-anton text-5xl sm:text-6xl font-normal tracking-tight text-[#FEF3C7] uppercase">
-              READY TO PROTECT YOUR TRUCK?
+              Ready to protect your truck?
             </h2>
 
             <p className="text-[#FEF3C7]/95 text-lg sm:text-xl font-medium max-w-2xl mx-auto">
@@ -547,11 +597,6 @@ export default async function SurakshaPricingPage() {
           </div>
         </div>
       </section>
-          {/* Floating Sticky Cart Bar */}
-      <SurakshaPricingCartBar />
-
-      {/* Floating Sticky Cart Bar */}
-      <SurakshaPricingCartBar />
     </div>
   );
 }

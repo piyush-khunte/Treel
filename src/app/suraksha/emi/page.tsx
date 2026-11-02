@@ -139,8 +139,8 @@ export default function SurakshaEmiPage() {
             </div>
 
             <h1 className="font-anton text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#451A03] leading-[0.95] uppercase">
-              EMI STARTS AT<br />
-              <span className="italic text-[#EA580C]">₹1,500 A MONTH.</span>
+              EMI starts at<br />
+              <span className="italic text-[#EA580C]">₹1,500 a month.</span>
             </h1>
 
             <SurakshaRotator
@@ -173,7 +173,7 @@ export default function SurakshaEmiPage() {
             </div>
 
             <h2 className="font-anton text-3xl sm:text-4xl font-normal text-[#451A03] uppercase">
-              WHEN IS ZERO-COST EMI AVAILABLE?
+              When is zero-cost EMI available?
             </h2>
 
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-medium">
@@ -190,7 +190,7 @@ export default function SurakshaEmiPage() {
             {/* Eligibility */}
             <div className="p-8 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 space-y-6 shadow-sm">
               <h2 className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase">
-                ELIGIBILITY CRITERIA (Bajaj Finance)
+                Eligibility criteria (Bajaj Finance)
               </h2>
 
               <div className="space-y-3">
@@ -215,7 +215,7 @@ export default function SurakshaEmiPage() {
             {/* Documents */}
             <div className="p-8 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 space-y-6 shadow-sm">
               <h2 className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase">
-                DOCUMENTS REQUIRED
+                Documents required
               </h2>
 
               <ul className="space-y-3">
@@ -238,7 +238,7 @@ export default function SurakshaEmiPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-12">
             <h2 className="font-anton text-4xl sm:text-5xl font-normal tracking-tight text-[#451A03] uppercase">
-              HOW TO APPLY
+              How to apply
             </h2>
           </div>
 

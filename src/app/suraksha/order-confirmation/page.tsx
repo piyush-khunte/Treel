@@ -41,7 +41,7 @@ function SurakshaOrderSuccessContent() {
           ORDER CONFIRMED &amp; PROCESSING
         </div>
         <h1 className="font-anton text-4xl sm:text-5xl text-[#451A03] uppercase">
-          SURAKSHA ORDER <span className="text-[#DC2626]">SUCCESSFUL!</span>
+          Suraksha order <span className="text-[#DC2626]">successful!</span>
         </h1>
         <p className="text-[#78350F] text-base sm:text-lg max-w-xl mx-auto font-medium">
           आपका सुरक्षा किट ऑर्डर दर्ज कर लिया गया है। Your commercial safety kit is being packaged for express transport dispatch.

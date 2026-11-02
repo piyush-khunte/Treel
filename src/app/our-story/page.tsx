@@ -4,13 +4,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Our Story · Treel Mobility Solutions",
+  title: "Our Story",
   description: "From a JK Tyre R&D idea in 2018 to India's largest connected commercial vehicle dataset in 2026. The Treel story, in milestones.",
   alternates: {
     canonical: "https://treel.in/our-story",
   },
   openGraph: {
-    title: "Our Story · Treel Mobility Solutions",
+    title: "Our Story",
     description: "From a JK Tyre R&D idea in 2018 to India's largest connected commercial vehicle dataset in 2026. The Treel story, in milestones.",
     url: "https://treel.in/our-story",
   },
@@ -44,8 +44,8 @@ export default function OurStoryPage() {
     },
     {
       year: "2024",
-      title: "Sixty-Eight Thousand Vehicles",
-      milestone: "Dataset compounds past 68,000 active commercial vehicles under management.",
+      title: "Seventy Thousand Vehicles",
+      milestone: "Dataset compounds past 70,000+ vehicles under active management.",
       narrative: "The dataset becomes Treel's deepest moat. Ingesting over 150 million daily telemetry points across 200 enterprise customers, Treel operates India's premier commercial vehicle telematics repository.",
     },
     {

@@ -32,7 +32,7 @@ const DEFAULT_ROLES: Role[] = [
     team: "Engineering",
     location: "Pune",
     type: "Full-time",
-    excerpt: "Architect high-throughput sub-second telemetry ingestion pipelines and Vehicle Digital Twin state engines handling 68K+ connected trucks."
+    excerpt: "Architect high-throughput sub-second telemetry ingestion pipelines and Vehicle Digital Twin state engines handling 70,000+ vehicles under active management."
   },
   {
     id: "job_product_manager_insights",

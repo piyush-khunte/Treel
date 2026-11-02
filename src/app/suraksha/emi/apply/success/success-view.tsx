@@ -123,8 +123,8 @@ export function SurakshaEmiSuccessView() {
               APPLICATION RECEIVED
             </div>
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
-              THANK YOU!<br />
-              <span className="italic text-[#0891B2]">APPLICATION RECEIVED.</span>
+              Thank you!<br />
+              <span className="italic text-[#0891B2]">Application received.</span>
             </h1>
             <SurakshaRotator
               page="5.7"
@@ -253,7 +253,7 @@ export function SurakshaEmiSuccessView() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl space-y-6">
             <h2 className="font-anton uppercase tracking-normal text-3xl sm:text-4xl text-[#451A03]">
-              WHAT HAPPENS NEXT
+              What happens next
             </h2>
             <p className="text-[#78350F] text-base sm:text-lg leading-relaxed font-rubik font-semibold">
               Verification &amp; Delivery Steps:
@@ -313,7 +313,7 @@ export function SurakshaEmiSuccessView() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl space-y-6">
             <h3 className="font-anton uppercase tracking-normal text-2xl sm:text-3xl text-[#451A03]">
-              HAVE QUESTIONS ABOUT YOUR APPLICATION?
+              Have questions about your application?
             </h3>
             <p className="text-[#451A03] text-base sm:text-lg leading-relaxed font-rubik font-medium">
               Chat directly with our Suraksha finance team on WhatsApp or call our toll-free customer helpline for status assistance.
@@ -343,7 +343,7 @@ export function SurakshaEmiSuccessView() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
             <h3 className="font-anton uppercase tracking-normal text-xl sm:text-2xl text-[#451A03]">
-              EXPLORE MORE ABOUT SURAKSHA
+              Explore more about Suraksha
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
               <Link

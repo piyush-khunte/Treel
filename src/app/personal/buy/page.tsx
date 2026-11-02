@@ -4,6 +4,7 @@ import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { 
   CheckCircle2, 
   ShoppingCart, 
@@ -130,11 +131,14 @@ export default function PersonalBuyPage() {
       <section className="pt-24 pb-12 border-b border-black/[0.06] bg-gradient-to-b from-white via-slate-50/40 to-[#F3F4F6]/40">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           {/* Breadcrumbs */}
-          <div className="flex items-center gap-2 text-xs font-semibold text-[#6B7280] uppercase tracking-wider mb-6">
-            <Link href="/personal" className="hover:text-[#2563EB] transition-colors">Personal TPMS</Link>
-            <ChevronRight className="w-3.5 h-3.5 text-[#9CA3AF]" />
-            <span className="text-[#111827]">Product Store</span>
-          </div>
+          <Breadcrumb
+            variant="personal"
+            items={[
+              { label: "Personal TPMS", href: "/personal" },
+              { label: "Product Store", href: "/personal/buy" },
+            ]}
+            className="mb-6"
+          />
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
             <div className="max-w-3xl space-y-4">

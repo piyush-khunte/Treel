@@ -3,9 +3,9 @@ import { Suspense } from "react";
 import { TmipLandingPage } from "@/components/tmip/tmip-landing-page";
 
 export const metadata: Metadata = {
-  title: "Predict Breakdowns Before They Stop Your Fleet · TMIP by Treel",
+  title: "Predict Fleet Breakdowns Before They Happen — TMIP",
   description:
-    "Predict breakdowns before they stop your fleet. Real-time tyre intelligence, vehicle digital twins, and predictive maintenance for commercial fleets. Book a 30-minute demo.",
+    "Predict breakdowns before they stop your fleet. Real-time tyre intelligence, digital twins, and predictive maintenance. Book a 30-minute TMIP demo.",
   robots: {
     index: false,
     follow: true,
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/lp-tmip",
   },
   openGraph: {
-    title: "Predict Breakdowns Before They Stop Your Fleet · TMIP by Treel",
+    title: "Predict Fleet Breakdowns Before They Happen — TMIP",
     description:
       "Predict breakdowns before they stop your fleet. Real-time tyre intelligence, vehicle digital twins, and predictive maintenance for commercial fleets.",
     url: "https://treel.in/lp-tmip",

@@ -44,10 +44,10 @@ const views: ViewItem[] = [
     count: "1,847 nodes",
     statusTitle: "Status",
     metrics: [
-      { label: "Engine Health", value: "91%", color: "green" },
-      { label: "Electrical", value: "90%", color: "blue" },
-      { label: "Driveline", value: "88%", color: "blue" },
-      { label: "Tyres & Brakes", value: "85% / 80%", color: "yellow" },
+      { label: "Engine Diagnostics", value: "91%", color: "green" },
+      { label: "Battery Health", value: "90%", color: "blue" },
+      { label: "Trips", value: "100%", color: "blue" },
+      { label: "Tyres", value: "92%", color: "green" },
     ],
     bottom: {
       label: "Active Twin Coverage:",

@@ -10,14 +10,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms of Service · Treel",
+  title: "Terms of Service",
   description:
     "Treel's Terms of Service. Terms governing use of treel.in, TMIP, Project Suraksha, Personal TPMS, and related mobility intelligence services.",
   alternates: {
     canonical: "https://treel.in/terms",
   },
   openGraph: {
-    title: "Terms of Service · Treel",
+    title: "Terms of Service",
     description:
       "Treel's Terms of Service. Terms governing use of treel.in, TMIP, Project Suraksha, Personal TPMS, and related mobility intelligence services.",
     url: "https://treel.in/terms",

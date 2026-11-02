@@ -8,14 +8,14 @@ import { getPublicAnnualReturns } from "@/lib/content/annual-returns-storage";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Annual Reports & Statutory Returns · Treel Mobility Solutions",
-  description: "Official statutory annual returns (Form MGT-7A) and annual reports of Treel Mobility Solutions Private Limited. Published for public compliance and stakeholder transparency.",
+  title: "Annual Reports & Statutory Returns",
+  description: "Official statutory annual returns (Form MGT-7A) and annual reports of Treel Mobility Solutions Private Limited for transparency and public compliance.",
   alternates: {
     canonical: "https://treel.in/annual-reports",
   },
   openGraph: {
-    title: "Annual Reports & Statutory Returns · Treel Mobility Solutions",
-    description: "Official statutory annual returns (Form MGT-7A) and annual reports of Treel Mobility Solutions Private Limited. Published for public compliance and stakeholder transparency.",
+    title: "Annual Reports & Statutory Returns",
+    description: "Official statutory annual returns (Form MGT-7A) and annual reports of Treel Mobility Solutions Private Limited for transparency and public compliance.",
     url: "https://treel.in/annual-reports",
   },
 };

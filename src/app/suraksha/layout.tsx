@@ -1,3 +1,4 @@
+import { anton, rubik, baloo2 } from "@/app/fonts";
 import React from "react";
 import { SurakshaHeader } from "@/components/layout/suraksha-header";
 import { SurakshaHighwayHelpBar } from "@/components/layout/suraksha-highway-help-bar";
@@ -5,7 +6,7 @@ import { SurakshaFloatingWhatsApp } from "@/components/suraksha/suraksha-floatin
 
 export default function SurakshaLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="suraksha-page min-h-screen bg-[#FEF3C7] text-[#451A03] font-rubik antialiased selection:bg-[#DC2626]/20 selection:text-[#451A03]">
+    <div className={`suraksha-page min-h-screen bg-[#FEF3C7] text-[#451A03] font-rubik antialiased selection:bg-[#DC2626]/20 selection:text-[#451A03] ${anton.variable} ${rubik.variable} ${baloo2.variable}`}>
       {/* Suraksha Multilingual Rotator Zero-CLS CSS */}
       <style
         dangerouslySetInnerHTML={{
