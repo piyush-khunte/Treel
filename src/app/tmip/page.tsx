@@ -48,7 +48,7 @@ const capabilities = [
   {
     icon: BarChart3,
     title: "Proven Fleet Cost-Effectiveness",
-    body: "5% to 7% tyre life extension combined with sustained fuel savings of 0.5% to 1.2%. Zero surprise capital outlays, transparent unit economics, and audited enterprise returns.",
+    body: "5% to 7% tyre life extension combined with sustained fuel savings of 0.5% to 0.6%. Zero surprise capital outlays, transparent unit economics, and audited enterprise returns.",
   },
   {
     icon: Box,
