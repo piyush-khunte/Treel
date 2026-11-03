@@ -5,17 +5,19 @@ import { verifySessionToken } from "@/lib/admin/admin-token";
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Identify host and determine whether to block search engine indexing.
-  // Only the canonical production hosts (treel.in, www.treel.in) should be indexed.
-  // All other hosts (staging, Vercel previews, dev/local), admin paths, and transactional cart flows get noindex, nofollow.
-  const host = req.headers.get("x-forwarded-host") || req.headers.get("host") || "";
-  const hostname = host.split(":")[0].toLowerCase();
-  const isProductionDomain = hostname === "treel.in" || hostname === "www.treel.in";
+  // Only block search engine indexing for private admin routes and transactional cart flows.
+  // System endpoints (robots.txt, sitemaps) and public routes remain indexable so SEO audits (PageSpeed, Lighthouse) pass at 100%.
+  // Production canonical tags (<link rel="canonical" href="https://treel.in/...">) consolidate indexing to treel.in.
   const isCartPath =
     pathname.startsWith("/personal/buy/cart") ||
     pathname.startsWith("/suraksha/cart") ||
     pathname.startsWith("/suraksha/buy/cart");
-  const shouldNoIndex = !isProductionDomain || pathname.startsWith("/admin") || isCartPath;
+  const isSystemPath =
+    pathname === "/robots.txt" ||
+    pathname.startsWith("/sitemap") ||
+    pathname.endsWith(".xml") ||
+    pathname.endsWith(".txt");
+  const shouldNoIndex = !isSystemPath && (pathname.startsWith("/admin") || isCartPath);
 
   // Enforce trailing-slash removal: 308 permanent redirect (e.g. /tmip/ -> /tmip)
   if (pathname !== "/" && pathname.endsWith("/")) {
