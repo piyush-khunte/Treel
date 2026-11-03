@@ -20,8 +20,8 @@ const SLIDES: SlideData[] = [
     id: "tmip",
     name: "TMIP Enterprise",
     category: "Fleet Intelligence",
-    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1792650870/Fleet_Intelligence_Digital_Twin.png",
-    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/v1792650870/Fleet_Intelligence_Digital_Twin.png",
+    src: "/images/home/fleet-digital-twin-desktop.webp",
+    mobileSrc: "/images/home/fleet-digital-twin-mobile.webp",
     alt: "Treel TMIP — Enterprise Fleet Intelligence & Live Vehicle Digital Twin",
     href: "/tmip",
     tagline: "Every truck. A live Digital Twin.",
@@ -30,8 +30,8 @@ const SLIDES: SlideData[] = [
     id: "tpms",
     name: "Personal TPMS",
     category: "Bikes, Cars & OTR",
-    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1792650870/Every_Tyre_Every_Road.png",
-    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/v1792650870/Every_Tyre_Every_Road.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto:good,w_650/v1792650870/Every_Tyre_Every_Road.png",
+    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto:eco,w_380/v1792650870/Every_Tyre_Every_Road.png",
     alt: "Treel TPMS — Real-time Tyre Pressure Monitoring for Every Tyre and Every Road",
     href: "/personal",
     tagline: "Real-time pressure & temperature alerts",
@@ -40,8 +40,8 @@ const SLIDES: SlideData[] = [
     id: "suraksha",
     name: "Suraksha Fleet",
     category: "Commercial Trucks",
-    src: "https://res.cloudinary.com/uwd11u7t/image/upload/v1792650870/Suraksha__Safety_in_Your_Hands.png",
-    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/v1792650870/Suraksha__Safety_in_Your_Hands.png",
+    src: "https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto:good,w_650/v1792650870/Suraksha__Safety_in_Your_Hands.png",
+    mobileSrc: "https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto:eco,w_380/v1792650870/Suraksha__Safety_in_Your_Hands.png",
     alt: "Treel Suraksha — DIY Fleet & Truck Safety for India's Owner-Drivers",
     href: "/suraksha",
     tagline: "Safety that fits in a driver's hands",
@@ -174,17 +174,22 @@ export function TreelHeroVisual() {
     goToSlide(next);
   }, [goToSlide]);
 
-  // Auto-rotation timer with visibility and pause support (rotates every 2s)
+  // Auto-rotation timer with visibility and pause support
   useEffect(() => {
-    if (isPaused || prefersReducedMotionRef.current) return;
+    if (isPaused || prefersReducedMotionRef.current || !isClient) return;
 
     const interval = setInterval(() => {
-      setIsClient(true);
       nextSlide();
-    }, INTERVAL_MS);
+    }, 3500);
 
     return () => clearInterval(interval);
-  }, [isPaused, nextSlide, current]);
+  }, [isPaused, nextSlide, isClient]);
+
+  // Activate client rotation and secondary slides after initial LCP paint settles
+  useEffect(() => {
+    const timer = setTimeout(() => setIsClient(true), 5000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Visibility change handling (pause when tab is hidden)
   useEffect(() => {
