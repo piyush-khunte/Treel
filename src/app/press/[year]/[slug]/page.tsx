@@ -1,6 +1,6 @@
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { getPressItemBySlug, getPublishedPressItems } from "@/lib/content/press-storage";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";

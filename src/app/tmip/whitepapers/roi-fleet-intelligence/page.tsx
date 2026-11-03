@@ -1,7 +1,7 @@
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ChevronRight, BookOpen, Clock } from "lucide-react";
+import { ArrowRight, BookOpen, Clock } from "lucide-react";
 import { WhitepaperForm } from "./whitepaper-form";
 
 export const metadata: Metadata = {

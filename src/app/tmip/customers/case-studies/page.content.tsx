@@ -1,7 +1,7 @@
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { CaseStudiesClient } from "./case-studies-client";
 import { getPublishedCaseStudies } from "@/lib/content/casestudies-storage";
 

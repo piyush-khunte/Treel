@@ -7,7 +7,6 @@ import { getValidImageSrc } from "@/lib/utils/image-utils";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 CheckCircle2,
-ChevronRight,
 Clock,
 Lock,
 Package,

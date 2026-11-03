@@ -13,7 +13,6 @@ import {
   Clock, 
   Lock, 
   ArrowRight, 
-  ChevronRight, 
   Sparkles,
   SlidersHorizontal
 } from "lucide-react";

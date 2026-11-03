@@ -2,7 +2,6 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
   ArrowRight,
   Calendar,
-  ChevronRight,
   FileText,
   User,
 } from "lucide-react";

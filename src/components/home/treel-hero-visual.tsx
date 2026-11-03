@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 interface SlideData {
   id: string;
@@ -49,7 +48,6 @@ const SLIDES: SlideData[] = [
 ];
 
 const BAR_COLORS = ["#8A3F30", "#B04A34", "#D4573A"];
-const INTERVAL_MS = 2000;
 const STAGGER_MS = 35;
 const EASING = "cubic-bezier(0.7, 0, 0.3, 1)";
 

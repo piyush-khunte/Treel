@@ -1,7 +1,7 @@
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { WhitepapersClient } from "./whitepapers-client";
 import { getPublishedWhitepapers } from "@/lib/content/whitepapers-storage";
 

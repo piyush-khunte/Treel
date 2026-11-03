@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
-  ChevronRight,
   Activity,
   Gauge,
   ShieldCheck,

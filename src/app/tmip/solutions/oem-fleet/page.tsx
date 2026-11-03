@@ -1,7 +1,7 @@
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Award, Factory, Cpu, ShieldCheck, CheckCircle2, ChevronRight } from "lucide-react";
+import { ArrowRight, Award, Factory, Cpu, ShieldCheck, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "OEM Fleet Solutions  ·  TMIP",

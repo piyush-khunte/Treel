@@ -3,7 +3,6 @@ import {
 ArrowRight,
 BookOpen,
 Calendar,
-ChevronRight,
 FileText,
 User
 } from "lucide-react";
