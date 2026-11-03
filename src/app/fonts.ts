@@ -26,6 +26,7 @@ export const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
   display: "swap",
+  preload: false,
 });
 
 export const ibmPlexSans = IBM_Plex_Sans({
@@ -33,12 +34,14 @@ export const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
   variable: "--font-ibm-plex-sans",
   display: "swap",
+  preload: false,
 });
 
 export const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains-mono",
   display: "swap",
+  preload: false,
 });
 
 export const anton = Anton({

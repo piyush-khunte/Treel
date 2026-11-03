@@ -187,7 +187,7 @@ export function TreelHeroVisual() {
 
   // Activate client rotation and secondary slides after initial LCP paint settles
   useEffect(() => {
-    const timer = setTimeout(() => setIsClient(true), 5000);
+    const timer = setTimeout(() => setIsClient(true), 7000);
     return () => clearTimeout(timer);
   }, []);
 

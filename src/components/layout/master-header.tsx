@@ -87,7 +87,7 @@ export function MasterHeader() {
               alt="Treel Mobility Solutions"
               width={160}
               height={50}
-              unoptimized
+              priority
               className="h-9 sm:h-10 lg:h-11 xl:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
             />
           </Link>
