@@ -255,15 +255,17 @@ export function TreelHeroVisual() {
                 <source
                   media="(min-width: 641px)"
                   srcSet={slide.src}
+                  width={650}
+                  height={650}
                 />
                 <img
                   src={slide.mobileSrc || slide.src}
                   alt={slide.alt}
-                  width={650}
-                  height={650}
+                  width={340}
+                  height={340}
                   fetchPriority={index === 0 ? "high" : "auto"}
                   loading={index === 0 ? "eager" : "lazy"}
-                  decoding={index === 0 ? "sync" : "async"}
+                  decoding="async"
                   className="w-full h-full object-contain sm:group-hover:scale-[1.012] sm:transition-transform sm:duration-700 sm:ease-out"
                 />
               </picture>

@@ -14,6 +14,7 @@ export const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
   display: "swap",
+  preload: false,
 });
 
 export const inter = Inter({
@@ -49,22 +50,26 @@ export const anton = Anton({
   subsets: ["latin"],
   variable: "--font-anton",
   display: "swap",
+  preload: false,
 });
 
 export const rubik = Rubik({
   subsets: ["latin"],
   variable: "--font-rubik",
   display: "swap",
+  preload: false,
 });
 
 export const baloo2 = Baloo_2({
   subsets: ["latin", "devanagari"],
   variable: "--font-baloo2",
   display: "swap",
+  preload: false,
 });
 
 export const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-manrope",
   display: "swap",
+  preload: false,
 });
