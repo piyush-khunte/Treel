@@ -2,7 +2,25 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Radio, Cpu, ShieldCheck, BarChart3 } from "lucide-react";
 import { TreelHeroVisual } from "@/components/home/treel-hero-visual";
-import { ExplorePlatformVideoModal } from "@/components/home/explore-platform-video-modal";
+import dynamic from "next/dynamic";
+
+const ExplorePlatformVideoModal = dynamic(
+  () =>
+    import("@/components/home/explore-platform-video-modal").then(
+      (mod) => mod.ExplorePlatformVideoModal
+    ),
+  {
+    loading: () => (
+      <button
+        type="button"
+        className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] bg-[#C64529] text-white font-semibold text-sm hover:bg-[#B53D23] transition-all group shadow-sm cursor-pointer"
+      >
+        <span>Explore the platform</span>
+        <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+      </button>
+    ),
+  }
+);
 
 export const metadata: Metadata = {
   title: {

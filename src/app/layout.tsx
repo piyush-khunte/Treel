@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Script from "next/script";
 import {
   fraunces,
@@ -9,9 +10,17 @@ import {
 import "./globals.css";
 import { MasterHeader } from "@/components/layout/master-header";
 import { MasterFooter } from "@/components/layout/master-footer";
-import { CookieBanner } from "@/components/layout/cookie-banner";
-import { ConsentScriptLoader } from "@/components/privacy/consent-script-loader";
 import { CartProvider } from "@/lib/commerce/cart-context";
+
+const CookieBanner = dynamic(
+  () => import("@/components/layout/cookie-banner").then((mod) => mod.CookieBanner),
+  { ssr: false }
+);
+
+const ConsentScriptLoader = dynamic(
+  () => import("@/components/privacy/consent-script-loader").then((mod) => mod.ConsentScriptLoader),
+  { ssr: false }
+);
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://treel.in"),
