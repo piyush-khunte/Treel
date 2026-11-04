@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import Script from "next/script";
 import {
   fraunces,
@@ -11,16 +10,7 @@ import "./globals.css";
 import { MasterHeader } from "@/components/layout/master-header";
 import { MasterFooter } from "@/components/layout/master-footer";
 import { CartProvider } from "@/lib/commerce/cart-context";
-
-const CookieBanner = dynamic(
-  () => import("@/components/layout/cookie-banner").then((mod) => mod.CookieBanner),
-  { ssr: false }
-);
-
-const ConsentScriptLoader = dynamic(
-  () => import("@/components/privacy/consent-script-loader").then((mod) => mod.ConsentScriptLoader),
-  { ssr: false }
-);
+import { ClientPrivacyProviders } from "@/components/layout/client-privacy-providers";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://treel.in"),
@@ -153,9 +143,8 @@ export default function RootLayout({
           <main id="main-content" className="flex-1">
             {children}
           </main>
-          <ConsentScriptLoader />
           <MasterFooter />
-          <CookieBanner />
+          <ClientPrivacyProviders />
         </CartProvider>
       </body>
     </html>
