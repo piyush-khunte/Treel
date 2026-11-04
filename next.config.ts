@@ -18,6 +18,8 @@ const nextConfig: NextConfig = {
       "@radix-ui/react-popover",
       "@radix-ui/react-select",
       "@radix-ui/react-tabs",
+      "clsx",
+      "tailwind-merge",
     ],
   },
   images: {

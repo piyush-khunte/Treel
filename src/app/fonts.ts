@@ -21,6 +21,7 @@ export const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
+  preload: false,
 });
 
 export const spaceGrotesk = Space_Grotesk({

@@ -91,7 +91,6 @@ export default function RootLayout({
           href="/images/home/fleet-digital-twin-desktop.webp"
           fetchPriority="high"
         />
-        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         {process.env.NODE_ENV === "production" ? (
           <Script id="google-tag-aw-18528246360" strategy="afterInteractive">

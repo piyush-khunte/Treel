@@ -214,7 +214,7 @@ export function TreelHeroVisual() {
         href={currentSlide.href}
         prefetch={false}
         aria-label={currentSlide.alt}
-        className="group relative block w-full aspect-square overflow-hidden rounded-xl sm:rounded-2xl bg-[#11151A] border border-white/10 hover:border-[#D5573B]/50 sm:transition-all sm:duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_30px_rgba(213,87,59,0.06)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_40px_rgba(213,87,59,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5573B] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1419]"
+        className="group relative block w-full aspect-square overflow-hidden rounded-xl sm:rounded-2xl bg-[#11151A] border border-white/10 hover:border-[#D5573B]/50 sm:transition-all sm:duration-500 shadow-lg sm:shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_30px_rgba(213,87,59,0.06)] hover:shadow-xl sm:hover:shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_40px_rgba(213,87,59,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5573B] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1419]"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onFocus={() => setIsPaused(true)}

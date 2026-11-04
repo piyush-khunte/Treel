@@ -87,7 +87,7 @@ export function MasterHeader() {
               alt="Treel Mobility Solutions"
               width={160}
               height={50}
-              priority
+              loading="eager"
               className="h-9 sm:h-10 lg:h-11 xl:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
             />
           </Link>
@@ -214,7 +214,7 @@ export function MasterHeader() {
                   >
                     <div className="w-9 h-9 rounded-lg bg-[#0B0F14] flex items-center justify-center shrink-0 mt-0.5 overflow-hidden">
                       <Image
-                        src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436547/otr-excavator-icon.png"
+                        src="/images/otr-excavator-icon.png"
                         alt="OTR TPMS"
                         width={28}
                         height={28}

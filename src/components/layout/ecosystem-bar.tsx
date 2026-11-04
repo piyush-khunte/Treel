@@ -94,7 +94,7 @@ export function EcosystemBar() {
           >
             <span className="w-4 h-4 inline-flex items-center justify-center shrink-0 overflow-hidden -translate-y-px">
               <Image
-                src="https://res.cloudinary.com/uwd11u7t/image/upload/f_auto,q_auto,w_40/v1791436547/otr-excavator-icon.png"
+                src="/images/otr-excavator-icon.png"
                 alt="OTR TPMS"
                 width={20}
                 height={20}
