@@ -48,3 +48,6 @@ backups/
 scratch/
 scripts/
 
+
+# Next.js Performance Analyzer
+.storage/
