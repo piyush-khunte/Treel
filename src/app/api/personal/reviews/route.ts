@@ -13,7 +13,7 @@ function readStoredReviews(): any[] {
       if (Array.isArray(parsed)) return parsed;
     }
   } catch (err) {
-    console.error("[Reviews API] Read store error:", err);
+    console.error("[Reviews Route] Read store error:", err);
   }
   return [];
 }
@@ -26,7 +26,7 @@ function writeStoredReviews(reviews: any[]) {
     }
     fs.writeFileSync(STORE_PATH, JSON.stringify(reviews, null, 2), "utf-8");
   } catch (err) {
-    console.error("[Reviews API] Write store error:", err);
+    console.error("[Reviews Route] Write store error:", err);
   }
 }
 
@@ -134,7 +134,7 @@ export async function POST(req: NextRequest) {
           },
         ]);
       } catch (dbErr) {
-        console.warn("[Reviews API] Supabase write failed, falling back to local file:", dbErr);
+        console.warn("[Reviews Route] Supabase write failed, falling back to local file:", dbErr);
       }
     }
 
@@ -147,7 +147,7 @@ export async function POST(req: NextRequest) {
       { status: 201 }
     );
   } catch (error) {
-    console.error("[Reviews API] Submission error:", error);
+    console.error("[Reviews Route] Submission error:", error);
     return NextResponse.json(
       { success: false, error: "An unexpected error occurred while saving your review." },
       { status: 500 }
@@ -178,7 +178,7 @@ export async function DELETE(req: NextRequest) {
       try {
         await supabase.from("personal_reviews").delete().eq("id", id);
       } catch (dbErr) {
-        console.warn("[Reviews API] Supabase delete warning:", dbErr);
+        console.warn("[Reviews Route] Supabase delete warning:", dbErr);
       }
     }
 
@@ -188,7 +188,7 @@ export async function DELETE(req: NextRequest) {
       deletedId: id,
     });
   } catch (err: any) {
-    console.error("[Reviews API] Delete error:", err);
+    console.error("[Reviews Route] Delete error:", err);
     return NextResponse.json(
       { success: false, error: err.message || "Failed to delete review." },
       { status: 500 }

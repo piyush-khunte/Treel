@@ -7,10 +7,10 @@ export * from './common/types';
 export * from './razorpay/types';
 export {
   isRazorpayConfigured,
-  isRazorpayWebhookConfigured,
+  isRazorpayEventSecretConfigured,
   createRazorpayOrder,
   verifyPaymentSignature,
-  verifyWebhookSignature,
+  verifyEventSignature,
 } from './razorpay/client';
 
 // AWS SES Email Integration

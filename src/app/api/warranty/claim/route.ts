@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
       message: "Warranty claim submitted successfully.",
     });
   } catch (err: any) {
-    console.error("API /api/warranty/claim error:", err);
+    console.error("[Warranty Claim Route] error:", err);
     return NextResponse.json(
       { success: false, error: err.message || "Internal server error during claim submission." },
       { status: 500 }

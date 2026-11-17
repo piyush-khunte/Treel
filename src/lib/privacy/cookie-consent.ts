@@ -171,7 +171,7 @@ function notifyConsentChange(consent: StoredConsent): void {
 }
 
 /**
- * Records consent to the server-side API asynchronously with retry logic.
+ * Records consent to the server-side consent route asynchronously with retry logic.
  */
 async function syncConsentServerSide(
   consent: StoredConsent,

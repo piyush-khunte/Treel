@@ -1,7 +1,7 @@
 /**
  * Safe, robust clipboard copy utility for browser environments.
  * Prevents "Document is not focused" (svgNotAllowedError / NotAllowedError) DOMExceptions
- * by trying the modern Clipboard API and gracefully falling back to document.execCommand('copy').
+ * by trying the modern async Clipboard interface and gracefully falling back to document.execCommand('copy').
  *
  * Never throws uncaught exceptions.
  */
@@ -70,7 +70,7 @@ export async function copyToClipboardSafe(text: string): Promise<ClipboardResult
       return { success: true };
     }
   } catch {
-    // Both modern API and execCommand failed
+    // Both the modern clipboard method and execCommand failed
   }
 
   return {

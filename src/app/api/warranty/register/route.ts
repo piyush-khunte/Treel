@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
         : "Warranty registered successfully.",
     });
   } catch (err: any) {
-    console.error("API /api/warranty/register error:", err);
+    console.error("[Warranty Register Route] error:", err);
     return NextResponse.json(
       { success: false, error: err.message || "Internal server error during registration." },
       { status: 500 }

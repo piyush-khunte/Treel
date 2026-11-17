@@ -4,7 +4,7 @@ import { isSesConfigured, sendShippingNotificationEmail } from '@/lib/integratio
 
 export async function POST(req: NextRequest) {
   try {
-    // Optional secret verification if SHIPROCKET_WEBHOOK_TOKEN is configured
+    // Optional shared-secret verification when a Shiprocket token is configured
     const expectedToken = process.env.SHIPROCKET_WEBHOOK_TOKEN || process.env.SHIPROCKET_WEBHOOK_SECRET;
     if (expectedToken) {
       const headerToken =
@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
 
       if (!headerToken || headerToken !== expectedToken) {
         return NextResponse.json(
-          { success: false, error: 'Unauthorized webhook request' },
+          { success: false, error: 'Unauthorized status update request' },
           { status: 401 }
         );
       }
@@ -123,19 +123,19 @@ export async function POST(req: NextRequest) {
             trackingUrl: trackingUrl || (awbCode ? `https://shiprocket.co/tracking/${awbCode}` : undefined),
           });
         } catch (emailErr) {
-          console.error('[Shiprocket Webhook] Shipping notification email error:', emailErr);
+          console.error('[Shiprocket Status Update] Shipping notification email error:', emailErr);
         }
       }
     }
 
     return NextResponse.json({
       success: true,
-      message: 'Shiprocket webhook processed successfully',
+      message: 'Shiprocket status update processed successfully',
       mappedStatus,
     });
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : 'Unknown webhook error';
-    console.error('[Shiprocket Webhook Exception]', message);
+    const message = error instanceof Error ? error.message : 'Unknown status update error';
+    console.error('[Shiprocket Status Update Exception]', message);
     return NextResponse.json(
       { success: false, error: message },
       { status: 500 }

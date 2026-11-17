@@ -154,7 +154,7 @@ export default function WriteReviewPage() {
     };
 
     try {
-      // 1. Post to backend API (saves to server reviews-store.json for all devices)
+      // 1. Post to backend route (saves to server reviews-store.json for all devices)
       const res = await fetch("/api/personal/reviews", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

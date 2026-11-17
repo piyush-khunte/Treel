@@ -383,7 +383,7 @@ export const SEED_CASE_STUDIES: CaseStudy[] = [
     ],
     summary: "Luxury sleeper coach operator deployed Treel TMIP to guarantee passenger safety and eliminate midnight highway tyre stops between Bangalore, Chennai, Kochi, and Hyderabad.",
     challenge: "Passenger safety is mission-critical. A single puncture on a ghat section or midnight expressway destroys reputation and customer trust.",
-    solution: "Installed Treel TMIP with dual audio-visual cockpit displays for drivers and automated API integration with Kallada fleet dispatch ERP.",
+    solution: "Installed Treel TMIP with dual audio-visual cockpit displays for drivers and a native connector into Kallada's fleet dispatch ERP.",
     impact: "Complete driver confidence, smooth fuel savings, and customer satisfaction ratings reaching an all-time high of 4.9/5.",
     cover_image: "/images/case-studies/kallada-bus.jpg",
     published_at: "2026-07-20T10:00:00Z"

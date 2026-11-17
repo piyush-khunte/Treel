@@ -38,7 +38,7 @@ export async function GET(req: NextRequest) {
         shiprocketData = res.data;
       }
     } catch (trackErr) {
-      console.error('[Track Route] Shiprocket API tracking error:', trackErr);
+      console.error('[Track Route] Shiprocket tracking error:', trackErr);
     }
   }
 

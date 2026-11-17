@@ -41,7 +41,7 @@ CREATE POLICY "Allow anon consent select" ON public.cookie_consents
   FOR SELECT
   USING (true);
 
--- Allow service role full access for backend server actions & APIs
+-- Allow service role full access for backend server actions & route handlers
 DROP POLICY IF EXISTS "Service role full access" ON public.cookie_consents;
 CREATE POLICY "Service role full access" ON public.cookie_consents
   FOR ALL

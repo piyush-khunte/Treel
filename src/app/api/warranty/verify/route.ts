@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
       message: verification.message,
     });
   } catch (err: any) {
-    console.error("API /api/warranty/verify error:", err);
+    console.error("[Warranty Verify Route] error:", err);
     return NextResponse.json(
       { success: false, error: err.message || "Failed to verify order." },
       { status: 500 }

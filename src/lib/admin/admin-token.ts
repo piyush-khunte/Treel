@@ -67,7 +67,7 @@ export async function signSessionToken(session: AdminSession): Promise<string> {
 }
 
 /**
- * Verifies a signed session token using Web Crypto API.
+ * Verifies a signed session token using the Web Crypto interface.
  */
 export async function verifySessionToken(token: string): Promise<AdminSession | null> {
   if (!token || typeof token !== "string" || !token.includes(".")) {

@@ -1,9 +1,9 @@
 import {
   isRazorpayConfigured,
-  isRazorpayWebhookConfigured,
+  isRazorpayEventSecretConfigured,
   createRazorpayOrder,
   verifyPaymentSignature,
-  verifyWebhookSignature,
+  verifyEventSignature,
   isSesConfigured,
   sendEmail,
   sendContactLeadEmail,
@@ -26,8 +26,8 @@ async function runVerification() {
 
   // Verify Razorpay disabled
   console.log('Razorpay configured:', isRazorpayConfigured());
-  console.log('Razorpay webhook configured:', isRazorpayWebhookConfigured());
-  if (isRazorpayConfigured() || isRazorpayWebhookConfigured()) {
+  console.log('Razorpay event secret configured:', isRazorpayEventSecretConfigured());
+  if (isRazorpayConfigured() || isRazorpayEventSecretConfigured()) {
     throw new Error('FAIL: Razorpay should be disabled by default!');
   }
 
@@ -47,13 +47,13 @@ async function runVerification() {
     throw new Error('FAIL: Razorpay payment verify did not return SERVICE_NOT_CONFIGURED');
   }
 
-  const rzpWebhook = verifyWebhookSignature({
+  const rzpEvent = verifyEventSignature({
     rawBody: '{"event":"payment.captured"}',
     signature: 'dummy_sig',
   });
-  console.log('verifyWebhookSignature response:', rzpWebhook);
-  if (rzpWebhook.configured !== false || rzpWebhook.error?.code !== 'SERVICE_NOT_CONFIGURED') {
-    throw new Error('FAIL: Razorpay webhook verify did not return SERVICE_NOT_CONFIGURED');
+  console.log('verifyEventSignature response:', rzpEvent);
+  if (rzpEvent.configured !== false || rzpEvent.error?.code !== 'SERVICE_NOT_CONFIGURED') {
+    throw new Error('FAIL: Razorpay event verify did not return SERVICE_NOT_CONFIGURED');
   }
 
   // Verify AWS SES disabled

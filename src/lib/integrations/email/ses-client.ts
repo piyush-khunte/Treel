@@ -152,7 +152,7 @@ export async function sendEmail(
       success: false,
       configured: true,
       error: {
-        code: 'EXTERNAL_API_ERROR',
+        code: 'EXTERNAL_SERVICE_ERROR',
         message,
       },
     };

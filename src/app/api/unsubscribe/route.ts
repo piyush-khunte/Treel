@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(result);
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Error processing unsubscribe request";
-    console.error("[Unsubscribe GET API Exception]", message);
+    console.error("[Unsubscribe GET Exception]", message);
     return NextResponse.json(
       { success: false, error: "Failed to process request." },
       { status: 500 }
@@ -100,7 +100,7 @@ export async function POST(req: NextRequest) {
           // Non-critical if consents table is not present
         }
       } catch (dbErr) {
-        console.warn("[Unsubscribe API] Database update warning:", dbErr);
+        console.warn("[Unsubscribe Route] Database update warning:", dbErr);
       }
     }
 
@@ -113,7 +113,7 @@ export async function POST(req: NextRequest) {
     });
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Error processing unsubscribe request";
-    console.error("[Unsubscribe API Exception]", message);
+    console.error("[Unsubscribe Exception]", message);
     return NextResponse.json(
       { success: false, error: "Failed to update preferences. Please try again." },
       { status: 500 }

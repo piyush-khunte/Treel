@@ -83,7 +83,7 @@ export function TreelHeroVisual() {
     };
   }, []);
 
-  // Web Animations API helper for the backdrop and 3 thin motion lines
+  // Web Animations helper for the backdrop and 3 thin motion lines
   // Coming in: backdrop leads with bar 0 so gaps show #11151A, not the image underneath.
   // Going out: backdrop trails the last bar so new image is revealed only after all bars pass.
   const sweep = useCallback(

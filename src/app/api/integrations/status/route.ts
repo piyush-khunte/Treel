@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import {
   isRazorpayConfigured,
-  isRazorpayWebhookConfigured,
+  isRazorpayEventSecretConfigured,
   isSesConfigured,
   isShiprocketConfigured,
 } from '@/lib/integrations';
@@ -12,7 +12,7 @@ export async function GET() {
     integrations: {
       razorpay: {
         configured: isRazorpayConfigured(),
-        webhookConfigured: isRazorpayWebhookConfigured(),
+        eventSecretConfigured: isRazorpayEventSecretConfigured(),
         status: isRazorpayConfigured() ? 'active' : 'disabled',
         requiredEnvVars: ['RAZORPAY_KEY_ID', 'RAZORPAY_KEY_SECRET', 'RAZORPAY_WEBHOOK_SECRET'],
         missingEnvVars: [

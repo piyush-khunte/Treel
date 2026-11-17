@@ -34,7 +34,7 @@ export interface RazorpayPaymentVerificationResult {
   paymentId: string;
 }
 
-export interface RazorpayWebhookVerificationInput {
+export interface RazorpayEventVerificationInput {
   rawBody: string;
   signature: string;
 }

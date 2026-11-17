@@ -5,7 +5,7 @@ import {
   RazorpayOrderOptions,
   RazorpayPaymentVerificationInput,
   RazorpayPaymentVerificationResult,
-  RazorpayWebhookVerificationInput,
+  RazorpayEventVerificationInput,
 } from './types';
 
 /**
@@ -19,15 +19,15 @@ export function isRazorpayConfigured(): boolean {
 }
 
 /**
- * Checks whether Razorpay webhook secret is configured.
+ * Checks whether the Razorpay payment-event signing secret is configured.
  */
-export function isRazorpayWebhookConfigured(): boolean {
-  const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET;
-  return Boolean(webhookSecret && webhookSecret.trim().length > 0);
+export function isRazorpayEventSecretConfigured(): boolean {
+  const eventSecret = process.env.RAZORPAY_WEBHOOK_SECRET;
+  return Boolean(eventSecret && eventSecret.trim().length > 0);
 }
 
 /**
- * Creates a Razorpay order via the Razorpay Orders REST API.
+ * Creates a Razorpay order via the Razorpay Orders service.
  * Safely returns SERVICE_NOT_CONFIGURED if credentials are not configured.
  */
 export async function createRazorpayOrder(
@@ -82,7 +82,7 @@ export async function createRazorpayOrder(
         success: false,
         configured: true,
         error: {
-          code: 'EXTERNAL_API_ERROR',
+          code: 'EXTERNAL_SERVICE_ERROR',
           message: errorData?.error?.description || `Razorpay order creation failed with status ${response.status}`,
           details: errorData,
         },
@@ -104,7 +104,7 @@ export async function createRazorpayOrder(
       success: false,
       configured: true,
       error: {
-        code: 'EXTERNAL_API_ERROR',
+        code: 'EXTERNAL_SERVICE_ERROR',
         message,
       },
     };
@@ -188,7 +188,7 @@ export function verifyPaymentSignature(
       success: false,
       configured: true,
       error: {
-        code: 'EXTERNAL_API_ERROR',
+        code: 'EXTERNAL_SERVICE_ERROR',
         message,
       },
     };
@@ -196,18 +196,18 @@ export function verifyPaymentSignature(
 }
 
 /**
- * Verifies Razorpay Webhook signature using HMAC SHA256 against raw webhook request body.
+ * Verifies a Razorpay payment-event signature using HMAC SHA256 against the raw request body.
  */
-export function verifyWebhookSignature(
-  input: RazorpayWebhookVerificationInput
+export function verifyEventSignature(
+  input: RazorpayEventVerificationInput
 ): IntegrationResult<boolean> {
-  if (!isRazorpayWebhookConfigured()) {
+  if (!isRazorpayEventSecretConfigured()) {
     return {
       success: false,
       configured: false,
       error: {
         code: 'SERVICE_NOT_CONFIGURED',
-        message: 'Razorpay webhook integration is currently disabled: RAZORPAY_WEBHOOK_SECRET is not configured.',
+        message: 'Razorpay payment-event verification is currently disabled: RAZORPAY_WEBHOOK_SECRET is not configured.',
       },
     };
   }
@@ -220,7 +220,7 @@ export function verifyWebhookSignature(
       configured: true,
       error: {
         code: 'VALIDATION_ERROR',
-        message: 'Missing rawBody or signature for webhook verification.',
+        message: 'Missing rawBody or signature for payment-event verification.',
       },
     };
   }
@@ -248,17 +248,17 @@ export function verifyWebhookSignature(
         : {
             error: {
               code: 'AUTHENTICATION_FAILED',
-              message: 'Webhook signature verification failed.',
+              message: 'Payment-event signature verification failed.',
             },
           }),
     };
   } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : 'Error verifying webhook signature';
+    const message = err instanceof Error ? err.message : 'Error verifying payment-event signature';
     return {
       success: false,
       configured: true,
       error: {
-        code: 'EXTERNAL_API_ERROR',
+        code: 'EXTERNAL_SERVICE_ERROR',
         message,
       },
     };

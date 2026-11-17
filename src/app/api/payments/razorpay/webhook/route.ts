@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { isRazorpayWebhookConfigured, verifyWebhookSignature } from '@/lib/integrations';
+import { isRazorpayEventSecretConfigured, verifyEventSignature } from '@/lib/integrations';
 
 export async function POST(req: NextRequest) {
-  if (!isRazorpayWebhookConfigured()) {
+  if (!isRazorpayEventSecretConfigured()) {
     return NextResponse.json(
       {
         success: false,
         configured: false,
         error: {
           code: 'SERVICE_NOT_CONFIGURED',
-          message: 'Razorpay webhook handler is disabled. RAZORPAY_WEBHOOK_SECRET is not configured.',
+          message: 'Razorpay payment-event handler is disabled. RAZORPAY_WEBHOOK_SECRET is not configured.',
         },
       },
       { status: 503 }
@@ -33,14 +33,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const verificationResult = verifyWebhookSignature({ rawBody, signature });
+    const verificationResult = verifyEventSignature({ rawBody, signature });
     if (!verificationResult.success) {
       return NextResponse.json(
         {
           success: false,
           error: {
             code: 'AUTHENTICATION_FAILED',
-            message: 'Invalid webhook signature.',
+            message: 'Invalid event signature.',
           },
         },
         { status: 400 }
@@ -49,18 +49,18 @@ export async function POST(req: NextRequest) {
 
     const event = JSON.parse(rawBody);
 
-    // Process webhook events safely (e.g. payment.captured, payment.failed, order.paid)
+    // Process payment events safely (e.g. payment.captured, payment.failed, order.paid)
     // Production event routing can hook in here once credentials are live
-    console.log(`[Razorpay Webhook Verified] Event: ${event.event}, Entity ID: ${event.payload?.payment?.entity?.id || 'N/A'}`);
+    console.log(`[Razorpay Event Verified] Event: ${event.event}, Entity ID: ${event.payload?.payment?.entity?.id || 'N/A'}`);
 
     return NextResponse.json({ received: true, event: event.event }, { status: 200 });
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : 'Error handling webhook';
+    const message = error instanceof Error ? error.message : 'Error handling payment event';
     return NextResponse.json(
       {
         success: false,
         error: {
-          code: 'EXTERNAL_API_ERROR',
+          code: 'EXTERNAL_SERVICE_ERROR',
           message,
         },
       },

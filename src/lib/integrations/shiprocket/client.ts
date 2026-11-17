@@ -23,7 +23,7 @@ export function isShiprocketConfigured(): boolean {
 }
 
 /**
- * Retrieves an authentication token for Shiprocket API, caching in memory for ~8 days.
+ * Retrieves an authentication token for the Shiprocket service, caching in memory for ~8 days.
  * Returns null if service is not configured or auth fails.
  */
 async function getAuthToken(): Promise<string | null> {
@@ -131,7 +131,7 @@ export async function checkServiceability(
         success: false,
         configured: true,
         error: {
-          code: 'EXTERNAL_API_ERROR',
+          code: 'EXTERNAL_SERVICE_ERROR',
           message: errorData?.message || `Shiprocket serviceability check failed with HTTP ${response.status}`,
           details: errorData,
         },
@@ -150,7 +150,7 @@ export async function checkServiceability(
       success: false,
       configured: true,
       error: {
-        code: 'EXTERNAL_API_ERROR',
+        code: 'EXTERNAL_SERVICE_ERROR',
         message,
       },
     };
@@ -209,7 +209,7 @@ export async function createShiprocketOrder(
         success: false,
         configured: true,
         error: {
-          code: 'EXTERNAL_API_ERROR',
+          code: 'EXTERNAL_SERVICE_ERROR',
           message: errorData?.message || `Shiprocket order creation failed with HTTP ${response.status}`,
           details: errorData,
         },
@@ -228,7 +228,7 @@ export async function createShiprocketOrder(
       success: false,
       configured: true,
       error: {
-        code: 'EXTERNAL_API_ERROR',
+        code: 'EXTERNAL_SERVICE_ERROR',
         message,
       },
     };
@@ -297,7 +297,7 @@ export async function trackShipment(identifier: {
         success: false,
         configured: true,
         error: {
-          code: 'EXTERNAL_API_ERROR',
+          code: 'EXTERNAL_SERVICE_ERROR',
           message: errorData?.message || `Shiprocket tracking failed with HTTP ${response.status}`,
           details: errorData,
         },
@@ -316,7 +316,7 @@ export async function trackShipment(identifier: {
       success: false,
       configured: true,
       error: {
-        code: 'EXTERNAL_API_ERROR',
+        code: 'EXTERNAL_SERVICE_ERROR',
         message,
       },
     };
