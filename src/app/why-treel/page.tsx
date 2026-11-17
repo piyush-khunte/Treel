@@ -16,19 +16,22 @@ export const metadata: Metadata = {
   },
 };
 
+// Case-study strip is hidden until verified customer stories are approved.
+const SHOW_CASE_STUDIES = false;
+
 export default function WhyTreelPage() {
   const reasons = [
     {
       num: "01",
       icon: Database,
-      title: "The largest connected commercial vehicle dataset in India.",
+      title: "One of the largest connected commercial vehicle datasets in India.",
       body: "70,000+ vehicles under active management. Sub-second telemetry from each. Data from over 2 million tyres. The dataset is the moat, and it compounds every day.",
     },
     {
       num: "02",
       icon: Award,
-      title: "We defined the category.",
-      body: "\"Mobility intelligence\" is not a marketing phrase we borrowed. It is the framing that emerged from operating this platform at scale. Treel is the company that moved the industry from tyre monitoring to Vehicle Digital Twin.",
+      title: "We are defining the category.",
+      body: "Mobility Intelligence is a category we are creating, shaped by our vision, technology, and experience operating at scale. Treel is leading the industry's evolution from traditional tyre monitoring to Vehicle Digital Twins, defining what Mobility Intelligence means for the future of mobility.",
     },
     {
       num: "03",
@@ -124,7 +127,7 @@ export default function WhyTreelPage() {
         </div>
       </section>
 
-      {/* 3. WHY TREEL EXISTS: 360-DEGREE VISIBILITY & EMOTIONAL SAFETY */}
+      {/* 3. 360-DEGREE VISIBILITY & EMOTIONAL SAFETY */}
       <section className="py-20 lg:py-24 border-b border-white/10 bg-gradient-to-b from-white/[0.02] to-transparent relative overflow-hidden">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-6">
@@ -134,7 +137,7 @@ export default function WhyTreelPage() {
               </span>
             </div>
             <h2 className="font-fraunces text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#FAF7F2] leading-[1.1]">
-              Why Treel exists: 360-degree vehicle visibility and emotional safety.
+              360-degree vehicle visibility and emotional safety.
             </h2>
             <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
               Operating heavy commercial vehicles across thousands of kilometres of highways has historically meant enduring blind spots, anxiety, and midnight distress calls. We founded Treel on a foundational conviction: mobility should never operate in the dark.
@@ -184,7 +187,8 @@ export default function WhyTreelPage() {
         </div>
       </section>
 
-      {/* 4. CASE STUDY STRIP */}
+      {/* 4. CASE STUDY STRIP — hidden until verified customer stories are approved (flip SHOW_CASE_STUDIES to restore) */}
+      {SHOW_CASE_STUDIES && (
       <section className="py-20 border-b border-white/10 bg-white/[0.01]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
@@ -247,6 +251,7 @@ export default function WhyTreelPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* 5. CTA BAND */}
       <section className="py-20 border-b border-white/10">

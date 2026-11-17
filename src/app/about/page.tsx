@@ -44,7 +44,7 @@ export default function AboutPage() {
     {
       icon: Globe2,
       title: "Indian first. Global ready.",
-      body: "We built Treel for Indian roads, Indian fleets, and Indian owner-drivers. The architecture ports cleanly to Middle Eastern and European markets from Month 4 onward, without compromising the Indian core."
+      body: "We built Treel for Indian roads, Indian fleets, and Indian owner-drivers. Now Treel delivers real-time tyre intelligence and specialized telematics hardware across international markets."
     }
   ];
 

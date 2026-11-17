@@ -291,7 +291,7 @@ export default function TMIPDemoPage() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-sm text-[#F1F5F9]">1. Fast response</h4>
-                      <p className="text-xs text-[#94A3B8] font-ibm-plex mt-0.5">A Treel solutions engineer reviews your fleet details and confirms your calendar slot within 4 business hours.</p>
+                      <p className="text-xs text-[#94A3B8] font-ibm-plex mt-0.5">A Treel solutions engineer reviews your fleet details and gets back to you to schedule a meeting.</p>
                     </div>
                   </div>
 
@@ -301,7 +301,7 @@ export default function TMIPDemoPage() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-sm text-[#F1F5F9]">2. 30-minute tailored walkthrough</h4>
-                      <p className="text-xs text-[#94A3B8] font-ibm-plex mt-0.5">We show live TMIP telemetry, the Vehicle Digital Twin, and simulated cost-per-kilometre curves for your specific vehicle types.</p>
+                      <p className="text-xs text-[#94A3B8] font-ibm-plex mt-0.5">We show live TMIP telemetry, the Vehicle Digital Twin, and simulated metrics for your specific vehicle types.</p>
                     </div>
                   </div>
                 </div>
