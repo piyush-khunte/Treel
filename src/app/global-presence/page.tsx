@@ -191,7 +191,7 @@ export default function GlobalPresencePage() {
                     </h3>
                   </div>
                   <p className="text-xs sm:text-sm text-[#94A3B8] max-w-2xl">
-                    Factory-installed sensor modules, CAN-bus integration interfaces, and white-label digital twin APIs for vehicle manufacturers and axle assemblers.
+                    Factory-installed sensor modules, CAN-bus integration interfaces, and white-label digital twin platforms for vehicle manufacturers and axle assemblers.
                   </p>
                 </div>
                 <span className="text-xs font-mono text-emerald-400 border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 rounded-full whitespace-nowrap">

@@ -113,7 +113,7 @@ export const SEED_EVENTS: EventItemRecord[] = [
         time: "03:50 PM – 04:15 PM",
         title: "Open Live Q&A with Treel Telematics Architects",
         speaker: "Treel Engineering Panel",
-        desc: "Direct troubleshooting, integration questions with existing ERP/FMS platforms, and API walkthrough."
+        desc: "Direct troubleshooting, integration questions with existing ERP/FMS platforms, and platform walkthrough."
       }
     ],
     speakers: [

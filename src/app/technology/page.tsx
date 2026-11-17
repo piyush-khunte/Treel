@@ -21,10 +21,10 @@ const layers = [
   {
     layer: "Layer 05",
     title: "Operator Interface",
-    subtitle: "Enterprise console, driver display, consumer apps & programmatic APIs",
-    description: "The dashboard, the API, the alerts, the reports, the mobile app — all draw from the same Digital Twin data. Enterprise customers access via TMIP. Owner-drivers access via the Suraksha in-cab display. Consumers access via the Personal TPMS mobile app.",
+    subtitle: "Enterprise console, driver display, consumer apps & enterprise interfaces",
+    description: "The dashboard, the consoles, the alerts, the reports, the mobile app — all draw from the same Digital Twin data. Enterprise customers access via TMIP. Owner-drivers access via the Suraksha in-cab display. Consumers access via the Personal TPMS mobile app.",
     icon: LayoutDashboard,
-    tags: ["TMIP Enterprise", "Suraksha In-Cab", "Personal TPMS App", "REST & Webhooks"],
+    tags: ["TMIP Enterprise", "Suraksha In-Cab", "Personal TPMS App", "Enterprise Connectors"],
     highlight: "Single Source of Truth",
   },
   {
@@ -168,10 +168,7 @@ export default function TechnologyPage() {
         </div>
       </section>
 
-      {/* 3. API-FIRST, ALWAYS */}
-     
-
-      {/* 4. EXPLORE ARCHITECTURE LINKS */}
+      {/* 3. EXPLORE ARCHITECTURE LINKS */}
       <section className="py-20 border-b border-white/10 bg-[#121820]">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-4xl space-y-8">

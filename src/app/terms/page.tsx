@@ -317,7 +317,7 @@ export default function TermsPage() {
                 <ul className="list-disc pl-6 space-y-2 text-base">
                   <li>Provide false, inaccurate, misleading, or fraudulent information during registration or checkout;</li>
                   <li>Reverse-engineer, decompile, disassemble, or attempt to derive the source code or proprietary firmware of Treel sensors or telematics hardware;</li>
-                  <li>Probe, scan, or test the vulnerability of our systems, networks, or API endpoints without prior written authorization;</li>
+                  <li>Probe, scan, or test the vulnerability of our systems, networks, or endpoints without prior written authorization;</li>
                   <li>Upload, inject, or transmit any malware, viruses, worms, or malicious code designed to disrupt normal telemetry operations;</li>
                   <li>Resell, sublicense, or redistribute Treel products or software subscriptions without an authorized dealership agreement;</li>
                   <li>Violate any local, state, national, or international laws, including vehicle safety and data privacy statutes.</li>

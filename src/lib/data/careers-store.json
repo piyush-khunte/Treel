@@ -64,7 +64,7 @@
     "responsibilities": [
       "Architect and scale distributed streaming pipelines ingesting high-throughput sensor telemetry using Kafka and ClickHouse.",
       "Design and maintain the Vehicle Digital Twin state engine, tracking continuous mechanical hysteresis and thermal cycles.",
-      "Build low-latency gRPC and RESTful API microservices powering client dashboards and programmatic enterprise integrations.",
+      "Build low-latency microservices powering client dashboards and programmatic enterprise integrations.",
       "Optimize data partitioning, indexing, and compaction strategies across multi-terabyte time-series datastores.",
       "Lead architectural reviews, set code quality standards, and mentor senior and mid-level engineering team members.",
       "Collaborate with security and SRE teams to guarantee 99.7%+ platform uptime and zero-trust data access."
@@ -152,22 +152,22 @@
     "type": "Full-time",
     "workArrangement": "Onsite",
     "postedDate": "July 2026",
-    "roleSummary": "Partner with enterprise fleet technical leaders, lead technical evaluations, and architect custom TMS/ERP API integrations.",
+    "roleSummary": "Partner with enterprise fleet technical leaders, lead technical evaluations, and architect custom TMS/ERP enterprise integrations.",
     "aboutTheRole": [
       "Enterprise fleet sales at Treel are high-touch and deeply technical. When a 1,000-vehicle logistics operator evaluates TMIP, they need to know how our Vehicle Digital Twin integrates with their SAP ERP, TMS platforms, or custom data warehouse. You will be the trusted technical authority guiding these evaluations.",
-      "In this role, you will lead pre-sales technical discovery, architect custom API data flows, manage technical onboarding, and ensure that prospective customers experience the full economic and operational value of TMIP before contract finalization."
+      "In this role, you will lead pre-sales technical discovery, architect custom data flows, manage technical onboarding, and ensure that prospective customers experience the full economic and operational value of TMIP before contract finalization."
     ],
     "responsibilities": [
       "Serve as the lead technical advisor in enterprise sales engagements with fleet CTOs, CIOs, and Operations Directors.",
-      "Architect and validate custom integration topologies connecting TMIP APIs with customer ERP, TMS, and BI stacks.",
+      "Architect and validate custom integration topologies connecting TMIP with customer ERP, TMS, and BI stacks.",
       "Lead technical setup and data flow configuration for prospective enterprise fleet customers.",
-      "Develop reusable reference integration code snippets, webhook listeners, and solution documentation.",
+      "Develop reusable reference integration code snippets, event listeners, and solution documentation.",
       "Assist enterprise buyers in completing technical vendor security assessments and architecture audits.",
       "Feed customer technical requirements back into the core engineering and product roadmaps."
     ],
     "mustHaves": [
       "5+ years of experience as a Solutions Architect, Sales Engineer, or Technical Integration Lead in enterprise B2B software.",
-      "Strong hands-on programming experience with REST APIs, webhooks, JSON, Python, and SQL.",
+      "Strong hands-on programming experience with system integrations, event pipelines, JSON, Python, and SQL.",
       "Deep understanding of enterprise software ecosystems: ERPs (SAP, Oracle), TMS platforms, and cloud data warehouses.",
       "Proven ability to articulate complex distributed systems architecture to both technical and executive stakeholders."
     ],

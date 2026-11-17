@@ -377,7 +377,7 @@ export default function TmipPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               {
                 protocol: "CAN Bus J1939",
@@ -397,12 +397,7 @@ export default function TmipPage() {
               {
                 protocol: "Cloud & Data Lakes",
                 category: "AWS / Azure / GCP",
-                desc: "Direct Parquet, Kafka streams, or webhook ingest into your proprietary data warehouse.",
-              },
-              {
-                protocol: "REST & Webhooks",
-                category: "Developer APIs",
-                desc: "Full OpenAPI v3 specification with sub-second alert webhooks for mission-critical dispatch.",
+                desc: "Direct Parquet or Kafka streams ingest into your proprietary data warehouse.",
               },
             ].map((integ) => (
               <div

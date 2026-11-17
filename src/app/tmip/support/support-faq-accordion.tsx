@@ -31,7 +31,7 @@ const FAQ_ITEMS: FAQItem[] = [
     category: "Integration",
     question: "Which transport management (TMS) and ERP platforms does TMIP support?",
     answer:
-      "TMIP integrates natively with enterprise platforms, commercial transport management systems, and fleet dispatch software. Custom internal dispatch systems, workshop maintenance ERPs, or BI dashboards connect seamlessly via our open REST APIs.",
+      "TMIP integrates natively with enterprise platforms, commercial transport management systems, and fleet dispatch software. Custom internal dispatch systems, workshop maintenance ERPs, or BI dashboards connect seamlessly via our native connectors.",
   },
   {
     id: "faq-4",

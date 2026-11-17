@@ -68,7 +68,7 @@ const capabilities = [
   },
   {
     title: "Turnkey TMS Integrations",
-    desc: "Native bi-directional API connectors for leading transport management systems, enterprise ERPs, and proprietary dispatch stacks.",
+    desc: "Native bi-directional connectors for leading transport management systems, enterprise ERPs, and proprietary dispatch stacks.",
     icon: Cpu,
   },
   {

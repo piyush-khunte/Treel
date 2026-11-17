@@ -44,9 +44,9 @@ const articles: InsightArticle[] = [
     id: "3",
     slug: "tmip-engine-2-4-release",
     category: "Product Updates",
-    title: "TMIP Engine 2.4: Predictive Thermal Anomaly Detection & Custom TMS Webhooks",
+    title: "TMIP Engine 2.4: Predictive Thermal Anomaly Detection & Custom TMS Integrations",
     excerpt:
-      "Announcing major algorithm enhancements to the thermal degradation engine, plus bi-directional event webhooks for SAP and custom TMS stacks.",
+      "Announcing major algorithm enhancements to the thermal degradation engine, plus bi-directional event connectors for SAP and custom TMS stacks.",
     author: "Product Engineering Group",
     date: "August 2026",
     readTime: "4 min read",

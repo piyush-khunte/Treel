@@ -56,7 +56,7 @@ export default function ProductsPage() {
     },
     {
       feature: "Primary Interface",
-      tmip: "Cloud Web Dashboard + REST APIs",
+      tmip: "Cloud Web Dashboard + Enterprise Integrations",
       suraksha: "Solar-powered in-cab display (No app required)",
       personal: "Treel Care mobile app (iOS & Android)",
     },

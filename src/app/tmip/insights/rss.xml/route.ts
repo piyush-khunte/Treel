@@ -30,10 +30,10 @@ export async function GET() {
       pubDate: new Date("2026-09-15T09:00:00Z").toUTCString(),
     },
     {
-      title: "TMIP Engine 2.4: Predictive Thermal Anomaly Detection & Custom TMS Webhooks",
+      title: "TMIP Engine 2.4: Predictive Thermal Anomaly Detection & Custom TMS Integrations",
       url: `${baseUrl}/tmip/platform`,
       description:
-        "Announcing major algorithm enhancements to the thermal degradation engine, plus bi-directional event webhooks for SAP and custom TMS stacks.",
+        "Announcing major algorithm enhancements to the thermal degradation engine, plus bi-directional event connectors for SAP and custom TMS stacks.",
       author: "hello@treel.in (Product Engineering Group)",
       pubDate: new Date("2026-08-28T09:00:00Z").toUTCString(),
     },

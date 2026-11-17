@@ -50,7 +50,7 @@ const DEFAULT_ROLES: Role[] = [
     team: "GTM",
     location: "Pune",
     type: "Full-time",
-    excerpt: "Partner with enterprise fleet technical buyers, lead technical evaluations, and deliver TMS custom API integrations across logistics corridors."
+    excerpt: "Partner with enterprise fleet technical buyers, lead technical evaluations, and deliver TMS custom enterprise integrations across logistics corridors."
   }
 ];
 

@@ -1829,7 +1829,7 @@ export function TmipLandingPage() {
               <ul>
                 <li>Your existing GPS and live location tracking</li>
                 <li>Dispatch, trip planning and route optimisation tools</li>
-                <li>Your TMS or ERP, connected through TMIP&apos;s API</li>
+                <li>Your TMS or ERP, connected through TMIP</li>
               </ul>
             </div>
           </div>
@@ -2308,7 +2308,7 @@ export function TmipLandingPage() {
             <div aria-hidden="true" className="divider"></div>
             <h2>Fits your stack, not the other way round.</h2>
             <p style={{ marginTop: "16px", fontSize: "1.05rem" }}>
-              API-first architecture with native connectors. Data flows both
+              Enterprise architecture with native connectors. Data flows both
               ways, so TMIP insights show up where your team already works.
             </p>
             <div className="chips">
@@ -2317,7 +2317,6 @@ export function TmipLandingPage() {
               <span className="chip blue">Telematics Stacks</span>
               <span className="chip">Custom TMS</span>
               <span className="chip">ERP</span>
-              <span className="chip">REST API</span>
             </div>
           </div>
 
@@ -2422,7 +2421,7 @@ export function TmipLandingPage() {
                 No. TMIP layers vehicle health, tyre intelligence and predictive
                 maintenance on top of the tracking and dispatch tools you
                 already use. It connects natively to enterprise TMS, dispatch
-                software, and custom stacks through its API.
+                software, and custom stacks through enterprise integrations.
               </p>
             </details>
             <details>

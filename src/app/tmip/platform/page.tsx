@@ -19,14 +19,14 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 export const metadata: Metadata = {
   title: "Platform Overview  ·  TMIP",
   description:
-    "The TMIP platform architecture: five layers from sensor to interface. Vehicle Digital Twin at core. API-first real-time telemetry and maintenance.",
+    "The TMIP platform architecture: five layers from sensor to interface. Vehicle Digital Twin at core. Enterprise real-time telemetry and maintenance.",
   alternates: {
     canonical: "https://treel.in/tmip/platform",
   },
   openGraph: {
     title: "Platform Overview  ·  TMIP",
     description:
-      "The TMIP platform architecture: five layers from sensor to interface. Vehicle Digital Twin at core. API-first real-time telemetry and maintenance.",
+      "The TMIP platform architecture: five layers from sensor to interface. Vehicle Digital Twin at core. Enterprise real-time telemetry and maintenance.",
     url: "https://treel.in/tmip/platform",
   },
 };
@@ -130,7 +130,7 @@ const integrations = [
   "Telematics Gateways",
   "Workshop Maintenance",
   "CAN Bus Telemetry",
-  "Custom REST and Webhooks",
+  "Custom Enterprise Connectors",
 ];
 
 export default function TmipPlatformPage() {
@@ -309,7 +309,7 @@ export default function TmipPlatformPage() {
               Native integrations, out of the box.
             </h2>
             <p className="font-ibm-plex text-base sm:text-lg leading-[1.55] text-[#94A3B8]">
-              TMIP integrates natively with the transport management systems, enterprise ERPs, telematics gateways, and workshop maintenance stacks fleet operators already use. If your fleet operates custom architecture or proprietary middleware, our systems engineering team provides custom connectors and webhooks out of the box.
+              TMIP integrates natively with the transport management systems, enterprise ERPs, telematics gateways, and workshop maintenance stacks fleet operators already use. If your fleet operates custom architecture or proprietary middleware, our systems engineering team provides custom connectors and integrations out of the box.
             </p>
           </div>
 

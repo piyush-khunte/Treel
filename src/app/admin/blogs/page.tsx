@@ -175,7 +175,7 @@ const SECTION_TEMPLATES: Record<string, { label: string; sections: { heading: st
         },
         {
           heading: "What we built together — TMIP Solution & Deployment",
-          content: "Treel executed a phased rollout across linehaul hubs:\n\n• STAGE 01 · Hardware Retrofit: ARAI-certified valve-stem sensors fitted to all wheel positions with in-cabin telematics gateways\n• STAGE 02 · TMS Integration: Bi-directional webhooks connected TMIP telemetry directly into the client enterprise dispatch ERP\n• STAGE 03 · Digital Twin Activation: Predictive degradation models trained on corridor telemetry to dispatch workshop alerts"
+          content: "Treel executed a phased rollout across linehaul hubs:\n\n• STAGE 01 · Hardware Retrofit: ARAI-certified valve-stem sensors fitted to all wheel positions with in-cabin telematics gateways\n• STAGE 02 · TMS Integration: Bi-directional connectors connected TMIP telemetry directly into the client enterprise dispatch ERP\n• STAGE 03 · Digital Twin Activation: Predictive degradation models trained on corridor telemetry to dispatch workshop alerts"
         },
         {
           heading: "Life on TMIP & Operational Outcomes",

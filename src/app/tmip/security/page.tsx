@@ -54,7 +54,7 @@ export default function TmipSecurityPage() {
   const dataSecurityPoints = [
     {
       label: "Encryption in transit",
-      detail: "TLS 1.3 for all client connections, webhooks, and telemetry."
+      detail: "TLS 1.3 for all client connections, data transfers, and telemetry."
     },
     {
       label: "Encryption at rest",
