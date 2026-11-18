@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 Car,
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/personal/support/setup",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Setup Guide · Personal TPMS",
     description: "Install Personal TPMS in 10 minutes. Six-step guide with photos and video. No tools required beyond what's in the box.",
     url: "https://treel.in/personal/support/setup",
@@ -115,9 +117,9 @@ export default function PersonalSupportSetupPage() {
       </div>
 
       <div className="space-y-2">
-        <h3 className="text-2xl font-bold text-white">
+        <h2 className="text-2xl font-bold text-white">
           3-Minute Installation Walkthrough
-        </h3>
+        </h2>
         <p className="text-[#D1D5DB] text-sm max-w-md mx-auto">
           Watch our quick visual guide demonstrating sensor mounting,
           anti-theft locking, and mobile pairing.

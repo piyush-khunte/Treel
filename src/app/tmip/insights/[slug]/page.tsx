@@ -1,3 +1,4 @@
+import { clampDescription, composeTitle, DEFAULT_OG_IMAGES, stripTitleSuffix } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { slugifyAuthor } from "@/lib/authors/author-utils";
 import { AuthorAvatar } from "@/components/authors/author-avatar";
@@ -28,14 +29,15 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${article.title}  ·  TMIP Insights`,
-    description: article.deck || article.tldr || article.title,
+    title: composeTitle(article.title, " · TMIP Insights"),
+    description: clampDescription(article.deck || article.tldr || article.title),
     alternates: {
       canonical: `https://treel.in/tmip/insights/${article.slug}`,
     },
     openGraph: {
-      title: `${article.title}  ·  TMIP Insights`,
-      description: article.deck || article.tldr || article.title,
+      images: DEFAULT_OG_IMAGES,
+      title: stripTitleSuffix(article.title),
+      description: clampDescription(article.deck || article.tldr || article.title),
       url: `https://treel.in/tmip/insights/${article.slug}`,
       type: "article",
     },
@@ -116,7 +118,7 @@ export default async function TmipInsightsSlugPage({
               {article.authorRole && (
                 <>
                   <span>·</span>
-                  <span className="text-[#64748B]">{article.authorRole}</span>
+                  <span className="text-[#94A3B8]">{article.authorRole}</span>
                 </>
               )}
               <span>·</span>
@@ -172,7 +174,7 @@ export default async function TmipInsightsSlugPage({
                         &ldquo;{article.body.pullQuote.quote}&rdquo;
                       </blockquote>
                       {article.body.pullQuote.attribution && (
-                        <cite className="block text-xs font-jetbrains text-[#64748B] not-italic uppercase tracking-wider">
+                        <cite className="block text-xs font-jetbrains text-[#94A3B8] not-italic uppercase tracking-wider">
                           {article.body.pullQuote.attribution}
                         </cite>
                       )}

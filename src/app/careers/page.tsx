@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { getPublishedJobs } from "@/lib/content/careers-storage";
 import {
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/careers",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Careers — Build Mobility Intelligence",
     description: "Explore open engineering, product, and growth roles at Treel Mobility Solutions in Pune. Help build India's leading mobility intelligence platform.",
     url: "https://treel.in/careers",
@@ -169,7 +171,7 @@ export default async function CareersPage() {
             <div className="pt-2">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] bg-[#C64529] text-[#FAF7F2] font-semibold text-sm hover:bg-[#B53D23] transition-all shadow-md"
               >
                 <span>Send us a note</span>
                 <ArrowRight className="w-4 h-4" />

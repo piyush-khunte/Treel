@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/our-story",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Our Story",
     description: "From a JK Tyre R&D idea in 2018 to India's largest connected commercial vehicle dataset in 2026. The Treel story, in milestones.",
     url: "https://treel.in/our-story",
@@ -120,9 +122,9 @@ export default function OurStoryPage() {
                   </span>
                 </div>
 
-                <h3 className="font-fraunces text-xl sm:text-2xl font-medium text-[#FAF7F2]">
+                <h2 className="font-fraunces text-xl sm:text-2xl font-medium text-[#FAF7F2]">
                   {item.milestone}
-                </h3>
+                </h2>
 
                 <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed font-inter">
                   {item.narrative}
@@ -160,7 +162,7 @@ export default function OurStoryPage() {
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
                 href="/vehicle-digital-twin"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#C64529] text-[#FAF7F2] hover:bg-[#B53D23]"
               >
                 <span>Explore the platform</span>
                 <ArrowRight className="w-4 h-4" />

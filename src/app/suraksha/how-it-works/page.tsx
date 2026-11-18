@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/suraksha/how-it-works",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "How to Install Suraksha · How Suraksha Works",
     description: "Installing the Suraksha safety kit takes fifteen minutes. Get it fitted at any puncture shop or Truck Wheels centre. Full step-by-step guide.",
     url: "https://treel.in/suraksha/how-it-works",
@@ -93,9 +95,9 @@ export default function SurakshaHowItWorksPage() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-anton uppercase tracking-wide text-xl sm:text-2xl text-[#FEF3C7] drop-shadow-sm">
+                    <h2 className="font-anton uppercase tracking-wide text-xl sm:text-2xl text-[#FEF3C7] drop-shadow-sm">
                       15-minute fitment walkthrough
-                    </h3>
+                    </h2>
                     <p className="text-xs sm:text-sm text-[#FEF3C7]/80 font-medium">
                       In-Cab Display Mount · 4 Wheel Sensors · Automatic Calibration
                     </p>
@@ -150,7 +152,7 @@ export default function SurakshaHowItWorksPage() {
                   </div>
                   <h3 className="font-anton text-2xl uppercase text-[#451A03]">Get your kit</h3>
                   <p className="text-[#78350F] text-sm leading-relaxed">
-                    Pick up your kit at any Truck Wheels centre, or order on WhatsApp for direct delivery. Easy EMI is available through Bajaj Finance.
+                    Pick up your kit at any Truck Wheels centre, or order on WhatsApp for direct delivery. Easy EMI is available through our NBFC financing partner.
                   </p>
                 </div>
                 <div className="pt-3 border-t border-[#451A03]/10 text-xs font-bold text-[#DC2626] uppercase">

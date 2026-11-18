@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizePhone } from "@/lib/validation/phone";
 import React, { useState } from "react";
 import Link from "next/link";
 import { CheckCircle2, Loader2, ArrowRight, Upload } from "lucide-react";
@@ -138,11 +139,11 @@ export function RoleApplicationForm({ roleTitle }: RoleApplicationFormProps) {
             <input
               type="tel"
               inputMode="numeric"
-              maxLength={10}
+              maxLength={16}
               pattern="[0-9]{10}"
               value={phone}
               onChange={(e) => {
-                const val = e.target.value.replace(/\D/g, "").slice(0, 10);
+                const val = normalizePhone(e.target.value);
                 setPhone(val);
                 if (errors.phone) setErrors((prev) => { const rest = { ...prev }; delete rest.phone; return rest; });
               }}
@@ -257,7 +258,7 @@ export function RoleApplicationForm({ roleTitle }: RoleApplicationFormProps) {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="w-full sm:w-auto px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-70 cursor-pointer"
+          className="w-full sm:w-auto px-7 py-3.5 rounded-[4px] bg-[#C64529] text-[#FAF7F2] font-semibold text-sm hover:bg-[#B53D23] transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-70 cursor-pointer"
         >
           {status === "loading" ? (
             <>

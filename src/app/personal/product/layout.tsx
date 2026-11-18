@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/personal/product",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Personal TPMS Products & Kits",
     description:
       "Explore Treel's smart Bluetooth tyre pressure monitoring devices for cars, motorbikes, and premium passenger vehicles with live temperature alerts.",

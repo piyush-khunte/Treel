@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizePhone } from "@/lib/validation/phone";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -725,10 +726,10 @@ export default function AdminWarrantiesPage() {
                   <Input
                     type="tel"
                     inputMode="numeric"
-                    maxLength={10}
+                    maxLength={16}
                     placeholder="10-digit mobile number"
                     value={formCustomerPhone}
-                    onChange={(e) => setFormCustomerPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
+                    onChange={(e) => setFormCustomerPhone(normalizePhone(e.target.value))}
                     className="bg-slate-950 border-slate-800 text-xs font-mono text-white"
                   />
                 </div>

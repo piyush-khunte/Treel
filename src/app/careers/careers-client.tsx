@@ -200,7 +200,7 @@ export function CareersInteractiveRoster({ initialRoles }: CareersInteractiveRos
           <div className="pt-2">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-xs hover:bg-[#CB4831] transition-all shadow-md"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] bg-[#C64529] text-[#FAF7F2] font-semibold text-xs hover:bg-[#B53D23] transition-all shadow-md"
             >
               Contact us <ArrowRight className="w-3.5 h-3.5" />
             </Link>

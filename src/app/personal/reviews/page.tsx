@@ -533,7 +533,7 @@ function ReviewsContent() {
                       </div>
                     </div>
 
-                    <h3 className="text-xl font-bold text-[#111827]">&ldquo;{rev.title}&rdquo;</h3>
+                    <h2 className="text-xl font-bold text-[#111827]">&ldquo;{rev.title}&rdquo;</h2>
                     <p className="text-sm text-[#4B5563] leading-relaxed">{rev.body}</p>
 
                     {rev.mediaUrl && (

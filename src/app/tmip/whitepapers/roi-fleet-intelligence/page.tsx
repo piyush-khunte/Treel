@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -5,14 +6,15 @@ import { ArrowRight, BookOpen, Clock } from "lucide-react";
 import { WhitepaperForm } from "./whitepaper-form";
 
 export const metadata: Metadata = {
-  title: "The Fleet ROI Paper — How TMIP customers reach payback in 9 to 12 months · TMIP Whitepaper",
+  title: "Fleet ROI Paper: Payback in 9 to 12 Months · TMIP",
   description:
     "The economics of mobility intelligence deployment across two hundred TMIP customers. Payback drivers, ROI attribution, and vehicle-level economics.",
   alternates: {
     canonical: "https://treel.in/tmip/whitepapers/roi-fleet-intelligence",
   },
   openGraph: {
-    title: "The Fleet ROI Paper — How TMIP customers reach payback in 9 to 12 months · TMIP Whitepaper",
+    images: DEFAULT_OG_IMAGES,
+    title: "Fleet ROI Paper: Payback in 9 to 12 Months · TMIP",
     description:
       "The economics of mobility intelligence deployment across two hundred TMIP customers. Payback drivers, ROI attribution, and vehicle-level economics.",
     url: "https://treel.in/tmip/whitepapers/roi-fleet-intelligence",

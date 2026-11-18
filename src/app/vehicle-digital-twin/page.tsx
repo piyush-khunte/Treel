@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { 
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/vehicle-digital-twin",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "What is a Vehicle Digital Twin?",
     description: "A Vehicle Digital Twin is a live software model of a physical vehicle, updated in real time from sensors into a queryable object. Explained by Treel.",
     url: "https://treel.in/vehicle-digital-twin",
@@ -216,7 +218,7 @@ export default function VehicleDigitalTwinPage() {
             <div className="pt-2">
               <Link 
                 href="/tmip/platform/vehicle-digital-twin" 
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-sm bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-sm bg-[#C64529] text-[#FAF7F2] hover:bg-[#B53D23]"
               >
                 See it in TMIP <ArrowRight className="w-4 h-4" />
               </Link>

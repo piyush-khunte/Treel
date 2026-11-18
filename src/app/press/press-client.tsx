@@ -157,7 +157,7 @@ export function PressClient({ initialReleases }: { initialReleases: PressItemRec
                       href={featuredRelease.externalUrl || `/press/${featuredRelease.year || '2026'}/${featuredRelease.slug}`}
                       target={featuredRelease.externalUrl ? "_blank" : undefined}
                       rel={featuredRelease.externalUrl ? "noopener noreferrer" : undefined}
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-sm group"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] bg-[#C64529] text-[#FAF7F2] font-semibold text-sm hover:bg-[#B53D23] transition-all shadow-sm group"
                     >
                       <span>{featuredRelease.externalUrl ? "Read coverage" : "Read the release"}</span>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

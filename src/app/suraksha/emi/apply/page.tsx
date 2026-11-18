@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizePhone } from "@/lib/validation/phone";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { ArrowRight,Building2 } from "lucide-react";
@@ -82,7 +83,7 @@ function SurakshaEMIApplyForm() {
         state: formData.state,
         tenure: formData.tenure,
         downPayment: "Zero Down Payment Plan",
-        financingPartner: "Bajaj Finance",
+        financingPartner: "NBFC financing partner",
         applicationDate: new Date().toLocaleDateString("en-IN", {
           day: "numeric",
           month: "long",
@@ -135,7 +136,7 @@ function SurakshaEMIApplyForm() {
               लगभग 10 मिनट में आपकी एप्लिकेशन पूरी।
             </SurakshaRotator>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Share your personal and truck details to initiate your Bajaj Finance zero down payment EMI plan. Keep your Aadhaar, PAN and truck registration (RC) ready.
+              Share your personal and truck details to initiate your zero down payment EMI plan with our NBFC financing partner. Keep your Aadhaar, PAN and truck registration (RC) ready.
             </p>
           </div>
         </div>
@@ -151,7 +152,7 @@ function SurakshaEMIApplyForm() {
               </h2>
               <span className="text-xs font-bold text-[#78350F] flex items-center gap-1.5">
                 <Building2 className="w-4 h-4 text-[#EA580C]" />
-                Partner: Bajaj Finance
+                Partner: Leading NBFC
               </span>
             </div>
 
@@ -186,10 +187,10 @@ function SurakshaEMIApplyForm() {
                     required
                     inputMode="numeric"
                     pattern="[0-9]{10}"
-                    maxLength={10}
+                    maxLength={16}
                     placeholder="10-digit mobile number"
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, "").slice(0, 10) })}
+                    onChange={(e) => setFormData({ ...formData, phone: normalizePhone(e.target.value) })}
                     className="w-full px-4 py-3 bg-[#FEF3C7]/60 border border-[#451A03]/20 rounded-lg text-[#451A03] placeholder-[#78350F]/50 focus:outline-none focus:border-[#DC2626] text-sm font-medium"
                   />
                 </div>

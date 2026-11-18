@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 ArrowRight,
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/personal/shipping",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Shipping Policy · Personal TPMS",
     description: "Personal TPMS shipping details. Delivery times across India, shipping charges, tracking, and delivery partner information.",
     url: "https://treel.in/personal/shipping",
@@ -89,7 +91,7 @@ export default function PersonalShippingPage() {
                 We currently ship Personal TPMS kits across all serviceable postal pincodes in <strong>India</strong>. Shipping is completely free of charge with zero hidden handling fees at checkout. International shipping is planned for expansion in 2027.
               </p>
               <p className="text-xs text-[#6B7280]">
-                Note: Cash on Delivery (COD) is not available at launch; all orders are prepaid securely via Razorpay.
+                Note: Cash on Delivery (COD) is not available at launch; all orders are prepaid securely via our payment gateway.
               </p>
             </div>
 
@@ -97,7 +99,7 @@ export default function PersonalShippingPage() {
             <div className="space-y-4">
               <h2 className="text-2xl sm:text-3xl font-bold text-[#111827]">Fulfillment & Courier Partners</h2>
               <p className="text-base text-[#4B5563] leading-relaxed">
-                All Personal TPMS orders are fulfilled directly from our central automotive logistics hubs via <strong>Shiprocket</strong> and dispatched through top-tier courier networks including Blue Dart, Delhivery, DTDC, and Shadowfax depending on optimal route velocity for your specific pincode.
+                All Personal TPMS orders are fulfilled directly from our central automotive logistics hubs via our logistics partner and dispatched through top-tier courier networks including Blue Dart, Delhivery, DTDC, and Shadowfax depending on optimal route velocity for your specific pincode.
               </p>
             </div>
 

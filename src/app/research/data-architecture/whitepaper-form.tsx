@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizePhone } from "@/lib/validation/phone";
 import {
 CheckCircle2,
 Download,
@@ -154,7 +155,7 @@ export function DataArchWhitepaperGatedForm() {
           <a
             href={accessResult.downloadUrl}
             download
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-[#D5573B] hover:bg-[#CB4831] text-white font-mono text-xs font-semibold transition-all shadow-md"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-[#C64529] hover:bg-[#B53D23] text-white font-mono text-xs font-semibold transition-all shadow-md"
           >
             <Download className="w-4 h-4" />
             <span>Download {accessResult.format} File</span>
@@ -269,11 +270,11 @@ export function DataArchWhitepaperGatedForm() {
             <input
               type="tel"
               inputMode="numeric"
-              maxLength={10}
+              maxLength={16}
               pattern="[0-9]{10}"
               value={phone}
               onChange={(e) => {
-                const clean = e.target.value.replace(/\D/g, "").slice(0, 10);
+                const clean = normalizePhone(e.target.value);
                 setPhone(clean);
                 if (errors.phone) setErrors((prev) => { const rest = { ...prev }; delete rest.phone; return rest; });
               }}
@@ -326,7 +327,7 @@ export function DataArchWhitepaperGatedForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3.5 px-7 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-70 mt-4 cursor-pointer"
+          className="w-full py-3.5 px-7 rounded-[4px] bg-[#C64529] text-[#FAF7F2] font-semibold text-sm hover:bg-[#B53D23] transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-70 mt-4 cursor-pointer"
         >
           {loading ? (
             <>

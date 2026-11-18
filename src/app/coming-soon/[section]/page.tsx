@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { ArrowRight,Clock,Sparkles } from "lucide-react";
@@ -70,6 +71,7 @@ export async function generateMetadata({
       canonical: `https://treel.in/coming-soon/${section}`,
     },
     openGraph: {
+      images: DEFAULT_OG_IMAGES,
       title: `${title} — Coming Soon`,
       description: config
         ? config.teaser

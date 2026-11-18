@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Truck, Bus, HardHat, Award, CheckCircle2 } from "lucide-react";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/solutions",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Solutions by Industry  ·  TMIP",
     description:
       "TMIP for logistics, passenger transport, construction, and OEM fleet operators. Same platform, industry-tuned deployments.",
@@ -104,7 +106,7 @@ export default function TmipSolutionsPage() {
                     <div className="w-11 h-11 rounded-[4px] bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6] group-hover:bg-[#3B82F6] group-hover:text-white transition-all">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="font-space-grotesk text-xl font-bold text-[#F1F5F9]">{card.title}</h3>
+                    <h2 className="font-space-grotesk text-xl font-bold text-[#F1F5F9]">{card.title}</h2>
                     <p className="text-sm text-[#94A3B8] leading-relaxed font-ibm-plex">{card.body}</p>
                   </div>
                   <div className="pt-1">

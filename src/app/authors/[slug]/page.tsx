@@ -1,3 +1,5 @@
+import { clampDescription, DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
+import { canonicalAuthorSlug } from "@/lib/seo/authors";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { getAuthorProfile,VERIFIED_AUTHORS } from "@/lib/authors/author-registry";
 import {
@@ -35,16 +37,26 @@ export async function generateMetadata({
     };
   }
 
+  // Lead with the author name + role so every profile gets a unique description,
+  // even when several contributors share the generic fallback bio.
+  const description = clampDescription(
+    `${profile.name}, ${profile.role}${/treel/i.test(profile.role) ? "" : " at Treel"}: ${profile.bio}`
+  );
+
+  // Spelling-variant slugs (e.g. pradnya-chaudhari) canonicalise to the primary profile.
+  const canonicalUrl = `https://treel.in/authors/${canonicalAuthorSlug(profile)}`;
+
   return {
     title: `${profile.name} — Author Profile`,
-    description: profile.bio,
+    description,
     alternates: {
-      canonical: `https://treel.in/authors/${profile.slug}`,
+      canonical: canonicalUrl,
     },
     openGraph: {
+      images: DEFAULT_OG_IMAGES,
       title: `${profile.name} — Author Profile`,
-      description: profile.bio,
-      url: `https://treel.in/authors/${profile.slug}`,
+      description,
+      url: canonicalUrl,
       type: "profile",
     },
   };
@@ -143,7 +155,7 @@ export default async function AuthorProfilePage({
                 <div className="pt-2">
                   <Link
                     href="/founder-note"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-xs hover:bg-[#CB4831] transition-all shadow-md"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[4px] bg-[#C64529] text-[#FAF7F2] font-semibold text-xs hover:bg-[#B53D23] transition-all shadow-md"
                   >
                     <span>Read founder&apos;s personal note</span>
                     <ArrowRight className="w-3.5 h-3.5" />

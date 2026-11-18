@@ -153,7 +153,7 @@ export function ArticleNewsletterForm() {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md flex items-center justify-center gap-2 whitespace-nowrap disabled:opacity-70"
+              className="px-7 py-3.5 rounded-[4px] bg-[#C64529] text-[#FAF7F2] font-semibold text-sm hover:bg-[#B53D23] transition-all shadow-md flex items-center justify-center gap-2 whitespace-nowrap disabled:opacity-70"
             >
               {status === "loading" ? (
                 <>

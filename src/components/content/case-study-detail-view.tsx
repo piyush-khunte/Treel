@@ -125,7 +125,7 @@ export function CaseStudyDetailView({ study }: CaseStudyDetailViewProps) {
             )}
 
             <div className="flex flex-wrap items-center gap-3 text-xs font-jetbrains text-[#94A3B8] pt-3 border-t border-slate-400/10">
-              <span className="text-[#64748B]">Documented by</span>
+              <span className="text-[#94A3B8]">Documented by</span>
               <Link
                 href={`/authors/${authorSlug}`}
                 className="text-[#F1F5F9] hover:text-[#3B82F6] transition-colors font-medium inline-flex items-center gap-1.5 focus:outline-none focus:ring-1 focus:ring-[#3B82F6] rounded"
@@ -135,7 +135,7 @@ export function CaseStudyDetailView({ study }: CaseStudyDetailViewProps) {
                 <span>{authorName}</span>
               </Link>
               <span>·</span>
-              <span className="text-[#64748B]">{authorRole}</span>
+              <span className="text-[#94A3B8]">{authorRole}</span>
               <span>·</span>
               <span className="text-[#94A3B8]">Treel Mobility Solutions</span>
             </div>
@@ -237,7 +237,7 @@ export function CaseStudyDetailView({ study }: CaseStudyDetailViewProps) {
                         )}
                       </div>
                       <div className="pt-2.5 border-t border-slate-400/10 flex flex-wrap items-center justify-between gap-2 text-xs font-jetbrains text-[#94A3B8]">
-                        <span className="text-[#64748B]">Case Study Attribution</span>
+                        <span className="text-[#94A3B8]">Case Study Attribution</span>
                         <Link
                           href={`/authors/${authorSlug}`}
                           className="text-[#F1F5F9] hover:text-[#3B82F6] transition-colors font-medium inline-flex items-center gap-1.5 focus:outline-none focus:ring-1 focus:ring-[#3B82F6] rounded"
@@ -273,7 +273,7 @@ export function CaseStudyDetailView({ study }: CaseStudyDetailViewProps) {
               <div className="flex items-center gap-4">
                 <AuthorAvatar name={authorName} size="md" shape="circle" />
                 <div>
-                  <div className="text-[11px] font-jetbrains text-[#64748B] uppercase tracking-wider">
+                  <div className="text-[11px] font-jetbrains text-[#94A3B8] uppercase tracking-wider">
                     Author &amp; Telemetry Research
                   </div>
                   <Link

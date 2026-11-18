@@ -382,8 +382,10 @@ export default function IndiaCentresMap({
                 </a>
                 <a
                   href="https://api.whatsapp.com/send/?phone=919112000174&text=Suraksha+info+chahiye&type=phone_number&app_absent=0"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="WhatsApp Helpline"
-                  className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-4 bg-[#25D366] text-white font-anton uppercase text-sm tracking-wider rounded-[4px] hover:bg-[#1EBE5D] transition-colors shadow-sm text-center focus-visible:outline-2 focus-visible:outline-[#25D366]"
+                  className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-4 bg-[#15803D] text-white font-anton uppercase text-sm tracking-wider rounded-[4px] hover:bg-[#166534] transition-colors shadow-sm text-center focus-visible:outline-2 focus-visible:outline-[#25D366]"
                 >
                   <svg
                     className="w-4 h-4 fill-white shrink-0"

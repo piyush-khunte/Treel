@@ -95,7 +95,7 @@ export function CookieBanner() {
         >
           {/* Mobile compact bottom bar (< sm) */}
           <div className="flex flex-col gap-2 sm:hidden">
-            <p className="text-[11px] text-slate-300 leading-tight">
+            <p className="text-xs text-slate-300 leading-snug">
               We use cookies to improve your experience. Review our{" "}
               <Link href="/cookies" prefetch={false} className="text-[#D5573B] underline hover:text-[#FAF7F2]">
                 Cookie Policy
@@ -107,7 +107,7 @@ export function CookieBanner() {
                   onClick={handleAcceptAll}
                   variant="treel"
                   size="sm"
-                  className="text-[10px] h-6 px-2.5 font-semibold bg-[#D5573B] hover:bg-[#CB4831] text-white cursor-pointer"
+                  className="text-xs h-10 px-3.5 font-semibold bg-[#B8432A] hover:bg-[#A33A24] text-white cursor-pointer"
                 >
                   Accept All
                 </Button>
@@ -115,7 +115,7 @@ export function CookieBanner() {
                   onClick={handleRejectAll}
                   variant="outline"
                   size="sm"
-                  className="text-[10px] h-6 px-2 border-white/20 text-slate-200 hover:bg-white/10 hover:text-white cursor-pointer"
+                  className="text-xs h-10 px-3 border-white/20 text-slate-200 hover:bg-white/10 hover:text-white cursor-pointer"
                 >
                   Essential Only
                 </Button>
@@ -123,9 +123,9 @@ export function CookieBanner() {
               <button
                 type="button"
                 onClick={() => setShowConfigModal(true)}
-                className="text-[10px] text-slate-400 hover:text-white underline underline-offset-2 px-1 py-0.5 cursor-pointer flex items-center gap-1 shrink-0"
+                className="text-xs text-slate-300 hover:text-white underline underline-offset-2 px-2 min-h-[40px] cursor-pointer flex items-center gap-1 shrink-0"
               >
-                <Sliders className="w-2.5 h-2.5" />
+                <Sliders className="w-3 h-3" />
                 Preferences
               </button>
             </div>
@@ -137,9 +137,9 @@ export function CookieBanner() {
               <Cookie className="w-5 h-5" />
             </div>
             <div className="space-y-2.5 w-full">
-              <h4 className="text-sm font-semibold font-fraunces text-[#FAF7F2]">
+              <h2 className="text-sm font-semibold font-fraunces text-[#FAF7F2]">
                 Cookie &amp; Telemetry Privacy
-              </h4>
+              </h2>
               <p className="text-xs text-slate-300 leading-relaxed">
                 We use strictly necessary cookies to ensure site security and basic functions. With your consent, we also use optional telemetry and analytics cookies to optimize performance. Review our{" "}
                 <Link href="/cookies" prefetch={false} className="text-[#D5573B] underline hover:text-[#FAF7F2]">
@@ -151,7 +151,7 @@ export function CookieBanner() {
                   onClick={handleAcceptAll}
                   variant="treel"
                   size="sm"
-                  className="text-xs h-8 px-3.5 font-semibold bg-[#D5573B] hover:bg-[#CB4831] text-white cursor-pointer"
+                  className="text-xs h-10 px-3.5 font-semibold bg-[#B8432A] hover:bg-[#A33A24] text-white cursor-pointer"
                 >
                   Accept All
                 </Button>
@@ -159,14 +159,14 @@ export function CookieBanner() {
                   onClick={handleRejectAll}
                   variant="outline"
                   size="sm"
-                  className="text-xs h-8 px-3 border-white/20 text-slate-200 hover:bg-white/10 hover:text-white cursor-pointer"
+                  className="text-xs h-10 px-3 border-white/20 text-slate-200 hover:bg-white/10 hover:text-white cursor-pointer"
                 >
                   Essential Only
                 </Button>
                 <button
                   type="button"
                   onClick={() => setShowConfigModal(true)}
-                  className="text-xs text-slate-400 hover:text-white underline underline-offset-2 px-1 py-1 cursor-pointer flex items-center gap-1 ml-auto"
+                  className="text-xs text-slate-300 hover:text-white underline underline-offset-2 px-2 min-h-[40px] cursor-pointer flex items-center gap-1 ml-auto"
                 >
                   <Sliders className="w-3 h-3" />
                   Preferences
@@ -191,9 +191,9 @@ export function CookieBanner() {
                 <div className="text-[#D5573B] font-mono text-xs uppercase tracking-widest font-semibold mb-1">
                   PRIVACY PREFERENCES
                 </div>
-                <h3 id="banner-cookie-modal-title" className="font-fraunces text-2xl font-medium text-[#FAF7F2] leading-[1.12]">
+                <h2 id="banner-cookie-modal-title" className="font-fraunces text-2xl font-medium text-[#FAF7F2] leading-[1.12]">
                   Customize Cookie Consent
-                </h3>
+                </h2>
               </div>
               <button
                 type="button"
@@ -204,7 +204,7 @@ export function CookieBanner() {
                     setShowConfigModal(false);
                   }
                 }}
-                className="text-slate-400 hover:text-white p-1 rounded-md hover:bg-white/10 transition-colors"
+                className="text-slate-300 hover:text-white p-2 rounded-md hover:bg-white/10 transition-colors"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
@@ -221,11 +221,11 @@ export function CookieBanner() {
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-semibold text-[#FAF7F2]">Strictly Necessary</span>
-                    <span className="text-[10px] font-mono uppercase bg-[#D5573B]/20 text-[#D5573B] px-1.5 py-0.5 rounded">
+                    <span className="text-[10px] font-mono uppercase bg-[#D5573B]/20 text-[#F4A08A] px-1.5 py-0.5 rounded">
                       Required
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-0.5">
+                  <p className="text-[11px] text-slate-300 mt-0.5">
                     Maintains secure sessions, cart preservation, and core platform functionality.
                   </p>
                 </div>
@@ -241,7 +241,7 @@ export function CookieBanner() {
               <div className="p-3.5 rounded-lg bg-white/[0.03] border border-white/[0.08] flex items-center justify-between gap-3">
                 <div>
                   <span className="text-xs font-semibold text-[#FAF7F2]">Functional Cookies</span>
-                  <p className="text-[11px] text-slate-400 mt-0.5">
+                  <p className="text-[11px] text-slate-300 mt-0.5">
                     Stores regional preferences, language options, and returning visitor form states.
                   </p>
                 </div>
@@ -259,7 +259,7 @@ export function CookieBanner() {
               <div className="p-3.5 rounded-lg bg-white/[0.03] border border-white/[0.08] flex items-center justify-between gap-3">
                 <div>
                   <span className="text-xs font-semibold text-[#FAF7F2]">Analytics &amp; Telemetry</span>
-                  <p className="text-[11px] text-slate-400 mt-0.5">
+                  <p className="text-[11px] text-slate-300 mt-0.5">
                     Aggregated usage insights (Google Analytics, Clarity) to optimize platform speed and UX.
                   </p>
                 </div>
@@ -277,7 +277,7 @@ export function CookieBanner() {
               <div className="p-3.5 rounded-lg bg-white/[0.03] border border-white/[0.08] flex items-center justify-between gap-3">
                 <div>
                   <span className="text-xs font-semibold text-[#FAF7F2]">Marketing &amp; Campaigns</span>
-                  <p className="text-[11px] text-slate-400 mt-0.5">
+                  <p className="text-[11px] text-slate-300 mt-0.5">
                     Helps us evaluate marketing performance across search and social channels.
                   </p>
                 </div>
@@ -299,7 +299,7 @@ export function CookieBanner() {
                   variant="outline"
                   size="sm"
                   onClick={handleRejectAll}
-                  className="w-1/2 sm:w-auto text-xs h-8 px-3 border-white/15 text-slate-300 hover:bg-white/10 hover:text-white"
+                  className="w-1/2 sm:w-auto text-xs h-10 px-3 border-white/15 text-slate-300 hover:bg-white/10 hover:text-white"
                 >
                   Reject Non-Essential
                 </Button>
@@ -308,7 +308,7 @@ export function CookieBanner() {
                   variant="outline"
                   size="sm"
                   onClick={handleAcceptAll}
-                  className="w-1/2 sm:w-auto text-xs h-8 px-3 bg-white/10 text-white hover:bg-white/20 border-transparent"
+                  className="w-1/2 sm:w-auto text-xs h-10 px-3 bg-white/10 text-white hover:bg-white/20 border-transparent"
                 >
                   Accept All
                 </Button>
@@ -318,7 +318,7 @@ export function CookieBanner() {
                 variant="treel"
                 size="sm"
                 onClick={handleSaveCustom}
-                className="w-full sm:w-auto text-xs h-8 px-5 bg-[#D5573B] hover:bg-[#CB4831] text-white font-semibold"
+                className="w-full sm:w-auto text-xs h-10 px-5 bg-[#B8432A] hover:bg-[#A33A24] text-white font-semibold"
               >
                 Save Preferences
               </Button>

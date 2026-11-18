@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { ArrowRight } from "lucide-react";
@@ -5,13 +6,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Simplicity  \u00b7  No App, No Subscription  \u00b7  Suraksha",
+  title: "Simplicity · No App, No Subscription · Suraksha",
   description: "Suraksha is designed for simplicity. No app to download. No monthly subscription. No mechanic needed. 15-minute installation at any puncture shop.",
   alternates: {
     canonical: "https://treel.in/suraksha/simplicity",
   },
   openGraph: {
-    title: "Simplicity  \u00b7  No App, No Subscription  \u00b7  Suraksha",
+    images: DEFAULT_OG_IMAGES,
+    title: "Simplicity · No App, No Subscription · Suraksha",
     description: "Suraksha is designed for simplicity. No app to download. No monthly subscription. No mechanic needed. 15-minute installation at any puncture shop.",
     url: "https://treel.in/suraksha/simplicity",
   },

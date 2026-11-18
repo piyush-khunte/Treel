@@ -3,7 +3,8 @@
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { HoneypotField } from "@/components/forms/honeypot-field";
 
 export default function TMIPDemoPage() {
   const router = useRouter();
@@ -21,12 +22,20 @@ export default function TMIPDemoPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isSubmitting) return;
-    setIsSubmitting(true);
     setErrorMessage("");
+
+    if (!/^[^s@]+@[^s@]+.[^s@]{2,}$/.test(formData.workEmail.trim())) {
+      setErrorMessage("Please enter a valid work email address, for example you@company.com.");
+      document.getElementById("workEmail")?.focus();
+      return;
+    }
+
+    setIsSubmitting(true);
 
     try {
       const res = await fetch("/api/tmip/lead", {
@@ -43,6 +52,7 @@ export default function TMIPDemoPage() {
           region: formData.region,
           timeSlot: formData.timeSlot,
           context: formData.context,
+          website: honeypotRef.current?.value || "",
           form_id: "tmip_demo",
           lead_source: "TMIP Demo",
           campaign_type: "tmip_demo",
@@ -64,18 +74,24 @@ export default function TMIPDemoPage() {
           // sessionStorage unavailable
         }
       }
-      const params = new URLSearchParams({
-        name: formData.fullName,
-        email: formData.workEmail,
-        company: formData.company,
-        fleet: formData.fleetSize,
-        vehicle: formData.vehicleType,
-        slot: formData.timeSlot,
+      // Only campaign attribution parameters are carried over. Personal data (name, email,
+      // company) must never appear in the URL, browser history or third-party tags.
+      const current = new URLSearchParams(window.location.search);
+      const params = new URLSearchParams();
+      ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "ad_group", "gclid", "fbclid"].forEach((key) => {
+        const value = current.get(key);
+        if (value) params.set(key, value);
       });
-      router.push(`/tmip/demo/scheduled?${params.toString()}`);
+      const query = params.toString();
+      router.push(query ? `/tmip/demo/scheduled?${query}` : "/tmip/demo/scheduled");
     } catch (err: any) {
       console.error("Demo submission failed:", err);
-      setErrorMessage(err.message || "Failed to submit request. Please try again.");
+      const offline = typeof navigator !== "undefined" && navigator.onLine === false;
+      setErrorMessage(
+        offline || err instanceof TypeError
+          ? "We couldn't send your request because you appear to be offline. Your details are still here. Check your connection and try again."
+          : err.message || "Failed to submit request. Please try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -129,12 +145,13 @@ export default function TMIPDemoPage() {
               </h2>
 
               {errorMessage && (
-                <div className="mb-4 p-3 bg-red-950/60 border border-red-500/50 rounded text-red-300 text-xs font-mono">
+                <div role="alert" aria-live="assertive" className="mb-4 p-3 bg-red-950/60 border border-red-500/50 rounded text-red-300 text-xs font-mono">
                   {errorMessage}
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+              <form onSubmit={handleSubmit} className="relative space-y-4 sm:space-y-5">
+                <HoneypotField ref={honeypotRef} />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="fullName" className="block text-xs font-jetbrains uppercase tracking-wider text-[#94A3B8] mb-1.5">
@@ -142,6 +159,7 @@ export default function TMIPDemoPage() {
                     </label>
                     <input
                       id="fullName"
+                      autoComplete="name"
                       name="fullName"
                       aria-label="Full name"
                       type="text"
@@ -159,6 +177,7 @@ export default function TMIPDemoPage() {
                     </label>
                     <input
                       id="workEmail"
+                      autoComplete="email"
                       name="workEmail"
                       aria-label="Work email"
                       type="email"
@@ -178,6 +197,7 @@ export default function TMIPDemoPage() {
                     </label>
                     <input
                       id="company"
+                      autoComplete="organization"
                       name="company"
                       aria-label="Company name"
                       type="text"

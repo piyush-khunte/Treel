@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
@@ -13,16 +14,17 @@ import Link from "next/link";
 import { SurakshaEmiCalculator } from "./emi-calculator";
 
 export const metadata: Metadata = {
-  title: "Suraksha EMI Plans · Bajaj Finance Partnership · Zero-Cost Options",
+  title: "Suraksha EMI Plans · Zero-Cost Monthly Options",
   description:
-    "Suraksha kit EMI on Bajaj Finance. Flexible 3, 6, 9, 12, 18, 24-month tenures. Zero-cost EMI available. Minimal documentation with quick approval.",
+    "Suraksha kit EMI through our NBFC financing partner. Flexible 3, 6, 9, 12, 18, 24-month tenures. Zero-cost EMI available. Minimal documentation with quick approval.",
   alternates: {
     canonical: "https://treel.in/suraksha/emi",
   },
   openGraph: {
-    title: "Suraksha EMI Plans · Bajaj Finance Partnership · Zero-Cost Options",
+    images: DEFAULT_OG_IMAGES,
+    title: "Suraksha EMI Plans · Zero-Cost Monthly Options",
     description:
-      "Suraksha kit EMI on Bajaj Finance. Flexible 3, 6, 9, 12, 18, 24-month tenures. Zero-cost EMI available. Minimal documentation with quick approval.",
+      "Suraksha kit EMI through our NBFC financing partner. Flexible 3, 6, 9, 12, 18, 24-month tenures. Zero-cost EMI available. Minimal documentation with quick approval.",
     url: "https://treel.in/suraksha/emi",
   },
 };
@@ -104,7 +106,7 @@ const relatedCards = [
   },
   {
     title: "Nearest Centre",
-    desc: "Locate 400+ Truck Wheels centres for instant pickup and installation.",
+    desc: "Locate 600+ Truck Wheels centres for instant pickup and installation.",
     href: "/suraksha/centres",
   },
   {
@@ -134,7 +136,7 @@ export default function SurakshaEmiPage() {
                 EMI OPTIONS
               </div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#451A03]/5 text-[#451A03] font-rubik text-xs font-bold border border-[#451A03]/15">
-                <Building className="w-3.5 h-3.5 text-[#0891B2]" /> Bajaj Finance Partnership
+                <Building className="w-3.5 h-3.5 text-[#0891B2]" /> NBFC Financing Partnership
               </div>
             </div>
 
@@ -190,7 +192,7 @@ export default function SurakshaEmiPage() {
             {/* Eligibility */}
             <div className="p-8 rounded-lg bg-[#FFFBEB] border-2 border-[#451A03]/15 space-y-6 shadow-sm">
               <h2 className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase">
-                Eligibility criteria (Bajaj Finance)
+                Eligibility criteria (NBFC partner)
               </h2>
 
               <div className="space-y-3">

@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 Apple,
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/personal/features/app",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Mobile App · Personal TPMS",
     description: "The Personal TPMS mobile app. iOS 15+ and Android 10+. Home screen widget. Apple Watch complications. Dark mode. Multi-vehicle support.",
     url: "https://treel.in/personal/features/app",

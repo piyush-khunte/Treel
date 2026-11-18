@@ -1,6 +1,7 @@
 import { isSesConfigured, sendEmail, sendSurakshaLeadConfirmationEmail } from "@/lib/integrations";
 import { createClient } from "@supabase/supabase-js";
 import { NextRequest,NextResponse } from "next/server";
+import { guardLeadSubmission } from "@/lib/security/lead-guard";
 
 // Server-side in-memory idempotency cache (prevents rapid double-clicks within 30s)
 const recentSubmissions = new Map<string, number>();
@@ -84,6 +85,10 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Spam protection: honeypot field + per-IP rate limit
+    const blocked = guardLeadSubmission("suraksha-lead", req.headers, body);
+    if (blocked) return blocked;
 
     const {
       full_name,

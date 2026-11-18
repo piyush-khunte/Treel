@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Button } from "@/components/ui/button";
 import { ArrowRight,Home,Mail } from "lucide-react";
 import type { Metadata } from "next";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/500",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Server Error",
     description: "Our telemetry systems encountered an unexpected condition. Please retry your request.",
     url: "https://treel.in/500",

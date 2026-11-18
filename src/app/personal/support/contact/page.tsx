@@ -145,7 +145,7 @@ export default function PersonalSupportContactPage() {
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-[#111827]">{opt.title}</h3>
+                    <h2 className="text-xl font-bold text-[#111827]">{opt.title}</h2>
                     <p className="text-sm text-[#374151] font-medium">{opt.desc}</p>
                   </div>
 

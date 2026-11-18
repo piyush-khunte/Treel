@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizePhone } from "@/lib/validation/phone";
 import React, { useState } from "react";
 import { Send, Loader2, CheckCircle2, AlertCircle, Phone, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -179,10 +180,10 @@ export function SupportClient() {
               <input
                 type="tel"
                 inputMode="numeric"
-                maxLength={10}
+                maxLength={16}
                 pattern="[0-9]{10}"
                 value={phone}
-                onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
+                onChange={(e) => setPhone(normalizePhone(e.target.value))}
                 placeholder="10-digit mobile number"
                 className="w-full px-4 py-3 rounded-lg bg-[#0F1419] border border-white/10 text-sm text-[#FAF7F2] placeholder-[#64748B] focus:outline-none focus:border-[#D5573B] transition-colors"
               />

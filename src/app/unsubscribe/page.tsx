@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Email Preferences & Unsubscribe",
     description: "Manage your email communication preferences or unsubscribe from Treel communications.",
     url: "https://treel.in/unsubscribe",

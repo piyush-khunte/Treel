@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { SavingsCalculator } from "@/components/suraksha/savings-calculator";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
@@ -6,13 +7,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Savings  \u00b7  9 to 12 Months Payback on Suraksha Kit  \u00b7  ROI Calculator",
+  title: "Suraksha Savings · 9 to 12 Months Payback",
   description: "Suraksha pays back in 9 to 12 months through fuel savings, 5-7% tyre life extension, and roadside blowout avoidance. Calculate your truck's savings today.",
   alternates: {
     canonical: "https://treel.in/suraksha/savings",
   },
   openGraph: {
-    title: "Savings  \u00b7  9 to 12 Months Payback on Suraksha Kit  \u00b7  ROI Calculator",
+    images: DEFAULT_OG_IMAGES,
+    title: "Suraksha Savings · 9 to 12 Months Payback",
     description: "Suraksha pays back in 9 to 12 months through fuel savings, 5-7% tyre life extension, and roadside blowout avoidance. Calculate your truck's savings today.",
     url: "https://treel.in/suraksha/savings",
   },

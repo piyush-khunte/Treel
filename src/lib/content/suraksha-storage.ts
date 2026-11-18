@@ -264,6 +264,15 @@ function writeLocalStore(items: SurakshaArticle[]): void {
   }
 }
 
+/** Strips a stray lowercase " test" QA suffix from published titles (e.g. "... Should Know test"). */
+function cleanPublicTitles(items: SurakshaArticle[]): SurakshaArticle[] {
+  return items.map((item) =>
+    typeof item.title === "string" && / test$/.test(item.title)
+      ? { ...item, title: item.title.replace(/ test$/, "") }
+      : item
+  );
+}
+
 export async function getAllSurakshaArticles(includeDrafts = true): Promise<SurakshaArticle[]> {
   const localItems = readLocalStore();
   const supabase = getAdminClient();
@@ -279,7 +288,7 @@ export async function getAllSurakshaArticles(includeDrafts = true): Promise<Sura
         const parsed = JSON.parse(data[0].testValue);
         if (Array.isArray(parsed) && parsed.length > 0) {
           writeLocalStore(parsed);
-          return includeDrafts ? parsed : parsed.filter((item) => item.status === "Published");
+          return includeDrafts ? parsed : cleanPublicTitles(parsed.filter((item) => item.status === "Published"));
         }
       } catch (e) {
         console.error("Failed to parse TreelEcommerce.t_test treel_suraksha_blog payload:", e);
@@ -289,7 +298,7 @@ export async function getAllSurakshaArticles(includeDrafts = true): Promise<Sura
     // Suppress and fallback gracefully
   }
 
-  return includeDrafts ? localItems : localItems.filter((item) => item.status === "Published");
+  return includeDrafts ? localItems : cleanPublicTitles(localItems.filter((item) => item.status === "Published"));
 }
 
 export async function getPublishedSurakshaArticles(): Promise<SurakshaArticle[]> {

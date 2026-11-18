@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ExternalLink, MapPin } from "lucide-react";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/leadership",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Leadership",
     description: "The team leading Treel Mobility Solutions. Founder Manish Ingale and the executive team building India's mobility intelligence company.",
     url: "https://treel.in/leadership",
@@ -133,7 +135,7 @@ export default function LeadershipPage() {
               We are hiring. See what&apos;s open, or drop us a note if you don&apos;t see the right role.
             </p>
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <Link href="/careers" className="px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-sm bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831] flex items-center gap-2">
+              <Link href="/careers" className="px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-sm bg-[#C64529] text-[#FAF7F2] hover:bg-[#B53D23] flex items-center gap-2">
                 See open roles <ArrowRight className="w-4 h-4" />
               </Link>
               <Link href="/contact" className="px-7 py-3.5 rounded-[4px] font-medium text-sm transition-all border border-[#94A3B8]/30 text-[#FAF7F2] hover:border-[#D5573B]">

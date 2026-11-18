@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/personal/support/contact",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Contact Personal TPMS Support",
     description:
       "Get in touch with Treel customer care for technical queries, pairing help, warranty support, or purchase assistance for personal TPMS kits.",

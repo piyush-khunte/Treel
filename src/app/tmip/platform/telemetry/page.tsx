@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/platform/telemetry",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Real-Time Telemetry · TMIP",
     description:
       "TMIP captures sub-second fleet telemetry: pressure, temperature, fuel, battery, trips, and driver metrics across six subsystems in one live dashboard.",
@@ -238,9 +240,9 @@ export default function TmipPlatformTelemetryPage() {
                 <div className="flex items-center gap-2 text-red-400 font-jetbrains text-xs font-semibold uppercase tracking-wider">
                   <Clock className="w-4 h-4" /> Legacy 5–15 Min Polling
                 </div>
-                <h4 className="font-space-grotesk text-lg font-bold text-[#F1F5F9]">
+                <h3 className="font-space-grotesk text-lg font-bold text-[#F1F5F9]">
                   Lagging Indicator Traps
-                </h4>
+                </h3>
                 <p className="text-[#94A3B8] text-sm leading-relaxed font-ibm-plex">
                   Only reports events after failure has already occurred. You find out about an en-route blowout after the driver pulls over on a highway shoulder.
                 </p>
@@ -250,9 +252,9 @@ export default function TmipPlatformTelemetryPage() {
                 <div className="flex items-center gap-2 text-[#3B82F6] font-jetbrains text-xs font-semibold uppercase tracking-wider">
                   <Zap className="w-4 h-4" /> TMIP Sub-Second Streaming
                 </div>
-                <h4 className="font-space-grotesk text-lg font-bold text-[#F1F5F9]">
+                <h3 className="font-space-grotesk text-lg font-bold text-[#F1F5F9]">
                   Leading Indicator Protection
-                </h4>
+                </h3>
                 <p className="text-[#94A3B8] text-sm leading-relaxed font-ibm-plex">
                   Detects micro-pressure loss curves, rapid temperature escalations, and thermal anomalies instantly — triggering automated depot work orders before breakdowns happen.
                 </p>

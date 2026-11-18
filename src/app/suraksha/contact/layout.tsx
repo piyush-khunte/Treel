@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/suraksha/contact",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Contact Suraksha Fleet Support",
     description:
       "Connect with Treel's Suraksha commercial fleet support team for roadside assistance, technical support, fitment bookings, and warranty queries.",

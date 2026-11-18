@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { guardLeadSubmission } from "@/lib/security/lead-guard";
 import { createClient } from "@supabase/supabase-js";
 import { isSesConfigured, sendEmail, sendPersonalLeadConfirmationEmail } from "@/lib/integrations";
 
@@ -50,6 +51,10 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Spam protection: honeypot field + per-IP rate limit
+    const blocked = guardLeadSubmission("personal-lead", req.headers, body);
+    if (blocked) return blocked;
 
     const {
       full_name,

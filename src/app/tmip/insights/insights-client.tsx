@@ -127,7 +127,7 @@ export function InsightsClient() {
                 <span className="text-[11px] font-jetbrains uppercase tracking-wider text-[#3B82F6] font-semibold">
                   {article.category}
                 </span>
-                <span className="text-xs font-jetbrains text-[#64748B]">{article.readTime}</span>
+                <span className="text-xs font-jetbrains text-[#94A3B8]">{article.readTime}</span>
               </div>
 
               <h3 className="font-space-grotesk text-xl font-bold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors leading-snug">

@@ -121,9 +121,9 @@ export default function SurakshaFAQsPage() {
           <div className="max-w-3xl pt-12">
             <div className="bg-[#451A03] text-[#FEF3C7] p-8 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl border-2 border-[#451A03]/20">
               <div>
-                <h3 className="font-anton text-2xl uppercase tracking-normal text-white">
+                <h2 className="font-anton text-2xl uppercase tracking-normal text-white">
                   Still have questions?
-                </h3>
+                </h2>
                 <p className="text-xs text-[#FEF3C7]/80 mt-1 font-rubik">
                   Speak with our Suraksha support team: 1800 258 4567 (Toll-Free)
                 </p>

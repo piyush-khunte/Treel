@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import {
   Activity,
   ArrowRight,
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/platform",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Platform Overview  ·  TMIP",
     description:
       "The TMIP platform architecture: five layers from sensor to interface. Vehicle Digital Twin at core. Enterprise real-time telemetry and maintenance.",
@@ -220,7 +222,7 @@ export default function TmipPlatformPage() {
                   </div>
 
                   <div className="shrink-0 flex md:flex-col items-center md:items-end justify-between border-t md:border-t-0 border-slate-400/10 pt-2.5 md:pt-0">
-                    <span className="text-[11px] font-jetbrains text-[#64748B]">Bi-directional Sync</span>
+                    <span className="text-[11px] font-jetbrains text-[#94A3B8]">Bi-directional Sync</span>
                     <span className="text-xs font-jetbrains text-[#10B981] font-semibold">Active · 99.7%</span>
                   </div>
                 </div>

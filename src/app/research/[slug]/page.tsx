@@ -1,3 +1,4 @@
+import { clampDescription, clampTitle, DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
   ArrowRight,
@@ -105,16 +106,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const fallback = PAPERS[slug] || PAPERS["case-study-1000-truck"];
   const title = dbPaper?.title || fallback.title;
   const rawDescription = dbPaper?.excerpt || dbPaper?.description || fallback.abstract;
-  const description = rawDescription.slice(0, 150) + "...";
-  const canonicalSlug = dbPaper?.slug || fallback.slug;
+  const description = clampDescription(rawDescription);
+  // Alias slugs (e.g. case-study-1000-truck) intentionally canonicalise to the primary paper URL.
+  const canonicalSlug = dbPaper?.slug || PAPERS[slug]?.slug || slug;
+  const pageTitle = title.length <= 45 ? `${title} — Research` : clampTitle(title);
 
   return {
-    title: `${title} — Research`,
+    title: pageTitle,
     description,
     alternates: {
       canonical: `https://treel.in/research/${canonicalSlug}`,
     },
     openGraph: {
+      images: DEFAULT_OG_IMAGES,
       title: `${title} — Research`,
       description,
       url: `https://treel.in/research/${canonicalSlug}`,
@@ -290,9 +294,9 @@ export default async function ResearchSlugPage({ params }: { params: Promise<{ s
                 <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-[#D5573B]/10 text-[#D5573B] border border-[#D5573B]/20 font-semibold">
                   ROI &amp; Payback
                 </span>
-                <h4 className="font-fraunces text-lg font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-snug">
+                <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-snug">
                   The Fleet ROI and Fuel Savings Paper
-                </h4>
+                </h3>
                 <p className="text-xs text-[#94A3B8] line-clamp-2">
                   Comprehensive financial and operational analysis of mobility intelligence across commercial vehicle fleets in India.
                 </p>
@@ -311,9 +315,9 @@ export default async function ResearchSlugPage({ params }: { params: Promise<{ s
                 <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-[#D5573B]/10 text-[#D5573B] border border-[#D5573B]/20 font-semibold">
                   Mobility Intelligence
                 </span>
-                <h4 className="font-fraunces text-lg font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-snug">
+                <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-snug">
                   Data Architecture &amp; Telemetry Ingestion at Enterprise Scale
-                </h4>
+                </h3>
                 <p className="text-xs text-[#94A3B8] line-clamp-2">
                   Technical whitepaper on Treel&apos;s distributed IoT data architecture and sub-second telemetry ingestion engine.
                 </p>

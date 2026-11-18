@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 ChevronRight,
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/terms",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Terms of Service",
     description:
       "Treel's Terms of Service. Terms governing use of treel.in, TMIP, Project Suraksha, Personal TPMS, and related mobility intelligence services.",

@@ -64,7 +64,7 @@ export function SurakshaHeader() {
                 </svg>
               </div>
               <div className="flex flex-col">
-                <span className="font-anton text-[16px] sm:text-[19px] lg:text-[20px] text-[#DC2626] uppercase leading-none tracking-tight">
+                <span className="font-anton text-[16px] sm:text-[19px] lg:text-[20px] text-[#B91C1C] uppercase leading-none tracking-tight">
                   Suraksha
                 </span>
                 <span className="text-[7.5px] sm:text-[8.5px] font-rubik tracking-wider uppercase text-[#78350F] font-semibold mt-0.5 whitespace-nowrap hidden min-[360px]:block">
@@ -84,23 +84,23 @@ export function SurakshaHeader() {
               <Link
                 href="/suraksha/why-suraksha"
                 className={`flex items-center gap-1 py-2 transition-colors whitespace-nowrap ${
-                  isWhyActive ? "text-[#DC2626]" : "hover:text-[#DC2626]"
+                  isWhyActive ? "text-[#B91C1C]" : "hover:text-[#B91C1C]"
                 }`}
               >
                 <span>Why Suraksha</span>
                 <ChevronDown className="w-3 h-3 text-[#451A03]/60 group-hover:rotate-180 transition-transform" />
               </Link>
               <div className="absolute top-full left-0 w-52 p-2 bg-[#FFFBEB] rounded-xl shadow-xl border border-[#451A03]/15 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                <Link href="/suraksha/why-suraksha" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#DC2626] transition-colors">
+                <Link href="/suraksha/why-suraksha" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#B91C1C] transition-colors">
                   Overview
                 </Link>
-                <Link href="/suraksha/safety" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#DC2626] transition-colors">
+                <Link href="/suraksha/safety" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#B91C1C] transition-colors">
                   Safety &amp; Protection
                 </Link>
-                <Link href="/suraksha/savings" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#DC2626] transition-colors">
+                <Link href="/suraksha/savings" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#B91C1C] transition-colors">
                   Savings &amp; Mileage
                 </Link>
-                <Link href="/suraksha/simplicity" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#DC2626] transition-colors">
+                <Link href="/suraksha/simplicity" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#B91C1C] transition-colors">
                   Zero Maintenance
                 </Link>
               </div>
@@ -111,17 +111,17 @@ export function SurakshaHeader() {
               <Link
                 href="/suraksha/product"
                 className={`flex items-center gap-1 py-2 transition-colors whitespace-nowrap ${
-                  isProductActive ? "text-[#DC2626]" : "hover:text-[#DC2626]"
+                  isProductActive ? "text-[#B91C1C]" : "hover:text-[#B91C1C]"
                 }`}
               >
                 <span>Product</span>
                 <ChevronDown className="w-3 h-3 text-[#451A03]/60 group-hover:rotate-180 transition-transform" />
               </Link>
               <div className="absolute top-full left-0 w-48 p-2 bg-[#FFFBEB] rounded-xl shadow-xl border border-[#451A03]/15 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                <Link href="/suraksha/product" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#DC2626] transition-colors">
+                <Link href="/suraksha/product" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#B91C1C] transition-colors">
                   Product Overview
                 </Link>
-                <Link href="/suraksha/how-it-works" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#DC2626] transition-colors">
+                <Link href="/suraksha/how-it-works" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#B91C1C] transition-colors">
                   How It Works
                 </Link>
               </div>
@@ -132,17 +132,17 @@ export function SurakshaHeader() {
               <Link
                 href="/suraksha/pricing"
                 className={`flex items-center gap-1 py-2 transition-colors whitespace-nowrap ${
-                  isPricingActive ? "text-[#DC2626]" : "hover:text-[#DC2626]"
+                  isPricingActive ? "text-[#B91C1C]" : "hover:text-[#B91C1C]"
                 }`}
               >
                 <span>Pricing</span>
                 <ChevronDown className="w-3 h-3 text-[#451A03]/60 group-hover:rotate-180 transition-transform" />
               </Link>
               <div className="absolute top-full left-0 w-48 p-2 bg-[#FFFBEB] rounded-xl shadow-xl border border-[#451A03]/15 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                <Link href="/suraksha/pricing" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#DC2626] transition-colors">
+                <Link href="/suraksha/pricing" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#B91C1C] transition-colors">
                   Pricing &amp; ROI
                 </Link>
-                <Link href="/suraksha/emi" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#DC2626] transition-colors">
+                <Link href="/suraksha/emi" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#B91C1C] transition-colors">
                   Easy EMI Option
                 </Link>
               </div>
@@ -152,7 +152,7 @@ export function SurakshaHeader() {
             <Link
               href="/suraksha/centres"
               className={`transition-colors py-2 whitespace-nowrap ${
-                isCentresActive ? "text-[#DC2626]" : "hover:text-[#DC2626]"
+                isCentresActive ? "text-[#B91C1C]" : "hover:text-[#B91C1C]"
               }`}
             >
               Centres
@@ -164,20 +164,20 @@ export function SurakshaHeader() {
             <div className="relative group">
               <button
                 className={`flex items-center gap-1 py-2 transition-colors cursor-pointer whitespace-nowrap ${
-                  isResourcesActive ? "text-[#DC2626]" : "hover:text-[#DC2626]"
+                  isResourcesActive ? "text-[#B91C1C]" : "hover:text-[#B91C1C]"
                 }`}
               >
                 <span>Resources</span>
                 <ChevronDown className="w-3 h-3 text-[#451A03]/60 group-hover:rotate-180 transition-transform" />
               </button>
               <div className="absolute top-full right-0 xl:left-0 w-48 p-2 bg-[#FFFBEB] rounded-xl shadow-xl border border-[#451A03]/15 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                <Link href="/suraksha/faqs" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#DC2626] transition-colors">
+                <Link href="/suraksha/faqs" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#B91C1C] transition-colors">
                   FAQs
                 </Link>
-                <Link href="/suraksha/videos" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#DC2626] transition-colors">
+                <Link href="/suraksha/videos" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#B91C1C] transition-colors">
                   Videos &amp; Demos
                 </Link>
-                <Link href="/suraksha/blog" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#DC2626] transition-colors">
+                <Link href="/suraksha/blog" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#B91C1C] transition-colors">
                   Suraksha Blog
                 </Link>
               </div>
@@ -188,17 +188,17 @@ export function SurakshaHeader() {
               <Link
                 href="/suraksha/support"
                 className={`flex items-center gap-1 py-2 transition-colors whitespace-nowrap ${
-                  isSupportActive ? "text-[#DC2626]" : "hover:text-[#DC2626]"
+                  isSupportActive ? "text-[#B91C1C]" : "hover:text-[#B91C1C]"
                 }`}
               >
                 <span>Support</span>
                 <ChevronDown className="w-3 h-3 text-[#451A03]/60 group-hover:rotate-180 transition-transform" />
               </Link>
               <div className="absolute top-full right-0 xl:left-0 w-48 p-2 bg-[#FFFBEB] rounded-xl shadow-xl border border-[#451A03]/15 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                <Link href="/suraksha/support" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#DC2626] transition-colors">
+                <Link href="/suraksha/support" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#B91C1C] transition-colors">
                   Support Overview
                 </Link>
-                <Link href="/suraksha/contact" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#DC2626] transition-colors">
+                <Link href="/suraksha/contact" className="block px-3 py-2 rounded-lg text-xs text-[#451A03] hover:bg-[#FEF3C7] hover:text-[#B91C1C] transition-colors">
                   Contact Support
                 </Link>
               </div>
@@ -211,13 +211,13 @@ export function SurakshaHeader() {
             <div className="hidden lg:flex items-center gap-1.5 xl:gap-2 shrink-0">
               <Link
                 href="/suraksha/pricing"
-                className="px-2.5 xl:px-3 py-1.5 xl:py-2 rounded font-rubik text-[10.5px] xl:text-xs font-bold bg-[#DC2626] text-white hover:bg-[#B91C1C] transition-all shadow-sm whitespace-nowrap"
+                className="px-2.5 xl:px-3 py-1.5 xl:py-2 rounded font-rubik text-[10.5px] xl:text-xs font-bold bg-[#B91C1C] text-white hover:bg-[#991B1B] transition-all shadow-sm whitespace-nowrap"
               >
                 Get Suraksha
               </Link>
               <Link
                 href="/suraksha/whatsapp"
-                className="px-2.5 xl:px-3 py-1.5 xl:py-2 rounded font-rubik text-[10.5px] xl:text-xs font-bold bg-[#16A34A] text-white hover:bg-[#15803D] transition-all shadow-sm whitespace-nowrap"
+                className="px-2.5 xl:px-3 py-1.5 xl:py-2 rounded font-rubik text-[10.5px] xl:text-xs font-bold bg-[#15803D] text-white hover:bg-[#166534] transition-all shadow-sm whitespace-nowrap"
               >
                 WhatsApp
               </Link>
@@ -263,10 +263,10 @@ export function SurakshaHeader() {
               </button>
               {mobileWhyOpen && (
                 <div className="pl-3 pb-2 space-y-1 text-xs text-[#78350F] border-l-2 border-[#451A03]/10 ml-1">
-                  <Link href="/suraksha/why-suraksha" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#DC2626]">Overview</Link>
-                  <Link href="/suraksha/safety" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#DC2626]">Safety &amp; Protection</Link>
-                  <Link href="/suraksha/savings" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#DC2626]">Savings &amp; Mileage</Link>
-                  <Link href="/suraksha/simplicity" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#DC2626]">Zero Maintenance</Link>
+                  <Link href="/suraksha/why-suraksha" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#B91C1C]">Overview</Link>
+                  <Link href="/suraksha/safety" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#B91C1C]">Safety &amp; Protection</Link>
+                  <Link href="/suraksha/savings" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#B91C1C]">Savings &amp; Mileage</Link>
+                  <Link href="/suraksha/simplicity" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#B91C1C]">Zero Maintenance</Link>
                 </div>
               )}
             </div>
@@ -282,8 +282,8 @@ export function SurakshaHeader() {
               </button>
               {mobileProductOpen && (
                 <div className="pl-3 pb-2 space-y-1 text-xs text-[#78350F] border-l-2 border-[#451A03]/10 ml-1">
-                  <Link href="/suraksha/product" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#DC2626]">Product Overview</Link>
-                  <Link href="/suraksha/how-it-works" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#DC2626]">How It Works</Link>
+                  <Link href="/suraksha/product" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#B91C1C]">Product Overview</Link>
+                  <Link href="/suraksha/how-it-works" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#B91C1C]">How It Works</Link>
                 </div>
               )}
             </div>
@@ -299,8 +299,8 @@ export function SurakshaHeader() {
               </button>
               {mobilePricingOpen && (
                 <div className="pl-3 pb-2 space-y-1 text-xs text-[#78350F] border-l-2 border-[#451A03]/10 ml-1">
-                  <Link href="/suraksha/pricing" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#DC2626]">Pricing &amp; ROI</Link>
-                  <Link href="/suraksha/emi" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#DC2626]">Easy EMI Option</Link>
+                  <Link href="/suraksha/pricing" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#B91C1C]">Pricing &amp; ROI</Link>
+                  <Link href="/suraksha/emi" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#B91C1C]">Easy EMI Option</Link>
                 </div>
               )}
             </div>
@@ -309,7 +309,7 @@ export function SurakshaHeader() {
             <Link
               href="/suraksha/centres"
               onClick={() => setMobileOpen(false)}
-              className="block py-2 text-[#451A03] font-bold hover:text-[#DC2626]"
+              className="block py-2 text-[#451A03] font-bold hover:text-[#B91C1C]"
             >
               Centres
             </Link>
@@ -327,9 +327,9 @@ export function SurakshaHeader() {
               </button>
               {mobileResourcesOpen && (
                 <div className="pl-3 pb-2 space-y-1 text-xs text-[#78350F] border-l-2 border-[#451A03]/10 ml-1">
-                  <Link href="/suraksha/faqs" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#DC2626]">FAQs</Link>
-                  <Link href="/suraksha/videos" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#DC2626]">Videos &amp; Demos</Link>
-                  <Link href="/suraksha/blog" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#DC2626]">Suraksha Blog</Link>
+                  <Link href="/suraksha/faqs" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#B91C1C]">FAQs</Link>
+                  <Link href="/suraksha/videos" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#B91C1C]">Videos &amp; Demos</Link>
+                  <Link href="/suraksha/blog" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#B91C1C]">Suraksha Blog</Link>
                 </div>
               )}
             </div>
@@ -345,8 +345,8 @@ export function SurakshaHeader() {
               </button>
               {mobileSupportOpen && (
                 <div className="pl-3 pb-2 space-y-1 text-xs text-[#78350F] border-l-2 border-[#451A03]/10 ml-1">
-                  <Link href="/suraksha/support" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#DC2626]">Support Overview</Link>
-                  <Link href="/suraksha/contact" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#DC2626]">Contact Support</Link>
+                  <Link href="/suraksha/support" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#B91C1C]">Support Overview</Link>
+                  <Link href="/suraksha/contact" onClick={() => setMobileOpen(false)} className="block py-1.5 hover:text-[#B91C1C]">Contact Support</Link>
                 </div>
               )}
             </div>
@@ -363,14 +363,14 @@ export function SurakshaHeader() {
               <Link
                 href="/suraksha/pricing"
                 onClick={() => setMobileOpen(false)}
-                className="w-full py-2.5 text-center rounded font-rubik text-xs font-bold bg-[#DC2626] text-white hover:bg-[#B91C1C] transition-all"
+                className="w-full py-2.5 text-center rounded font-rubik text-xs font-bold bg-[#B91C1C] text-white hover:bg-[#991B1B] transition-all"
               >
                 Get Suraksha
               </Link>
               <Link
                 href="/suraksha/whatsapp"
                 onClick={() => setMobileOpen(false)}
-                className="w-full py-2.5 text-center rounded font-rubik text-xs font-bold bg-[#16A34A] text-white hover:bg-[#15803D] transition-all"
+                className="w-full py-2.5 text-center rounded font-rubik text-xs font-bold bg-[#15803D] text-white hover:bg-[#166534] transition-all"
               >
                 Chat on WhatsApp
               </Link>

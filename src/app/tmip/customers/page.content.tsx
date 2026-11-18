@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { ArrowRight, Bus, CheckCircle2, HardHat, Pickaxe, Truck } from "lucide-react";
 import type { Metadata } from "next";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/customers",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Customers  ·  TMIP",
     description:
       "Two hundred enterprise fleet operators run on TMIP. 70,000+ vehicles under active management. See the customers, the industries, and the outcomes.",

@@ -19,9 +19,9 @@ export function SurakshaHighwayHelpBar() {
             <span className="text-[#FEF3C7]">
               Suraksha Helpline: <strong>1800 258 4567</strong> (Toll-Free, 8 AM – 8 PM)
             </span>
-            <span className="hidden sm:inline text-[#EA580C]">•</span>
+            <span className="hidden sm:inline text-[#FB923C]" aria-hidden="true">•</span>
             <span className="text-[#FEF3C7]/90 font-medium">
-              400+ Highway Suraksha Centres Across India
+              600+ Highway Suraksha Centres Across India
             </span>
           </div>
           <div className="flex items-center">

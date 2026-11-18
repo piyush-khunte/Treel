@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/solutions/construction",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Construction Fleet Intelligence · TMIP",
     description:
       "TMIP for construction fleets: ready-mix concrete, tippers, construction equipment. Built for demanding terrain, dust, and unforgiving maintenance windows.",

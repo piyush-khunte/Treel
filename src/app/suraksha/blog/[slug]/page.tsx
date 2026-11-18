@@ -22,6 +22,7 @@ ShieldCheck,
 User,
 Wrench
 } from "lucide-react";
+import { clampDescription, composeTitle, DEFAULT_OG_IMAGES, stripTitleSuffix } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -55,9 +56,11 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${article.title} · Suraksha Drivers' Blog`;
-  const description =
-    article.excerpt || "Practical guidance for commercial highway drivers.";
+  const title = composeTitle(article.title, " · Suraksha Blog");
+  const ogTitle = stripTitleSuffix(article.title);
+  const description = clampDescription(
+    article.excerpt || "Practical guidance for commercial highway drivers."
+  );
   const canonicalUrl = `https://treel.in/suraksha/blog/${article.slug || article._id}`;
 
   return {
@@ -67,11 +70,11 @@ export async function generateMetadata({
       canonical: canonicalUrl,
     },
     openGraph: {
-      title,
+      title: ogTitle,
       description,
       url: canonicalUrl,
       type: "article",
-      images: getValidImageSrc(article.image) ? [{ url: getValidImageSrc(article.image)! }] : undefined,
+      images: getValidImageSrc(article.image) ? [{ url: getValidImageSrc(article.image)! }] : DEFAULT_OG_IMAGES,
     },
   };
 }

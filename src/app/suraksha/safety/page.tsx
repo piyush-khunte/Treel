@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { ArrowRight } from "lucide-react";
@@ -5,13 +6,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Truck Safety  \u00b7  Front-Tyre Blowouts Prevented  \u00b7  Suraksha",
+  title: "Truck Safety · Front-Tyre Blowouts Prevented · Suraksha",
   description: "Prevent highway front-tyre blowouts. Suraksha real-time pressure and temperature monitoring alerts you 24–48 hours before a tyre fails. Built for safety.",
   alternates: {
     canonical: "https://treel.in/suraksha/safety",
   },
   openGraph: {
-    title: "Truck Safety  \u00b7  Front-Tyre Blowouts Prevented  \u00b7  Suraksha",
+    images: DEFAULT_OG_IMAGES,
+    title: "Truck Safety · Front-Tyre Blowouts Prevented · Suraksha",
     description: "Prevent highway front-tyre blowouts. Suraksha real-time pressure and temperature monitoring alerts you 24–48 hours before a tyre fails. Built for safety.",
     url: "https://treel.in/suraksha/safety",
   },

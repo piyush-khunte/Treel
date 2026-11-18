@@ -22,10 +22,10 @@ export function SurakshaLandingFooter({ className = "" }: { className?: string }
             <p className="font-fraunces italic text-[15px] text-[#94A3B8] leading-relaxed max-w-sm">
               The mobility intelligence company. Every vehicle a signal, every signal an insight.
             </p>
-            <p className="text-xs text-[#64748B] font-manrope pt-2">
+            <p className="text-xs text-[#94A3B8] font-manrope pt-2">
               ARAI &amp; ISO 9001:2015 Certified · Patents in India, US &amp; EU
             </p>
-            <p className="text-xs text-[#64748B] font-manrope">
+            <p className="text-xs text-[#94A3B8] font-manrope">
               IATF 16949 Certified
             </p>
             <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
@@ -36,9 +36,9 @@ export function SurakshaLandingFooter({ className = "" }: { className?: string }
 
           {/* Solutions */}
           <div className="space-y-3">
-            <h5 className="text-[11px] uppercase tracking-widest text-[#D5573B] font-bold font-mono">
+            <h2 className="text-[11px] uppercase tracking-widest text-[#D5573B] font-bold font-mono">
               SOLUTIONS
-            </h5>
+            </h2>
             <ul className="space-y-2">
               <li>
                 <Link href="/tmip" className="text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors">
@@ -65,9 +65,9 @@ export function SurakshaLandingFooter({ className = "" }: { className?: string }
 
           {/* Technology */}
           <div className="space-y-3">
-            <h5 className="text-[11px] uppercase tracking-widest text-[#D5573B] font-bold font-mono">
+            <h2 className="text-[11px] uppercase tracking-widest text-[#D5573B] font-bold font-mono">
               TECHNOLOGY
-            </h5>
+            </h2>
             <ul className="space-y-2">
               <li>
                 <Link href="/technology" className="text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors">
@@ -94,9 +94,9 @@ export function SurakshaLandingFooter({ className = "" }: { className?: string }
 
           {/* Intelligence */}
           <div className="space-y-3">
-            <h5 className="text-[11px] uppercase tracking-widest text-[#D5573B] font-bold font-mono">
+            <h2 className="text-[11px] uppercase tracking-widest text-[#D5573B] font-bold font-mono">
               INTELLIGENCE
-            </h5>
+            </h2>
             <ul className="space-y-2">
               <li>
                 <Link href="/research" className="text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors">
@@ -133,9 +133,9 @@ export function SurakshaLandingFooter({ className = "" }: { className?: string }
 
           {/* Company */}
           <div className="space-y-3">
-            <h5 className="text-[11px] uppercase tracking-widest text-[#D5573B] font-bold font-mono">
+            <h2 className="text-[11px] uppercase tracking-widest text-[#D5573B] font-bold font-mono">
               COMPANY
-            </h5>
+            </h2>
             <ul className="space-y-2">
               <li>
                 <Link href="/about" className="text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors">
@@ -172,7 +172,7 @@ export function SurakshaLandingFooter({ className = "" }: { className?: string }
         </div>
 
         {/* Bottom row */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#64748B] font-inter gap-4">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#94A3B8] font-inter gap-4">
           <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
             <p>
               Website developed by{" "}

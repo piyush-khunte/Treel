@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizePhone } from "@/lib/validation/phone";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -134,7 +135,7 @@ export function PersonalCampaignPage() {
     const { name, value } = e.target;
     let finalVal = value;
     if (name === "mobile") {
-      finalVal = value.replace(/\D/g, "").slice(0, 10);
+      finalVal = normalizePhone(value);
     }
     setFormData((prev) => ({ ...prev, [name]: finalVal }));
     if (submitError) setSubmitError(null);
@@ -854,7 +855,7 @@ export function PersonalCampaignPage() {
                           inputMode="numeric"
                           autoComplete="tel-national"
                           pattern="[6-9][0-9]{9}"
-                          maxLength={10}
+                          maxLength={16}
                           placeholder="10-digit number"
                           required
                           value={formData.mobile}
@@ -1420,7 +1421,7 @@ export function PersonalCampaignPage() {
                         </span>
                       </div>
                       <div className="card-s">
-                        <h5>Last 7 days</h5>
+                        <h3>Last 7 days</h3>
                         <svg className="spark" viewBox="0 0 220 68">
                           <line x1="10" y1="12" x2="210" y2="12" stroke="#6B7280" strokeWidth="1" strokeDasharray="3 4" opacity="0.6" />
                           <text x="210" y="8" textAnchor="end" fontSize="9" fontWeight="600" fill="#6B7280">
@@ -1521,7 +1522,7 @@ export function PersonalCampaignPage() {
                         </div>
                       </div>
                       <div className="card-s">
-                        <h5>Coming up</h5>
+                        <h3>Coming up</h3>
                         <div className="rem">
                           <b>Insurance renewal</b>
                           <span>in 12 days</span>
@@ -1532,7 +1533,7 @@ export function PersonalCampaignPage() {
                         </div>
                       </div>
                       <div className="card-s">
-                        <h5>This month · My bike</h5>
+                        <h3>This month · My bike</h3>
                         <div className="rem">
                           <b>Mileage</b>
                           <span>46 km/l</span>
@@ -2000,7 +2001,7 @@ export function PersonalCampaignPage() {
                         inputMode="numeric"
                         autoComplete="tel-national"
                         pattern="[6-9][0-9]{9}"
-                        maxLength={10}
+                        maxLength={16}
                         placeholder="10-digit number"
                         required
                         value={formData.mobile}

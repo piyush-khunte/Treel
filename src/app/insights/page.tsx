@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import { InsightsClientView } from "./insights-client";
 
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/insights",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Mobility Intelligence Insights & Perspectives",
     description: "In-depth analysis and commentary on mobility intelligence, fleet operations, and India's commercial vehicle sector from Treel's leadership team.",
     url: "https://treel.in/insights",

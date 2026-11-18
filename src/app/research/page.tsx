@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { getPublishedWhitepapers } from "@/lib/content/whitepapers-storage";
 import { ArrowRight,Sparkles } from "lucide-react";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/research",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Research & Whitepapers",
     description: "Treel research library: whitepapers, case studies, and technical papers on mobility intelligence, Vehicle Digital Twin, and fleet ROI. Free downloads.",
     url: "https://treel.in/research",
@@ -73,7 +75,7 @@ export default async function ResearchPage() {
             <div className="pt-2">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831] focus:outline-none focus:ring-2 focus:ring-[#D5573B] focus:ring-offset-2 focus:ring-offset-[#0F1419]"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#C64529] text-[#FAF7F2] hover:bg-[#B53D23] focus:outline-none focus:ring-2 focus:ring-[#D5573B] focus:ring-offset-2 focus:ring-offset-[#0F1419]"
               >
                 Suggest a topic
                 <ArrowRight className="w-4 h-4" />

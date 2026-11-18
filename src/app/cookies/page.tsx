@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Mail,MapPin,Phone,Sliders } from "lucide-react";
 import type { Metadata } from "next";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/cookies",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Cookie Policy",
     description: "How Treel uses cookies and similar technologies on treel.in. Cookie categories, consent management, and how to update your preferences.",
     url: "https://treel.in/cookies",
@@ -68,10 +70,10 @@ export default function CookiesPage() {
           {/* Table of Contents / Sidebar */}
           <aside className="lg:col-span-4">
             <div className="sticky top-28 p-6 rounded-lg bg-white/[0.03] border border-white/[0.08] space-y-6">
-              <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] flex items-center gap-2 leading-[1.2]">
+              <h2 className="font-fraunces text-lg font-medium text-[#FAF7F2] flex items-center gap-2 leading-[1.2]">
                 <Sliders className="w-4 h-4 text-[#D5573B]" />
                 Policy Sections
-              </h3>
+              </h2>
               <nav className="space-y-2">
                 {sections.map((sec) => (
                   <a
@@ -223,15 +225,7 @@ export default function CookiesPage() {
                   <ul className="space-y-2 pt-2 border-t border-white/[0.04]">
                     <li className="text-xs text-[#94A3B8] flex items-start gap-2">
                       <span className="text-[#D5573B] mt-0.5">•</span>
-                      <span>Meta (Facebook, Instagram) advertising pixels</span>
-                    </li>
-                    <li className="text-xs text-[#94A3B8] flex items-start gap-2">
-                      <span className="text-[#D5573B] mt-0.5">•</span>
                       <span>Google Ads conversion tracking</span>
-                    </li>
-                    <li className="text-xs text-[#94A3B8] flex items-start gap-2">
-                      <span className="text-[#D5573B] mt-0.5">•</span>
-                      <span>LinkedIn insight tag</span>
                     </li>
                   </ul>
                 </div>
@@ -265,7 +259,7 @@ export default function CookiesPage() {
                 <li className="p-4 rounded-lg bg-white/[0.03] border border-white/[0.08] flex items-start gap-3">
                   <span className="text-[#D5573B] mt-1 font-bold">•</span>
                   <div className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
-                    <strong className="text-[#FAF7F2]">Through platform-specific opt-outs</strong> — Google Analytics opt-out browser add-on; Meta&apos;s ad preferences page
+                    <strong className="text-[#FAF7F2]">Through platform-specific opt-outs</strong> — Google Analytics opt-out browser add-on; Google&apos;s My Ad Center (ad personalisation settings)
                   </div>
                 </li>
               </ul>
@@ -285,7 +279,7 @@ export default function CookiesPage() {
                 </h2>
               </div>
               <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-                Some cookies are set by third-party services we use (Google Analytics, Meta, Razorpay chat, Magic Flow AI, YouTube video embeds). These third parties have their own privacy and cookie policies which govern their use of cookies.
+                Some cookies are set by third-party services we use: Google Ads conversion tracking (only after marketing consent), Google Analytics and Microsoft Clarity (only after analytics consent), YouTube video embeds (privacy-enhanced mode), and Razorpay, our payment processor, on the checkout payment step. These third parties have their own privacy and cookie policies which govern their use of cookies.
               </p>
             </section>
 

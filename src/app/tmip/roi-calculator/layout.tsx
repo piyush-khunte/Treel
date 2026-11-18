@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/roi-calculator",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Commercial Fleet ROI Calculator — TMIP",
     description:
       "Calculate fuel savings, tyre wear reduction, and expected payback period for commercial vehicle fleets using Treel's TMIP platform.",

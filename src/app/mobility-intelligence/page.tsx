@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { ArrowRight,ChevronRight } from "lucide-react";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/mobility-intelligence",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "What is Mobility Intelligence?",
     description: "Mobility intelligence replaces basic tyre monitoring for fleet operators by treating each vehicle as a queryable data object. Category guide by Treel.",
     url: "https://treel.in/mobility-intelligence",

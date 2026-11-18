@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/suraksha/centres",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Suraksha Service & Fitment Centres",
     description:
       "Find authorized Treel Suraksha fitment, calibration, and support centres along major Indian national transport hubs and highway corridors.",

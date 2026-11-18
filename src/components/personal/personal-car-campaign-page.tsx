@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizePhone } from "@/lib/validation/phone";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -692,10 +693,10 @@ export function PersonalCarCampaignPage() {
                         inputMode="numeric"
                         autoComplete="tel-national"
                         pattern="[6-9][0-9]{9}"
-                        maxLength={10}
+                        maxLength={16}
                         placeholder="10-digit number"
                         value={formData.mobile}
-                        onChange={(e) => setFormData({ ...formData, mobile: e.target.value.replace(/\D/g, "").slice(0, 10) })}
+                        onChange={(e) => setFormData({ ...formData, mobile: normalizePhone(e.target.value) })}
                         required
                       />
                     </div>
@@ -955,8 +956,8 @@ export function PersonalCarCampaignPage() {
                 <div className="numblock" aria-hidden="true">02</div>
                 <h3>Get it fitted</h3>
                 <p>Treel&apos;s clamp-in valve sensors are fitted at each wheel&apos;s valve. Find a Treel tyre shop near you to have it done.</p>
-                <a className="textlink" href="https://treel.in/buy-products">
-                  Find a tyre shop <Icon id="i-arrow-right" />
+                <a className="textlink" href="/personal/buy">
+                  Buy your kit <Icon id="i-arrow-right" />
                 </a>
               </div>
               <div className="step">
@@ -1124,7 +1125,7 @@ export function PersonalCarCampaignPage() {
                       <div className="sbar"><span>9:41</span><span className="sbar-icons"><Icon id="i-antenna-bars-5" /><Icon id="i-wifi" /><Icon id="i-battery-3" /></span></div>
                       <div className="app-top"><div><div className="app-hello">My car · MH 12 XX 0000</div><div className="app-title">Rear-left tyre</div></div><span className="app-btn"><Icon id="i-share" /></span></div>
                       <div className="big-read"><div className="n">29<small>psi</small></div><span className="pill"><span className="dot"></span>A little low · 34 °C</span></div>
-                      <div className="card-s"><h5>Last 7 days</h5><svg className="spark" viewBox="0 0 220 68"><line x1="10" y1="12" x2="210" y2="12" stroke="#6B7280" strokeWidth="1" strokeDasharray="3 4" opacity=".6"/><text x="210" y="8" textAnchor="end" fontSize="9" fontWeight="600" fill="#6B7280">usual 33 psi</text><polygon points="10,64 10.0,12.0 43.3,16.6 76.6,23.5 109.9,31.5 143.2,39.6 176.5,48.8 209.8,58.0 209.8,64" fill="rgba(37,99,235,.10)"/><polyline points="10.0,12.0 43.3,16.6 76.6,23.5 109.9,31.5 143.2,39.6 176.5,48.8 209.8,58.0" fill="none" stroke="#2563EB" strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round"/><circle cx="209.8" cy="58.0" r="4" fill="#2563EB" stroke="#fff" strokeWidth="2"/></svg><div className="spark-days"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div></div>
+                      <div className="card-s"><h3>Last 7 days</h3><svg className="spark" viewBox="0 0 220 68"><line x1="10" y1="12" x2="210" y2="12" stroke="#6B7280" strokeWidth="1" strokeDasharray="3 4" opacity=".6"/><text x="210" y="8" textAnchor="end" fontSize="9" fontWeight="600" fill="#6B7280">usual 33 psi</text><polygon points="10,64 10.0,12.0 43.3,16.6 76.6,23.5 109.9,31.5 143.2,39.6 176.5,48.8 209.8,58.0 209.8,64" fill="rgba(37,99,235,.10)"/><polyline points="10.0,12.0 43.3,16.6 76.6,23.5 109.9,31.5 143.2,39.6 176.5,48.8 209.8,58.0" fill="none" stroke="#2563EB" strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round"/><circle cx="209.8" cy="58.0" r="4" fill="#2563EB" stroke="#fff" strokeWidth="2"/></svg><div className="spark-days"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div></div>
                       <div className="card-s msg">Pressure has dropped 4 psi since Monday. Top up when you can, and have it checked at a tyre shop.</div>
                       <div className="app-cta"><Icon id="i-map-pin" />Find a tyre shop</div>
                       <div className="tabbar"><Icon id="i-gauge" /><Icon id="i-bell" className="ic on" /><Icon id="i-calendar-event" /><Icon id="i-user" /></div>
@@ -1140,8 +1141,8 @@ export function PersonalCarCampaignPage() {
                       <div className="sbar"><span>9:41</span><span className="sbar-icons"><Icon id="i-antenna-bars-5" /><Icon id="i-wifi" /><Icon id="i-battery-3" /></span></div>
                       <div className="app-top"><div><div className="app-hello">2 of 10 vehicles</div><div className="app-title">Your garage</div></div><span className="app-btn"><Icon id="i-plus" /></span></div>
                       <div className="card-s"><div className="veh"><span className="veh-ic"><Icon id="i-car" /></span><div><b>My car</b><span>MH 12 XX 0000</span></div><span className="dot"></span></div><div className="veh"><span className="veh-ic"><Icon id="i-motorbike" /></span><div><b>Family bike</b><span>MH 12 YY 0000 · Shared</span></div><span className="dot ok"></span></div></div>
-                      <div className="card-s"><h5>Coming up</h5><div className="rem"><b>Insurance renewal</b><span>in 12 days</span></div><div className="rem"><b>General service</b><span>18 Oct</span></div></div>
-                      <div className="card-s"><h5>This month · My car</h5><div className="rem"><b>Mileage</b><span>16 km/l</span></div><div className="rem"><b>Fuel logged</b><span>38 litres</span></div></div>
+                      <div className="card-s"><h3>Coming up</h3><div className="rem"><b>Insurance renewal</b><span>in 12 days</span></div><div className="rem"><b>General service</b><span>18 Oct</span></div></div>
+                      <div className="card-s"><h3>This month · My car</h3><div className="rem"><b>Mileage</b><span>16 km/l</span></div><div className="rem"><b>Fuel logged</b><span>38 litres</span></div></div>
                       <div className="tabbar"><Icon id="i-gauge" /><Icon id="i-bell" /><Icon id="i-calendar-event" className="ic on" /><Icon id="i-user" /></div>
                       <div className="home-ind"></div>
                     </div>
@@ -1491,10 +1492,10 @@ export function PersonalCarCampaignPage() {
                       inputMode="numeric"
                       autoComplete="tel-national"
                       pattern="[6-9][0-9]{9}"
-                      maxLength={10}
+                      maxLength={16}
                       placeholder="10-digit number"
                       value={formData.mobile}
-                      onChange={(e) => setFormData({ ...formData, mobile: e.target.value.replace(/\D/g, "").slice(0, 10) })}
+                      onChange={(e) => setFormData({ ...formData, mobile: normalizePhone(e.target.value) })}
                       required
                     />
                   </div>

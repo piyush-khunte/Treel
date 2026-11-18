@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 ArrowRight,
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/personal/support",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Support · Personal TPMS",
     description: "Personal TPMS customer support. Setup guides, troubleshooting, warranty, and contact options.",
     url: "https://treel.in/personal/support",
@@ -119,7 +121,7 @@ export default function PersonalSupportPage() {
                     <div className="w-12 h-12 rounded-2xl bg-[#2563EB]/10 text-[#2563EB] flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
                       <IconComp className="w-6 h-6" />
                     </div>
-                    <h3 className="font-bold text-xl text-[#111827]">{card.title}</h3>
+                    <h2 className="font-bold text-xl text-[#111827]">{card.title}</h2>
                     <p className="text-sm text-[#4B5563] leading-relaxed font-medium">{card.desc}</p>
                   </div>
                   <div className="pt-6">

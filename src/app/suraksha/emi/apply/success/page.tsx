@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { SurakshaEmiSuccessView } from "./success-view";
@@ -5,14 +6,15 @@ import { SurakshaEmiSuccessView } from "./success-view";
 export const metadata: Metadata = {
   title: "Application Received · Suraksha EMI",
   description:
-    "Your Suraksha EMI application has been received. Reference number generated. Bajaj Finance will verify your details in 24–48 hours.",
+    "Your Suraksha EMI application has been received. Reference number generated. Our NBFC financing partner will verify your details in 24–48 hours.",
   alternates: {
     canonical: "https://treel.in/suraksha/emi/apply/success",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Application Received · Suraksha EMI",
     description:
-      "Your Suraksha EMI application has been received. Reference number generated. Bajaj Finance will verify your details in 24–48 hours.",
+      "Your Suraksha EMI application has been received. Reference number generated. Our NBFC financing partner will verify your details in 24–48 hours.",
     url: "https://treel.in/suraksha/emi/apply/success",
   },
   robots: {

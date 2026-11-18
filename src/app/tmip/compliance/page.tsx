@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { ArrowRight, CheckCircle2, ShieldCheck, Cpu, Lock, Globe2 } from "lucide-react";
 import type { Metadata } from "next";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/compliance",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Certifications & Compliance · TMIP",
     description: "TMIP enterprise compliance: IATF 16949, ISO 27001, GDPR, India DPDP Act 2023, FCC & CE telematics certifications, and IP65/IP67 environmental ratings.",
     url: "https://treel.in/tmip/compliance",
@@ -61,28 +63,28 @@ export default function TmipCompliancePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             <div className="p-5 sm:p-6 rounded-xl border border-white/10 bg-[#0E1626]/80 space-y-2.5">
               <ShieldCheck className="w-6 h-6 text-emerald-400" />
-              <h3 className="font-space-grotesk text-lg font-bold text-white">IATF 16949</h3>
+              <h2 className="font-space-grotesk text-lg font-bold text-white">IATF 16949</h2>
               <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
                 Automotive Quality Management System aligned for OEM and tier-1 assembly lines.
               </p>
             </div>
             <div className="p-5 sm:p-6 rounded-xl border border-white/10 bg-[#0E1626]/80 space-y-2.5">
               <Lock className="w-6 h-6 text-blue-400" />
-              <h3 className="font-space-grotesk text-lg font-bold text-white">ISO 27001</h3>
+              <h2 className="font-space-grotesk text-lg font-bold text-white">ISO 27001</h2>
               <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
                 Information Security Management System ensuring end-to-end cloud and telematics data integrity.
               </p>
             </div>
             <div className="p-5 sm:p-6 rounded-xl border border-white/10 bg-[#0E1626]/80 space-y-2.5">
               <Globe2 className="w-6 h-6 text-amber-400" />
-              <h3 className="font-space-grotesk text-lg font-bold text-white">GDPR &amp; DPDP</h3>
+              <h2 className="font-space-grotesk text-lg font-bold text-white">GDPR &amp; DPDP</h2>
               <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
                 Comprehensive data privacy frameworks for EU deployments and India DPDP Act 2023.
               </p>
             </div>
             <div className="p-5 sm:p-6 rounded-xl border border-white/10 bg-[#0E1626]/80 space-y-2.5">
               <Cpu className="w-6 h-6 text-purple-400" />
-              <h3 className="font-space-grotesk text-lg font-bold text-white">FCC &amp; CE</h3>
+              <h2 className="font-space-grotesk text-lg font-bold text-white">FCC &amp; CE</h2>
               <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
                 Radio frequency and electromagnetic compatibility certifications for global exports.
               </p>
@@ -137,13 +139,13 @@ export default function TmipCompliancePage() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 pt-1">
               <div className="p-5 sm:p-6 rounded-lg bg-[#0E1626] border border-cyan-500/20 space-y-2">
-                <h4 className="text-white font-bold text-lg font-space-grotesk">IP65 Specification</h4>
+                <h3 className="text-white font-bold text-lg font-space-grotesk">IP65 Specification</h3>
                 <p className="text-sm text-[#94A3B8] leading-relaxed">
                   Dust-tight protection against total particulate ingress and resistant to low/medium pressure water jets from all angles during vehicle maintenance washdowns.
                 </p>
               </div>
               <div className="p-5 sm:p-6 rounded-lg bg-[#0E1626] border border-cyan-500/20 space-y-2">
-                <h4 className="text-white font-bold text-lg font-space-grotesk">IP67 Specification</h4>
+                <h3 className="text-white font-bold text-lg font-space-grotesk">IP67 Specification</h3>
                 <p className="text-sm text-[#94A3B8] leading-relaxed">
                   Hermetically sealed against complete dust ingress and continuous operational immersion in water up to 1 metre depth for 30 minutes in water crossings and wet quarry pits.
                 </p>

@@ -28,13 +28,13 @@ export function EcosystemBar() {
   else if (isPersonal) contactHref = "/contact?subject=personal";
 
   return (
-    <div className="bg-[#0B0F14] text-[#FAF7F2] text-xs py-1.5 border-b border-white/10 select-none z-50">
+    <div className="bg-[#0B0F14] text-[#FAF7F2] text-xs py-0.5 border-b border-white/10 select-none z-50">
       <div className="w-full max-w-[1320px] mx-auto px-3 sm:px-6 lg:px-10 flex items-center justify-between">
         {/* Left: Ecosystem Links */}
-        <div className="flex items-center space-x-2 sm:space-x-3.5 xl:space-x-6 overflow-x-auto md:overflow-x-visible no-scrollbar py-0.5">
+        <div className="flex items-center space-x-2 sm:space-x-3.5 xl:space-x-6 min-w-0 overflow-x-auto lg:overflow-x-visible no-scrollbar">
           {/* Treel Corporate */}
           <Link prefetch={false} href="/"
-            className={`transition-colors whitespace-nowrap font-medium text-xs ${
+            className={`min-h-[28px] inline-flex items-center transition-colors whitespace-nowrap font-medium text-xs ${
               isCorporate
                 ? "text-[#D5573B] font-semibold"
                 : "text-slate-300 hover:text-[#D5573B]"
@@ -43,11 +43,11 @@ export function EcosystemBar() {
             Treel Corporate
           </Link>
 
-          <span className="text-slate-600">•</span>
+          <span aria-hidden="true" className="text-slate-400">•</span>
 
           {/* TMIP Enterprise */}
           <Link prefetch={false} href="/tmip"
-            className={`transition-colors whitespace-nowrap flex items-center gap-1.5 font-medium text-xs ${
+            className={`min-h-[28px] transition-colors whitespace-nowrap flex items-center gap-1.5 font-medium text-xs ${
               isTmip
                 ? "text-[#00E5FF] font-semibold"
                 : "text-slate-300 hover:text-[#00E5FF]"
@@ -56,11 +56,11 @@ export function EcosystemBar() {
             <Activity className="w-3.5 h-3.5 text-[#00E5FF]" /> TMIP Enterprise
           </Link>
 
-          <span className="text-slate-600">•</span>
+          <span aria-hidden="true" className="text-slate-400">•</span>
 
           {/* Suraksha Fleet */}
           <Link prefetch={false} href="/suraksha"
-            className={`transition-colors whitespace-nowrap flex items-center gap-1.5 font-medium text-xs ${
+            className={`min-h-[28px] transition-colors whitespace-nowrap flex items-center gap-1.5 font-medium text-xs ${
               isSuraksha
                 ? "text-[#F59E0B] font-semibold"
                 : "text-slate-300 hover:text-[#F59E0B]"
@@ -69,11 +69,11 @@ export function EcosystemBar() {
             <Truck className="w-3.5 h-3.5 text-[#F59E0B]" /> Suraksha Fleet
           </Link>
 
-          <span className="text-slate-600">•</span>
+          <span aria-hidden="true" className="text-slate-400">•</span>
 
           {/* Personal TPMS */}
           <Link prefetch={false} href="/personal"
-            className={`transition-colors whitespace-nowrap flex items-center gap-1.5 font-medium text-xs ${
+            className={`min-h-[28px] transition-colors whitespace-nowrap flex items-center gap-1.5 font-medium text-xs ${
               isPersonal
                 ? "text-[#60A5FA] font-semibold"
                 : "text-slate-300 hover:text-[#60A5FA]"
@@ -82,11 +82,11 @@ export function EcosystemBar() {
             <Car className="w-3.5 h-3.5 text-[#60A5FA]" /> Personal TPMS
           </Link>
 
-          <span className="text-slate-600">•</span>
+          <span aria-hidden="true" className="text-slate-400">•</span>
 
           {/* OTR TPMS */}
           <Link prefetch={false} href="/products/otr-tpms"
-            className={`transition-colors whitespace-nowrap flex items-center gap-1.5 font-medium text-xs ${
+            className={`min-h-[28px] transition-colors whitespace-nowrap flex items-center gap-1.5 font-medium text-xs ${
               isOtr
                 ? "text-[#3B82F6] font-semibold"
                 : "text-slate-300 hover:text-[#3B82F6]"
@@ -108,9 +108,9 @@ export function EcosystemBar() {
         </div>
 
         {/* Right: Parent Company & Support */}
-        <div className="hidden md:flex items-center text-slate-300 text-xs shrink-0">
+        <div className="hidden lg:flex items-center text-slate-300 text-xs shrink-0 pl-4">
           <Link prefetch={false} href={contactHref}
-            className="hover:text-[#D5573B] font-medium text-slate-300 transition-colors whitespace-nowrap"
+            className="min-h-[28px] inline-flex items-center hover:text-[#D5573B] font-medium text-slate-300 transition-colors whitespace-nowrap"
           >
             Support & Inquiries
           </Link>

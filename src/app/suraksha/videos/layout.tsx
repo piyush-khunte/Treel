@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/suraksha/videos",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Suraksha Video Guides & Fitment Demos",
     description:
       "Watch video walkthroughs, sensor fitment tutorials, and cabin display setup instructions for Treel Suraksha truck tyre pressure systems.",

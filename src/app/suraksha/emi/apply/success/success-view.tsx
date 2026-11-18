@@ -43,7 +43,7 @@ const DEFAULT_DETAILS: EmiApplicationDetails = {
   state: "Maharashtra",
   tenure: "12 Months",
   downPayment: "Zero Down Payment Plan",
-  financingPartner: "Bajaj Finance",
+  financingPartner: "NBFC financing partner",
   applicationDate: new Date().toLocaleDateString("en-IN", {
     day: "numeric",
     month: "long",
@@ -133,7 +133,7 @@ export function SurakshaEmiSuccessView() {
               आपकी EMI एप्लिकेशन सफलतापूर्वक प्राप्त हो चुकी है।
             </SurakshaRotator>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik max-w-3xl font-medium">
-              Save your reference number for any follow-up. Your application details are below, along with the verification and delivery steps handled through Bajaj Finance.
+              Save your reference number for any follow-up. Your application details are below, along with the verification and delivery steps handled through our NBFC financing partner.
             </p>
           </div>
         </div>
@@ -375,7 +375,7 @@ export function SurakshaEmiSuccessView() {
                   </h4>
                 </div>
                 <p className="text-[#78350F] text-xs leading-relaxed font-rubik font-medium mb-4">
-                  Locate 400+ authorized Truck Wheels centres across Indian highway corridors for fitment.
+                  Locate 600+ authorized Truck Wheels centres across Indian highway corridors for fitment.
                 </p>
                 <div className="font-bold text-xs text-[#DC2626] flex items-center gap-1">
                   Learn more <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -393,7 +393,7 @@ export function SurakshaEmiSuccessView() {
                   </h4>
                 </div>
                 <p className="text-[#78350F] text-xs leading-relaxed font-rubik font-medium mb-4">
-                  Frequently asked questions regarding documents required, Bajaj Finance EMI tenures, and warranties.
+                  Frequently asked questions regarding documents required, EMI tenures, and warranties.
                 </p>
                 <div className="font-bold text-xs text-[#DC2626] flex items-center gap-1">
                   Learn more <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

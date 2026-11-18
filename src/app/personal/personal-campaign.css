@@ -995,6 +995,7 @@
   border-radius: 16px;
 }
 
+.personal-campaign .card-s h3,
 .personal-campaign .card-s h5 {
   margin: 0 0 8px;
   font-size: 11px;

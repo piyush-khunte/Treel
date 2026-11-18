@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import InteractiveWorldMap from "@/components/global/interactive-world-map";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/global-presence",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Our Global Presence",
     description:
       "Explore Treel's global footprint: Truck TPMS, TMIP, OTR Mining, and OEM vehicle telemetry across Europe, South America, Africa, Middle East, and Asia.",

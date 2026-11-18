@@ -224,7 +224,7 @@ export const SEED_EVENTS: EventItemRecord[] = [
     location: "Bengaluru",
     isOnline: false,
     excerpt: "Logistics leadership gathering on connected fleet intelligence.",
-    materialUrl: "/insights/from-telemetry-to-reasoning",
+    materialUrl: "/insights/vehicle-digital-twins-architecture",
     materialLabel: "Read Summary",
     status: "Completed",
     publicationStatus: "Published",

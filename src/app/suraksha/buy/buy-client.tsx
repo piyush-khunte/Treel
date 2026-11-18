@@ -263,7 +263,7 @@ export default function SurakshaBuyClient() {
                     <ShieldCheck className="w-5 h-5 text-[#047857] shrink-0 mt-0.5" />
                     <div>
                       <div className="font-bold">Official Pre-Registered Warranty</div>
-                      <div className="text-xs text-[#78350F]">Instant replacement across 400+ authorized centres</div>
+                      <div className="text-xs text-[#78350F]">Instant replacement across 600+ authorized centres</div>
                     </div>
                   </div>
                 </div>
@@ -370,7 +370,7 @@ export default function SurakshaBuyClient() {
                       href="/suraksha/emi"
                       className="text-[#EA580C] hover:underline flex items-center gap-1 font-bold"
                     >
-                      <CreditCard className="w-3.5 h-3.5" /> Bajaj Finance EMI
+                      <CreditCard className="w-3.5 h-3.5" /> Easy EMI via NBFC partner
                     </Link>
                   </div>
                 </div>
@@ -392,7 +392,7 @@ export default function SurakshaBuyClient() {
               </div>
               <div>
                 <div className="font-bold text-sm text-[#451A03]">3-Year Direct Replacement</div>
-                <div className="text-xs text-[#78350F] mt-0.5">Defective sensors replaced immediately at 400+ authorized Truck Wheels centres.</div>
+                <div className="text-xs text-[#78350F] mt-0.5">Defective sensors replaced immediately at 600+ authorized Truck Wheels centres.</div>
               </div>
             </div>
 

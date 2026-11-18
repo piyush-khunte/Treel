@@ -67,7 +67,7 @@ const HELP_CATEGORIES = [
   {
     id: "emi",
     title: "EMI & PAYMENT",
-    desc: "Bajaj Finance financing plans, payment options, zero-cost EMI terms.",
+    desc: "NBFC partner financing plans, payment options, zero-cost EMI terms.",
     cta: "EMI info →",
     href: "/suraksha/emi",
     icon: CreditCard,
@@ -120,7 +120,7 @@ const FAQS = [
     id: "faq-4",
     question: "Where can I get in-person technical assistance?",
     answer:
-      "Visit any of our 400+ authorized JK Truck Wheels centres across major highway corridors for direct physical inspection. For highway emergency support, share a photo on WhatsApp (+91 91120 00174) for immediate guidance."
+      "Visit any of our 600+ authorized JK Truck Wheels centres across major highway corridors for direct physical inspection. For highway emergency support, share a photo on WhatsApp (+91 91120 00174) for immediate guidance."
   },
   {
     id: "faq-5",

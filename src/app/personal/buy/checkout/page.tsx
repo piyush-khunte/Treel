@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizePhone } from "@/lib/validation/phone";
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -296,7 +297,7 @@ export default function CheckoutPage() {
             <div className="lg:col-span-7 space-y-8">
               {/* Contact Details */}
               <div className="border border-black/[0.06] rounded-3xl p-8 space-y-6">
-                <h3 className="text-xl font-bold text-[#111827]">1. Contact & Delivery Address</h3>
+                <h2 className="text-xl font-bold text-[#111827]">1. Contact & Delivery Address</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-xs font-bold uppercase text-[#4B5563]">Full Name *</label>
@@ -318,8 +319,8 @@ export default function CheckoutPage() {
                       pattern="[0-9]{10}"
                       placeholder="10-digit mobile number"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, "").slice(0, 10) })}
-                      maxLength={10}
+                      onChange={(e) => setFormData({ ...formData, phone: normalizePhone(e.target.value) })}
+                      maxLength={16}
                       className="w-full px-4 py-3 rounded-lg border border-black/[0.12] text-[#111827] focus:outline-none focus:border-blue-600 text-sm"
                     />
                   </div>
@@ -373,7 +374,7 @@ export default function CheckoutPage() {
 
               {/* Payment Method */}
               <div className="border border-black/[0.06] rounded-3xl p-8 space-y-6">
-                <h3 className="text-xl font-bold text-[#111827]">2. Payment Method</h3>
+                <h2 className="text-xl font-bold text-[#111827]">2. Payment Method</h2>
                 <div className="space-y-3">
                   <label className={`flex items-center gap-3 p-4 border rounded-xl cursor-pointer transition-colors ${
                     formData.paymentMethod === "online" ? "border-blue-500 bg-blue-50/40" : "border-black/[0.06] hover:bg-slate-50"
@@ -416,7 +417,7 @@ export default function CheckoutPage() {
             {/* Order Review Column */}
             <div className="lg:col-span-5">
               <div className="bg-[#F9FAFB] border border-black/[0.06] p-8 rounded-3xl space-y-6 sticky top-28">
-                <h3 className="text-xl font-bold text-[#111827]">Order Summary ({items.length} items)</h3>
+                <h2 className="text-xl font-bold text-[#111827]">Order Summary ({items.length} items)</h2>
 
                 <div className="divide-y divide-black/[0.06]">
                   {items.map((it) => (

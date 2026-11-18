@@ -146,7 +146,7 @@ export function getStoredConsent(): StoredConsent | null {
 export function deleteNonEssentialCookies(): void {
   if (typeof document === "undefined") return;
 
-  const cookiesToClear = ["_ga", "_gid", "_gat", "_clck", "_clsk", "_fbp", "_fbc", "_linkedin_partner_id"];
+  const cookiesToClear = ["_ga", "_gid", "_gat", "_clck", "_clsk", "_fbp", "_fbc", "_linkedin_partner_id", "_gcl_au", "_gcl_aw", "_gcl_dc"];
   const domain = window.location.hostname;
   const path = "/";
 

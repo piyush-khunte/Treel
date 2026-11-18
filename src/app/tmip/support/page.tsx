@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck, Clock, MessageSquare, Phone, Users, CheckCircle2 } from "lucide-react";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/support",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Support · TMIP",
     description:
       "TMIP customer support. Support tiers by contract, response SLAs, and how to reach us. For existing customers, use your dedicated support channel.",

@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import { SurakshaCallbackSuccessView } from "./success-view";
 
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     follow: false,
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Callback Request Received  \u00b7  Suraksha",
     description: "Your callback request has been received. Suraksha team will call you at your preferred time.",
     url: "https://treel.in/suraksha/callback/success",

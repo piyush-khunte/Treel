@@ -1,3 +1,4 @@
+import { clampDescription, composeTitle, DEFAULT_OG_IMAGES, stripTitleSuffix } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { getPressItemBySlug, getPublishedPressItems } from "@/lib/content/press-storage";
 import { ArrowRight } from "lucide-react";
@@ -30,17 +31,18 @@ export async function generateMetadata({
     };
   }
 
-  const excerpt = release.leadParagraph || release.excerpt || release.headline;
+  const excerpt = clampDescription(release.excerpt || release.leadParagraph || release.headline);
 
   return {
-    title: release.headline,
-    description: excerpt.slice(0, 150) + "...",
+    title: composeTitle(release.headline, " · Press"),
+    description: excerpt,
     alternates: {
       canonical: `https://treel.in/press/${year}/${slug}`,
     },
     openGraph: {
-      title: release.headline,
-      description: excerpt.slice(0, 150) + "...",
+      images: DEFAULT_OG_IMAGES,
+      title: stripTitleSuffix(release.headline),
+      description: excerpt,
       url: `https://treel.in/press/${year}/${slug}`,
       type: "article",
     },
@@ -82,7 +84,7 @@ export default async function PressReleasePage({
       name: "Treel Mobility Solutions",
       logo: {
         "@type": "ImageObject",
-        url: "https://treel.in/images/treel%20main%20logo.jpg",
+        url: "https://treel.in/images/treel-main-logo.jpg",
       },
     },
   };
@@ -173,9 +175,9 @@ export default async function PressReleasePage({
 
             {/* Standard Corporate Boilerplate */}
             <div className="mt-16 pt-10 border-t border-white/10 space-y-4">
-              <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2]">
+              <h2 className="font-fraunces text-xl font-medium text-[#FAF7F2]">
                 About Treel Mobility Solutions
-              </h3>
+              </h2>
               <p className="text-sm text-[#94A3B8] leading-relaxed">
                 Treel Mobility Solutions Private Limited is the mobility intelligence company operating India&apos;s largest connected commercial vehicle dataset. Founded in 2018, Treel serves two hundred enterprise customers with 70,000+ vehicles under active management. Its three product families — TMIP for enterprise fleets, Project Suraksha for owner-drivers, and Personal TPMS for consumers — operate on a shared Vehicle Digital Twin architecture. Headquartered in Pune. Learn more at{" "}
                 <Link href="/" className="text-[#D5573B] underline hover:text-[#FAF7F2]">
@@ -186,9 +188,9 @@ export default async function PressReleasePage({
 
             {/* Media Contact Block */}
             <div className="mt-8 p-6 rounded-lg bg-[#141B22] border border-white/10 space-y-3">
-              <h4 className="font-fraunces text-lg font-medium text-[#FAF7F2]">
+              <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2]">
                 Media Contact
-              </h4>
+              </h3>
               <div className="text-xs font-mono text-[#94A3B8] space-y-1">
                 <div>Treel Communications Team</div>
                 <div>
@@ -229,9 +231,9 @@ export default async function PressReleasePage({
                   >
                     <div className="space-y-2">
                       <div className="text-xs font-mono text-[#94A3B8]">{rel.date}</div>
-                      <h4 className="font-fraunces text-base font-medium text-[#FAF7F2] leading-snug">
+                      <h3 className="font-fraunces text-base font-medium text-[#FAF7F2] leading-snug">
                         {rel.headline}
-                      </h4>
+                      </h3>
                     </div>
                     <div className="pt-4 mt-4 border-t border-white/5">
                       <Link

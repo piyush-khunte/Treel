@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { PersonalGenericCampaignPage } from "@/components/personal/personal-generic-campaign-page";
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/lp-tpms",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     type: "website",
     title: "Smart TPMS for Cars & Bikes — Real-Time Tyre Monitoring",
     description:

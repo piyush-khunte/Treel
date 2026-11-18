@@ -150,7 +150,7 @@ export default function InteractiveWorldMap() {
                 onClick={() => setSelectedRegion(reg)}
                 className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                   isActive
-                    ? "bg-[#D5573B] text-white shadow-lg shadow-[#D5573B]/20 font-semibold"
+                    ? "bg-[#C64529] text-white shadow-lg shadow-[#D5573B]/20 font-semibold"
                     : "bg-white/5 text-[#FAF7F2]/80 hover:bg-white/10 hover:text-white border border-white/10"
                 }`}
               >

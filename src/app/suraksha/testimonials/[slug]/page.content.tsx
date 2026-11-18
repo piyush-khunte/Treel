@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { ArrowRight,MessageSquare } from "lucide-react";
 import type { Metadata } from "next";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/suraksha/testimonials/[slug]",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "[Driver Name]  \u00b7  [Region] Testimonial  \u00b7  Suraksha",
     description: "[Excerpt from testimonial, 150 chars]",
     url: "https://treel.in/suraksha/testimonials/[slug]",

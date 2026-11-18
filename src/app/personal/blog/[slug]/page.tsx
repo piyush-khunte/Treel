@@ -3,10 +3,12 @@ import { getPublicBlogBySlug,getPublicBlogs } from "@/lib/admin/admin-actions";
 import { slugifyAuthor } from "@/lib/authors/author-utils";
 import { getValidImageSrc } from "@/lib/utils/image-utils";
 import { ArrowLeft,Calendar,Clock,ShoppingCart,User } from "lucide-react";
+import { clampDescription, composeTitle, DEFAULT_OG_IMAGES, stripTitleSuffix } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound,permanentRedirect } from "next/navigation";
+import { filterPersonalBlogs,getPersonalBlogScope } from "@/lib/blogs/personal-blog-scope";
 
 export const revalidate = 60;
 
@@ -35,12 +37,15 @@ export async function generateMetadata({
   const article = result.data;
 
   if (!article) return { title: "Article Not Found — Personal TPMS Blog" };
+  if ((await getPersonalBlogScope(article)).scope !== "personal") {
+    return { title: "Article Not Found — Personal TPMS Blog", robots: { index: false } };
+  }
 
-  const metaTitle = article.metatitle || article.title;
-  const metaDesc = article.metadescription || article.description;
+  const metaTitle = stripTitleSuffix(article.metatitle || article.title);
+  const metaDesc = clampDescription(article.metadescription || article.description);
 
   return {
-    title: `${metaTitle} — Blog`,
+    title: composeTitle(metaTitle, " — TPMS Blog"),
     description: metaDesc,
     alternates: {
       canonical: `https://treel.in/personal/blog/${article.slug}`,
@@ -49,7 +54,7 @@ export async function generateMetadata({
       title: metaTitle,
       description: metaDesc,
       url: `https://treel.in/personal/blog/${article.slug}`,
-      images: getValidImageSrc(article.image) ? [{ url: getValidImageSrc(article.image)! }] : undefined,
+      images: getValidImageSrc(article.image) ? [{ url: getValidImageSrc(article.image)! }] : DEFAULT_OG_IMAGES,
     },
   };
 }
@@ -67,8 +72,15 @@ export default async function PersonalArticlePage({
     notFound();
   }
 
+  // Suraksha articles and TMIP case studies live in their own sections.
+  const blogScope = await getPersonalBlogScope(article);
+  if (blogScope.scope !== "personal") {
+    if (blogScope.redirectTo) permanentRedirect(blogScope.redirectTo);
+    notFound();
+  }
+
   const allBlogsResult = await getPublicBlogs();
-  const otherArticles = (allBlogsResult.data || [])
+  const otherArticles = (await filterPersonalBlogs(allBlogsResult.data || []))
     .filter((a) => a.slug !== slug)
     .slice(0, 2);
 

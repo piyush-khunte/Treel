@@ -235,6 +235,8 @@ export default function SurakshaCentresPage() {
                     </div>
                     <a
                       href="https://api.whatsapp.com/send/?phone=919112000174&text=Suraksha+info+chahiye&type=phone_number&app_absent=0"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       aria-label={`Contact ${c.name} on WhatsApp Helpline`}
                       className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-3 rounded-[4px] bg-[#25D366] text-white hover:bg-[#1EBE5D] font-rubik font-bold text-xs uppercase tracking-wider transition-all duration-150 shadow-xs hover:shadow-sm focus-visible:outline-2 focus-visible:outline-[#25D366]"
                     >

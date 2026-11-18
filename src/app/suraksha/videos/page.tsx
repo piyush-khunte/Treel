@@ -5,10 +5,8 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
 import {
 ArrowRight,
-Clock,
 ExternalLink,
 Filter,
-Play,
 Video
 } from "lucide-react";
 import Link from "next/link";
@@ -18,9 +16,7 @@ interface VideoItem {
   id: string;
   title: string;
   category: "Installation" | "Testimonials" | "Product overview" | "How-to guides";
-  duration: string;
   language: string;
-  views?: string;
   description: string;
   featured?: boolean;
 }
@@ -31,9 +27,7 @@ const videoData: VideoItem[] = [
     id: "install-15min",
     title: "15-Minute Installation Guide — In Hindi",
     category: "Installation",
-    duration: "14:48",
     language: "Hindi",
-    views: "12.4k views",
     description: "Mount the cabin display, pair sensors, and calibrate pressure in 3 simple steps.",
     featured: true
   },
@@ -41,18 +35,14 @@ const videoData: VideoItem[] = [
     id: "install-puncture-shop",
     title: "Fitting Suraksha at a Puncture Shop",
     category: "Installation",
-    duration: "8:30",
     language: "Hindi",
-    views: "8.1k views",
     description: "Step-by-step practical fitment and sensor locking demonstration for highway puncture shop mechanics."
   },
   {
     id: "install-first-setup",
     title: "First-Time Setup Guide — Cabin Display + 4 Sensors",
     category: "Installation",
-    duration: "6:15",
     language: "Hindi",
-    views: "5.7k views",
     description: "Unboxing and initial system setup guide for owner-drivers and commercial vehicles."
   },
 
@@ -61,9 +51,7 @@ const videoData: VideoItem[] = [
     id: "test-narender",
     title: "Narender K.'s Highway Story",
     category: "Testimonials",
-    duration: "3:20",
     language: "Hindi",
-    views: "18.9k views",
     description: "Real driver experience on how a slow leak warning on the expressway prevented a dangerous roadside blowout.",
     featured: true
   },
@@ -71,9 +59,7 @@ const videoData: VideoItem[] = [
     id: "test-regional-stories",
     title: "10 Regional Driver Stories",
     category: "Testimonials",
-    duration: "12:40",
     language: "Hindi / Regional",
-    views: "9.2k views",
     description: "Collective feedback from commercial truck drivers across North, West, and South Indian freight corridors."
   },
 
@@ -82,9 +68,7 @@ const videoData: VideoItem[] = [
     id: "prod-60sec",
     title: "Suraksha 60-Second Overview",
     category: "Product overview",
-    duration: "1:00",
     language: "Hindi",
-    views: "24.5k views",
     description: "Suraksha kit hardware architecture, tyre temperature telemetry, and 3-year warranty in one minute.",
     featured: true
   },
@@ -92,18 +76,14 @@ const videoData: VideoItem[] = [
     id: "prod-kit-walkthrough",
     title: "Kit Contents Walkthrough",
     category: "Product overview",
-    duration: "4:15",
     language: "Hindi",
-    views: "6.8k views",
     description: "Complete unboxing and walkthrough of the in-cab display, wireless sensors, anti-theft locking hardware, and wiring accessories."
   },
   {
     id: "prod-display-tour",
     title: "In-Cab Display Screen Tour",
     category: "Product overview",
-    duration: "5:00",
     language: "Hindi",
-    views: "7.3k views",
     description: "Guide to reading high-pressure, slow leak, overheating temperature indicators and battery status symbols."
   },
 
@@ -112,27 +92,21 @@ const videoData: VideoItem[] = [
     id: "howto-battery",
     title: "When to Replace Sensor Batteries — Warning Signs",
     category: "How-to guides",
-    duration: "3:45",
     language: "Hindi",
-    views: "4.9k views",
     description: "Understand low-voltage indicator flashing patterns and 5-year engineered battery lifespan details."
   },
   {
     id: "howto-alerts",
     title: "How to Read Warning Alerts",
     category: "How-to guides",
-    duration: "4:10",
     language: "Hindi",
-    views: "11.2k views",
     description: "Understand the practical difference between flashing red alarms, high-tone audible buzzers, and yellow cautionary alerts."
   },
   {
     id: "howto-rotation",
     title: "What to Do After Tyre Rotation",
     category: "How-to guides",
-    duration: "5:30",
     language: "Hindi",
-    views: "5.4k views",
     description: "How to reassign wheel sensor positions on the cabin display when rotating or swapping truck tyres."
   }
 ];
@@ -141,7 +115,6 @@ const categories = ["All", "Installation", "Testimonials", "Product overview", "
 
 export default function SurakshaVideosPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
-  const [activeVideo, setActiveVideo] = useState<VideoItem | null>(null);
 
   const filteredVideos = useMemo(() => {
     if (selectedCategory === "All") return videoData;
@@ -179,7 +152,7 @@ export default function SurakshaVideosPage() {
             </SurakshaRotator>
 
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Watch installation guides, product walkthroughs and real driver stories. Filter by category below to find what you need.
+              Installation guides, product walkthroughs and real driver stories are being filmed in Hindi and regional languages. Browse what is coming below, and subscribe on YouTube to be notified when they go live.
             </p>
           </div>
         </div>
@@ -216,10 +189,10 @@ export default function SurakshaVideosPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10 space-y-12">
           <div className="max-w-3xl">
             <h2 className="font-anton text-4xl sm:text-5xl uppercase tracking-tight text-[#451A03]">
-              All Suraksha videos
+              Upcoming Suraksha videos
             </h2>
             <p className="text-[#78350F] text-base sm:text-lg mt-2 font-medium">
-              Step-by-step guidance designed specifically for drivers, mechanics, and fleet owners.
+              Upcoming step-by-step guidance designed specifically for drivers, mechanics, and fleet owners.
             </p>
           </div>
 
@@ -235,19 +208,14 @@ export default function SurakshaVideosPage() {
                     <div className="absolute inset-0 bg-gradient-to-tr from-[#120804] via-[#2A1208] to-[#451A03] opacity-90" />
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(234,88,12,0.25)_0,transparent_75%)]" />
 
-                    {/* Play Button Overlay */}
-                    <button
-                      onClick={() => setActiveVideo(item)}
-                      className="relative z-10 w-14 h-14 rounded-full bg-[#DC2626] text-white flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-[#EF4444] transition-all cursor-pointer"
-                      aria-label={`Watch ${item.title}`}
-                    >
-                      <Play className="w-6 h-6 ml-0.5 fill-current" />
-                    </button>
-
-                    {/* Duration Badge */}
-                    <div className="absolute bottom-3 right-3 px-2 py-0.5 rounded-[4px] bg-black/85 text-white font-mono text-[11px] font-bold flex items-center gap-1 z-10">
-                      <Clock className="w-3 h-3 text-[#EA580C]" />
-                      {item.duration}
+                    {/* Honest status: these videos are not published yet */}
+                    <div className="relative z-10 flex flex-col items-center gap-2 text-center px-4">
+                      <div className="w-14 h-14 rounded-full bg-[#DC2626]/20 border-2 border-[#DC2626]/60 text-[#FCA5A5] flex items-center justify-center">
+                        <Video className="w-6 h-6" />
+                      </div>
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#FEF3C7]">
+                        Video coming soon
+                      </span>
                     </div>
 
                     {/* Badges Top Left */}
@@ -264,7 +232,7 @@ export default function SurakshaVideosPage() {
                   {/* Body Content */}
                   <div className="p-6 space-y-3">
                     <div className="flex items-center justify-between text-xs text-[#78350F] font-semibold">
-                      <span>{item.views || "HD Video"}</span>
+                      <span>In production</span>
                       <span className="font-mono text-[11px]">{item.language} Audio</span>
                     </div>
 
@@ -280,15 +248,17 @@ export default function SurakshaVideosPage() {
 
                 {/* Footer Action */}
                 <div className="px-6 py-4 bg-[#FFFBEB] border-t border-[#451A03]/10 flex items-center justify-between">
-                  <button
-                    onClick={() => setActiveVideo(item)}
-                    className="font-rubik font-bold text-xs uppercase tracking-wider text-[#DC2626] hover:text-[#B91C1C] flex items-center gap-1 cursor-pointer"
-                  >
-                    Watch video <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                  <span className="text-[11px] font-mono text-[#78350F]">
-                    {item.duration}
+                  <span className="font-rubik font-bold text-xs uppercase tracking-wider text-[#78350F]">
+                    Coming soon
                   </span>
+                  <a
+                    href="https://youtube.com/@jktreel5290?si=IhQo4Ya53ou_Z5SD"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-rubik font-bold text-xs uppercase tracking-wider text-[#DC2626] hover:text-[#B91C1C] flex items-center gap-1"
+                  >
+                    Visit our YouTube <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
                 </div>
               </div>
             ))}
@@ -358,60 +328,6 @@ export default function SurakshaVideosPage() {
         </div>
       </section>
 
-      {/* INTERACTIVE VIDEO MODAL */}
-      {activeVideo && (
-        <div className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4 sm:p-6 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="bg-[#1C120C] border-2 border-[#DC2626] rounded-xl max-w-2xl w-full p-6 text-white space-y-4 shadow-2xl relative">
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
-              <div>
-                <span className="text-[10px] font-bold text-[#EA580C] uppercase tracking-wider">
-                  {activeVideo.category} · {activeVideo.language}
-                </span>
-                <h3 className="font-anton text-2xl uppercase tracking-normal text-white">
-                  {activeVideo.title}
-                </h3>
-              </div>
-              <button
-                onClick={() => setActiveVideo(null)}
-                className="px-2.5 py-1 text-xs bg-white/10 hover:bg-white/20 rounded font-mono font-bold cursor-pointer"
-              >
-                ✕ Close
-              </button>
-            </div>
-
-            <div className="aspect-video bg-black/70 rounded-lg flex flex-col items-center justify-center p-8 text-center space-y-4 border border-white/10">
-              <div className="w-16 h-16 rounded-full bg-[#DC2626]/20 border-2 border-[#DC2626] flex items-center justify-center text-[#DC2626]">
-                <Play className="w-8 h-8 ml-1 fill-current" />
-              </div>
-              <div className="space-y-1">
-                <p className="font-bold text-lg text-white">Video Showcase Player</p>
-                <p className="text-xs text-stone-300 max-w-md">
-                  {activeVideo.description}
-                </p>
-                <p className="text-[11px] text-amber-400 font-mono pt-1">
-                  Duration: {activeVideo.duration} · Audio: {activeVideo.language}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between pt-2">
-              <Link
-                href="/suraksha/centres"
-                onClick={() => setActiveVideo(null)}
-                className="text-xs font-bold text-[#DC2626] hover:underline flex items-center gap-1"
-              >
-                Find Installation Centre →
-              </Link>
-              <button
-                onClick={() => setActiveVideo(null)}
-                className="px-4 py-2 bg-white/10 hover:bg-white/20 text-xs font-bold rounded cursor-pointer"
-              >
-                Back to videos
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

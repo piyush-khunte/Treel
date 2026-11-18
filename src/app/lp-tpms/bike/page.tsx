@@ -1,9 +1,10 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { PersonalCampaignPage } from "@/components/personal/personal-campaign-page";
 
 export const metadata: Metadata = {
-  title: "TPMS for Bikes & Two-Wheelers | Smart Tyre Pressure Sensors",
+  title: "TPMS for Bikes & Two-Wheelers · Smart Tyre Sensors",
   description:
     "Treel TPMS for bikes and scooters: live tyre pressure and temperature on your phone, early leak alerts and a 3-year sensor warranty. ARAI certified.",
   robots: {
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/lp-tpms/bike",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     type: "website",
     title: "Smart TPMS for Bikes & Two-Wheelers — Tyre Sensors",
     description:

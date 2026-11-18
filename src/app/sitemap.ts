@@ -1,8 +1,40 @@
-import { MetadataRoute } from "next";
-import insightsData from "@/lib/data/insights-store.json";
+import type { MetadataRoute } from "next";
+import { getPublishedBlogsFromDb } from "@/lib/blogs/blog-storage";
+import { filterPersonalBlogs } from "@/lib/blogs/personal-blog-scope";
+import { getPublishedJobs } from "@/lib/content/careers-storage";
+import { getPublishedEvents } from "@/lib/content/events-storage";
+import { getPublishedInsights } from "@/lib/content/insights-storage";
+import { getPublishedPressItems } from "@/lib/content/press-storage";
+import { getPublishedSurakshaArticles } from "@/lib/content/suraksha-storage";
+import { getPublishedWhitepapers } from "@/lib/content/whitepapers-storage";
+import { canonicalAuthorSlugs } from "@/lib/seo/authors";
+import { SITE_URL } from "@/lib/seo/metadata";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://treel.in";
+type SitemapEntry = MetadataRoute.Sitemap[number];
+
+/** Alias research slugs that canonicalise to another paper (never list them). */
+const RESEARCH_ALIAS_SLUGS = new Set(["case-study-1000-truck", "vehicle-digital-twin"]);
+
+/** Research papers with their own static route folders (already listed below). */
+const RESEARCH_STATIC_SLUGS = new Set(["data-architecture", "roi-fleet-intelligence"]);
+
+function toIsoDate(value: string | undefined | null, fallback: string): string {
+  if (!value) return fallback;
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime()) ? fallback : parsed.toISOString();
+}
+
+async function safeLoad<T>(loader: () => Promise<T[]>): Promise<T[]> {
+  try {
+    return await loader();
+  } catch (error) {
+    console.error("sitemap loader failed:", error);
+    return [];
+  }
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = SITE_URL;
   const releaseDate = "2026-10-30T00:00:00.000Z";
   const now = releaseDate;
 
@@ -99,24 +131,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/personal/specs`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/personal/buy`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/personal/reviews`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/personal/reviews/write`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/personal/faqs`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/personal/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/personal/app`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/personal/app/android`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/personal/app/ios`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/personal/track-order`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
 
     // 0.8 - Research & Deep Telematics Architecture
     { url: `${baseUrl}/research/data-architecture`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/research/roi-fleet-intelligence`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
 
-    // 0.8 - Campaign Landing Pages
-    { url: `${baseUrl}/lp-suraksha`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/lp-tmip`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/lp-tpms`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/lp-tpms/bike`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/lp-tpms/car`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    // Campaign landing pages (/lp-*), /personal/track-order and /personal/reviews/write
+    // are noindex or canonicalised elsewhere, so they are intentionally not listed.
 
     // 0.5 - Support & Inquiries
     { url: `${baseUrl}/support`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
@@ -143,12 +169,93 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/personal/refunds`, lastModified: now, changeFrequency: "monthly", priority: 0.3 },
   ];
 
-  const insightRoutes: MetadataRoute.Sitemap = (insightsData as Array<{ slug: string; publishIsoDate?: string }>).map((article) => ({
-    url: `${baseUrl}/insights/${article.slug}`,
-    lastModified: article.publishIsoDate ? `${article.publishIsoDate}T00:00:00.000Z` : releaseDate,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
+  // Dynamic content, loaded from the same storage helpers the pages use
+  // (Supabase with graceful fallback to the local JSON stores).
+  const [insights, surakshaArticles, publishedBlogs, jobs, events, pressItems, whitepapers] = await Promise.all([
+    safeLoad(getPublishedInsights),
+    safeLoad(getPublishedSurakshaArticles),
+    safeLoad(getPublishedBlogsFromDb),
+    safeLoad(getPublishedJobs),
+    safeLoad(getPublishedEvents),
+    safeLoad(getPublishedPressItems),
+    safeLoad(() => getPublishedWhitepapers("research")),
+  ]);
+  const personalBlogs = await safeLoad(() => filterPersonalBlogs(publishedBlogs));
 
-  return [...routes, ...insightRoutes];
+  const dynamicRoutes: SitemapEntry[] = [];
+  const add = (
+    pathname: string,
+    lastModified: string,
+    changeFrequency: SitemapEntry["changeFrequency"],
+    priority: number
+  ) => {
+    dynamicRoutes.push({ url: `${baseUrl}${pathname}`, lastModified, changeFrequency, priority });
+  };
+
+  // Insights articles + category hubs
+  const insightCategories = new Map<string, string>();
+  for (const article of insights) {
+    if (!article.slug) continue;
+    const published = toIsoDate(article.publishIsoDate, releaseDate);
+    add(`/insights/${article.slug}`, published, "monthly", 0.7);
+    if (article.categorySlug) {
+      const previous = insightCategories.get(article.categorySlug);
+      if (!previous || published > previous) insightCategories.set(article.categorySlug, published);
+    }
+  }
+  for (const [categorySlug, lastModified] of insightCategories) {
+    add(`/insights/category/${categorySlug}`, lastModified, "weekly", 0.6);
+  }
+
+  // Suraksha drivers' blog
+  for (const article of surakshaArticles) {
+    const slug = article.slug || article._id;
+    if (!slug) continue;
+    add(`/suraksha/blog/${slug}`, toIsoDate(article.updatedAt || article.createdAt, releaseDate), "monthly", 0.6);
+  }
+
+  // Personal TPMS blog
+  for (const blog of personalBlogs) {
+    if (!blog.slug) continue;
+    add(`/personal/blog/${blog.slug}`, toIsoDate(blog.date, releaseDate), "monthly", 0.6);
+  }
+
+  // Author profiles (canonical slugs only, so alias keys are not duplicated)
+  for (const slug of canonicalAuthorSlugs()) {
+    add(`/authors/${slug}`, releaseDate, "monthly", 0.4);
+  }
+
+  // Careers roles
+  for (const job of jobs) {
+    if (!job.slug) continue;
+    add(`/careers/${job.slug}`, toIsoDate(job.updatedAt || job.postedDate, releaseDate), "weekly", 0.6);
+  }
+
+  // Events
+  for (const event of events) {
+    if (!event.slug) continue;
+    add(`/events/${event.slug}`, toIsoDate(event.updatedAt || event.startDate, releaseDate), "weekly", 0.6);
+  }
+
+  // Press releases
+  for (const item of pressItems) {
+    if (!item.slug) continue;
+    add(`/press/${item.year || "2026"}/${item.slug}`, toIsoDate(item.updatedAt || item.createdAt, releaseDate), "monthly", 0.5);
+  }
+
+  // Research papers
+  for (const paper of whitepapers) {
+    if (!paper.slug || RESEARCH_ALIAS_SLUGS.has(paper.slug) || RESEARCH_STATIC_SLUGS.has(paper.slug)) continue;
+    add(`/research/${paper.slug}`, toIsoDate(paper.updatedAt || paper.createdAt, releaseDate), "monthly", 0.6);
+  }
+
+  // De-duplicate (static entries win) so no URL is listed twice.
+  const seen = new Set(routes.map((route) => route.url));
+  const uniqueDynamic = dynamicRoutes.filter((route) => {
+    if (seen.has(route.url)) return false;
+    seen.add(route.url);
+    return true;
+  });
+
+  return [...routes, ...uniqueDynamic];
 }

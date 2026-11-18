@@ -9,6 +9,7 @@ Smartphone,
 Users
 } from "lucide-react";
 import type { Metadata } from "next";
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import Link from "next/link";
 import { CorporateContactForm } from "./contact-form";
 
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
     title: "Contact Us — Get in Touch",
     description: "Contact Treel Mobility Solutions. Enterprise sales, media inquiries, partnerships, general questions. Toll-free 1800 833 0233 or email hello@treel.in.",
     url: "https://treel.in/contact",
+    images: DEFAULT_OG_IMAGES,
   },
 };
 
@@ -45,7 +47,7 @@ export default function ContactPage() {
               ]}
             />
             <div className="flex items-center gap-3">
-              <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#D5573B]">
+              <span className="font-inter text-xs font-semibold tracking-[0.25em] uppercase text-[#E07A5F]">
                 CONTACT
               </span>
             </div>
@@ -88,16 +90,16 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                   {/* Tile 1 · Toll-free */}
                   <a
-                    href="tel:+918008330233"
+                    href="tel:18008330233"
                     className="p-5 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group block"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B] mb-3 group-hover:scale-105 transition-transform">
+                    <div className="w-10 h-10 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#E07A5F] mb-3 group-hover:scale-105 transition-transform">
                       <Phone className="w-5 h-5" />
                     </div>
                     <div className="text-xs font-jetbrains font-mono uppercase tracking-wider text-[#94A3B8]">
                       Toll-Free (India)
                     </div>
-                    <div className="text-base font-semibold text-[#FAF7F2] mt-1 group-hover:text-[#D5573B] transition-colors">
+                    <div className="text-base font-semibold text-[#FAF7F2] mt-1 group-hover:text-[#E07A5F] transition-colors">
                       1800 833 0233
                     </div>
                   </a>
@@ -107,13 +109,13 @@ export default function ContactPage() {
                     href="tel:+919112000174"
                     className="p-5 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group block"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B] mb-3 group-hover:scale-105 transition-transform">
+                    <div className="w-10 h-10 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#E07A5F] mb-3 group-hover:scale-105 transition-transform">
                       <Smartphone className="w-5 h-5" />
                     </div>
                     <div className="text-xs font-jetbrains font-mono uppercase tracking-wider text-[#94A3B8]">
                       Mobile
                     </div>
-                    <div className="text-base font-semibold text-[#FAF7F2] mt-1 group-hover:text-[#D5573B] transition-colors">
+                    <div className="text-base font-semibold text-[#FAF7F2] mt-1 group-hover:text-[#E07A5F] transition-colors">
                       +91 91120 00174
                     </div>
                   </a>
@@ -123,13 +125,13 @@ export default function ContactPage() {
                     href="mailto:hello@treel.in"
                     className="p-5 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group block"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B] mb-3 group-hover:scale-105 transition-transform">
+                    <div className="w-10 h-10 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#E07A5F] mb-3 group-hover:scale-105 transition-transform">
                       <Mail className="w-5 h-5" />
                     </div>
                     <div className="text-xs font-jetbrains font-mono uppercase tracking-wider text-[#94A3B8]">
                       General inquiries
                     </div>
-                    <div className="text-base font-semibold text-[#FAF7F2] mt-1 group-hover:text-[#D5573B] transition-colors">
+                    <div className="text-base font-semibold text-[#FAF7F2] mt-1 group-hover:text-[#E07A5F] transition-colors">
                       hello@treel.in
                     </div>
                   </a>
@@ -139,13 +141,13 @@ export default function ContactPage() {
                     href="/careers"
                     className="p-5 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group block"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B] mb-3 group-hover:scale-105 transition-transform">
+                    <div className="w-10 h-10 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#E07A5F] mb-3 group-hover:scale-105 transition-transform">
                       <Users className="w-5 h-5" />
                     </div>
                     <div className="text-xs font-jetbrains font-mono uppercase tracking-wider text-[#94A3B8]">
                       Careers
                     </div>
-                    <div className="text-base font-semibold text-[#FAF7F2] mt-1 group-hover:text-[#D5573B] transition-colors">
+                    <div className="text-base font-semibold text-[#FAF7F2] mt-1 group-hover:text-[#E07A5F] transition-colors">
                       See open roles →
                     </div>
                   </Link>
@@ -155,7 +157,7 @@ export default function ContactPage() {
               {/* Business Hours Block */}
               <div className="bg-white/[0.03] border border-white/[0.08] rounded-lg p-8 space-y-4 shadow-sm">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B]">
+                  <div className="w-9 h-9 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#E07A5F]">
                     <Clock className="w-4 h-4" />
                   </div>
                   <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2]">
@@ -185,7 +187,7 @@ export default function ContactPage() {
               {/* Address Card */}
               <div className="md:col-span-6 bg-white/[0.03] border border-white/[0.08] rounded-lg p-8 space-y-6 flex flex-col justify-between">
                 <div className="space-y-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#D5573B]">
+                  <div className="w-10 h-10 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/20 flex items-center justify-center text-[#E07A5F]">
                     <MapPin className="w-5 h-5" />
                   </div>
 
@@ -205,7 +207,7 @@ export default function ContactPage() {
                     href="https://maps.app.goo.gl/VjJUeqtM8iBgHsXH8"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-sm bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]"
+                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-sm bg-[#C64529] text-[#FAF7F2] hover:bg-[#B53D23]"
                   >
                     <span>Get directions</span>
                     <ExternalLink className="w-4 h-4" />
@@ -216,7 +218,7 @@ export default function ContactPage() {
               {/* Map Embed / Location Card */}
               <div className="md:col-span-6 bg-white/[0.03] border border-white/[0.08] rounded-lg overflow-hidden min-h-[300px] relative flex flex-col justify-between p-8">
                 <div className="space-y-2">
-                  <div className="text-xs font-jetbrains font-mono uppercase tracking-wider text-[#D5573B] font-semibold">
+                  <div className="text-xs font-jetbrains font-mono uppercase tracking-wider text-[#E07A5F] font-semibold">
                     Headquarters Location
                   </div>
                   <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2]">
@@ -232,7 +234,7 @@ export default function ContactPage() {
                     href="https://maps.app.goo.gl/VjJUeqtM8iBgHsXH8"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-jetbrains font-mono text-[#D5573B] hover:underline flex items-center gap-1.5 font-semibold"
+                    className="text-xs font-jetbrains font-mono text-[#E07A5F] hover:underline flex items-center gap-1.5 font-semibold"
                   >
                     <span>Open in Google Maps</span>
                     <ExternalLink className="w-3.5 h-3.5" />

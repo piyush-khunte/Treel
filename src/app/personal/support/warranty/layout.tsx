@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/personal/support/warranty",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Warranty & Replacement Policy — Personal TPMS",
     description:
       "Official manufacturer warranty policy and replacement terms for Treel Bluetooth TPMS sensors, valve stems, and hardware components.",

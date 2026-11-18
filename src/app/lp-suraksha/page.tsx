@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Suspense } from "react";
 import type { Metadata, Viewport } from "next";
 import { SurakshaCampaignPage } from "@/components/suraksha/suraksha-campaign-page";
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/lp-suraksha",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     type: "website",
     siteName: "Treel",
     locale: "en_IN",
@@ -64,7 +66,7 @@ const FAQ_JSON_LD = {
       name: "Is EMI available?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Easy EMI through Bajaj Finance is available at every Truck Wheels centre.",
+        text: "Yes. Easy EMI through our NBFC financing partner is available at every Truck Wheels centre.",
       },
     },
     {

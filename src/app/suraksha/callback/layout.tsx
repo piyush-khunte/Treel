@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/suraksha/callback",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Request a Callback — Suraksha Truck TPMS",
     description:
       "Request an instant callback from a Treel Suraksha commercial vehicle tyre safety specialist to discuss fleet fitment and zero-cost EMI plans.",

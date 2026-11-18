@@ -11,9 +11,9 @@ const buttonVariants = cva(
         default:
           "bg-[#0F1E19] text-[#FAF7F2] hover:bg-[#14532D] shadow-sm hover:shadow-md",
         emerald:
-          "bg-[#00B37E] text-white hover:bg-[#009668] shadow-sm hover:shadow-md",
+          "bg-[#00B37E] text-[#0B1F17] hover:bg-[#00C98D] shadow-sm hover:shadow-md",
         treel:
-          "bg-[#D5573B] text-[#FAF7F2] font-semibold hover:bg-[#C2492F] shadow-sm hover:shadow-md",
+          "bg-[#C64529] text-[#FAF7F2] font-semibold hover:bg-[#B53D23] shadow-sm hover:shadow-md",
         treelOutline:
           "border border-[#94A3B8]/30 bg-transparent text-[#FAF7F2] hover:border-[#D5573B] hover:text-[#D5573B] hover:bg-[#D5573B]/10",
         tmip:
@@ -23,7 +23,7 @@ const buttonVariants = cva(
         suraksha:
           "bg-[#F59E0B] text-[#18181B] font-bold hover:bg-[#D97706] shadow-md hover:shadow-lg uppercase tracking-wide",
         surakshaCrimson:
-          "bg-[#EF4444] text-white font-bold hover:bg-[#DC2626] shadow-md uppercase tracking-wide",
+          "bg-[#DC2626] text-white font-bold hover:bg-[#B91C1C] shadow-md uppercase tracking-wide",
         personal:
           "bg-[#2563EB] text-white font-semibold hover:bg-[#1D4ED8] shadow-sm hover:shadow-md",
         outline:

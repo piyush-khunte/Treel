@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Radio, Cpu, ShieldCheck, BarChart3 } from "lucide-react";
 import { TreelHeroVisual } from "@/components/home/treel-hero-visual";
 import dynamic from "next/dynamic";
+import { preload } from "react-dom";
 
 const ExplorePlatformVideoModal = dynamic(
   () =>
@@ -39,6 +40,20 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  // Preload the hero LCP image for this route only (previously preloaded site-wide in the root layout).
+  preload("/images/home/fleet-digital-twin-mobile.webp", {
+    as: "image",
+    type: "image/webp",
+    media: "(max-width: 640px)",
+    fetchPriority: "high",
+  });
+  preload("/images/home/fleet-digital-twin-desktop.webp", {
+    as: "image",
+    type: "image/webp",
+    media: "(min-width: 641px)",
+    fetchPriority: "high",
+  });
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -161,7 +176,7 @@ export default function HomePage() {
                   <div className="font-fraunces text-2xl sm:text-[32px] font-medium text-[#FAF7F2] tracking-[-0.02em]">
                     TMIP
                   </div>
-                  <div className="font-jetbrains font-mono text-[10px] text-[#64748B] tracking-[0.12em] uppercase mt-1.5">
+                  <div className="font-jetbrains font-mono text-[10px] text-[#94A3B8] tracking-[0.12em] uppercase mt-1.5">
                     ENTERPRISE FLEET INTELLIGENCE
                   </div>
                 </div>
@@ -169,7 +184,7 @@ export default function HomePage() {
                   Vehicle Digital Twin platform for fleet operators with ten or more vehicles. Uptime, predicted maintenance, in one dashboard.
                 </p>
               </div>
-              <div className="pt-8 font-inter text-[13px] font-semibold text-[#D5573B] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+              <div className="pt-8 font-inter text-[13px] font-semibold text-[#E07A5F] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
                 Enter TMIP <span className="ml-1">→</span>
               </div>
             </Link>
@@ -190,7 +205,7 @@ export default function HomePage() {
                   <div className="font-fraunces text-2xl sm:text-[32px] font-medium text-[#FAF7F2] tracking-[-0.02em]">
                     Suraksha
                   </div>
-                  <div className="font-jetbrains font-mono text-[10px] text-[#64748B] tracking-[0.12em] uppercase mt-1.5">
+                  <div className="font-jetbrains font-mono text-[10px] text-[#94A3B8] tracking-[0.12em] uppercase mt-1.5">
                     OWNER-DRIVER SAFETY KIT
                   </div>
                 </div>
@@ -198,7 +213,7 @@ export default function HomePage() {
                   A DIY tyre safety kit for India's owner-drivers. Safety, savings, simplicity.
                 </p>
               </div>
-              <div className="pt-8 font-inter text-[13px] font-semibold text-[#D5573B] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+              <div className="pt-8 font-inter text-[13px] font-semibold text-[#E07A5F] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
                 Enter Suraksha <span className="ml-1">→</span>
               </div>
             </Link>
@@ -221,7 +236,7 @@ export default function HomePage() {
                   <div className="font-fraunces text-2xl sm:text-[32px] font-medium text-[#FAF7F2] tracking-[-0.02em]">
                     Personal TPMS
                   </div>
-                  <div className="font-jetbrains font-mono text-[10px] text-[#64748B] tracking-[0.12em] uppercase mt-1.5">
+                  <div className="font-jetbrains font-mono text-[10px] text-[#94A3B8] tracking-[0.12em] uppercase mt-1.5">
                     CONSUMER VEHICLE SAFETY
                   </div>
                 </div>
@@ -229,7 +244,7 @@ export default function HomePage() {
                   Real-time tyre pressure on your phone, vehicle infotainment screen, or dedicated display. Alerts before a puncture. Peace of mind before every drive. Fits any car or two-wheeler.
                 </p>
               </div>
-              <div className="pt-8 font-inter text-[13px] font-semibold text-[#D5573B] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+              <div className="pt-8 font-inter text-[13px] font-semibold text-[#E07A5F] inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
                 Enter Personal <span className="ml-1">→</span>
               </div>
             </Link>
@@ -254,7 +269,7 @@ export default function HomePage() {
               </p>
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link prefetch={false} href="/founder-note"
-                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all group shadow-sm"
+                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] bg-[#C64529] text-[#FAF7F2] font-semibold text-sm hover:bg-[#B53D23] transition-all group shadow-sm"
                 >
                   Read the founder note <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                 </Link>

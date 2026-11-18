@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/platform/vehicle-digital-twin",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Vehicle Digital Twin · TMIP",
     description:
       "The Vehicle Digital Twin is the core of TMIP: a live software model of every truck in your fleet, continuously updated and deeply queryable. Learn more.",

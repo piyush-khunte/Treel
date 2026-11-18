@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizePhone } from "@/lib/validation/phone";
 import { useState } from "react";
 import { CheckCircle2, Lock, ArrowRight, AlertCircle, Eye, Download } from "lucide-react";
 
@@ -193,7 +194,7 @@ export function WhitepaperForm() {
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             className="w-full px-4 py-2.5 rounded-[3px] bg-[#050A17] border border-slate-400/20 text-sm text-[#F1F5F9] placeholder-slate-500 focus:outline-none focus:border-[#3B82F6]"
           />
-          <p className="text-[11px] text-[#64748B] mt-1 font-ibm-plex">We will send document access instructions to this email address.</p>
+          <p className="text-[11px] text-[#94A3B8] mt-1 font-ibm-plex">We will send document access instructions to this email address.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -235,23 +236,23 @@ export function WhitepaperForm() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-xs font-jetbrains text-[#94A3B8] mb-1.5 uppercase tracking-wide">
-              Phone <span className="text-[#64748B]">(Optional)</span>
+              Phone <span className="text-[#94A3B8]">(Optional)</span>
             </label>
             <input
               type="tel"
               inputMode="numeric"
-              maxLength={10}
+              maxLength={16}
               pattern="[0-9]{10}"
               placeholder="10-digit mobile number"
               value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, "").slice(0, 10) })}
+              onChange={(e) => setFormData({ ...formData, phone: normalizePhone(e.target.value) })}
               className="w-full px-4 py-2.5 rounded-[3px] bg-[#050A17] border border-slate-400/20 text-sm text-[#F1F5F9] placeholder-slate-500 focus:outline-none focus:border-[#3B82F6]"
             />
           </div>
 
           <div>
             <label className="block text-xs font-jetbrains text-[#94A3B8] mb-1.5 uppercase tracking-wide">
-              Fleet size <span className="text-[#64748B]">(Optional)</span>
+              Fleet size <span className="text-[#94A3B8]">(Optional)</span>
             </label>
             <select
               value={formData.fleetSize}

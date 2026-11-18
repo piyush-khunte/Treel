@@ -24,10 +24,10 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
             <p className="font-manrope text-[15px] text-slate-400 leading-relaxed max-w-sm">
               The mobility intelligence company. Every vehicle a signal, every signal an insight.
             </p>
-            <p className="pt-2 text-xs text-[#64748B] font-manrope">
+            <p className="pt-2 text-xs text-[#94A3B8] font-manrope">
               ARAI &amp; ISO 9001:2015 Certified · Patents in India, US &amp; EU
             </p>
-            <p className="text-xs text-[#64748B] font-manrope">
+            <p className="text-xs text-[#94A3B8] font-manrope">
               IATF 16949 Certified
             </p>
             <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
@@ -38,9 +38,9 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
 
           {/* Solutions */}
           <div className="space-y-3">
-            <h5 className="font-manrope text-[11px] uppercase tracking-widest text-blue-500 font-extrabold">
+            <h2 className="font-manrope text-[11px] uppercase tracking-widest text-blue-500 font-extrabold">
               SOLUTIONS
-            </h5>
+            </h2>
             <ul className="space-y-2">
               <li>
                 <Link
@@ -79,9 +79,9 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
 
           {/* Technology */}
           <div className="space-y-3">
-            <h5 className="font-manrope text-[11px] uppercase tracking-widest text-blue-500 font-extrabold">
+            <h2 className="font-manrope text-[11px] uppercase tracking-widest text-blue-500 font-extrabold">
               TECHNOLOGY
-            </h5>
+            </h2>
             <ul className="space-y-2">
               <li>
                 <Link
@@ -120,9 +120,9 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
 
           {/* Intelligence */}
           <div className="space-y-3">
-            <h5 className="font-manrope text-[11px] uppercase tracking-widest text-blue-500 font-extrabold">
+            <h2 className="font-manrope text-[11px] uppercase tracking-widest text-blue-500 font-extrabold">
               INTELLIGENCE
-            </h5>
+            </h2>
             <ul className="space-y-2">
               <li>
                 <Link
@@ -177,9 +177,9 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
 
           {/* Company */}
           <div className="space-y-3">
-            <h5 className="font-manrope text-[11px] uppercase tracking-widest text-blue-500 font-extrabold">
+            <h2 className="font-manrope text-[11px] uppercase tracking-widest text-blue-500 font-extrabold">
               COMPANY
-            </h5>
+            </h2>
             <ul className="space-y-2">
               <li>
                 <Link
@@ -234,7 +234,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
         </div>
 
         {/* Bottom row */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 font-manrope gap-4">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 font-manrope gap-4">
           <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
             <span>
               Website developed by{" "}

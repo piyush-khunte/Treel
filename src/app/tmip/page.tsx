@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "TMIP Fleet Telematics & Vehicle Digital Twin",
     description:
       "Treel's Vehicle Digital Twin platform for fleets. Sub-second telemetry, predictive maintenance, and 9 to 12 months payback across 70,000+ vehicles.",
@@ -85,7 +87,7 @@ export default function TmipPage() {
             <div>
               <div className="font-jetbrains text-[11px] tracking-[0.2em] uppercase text-[#3B82F6] mb-3 sm:mb-4 font-medium flex flex-wrap items-center gap-2">
                 <span>ENTERPRISE FLEET INTELLIGENCE</span>
-                <span className="text-slate-600">·</span>
+                <span aria-hidden="true" className="text-slate-400">·</span>
                 <Link href="/tmip/tpms" className="text-[#3B82F6] hover:underline font-semibold">
                   FLEET TPMS &amp; SENSORS →
                 </Link>

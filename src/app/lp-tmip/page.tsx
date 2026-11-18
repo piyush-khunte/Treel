@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { TmipLandingPage } from "@/components/tmip/tmip-landing-page";
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/lp-tmip",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Predict Fleet Breakdowns Before They Happen — TMIP",
     description:
       "Predict breakdowns before they stop your fleet. Real-time tyre intelligence, vehicle digital twins, and predictive maintenance for commercial fleets.",

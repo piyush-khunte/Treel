@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizePhone } from "@/lib/validation/phone";
 import React, { useState, useEffect, useRef } from "react";
 import {
   X,
@@ -285,10 +286,10 @@ export function WhitepaperAccessModal({
                 <input
                   type="tel"
                   inputMode="numeric"
-                  maxLength={10}
+                  maxLength={16}
                   pattern="[0-9]{10}"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
+                  onChange={(e) => setPhone(normalizePhone(e.target.value))}
                   placeholder="10-digit mobile number"
                   className={`w-full h-8 sm:h-9 px-2.5 py-1.5 rounded-[4px] bg-[#050A17] border border-slate-700/60 text-xs text-[#F1F5F9] placeholder-slate-500 focus:outline-none ${brandFocus}`}
                 />

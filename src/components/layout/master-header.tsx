@@ -98,26 +98,26 @@ export function MasterHeader() {
             <div className="relative group">
               <Link prefetch={false} href="/about"
                 className={`flex items-center gap-1 py-2 transition-colors whitespace-nowrap ${
-                  isAboutActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"
+                  isAboutActive ? "text-[#B8432A] font-semibold" : "hover:text-[#B8432A]"
                 }`}
               >
                 <span>About Treel</span>
                 <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform shrink-0" />
               </Link>
               <div className="absolute top-full left-0 w-64 p-2 bg-white rounded-xl shadow-xl border border-slate-200/80 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                <Link prefetch={false} href="/about" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
+                <Link prefetch={false} href="/about" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   About Overview
                 </Link>
-                <Link prefetch={false} href="/leadership" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
+                <Link prefetch={false} href="/leadership" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Leadership
                 </Link>
-                <Link prefetch={false} href="/founder-note" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
+                <Link prefetch={false} href="/founder-note" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Founder&apos;s Note
                 </Link>
-                <Link prefetch={false} href="/our-story" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
+                <Link prefetch={false} href="/our-story" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Our Story
                 </Link>
-                <Link prefetch={false} href="/why-treel" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
+                <Link prefetch={false} href="/why-treel" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Why Treel
                 </Link>
               </div>
@@ -127,23 +127,23 @@ export function MasterHeader() {
             <div className="relative group">
               <Link prefetch={false} href="/technology"
                 className={`flex items-center gap-1 py-2 transition-colors whitespace-nowrap ${
-                  isTechActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"
+                  isTechActive ? "text-[#B8432A] font-semibold" : "hover:text-[#B8432A]"
                 }`}
               >
                 <span>Technology</span>
                 <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform shrink-0" />
               </Link>
               <div className="absolute top-full left-0 w-64 p-2 bg-white rounded-xl shadow-xl border border-slate-200/80 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                <Link prefetch={false} href="/technology" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
+                <Link prefetch={false} href="/technology" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Technology Overview
                 </Link>
-                <Link prefetch={false} href="/vehicle-digital-twin" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
+                <Link prefetch={false} href="/vehicle-digital-twin" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Vehicle Digital Twin
                 </Link>
-                <Link prefetch={false} href="/mobility-intelligence" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
+                <Link prefetch={false} href="/mobility-intelligence" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Mobility Intelligence
                 </Link>
-                <Link prefetch={false} href="/data-infrastructure" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
+                <Link prefetch={false} href="/data-infrastructure" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Data Infrastructure
                 </Link>
               </div>
@@ -153,7 +153,7 @@ export function MasterHeader() {
             <div className="relative group">
               <Link prefetch={false} href="/products" 
                 className={`flex items-center gap-1 py-2 transition-colors whitespace-nowrap ${
-                  isBrandsActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"
+                  isBrandsActive ? "text-[#B8432A] font-semibold" : "hover:text-[#B8432A]"
                 }`}
               >
                 <span>Solutions</span>
@@ -197,7 +197,7 @@ export function MasterHeader() {
                   <Link prefetch={false} href="/tmip/tpms" 
                     className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"
                   >
-                    <div className="w-9 h-9 rounded-lg bg-[#D5573B]/10 flex items-center justify-center text-[#D5573B] shrink-0 mt-0.5">
+                    <div className="w-9 h-9 rounded-lg bg-[#D5573B]/10 flex items-center justify-center text-[#B8432A] shrink-0 mt-0.5">
                       <Truck className="w-5 h-5" />
                     </div>
                     <div>
@@ -237,7 +237,7 @@ export function MasterHeader() {
             {/* OEM */}
             <Link prefetch={false} href="/oem"
               className={`py-2 transition-colors whitespace-nowrap ${
-                isOemActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"
+                isOemActive ? "text-[#B8432A] font-semibold" : "hover:text-[#B8432A]"
               }`}
             >
               OEM
@@ -247,29 +247,29 @@ export function MasterHeader() {
             <div className="relative group">
               <button 
                 className={`flex items-center gap-1 py-2 transition-colors cursor-pointer whitespace-nowrap ${
-                  isResourcesActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"
+                  isResourcesActive ? "text-[#B8432A] font-semibold" : "hover:text-[#B8432A]"
                 }`}
               >
                 <span>Resources</span>
                 <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform shrink-0" />
               </button>
               <div className="absolute top-full right-0 xl:left-0 w-64 p-2 bg-white rounded-xl shadow-xl border border-slate-200/80 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                <Link prefetch={false} href="/press" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
+                <Link prefetch={false} href="/press" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Press &amp; Media
                 </Link>
-                <Link prefetch={false} href="/insights" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
+                <Link prefetch={false} href="/insights" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Insights &amp; Articles
                 </Link>
-                <Link prefetch={false} href="/research" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
+                <Link prefetch={false} href="/research" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Research Papers
                 </Link>
-                <Link prefetch={false} href="/events" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
+                <Link prefetch={false} href="/events" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Events &amp; Keynotes
                 </Link>
-                <Link prefetch={false} href="/annual-reports" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
+                <Link prefetch={false} href="/annual-reports" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Annual Reports
                 </Link>
-                <Link prefetch={false} href="/media-kit" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#D5573B] transition-colors">
+                <Link prefetch={false} href="/media-kit" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Media Kit
                 </Link>
               </div>
@@ -277,14 +277,14 @@ export function MasterHeader() {
 
             {/* GLOBAL PRESENCE */}
             <Link prefetch={false} href="/global-presence" 
-              className={`transition-colors py-2 whitespace-nowrap ${isGlobalActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"}`}
+              className={`transition-colors py-2 whitespace-nowrap ${isGlobalActive ? "text-[#B8432A] font-semibold" : "hover:text-[#B8432A]"}`}
             >
               Global Presence
             </Link>
 
             {/* CONTACT */}
             <Link prefetch={false} href="/contact" 
-              className={`transition-colors py-2 whitespace-nowrap ${isContactActive ? "text-[#D5573B] font-semibold" : "hover:text-[#D5573B]"}`}
+              className={`transition-colors py-2 whitespace-nowrap ${isContactActive ? "text-[#B8432A] font-semibold" : "hover:text-[#B8432A]"}`}
             >
               Contact
             </Link>
@@ -327,11 +327,11 @@ export function MasterHeader() {
               </button>
               {mobileAboutOpen && (
                 <div className="pl-3 pb-2 space-y-1 text-xs text-slate-600 border-l-2 border-slate-100 ml-1">
-                  <Link prefetch={false} href="/about" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">About Overview</Link>
-                  <Link prefetch={false} href="/leadership" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Leadership</Link>
-                  <Link prefetch={false} href="/founder-note" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Founder&apos;s Note</Link>
-                  <Link prefetch={false} href="/our-story" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Our Story</Link>
-                  <Link prefetch={false} href="/why-treel" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Why Treel</Link>
+                  <Link prefetch={false} href="/about" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">About Overview</Link>
+                  <Link prefetch={false} href="/leadership" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Leadership</Link>
+                  <Link prefetch={false} href="/founder-note" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Founder&apos;s Note</Link>
+                  <Link prefetch={false} href="/our-story" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Our Story</Link>
+                  <Link prefetch={false} href="/why-treel" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Why Treel</Link>
                 </div>
               )}
             </div>
@@ -347,10 +347,10 @@ export function MasterHeader() {
               </button>
               {mobileTechOpen && (
                 <div className="pl-3 pb-2 space-y-1 text-xs text-slate-600 border-l-2 border-slate-100 ml-1">
-                  <Link prefetch={false} href="/technology" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Technology Overview</Link>
-                  <Link prefetch={false} href="/vehicle-digital-twin" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Vehicle Digital Twin</Link>
-                  <Link prefetch={false} href="/mobility-intelligence" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Mobility Intelligence</Link>
-                  <Link prefetch={false} href="/data-infrastructure" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Data Infrastructure</Link>
+                  <Link prefetch={false} href="/technology" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Technology Overview</Link>
+                  <Link prefetch={false} href="/vehicle-digital-twin" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Vehicle Digital Twin</Link>
+                  <Link prefetch={false} href="/mobility-intelligence" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Mobility Intelligence</Link>
+                  <Link prefetch={false} href="/data-infrastructure" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Data Infrastructure</Link>
                 </div>
               )}
             </div>
@@ -366,11 +366,11 @@ export function MasterHeader() {
               </button>
               {mobileBrandsOpen && (
                 <div className="pl-3 pb-2 space-y-1 text-xs text-slate-600 border-l-2 border-slate-100 ml-1">
-                  <Link prefetch={false} href="/tmip" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">TMIP Platform (Enterprise)</Link>
-                  <Link prefetch={false} href="/suraksha" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Suraksha (Commercial)</Link>
-                  <Link prefetch={false} href="/personal" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Personal TPMS (Consumer)</Link>
-                  <Link prefetch={false} href="/tmip/tpms" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Commercial Vehicle TPMS</Link>
-                  <Link prefetch={false} href="/products/otr-tpms" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">OTR TPMS</Link>
+                  <Link prefetch={false} href="/tmip" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">TMIP Platform (Enterprise)</Link>
+                  <Link prefetch={false} href="/suraksha" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Suraksha (Commercial)</Link>
+                  <Link prefetch={false} href="/personal" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Personal TPMS (Consumer)</Link>
+                  <Link prefetch={false} href="/tmip/tpms" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Commercial Vehicle TPMS</Link>
+                  <Link prefetch={false} href="/products/otr-tpms" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">OTR TPMS</Link>
                 </div>
               )}
             </div>
@@ -378,7 +378,7 @@ export function MasterHeader() {
             {/* OEM */}
             <Link prefetch={false} href="/oem" 
               onClick={() => setMobileMenuOpen(false)} 
-              className="block py-2 text-slate-900 font-semibold hover:text-[#D5573B]"
+              className="block py-2 text-slate-900 font-semibold hover:text-[#B8432A]"
             >
               OEM
             </Link>
@@ -394,12 +394,12 @@ export function MasterHeader() {
               </button>
               {mobileResourcesOpen && (
                 <div className="pl-3 pb-2 space-y-1 text-xs text-slate-600 border-l-2 border-slate-100 ml-1">
-                  <Link prefetch={false} href="/press" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Press &amp; Media</Link>
-                  <Link prefetch={false} href="/insights" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Insights &amp; Articles</Link>
-                  <Link prefetch={false} href="/research" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Research Papers</Link>
-                  <Link prefetch={false} href="/events" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Events &amp; Keynotes</Link>
-                  <Link prefetch={false} href="/annual-reports" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Annual Reports</Link>
-                  <Link prefetch={false} href="/media-kit" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#D5573B]">Media Kit</Link>
+                  <Link prefetch={false} href="/press" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Press &amp; Media</Link>
+                  <Link prefetch={false} href="/insights" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Insights &amp; Articles</Link>
+                  <Link prefetch={false} href="/research" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Research Papers</Link>
+                  <Link prefetch={false} href="/events" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Events &amp; Keynotes</Link>
+                  <Link prefetch={false} href="/annual-reports" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Annual Reports</Link>
+                  <Link prefetch={false} href="/media-kit" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Media Kit</Link>
                 </div>
               )}
             </div>
@@ -407,7 +407,7 @@ export function MasterHeader() {
             {/* Global Presence */}
             <Link prefetch={false} href="/global-presence" 
               onClick={() => setMobileMenuOpen(false)} 
-              className="block py-2 text-slate-900 font-semibold hover:text-[#D5573B]"
+              className="block py-2 text-slate-900 font-semibold hover:text-[#B8432A]"
             >
               Global Presence
             </Link>
@@ -415,7 +415,7 @@ export function MasterHeader() {
             {/* Contact */}
             <Link prefetch={false} href="/contact" 
               onClick={() => setMobileMenuOpen(false)} 
-              className="block py-2 text-slate-900 font-semibold hover:text-[#D5573B]"
+              className="block py-2 text-slate-900 font-semibold hover:text-[#B8432A]"
             >
               Contact
             </Link>

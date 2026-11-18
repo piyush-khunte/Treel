@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 AlertTriangle,
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/personal/features/alerts",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Instant Alerts · Personal TPMS",
     description: "Personal TPMS sends instant alerts before a slow leak becomes a puncture. Configurable thresholds. iOS, Android, Apple Watch notifications.",
     url: "https://treel.in/personal/features/alerts",

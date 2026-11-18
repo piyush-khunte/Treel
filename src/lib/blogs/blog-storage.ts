@@ -44,7 +44,7 @@ export const INITIAL_SEED_BLOGS: MongoBlog[] = [
     date: "2026-09-08T10:00:00.000Z",
     author: "Karan Verma",
     status: "Published",
-    image: "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80",
     description: "Cold vs hot pressure calibration, seasonal variations in Indian weather, and avoiding common gas station digital meter misreadings.",
     blogContent: `<p>A common mistake made by Indian drivers is checking tyre pressure after driving several kilometres to a fuel station. Friction against the tarmac and internal air compression raise tyre temperature, which artificially inflates pressure by 3 to 6 PSI.</p>
 <p>If you fill air into a warm tyre up to your vehicle's placard rating (e.g. 32 PSI), once the tyre cools down overnight, the true pressure will drop to 27 PSI, leaving your vehicle severely underinflated for the next morning's drive.</p>
@@ -116,7 +116,7 @@ export const INITIAL_SEED_BLOGS: MongoBlog[] = [
     date: "2026-08-10T10:00:00.000Z",
     author: "Treel Mobile Team",
     status: "Published",
-    image: "https://images.unsplash.com/photo-1510519138195-068d82f53489?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1200&q=80",
     description: "Discover the new haptic feedback complications on Apple Watch, dark mode refinements, and one-tap CSV drive telemetry export.",
     blogContent: `<p>We are excited to announce Treel Care App v2.4, now live on both the Apple App Store and Google Play Store. This update brings full Apple Watch complication support, allowing drivers to check all 4 tyre pressures with a single glance at their wrist.</p>
 <p>The new iOS Home Screen and Lock Screen widgets provide instantaneous tyre status before you even step into your car. If any tyre is below 28 PSI, the widget icon alerts you with the exact deficit indicated.</p>

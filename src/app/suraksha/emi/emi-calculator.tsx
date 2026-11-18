@@ -56,7 +56,7 @@ export function SurakshaEmiCalculator() {
             Explore EMI plans
           </h3>
           <p className="text-xs font-semibold text-[#78350F]">
-            Bajaj Finance financing plans &amp; tenure options
+            NBFC partner financing plans &amp; tenure options
           </p>
         </div>
       </div>
@@ -187,11 +187,11 @@ export function SurakshaEmiCalculator() {
             <div className="space-y-2.5 pt-3 border-t border-[#451A03]/10 text-xs text-[#78350F]">
               <div className="flex items-center gap-2 text-[#451A03] font-semibold">
                 <CheckCircle2 className="w-4 h-4 text-[#10B981] flex-shrink-0" />
-                <span>Partner: Bajaj Finance</span>
+                <span>Partner: Leading NBFC</span>
               </div>
               <div className="flex items-center gap-2 text-[#451A03] font-semibold">
                 <CheckCircle2 className="w-4 h-4 text-[#10B981] flex-shrink-0" />
-                <span>Instant approval at 400+ Truck Wheels centres</span>
+                <span>Instant approval at 600+ Truck Wheels centres</span>
               </div>
               <div className="flex items-center gap-2 text-[#451A03] font-semibold">
                 <CheckCircle2 className="w-4 h-4 text-[#10B981] flex-shrink-0" />

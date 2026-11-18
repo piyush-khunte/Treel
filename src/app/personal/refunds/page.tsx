@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 CheckCircle2,
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/personal/refunds",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Refunds Policy · Personal TPMS",
     description: "Personal TPMS refund policy. Eligibility, process, timeline, and Razorpay refund cycle. For online orders from treel.in.",
     url: "https://treel.in/personal/refunds",
@@ -26,9 +28,9 @@ export default function PersonalRefundsPage() {
       desc: "Upon return parcel receipt and verification at our warehouse, Treel approves and triggers refund initiation."
     },
     {
-      phase: "Phase 2 · Razorpay Gateway Processing",
+      phase: "Phase 2 · Payment Gateway Processing",
       time: "3–7 business days",
-      desc: "Razorpay securely processes reverse settlement back to your issuing bank or payment network."
+      desc: "Our secure payment gateway processes reverse settlement back to your issuing bank or payment network."
     },
     {
       phase: "Phase 3 · Bank Account Credit",
@@ -99,7 +101,7 @@ export default function PersonalRefundsPage() {
             <div className="space-y-4">
               <h2 className="text-2xl sm:text-3xl font-bold text-[#111827]">Original Digital Payment Method Only</h2>
               <p className="text-base text-[#4B5563] leading-relaxed">
-                All refunds are credited exclusively back to the original payment source utilized at checkout via Razorpay:
+                All refunds are credited exclusively back to the original payment source utilized at checkout via our secure payment gateway:
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <div className="p-5 rounded-2xl bg-[#F9FAFB] border border-black/[0.06] space-y-1">
@@ -132,7 +134,7 @@ export default function PersonalRefundsPage() {
                 {timelinePhases.map((phase, idx) => (
                   <div key={idx} className="p-6 rounded-3xl bg-[#F9FAFB] border border-black/[0.06] space-y-2">
                     <div className="flex items-center justify-between">
-                      <h4 className="font-bold text-base text-[#111827]">{phase.phase}</h4>
+                      <h3 className="font-bold text-base text-[#111827]">{phase.phase}</h3>
                       <span className="text-xs font-bold text-[#2563EB] bg-[#2563EB]/10 px-3 py-1 rounded-full">
                         {phase.time}
                       </span>
@@ -155,7 +157,7 @@ export default function PersonalRefundsPage() {
             <div className="p-8 sm:p-10 rounded-3xl bg-[#111827] text-white space-y-4 border border-white/10 shadow-xl">
               <h3 className="text-xl sm:text-2xl font-bold text-white">Need Status on a Specific Refund?</h3>
               <p className="text-sm text-[#94A3B8] leading-relaxed">
-                Reach out to our finance team at <strong>hello@treel.in</strong> with your Order ID and Razorpay reference, or contact our customer support hotline at <strong>1800 833 0233</strong> (Monday to Friday, 8:00 AM to 8:00 PM IST).
+                Reach out to our finance team at <strong>hello@treel.in</strong> with your Order ID and payment reference, or contact our customer support hotline at <strong>1800 833 0233</strong> (Monday to Friday, 8:00 AM to 8:00 PM IST).
               </p>
             </div>
           </div>

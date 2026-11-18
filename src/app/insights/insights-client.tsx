@@ -220,7 +220,7 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
 
               <Link
                 href={`/insights/${featuredArticle.slug}`}
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-xs hover:bg-[#CB4831] transition-all shadow-md"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] bg-[#C64529] text-[#FAF7F2] font-semibold text-xs hover:bg-[#B53D23] transition-all shadow-md"
               >
                 <span>Read the article</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -240,7 +240,7 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
                   activeCategory === cat
-                    ? "bg-[#D5573B] text-[#FAF7F2] font-bold shadow-sm"
+                    ? "bg-[#C64529] text-[#FAF7F2] font-bold shadow-sm"
                     : "bg-white/[0.03] text-[#94A3B8] hover:text-white hover:bg-white/[0.06] border border-white/10"
                 }`}
               >
@@ -273,11 +273,11 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
                     <span className="text-[11px] font-mono uppercase tracking-wider text-[#D5573B] font-semibold">
                       {article.category}
                     </span>
-                    <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-snug">
+                    <h2 className="font-fraunces text-xl font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors leading-snug">
                       <Link href={`/insights/${article.slug}`} className="hover:underline">
                         {article.title}
                       </Link>
-                    </h3>
+                    </h2>
                     <p className="text-xs text-[#94A3B8] line-clamp-3 leading-relaxed font-inter">
                       {article.excerpt}
                     </p>
@@ -340,7 +340,7 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
                 <button
                   type="submit"
                   disabled={isSubscribing}
-                  className="w-full sm:w-auto px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md shrink-0 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  className="w-full sm:w-auto px-7 py-3.5 rounded-[4px] bg-[#C64529] text-[#FAF7F2] font-semibold text-sm hover:bg-[#B53D23] transition-all shadow-md shrink-0 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
                   {isSubscribing ? (
                     <>

@@ -36,7 +36,7 @@ export function EventSubscribeForm() {
       <div className="p-6 rounded-lg bg-[#D5573B]/10 border border-[#D5573B]/30 flex items-start gap-4 animate-in fade-in duration-300">
         <CheckCircle2 className="w-5 h-5 text-[#D5573B] mt-0.5 shrink-0" />
         <div className="space-y-1">
-          <h4 className="font-fraunces text-base font-medium text-[#FAF7F2]">You&apos;re subscribed.</h4>
+          <h3 className="font-fraunces text-base font-medium text-[#FAF7F2]">You&apos;re subscribed.</h3>
           <p className="text-xs text-[#94A3B8]">
             We&apos;ll notify <span className="text-white font-medium">{email}</span> whenever we schedule new events.
           </p>
@@ -66,7 +66,7 @@ export function EventSubscribeForm() {
           <Send className="w-3.5 h-3.5" />
         </Button>
       </div>
-      <p className="text-[11px] text-[#64748B] font-mono">
+      <p className="text-[11px] text-[#94A3B8] font-mono">
         No spam. Event alerts only. Unsubscribe with one click anytime.
       </p>
     </form>

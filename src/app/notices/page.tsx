@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Bell, Calendar, FileText, ShieldCheck, Tag, ExternalLink } from "lucide-react";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/notices",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Notice Board",
     description: "Official corporate announcements, statutory notices, and regulatory disclosures of Treel Mobility Solutions Private Limited.",
     url: "https://treel.in/notices",

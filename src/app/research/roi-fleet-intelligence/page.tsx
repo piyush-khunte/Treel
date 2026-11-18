@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 ArrowRight,
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/research/roi-fleet-intelligence",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "The Fleet ROI and Fuel Savings Paper — Research",
     description: "Financial and operational analysis of mobility intelligence and real-time tyre telemetry across commercial vehicle fleets in India. 24-page whitepaper.",
     url: "https://treel.in/research/roi-fleet-intelligence",

@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 ArrowRight,
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/security",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Security  ·  TMIP",
     description: "TMIP enterprise security: ISO 27001 certifications, infrastructure and cloud data protection, application security, and incident response governance.",
     url: "https://treel.in/tmip/security",

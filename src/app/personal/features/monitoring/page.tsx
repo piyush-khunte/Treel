@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 Activity,
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/personal/features/monitoring",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Real-Time Monitoring · Personal TPMS",
     description: "Personal TPMS updates tyre pressure and temperature every three seconds when driving. Continuous visibility, not just alerts.",
     url: "https://treel.in/personal/features/monitoring",

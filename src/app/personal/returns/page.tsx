@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 AlertCircle,
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/personal/returns",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Returns Policy · Personal TPMS",
     description: "Personal TPMS return policy. 7-day return window for unopened kits. Return process, eligibility, and refund timeline.",
     url: "https://treel.in/personal/returns",
@@ -40,7 +42,7 @@ export default function PersonalReturnsPage() {
     {
       num: "04",
       title: "Reverse Pickup",
-      desc: "A Shiprocket partner courier collects the parcel from your doorstep at Treel's expense for eligible returns."
+      desc: "A partner courier collects the parcel from your doorstep at Treel's expense for eligible returns."
     },
     {
       num: "05",
@@ -153,7 +155,7 @@ export default function PersonalReturnsPage() {
                   <div key={idx} className="p-6 rounded-3xl bg-[#F9FAFB] border border-black/[0.06] flex items-start gap-4">
                     <div className="text-xl font-extrabold text-[#2563EB] font-mono shrink-0 w-8">{st.num}</div>
                     <div className="space-y-1">
-                      <h4 className="font-bold text-base text-[#111827]">{st.title}</h4>
+                      <h3 className="font-bold text-base text-[#111827]">{st.title}</h3>
                       <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed">{st.desc}</p>
                     </div>
                   </div>

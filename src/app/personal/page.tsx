@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import {
 ArrowRight,
 BatteryCharging,
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/personal",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Personal TPMS — Bluetooth Tyre Pressure Monitoring",
     description:
       "Real-time tyre pressure on your phone. Alerts before a puncture. ±0.5 PSI accuracy, 2-year battery, 10-minute setup. Fits any car or two-wheeler. ₹8,999.",
@@ -120,7 +122,7 @@ export default function PersonalPage() {
                     <div className="text-xs font-semibold text-[#6B7280]">Vehicle</div>
                     <div className="font-manrope text-base font-extrabold text-[#111827]">Priya · Honda City</div>
                   </div>
-                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#10B981]/10 text-[#10B981] text-xs font-bold">
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#10B981]/10 text-[#047857] text-xs font-bold">
                     <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
                     All tyres good
                   </div>
@@ -131,25 +133,25 @@ export default function PersonalPage() {
                   <div className="p-4 rounded-xl bg-white border border-black/[0.06] text-center space-y-1 shadow-xs">
                     <div className="text-[11px] font-bold text-[#6B7280] uppercase tracking-wider">Front Left</div>
                     <div className="font-manrope text-2xl font-extrabold text-[#111827]">32 <span className="text-xs font-normal text-[#6B7280]">PSI</span></div>
-                    <div className="text-[11px] font-medium text-[#10B981]">31°C · Optimal</div>
+                    <div className="text-[11px] font-medium text-[#047857]">31°C · Optimal</div>
                   </div>
 
                   <div className="p-4 rounded-xl bg-white border border-black/[0.06] text-center space-y-1 shadow-xs">
                     <div className="text-[11px] font-bold text-[#6B7280] uppercase tracking-wider">Front Right</div>
                     <div className="font-manrope text-2xl font-extrabold text-[#111827]">32 <span className="text-xs font-normal text-[#6B7280]">PSI</span></div>
-                    <div className="text-[11px] font-medium text-[#10B981]">31°C · Optimal</div>
+                    <div className="text-[11px] font-medium text-[#047857]">31°C · Optimal</div>
                   </div>
 
                   <div className="p-4 rounded-xl bg-white border border-black/[0.06] text-center space-y-1 shadow-xs">
                     <div className="text-[11px] font-bold text-[#6B7280] uppercase tracking-wider">Rear Left</div>
                     <div className="font-manrope text-2xl font-extrabold text-[#111827]">33 <span className="text-xs font-normal text-[#6B7280]">PSI</span></div>
-                    <div className="text-[11px] font-medium text-[#10B981]">32°C · Optimal</div>
+                    <div className="text-[11px] font-medium text-[#047857]">32°C · Optimal</div>
                   </div>
 
                   <div className="p-4 rounded-xl bg-white border border-black/[0.06] text-center space-y-1 shadow-xs">
                     <div className="text-[11px] font-bold text-[#6B7280] uppercase tracking-wider">Rear Right</div>
                     <div className="font-manrope text-2xl font-extrabold text-[#111827]">33 <span className="text-xs font-normal text-[#6B7280]">PSI</span></div>
-                    <div className="text-[11px] font-medium text-[#10B981]">32°C · Optimal</div>
+                    <div className="text-[11px] font-medium text-[#047857]">32°C · Optimal</div>
                   </div>
                 </div>
 

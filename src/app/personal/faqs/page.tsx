@@ -101,7 +101,7 @@ export default function PersonalFaqsPage() {
     {
       cat: "Pricing & purchase",
       q: "Do you offer EMI?",
-      a: "Yes. EMI options are available at checkout via Razorpay for cart values above a minimum threshold."
+      a: "Yes. EMI options are available at checkout via our secure payment gateway for cart values above a minimum threshold."
     },
     {
       cat: "Pricing & purchase",
@@ -229,7 +229,7 @@ export default function PersonalFaqsPage() {
           <div className="max-w-4xl space-y-4">
             {filteredFaqs.length === 0 ? (
               <div className="p-8 text-center bg-[#F9FAFB] rounded-3xl border border-black/[0.06] space-y-2">
-                <h4 className="font-bold text-[#111827]">No questions found</h4>
+                <h2 className="font-bold text-[#111827]">No questions found</h2>
                 <p className="text-xs text-[#6B7280]">Try searching for a different keyword or select another category.</p>
               </div>
             ) : (

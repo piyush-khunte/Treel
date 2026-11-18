@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { useCart } from "@/lib/commerce/cart-context";
 import { PERSONAL_PRODUCTS, PersonalProduct, normalizePersonalCategory } from "@/lib/data/personal-products";
-import { getValidImageSrc } from "@/lib/utils/image-utils";
+import { canOptimizeImage,getValidImageSrc } from "@/lib/utils/image-utils";
 
 export default function PersonalBuyPage() {
   const router = useRouter();
@@ -231,8 +231,8 @@ export default function PersonalBuyPage() {
                           src={getValidImageSrc(product.image)!}
                           alt={product.title}
                           fill
-                          unoptimized
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          unoptimized={!canOptimizeImage(getValidImageSrc(product.image)!)}
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 300px"
                           className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
                         />
                       ) : (
@@ -345,7 +345,7 @@ export default function PersonalBuyPage() {
         <div className="max-w-[1320px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl mb-8 space-y-2">
             <div className="text-xs font-bold uppercase tracking-wider text-[#2563EB]">HELP & GUIDANCE</div>
-            <h3 className="text-2xl font-bold text-[#111827]">Frequently Explored TPMS Resources</h3>
+            <h2 className="text-2xl font-bold text-[#111827]">Frequently Explored TPMS Resources</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -357,7 +357,7 @@ export default function PersonalBuyPage() {
                 <span className="font-bold text-xs uppercase tracking-wider text-[#2563EB]">Feature Deep-Dive</span>
                 <ArrowRight className="w-4 h-4 text-[#9CA3AF] group-hover:text-[#2563EB] group-hover:translate-x-1 transition-all" />
               </div>
-              <h4 className="font-bold text-[#111827] text-base group-hover:text-[#2563EB] transition-colors">How Treel TPMS Works →</h4>
+              <h3 className="font-bold text-[#111827] text-base group-hover:text-[#2563EB] transition-colors">How Treel TPMS Works →</h3>
               <p className="text-xs text-[#6B7280] mt-1.5 leading-relaxed">
                 Discover BLE transmission, continuous tyre pressure monitoring, and smart leak detection algorithms.
               </p>
@@ -371,7 +371,7 @@ export default function PersonalBuyPage() {
                 <span className="font-bold text-xs uppercase tracking-wider text-[#2563EB]">DIY Guide</span>
                 <ArrowRight className="w-4 h-4 text-[#9CA3AF] group-hover:text-[#2563EB] group-hover:translate-x-1 transition-all" />
               </div>
-              <h4 className="font-bold text-[#111827] text-base group-hover:text-[#2563EB] transition-colors">Installation Walkthrough →</h4>
+              <h3 className="font-bold text-[#111827] text-base group-hover:text-[#2563EB] transition-colors">Installation Walkthrough →</h3>
               <p className="text-xs text-[#6B7280] mt-1.5 leading-relaxed">
                 Step-by-step visual tutorial to install valve sensors and pair with the mobile app in minutes.
               </p>
@@ -385,7 +385,7 @@ export default function PersonalBuyPage() {
                 <span className="font-bold text-xs uppercase tracking-wider text-[#2563EB]">Customer Stories</span>
                 <ArrowRight className="w-4 h-4 text-[#9CA3AF] group-hover:text-[#2563EB] group-hover:translate-x-1 transition-all" />
               </div>
-              <h4 className="font-bold text-[#111827] text-base group-hover:text-[#2563EB] transition-colors">Verified Customer Reviews →</h4>
+              <h3 className="font-bold text-[#111827] text-base group-hover:text-[#2563EB] transition-colors">Verified Customer Reviews →</h3>
               <p className="text-xs text-[#6B7280] mt-1.5 leading-relaxed">
                 Read authentic highway and daily commuting experiences from drivers and riders across India.
               </p>

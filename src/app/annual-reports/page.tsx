@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Download, FileText, ExternalLink, ShieldCheck, Eye } from "lucide-react";
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/annual-reports",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Annual Reports & Statutory Returns",
     description: "Official statutory annual returns (Form MGT-7A) and annual reports of Treel Mobility Solutions Private Limited for transparency and public compliance.",
     url: "https://treel.in/annual-reports",
@@ -135,7 +137,7 @@ export default async function AnnualReportsPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         download
-                        className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-xs font-semibold bg-[#D5573B] text-[#FAF7F2] hover:bg-[#e06347] transition-all shadow-sm"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-xs font-semibold bg-[#C64529] text-[#FAF7F2] hover:bg-[#e06347] transition-all shadow-sm"
                         title={`Download ${report.title}`}
                       >
                         <Download className="w-4 h-4" />

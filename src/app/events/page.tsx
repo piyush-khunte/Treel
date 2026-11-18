@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { 
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/events",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Events & Summits — Conferences & Industry Expos",
     description: "Upcoming conferences, webinars, product demos, and industry meetups. If we're in your city, come by.",
     url: "https://treel.in/events",
@@ -175,9 +177,9 @@ export default async function EventsPage() {
                     <span>{item.dateTime}</span>
                     <span>{item.location}</span>
                   </div>
-                  <h4 className="font-fraunces text-base font-medium text-[#FAF7F2] leading-snug">
+                  <h3 className="font-fraunces text-base font-medium text-[#FAF7F2] leading-snug">
                     {item.name}
-                  </h4>
+                  </h3>
                 </div>
                 <div className="pt-3 border-t border-white/5">
                   {item.materialUrl ? (

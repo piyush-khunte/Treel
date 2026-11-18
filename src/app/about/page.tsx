@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 ArrowRight,
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/about",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "About Us — Building the Mobility Intelligence Category",
     description: "India's mobility intelligence leader, founded in 2018 by Manish Ingale and backed by JK Tyre. Powering 70,000+ commercial vehicles across 200+ fleets.",
     url: "https://treel.in/about",
@@ -118,33 +120,33 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
               <Link href="/tmip" className="group p-6 sm:p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
                 <div>
-                  <div className="font-jetbrains font-mono text-[10px] text-[#64748B] tracking-[0.12em] uppercase mb-2">ENTERPRISE FLEETS</div>
+                  <div className="font-jetbrains font-mono text-[10px] text-[#94A3B8] tracking-[0.12em] uppercase mb-2">ENTERPRISE FLEETS</div>
                   <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">TMIP Enterprise</h3>
                   <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed">Vehicle Digital Twin platform for fleets with 10 to 10,000+ commercial vehicles.</p>
                 </div>
-                <div className="mt-4 font-inter text-[13px] font-semibold text-[#D5573B] flex items-center gap-1 group-hover:gap-2 transition-all">
+                <div className="mt-4 font-inter text-[13px] font-semibold text-[#E07A5F] flex items-center gap-1 group-hover:gap-2 transition-all">
                   Explore TMIP <ChevronRight className="w-3.5 h-3.5" />
                 </div>
               </Link>
 
               <Link href="/suraksha" className="group p-6 sm:p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
                 <div>
-                  <div className="font-jetbrains font-mono text-[10px] text-[#64748B] tracking-[0.12em] uppercase mb-2">OWNER-DRIVERS</div>
+                  <div className="font-jetbrains font-mono text-[10px] text-[#94A3B8] tracking-[0.12em] uppercase mb-2">OWNER-DRIVERS</div>
                   <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">Project Suraksha</h3>
                   <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed">Puncture avoidance, tyre life extension, and 15-min driver helpline across Indian highways.</p>
                 </div>
-                <div className="mt-4 font-inter text-[13px] font-semibold text-[#D5573B] flex items-center gap-1 group-hover:gap-2 transition-all">
+                <div className="mt-4 font-inter text-[13px] font-semibold text-[#E07A5F] flex items-center gap-1 group-hover:gap-2 transition-all">
                   Explore Suraksha <ChevronRight className="w-3.5 h-3.5" />
                 </div>
               </Link>
 
               <Link href="/personal" className="group p-6 sm:p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
                 <div>
-                  <div className="font-jetbrains font-mono text-[10px] text-[#64748B] tracking-[0.12em] uppercase mb-2">CONSUMERS</div>
+                  <div className="font-jetbrains font-mono text-[10px] text-[#94A3B8] tracking-[0.12em] uppercase mb-2">CONSUMERS</div>
                   <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">Personal TPMS</h3>
                   <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed">Smart Bluetooth tyre pressure monitoring kits. Fits any car or two-wheeler.</p>
                 </div>
-                <div className="mt-4 font-inter text-[13px] font-semibold text-[#D5573B] flex items-center gap-1 group-hover:gap-2 transition-all">
+                <div className="mt-4 font-inter text-[13px] font-semibold text-[#E07A5F] flex items-center gap-1 group-hover:gap-2 transition-all">
                   Explore Personal <ChevronRight className="w-3.5 h-3.5" />
                 </div>
               </Link>
@@ -194,7 +196,7 @@ export default function AboutPage() {
               Treel is led by founder Manish Ingale, with a leadership team drawn from tyre engineering, enterprise software, and fleet operations.
             </p>
             <div className="pt-2">
-              <Link href="/leadership" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-sm bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]">
+              <Link href="/leadership" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-sm bg-[#C64529] text-[#FAF7F2] hover:bg-[#B53D23]">
                 Meet the full leadership team <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -236,7 +238,7 @@ export default function AboutPage() {
               We are hiring across engineering, product, and go-to-market. If you want to work on mobility intelligence at scale, look at what&apos;s open.
             </p>
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <Link href="/careers" className="px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-sm bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831] flex items-center gap-2">
+              <Link href="/careers" className="px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-sm bg-[#C64529] text-[#FAF7F2] hover:bg-[#B53D23] flex items-center gap-2">
                 See open roles <ArrowRight className="w-4 h-4" />
               </Link>
               <Link href="/contact" className="px-7 py-3.5 rounded-[4px] font-medium text-sm transition-all border border-[#94A3B8]/30 text-[#FAF7F2] hover:border-[#D5573B]">

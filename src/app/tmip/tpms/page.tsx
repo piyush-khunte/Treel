@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/tpms",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Commercial Vehicle TPMS · TMIP",
     description:
       "Commercial vehicle tyre telematics, multi-axle pressure and temperature monitoring, and digital twin systems for commercial fleets and manufacturers.",

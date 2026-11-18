@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizePhone } from "@/lib/validation/phone";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -10,14 +11,14 @@ import "@/app/suraksha/suraksha-campaign.css";
 const I18N: Record<string, Record<string, string>> = {
   en: {
     cl_e: "East",
-    trust_centres: "400+ Suraksha centres",
+    trust_centres: "600+ Suraksha centres",
     f_thanks_p: "In a hurry? Call us toll-free.",
     form_p: "Leave your number. A Suraksha expert will call you back in your language.",
     f_privacy: "Privacy Policy",
     mb_cb: "Call back",
     kit_b4: "No phone or app needed",
     trust_noapp: "No app. No subscription.",
-    a4: "Yes. Easy EMI through Bajaj Finance is available at every Truck Wheels centre.",
+    a4: "Yes. Easy EMI through our NBFC financing partner is available at every Truck Wheels centre.",
     why1_p: "One breakdown can wipe out a whole day's earning.",
     p2_p: "0.5–0.6% fuel savings. 5–7% longer tyre life. No roadside towing fees.",
     f_select: "Select",
@@ -55,7 +56,7 @@ const I18N: Record<string, Record<string, string>> = {
     fleet_p: "Every truck gets its own Suraksha kit. Each driver sees his truck's tyres on the cabin display and gets the warning first.",
     f_mobile: "Mobile number",
     a1: "Yes. Suraksha fits any truck and works with any tyre brand.",
-    pay_p: "Easy EMI through Bajaj Finance at every Truck Wheels centre. Installation takes fifteen minutes.",
+    pay_p: "Easy EMI through our NBFC financing partner at every Truck Wheels centre. Installation takes fifteen minutes.",
     pil_sub: "Safety for the driver. Savings for the business. Simplicity for the family.",
     f_t4: "11 to 25 trucks",
     hdr_call: "Call toll-free",
@@ -73,7 +74,7 @@ const I18N: Record<string, Record<string, string>> = {
     mb_call: "Call",
     nav_centres: "Centres",
     s1_p: "At any Truck Wheels centre or roadside puncture shop, in about 15 minutes.",
-    cen_h2: "400+ Highway Suraksha Centres.",
+    cen_h2: "600+ Highway Suraksha Centres.",
     foot_toll: "Toll-free",
     q3: "How long does fitting take?",
     fleet_eyebrow: "One truck or many",
@@ -129,14 +130,14 @@ const I18N: Record<string, Record<string, string>> = {
   },
   hi: {
     cl_e: "पूर्व",
-    trust_centres: "400+ Suraksha सेंटर",
+    trust_centres: "600+ Suraksha सेंटर",
     f_thanks_p: "जल्दी है? हमें टोल-फ्री कॉल करें।",
     form_p: "अपना नंबर दें। Suraksha के एक्सपर्ट आपकी भाषा में आपको कॉल करेंगे।",
     f_privacy: "प्राइवेसी पॉलिसी",
     mb_cb: "कॉल बैक",
     kit_b4: "फ़ोन या ऐप की ज़रूरत नहीं",
     trust_noapp: "कोई ऐप नहीं। कोई सब्सक्रिप्शन नहीं।",
-    a4: "हाँ। हर Truck Wheels सेंटर पर Bajaj Finance से आसान EMI मिलती है।",
+    a4: "हाँ। हर Truck Wheels सेंटर पर हमारे NBFC पार्टनर से आसान EMI मिलती है।",
     why1_p: "एक ब्रेकडाउन पूरे दिन की कमाई खा सकता है।",
     p2_p: "0.5–0.6% डीज़ल की बचत। टायर 5–7% ज़्यादा चलते हैं। सड़क पर टोइंग का कोई खर्च नहीं।",
     f_select: "चुनें",
@@ -174,7 +175,7 @@ const I18N: Record<string, Record<string, string>> = {
     fleet_p: "हर ट्रक की अपनी Suraksha किट होती है। हर ड्राइवर केबिन डिस्प्ले पर अपने ट्रक के टायर देखता है और सबसे पहले चेतावनी पाता है।",
     f_mobile: "मोबाइल नंबर",
     a1: "हाँ। Suraksha हर ट्रक में फिट होता है और किसी भी टायर ब्रांड के साथ काम करता है।",
-    pay_p: "हर Truck Wheels सेंटर पर Bajaj Finance से आसान EMI। फिटिंग में सिर्फ़ पंद्रह मिनट।",
+    pay_p: "हर Truck Wheels सेंटर पर हमारे NBFC पार्टनर से आसान EMI। फिटिंग में सिर्फ़ पंद्रह मिनट।",
     pil_sub: "ड्राइवर के लिए सुरक्षा। बिज़नेस के लिए बचत। परिवार के लिए आसानी।",
     f_t4: "11 से 25 ट्रक",
     hdr_call: "टोल-फ्री कॉल करें",
@@ -192,7 +193,7 @@ const I18N: Record<string, Record<string, string>> = {
     mb_call: "कॉल",
     nav_centres: "सेंटर",
     s1_p: "किसी भी Truck Wheels सेंटर या सड़क किनारे पंचर की दुकान पर, लगभग 15 मिनट में।",
-    cen_h2: "400+ हाईवे Suraksha सेंटर।",
+    cen_h2: "600+ हाईवे Suraksha सेंटर।",
     foot_toll: "टोल-फ्री",
     q3: "फिटिंग में कितना समय लगता है?",
     fleet_eyebrow: "एक ट्रक हो या कई",
@@ -248,14 +249,14 @@ const I18N: Record<string, Record<string, string>> = {
   },
   gu: {
     cl_e: "પૂર્વ",
-    trust_centres: "400+ Suraksha સેન્ટર",
+    trust_centres: "600+ Suraksha સેન્ટર",
     f_thanks_p: "ઉતાવળ છે? અમને ટોલ-ફ્રી કૉલ કરો.",
     form_p: "તમારો નંબર આપો. Suraksha ના નિષ્ણાત તમને તમારી ભાષામાં કૉલ કરશે.",
     f_privacy: "પ્રાઇવસી પોલિસી",
     mb_cb: "કૉલ બેક",
     kit_b4: "ફોન કે એપની જરૂર નથી",
     trust_noapp: "કોઈ એપ નહીં. કોઈ સબ્સ્ક્રિપ્શન નહીં.",
-    a4: "હા. દરેક Truck Wheels સેન્ટર પર Bajaj Finance દ્વારા સરળ EMI મળે છે.",
+    a4: "હા. દરેક Truck Wheels સેન્ટર પર અમારા NBFC પાર્ટનર દ્વારા સરળ EMI મળે છે.",
     why1_p: "એક બ્રેકડાઉન આખા દિવસની કમાણી ખાઈ શકે છે.",
     p2_p: "0.5–0.6% ડીઝલની બચત. ટાયર 5–7% વધુ ચાલે. રસ્તા પર ટોઇંગનો કોઈ ખર્ચ નહીં.",
     f_select: "પસંદ કરો",
@@ -293,7 +294,7 @@ const I18N: Record<string, Record<string, string>> = {
     fleet_p: "દરેક ટ્રકની પોતાની Suraksha કિટ હોય છે. દરેક ડ્રાઇવર કેબિન ડિસ્પ્લે પર પોતાની ટ્રકના ટાયર જુએ છે અને સૌથી પહેલાં ચેતવણી મેળવે છે.",
     f_mobile: "મોબાઇલ નંબર",
     a1: "હા. Suraksha દરેક ટ્રકમાં ફિટ થાય છે અને કોઈપણ ટાયર બ્રાન્ડ સાથે કામ કરે છે.",
-    pay_p: "દરેક Truck Wheels સેન્ટર પર Bajaj Finance દ્વારા સરળ EMI. ફિટિંગમાં ફક્ત પંદર મિનિટ.",
+    pay_p: "દરેક Truck Wheels સેન્ટર પર અમારા NBFC પાર્ટનર દ્વારા સરળ EMI. ફિટિંગમાં ફક્ત પંદર મિનિટ.",
     pil_sub: "ડ્રાઇવર માટે સુરક્ષા. ધંધા માટે બચત. પરિવાર માટે સરળતા.",
     f_t4: "11 થી 25 ટ્રક",
     hdr_call: "ટોલ-ફ્રી કૉલ કરો",
@@ -311,7 +312,7 @@ const I18N: Record<string, Record<string, string>> = {
     mb_call: "કૉલ",
     nav_centres: "સેન્ટર",
     s1_p: "કોઈપણ Truck Wheels સેન્ટર કે રસ્તા પરની પંક્ચરની દુકાને, લગભગ 15 મિનિટમાં.",
-    cen_h2: "400+ હાઈવે Suraksha સેન્ટર.",
+    cen_h2: "600+ હાઈવે Suraksha સેન્ટર.",
     foot_toll: "ટોલ-ફ્રી",
     q3: "ફિટિંગમાં કેટલો સમય લાગે છે?",
     fleet_eyebrow: "એક ટ્રક હોય કે ઘણી",
@@ -367,14 +368,14 @@ const I18N: Record<string, Record<string, string>> = {
   },
   pa: {
     cl_e: "ਪੂਰਬ",
-    trust_centres: "400+ Suraksha ਸੈਂਟਰ",
+    trust_centres: "600+ Suraksha ਸੈਂਟਰ",
     f_thanks_p: "ਜਲਦੀ ਹੈ? ਸਾਨੂੰ ਟੋਲ-ਫ੍ਰੀ ਕਾਲ ਕਰੋ।",
     form_p: "ਆਪਣਾ ਨੰਬਰ ਦਿਓ। Suraksha ਦੇ ਮਾਹਰ ਤੁਹਾਡੀ ਭਾਸ਼ਾ ਵਿੱਚ ਤੁਹਾਨੂੰ ਕਾਲ ਕਰਨਗੇ।",
     f_privacy: "ਪ੍ਰਾਈਵੇਸੀ ਨੀਤੀ",
     mb_cb: "ਕਾਲ ਬੈਕ",
     kit_b4: "ਫ਼ੋਨ ਜਾਂ ਐਪ ਦੀ ਲੋੜ ਨਹੀਂ",
     trust_noapp: "ਕੋਈ ਐਪ ਨਹੀਂ। ਕੋਈ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਨਹੀਂ।",
-    a4: "ਹਾਂ। ਹਰ Truck Wheels ਸੈਂਟਰ 'ਤੇ Bajaj Finance ਰਾਹੀਂ ਆਸਾਨ EMI ਮਿਲਦੀ ਹੈ।",
+    a4: "ਹਾਂ। ਹਰ Truck Wheels ਸੈਂਟਰ 'ਤੇ ਸਾਡੇ NBFC ਪਾਰਟਨਰ ਰਾਹੀਂ ਆਸਾਨ EMI ਮਿਲਦੀ ਹੈ।",
     why1_p: "ਇੱਕ ਬ੍ਰੇਕਡਾਊਨ ਪੂਰੇ ਦਿਨ ਦੀ ਕਮਾਈ ਖਾ ਸਕਦਾ ਹੈ।",
     p2_p: "0.5–0.6% ਡੀਜ਼ਲ ਦੀ ਬੱਚਤ। ਟਾਇਰ 5–7% ਵੱਧ ਚੱਲਦੇ ਹਨ। ਸੜਕ 'ਤੇ ਟੋਇੰਗ ਦਾ ਕੋਈ ਖਰਚ ਨਹੀਂ।",
     f_select: "ਚੁਣੋ",
@@ -412,7 +413,7 @@ const I18N: Record<string, Record<string, string>> = {
     fleet_p: "ਹਰ ਟਰੱਕ ਦੀ ਆਪਣੀ Suraksha ਕਿੱਟ ਹੁੰਦੀ ਹੈ। ਹਰ ਡਰਾਈਵਰ ਕੈਬਿਨ ਡਿਸਪਲੇ 'ਤੇ ਆਪਣੇ ਟਰੱਕ ਦੇ ਟਾਇਰ ਦੇਖਦਾ ਹੈ ਅਤੇ ਸਭ ਤੋਂ ਪਹਿਲਾਂ ਚੇਤਾਵਨੀ ਪਾਉਂਦਾ ਹੈ।",
     f_mobile: "ਮੋਬਾਈਲ ਨੰਬਰ",
     a1: "ਹਾਂ। Suraksha ਹਰ ਟਰੱਕ ਵਿੱਚ ਫਿੱਟ ਹੁੰਦਾ ਹੈ ਅਤੇ ਕਿਸੇ ਵੀ ਟਾਇਰ ਬ੍ਰਾਂਡ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ।",
-    pay_p: "ਹਰ Truck Wheels ਸੈਂਟਰ 'ਤੇ Bajaj Finance ਰਾਹੀਂ ਆਸਾਨ EMI। ਫਿਟਿੰਗ ਵਿੱਚ ਸਿਰਫ਼ ਪੰਦਰਾਂ ਮਿੰਟ।",
+    pay_p: "ਹਰ Truck Wheels ਸੈਂਟਰ 'ਤੇ ਸਾਡੇ NBFC ਪਾਰਟਨਰ ਰਾਹੀਂ ਆਸਾਨ EMI। ਫਿਟਿੰਗ ਵਿੱਚ ਸਿਰਫ਼ ਪੰਦਰਾਂ ਮਿੰਟ।",
     pil_sub: "ਡਰਾਈਵਰ ਲਈ ਸੁਰੱਖਿਆ। ਕਾਰੋਬਾਰ ਲਈ ਬੱਚਤ। ਪਰਿਵਾਰ ਲਈ ਆਸਾਨੀ।",
     f_t4: "11 ਤੋਂ 25 ਟਰੱਕ",
     hdr_call: "ਟੋਲ-ਫ੍ਰੀ ਕਾਲ ਕਰੋ",
@@ -430,7 +431,7 @@ const I18N: Record<string, Record<string, string>> = {
     mb_call: "ਕਾਲ",
     nav_centres: "ਸੈਂਟਰ",
     s1_p: "ਕਿਸੇ ਵੀ Truck Wheels ਸੈਂਟਰ ਜਾਂ ਸੜਕ ਕਿਨਾਰੇ ਪੰਕਚਰ ਦੀ ਦੁਕਾਨ 'ਤੇ, ਲਗਭਗ 15 ਮਿੰਟ ਵਿੱਚ।",
-    cen_h2: "400+ ਹਾਈਵੇ Suraksha ਸੈਂਟਰ।",
+    cen_h2: "600+ ਹਾਈਵੇ Suraksha ਸੈਂਟਰ।",
     foot_toll: "ਟੋਲ-ਫ੍ਰੀ",
     q3: "ਫਿਟਿੰਗ ਵਿੱਚ ਕਿੰਨਾ ਸਮਾਂ ਲੱਗਦਾ ਹੈ?",
     fleet_eyebrow: "ਇੱਕ ਟਰੱਕ ਹੋਵੇ ਜਾਂ ਕਈ",
@@ -486,14 +487,14 @@ const I18N: Record<string, Record<string, string>> = {
   },
   bn: {
     cl_e: "পূর্ব",
-    trust_centres: "400+ Suraksha সেন্টার",
+    trust_centres: "600+ Suraksha সেন্টার",
     f_thanks_p: "তাড়া আছে? আমাদের টোল-ফ্রি কল করুন।",
     form_p: "আপনার নম্বর দিন। Suraksha-র বিশেষজ্ঞ আপনার ভাষায় আপনাকে কল করবেন।",
     f_privacy: "প্রাইভেসি পলিসি",
     mb_cb: "কল ব্যাক",
     kit_b4: "ফোন বা অ্যাপের দরকার নেই",
     trust_noapp: "কোনো অ্যাপ নেই। কোনো সাবস্ক্রিপশন নেই।",
-    a4: "হ্যাঁ। প্রতিটি Truck Wheels সেন্টারে Bajaj Finance-এর মাধ্যমে সহজ EMI পাওয়া যায়।",
+    a4: "হ্যাঁ। প্রতিটি Truck Wheels সেন্টারে আমাদের NBFC পার্টনারের মাধ্যমে সহজ EMI পাওয়া যায়।",
     why1_p: "একটা ব্রেকডাউন পুরো দিনের রোজগার শেষ করে দিতে পারে।",
     p2_p: "0.5–0.6% ডিজেল সাশ্রয়। টায়ার 5–7% বেশি দিন চলে। রাস্তায় টোয়িংয়ের কোনো খরচ নেই।",
     f_select: "বেছে নিন",
@@ -531,7 +532,7 @@ const I18N: Record<string, Record<string, string>> = {
     fleet_p: "প্রতিটি ট্রাকের নিজস্ব Suraksha কিট থাকে। প্রত্যেক চালক কেবিন ডিসপ্লেতে নিজের ট্রাকের টায়ার দেখেন এবং সবার আগে সতর্কতা পান।",
     f_mobile: "মোবাইল নম্বর",
     a1: "হ্যাঁ। Suraksha যেকোনো ট্রাকে ফিট হয় এবং যেকোনো টায়ার ব্র্যান্ডের সাথে কাজ করে।",
-    pay_p: "প্রতিটি Truck Wheels সেন্টারে Bajaj Finance-এর মাধ্যমে সহজ EMI। ফিটিংয়ে মাত্র পনেরো মিনিট।",
+    pay_p: "প্রতিটি Truck Wheels সেন্টারে আমাদের NBFC পার্টনারের মাধ্যমে সহজ EMI। ফিটিংয়ে মাত্র পনেরো মিনিট।",
     pil_sub: "চালকের জন্য সুরক্ষা। ব্যবসার জন্য সাশ্রয়। পরিবারের জন্য সহজ।",
     f_t4: "11 থেকে 25টি ট্রাক",
     hdr_call: "টোল-ফ্রি কল করুন",
@@ -549,7 +550,7 @@ const I18N: Record<string, Record<string, string>> = {
     mb_call: "কল",
     nav_centres: "সেন্টার",
     s1_p: "যেকোনো Truck Wheels সেন্টার বা রাস্তার ধারের পাংচারের দোকানে, প্রায় 15 মিনিটে।",
-    cen_h2: "400+ হাইওয়ে Suraksha সেন্টার।",
+    cen_h2: "600+ হাইওয়ে Suraksha সেন্টার।",
     foot_toll: "টোল-ফ্রি",
     q3: "ফিটিং করতে কত সময় লাগে?",
     fleet_eyebrow: "একটা ট্রাক হোক বা অনেক",
@@ -605,14 +606,14 @@ const I18N: Record<string, Record<string, string>> = {
   },
   ta: {
     cl_e: "கிழக்கு",
-    trust_centres: "400+ Suraksha மையங்கள்",
+    trust_centres: "600+ Suraksha மையங்கள்",
     f_thanks_p: "அவசரமா? எங்களை இலவசமாக அழைக்கவும்.",
     form_p: "உங்கள் எண்ணைக் கொடுங்கள். Suraksha நிபுணர் உங்கள் மொழியில் உங்களை அழைப்பார்.",
     f_privacy: "தனியுரிமைக் கொள்கை",
     mb_cb: "திரும்ப அழைப்பு",
     kit_b4: "போன் அல்லது ஆப் தேவையில்லை",
     trust_noapp: "ஆப் இல்லை. சந்தா இல்லை.",
-    a4: "ஆம். ஒவ்வொரு Truck Wheels மையத்திலும் Bajaj Finance மூலம் எளிய EMI கிடைக்கும்.",
+    a4: "ஆம். ஒவ்வொரு Truck Wheels மையத்திலும் எங்கள் NBFC பார்ட்னர் மூலம் எளிய EMI கிடைக்கும்.",
     why1_p: "ஒரு பழுது முழு நாள் வருமானத்தையும் பறித்துவிடலாம்.",
     p2_p: "0.5–0.6% டீசல் சேமிப்பு. டயர் 5–7% அதிக நாள் உழைக்கும். சாலையில் டோயிங் செலவு இல்லை.",
     f_select: "தேர்ந்தெடுக்கவும்",
@@ -650,7 +651,7 @@ const I18N: Record<string, Record<string, string>> = {
     fleet_p: "ஒவ்வொரு லாரிக்கும் தனி Suraksha கிட். ஒவ்வொரு ஓட்டுநரும் கேபின் டிஸ்ப்ளேயில் தன் லாரியின் டயர்களைப் பார்த்து, முதலில் எச்சரிக்கையைப் பெறுகிறார்.",
     f_mobile: "மொபைல் எண்",
     a1: "ஆம். Suraksha எந்த லாரிக்கும் பொருந்தும், எந்த டயர் பிராண்டுடனும் வேலை செய்யும்.",
-    pay_p: "ஒவ்வொரு Truck Wheels மையத்திலும் Bajaj Finance மூலம் எளிய EMI. பொருத்த பதினைந்து நிமிடங்கள் போதும்.",
+    pay_p: "ஒவ்வொரு Truck Wheels மையத்திலும் எங்கள் NBFC பார்ட்னர் மூலம் எளிய EMI. பொருத்த பதினைந்து நிமிடங்கள் போதும்.",
     pil_sub: "ஓட்டுநருக்கு பாதுகாப்பு. தொழிலுக்கு சேமிப்பு. குடும்பத்துக்கு எளிமை.",
     f_t4: "11 முதல் 25 லாரிகள்",
     hdr_call: "இலவசமாக அழைக்கவும்",
@@ -668,7 +669,7 @@ const I18N: Record<string, Record<string, string>> = {
     mb_call: "அழைக்க",
     nav_centres: "மையங்கள்",
     s1_p: "எந்த Truck Wheels மையத்திலும் அல்லது சாலையோர பஞ்சர் கடையிலும், சுமார் 15 நிமிடத்தில்.",
-    cen_h2: "400+ நெடுஞ்சாலை Suraksha மையங்கள்.",
+    cen_h2: "600+ நெடுஞ்சாலை Suraksha மையங்கள்.",
     foot_toll: "இலவச அழைப்பு",
     q3: "பொருத்த எவ்வளவு நேரம் ஆகும்?",
     fleet_eyebrow: "ஒரு லாரியோ பல லாரிகளோ",
@@ -724,14 +725,14 @@ const I18N: Record<string, Record<string, string>> = {
   },
   kn: {
     cl_e: "ಪೂರ್ವ",
-    trust_centres: "400+ Suraksha ಕೇಂದ್ರಗಳು",
+    trust_centres: "600+ Suraksha ಕೇಂದ್ರಗಳು",
     f_thanks_p: "ಆತುರವಿದೆಯೇ? ನಮಗೆ ಉಚಿತವಾಗಿ ಕರೆ ಮಾಡಿ.",
     form_p: "ನಿಮ್ಮ ನಂಬರ್ ನೀಡಿ. Suraksha ತಜ್ಞರು ನಿಮ್ಮ ಭಾಷೆಯಲ್ಲಿ ನಿಮಗೆ ಕರೆ ಮಾಡುತ್ತಾರೆ.",
     f_privacy: "ಗೌಪ್ಯತಾ ನೀತಿ",
     mb_cb: "ಮರುಕರೆ",
     kit_b4: "ಫೋನ್ ಅಥವಾ ಆ್ಯಪ್ ಬೇಕಿಲ್ಲ",
     trust_noapp: "ಆ್ಯಪ್ ಇಲ್ಲ. ಚಂದಾ ಇಲ್ಲ.",
-    a4: "ಹೌದು. ಪ್ರತಿ Truck Wheels ಕೇಂದ್ರದಲ್ಲೂ Bajaj Finance ಮೂಲಕ ಸುಲಭ EMI ಸಿಗುತ್ತದೆ.",
+    a4: "ಹೌದು. ಪ್ರತಿ Truck Wheels ಕೇಂದ್ರದಲ್ಲೂ ನಮ್ಮ NBFC ಪಾರ್ಟ್ನರ್ ಮೂಲಕ ಸುಲಭ EMI ಸಿಗುತ್ತದೆ.",
     why1_p: "ಒಂದು ಬ್ರೇಕ್‌ಡೌನ್ ಇಡೀ ದಿನದ ಗಳಿಕೆಯನ್ನೇ ಕಳೆದುಬಿಡಬಹುದು.",
     p2_p: "0.5–0.6% ಡೀಸೆಲ್ ಉಳಿತಾಯ. ಟೈರ್ 5–7% ಹೆಚ್ಚು ಬಾಳಿಕೆ. ರಸ್ತೆಯಲ್ಲಿ ಟೋಯಿಂಗ್ ಖರ್ಚು ಇಲ್ಲ.",
     f_select: "ಆಯ್ಕೆಮಾಡಿ",
@@ -769,7 +770,7 @@ const I18N: Record<string, Record<string, string>> = {
     fleet_p: "ಪ್ರತಿ ಲಾರಿಗೂ ತನ್ನದೇ Suraksha ಕಿಟ್. ಪ್ರತಿ ಚಾಲಕನೂ ಕ್ಯಾಬಿನ್ ಡಿಸ್‌ಪ್ಲೇಯಲ್ಲಿ ತನ್ನ ಲಾರಿಯ ಟೈರ್‌ಗಳನ್ನು ನೋಡುತ್ತಾನೆ ಮತ್ತು ಮೊದಲು ಎಚ್ಚರಿಕೆ ಪಡೆಯುತ್ತಾನೆ.",
     f_mobile: "ಮೊಬೈಲ್ ನಂಬರ್",
     a1: "ಹೌದು. Suraksha ಯಾವುದೇ ಲಾರಿಗೂ ಹೊಂದುತ್ತದೆ ಮತ್ತು ಯಾವುದೇ ಟೈರ್ ಬ್ರ್ಯಾಂಡ್ ಜೊತೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ.",
-    pay_p: "ಪ್ರತಿ Truck Wheels ಕೇಂದ್ರದಲ್ಲೂ Bajaj Finance ಮೂಲಕ ಸುಲಭ EMI. ಅಳವಡಿಕೆಗೆ ಕೇವಲ ಹದಿನೈದು ನಿಮಿಷ.",
+    pay_p: "ಪ್ರತಿ Truck Wheels ಕೇಂದ್ರದಲ್ಲೂ ನಮ್ಮ NBFC ಪಾರ್ಟ್ನರ್ ಮೂಲಕ ಸುಲಭ EMI. ಅಳವಡಿಕೆಗೆ ಕೇವಲ ಹದಿನೈದು ನಿಮಿಷ.",
     pil_sub: "ಚಾಲಕನಿಗೆ ಸುರಕ್ಷತೆ. ವ್ಯಾಪಾರಕ್ಕೆ ಉಳಿತಾಯ. ಕುಟುಂಬಕ್ಕೆ ಸರಳತೆ.",
     f_t4: "11 ರಿಂದ 25 ಲಾರಿಗಳು",
     hdr_call: "ಉಚಿತವಾಗಿ ಕರೆ ಮಾಡಿ",
@@ -787,7 +788,7 @@ const I18N: Record<string, Record<string, string>> = {
     mb_call: "ಕರೆ",
     nav_centres: "ಕೇಂದ್ರಗಳು",
     s1_p: "ಯಾವುದೇ Truck Wheels ಕೇಂದ್ರ ಅಥವಾ ರಸ್ತೆಬದಿಯ ಪಂಕ್ಚರ್ ಅಂಗಡಿಯಲ್ಲಿ, ಸುಮಾರು 15 ನಿಮಿಷದಲ್ಲಿ.",
-    cen_h2: "400+ ಹೆದ್ದಾರಿ Suraksha ಕೇಂದ್ರಗಳು.",
+    cen_h2: "600+ ಹೆದ್ದಾರಿ Suraksha ಕೇಂದ್ರಗಳು.",
     foot_toll: "ಉಚಿತ ಕರೆ",
     q3: "ಅಳವಡಿಕೆಗೆ ಎಷ್ಟು ಸಮಯ ಬೇಕು?",
     fleet_eyebrow: "ಒಂದು ಲಾರಿ ಇರಲಿ ಅಥವಾ ಹಲವು",
@@ -843,14 +844,14 @@ const I18N: Record<string, Record<string, string>> = {
   },
   te: {
     cl_e: "తూర్పు",
-    trust_centres: "400+ Suraksha కేంద్రాలు",
+    trust_centres: "600+ Suraksha కేంద్రాలు",
     f_thanks_p: "తొందరగా ఉందా? మాకు ఉచితంగా కాల్ చేయండి.",
     form_p: "మీ నంబర్ ఇవ్వండి. Suraksha నిపుణులు మీ భాషలో మీకు కాల్ చేస్తారు.",
     f_privacy: "గోప్యతా విధానం",
     mb_cb: "కాల్ బ్యాక్",
     kit_b4: "ఫోన్ లేదా యాప్ అవసరం లేదు",
     trust_noapp: "యాప్ లేదు. సబ్‌స్క్రిప్షన్ లేదు.",
-    a4: "అవును. ప్రతి Truck Wheels కేంద్రంలో Bajaj Finance ద్వారా సులభ EMI లభిస్తుంది.",
+    a4: "అవును. ప్రతి Truck Wheels కేంద్రంలో మా NBFC పార్ట్‌నర్ ద్వారా సులభ EMI లభిస్తుంది.",
     why1_p: "ఒక్క బ్రేక్‌డౌన్ రోజంతా సంపాదనను పోగొట్టగలదు.",
     p2_p: "0.5–0.6% డీజిల్ పొదుపు. టైర్ 5–7% ఎక్కువ కాలం. రోడ్డుపై టోయింగ్ ఖర్చు లేదు.",
     f_select: "ఎంచుకోండి",
@@ -888,7 +889,7 @@ const I18N: Record<string, Record<string, string>> = {
     fleet_p: "ప్రతి లారీకి సొంత Suraksha కిట్. ప్రతి డ్రైవర్ క్యాబిన్ డిస్‌ప్లేపై తన లారీ టైర్లను చూస్తాడు, అందరికంటే ముందు హెచ్చరిక పొందుతాడు.",
     f_mobile: "మొబైల్ నంబర్",
     a1: "అవును. Suraksha ఏ లారీకైనా సరిపోతుంది, ఏ టైర్ బ్రాండ్‌తోనైనా పని చేస్తుంది.",
-    pay_p: "ప్రతి Truck Wheels కేంద్రంలో Bajaj Finance ద్వారా సులభ EMI. అమర్చడానికి కేవలం పదిహేను నిమిషాలు.",
+    pay_p: "ప్రతి Truck Wheels కేంద్రంలో మా NBFC పార్ట్‌నర్ ద్వారా సులభ EMI. అమర్చడానికి కేవలం పదిహేను నిమిషాలు.",
     pil_sub: "డ్రైవర్‌కు భద్రత. వ్యాపారానికి పొదుపు. కుటుంబానికి సులభం.",
     f_t4: "11 నుండి 25 లారీలు",
     hdr_call: "ఉచితంగా కాల్ చేయండి",
@@ -906,7 +907,7 @@ const I18N: Record<string, Record<string, string>> = {
     mb_call: "కాల్",
     nav_centres: "కేంద్రాలు",
     s1_p: "ఏ Truck Wheels కేంద్రంలోనైనా లేదా రోడ్డు పక్కన పంక్చర్ షాప్‌లోనైనా, సుమారు 15 నిమిషాల్లో.",
-    cen_h2: "400+ హైవే Suraksha కేంద్రాలు.",
+    cen_h2: "600+ హైవే Suraksha కేంద్రాలు.",
     foot_toll: "ఉచిత కాల్",
     q3: "అమర్చడానికి ఎంత సమయం పడుతుంది?",
     fleet_eyebrow: "ఒక లారీ అయినా, చాలా లారీలైనా",
@@ -962,14 +963,14 @@ const I18N: Record<string, Record<string, string>> = {
   },
   ml: {
     cl_e: "കിഴക്ക്",
-    trust_centres: "400+ Suraksha കേന്ദ്രങ്ങൾ",
+    trust_centres: "600+ Suraksha കേന്ദ്രങ്ങൾ",
     f_thanks_p: "തിരക്കുണ്ടോ? ഞങ്ങളെ സൗജന്യമായി വിളിക്കൂ.",
     form_p: "നിങ്ങളുടെ നമ്പർ തരൂ. Suraksha വിദഗ്ധർ നിങ്ങളുടെ ഭാഷയിൽ നിങ്ങളെ വിളിക്കും.",
     f_privacy: "സ്വകാര്യതാ നയം",
     mb_cb: "തിരികെ വിളി",
     kit_b4: "ഫോണോ ആപ്പോ വേണ്ട",
     trust_noapp: "ആപ്പ് വേണ്ട. സബ്സ്ക്രിപ്ഷൻ വേണ്ട.",
-    a4: "അതെ. ഓരോ Truck Wheels കേന്ദ്രത്തിലും Bajaj Finance വഴി എളുപ്പമുള്ള EMI ലഭിക്കും.",
+    a4: "അതെ. ഓരോ Truck Wheels കേന്ദ്രത്തിലും ഞങ്ങളുടെ NBFC പാർട്ണർ വഴി എളുപ്പമുള്ള EMI ലഭിക്കും.",
     why1_p: "ഒരു ബ്രേക്ക്ഡൗൺ ഒരു ദിവസത്തെ മുഴുവൻ വരുമാനവും ഇല്ലാതാക്കാം.",
     p2_p: "0.5–0.6% ഡീസൽ ലാഭം. ടയർ 5–7% കൂടുതൽ കാലം. വഴിയിൽ ടോവിങ് ചെലവില്ല.",
     f_select: "തിരഞ്ഞെടുക്കുക",
@@ -1007,7 +1008,7 @@ const I18N: Record<string, Record<string, string>> = {
     fleet_p: "ഓരോ ലോറിക്കും സ്വന്തം Suraksha കിറ്റ്. ഓരോ ഡ്രൈവറും ക്യാബിൻ ഡിസ്‌പ്ലേയിൽ തന്റെ ലോറിയുടെ ടയറുകൾ കാണുകയും ആദ്യം മുന്നറിയിപ്പ് നേടുകയും ചെയ്യുന്നു.",
     f_mobile: "മൊബൈൽ നമ്പർ",
     a1: "ചേരും. Suraksha ഏത് ലോറിക്കും ചേരും, ഏത് ടയർ ബ്രാൻഡിനൊപ്പവും പ്രവർത്തിക്കും.",
-    pay_p: "ഓരോ Truck Wheels കേന്ദ്രത്തിലും Bajaj Finance വഴി എളുപ്പമുള്ള EMI. ഘടിപ്പിക്കാൻ പതിനഞ്ച് മിനിറ്റ് മാത്രം.",
+    pay_p: "ഓരോ Truck Wheels കേന്ദ്രത്തിലും ഞങ്ങളുടെ NBFC പാർട്ണർ വഴി എളുപ്പമുള്ള EMI. ഘടിപ്പിക്കാൻ പതിനഞ്ച് മിനിറ്റ് മാത്രം.",
     pil_sub: "ഡ്രൈവർക്ക് സുരക്ഷ. ബിസിനസിന് ലാഭം. കുടുംബത്തിന് എളുപ്പം.",
     f_t4: "11 മുതൽ 25 വരെ ലോറികൾ",
     hdr_call: "സൗജന്യമായി വിളിക്കൂ",
@@ -1025,7 +1026,7 @@ const I18N: Record<string, Record<string, string>> = {
     mb_call: "വിളിക്കൂ",
     nav_centres: "കേന്ദ്രങ്ങൾ",
     s1_p: "ഏത് Truck Wheels കേന്ദ്രത്തിലും വഴിയരികിലെ പഞ്ചർ കടയിലും, ഏകദേശം 15 മിനിറ്റിൽ.",
-    cen_h2: "400+ ഹൈവേ Suraksha കേന്ദ്രങ്ങൾ.",
+    cen_h2: "600+ ഹൈവേ Suraksha കേന്ദ്രങ്ങൾ.",
     foot_toll: "സൗജന്യ വിളി",
     q3: "ഘടിപ്പിക്കാൻ എത്ര സമയമെടുക്കും?",
     fleet_eyebrow: "ഒരു ലോറിയോ പല ലോറികളോ",
@@ -1939,13 +1940,13 @@ export function SurakshaCampaignPage() {
                         inputMode="numeric"
                         autoComplete="tel-national"
                         pattern="[6-9][0-9]{9}"
-                        maxLength={10}
+                        maxLength={16}
                         placeholder="98XXXXXXXX"
                         value={inlineFormData.mobile}
                         onChange={(e) =>
                           setInlineFormData({
                             ...inlineFormData,
-                            mobile: e.target.value.replace(/\D/g, "").slice(0, 10),
+                            mobile: normalizePhone(e.target.value),
                           })
                         }
                         required
@@ -2600,13 +2601,13 @@ export function SurakshaCampaignPage() {
                       inputMode="numeric"
                       autoComplete="tel-national"
                       pattern="[6-9][0-9]{9}"
-                      maxLength={10}
+                      maxLength={16}
                       placeholder="98XXXXXXXX"
                       value={popupFormData.mobile}
                       onChange={(e) =>
                         setPopupFormData({
                           ...popupFormData,
-                          mobile: e.target.value.replace(/\D/g, "").slice(0, 10),
+                          mobile: normalizePhone(e.target.value),
                         })
                       }
                       required

@@ -79,7 +79,7 @@ export function FounderPortrait({
       {/* Bottom context caption */}
       <div className="w-full pt-3 border-t border-white/[0.06] z-10">
         <div className="text-[11px] font-mono text-[#94A3B8]">{location}</div>
-        <div className="text-[9px] font-mono text-[#64748B] uppercase tracking-wider mt-0.5">
+        <div className="text-[9px] font-mono text-[#94A3B8] uppercase tracking-wider mt-0.5">
           Portrait Pending Client Asset
         </div>
       </div>

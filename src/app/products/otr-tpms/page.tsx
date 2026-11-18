@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/products/otr-tpms",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "OTR TPMS for Mining, Construction and Ports",
     description:
       "Tyre pressure monitoring built for mining, quarry and port fleets. OTR TPMS sensors feed TMIP, which predicts tyre failures before they stop production.",

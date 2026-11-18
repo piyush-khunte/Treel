@@ -147,7 +147,7 @@ export function BoardAdvisors() {
               </div>
 
               {/* Attribution Footer */}
-              <div className="pt-3 border-t border-white/[0.08] mt-auto flex items-center justify-between text-[11px] font-mono text-[#64748B]">
+              <div className="pt-3 border-t border-white/[0.08] mt-auto flex items-center justify-between text-[11px] font-mono text-[#94A3B8]">
                 <span className="truncate max-w-[170px]">
                   {member.organization.includes("Treel")
                     ? "Treel Corporate Leadership"

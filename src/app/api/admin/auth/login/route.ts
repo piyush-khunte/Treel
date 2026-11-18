@@ -1,14 +1,34 @@
 import { ADMIN_SESSION_COOKIE,authenticateAdmin,signSessionToken } from "@/lib/admin/admin-auth";
+import {
+  clearLoginFailures,
+  getClientIp,
+  getLoginLockSeconds,
+  recordLoginFailure,
+} from "@/lib/admin/login-rate-limit";
 import { NextRequest,NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { username, password } = body;
+    const ip = getClientIp(req.headers);
+    const userKey = typeof username === "string" ? username : "";
+
+    const lockSeconds = getLoginLockSeconds(ip, userKey);
+    if (lockSeconds > 0) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: `Too many failed attempts. Try again in ${Math.ceil(lockSeconds / 60)} minute(s).`,
+        },
+        { status: 429, headers: { "Retry-After": String(lockSeconds) } }
+      );
+    }
 
     const result = await authenticateAdmin(username, password);
 
     if (!result.success || !result.session) {
+      recordLoginFailure(ip, userKey);
       return NextResponse.json(
         {
           success: false,
@@ -18,6 +38,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    clearLoginFailures(ip, userKey);
     const token = await signSessionToken(result.session);
 
     const response = NextResponse.json({

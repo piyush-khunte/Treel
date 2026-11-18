@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/whitepapers",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Whitepapers · TMIP Research Library",
     description:
       "TMIP research library. ROI analysis and technical papers on the Vehicle Digital Twin. Free downloads for fleet operations leaders and technical buyers.",

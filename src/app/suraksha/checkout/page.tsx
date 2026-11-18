@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizePhone } from "@/lib/validation/phone";
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -419,9 +420,9 @@ export default function SurakshaCheckoutPage() {
                   <div className="w-7 h-7 rounded bg-[#DC2626] text-[#FEF3C7] font-bold text-xs flex items-center justify-center font-mono">
                     1
                   </div>
-                  <h3 className="font-anton text-xl sm:text-2xl text-[#451A03] uppercase">
+                  <h2 className="font-anton text-xl sm:text-2xl text-[#451A03] uppercase">
                     Delivery Address &amp; Transporter Contact
-                  </h3>
+                  </h2>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -453,10 +454,10 @@ export default function SurakshaCheckoutPage() {
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          phone: e.target.value.replace(/\D/g, "").slice(0, 10),
+                          phone: normalizePhone(e.target.value),
                         })
                       }
-                      maxLength={10}
+                      maxLength={16}
                       className="w-full px-4 py-3 rounded-[4px] border-2 border-[#451A03]/20 bg-white text-[#451A03] text-sm focus:outline-none focus:border-[#DC2626]"
                     />
                   </div>
@@ -556,9 +557,9 @@ export default function SurakshaCheckoutPage() {
                   <div className="w-7 h-7 rounded bg-[#DC2626] text-[#FEF3C7] font-bold text-xs flex items-center justify-center font-mono">
                     2
                   </div>
-                  <h3 className="font-anton text-xl sm:text-2xl text-[#451A03] uppercase">
+                  <h2 className="font-anton text-xl sm:text-2xl text-[#451A03] uppercase">
                     Select Payment Method
-                  </h3>
+                  </h2>
                 </div>
 
                 <div className="space-y-3 pt-2">
@@ -623,9 +624,9 @@ export default function SurakshaCheckoutPage() {
                   <div className="font-rubik text-xs font-bold uppercase tracking-wider text-[#78350F]">
                     Commercial Checkout Summary
                   </div>
-                  <h3 className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase mt-1">
+                  <h2 className="font-anton text-2xl sm:text-3xl font-normal text-[#451A03] uppercase mt-1">
                     Suraksha order ({totalItems} {totalItems === 1 ? "kit" : "kits"})
-                  </h3>
+                  </h2>
                 </div>
 
                 {/* Items preview */}

@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -18,16 +19,17 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Predictive Maintenance · TMIP",
+  title: "Maintenance Forecasting · TMIP Features",
   description:
-    "TMIP's predictive models forecast component failures days in advance, cutting unscheduled downtime by 30-40% and extending fleet maintenance intervals.",
+    "See which maintenance events TMIP forecasts, from tyre replacement windows and brake jamming to battery and engine service, and how far in advance.",
   alternates: {
     canonical: "https://treel.in/tmip/features/maintenance",
   },
   openGraph: {
-    title: "Predictive Maintenance · TMIP",
+    images: DEFAULT_OG_IMAGES,
+    title: "Maintenance Forecasting · TMIP Features",
     description:
-      "TMIP's predictive models forecast component failures days in advance, cutting unscheduled downtime by 30-40% and extending fleet maintenance intervals.",
+      "See which maintenance events TMIP forecasts, from tyre replacement windows and brake jamming to battery and engine service, and how far in advance.",
     url: "https://treel.in/tmip/features/maintenance",
   },
 };

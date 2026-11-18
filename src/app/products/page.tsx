@@ -1,16 +1,18 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Activity, ArrowRight, Car, Truck, Wrench } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Connected Vehicle Products — TMIP, Suraksha & Personal TPMS",
+  title: "Products — TMIP, Suraksha & Personal TPMS",
   description: "Three products from Treel: TMIP for enterprise fleets, Suraksha for truck owner-drivers, Personal TPMS for consumers. One architecture, three audiences.",
   alternates: {
     canonical: "https://treel.in/products",
   },
   openGraph: {
-    title: "Connected Vehicle Products — TMIP, Suraksha & Personal TPMS",
+    images: DEFAULT_OG_IMAGES,
+    title: "Products — TMIP, Suraksha & Personal TPMS",
     description: "Three products from Treel: TMIP for enterprise fleets, Suraksha for truck owner-drivers, Personal TPMS for consumers. One architecture, three audiences.",
     url: "https://treel.in/products",
   },
@@ -119,9 +121,9 @@ export default function ProductsPage() {
                 </div>
 
                 <div>
-                  <h3 className="font-fraunces text-2xl sm:text-3xl font-medium text-white">
+                  <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-white">
                     TMIP Platform
-                  </h3>
+                  </h2>
                   <div className="text-xs font-mono text-[#00E5FF] tracking-wider uppercase mt-1">
                     Enterprise Fleet Intelligence
                   </div>
@@ -156,9 +158,9 @@ export default function ProductsPage() {
                 </div>
 
                 <div>
-                  <h3 className="font-fraunces text-2xl sm:text-3xl font-medium text-white">
+                  <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-white">
                     Project Suraksha
-                  </h3>
+                  </h2>
                   <div className="text-xs font-mono text-[#F59E0B] tracking-wider uppercase mt-1">
                     Owner-Driver Safety Kit
                   </div>
@@ -193,9 +195,9 @@ export default function ProductsPage() {
                 </div>
 
                 <div>
-                  <h3 className="font-fraunces text-2xl sm:text-3xl font-medium text-white">
+                  <h2 className="font-fraunces text-2xl sm:text-3xl font-medium text-white">
                     Personal TPMS
-                  </h3>
+                  </h2>
                   <div className="text-xs font-mono text-blue-400 tracking-wider uppercase mt-1">
                     Consumer Vehicle Safety
                   </div>
@@ -329,7 +331,7 @@ export default function ProductsPage() {
             <div className="pt-2">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#C64529] text-[#FAF7F2] hover:bg-[#B53D23]"
               >
                 <span>Talk to us and we will help</span>
                 <ArrowRight className="w-4 h-4" />

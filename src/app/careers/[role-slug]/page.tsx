@@ -1,3 +1,4 @@
+import { clampDescription, composeTitle, DEFAULT_OG_IMAGES, stripTitleSuffix } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -31,17 +32,20 @@ export async function generateMetadata({ params }: { params: Promise<{ "role-slu
     };
   }
 
-  const roleTitle = role.seoTitle ? role.seoTitle.replace(/\s*·\s*Treel.*$/i, "").replace(/\s*·\s*Careers at Treel.*$/i, "") : `${role.title} · Careers`;
+  const roleTitle = composeTitle(role.seoTitle || role.title, " · Careers");
+  const ogTitle = stripTitleSuffix(role.seoTitle || role.title);
+  const description = clampDescription(role.seoDescription || role.roleSummary);
 
   return {
     title: roleTitle,
-    description: role.seoDescription || role.roleSummary,
+    description,
     alternates: {
       canonical: `https://treel.in/careers/${role.slug}`,
     },
     openGraph: {
-      title: roleTitle,
-      description: role.seoDescription || role.roleSummary,
+      images: DEFAULT_OG_IMAGES,
+      title: ogTitle,
+      description,
       url: `https://treel.in/careers/${role.slug}`,
     },
   };
@@ -272,7 +276,7 @@ export default async function CareersRoleSlugPage({ params }: { params: Promise<
                     href={role.applicationUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md group"
+                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md bg-[#C64529] text-[#FAF7F2] font-semibold text-sm hover:bg-[#B53D23] transition-all shadow-md group"
                   >
                     <span>Open Application Form</span>
                     <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

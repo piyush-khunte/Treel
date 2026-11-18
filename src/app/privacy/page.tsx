@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 Mail,
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/privacy",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Privacy Policy",
     description: "Treel's privacy policy. How we collect, use, share, and protect your personal data. Compliant with India DPDP Act 2023.",
     url: "https://treel.in/privacy",

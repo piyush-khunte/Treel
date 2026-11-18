@@ -43,27 +43,6 @@ function cleanEnvValue(val?: string): string {
   return s;
 }
 
-function resolveEnvValue(...candidateKeys: string[]): string {
-  // 1. Direct match
-  for (const key of candidateKeys) {
-    const val = cleanEnvValue(process.env[key]);
-    if (val) return val;
-  }
-
-  // 2. Case-insensitive search across all environment variables in process.env
-  const allEnvKeys = Object.keys(process.env);
-  for (const target of candidateKeys) {
-    const targetLower = target.toLowerCase();
-    const matchedKey = allEnvKeys.find((k) => k.toLowerCase() === targetLower);
-    if (matchedKey) {
-      const val = cleanEnvValue(process.env[matchedKey]);
-      if (val) return val;
-    }
-  }
-
-  return "";
-}
-
 /**
  * Validates admin credentials securely without hardcoded values.
  * Credentials are strictly resolved from server environment variables or Supabase Auth.
@@ -106,52 +85,15 @@ export async function authenticateAdmin(
     }
   }
 
-  // 2. Server environment credential verification with all common aliases
-  const envUsername = resolveEnvValue(
-    "ADMIN_USERNAME",
-    "ADMIN_USER",
-    "ADMIN_IDENTIFIER",
-    "ADMIN_EMAIL",
-    "ADMIN_LOGIN",
-    "ADMIN_NAME",
-    "ADMIN_ACCOUNT",
-    "USERNAME",
-    "USER",
-    "USER_NAME",
-    "LOGIN",
-    "TREEL_ADMIN_USERNAME",
-    "TREEL_ADMIN_USER",
-    "TREEL_USERNAME",
-    "TREEL_USER",
-    "NEXT_PUBLIC_ADMIN_USERNAME",
-    "NEXT_PUBLIC_ADMIN_USER"
-  );
-
-  const envPassword = resolveEnvValue(
-    "ADMIN_PASSWORD",
-    "ADMIN_PASS",
-    "ADMIN_PWD",
-    "ADMIN_PASSWD",
-    "ADMIN_SECRET",
-    "ADMIN_KEY",
-    "ADMIN_TOKEN",
-    "PASSWORD",
-    "PASS",
-    "PWD",
-    "PASSWD",
-    "SECRET",
-    "KEY",
-    "TREEL_ADMIN_PASSWORD",
-    "TREEL_ADMIN_PASS",
-    "NEXT_PUBLIC_ADMIN_PASSWORD",
-    "NEXT_PUBLIC_ADMIN_PASS"
-  );
+  // 2. Server environment credentials. Only the two dedicated, server-only variables are
+  // accepted. No aliases, no case-insensitive lookup and no NEXT_PUBLIC_ fallbacks, so
+  // unrelated OS variables (USER, PWD, PASSWORD, KEY...) can never become admin credentials.
+  const envUsername = cleanEnvValue(process.env.ADMIN_USERNAME);
+  const envPassword = cleanEnvValue(process.env.ADMIN_PASSWORD);
 
   if (!envUsername || !envPassword) {
-    return {
-      success: false,
-      error: "Admin credentials are not configured in server environment variables. Please ensure ADMIN_USERNAME and ADMIN_PASSWORD are set in Vercel and the project has been redeployed.",
-    };
+    console.error("[admin-auth] ADMIN_USERNAME / ADMIN_PASSWORD are not set; environment login is disabled.");
+    return { success: false, error: "Invalid username or password." };
   }
 
   const allowedUsernames = envUsername
@@ -161,10 +103,14 @@ export async function authenticateAdmin(
 
   const isUserValid = allowedUsernames.includes(cleanUser.toLowerCase());
 
-  // Check password with direct matching as well as HMAC SHA-256 constant-time hash comparison
+  // Compare HMAC-SHA256 digests in constant time
   const inputHash = await sha256Hex(cleanPass);
   const expectedHash = await sha256Hex(envPassword);
-  const isPassValid = cleanPass === envPassword || inputHash === expectedHash;
+  let diff = inputHash.length ^ expectedHash.length;
+  for (let i = 0; i < Math.min(inputHash.length, expectedHash.length); i++) {
+    diff |= inputHash.charCodeAt(i) ^ expectedHash.charCodeAt(i);
+  }
+  const isPassValid = diff === 0;
 
   if (isUserValid && isPassValid) {
     const now = Math.floor(Date.now() / 1000);

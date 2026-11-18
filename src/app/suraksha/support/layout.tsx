@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/suraksha/support",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Suraksha Fleet Support & Fitment Guides",
     description:
       "Access operating manuals, sensor replacement guides, driver training, and technical documentation for Treel Suraksha truck TPMS systems.",

@@ -39,7 +39,7 @@ export function WhatsAppCtaButton({
       href={href}
       target={target}
       rel={rel}
-      className={`inline-flex items-center justify-center rounded-[4px] font-rubik font-bold bg-[#25D366] text-white hover:bg-[#1EBE5D] transition-all shadow-md hover:scale-[1.02] active:scale-[0.98] shrink-0 ${sizeClasses} ${className}`}
+      className={`inline-flex items-center justify-center rounded-[4px] font-rubik font-bold bg-[#15803D] text-white hover:bg-[#166534] transition-all shadow-md hover:scale-[1.02] active:scale-[0.98] shrink-0 ${sizeClasses} ${className}`}
       title={title}
       aria-label={ariaLabel}
     >

@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizePhone } from "@/lib/validation/phone";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -337,7 +338,7 @@ export function TmipLandingPage() {
     let finalValue = value;
 
     if (name === "phone") {
-      finalValue = value.replace(/\D/g, "").slice(0, 10);
+      finalValue = normalizePhone(value);
     }
 
     setFormData((prev) => ({ ...prev, [name]: finalValue }));
@@ -1078,7 +1079,7 @@ export function TmipLandingPage() {
                         autoComplete="tel-national"
                         id="hero-phone"
                         inputMode="numeric"
-                        maxLength={10}
+                        maxLength={16}
                         name="phone"
                         placeholder="98XXXXXXXX"
                         required
@@ -2538,7 +2539,7 @@ export function TmipLandingPage() {
                       autoComplete="tel-national"
                       id="m-f-phone"
                       inputMode="numeric"
-                      maxLength={10}
+                      maxLength={16}
                       name="phone"
                       placeholder="98XXXXXXXX"
                       required

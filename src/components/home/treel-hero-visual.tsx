@@ -183,10 +183,25 @@ export function TreelHeroVisual() {
     return () => clearInterval(interval);
   }, [isPaused, nextSlide, isClient]);
 
-  // Activate client rotation and secondary slides after initial LCP paint settles
+  // Activate rotation and load secondary slides on the visitor's first interaction
+  // (or after a long idle fallback). Painting a new slide image on a timer during
+  // page load was being recorded as a late Largest Contentful Paint (BUG-020).
   useEffect(() => {
-    const timer = setTimeout(() => setIsClient(true), 7000);
-    return () => clearTimeout(timer);
+    const events: (keyof WindowEventMap)[] = ["scroll", "pointerdown", "pointermove", "keydown", "touchstart", "wheel"];
+    let done = false;
+    const activate = () => {
+      if (done) return;
+      done = true;
+      setIsClient(true);
+      cleanup();
+    };
+    const timer = setTimeout(activate, 25000);
+    const cleanup = () => {
+      clearTimeout(timer);
+      events.forEach((e) => window.removeEventListener(e, activate));
+    };
+    events.forEach((e) => window.addEventListener(e, activate, { once: true, passive: true }));
+    return cleanup;
   }, []);
 
   // Visibility change handling (pause when tab is hidden)

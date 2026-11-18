@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Clock, FileText } from "lucide-react";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/insights",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "TMIP Insights",
     description:
       "TMIP-specific insights: product deep-dives, deployment lessons, fleet analytics techniques, and commentary from Treel's engineering and operations team.",

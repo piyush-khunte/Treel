@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
   AlertCircle,
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/personal/specs",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Specifications · Personal TPMS",
     description:
       "Full technical specifications for Personal TPMS: sensor specs, app requirements, physical specs, warranty, compatibility, and certifications.",

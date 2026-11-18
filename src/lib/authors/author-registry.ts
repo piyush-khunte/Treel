@@ -2,6 +2,7 @@ import { getAllInsights } from "@/lib/content/insights-storage";
 import { getAllSurakshaArticles } from "@/lib/content/suraksha-storage";
 import { getAllCaseStudies } from "@/lib/content/casestudies-storage";
 import { getAllBlogsFromDb } from "@/lib/blogs/blog-storage";
+import { filterPersonalBlogs } from "@/lib/blogs/personal-blog-scope";
 import { 
   AuthorProfile, 
   AuthoredArticleItem, 
@@ -28,7 +29,7 @@ export async function getAuthorProfile(slugOrName: string): Promise<{
   const [insights, surakshaArticles, personalBlogs, caseStudies] = await Promise.all([
     getAllInsights(false).catch(() => []),
     getAllSurakshaArticles(false).catch(() => []),
-    getAllBlogsFromDb().catch(() => []),
+    getAllBlogsFromDb().then(filterPersonalBlogs).catch(() => []),
     getAllCaseStudies(false).catch(() => []),
   ]);
 

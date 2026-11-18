@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 Building2,
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/gdpr",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "GDPR Compliance",
     description:
       "Treel's GDPR readiness for future European Union deployments. Data subject rights, data protection officer contact, and lawful bases for processing.",

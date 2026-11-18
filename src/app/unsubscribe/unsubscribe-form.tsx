@@ -149,7 +149,7 @@ export function UnsubscribeForm() {
         <div className="p-5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-start gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
           <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
           <div className="space-y-1">
-            <h4 className="text-sm font-semibold text-[#FAF7F2]">Verified 1-Click Unsubscribe Link</h4>
+            <h3 className="text-sm font-semibold text-[#FAF7F2]">Verified 1-Click Unsubscribe Link</h3>
             <p className="text-xs sm:text-sm text-[#94A3B8]">
               You were directed here with a secure token. You can opt out immediately by clicking below:
             </p>
@@ -173,7 +173,7 @@ export function UnsubscribeForm() {
         <div className="p-5 rounded-xl bg-[#D5573B]/10 border border-[#D5573B]/30 flex items-start gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
           <CheckCircle2 className="w-5 h-5 text-[#D5573B] shrink-0 mt-0.5" />
           <div className="space-y-1">
-            <h4 className="text-sm font-semibold text-[#FAF7F2]">Preferences Successfully Saved</h4>
+            <h3 className="text-sm font-semibold text-[#FAF7F2]">Preferences Successfully Saved</h3>
             <p className="text-xs sm:text-sm text-[#94A3B8]">
               {statusMessage || "Your email communication preferences have been updated."}
             </p>
@@ -185,7 +185,7 @@ export function UnsubscribeForm() {
         <div className="p-5 rounded-xl bg-white/[0.04] border border-white/[0.12] flex items-start gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
           <CheckCircle2 className="w-5 h-5 text-[#D5573B] shrink-0 mt-0.5" />
           <div className="space-y-1">
-            <h4 className="text-sm font-semibold text-[#FAF7F2]">Unsubscribed Successfully</h4>
+            <h3 className="text-sm font-semibold text-[#FAF7F2]">Unsubscribed Successfully</h3>
             <p className="text-xs sm:text-sm text-[#94A3B8]">
               {statusMessage || "You will no longer receive marketing communications, announcements, or editorial dispatches. Essential transactional emails related to your hardware or orders will still be delivered."}
             </p>
@@ -239,7 +239,7 @@ export function UnsubscribeForm() {
                     <div
                       className={`w-5 h-5 rounded mt-0.5 flex items-center justify-center border transition-all ${
                         isChecked
-                          ? "bg-[#D5573B] border-[#D5573B] text-[#FAF7F2]"
+                          ? "bg-[#C64529] border-[#D5573B] text-[#FAF7F2]"
                           : "border-white/30 bg-black/40"
                       }`}
                     >

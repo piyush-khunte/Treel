@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/whitepapers",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "TMIP Whitepaper & Research Library",
     description:
       "Explore Treel's technical research, ROI analyses, and mobility intelligence papers for enterprise fleet operators.",
@@ -78,9 +80,9 @@ export default function TmipWhitepapersSlugPage() {
                   </span>
                   <span className="text-xs font-jetbrains text-[#94A3B8]">28 Pages</span>
                 </div>
-                <h3 className="font-space-grotesk text-xl font-bold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors">
+                <h2 className="font-space-grotesk text-xl font-bold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors">
                   The Fleet ROI Paper — How TMIP customers reach payback in 9 to 12 months
-                </h3>
+                </h2>
                 <p className="text-sm text-[#94A3B8] font-ibm-plex leading-relaxed">
                   The economics of mobility intelligence deployment across 200+ enterprise fleets. Payback drivers and
                   unit cost savings.
@@ -103,9 +105,9 @@ export default function TmipWhitepapersSlugPage() {
                   </span>
                   <span className="text-xs font-jetbrains text-[#94A3B8]">24 Pages</span>
                 </div>
-                <h3 className="font-space-grotesk text-xl font-bold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors">
+                <h2 className="font-space-grotesk text-xl font-bold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors">
                   The Vehicle Digital Twin — Architecture and Applications
-                </h3>
+                </h2>
                 <p className="text-sm text-[#94A3B8] font-ibm-plex leading-relaxed">
                   The technical paper behind TMIP&apos;s Vehicle Digital Twin architecture: data model, state layers, and
                   prediction pipelines.
@@ -128,9 +130,9 @@ export default function TmipWhitepapersSlugPage() {
                   </span>
                   <span className="text-xs font-jetbrains text-[#94A3B8]">18 Pages</span>
                 </div>
-                <h3 className="font-space-grotesk text-xl font-bold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors">
+                <h2 className="font-space-grotesk text-xl font-bold text-[#F1F5F9] group-hover:text-[#3B82F6] transition-colors">
                   Edge Telemetry &amp; Anomaly Streaming Architecture
-                </h3>
+                </h2>
                 <p className="text-sm text-[#94A3B8] font-ibm-plex leading-relaxed">
                   How high-frequency sub-second sensor packets are decoded, calibrated, and streamed to Vehicle Digital Twins.
                 </p>

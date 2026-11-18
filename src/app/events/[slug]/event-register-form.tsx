@@ -140,7 +140,7 @@ export function EventRegisterForm({
           </div>
         )}
 
-        <p className="text-xs text-[#64748B] font-mono pt-2">
+        <p className="text-xs text-[#94A3B8] font-mono pt-2">
           Questions or need to modify your registration? Email us at hello@treel.in.
         </p>
       </div>

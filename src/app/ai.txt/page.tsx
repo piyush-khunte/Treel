@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/ai.txt",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "ai.txt",
     description: "Treel mobility intelligence platform.",
     url: "https://treel.in/ai.txt",

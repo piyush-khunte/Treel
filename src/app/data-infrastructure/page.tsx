@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/data-infrastructure",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Data Infrastructure",
     description: "India's largest fleet dataset: sub-second telemetry from 70,000+ vehicles and 2M+ tyres, built for enterprise scale, data governance, and DPDP compliance.",
     url: "https://treel.in/data-infrastructure",

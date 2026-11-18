@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Button } from "@/components/ui/button";
 import { ArrowRight,HelpCircle,Home } from "lucide-react";
 import type { Metadata } from "next";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/404",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Page Not Found",
     description: "The page you are looking for is not found on treel.in.",
     url: "https://treel.in/404",

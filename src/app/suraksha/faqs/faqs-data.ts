@@ -28,7 +28,7 @@ export const SURAKSHA_FAQS: FaqItem[] = [
   {
     cat: "EMI",
     q: "Is easy monthly EMI financing available on Suraksha?",
-    a: "Yes. Flexible EMI financing is available through Bajaj Finance with flexible 3, 6, 9, 12, 18, and 24-month tenures—including zero-cost EMI on selected 9-month plans. Instant approval is available with just your Aadhaar and truck RC."
+    a: "Yes. Flexible EMI financing is available through our NBFC financing partner with flexible 3, 6, 9, 12, 18, and 24-month tenures—including zero-cost EMI on selected 9-month plans. Instant approval is available with just your Aadhaar and truck RC."
   },
   {
     cat: "Warranty",

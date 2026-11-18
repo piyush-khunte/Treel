@@ -74,33 +74,66 @@ export default function RootLayout({
       className={`${inter.variable} ${fraunces.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
       <head>
-        <link
-          rel="preload"
-          as="image"
-          type="image/webp"
-          media="(max-width: 640px)"
-          href="/images/home/fleet-digital-twin-mobile.webp"
-          fetchPriority="high"
-        />
-        <link
-          rel="preload"
-          as="image"
-          type="image/webp"
-          media="(min-width: 641px)"
-          href="/images/home/fleet-digital-twin-desktop.webp"
-          fetchPriority="high"
-        />
+        {/* Home hero image preloads live in src/app/page.tsx (react-dom preload) so they
+            don't compete with the LCP image on every other route. */}
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         {process.env.NODE_ENV === "production" ? (
           <Script id="google-tag-aw-18528246360" strategy="afterInteractive">
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'AW-18528246360');
+              window.gtag = gtag;
+              // Consent Mode: everything denied until the visitor opts in to marketing cookies.
+              gtag('consent', 'default', {
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+                analytics_storage: 'denied'
+              });
 
               (function() {
+                var POLICY_VERSION = '2026-10-01';
+                var started = false;
                 var loaded = false;
+
+                function readConsent() {
+                  try {
+                    var m = document.cookie.match(/(^|;\\s*)treel_cookie_consent=([^;]*)/);
+                    var raw = m ? decodeURIComponent(m[2]) : localStorage.getItem('treel_cookie_consent');
+                    if (!raw) return null;
+                    if (raw === 'accepted') return { policyVersion: POLICY_VERSION, categories: { marketing: true } };
+                    return JSON.parse(raw);
+                  } catch (e) { return null; }
+                }
+                function marketingAllowed(c) {
+                  return !!(c && c.policyVersion === POLICY_VERSION && c.categories && c.categories.marketing && c.status !== 'withdrawn');
+                }
+
+                // Google Ads (gtag.js) is only fetched after marketing consent.
+                function startAds() {
+                  if (started) return;
+                  started = true;
+                  gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+                  gtag('js', new Date());
+                  gtag('config', 'AW-18528246360');
+                  ['scroll', 'touchstart', 'pointerdown', 'keydown', 'click'].forEach(function(ev) {
+                    window.addEventListener(ev, loadGTM, { passive: true, once: true });
+                  });
+                  if ('requestIdleCallback' in window) {
+                    window.requestIdleCallback(function() { setTimeout(loadGTM, 8000); });
+                  } else {
+                    setTimeout(loadGTM, 8000);
+                  }
+                }
+
+                window.addEventListener('treel_consent_updated', function(e) {
+                  if (marketingAllowed(e.detail)) {
+                    startAds();
+                  } else {
+                    gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+                  }
+                });
+
                 function loadGTM() {
                   if (loaded) return;
                   loaded = true;
@@ -118,14 +151,8 @@ export default function RootLayout({
                     document.head.appendChild(s);
                   }
                 }
-                ['scroll', 'touchstart', 'pointerdown', 'keydown', 'click'].forEach(function(ev) {
-                  window.addEventListener(ev, loadGTM, { passive: true, once: true });
-                });
-                if ('requestIdleCallback' in window) {
-                  window.requestIdleCallback(function() { setTimeout(loadGTM, 8000); });
-                } else {
-                  setTimeout(loadGTM, 8000);
-                }
+
+                if (marketingAllowed(readConsent())) startAds();
               })();
             `}
           </Script>
@@ -135,7 +162,7 @@ export default function RootLayout({
         <CartProvider>
           <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-[#D5573B] text-white font-medium rounded-lg shadow-lg"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-[#C64529] text-white font-medium rounded-lg shadow-lg"
           >
             Skip to main content
           </a>

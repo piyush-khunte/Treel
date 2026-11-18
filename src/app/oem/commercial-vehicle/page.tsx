@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Commercial Vehicle TPMS",
+  title: "Commercial Vehicle OEM TPMS · Factory-Fit",
   description:
-    "Commercial vehicle tyre telematics, multi-axle pressure and temperature monitoring, and digital twin systems for commercial fleets and manufacturers.",
+    "Factory-fit TPMS and tyre telematics for truck and bus OEMs: multi-axle pressure and temperature monitoring built into commercial vehicles on the line.",
   alternates: {
     canonical: "https://treel.in/oem/commercial-vehicle",
   },

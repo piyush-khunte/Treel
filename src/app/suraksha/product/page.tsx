@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { WhatsAppCircularIcon } from "@/components/ui/whatsapp-circular-icon";
@@ -17,14 +18,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Suraksha Kit · Product Details · In-Cab Display + Tyre Sensors",
+  title: "Suraksha Kit · In-Cab Display + Tyre Sensors",
   description:
     "Suraksha safety kit for trucks: 1 in-cab display + tyre sensors per truck layout. ARAI certified with 3-year warranty. Fits any truck and tyre brand.",
   alternates: {
     canonical: "https://treel.in/suraksha/product",
   },
   openGraph: {
-    title: "Suraksha Kit · Product Details · In-Cab Display + Tyre Sensors",
+    images: DEFAULT_OG_IMAGES,
+    title: "Suraksha Kit · In-Cab Display + Tyre Sensors",
     description:
       "Suraksha safety kit for trucks: 1 in-cab display + tyre sensors per truck layout. ARAI certified with 3-year warranty. Fits any truck and tyre brand.",
     url: "https://treel.in/suraksha/product",

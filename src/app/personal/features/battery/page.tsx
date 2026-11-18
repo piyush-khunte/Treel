@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 CheckCircle2,
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/personal/features/battery",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "2-Year Battery Life · Personal TPMS",
     description: "Personal TPMS sensors run on replaceable CR1632 batteries with 2 years of continuous operation. Low-battery warning six weeks before replacement is needed.",
     url: "https://treel.in/personal/features/battery",

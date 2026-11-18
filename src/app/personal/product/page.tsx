@@ -3,7 +3,7 @@
 import { isSurakshaProductOrItem } from "@/lib/commerce/brand-validator";
 import { useCart } from "@/lib/commerce/cart-context";
 import { PERSONAL_PRODUCTS,PersonalProduct,getPersonalProductBySlug,normalizePersonalCategory } from "@/lib/data/personal-products";
-import { getValidImageSrc } from "@/lib/utils/image-utils";
+import { canOptimizeImage,getValidImageSrc } from "@/lib/utils/image-utils";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 CheckCircle2,
@@ -174,8 +174,9 @@ function ProductDetailContent({ product }: { product: PersonalProduct }) {
                       src={mainSrc}
                       alt={product.title}
                       fill
-                      unoptimized
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      unoptimized={!canOptimizeImage(mainSrc)}
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 600px"
                       className="object-contain p-6"
                     />
                   );
@@ -199,7 +200,8 @@ function ProductDetailContent({ product }: { product: PersonalProduct }) {
                         src={imgUrl}
                         alt={`${product.title} view ${idx + 1}`}
                         fill
-                        unoptimized
+                        unoptimized={!canOptimizeImage(imgUrl)}
+                        sizes="80px"
                         className="object-contain p-2"
                       />
                     </button>
@@ -368,7 +370,7 @@ function ProductDetailContent({ product }: { product: PersonalProduct }) {
                   />
                 ) : (
                   <div className="space-y-4 text-[#4B5563] text-base leading-relaxed">
-                    <h3 className="text-xl font-bold text-[#111827]">Product Overview</h3>
+                    <h2 className="text-xl font-bold text-[#111827]">Product Overview</h2>
                     <p>{product.description}</p>
                   </div>
                 )}
@@ -377,9 +379,9 @@ function ProductDetailContent({ product }: { product: PersonalProduct }) {
 
             {activeTab === "box" && product.boxpoint && (
               <div className="max-w-4xl space-y-6">
-                <h3 className="text-xl font-bold text-[#111827] flex items-center gap-2">
+                <h2 className="text-xl font-bold text-[#111827] flex items-center gap-2">
                   <Package className="w-5 h-5 text-[#2563EB]" /> Package Contents
-                </h3>
+                </h2>
                 <div 
                   className="p-6 rounded-2xl bg-[#F9FAFB] border border-black/[0.06] text-[#4B5563] text-sm sm:text-base leading-relaxed [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:space-y-2"
                   dangerouslySetInnerHTML={{ __html: product.boxpoint }}
@@ -389,16 +391,16 @@ function ProductDetailContent({ product }: { product: PersonalProduct }) {
 
             {activeTab === "install" && steps.length > 0 && (
               <div className="max-w-4xl space-y-6">
-                <h3 className="text-xl font-bold text-[#111827] flex items-center gap-2">
+                <h2 className="text-xl font-bold text-[#111827] flex items-center gap-2">
                   <Wrench className="w-5 h-5 text-[#2563EB]" /> Step-by-Step Installation
-                </h3>
+                </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                   {steps.map((s, idx) => (
                     <div key={idx} className="p-6 rounded-2xl bg-[#F9FAFB] border border-black/[0.06] space-y-2">
                       <div className="w-8 h-8 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold text-xs">
                         {idx + 1}
                       </div>
-                      <h4 className="font-bold text-[#111827] text-base">{s.step}</h4>
+                      <h3 className="font-bold text-[#111827] text-base">{s.step}</h3>
                       <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed">{s.desc}</p>
                     </div>
                   ))}
@@ -415,7 +417,7 @@ function ProductDetailContent({ product }: { product: PersonalProduct }) {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-4 border-b border-black/[0.06]">
             <div>
               <div className="text-xs font-bold uppercase tracking-wider text-[#2563EB]">MORE OPTIONS</div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-[#111827]">Explore Other TPMS Kits</h3>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111827]">Explore Other TPMS Kits</h2>
             </div>
             <Link
               href="/personal/buy"
@@ -439,7 +441,8 @@ function ProductDetailContent({ product }: { product: PersonalProduct }) {
                         src={getValidImageSrc(rel.image)!}
                         alt={rel.title}
                         fill
-                        unoptimized
+                        unoptimized={!canOptimizeImage(getValidImageSrc(rel.image)!)}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
                         className="object-contain p-2 group-hover:scale-105 transition-transform"
                       />
                     ) : (
@@ -449,9 +452,9 @@ function ProductDetailContent({ product }: { product: PersonalProduct }) {
                   <div className="text-[10px] font-semibold text-[#2563EB] uppercase tracking-wider mb-1">
                     {rel.category}
                   </div>
-                  <h4 className="font-bold text-sm sm:text-base text-[#111827] group-hover:text-[#2563EB] transition-colors line-clamp-2 leading-snug">
+                  <h3 className="font-bold text-sm sm:text-base text-[#111827] group-hover:text-[#2563EB] transition-colors line-clamp-2 leading-snug">
                     {rel.title}
-                  </h4>
+                  </h3>
                 </div>
                 <div className="pt-3 border-t border-black/[0.06] mt-4 flex items-baseline justify-between">
                   <span className="font-extrabold text-base text-[#111827]">

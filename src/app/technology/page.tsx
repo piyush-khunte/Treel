@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { ArrowRight,BrainCircuit,ChevronRight,Cpu,Database,LayoutDashboard,Server } from "lucide-react";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/technology",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Technology & Platform Architecture",
     description: "The Treel technology stack: proprietary sensors, edge gateways, cloud ML infrastructure, and the Vehicle Digital Twin architecture powering TMIP.",
     url: "https://treel.in/technology",

@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { getPublishedMediaKitItems } from "@/lib/content/mediakit-storage";
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Media Kit",
     description: "Download Treel brand assets, founder photos, product photography, and fact sheet. For press, partners, and industry analysts.",
     url: "https://treel.in/media-kit",

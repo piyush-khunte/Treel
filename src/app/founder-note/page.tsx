@@ -1,16 +1,18 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Founder's Note — The Origin of Vehicle Digital Twins · Manish Ingale",
+  title: "Founder's Note — The Origin of Vehicle Digital Twins",
   description: "Why Manish Ingale founded Treel: from watching highway tyre checks with a stick to operating Vehicle Digital Twins for 70,000+ vehicles under management.",
   alternates: {
     canonical: "https://treel.in/founder-note",
   },
   openGraph: {
-    title: "Founder's Note — The Origin of Vehicle Digital Twins · Manish Ingale",
+    images: DEFAULT_OG_IMAGES,
+    title: "Founder's Note — The Origin of Vehicle Digital Twins",
     description: "Why Manish Ingale founded Treel: from watching highway tyre checks with a stick to operating Vehicle Digital Twins for 70,000+ vehicles under management.",
     url: "https://treel.in/founder-note",
     type: "article",
@@ -37,7 +39,7 @@ export default function FounderNotePage() {
       "name": "Treel",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://treel.in/images/treel%20main%20logo.jpg"
+        "url": "https://treel.in/images/treel-main-logo.jpg"
       }
     },
     "datePublished": "2026-09-01",
@@ -221,7 +223,7 @@ export default function FounderNotePage() {
             <div className="pt-2">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#C64529] text-[#FAF7F2] hover:bg-[#B53D23]"
               >
                 <span>Get in touch</span>
                 <ArrowRight className="w-4 h-4" />

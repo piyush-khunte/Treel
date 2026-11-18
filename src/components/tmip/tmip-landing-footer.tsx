@@ -26,10 +26,10 @@ export function TmipLandingFooter() {
             <p className="text-[14px] text-[#94A3B8] leading-relaxed max-w-sm">
               The mobility intelligence company. Every vehicle a signal, every signal an insight.
             </p>
-            <p className="pt-2 text-xs text-[#64748B] font-jetbrains">
+            <p className="pt-2 text-xs text-[#94A3B8] font-jetbrains">
               ARAI &amp; ISO 9001:2015 Certified · Patents in India, US &amp; EU
             </p>
-            <p className="text-xs text-[#64748B] font-jetbrains">
+            <p className="text-xs text-[#94A3B8] font-jetbrains">
               IATF 16949 Certified
             </p>
              <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
@@ -40,9 +40,9 @@ export function TmipLandingFooter() {
 
           {/* Solutions Column */}
           <div className="space-y-3.5">
-            <h5 className="text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold font-mono !text-[#3B82F6]">
+            <h2 className="text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold font-mono !text-[#3B82F6]">
               SOLUTIONS
-            </h5>
+            </h2>
             <ul className="space-y-2.5">
               <li>
                 <Link href="/tmip" className="text-[13px] text-[#94A3B8] !text-[#94A3B8] hover:!text-[#3B82F6] transition-colors">
@@ -69,9 +69,9 @@ export function TmipLandingFooter() {
 
           {/* Technology Column */}
           <div className="space-y-3.5">
-            <h5 className="text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold font-mono !text-[#3B82F6]">
+            <h2 className="text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold font-mono !text-[#3B82F6]">
               TECHNOLOGY
-            </h5>
+            </h2>
             <ul className="space-y-2.5">
               <li>
                 <Link href="/technology" className="text-[13px] text-[#94A3B8] !text-[#94A3B8] hover:!text-[#3B82F6] transition-colors">
@@ -98,9 +98,9 @@ export function TmipLandingFooter() {
 
           {/* Intelligence Column */}
           <div className="space-y-3.5">
-            <h5 className="text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold font-mono !text-[#3B82F6]">
+            <h2 className="text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold font-mono !text-[#3B82F6]">
               INTELLIGENCE
-            </h5>
+            </h2>
             <ul className="space-y-2.5">
               <li>
                 <Link href="/research" className="text-[13px] text-[#94A3B8] !text-[#94A3B8] hover:!text-[#3B82F6] transition-colors">
@@ -137,9 +137,9 @@ export function TmipLandingFooter() {
 
           {/* Company Column */}
           <div className="space-y-3.5">
-            <h5 className="text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold font-mono !text-[#3B82F6]">
+            <h2 className="text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold font-mono !text-[#3B82F6]">
               COMPANY
-            </h5>
+            </h2>
             <ul className="space-y-2.5">
               <li>
                 <Link href="/about" className="text-[13px] text-[#94A3B8] !text-[#94A3B8] hover:!text-[#3B82F6] transition-colors">
@@ -179,7 +179,7 @@ export function TmipLandingFooter() {
         <div className="border-t border-[#1E293B] my-0" />
 
         {/* Bottom Legal Row */}
-        <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-[#64748B] gap-4">
+        <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-[#94A3B8] gap-4">
           <div>
             Website developed by{" "}
             <a
@@ -193,28 +193,28 @@ export function TmipLandingFooter() {
           </div>
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs">
-            <Link href="/privacy" className="footer-legal-link text-[#64748B] !text-[#64748B] hover:!text-[#94A3B8] transition-colors">
+            <Link href="/privacy" className="footer-legal-link text-[#94A3B8] !text-[#94A3B8] hover:!text-[#CBD5E1] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="footer-legal-link text-[#64748B] !text-[#64748B] hover:!text-[#94A3B8] transition-colors">
+            <Link href="/terms" className="footer-legal-link text-[#94A3B8] !text-[#94A3B8] hover:!text-[#CBD5E1] transition-colors">
               Terms
             </Link>
-            <Link href="/cookies" className="footer-legal-link text-[#64748B] !text-[#64748B] hover:!text-[#94A3B8] transition-colors">
+            <Link href="/cookies" className="footer-legal-link text-[#94A3B8] !text-[#94A3B8] hover:!text-[#CBD5E1] transition-colors">
               Cookie Policy
             </Link>
-            <Link href="/accessibility" className="footer-legal-link text-[#64748B] !text-[#64748B] hover:!text-[#94A3B8] transition-colors">
+            <Link href="/accessibility" className="footer-legal-link text-[#94A3B8] !text-[#94A3B8] hover:!text-[#CBD5E1] transition-colors">
               Accessibility
             </Link>
-            <Link href="/gdpr" className="footer-legal-link text-[#64748B] !text-[#64748B] hover:!text-[#94A3B8] transition-colors">
+            <Link href="/gdpr" className="footer-legal-link text-[#94A3B8] !text-[#94A3B8] hover:!text-[#CBD5E1] transition-colors">
               GDPR Compliance
             </Link>
-            <Link href="/personal/returns" className="footer-legal-link text-[#64748B] !text-[#64748B] hover:!text-[#94A3B8] transition-colors">
+            <Link href="/personal/returns" className="footer-legal-link text-[#94A3B8] !text-[#94A3B8] hover:!text-[#CBD5E1] transition-colors">
               Returns Policy
             </Link>
-            <Link href="/personal/shipping" className="footer-legal-link text-[#64748B] !text-[#64748B] hover:!text-[#94A3B8] transition-colors">
+            <Link href="/personal/shipping" className="footer-legal-link text-[#94A3B8] !text-[#94A3B8] hover:!text-[#CBD5E1] transition-colors">
               Shipping Policy
             </Link>
-            <Link href="/personal/refunds" className="footer-legal-link text-[#64748B] !text-[#64748B] hover:!text-[#94A3B8] transition-colors">
+            <Link href="/personal/refunds" className="footer-legal-link text-[#94A3B8] !text-[#94A3B8] hover:!text-[#CBD5E1] transition-colors">
               Refunds Policy
             </Link>
           </div>

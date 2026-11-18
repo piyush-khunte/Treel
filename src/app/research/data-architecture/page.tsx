@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 ArrowRight,
@@ -11,13 +12,14 @@ import Link from "next/link";
 import { DataArchWhitepaperGatedForm } from "./whitepaper-form";
 
 export const metadata: Metadata = {
-  title: "Data Architecture & Telemetry Ingestion at Enterprise Scale — Research",
+  title: "Data Architecture & Telemetry Ingestion — Research",
   description: "Technical whitepaper on Treel's distributed IoT data architecture, sub-second telemetry ingestion, dual-state persistence, and Vehicle Digital Twin engine.",
   alternates: {
     canonical: "https://treel.in/research/data-architecture",
   },
   openGraph: {
-    title: "Data Architecture & Telemetry Ingestion at Enterprise Scale — Research",
+    images: DEFAULT_OG_IMAGES,
+    title: "Data Architecture & Telemetry Ingestion — Research",
     description: "Technical whitepaper on Treel's distributed IoT data architecture, sub-second telemetry ingestion, dual-state persistence, and Vehicle Digital Twin engine.",
     url: "https://treel.in/research/data-architecture",
   },

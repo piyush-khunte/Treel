@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
@@ -29,6 +30,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/suraksha/pricing",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Suraksha Kit · Configurations & Pricing · ₹1,700/Tyre",
     description:
       "Suraksha kit pricing at ₹1,700 per tyre for 6W, 10W, 12W, 14W, 16W, and 18W commercial trucks. No hidden fees. Official 3-year replacement warranty.",
@@ -505,7 +507,7 @@ export default async function SurakshaPricingPage() {
                 <Sparkles className="w-5 h-5" />
               </div>
               <h3 className="font-anton text-xl uppercase text-[#451A03]">
-                Option 2 · EMI (Bajaj Finance)
+                Option 2 · EMI (NBFC partner)
               </h3>
               <p className="text-[#78350F] text-sm leading-relaxed">
                 Flexible 3, 6, 9, 12, 18, 24-month tenures. Zero-cost EMI options available at select Truck Wheels centres.

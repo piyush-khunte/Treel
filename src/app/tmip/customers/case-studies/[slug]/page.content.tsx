@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getCaseStudyBySlug } from "@/lib/content/casestudies-storage";
@@ -28,6 +29,7 @@ export async function generateMetadata({
       canonical: `https://treel.in/tmip/customers/case-studies/${study.slug}`,
     },
     openGraph: {
+      images: DEFAULT_OG_IMAGES,
       title: `${study.headline} · TMIP Case Study`,
       description: study.excerpt,
       url: `https://treel.in/tmip/customers/case-studies/${study.slug}`,

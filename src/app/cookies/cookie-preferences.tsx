@@ -82,7 +82,7 @@ export function CookiePreferencesManager() {
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831] focus:outline-none focus:ring-2 focus:ring-[#D5573B] focus:ring-offset-2 focus:ring-offset-[#0F1419] cursor-pointer"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#C64529] text-[#FAF7F2] hover:bg-[#B53D23] focus:outline-none focus:ring-2 focus:ring-[#D5573B] focus:ring-offset-2 focus:ring-offset-[#0F1419] cursor-pointer"
           >
             <Sliders className="w-4 h-4" />
             Manage cookie preferences
@@ -224,7 +224,7 @@ export function CookiePreferencesManager() {
                 <div className="space-y-1 pr-4">
                   <span className="font-semibold text-sm text-[#FAF7F2]">Marketing &amp; Campaign Attribution</span>
                   <p className="text-xs text-[#94A3B8]">
-                    Attribution tags (Meta, Google Ads, LinkedIn) to evaluate relevant campaigns.
+                    Attribution tags (Google Ads conversion tracking) to evaluate relevant campaigns.
                   </p>
                 </div>
                 <input
@@ -257,7 +257,7 @@ export function CookiePreferencesManager() {
               <button
                 type="button"
                 onClick={() => handleSave()}
-                className="w-full sm:w-auto px-6 py-2 text-xs font-semibold bg-[#D5573B] text-[#FAF7F2] rounded-[4px] hover:bg-[#CB4831] cursor-pointer"
+                className="w-full sm:w-auto px-6 py-2 text-xs font-semibold bg-[#C64529] text-[#FAF7F2] rounded-[4px] hover:bg-[#B53D23] cursor-pointer"
               >
                 Save Preferences
               </button>

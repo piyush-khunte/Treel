@@ -1,3 +1,5 @@
+import { clampDescription, clampTitle, DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
+import { notFound } from "next/navigation";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -198,7 +200,7 @@ const ARTICLES: Record<string, InsightArticle> = {
         {
           heading: "Highway Network Backing",
           paragraphs: [
-            "Through 400+ Highway Truck Centres across national highways, drivers receive free sensor inspections, warranty replacements, and emergency support within minutes of roadside alert triggers.",
+            "Through 600+ Highway Truck Centres across national highways, drivers receive free sensor inspections, warranty replacements, and emergency support within minutes of roadside alert triggers.",
             "Predictable monthly EMI structures ensure that safety technology is immediately accessible without upfront capital strain."
           ]
         }
@@ -310,21 +312,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const article = dbArticle || ARTICLES[slug];
 
   if (!article || article.status === "Draft") {
-    return {
-      title: "Article Not Found — Insights",
-      description: "The requested insight article could not be found.",
-    };
+    // Unknown / draft slugs must return a real 404 instead of a soft-404 page.
+    notFound();
   }
 
   return {
-    title: article.title,
-    description: article.deck,
+    title: clampTitle(article.title),
+    description: clampDescription(article.deck),
     alternates: {
       canonical: `https://treel.in/insights/${article.slug}`,
     },
     openGraph: {
+      images: DEFAULT_OG_IMAGES,
       title: article.title,
-      description: article.deck,
+      description: clampDescription(article.deck, 200),
       url: `https://treel.in/insights/${article.slug}`,
       type: "article",
       publishedTime: article.publishIsoDate,
@@ -352,7 +353,7 @@ export default async function InsightsSlugPage({ params }: { params: Promise<{ s
           <div className="pt-4">
             <Link
               href="/insights"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] bg-[#C64529] text-[#FAF7F2] font-semibold text-sm hover:bg-[#B53D23] transition-all shadow-md"
             >
               <span>Back to all insights</span>
               <ArrowRight className="w-4 h-4" />

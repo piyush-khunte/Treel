@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizePhone } from "@/lib/validation/phone";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { PhoneCall } from "lucide-react";
@@ -206,11 +207,11 @@ export default function SurakshaCallbackPage() {
                     type="tel"
                     required
                     inputMode="numeric"
-                    maxLength={10}
+                    maxLength={16}
                     pattern="[0-9]{10}"
                     placeholder="10-digit mobile number"
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
+                    onChange={(e) => setPhone(normalizePhone(e.target.value))}
                     className="w-full px-4 py-3 bg-white border-2 border-[#451A03]/20 rounded-[4px] text-[#451A03] placeholder-[#78350F]/50 focus:outline-none focus:border-[#DC2626] text-sm font-medium shadow-sm"
                   />
                 </div>

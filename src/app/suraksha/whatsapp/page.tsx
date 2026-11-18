@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/suraksha/whatsapp",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "WhatsApp Suraksha · Direct Chat with Support",
     description:
       "Chat with Suraksha on WhatsApp. 24/7 automated assistance and human support. Get configuration quotes, EMI approval, installation hubs, and warranty info.",

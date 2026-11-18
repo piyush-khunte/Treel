@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/solutions/logistics",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Logistics Fleet Intelligence · TMIP",
     description:
       "TMIP for logistics fleets: long-haul and last-mile operators managing dispatch, delivery windows, tyre life, and cost per kilometre at scale.",

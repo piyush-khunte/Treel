@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/platform/predictive-maintenance",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Predictive Maintenance · TMIP",
     description:
       "TMIP's predictive models forecast component failures days in advance, cutting unscheduled downtime by 30-40% and extending fleet maintenance intervals.",

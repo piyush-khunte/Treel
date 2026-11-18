@@ -260,7 +260,7 @@ export function CaseStudiesClient({ initialStudies }: CaseStudiesClientProps = {
                     <span className="text-[11px] font-jetbrains uppercase tracking-wider text-[#3B82F6] font-semibold">
                       {study.industry}
                     </span>
-                    <span className="text-[11px] font-jetbrains text-[#64748B]">·</span>
+                    <span className="text-[11px] font-jetbrains text-[#94A3B8]">·</span>
                     <span className="text-[11px] font-jetbrains text-[#94A3B8]">{study.fleetSize}</span>
                   </div>
 

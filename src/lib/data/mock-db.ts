@@ -151,7 +151,7 @@ export const PRODUCTS_CATALOGUE: ProductVariant[] = [
       "Heavy-duty industrial RF sensors rated for 150 PSI",
       "9 to 12 months guaranteed payback on diesel & tyre scrap savings",
       "Instant 0% downpayment EMI from ₹1,666/month",
-      "15-minute roadside installation at 400+ highway centres"
+      "15-minute roadside installation at 600+ highway centres"
     ],
     specs: {
       "Pressure Range": "0 - 150 PSI (Commercial CV Radial)",
@@ -184,8 +184,8 @@ export const PRODUCTS_CATALOGUE: ProductVariant[] = [
     features: [
       "Front steer axle + dual drive axle real-time monitoring",
       "Catches thermal runaway 20 minutes before sidewall delamination",
-      "0% Downpayment EMI from ₹1,944/month on Bajaj Finance",
-      "Free calibration across 400+ Indian highway network hubs"
+      "0% Downpayment EMI from ₹1,944/month via our NBFC partner",
+      "Free calibration across 600+ Indian highway network hubs"
     ],
     specs: {
       "Pressure Range": "0 - 150 PSI",

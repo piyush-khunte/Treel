@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import { SURAKSHA_FAQS } from "./faqs-data";
 
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/suraksha/faqs",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Suraksha Commercial Truck TPMS FAQs",
     description:
       "Get clear answers about Treel Suraksha truck tyre pressure monitoring, ROI payback, warranty, sensor fitment, and zero-interest EMI financing.",

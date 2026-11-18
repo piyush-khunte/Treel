@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/oem",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "OEM Solutions & Factory Integration",
     description:
       "Factory-grade tyre pressure monitoring, connected telemetry, and digital twin systems engineered for automotive manufacturers.",
@@ -72,7 +74,7 @@ export default function OemOverviewPage() {
             <div className="pt-2 flex flex-wrap items-center gap-2.5">
               <Link
                 href="/oem/commercial-vehicle"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#D5573B] text-white text-xs font-semibold hover:bg-[#CB4831] transition-colors"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#C64529] text-white text-xs font-semibold hover:bg-[#B53D23] transition-colors"
               >
                 <Truck className="w-3.5 h-3.5" />
                 <span>Commercial Vehicle OE</span>
@@ -155,7 +157,7 @@ export default function OemOverviewPage() {
             <div className="shrink-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
               <Link
                 href="/oem/commercial-vehicle"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md group"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-[4px] bg-[#C64529] text-[#FAF7F2] font-semibold text-sm hover:bg-[#B53D23] transition-all shadow-md group"
               >
                 <span>Explore Commercial Vehicle OE</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

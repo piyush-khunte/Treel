@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import {
 ArrowRight,
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/accessibility",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Accessibility",
     description:
       "Treel's commitment to accessibility. Our WCAG 2.2 Level AA target, current status, and how to report accessibility issues.",

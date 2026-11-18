@@ -1,16 +1,18 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import SurakshaBuyClient from "./buy-client";
 
 export const metadata: Metadata = {
-  title: "Get Suraksha · Commercial Truck TPMS Safety Kit · ₹1,700/Tyre",
+  title: "Get Suraksha · Truck TPMS Safety Kit · ₹1,700/Tyre",
   description:
     "Order your Treel Suraksha truck tyre safety kit online. ₹1,700 per tyre with in-cab display, ARAI sensors, 3-year warranty and express delivery in India.",
   alternates: {
     canonical: "https://treel.in/suraksha/buy",
   },
   openGraph: {
-    title: "Get Suraksha · Commercial Truck TPMS Safety Kit · ₹1,700/Tyre",
+    images: DEFAULT_OG_IMAGES,
+    title: "Get Suraksha · Truck TPMS Safety Kit · ₹1,700/Tyre",
     description:
       "Order your Treel Suraksha truck tyre safety kit online. ₹1,700 per tyre with in-cab display, ARAI sensors, 3-year warranty and express delivery in India.",
     url: "https://treel.in/suraksha/buy",

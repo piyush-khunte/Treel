@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/solutions/oem-fleet",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "OEM Fleet Solutions  ·  TMIP",
     description:
       "TMIP for commercial vehicle OEMs: integrated at vehicle delivery. Co-branded fleet intelligence for OEM partners.",

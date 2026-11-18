@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/tmip/solutions/passenger-transport",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Passenger Transport Fleet Intelligence · TMIP",
     description:
       "TMIP for passenger transport fleets: buses, corporate transport, school transport, inter-city operators where safety and uptime are non-negotiable.",

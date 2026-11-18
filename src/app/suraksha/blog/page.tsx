@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import { getPublishedSurakshaArticles } from "@/lib/content/suraksha-storage";
 import { SurakshaBlogClient } from "./suraksha-blog-client";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/suraksha/blog",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "The Drivers' Blog · Suraksha",
     description:
       "Practical tips on fuel efficiency, tyre safety, route planning, and GST for truck owner-drivers, written in simple language for India's trucking fleet.",

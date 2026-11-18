@@ -143,7 +143,7 @@ export const SEED_PRODUCTS: (Product & { variants: ProductVariant[] })[] = [
     slug: "treel-suraksha-truck-safety-kit",
     name: "Treel Suraksha Commercial Vehicle Safety Kit",
     tagline: "Blowout-prevention and fuel-saving TPMS built specifically for Indian trucks & buses.",
-    description: "Proven across 50,000+ commercial vehicles in India. Cuts front-tyre blowout risk by 99%, extends tyre mileage by 15-20%, saves 3% diesel, and pays for itself within 9 months. Supported by 400+ Highway Suraksha Centres.",
+    description: "Proven across 50,000+ commercial vehicles in India. Cuts front-tyre blowout risk by 99%, extends tyre mileage by 15-20%, saves 3% diesel, and pays for itself within 9 months. Supported by 600+ Highway Suraksha Centres.",
     category: "Suraksha Commercial",
     status: "active",
     base_price_inr: 9999,
@@ -157,7 +157,7 @@ export const SEED_PRODUCTS: (Product & { variants: ProductVariant[] })[] = [
       "Rugged In-Cabin High-Contrast Driver Display",
       "Heavy-Duty Heavy Vehicle Valves (Tested on NH44, NH48)",
       "Zero-Downpayment Easy EMI Starting @ ₹1,199/month",
-      "Supported by 400+ Authorized Suraksha Service Centres Across India"
+      "Supported by 600+ Authorized Suraksha Service Centres Across India"
     ],
     specs: {
       "Supported Configurations": "6-Tyre (16T), 10-Tyre (28T), 12-Tyre (35T), 14-Tyre (42T), 16-Tyre (48T), 22-Tyre (55T)",
@@ -364,7 +364,7 @@ export const SEED_CASE_STUDIES: CaseStudy[] = [
       author: "Chief Technical Officer",
       role: "VRL Logistics Ltd"
     },
-    cover_image: "/images/case-studies/vrl-fleet.jpg",
+    cover_image: "/images/home/fleet-digital-twin-desktop.webp",
     published_at: "2026-06-15T10:00:00Z"
   },
   {
@@ -385,7 +385,7 @@ export const SEED_CASE_STUDIES: CaseStudy[] = [
     challenge: "Passenger safety is mission-critical. A single puncture on a ghat section or midnight expressway destroys reputation and customer trust.",
     solution: "Installed Treel TMIP with dual audio-visual cockpit displays for drivers and a native connector into Kallada's fleet dispatch ERP.",
     impact: "Complete driver confidence, smooth fuel savings, and customer satisfaction ratings reaching an all-time high of 4.9/5.",
-    cover_image: "/images/case-studies/kallada-bus.jpg",
+    cover_image: "/images/home/fleet-digital-twin-desktop.webp",
     published_at: "2026-07-20T10:00:00Z"
   }
 ];
@@ -403,7 +403,7 @@ export const SEED_BLOG_POSTS: BlogPost[] = [
     category: "Mobility Intelligence",
     tags: ["Digital Twin", "AI", "Fleet Operations", "Predictive Maintenance"],
     reading_time_mins: 6,
-    cover_image: "/images/blog/digital-twin.jpg",
+    cover_image: "/images/home/fleet-digital-twin-desktop.webp",
     published_at: "2026-08-10T09:00:00Z"
   },
   {
@@ -418,7 +418,7 @@ export const SEED_BLOG_POSTS: BlogPost[] = [
     category: "Driver Safety",
     tags: ["Suraksha", "Truck Safety", "Hindi Guidance", "Highway Tips"],
     reading_time_mins: 4,
-    cover_image: "/images/blog/highway-truck.jpg",
+    cover_image: "/images/home/fleet-digital-twin-desktop.webp",
     published_at: "2026-08-25T11:00:00Z"
   },
   {
@@ -433,7 +433,7 @@ export const SEED_BLOG_POSTS: BlogPost[] = [
     category: "Consumer Tech",
     tags: ["Car Safety", "TPMS", "DIY Guide", "Highway Driving"],
     reading_time_mins: 5,
-    cover_image: "/images/blog/car-highway.jpg",
+    cover_image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80",
     published_at: "2026-09-01T14:30:00Z"
   }
 ];

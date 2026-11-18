@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Database, Award, ShieldCheck, Cpu, TrendingUp, DollarSign, ChevronRight } from "lucide-react";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://treel.in/why-treel",
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Why Choose Us — The Mobility Intelligence Choice",
     description: "Six reasons fleet operators, drivers, and consumers choose Treel: data scale, category authority, industrial backing, proof, and financial rigour.",
     url: "https://treel.in/why-treel",
@@ -113,9 +115,9 @@ export default function WhyTreelPage() {
                         {reason.num}
                       </span>
                     </div>
-                    <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] leading-snug">
+                    <h2 className="font-fraunces text-xl font-medium text-[#FAF7F2] leading-snug">
                       {reason.title}
-                    </h3>
+                    </h2>
                     <p className="text-sm text-[#94A3B8] leading-relaxed font-inter">
                       {reason.body}
                     </p>
@@ -212,9 +214,9 @@ export default function WhyTreelPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="p-6 rounded-lg bg-white/[0.02] border border-white/[0.08] space-y-3">
               <div className="text-xs font-mono text-[#D5573B] font-bold">1,000-TRUCK CASE STUDY</div>
-              <h4 className="font-fraunces text-lg font-medium text-[#FAF7F2]">
+              <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2]">
                 Full Payback in Week 11
-              </h4>
+              </h3>
               <p className="text-xs text-[#94A3B8] leading-relaxed">
                 How a national 3PL carrier eliminated roadside punctures and saved 3.4% in fuel over 1,000 multi-axle trailers.
               </p>
@@ -225,9 +227,9 @@ export default function WhyTreelPage() {
 
             <div className="p-6 rounded-lg bg-white/[0.02] border border-white/[0.08] space-y-3">
               <div className="text-xs font-mono text-[#D5573B] font-bold">MINING &amp; HAULAGE</div>
-              <h4 className="font-fraunces text-lg font-medium text-[#FAF7F2]">
+              <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2]">
                 Zero Blowouts in Severe Ambient Heat
-              </h4>
+              </h3>
               <p className="text-xs text-[#94A3B8] leading-relaxed">
                 Predictive thermodynamic anomaly alerts protected 50-ton tipper tyres across rugged open-cast quarries.
               </p>
@@ -238,9 +240,9 @@ export default function WhyTreelPage() {
 
             <div className="p-6 rounded-lg bg-white/[0.02] border border-white/[0.08] space-y-3">
               <div className="text-xs font-mono text-[#D5573B] font-bold">INTERCITY PASSENGER</div>
-              <h4 className="font-fraunces text-lg font-medium text-[#FAF7F2]">
+              <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2]">
                 Passenger Safety &amp; On-Time Delivery
-              </h4>
+              </h3>
               <p className="text-xs text-[#94A3B8] leading-relaxed">
                 Luxury bus fleet operators maintain scheduled departures with real-time pre-trip wheel balance verification.
               </p>
@@ -266,7 +268,7 @@ export default function WhyTreelPage() {
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#D5573B] text-[#FAF7F2] hover:bg-[#CB4831]"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] font-semibold text-sm transition-all shadow-md bg-[#C64529] text-[#FAF7F2] hover:bg-[#B53D23]"
               >
                 <span>Get in touch</span>
                 <ArrowRight className="w-4 h-4" />

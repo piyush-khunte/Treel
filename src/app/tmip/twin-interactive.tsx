@@ -192,7 +192,6 @@ export function TwinInteractive() {
               alt={currentView.alt}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1080px"
-              priority
               className="object-contain drop-shadow-md transition-opacity duration-300"
             />
 
@@ -214,19 +213,25 @@ export function TwinInteractive() {
           </div>
 
           {/* Subtle View Indicator Dots */}
-          <div className="flex items-center justify-center gap-1.5 mt-2.5 sm:mt-3">
+          <div className="flex items-center justify-center mt-1.5 sm:mt-2">
             {views.map((v, idx) => (
               <button
                 key={v.id}
                 onClick={() => handleViewClick(idx)}
-                className={`h-1 transition-all rounded-full ${
-                  idx === activeIndex
-                    ? "w-5 bg-[#3B82F6] shadow-[0_0_6px_#3B82F6]"
-                    : "w-1.5 bg-slate-700/60 hover:bg-slate-500"
-                }`}
+                className="group/dot inline-flex items-center justify-center min-w-[24px] min-h-[24px] px-0.5"
                 aria-label={v.name}
+                aria-current={idx === activeIndex ? "true" : undefined}
                 title={v.name}
-              />
+              >
+                <span
+                  aria-hidden="true"
+                  className={`block h-1 transition-all rounded-full ${
+                    idx === activeIndex
+                      ? "w-5 bg-[#3B82F6] shadow-[0_0_6px_#3B82F6]"
+                      : "w-1.5 bg-slate-700/60 group-hover/dot:bg-slate-500"
+                  }`}
+                />
+              </button>
             ))}
           </div>
         </div>

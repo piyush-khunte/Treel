@@ -14,11 +14,17 @@ export const PHONE_ERROR_MESSAGE =
   "Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.";
 
 /**
- * Normalizes input by removing all non-digit characters and limiting length to 10 digits.
+ * Normalizes input to a 10-digit Indian mobile number.
+ * Removes non-digits, then strips a leading "91" country code or "0" trunk prefix
+ * when more than 10 digits are present (e.g. "+91 98765 43210" or "098765 43210"),
+ * so the prefix is never mistaken for the start of the number.
  */
 export function normalizePhone(value: string | null | undefined): string {
   if (!value) return "";
-  return value.replace(/\D/g, "").slice(0, 10);
+  let digits = value.replace(/\D/g, "");
+  if (digits.length > 10 && digits.startsWith("91")) digits = digits.slice(2);
+  else if (digits.length > 10 && digits.startsWith("0")) digits = digits.slice(1);
+  return digits.slice(0, 10);
 }
 
 /**

@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { getPublishedPressItems } from "@/lib/content/press-storage";
 import { Download, Mail, Rss } from "lucide-react";
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Press & Media",
     description: "Official press releases, product announcements, and corporate news from Treel Mobility Solutions.",
     url: "https://treel.in/press",
@@ -94,7 +96,7 @@ export default async function PressPage() {
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
                   href="/contact?subject=media"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-sm"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-[4px] bg-[#C64529] text-[#FAF7F2] font-semibold text-sm hover:bg-[#B53D23] transition-all shadow-sm"
                 >
                   <Mail className="w-4 h-4" />
                   <span>Contact media team</span>
@@ -136,7 +138,7 @@ export default async function PressPage() {
                   <span className="text-[#FAF7F2]">1800 833 0233</span>
                 </div>
               </div>
-              <div className="pt-4 border-t border-white/10 text-xs text-[#64748B]">
+              <div className="pt-4 border-t border-white/10 text-xs text-[#94A3B8]">
                 Operating hours: Monday – Friday, 08:00 AM – 8:00 PM IST
               </div>
             </div>

@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { SurakshaRotator } from "@/components/suraksha/suraksha-rotator";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { ArrowRight } from "lucide-react";
@@ -5,13 +6,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Why Suraksha  \u00b7  Safety, Savings, Simplicity for Truck Owner-Drivers",
+  title: "Why Suraksha · Safety, Savings, Simplicity",
   description: "Three reasons truck owner-drivers choose Suraksha: driver safety on highways, proven fuel and tyre savings, and simplicity for your fleet operations.",
   alternates: {
     canonical: "https://treel.in/suraksha/why-suraksha",
   },
   openGraph: {
-    title: "Why Suraksha  \u00b7  Safety, Savings, Simplicity for Truck Owner-Drivers",
+    images: DEFAULT_OG_IMAGES,
+    title: "Why Suraksha · Safety, Savings, Simplicity",
     description: "Three reasons truck owner-drivers choose Suraksha: driver safety on highways, proven fuel and tyre savings, and simplicity for your fleet operations.",
     url: "https://treel.in/suraksha/why-suraksha",
   },

@@ -110,7 +110,7 @@ export function WhitepaperGatedForm({
           <CheckCircle2 className="w-6 h-6" />
         </div>
         <div className="text-center space-y-1">
-          <h4 className="font-fraunces text-xl font-medium text-[#FAF7F2]">Access Granted</h4>
+          <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2]">Access Granted</h3>
           <p className="text-xs text-[#94A3B8] leading-relaxed max-w-sm mx-auto">
             {accessResult.message}
           </p>
@@ -143,7 +143,7 @@ export function WhitepaperGatedForm({
           <a
             href={accessResult.downloadUrl}
             download
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-[3px] bg-[#D5573B] hover:bg-[#CB4831] text-white font-mono text-xs font-semibold transition-all shadow-md"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-[3px] bg-[#C64529] hover:bg-[#B53D23] text-white font-mono text-xs font-semibold transition-all shadow-md"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Download File</span>
@@ -287,7 +287,7 @@ export function WhitepaperGatedForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-3.5 px-7 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-xs hover:bg-[#CB4831] transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+          className="w-full py-3.5 px-7 rounded-[4px] bg-[#C64529] text-[#FAF7F2] font-semibold text-xs hover:bg-[#B53D23] transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
         >
           {isSubmitting ? (
             <>

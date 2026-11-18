@@ -72,29 +72,29 @@ export function Footer({ variant, className }: FooterProps) {
       footer: "bg-[#0F1419] text-[#FAF7F2] border-t border-white/10 pt-16 pb-12 font-inter",
       gridBorder: "border-b border-white/10",
       tagline: "font-fraunces italic text-[15px] text-[#94A3B8] leading-relaxed max-w-sm",
-      subtext: "text-xs text-[#64748B] font-mono pt-2",
+      subtext: "text-xs text-[#94A3B8] font-mono pt-2",
       header: "text-[11px] uppercase tracking-widest text-[#D5573B] font-bold font-mono",
-      link: "text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors",
+      link: "inline-flex items-center min-h-[24px] text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors",
       ownershipPrimary: "text-[#FAF7F2] font-medium text-xs",
       ownershipSecondary: "text-xs text-[#94A3B8]",
-      certified: "pt-2 text-[11px] text-[#64748B] font-mono",
+      certified: "pt-2 text-[11px] text-[#94A3B8] font-mono",
       bottomBorder: "border-t border-white/10",
-      bottomText: "text-xs text-[#64748B] font-inter",
-      bottomLink: "hover:text-[#FAF7F2] transition-colors",
+      bottomText: "text-xs text-[#94A3B8] font-inter",
+      bottomLink: "inline-flex items-center min-h-[24px] hover:text-[#FAF7F2] transition-colors",
     },
     tmip: {
       footer: "bg-[#050A17] text-[#E5E7EB] border-t border-[#3B82F6]/20 pt-16 pb-10 font-ibm-plex relative z-10",
       gridBorder: "border-b border-white/5",
       tagline: "font-ibm-plex text-[15px] text-[#94A3B8] leading-relaxed max-w-sm",
-      subtext: "text-xs text-[#64748B] font-jetbrains pt-2",
+      subtext: "text-xs text-[#94A3B8] font-jetbrains pt-2",
       header: "font-space-grotesk text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold",
-      link: "text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors",
+      link: "inline-flex items-center min-h-[24px] text-xs text-[#94A3B8] hover:text-[#3B82F6] transition-colors",
       ownershipPrimary: "text-[#F1F5F9] font-medium",
       ownershipSecondary: "text-xs text-[#94A3B8]",
-      certified: "pt-2 text-[11px] text-[#64748B] font-jetbrains",
+      certified: "pt-2 text-[11px] text-[#94A3B8] font-jetbrains",
       bottomBorder: "border-t border-white/5",
-      bottomText: "text-xs text-[#64748B] font-ibm-plex",
-      bottomLink: "hover:text-[#3B82F6] transition-colors",
+      bottomText: "text-xs text-[#94A3B8] font-ibm-plex",
+      bottomLink: "inline-flex items-center min-h-[24px] hover:text-[#3B82F6] transition-colors",
     },
     suraksha: {
       footer: "bg-[#FEF3C7] text-[#451A03] border-t-2 border-[#451A03]/10 pt-16 pb-10 font-rubik relative z-10",
@@ -102,27 +102,27 @@ export function Footer({ variant, className }: FooterProps) {
       tagline: "font-rubik text-[15px] text-[#78350F] font-medium leading-relaxed max-w-sm",
       subtext: "text-xs text-[#92400E] font-semibold font-rubik pt-2",
       header: "font-anton text-sm uppercase tracking-wider text-[#DC2626] font-normal",
-      link: "text-xs text-[#78350F] font-medium font-rubik hover:text-[#DC2626] transition-colors",
+      link: "inline-flex items-center min-h-[24px] text-xs text-[#78350F] font-medium font-rubik hover:text-[#DC2626] transition-colors",
       ownershipPrimary: "text-[#451A03] font-bold font-rubik",
       ownershipSecondary: "text-xs text-[#78350F] font-medium font-rubik",
       certified: "pt-2 text-[11px] text-[#92400E] font-rubik font-semibold",
       bottomBorder: "border-t border-[#451A03]/10",
       bottomText: "text-xs text-[#78350F] font-rubik",
-      bottomLink: "hover:text-[#DC2626] transition-colors",
+      bottomLink: "inline-flex items-center min-h-[24px] hover:text-[#DC2626] transition-colors",
     },
     personal: {
       footer: "bg-[#0B132B] text-slate-100 border-t border-blue-500/20 pt-16 pb-10 font-manrope relative z-10",
       gridBorder: "border-b border-slate-800",
-      tagline: "font-manrope text-[15px] text-slate-400 leading-relaxed max-w-sm",
-      subtext: "text-xs text-slate-500 font-manrope pt-2",
-      header: "font-manrope text-[11px] uppercase tracking-widest text-blue-500 font-extrabold",
-      link: "text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors",
+      tagline: "font-manrope text-[15px] text-slate-300 leading-relaxed max-w-sm",
+      subtext: "text-xs text-slate-400 font-manrope pt-2",
+      header: "font-manrope text-[11px] uppercase tracking-widest text-blue-400 font-extrabold",
+      link: "inline-flex items-center min-h-[24px] text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors",
       ownershipPrimary: "text-slate-100 font-semibold",
       ownershipSecondary: "text-xs text-slate-400 font-manrope",
-      certified: "pt-2 text-[11px] text-slate-500 font-manrope",
+      certified: "pt-2 text-[11px] text-slate-400 font-manrope",
       bottomBorder: "border-t border-slate-800",
-      bottomText: "text-xs text-slate-500 font-manrope",
-      bottomLink: "hover:text-blue-400 transition-colors",
+      bottomText: "text-xs text-slate-400 font-manrope",
+      bottomLink: "inline-flex items-center min-h-[24px] hover:text-blue-400 transition-colors",
     },
   };
 
@@ -144,10 +144,10 @@ export function Footer({ variant, className }: FooterProps) {
             <p className={theme.tagline}>
               The mobility intelligence company. Every vehicle a signal, every signal an insight.
             </p>
-            <p className={theme.certified || "text-xs text-[#64748B]"}>
+            <p className={theme.certified || "text-xs text-[#94A3B8]"}>
               ARAI &amp; ISO 9001:2015 Certified · Patents in India, US &amp; EU
             </p>
-            <p className={theme.certified || "text-xs text-[#64748B]"}>
+            <p className={theme.certified || "text-xs text-[#94A3B8]"}>
               IATF 16949 Certified
             </p>
             <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
@@ -158,10 +158,10 @@ export function Footer({ variant, className }: FooterProps) {
 
           {/* Solutions */}
           <div className="space-y-3">
-            <h3 className={theme.header}>
+            <h2 className={theme.header}>
               Solutions
-            </h3>
-            <ul className="space-y-2">
+            </h2>
+            <ul className="space-y-0.5">
               <li>
                 <Link prefetch={false} href="/tmip" className={theme.link}>
                   TMIP Enterprise
@@ -187,10 +187,10 @@ export function Footer({ variant, className }: FooterProps) {
 
           {/* Technology */}
           <div className="space-y-3">
-            <h3 className={theme.header}>
+            <h2 className={theme.header}>
               Technology
-            </h3>
-            <ul className="space-y-2">
+            </h2>
+            <ul className="space-y-0.5">
               <li>
                 <Link prefetch={false} href="/technology" className={theme.link}>
                   Platform Architecture
@@ -216,10 +216,10 @@ export function Footer({ variant, className }: FooterProps) {
 
           {/* Research & Media */}
           <div className="space-y-3">
-            <h3 className={theme.header}>
+            <h2 className={theme.header}>
               Intelligence
-            </h3>
-            <ul className="space-y-2">
+            </h2>
+            <ul className="space-y-0.5">
               <li>
                 <Link prefetch={false} href="/research" className={theme.link}>
                   Research Papers
@@ -255,10 +255,10 @@ export function Footer({ variant, className }: FooterProps) {
 
           {/* Company */}
           <div className="space-y-3">
-            <h3 className={theme.header}>
+            <h2 className={theme.header}>
               Company
-            </h3>
-            <ul className="space-y-2">
+            </h2>
+            <ul className="space-y-0.5">
               <li>
                 <Link prefetch={false} href="/about" className={theme.link}>
                   About Treel
@@ -302,7 +302,7 @@ export function Footer({ variant, className }: FooterProps) {
   <a href="https://magicworksitsolutions.com" rel="nofollow" target="_blank"> MagicWorks</a>
 </p>
           </div>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-xs">
             <Link prefetch={false} href="/privacy" className={theme.bottomLink}>
               Privacy Policy
             </Link>

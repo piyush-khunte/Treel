@@ -10,7 +10,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
+import { HoneypotField } from "@/components/forms/honeypot-field";
 import { isValidOptionalPhone, normalizePhone, PHONE_ERROR_MESSAGE } from "@/lib/validation/phone";
 
 interface FormData {
@@ -52,6 +53,7 @@ function CorporateContactFormContent() {
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [serverError, setServerError] = useState("");
+  const honeypotRef = useRef<HTMLInputElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submittedData, setSubmittedData] = useState<{ team: string; sla: string; isExport?: boolean } | null>(null);
@@ -195,6 +197,7 @@ function CorporateContactFormContent() {
           fleetSize: formData.fleetSize,
           message: formData.message,
           consent: formData.consent,
+          website: honeypotRef.current?.value || "",
           lead_source: isExport
             ? "Export / International Desk"
             : formData.subject === "Enterprise sales (TMIP)"
@@ -226,7 +229,13 @@ function CorporateContactFormContent() {
       setServerError("");
     } catch (err: any) {
       console.error("Submission error:", err);
-      setServerError(err.message || "Failed to submit note. Please try again or call 1800 833 0233.");
+      const offline = typeof navigator !== "undefined" && navigator.onLine === false;
+      const networkFailure = offline || err instanceof TypeError;
+      setServerError(
+        networkFailure
+          ? "We couldn't send your message because you appear to be offline. Your details are still here. Check your connection and try again, or call 1800 833 0233."
+          : err.message || "Failed to submit note. Please try again or call 1800 833 0233."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -257,12 +266,12 @@ function CorporateContactFormContent() {
         aria-live="polite"
         className="bg-white/[0.03] border border-[#D5573B]/30 rounded-lg p-8 sm:p-10 space-y-6 animate-in fade-in duration-300"
       >
-        <div className="w-14 h-14 rounded-full bg-[#D5573B]/10 border border-[#D5573B]/30 flex items-center justify-center text-[#D5573B]">
+        <div className="w-14 h-14 rounded-full bg-[#D5573B]/10 border border-[#D5573B]/30 flex items-center justify-center text-[#E07A5F]">
           <CheckCircle2 className="w-8 h-8" />
         </div>
         
         <div className="space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#D5573B]/10 border border-[#D5573B]/30 text-xs font-mono text-[#D5573B] font-semibold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#D5573B]/10 border border-[#D5573B]/30 text-xs font-mono text-[#E07A5F] font-semibold uppercase tracking-wider">
             {submittedData.isExport ? "Export & International Desk Priority" : "Routing Confirmed"}
           </div>
           <h3 className="font-fraunces text-2xl sm:text-3xl font-medium text-[#FAF7F2]">
@@ -272,7 +281,7 @@ function CorporateContactFormContent() {
             Thanks for reaching out. Your message has been routed to our{" "}
             <strong className="text-white font-semibold">{submittedData.team}</strong> and an application engineer or regional lead will respond{" "}
             <strong className="text-[#FAF7F2] font-semibold">{submittedData.sla}</strong>. If urgent, call our headquarters at{" "}
-            <a href="tel:+918008330233" className="text-[#FAF7F2] font-semibold hover:text-[#D5573B] underline underline-offset-4">
+            <a href="tel:18008330233" className="text-[#FAF7F2] font-semibold hover:text-[#E07A5F] underline underline-offset-4">
               1800 833 0233
             </a>.
           </p>
@@ -295,15 +304,9 @@ function CorporateContactFormContent() {
     <form 
       onSubmit={handleSubmit} 
       noValidate 
-      className="space-y-6"
+      className="space-y-6 relative"
     >
-      {serverError && (
-        <div className="p-4 bg-red-950/60 border border-red-500/50 rounded-lg text-red-300 text-xs font-mono flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
-          <span>{serverError}</span>
-        </div>
-      )}
-      
+      <HoneypotField ref={honeypotRef} />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {/* Full name (required) */}
         <div className="space-y-2">
@@ -311,7 +314,7 @@ function CorporateContactFormContent() {
             htmlFor="contact-fullName" 
             className="block text-xs font-mono uppercase tracking-wider font-semibold text-[#FAF7F2]"
           >
-            Full Name <span className="text-[#D5573B]">*</span>
+            Full Name <span className="text-[#E07A5F]">*</span>
           </label>
           <div className="relative">
             <input
@@ -348,7 +351,7 @@ function CorporateContactFormContent() {
             htmlFor="contact-email" 
             className="block text-xs font-mono uppercase tracking-wider font-semibold text-[#FAF7F2]"
           >
-            Email Address <span className="text-[#D5573B]">*</span>
+            Email Address <span className="text-[#E07A5F]">*</span>
           </label>
           <div className="relative">
             <input
@@ -390,6 +393,7 @@ function CorporateContactFormContent() {
           <div className="relative">
             <input
               id="contact-phone"
+              autoComplete="tel-national"
               name="phone"
               type="tel"
               inputMode="numeric"
@@ -423,6 +427,7 @@ function CorporateContactFormContent() {
           <div className="relative">
             <input
               id="contact-company"
+              autoComplete="organization"
               name="company"
               type="text"
               placeholder="e.g. VRL Logistics / Global Fleet"
@@ -440,7 +445,7 @@ function CorporateContactFormContent() {
           htmlFor="contact-subject" 
           className="block text-xs font-mono uppercase tracking-wider font-semibold text-[#FAF7F2]"
         >
-          Inquiry Classification / Subject <span className="text-[#D5573B]">*</span>
+          Inquiry Classification / Subject <span className="text-[#E07A5F]">*</span>
         </label>
         <select
           id="contact-subject"
@@ -459,7 +464,7 @@ function CorporateContactFormContent() {
           <option value="General inquiry" className="bg-[#182234] text-[#FAF7F2]">
             General inquiry (India &amp; Corporate)
           </option>
-          <option value="Export & International Distribution Inquiry" className="bg-[#182234] text-[#FAF7F2] font-semibold text-[#D5573B]">
+          <option value="Export & International Distribution Inquiry" className="bg-[#182234] text-[#FAF7F2] font-semibold text-[#E07A5F]">
             Export &amp; International Distribution Inquiry (Outside India)
           </option>
           <option value="Enterprise sales (TMIP)" className="bg-[#182234] text-[#FAF7F2]">
@@ -497,10 +502,10 @@ function CorporateContactFormContent() {
               htmlFor="contact-targetRegion" 
               className="text-xs font-mono uppercase tracking-wider font-semibold text-[#FAF7F2] flex items-center gap-1.5"
             >
-              <Globe2 className="w-3.5 h-3.5 text-[#D5573B]" />
+              <Globe2 className="w-3.5 h-3.5 text-[#E07A5F]" />
               Target Country / Operating Region
             </label>
-            <span className="text-[10px] font-mono uppercase bg-[#D5573B]/20 text-[#D5573B] px-2 py-0.5 rounded border border-[#D5573B]/30 font-semibold">
+            <span className="text-[10px] font-mono uppercase bg-[#D5573B]/20 text-[#E07A5F] px-2 py-0.5 rounded border border-[#D5573B]/30 font-semibold">
               Export Desk Priority
             </span>
           </div>
@@ -550,7 +555,7 @@ function CorporateContactFormContent() {
             htmlFor="contact-message" 
             className="block text-xs font-mono uppercase tracking-wider font-semibold text-[#FAF7F2]"
           >
-            Message <span className="text-[#D5573B]">*</span>
+            Message <span className="text-[#E07A5F]">*</span>
           </label>
           <span className="text-xs text-[#94A3B8] font-mono">
             {formData.message.length} / 2000
@@ -599,7 +604,7 @@ function CorporateContactFormContent() {
               setFormData({ ...formData, consent: e.target.checked });
               if (errors.consent) setErrors({ ...errors, consent: undefined });
             }}
-            className="mt-1 w-4 h-4 rounded border-white/20 bg-white/[0.04] text-[#D5573B] focus:ring-[#D5573B] focus:ring-offset-0 cursor-pointer"
+            className="mt-1 w-4 h-4 rounded border-white/20 bg-white/[0.04] text-[#E07A5F] focus:ring-[#D5573B] focus:ring-offset-0 cursor-pointer"
           />
           <span className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed font-inter">
             I consent to Treel processing my contact details for this inquiry. See{" "}
@@ -616,12 +621,23 @@ function CorporateContactFormContent() {
         )}
       </div>
 
+      {serverError && (
+        <div
+          role="alert"
+          aria-live="assertive"
+          className="p-4 bg-red-950/60 border border-red-500/50 rounded-lg text-red-300 text-xs font-mono flex items-center gap-2"
+        >
+          <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+          <span>{serverError}</span>
+        </div>
+      )}
+
       {/* Button: Send message */}
       <div className="pt-2">
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full sm:w-auto px-8 py-3.5 rounded-[4px] bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] active:scale-[0.99] transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full sm:w-auto px-8 py-3.5 rounded-[4px] bg-[#C64529] text-[#FAF7F2] font-semibold text-sm hover:bg-[#B53D23] active:scale-[0.99] transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
             <>

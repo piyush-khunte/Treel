@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizePhone } from "@/lib/validation/phone";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -762,10 +763,10 @@ export function PersonalGenericCampaignPage() {
                         inputMode="numeric"
                         autoComplete="tel-national"
                         pattern="[6-9][0-9]{9}"
-                        maxLength={10}
+                        maxLength={16}
                         placeholder="10-digit number"
                         value={formData.mobile}
-                        onChange={(e) => setFormData({ ...formData, mobile: e.target.value.replace(/\D/g, "").slice(0, 10) })}
+                        onChange={(e) => setFormData({ ...formData, mobile: normalizePhone(e.target.value) })}
                         required
                       />
                     </div>
@@ -1179,7 +1180,7 @@ export function PersonalGenericCampaignPage() {
                 <div className="numblock" aria-hidden="true">02</div>
                 <h3>Get it fitted</h3>
                 <p>Treel&apos;s clamp-in valve sensors are fitted at each wheel&apos;s valve. Find a Treel tyre shop near you to have it done.</p>
-                <a className="textlink" href="https://treel.in/buy-products" data-track="outbound_click" data-label="dealer_locator">Find a tyre shop <Icon id="i-arrow-right" /></a>
+                <a className="textlink" href="/personal/buy" data-track="outbound_click" data-label="buy_kit">Buy your kit <Icon id="i-arrow-right" /></a>
               </div>
               <div className="step">
                 <div className="numblock" aria-hidden="true">03</div>
@@ -1651,7 +1652,7 @@ export function PersonalGenericCampaignPage() {
                         </div>
                       </div>
                       <div className="card-s">
-                        <h5>Coming up</h5>
+                        <h3>Coming up</h3>
                         <div className="rem">
                           <b>Insurance renewal</b>
                           <span>in 12 days</span>
@@ -1662,7 +1663,7 @@ export function PersonalGenericCampaignPage() {
                         </div>
                       </div>
                       <div className="card-s">
-                        <h5>This month · My car</h5>
+                        <h3>This month · My car</h3>
                         <div className="rem">
                           <b>Mileage</b>
                           <span>16 km/l</span>
@@ -2185,10 +2186,10 @@ export function PersonalGenericCampaignPage() {
                       inputMode="numeric"
                       autoComplete="tel-national"
                       pattern="[6-9][0-9]{9}"
-                      maxLength={10}
+                      maxLength={16}
                       placeholder="10-digit number"
                       value={formData.mobile}
-                      onChange={(e) => setFormData({ ...formData, mobile: e.target.value.replace(/\D/g, "").slice(0, 10) })}
+                      onChange={(e) => setFormData({ ...formData, mobile: normalizePhone(e.target.value) })}
                       required
                     />
                   </div>

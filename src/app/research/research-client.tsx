@@ -104,7 +104,7 @@ export function ResearchLibrary({ initialWhitepapers = [] }: ResearchLibraryProp
                   onClick={() => setSelectedTopic(topic)}
                   className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
                     active
-                      ? "bg-[#D5573B] text-[#FAF7F2] shadow-sm"
+                      ? "bg-[#C64529] text-[#FAF7F2] shadow-sm"
                       : "bg-white/5 text-[#94A3B8] hover:bg-white/10 hover:text-[#FAF7F2] border border-white/5"
                   }`}
                 >

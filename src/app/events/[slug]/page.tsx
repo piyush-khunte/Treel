@@ -8,6 +8,7 @@ ExternalLink,
 MapPin,
 Video
 } from "lucide-react";
+import { clampDescription, composeTitle, DEFAULT_OG_IMAGES, stripTitleSuffix } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -29,20 +30,26 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
-  const desc = event.seoDescription || (event.about && event.about[0] ? event.about[0].slice(0, 150) + "..." : event.excerpt);
-  const eventTitle = event.seoTitle ? event.seoTitle.replace(/\s*·\s*Treel.*$/i, "") : `${event.name} · Events`;
+  const desc = clampDescription(
+    event.seoDescription ||
+      event.excerpt ||
+      (event.about && event.about[0]) ||
+      "Treel Mobility event details and registration."
+  );
+  const eventTitle = composeTitle(event.seoTitle || event.name, " · Events");
+  const ogTitle = stripTitleSuffix(event.seoTitle || event.name);
 
   return {
     title: eventTitle,
-    description: desc || "Treel Mobility event details and registration.",
+    description: desc,
     alternates: {
       canonical: `https://treel.in/events/${event.slug}`,
     },
     openGraph: {
-      title: eventTitle,
-      description: desc || "Treel Mobility event details and registration.",
+      title: ogTitle,
+      description: desc,
       url: `https://treel.in/events/${event.slug}`,
-      images: event.bannerUrl || event.image ? [{ url: event.bannerUrl || event.image! }] : undefined,
+      images: event.bannerUrl || event.image ? [{ url: event.bannerUrl || event.image! }] : DEFAULT_OG_IMAGES,
     },
   };
 }
@@ -209,9 +216,9 @@ export default async function EventSlugPage({ params }: { params: Promise<{ slug
                           {sp.name.split(" ").map(n => n[0]).join("")}
                         </div>
                         <div>
-                          <h4 className="font-fraunces text-lg font-medium text-[#FAF7F2]">
+                          <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2]">
                             {sp.name}
-                          </h4>
+                          </h3>
                           <div className="text-xs text-[#D5573B] font-mono mt-0.5">
                             {sp.role} · {sp.org}
                           </div>
@@ -276,7 +283,7 @@ export default async function EventSlugPage({ params }: { params: Promise<{ slug
                       href={event.registrationUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-md bg-[#D5573B] text-[#FAF7F2] font-semibold text-sm hover:bg-[#CB4831] transition-all shadow-md group"
+                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-md bg-[#C64529] text-[#FAF7F2] font-semibold text-sm hover:bg-[#B53D23] transition-all shadow-md group"
                     >
                       <span>Open Event Registration</span>
                       <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
