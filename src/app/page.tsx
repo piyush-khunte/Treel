@@ -70,7 +70,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-
+``
       {/* 1. HERO SECTION */}
       <section className="relative overflow-hidden pt-8 pb-12 sm:pt-14 sm:pb-20 lg:pt-[120px] lg:pb-[100px] border-b border-white/10 min-h-0 lg:min-h-[calc(100vh-140px)] flex items-center">
         {/* Subtle Treel Red ambient radial glow */}
