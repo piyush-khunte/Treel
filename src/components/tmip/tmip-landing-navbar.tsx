@@ -35,14 +35,17 @@ export function TmipLandingNavbar({ onDemoClick }: TmipLandingNavbarProps) {
     <header className="sticky top-0 z-50 w-full bg-[#050A17]/95 backdrop-blur-md border-b border-blue-900/40">
       <div className="w-full max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-[72px] flex items-center justify-between">
         {/* Left: Original TMIP Logo + Separator + TMIP Mark & Label */}
-        <div className="flex items-center gap-2.5 sm:gap-4 shrink-0">
-          <Link href="/" className="flex items-center">
+        <div className="flex items-center gap-2.5 sm:gap-4 min-w-0">
+          <Link href="/" className="flex items-center shrink-0">
+            {/* Heights are !important because `.tmip-landing img { height: auto }` in globals.css
+                otherwise overrides them. The logo JPG has a black background; mix-blend-screen
+                blends it into the dark header so no black box shows. */}
             <Image
               src="https://res.cloudinary.com/uwd11u7t/image/upload/v1791436559/treel_main_logo.jpg"
               alt="Treel Mobility Intelligence"
               width={160}
               height={50}
-              className="h-7 sm:h-9 md:h-10 w-auto object-contain"
+              className="h-8! sm:h-10! md:h-11! w-auto! max-w-none object-contain mix-blend-screen"
               priority
             />
           </Link>
@@ -105,7 +108,7 @@ export function TmipLandingNavbar({ onDemoClick }: TmipLandingNavbarProps) {
         </div>
 
         {/* Right Mobile / Tablet: Phone Button + Hamburger Button */}
-        <div className="flex lg:hidden items-center gap-2 sm:gap-3">
+        <div className="flex lg:hidden items-center gap-2 sm:gap-3 shrink-0 ml-2">
           <a
             href="tel:18008330233"
             className="flex items-center justify-center w-11 h-11 min-w-[44px] min-h-[44px] rounded-lg bg-blue-500/10 border border-blue-500/25 text-[#3B82F6] hover:bg-blue-500/20 active:bg-blue-500/30 transition-colors"

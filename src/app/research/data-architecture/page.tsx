@@ -55,14 +55,14 @@ export default function ResearchDataArchitecturePage() {
 
   const relatedResearch = [
     {
-      slug: "research/vehicle-digital-twin",
+      slug: "research/vehicle-digital-twins-architecture",
       topic: "VEHICLE DIGITAL TWIN",
       title: "The Vehicle Digital Twin Technical Architecture Paper",
       desc: "Mathematical and thermodynamic foundations converting raw wheel-end signals into predictive vehicle health state.",
       pages: "32 pages"
     },
     {
-      slug: "research/case-study-1000-truck",
+      slug: "research/1000-truck-case-study",
       topic: "ENTERPRISE DEPLOYMENTS",
       title: "The 1,000-Truck Case Study: Operational Payback in Week 11",
       desc: "Operational benchmarks and downtime reduction across national logistics prime movers.",

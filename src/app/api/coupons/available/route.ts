@@ -44,7 +44,13 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    const body = await req.json().catch(() => null);
+    if (!body || typeof body !== "object") {
+      return NextResponse.json(
+        { success: false, error: "Invalid request payload." },
+        { status: 400 }
+      );
+    }
     const brand: "personal" | "suraksha" = body.brand === "suraksha" ? "suraksha" : "personal";
     const subtotalInr = Number(body.subtotalInr || body.subtotal) || 0;
     const items = Array.isArray(body.items) ? body.items : [];

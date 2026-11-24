@@ -45,7 +45,11 @@ For complete in-depth project documentation, architecture details, and content d
 
 ## 4. Commands Reference
 
-- `npm run dev`: Start Next.js development server
+- `npm run dev`: Start Next.js development server (Turbopack; uses ~6–7 GB RAM once most routes are compiled and can crash with "memory allocation of N bytes failed" on 16 GB machines — just restart it)
+- `npm run dev:webpack`: Fallback dev server using webpack (slower compiles, but did not crash in testing)
+- Do NOT set `experimental.turbopackMemoryEviction: "full"` — on Next 16.3.4 it breaks `next/font/google` (every page 500s)
+- For full-site QA crawls, test a production build (`npm run build && npm start`), not the dev server
 - `npx tsc --noEmit`: Typecheck codebase
+- `npm run typecheck`: Typecheck that is safe while `npm run dev` is running (regenerates route types, ignores `.next/dev`)
 - `npm run build`: Production build
 - `npm run lint`: ESLint check

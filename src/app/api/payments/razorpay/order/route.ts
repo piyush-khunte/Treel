@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createRazorpayOrder, isRazorpayConfigured } from '@/lib/integrations';
-import { validateCouponServer } from '@/lib/commerce/coupon-validator';
-import { validateCartBrandServer, isSurakshaProductOrItem } from '@/lib/commerce/brand-validator';
+import { priceCartServer } from '@/lib/commerce/server-pricing';
+import { validateCartBrandServer } from '@/lib/commerce/brand-validator';
 
 export async function GET() {
   const configured = isRazorpayConfigured();
@@ -31,11 +31,16 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const body = await req.json();
+    const body = await req.json().catch(() => null);
+    if (!body || typeof body !== 'object') {
+      return NextResponse.json(
+        { success: false, configured: true, error: { code: 'VALIDATION_ERROR', message: 'Invalid request payload.' } },
+        { status: 400 }
+      );
+    }
 
-    let amountInPaise = 0;
+    // Enforce strict server-side brand validation
     if (Array.isArray(body.items) && body.items.length > 0) {
-      // Enforce strict server-side brand validation
       const brandValidation = validateCartBrandServer(body.items, body.brand);
       if (!brandValidation.valid) {
         return NextResponse.json(
@@ -50,79 +55,40 @@ export async function POST(req: NextRequest) {
           { status: 400 }
         );
       }
-
-      const hasSuraksha = body.items.some(isSurakshaProductOrItem);
-
-      // Calculate server-side verified subtotal
-      const subtotal = body.items.reduce((acc: number, it: any) => {
-        const vid = (it.variant_id || "").toLowerCase();
-        const sku = (it.sku || "").toUpperCase();
-        const isSur = vid.startsWith("suraksha") || sku.includes("SURAKSHA") || it.vehicle_type === "truck";
-        let unitPrice = Number(it.price_inr || it.price) || 0;
-        if (isSur && unitPrice <= 1700) {
-          const sensors = Number(it.sensor_count) || (vid.match(/(\d+)w/) ? parseInt(vid.match(/(\d+)w/)[1], 10) : 1);
-          unitPrice = sensors * 1700;
-        }
-        const q = Number(it.quantity) || 1;
-        return acc + unitPrice * q;
-      }, 0);
-
-      let discount = 0;
-      const coupon = (body.couponCode || '').trim().toUpperCase();
-      if (coupon) {
-        const couponResult = await validateCouponServer({
-          code: coupon,
-          items: body.items,
-          subtotalInr: subtotal,
-          brand: hasSuraksha ? "suraksha" : "personal",
-        });
-        if (!couponResult.valid) {
-          return NextResponse.json(
-            {
-              success: false,
-              configured: true,
-              error: {
-                code: 'INVALID_COUPON',
-                message: couponResult.error || couponResult.message || `Coupon "${coupon}" is invalid for this order.`,
-              },
-            },
-            { status: 400 }
-          );
-        }
-        discount = couponResult.discountAmountInr;
-      }
-
-      const total = Math.max(1, subtotal - discount);
-      amountInPaise = Math.round(total * 100);
-    } else if (typeof body.amountInPaise === 'number' && body.amountInPaise > 0) {
-      amountInPaise = Math.round(body.amountInPaise);
-    } else if (typeof body.amount === 'number' && body.amount > 0) {
-      // Amount in INR converted to paise
-      amountInPaise = Math.round(body.amount * 100);
-    } else {
-      return NextResponse.json(
-        {
-          success: false,
-          configured: true,
-          error: {
-            code: 'VALIDATION_ERROR',
-            message: 'Cart items or valid order amount are required.',
-          },
-        },
-        { status: 400 }
-      );
     }
 
-    const receipt = body.receipt || `rcpt_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+    // Price the cart entirely server-side (catalogue prices, validated quantities, re-validated coupon).
+    // Client-supplied prices, totals and raw amounts are ignored.
+    const priced = await priceCartServer(body.items, body.couponCode);
+    if (!priced.ok) {
+      return NextResponse.json(
+        { success: false, configured: true, error: { code: priced.code, message: priced.message } },
+        { status: priced.status }
+      );
+    }
+    const amountInPaise = Math.round(priced.totalInr * 100);
+
+    // Client notes are informational only: short strings, never overriding the verified fields below.
+    const clientNotes: Record<string, string> = {};
+    if (body.notes && typeof body.notes === 'object') {
+      for (const [k, v] of Object.entries(body.notes).slice(0, 5)) {
+        if (typeof v === 'string' || typeof v === 'number') clientNotes[String(k).slice(0, 40)] = String(v).slice(0, 200);
+      }
+    }
+
+    const receipt = `rcpt_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
     const result = await createRazorpayOrder({
       amount: amountInPaise,
-      currency: body.currency || 'INR',
+      currency: 'INR',
       receipt,
       notes: {
-        customer_name: body.customer?.fullName || body.fullName || '',
-        customer_phone: body.customer?.phone || body.phone || '',
-        customer_email: body.customer?.email || body.email || '',
-        ...(body.notes || {}),
+        ...clientNotes,
+        customer_name: String(body.customer?.fullName || body.fullName || '').slice(0, 200),
+        customer_phone: String(body.customer?.phone || body.phone || '').slice(0, 20),
+        customer_email: String(body.customer?.email || body.email || '').slice(0, 200),
+        brand: priced.brand,
+        verified_total_inr: String(priced.totalInr),
+        coupon_code: priced.couponCode,
       },
     });
 

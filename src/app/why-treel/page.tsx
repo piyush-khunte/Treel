@@ -220,7 +220,7 @@ export default function WhyTreelPage() {
               <p className="text-xs text-[#94A3B8] leading-relaxed">
                 How a national 3PL carrier eliminated roadside punctures and saved 3.4% in fuel over 1,000 multi-axle trailers.
               </p>
-              <Link href="/research/case-study-1000-truck" className="text-xs font-semibold text-[#D5573B] inline-flex items-center gap-1 pt-2">
+              <Link href="/research/1000-truck-case-study" className="text-xs font-semibold text-[#D5573B] inline-flex items-center gap-1 pt-2">
                 Read case study <ChevronRight className="w-3.5 h-3.5" />
               </Link>
             </div>

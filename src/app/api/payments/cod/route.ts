@@ -2,21 +2,21 @@ import { NextRequest, NextResponse } from 'next/server';
 import { persistOrderToSupabase } from '@/lib/commerce/order-storage';
 import { syncOrderToShiprocket } from '@/lib/commerce/shiprocket-order-sync';
 import { isSesConfigured, sendOrderConfirmationEmail, sendEmail } from '@/lib/integrations';
-import { validateCouponServer } from '@/lib/commerce/coupon-validator';
-import { validateCartBrandServer, isSurakshaProductOrItem } from '@/lib/commerce/brand-validator';
+import { priceCartServer } from '@/lib/commerce/server-pricing';
+import { validateCartBrandServer } from '@/lib/commerce/brand-validator';
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { checkout } = body;
+    const { checkout: rawCheckout } = body;
 
     if (
-      !checkout ||
-      !checkout.fullName ||
-      !checkout.phone ||
-      !checkout.address ||
-      !checkout.city ||
-      !checkout.pincode
+      !rawCheckout ||
+      !rawCheckout.fullName ||
+      !rawCheckout.phone ||
+      !rawCheckout.address ||
+      !rawCheckout.city ||
+      !rawCheckout.pincode
     ) {
       return NextResponse.json(
         {
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!Array.isArray(checkout.items) || checkout.items.length === 0) {
+    if (!Array.isArray(rawCheckout.items) || rawCheckout.items.length === 0) {
       return NextResponse.json(
         {
           success: false,
@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Enforce strict server-side brand validation
-    const brandValidation = validateCartBrandServer(checkout.items, body.brand || checkout.brand);
+    const brandValidation = validateCartBrandServer(rawCheckout.items, body.brand || rawCheckout.brand);
     if (!brandValidation.valid) {
       return NextResponse.json(
         {
@@ -59,56 +59,30 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const hasSuraksha = checkout.items.some(isSurakshaProductOrItem);
-
-    // Calculate server-side verified subtotal
-    const subtotal = checkout.items.reduce((acc: number, it: any) => {
-      const vid = (it.variant_id || "").toLowerCase();
-      const sku = (it.sku || "").toUpperCase();
-      const isSur = vid.startsWith("suraksha") || sku.includes("SURAKSHA") || it.vehicle_type === "truck";
-      let unitPrice = Number(it.price_inr || it.price) || 0;
-      if (isSur && unitPrice <= 1700) {
-        const sensors = Number(it.sensor_count) || (vid.match(/(\d+)w/) ? parseInt(vid.match(/(\d+)w/)[1], 10) : 1);
-        unitPrice = sensors * 1700;
-      }
-      const q = Number(it.quantity) || 1;
-      return acc + unitPrice * q;
-    }, 0);
-
-    let verifiedDiscount = 0;
-    const rawCoupon = (checkout.couponCode || checkout.coupon || '').trim().toUpperCase();
-    if (rawCoupon) {
-      const couponResult = await validateCouponServer({
-        code: rawCoupon,
-        items: checkout.items,
-        subtotalInr: subtotal,
-        brand: hasSuraksha ? "suraksha" : "personal",
-      });
-
-      if (!couponResult.valid) {
-        return NextResponse.json(
-          {
-            success: false,
-            error: {
-              code: 'INVALID_COUPON',
-              message: couponResult.error || couponResult.message || `Coupon "${rawCoupon}" is invalid for this order.`,
-            },
-          },
-          { status: 400 }
-        );
-      }
-      verifiedDiscount = couponResult.discountAmountInr;
+    // Price the cart entirely server-side (catalogue prices, validated quantities, re-validated coupon).
+    // Client-supplied prices and totals are ignored.
+    const priced = await priceCartServer(rawCheckout.items, rawCheckout.couponCode || rawCheckout.coupon);
+    if (!priced.ok) {
+      return NextResponse.json(
+        { success: false, error: { code: priced.code, message: priced.message } },
+        { status: priced.status }
+      );
     }
 
-    const verifiedTotal = Math.max(0, subtotal - verifiedDiscount);
+    // From here on, only server-verified items and totals are used (storage, shipping, emails).
+    const checkout = {
+      ...rawCheckout,
+      items: priced.items,
+      subtotalInr: priced.subtotalInr,
+      discountInr: priced.discountInr,
+      totalInr: priced.totalInr,
+      couponCode: priced.couponCode,
+    };
 
     // 1. Primary Operation: Persist COD order to Supabase
     const saveRes = await persistOrderToSupabase({
       checkout: {
         ...checkout,
-        subtotalInr: subtotal,
-        discountInr: verifiedDiscount,
-        totalInr: verifiedTotal,
         paymentMethod: 'cod',
       },
       status: 'pending', // COD is pending payment on delivery

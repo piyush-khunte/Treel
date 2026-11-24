@@ -5,8 +5,19 @@ import {
   isSesConfigured,
   isShiprocketConfigured,
 } from '@/lib/integrations';
+import { getAdminSession } from '@/lib/admin/admin-auth';
+import { ADMIN_ROLE } from '@/lib/admin/admin-constants';
 
 export async function GET() {
+  // Integration configuration details are internal — admins only.
+  const session = await getAdminSession();
+  if (!session || session.role !== ADMIN_ROLE) {
+    return NextResponse.json(
+      { success: false, error: { code: 'AUTHENTICATION_FAILED', message: 'Admin authentication required.' } },
+      { status: 401 }
+    );
+  }
+
   const status = {
     timestamp: new Date().toISOString(),
     integrations: {

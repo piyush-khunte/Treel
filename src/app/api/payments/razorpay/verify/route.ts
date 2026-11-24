@@ -1,8 +1,9 @@
 import { validateCartBrandServer } from '@/lib/commerce/brand-validator';
-import { validateCouponServer } from '@/lib/commerce/coupon-validator';
+import { priceCartServer } from '@/lib/commerce/server-pricing';
 import { getSupabaseAdminClient,persistOrderToSupabase } from '@/lib/commerce/order-storage';
 import { syncOrderToShiprocket } from '@/lib/commerce/shiprocket-order-sync';
 import {
+fetchRazorpayOrder,
 isRazorpayConfigured,
 isSesConfigured,
 sendEmail,
@@ -30,7 +31,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, checkout } = body;
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, checkout: rawCheckout } = body;
 
     // 1. Verify Razorpay HMAC signature
     const result = verifyPaymentSignature({
@@ -67,70 +68,92 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 3. Persist order & payment record to Supabase
+    // 3. Re-price the cart server-side and confirm Razorpay charged exactly that amount
+    if (!rawCheckout || !Array.isArray(rawCheckout.items) || rawCheckout.items.length === 0) {
+      return NextResponse.json(
+        {
+          success: false,
+          configured: true,
+          error: { code: 'VALIDATION_ERROR', message: 'Order details are missing. Please contact support with your payment ID.' },
+        },
+        { status: 400 }
+      );
+    }
+
+    const brandValidation = validateCartBrandServer(rawCheckout.items, body.brand || rawCheckout.brand);
+    if (!brandValidation.valid) {
+      return NextResponse.json(
+        {
+          success: false,
+          configured: true,
+          error: {
+            code: brandValidation.code || 'CART_BRAND_CONTAMINATION',
+            message: brandValidation.error || 'Cart items do not match the requested storefront brand.',
+          },
+        },
+        { status: 400 }
+      );
+    }
+
+    const priced = await priceCartServer(rawCheckout.items, rawCheckout.couponCode || rawCheckout.coupon);
+    if (!priced.ok) {
+      console.error('[Online Order] Cart re-pricing failed after payment', { razorpay_order_id, razorpay_payment_id, code: priced.code });
+      return NextResponse.json(
+        { success: false, configured: true, error: { code: priced.code, message: priced.message } },
+        { status: priced.status }
+      );
+    }
+
+    const gatewayOrder = await fetchRazorpayOrder(razorpay_order_id);
+    if (!gatewayOrder.success || !gatewayOrder.data) {
+      console.error('[Online Order] Unable to fetch Razorpay order for amount check', { razorpay_order_id, razorpay_payment_id });
+      return NextResponse.json(
+        {
+          success: false,
+          configured: true,
+          error: {
+            code: 'EXTERNAL_SERVICE_ERROR',
+            message: 'We could not confirm your payment amount. Please contact support with your payment ID.',
+          },
+        },
+        { status: 502 }
+      );
+    }
+
+    const expectedPaise = Math.round(priced.totalInr * 100);
+    if (gatewayOrder.data.amount !== expectedPaise || gatewayOrder.data.currency !== 'INR') {
+      console.error('[Online Order] AMOUNT MISMATCH — order not recorded, review/refund required', {
+        razorpay_order_id,
+        razorpay_payment_id,
+        chargedPaise: gatewayOrder.data.amount,
+        expectedPaise,
+      });
+      return NextResponse.json(
+        {
+          success: false,
+          configured: true,
+          error: {
+            code: 'AMOUNT_MISMATCH',
+            message: 'The amount paid does not match your order. Please contact support with your payment ID.',
+          },
+        },
+        { status: 409 }
+      );
+    }
+
+    // From here on, only server-verified items and totals are used (storage, shipping, emails).
+    const checkout = {
+      ...rawCheckout,
+      items: priced.items,
+      subtotalInr: priced.subtotalInr,
+      discountInr: priced.discountInr,
+      totalInr: priced.totalInr,
+      couponCode: priced.couponCode,
+    };
+
+    // 4. Persist order & payment record to Supabase
     let orderRef = `TRL-ORD-${Date.now().toString().slice(-6)}`;
-    if (checkout) {
-      if (Array.isArray(checkout.items) && checkout.items.length > 0) {
-        const brandValidation = validateCartBrandServer(checkout.items, body.brand || checkout.brand);
-        if (!brandValidation.valid) {
-          return NextResponse.json(
-            {
-              success: false,
-              configured: true,
-              error: {
-                code: brandValidation.code || 'CART_BRAND_CONTAMINATION',
-                message: brandValidation.error || 'Cart items do not match the requested storefront brand.',
-              },
-            },
-            { status: 400 }
-          );
-        }
-      }
-
-      const rawCoupon = (checkout.couponCode || checkout.coupon || '').trim().toUpperCase();
-      if (rawCoupon && Array.isArray(checkout.items)) {
-        const subtotal = checkout.items.reduce((acc: number, it: any) => {
-          const vid = (it.variant_id || "").toLowerCase();
-          const sku = (it.sku || "").toUpperCase();
-          const isSur = vid.startsWith("suraksha") || sku.includes("SURAKSHA") || it.vehicle_type === "truck";
-          let unitPrice = Number(it.price_inr || it.price) || 0;
-          if (isSur && unitPrice <= 1700) {
-            const sensors = Number(it.sensor_count) || (vid.match(/(\d+)w/) ? parseInt(vid.match(/(\d+)w/)[1], 10) : 1);
-            unitPrice = sensors * 1700;
-          }
-          const q = Number(it.quantity) || 1;
-          return acc + unitPrice * q;
-        }, 0);
-
-        const hasSuraksha = checkout.items.some((it: any) => {
-          const vid = (it.variant_id || "").toLowerCase();
-          const sku = (it.sku || "").toUpperCase();
-          const cat = (it.category || it.vehicle_type || "").toLowerCase();
-          return vid.startsWith("suraksha") || sku.includes("SURAKSHA") || cat === "truck";
-        });
-
-        const couponResult = await validateCouponServer({
-          code: rawCoupon,
-          items: checkout.items,
-          subtotalInr: subtotal,
-          brand: hasSuraksha ? "suraksha" : "personal",
-        });
-
-        if (!couponResult.valid) {
-          return NextResponse.json(
-            {
-              success: false,
-              configured: true,
-              error: {
-                code: 'INVALID_COUPON',
-                message: couponResult.error || couponResult.message || `Coupon "${rawCoupon}" is invalid for this order.`,
-              },
-            },
-            { status: 400 }
-          );
-        }
-      }
-
+    {
       const saveRes = await persistOrderToSupabase({
         checkout: {
           ...checkout,
@@ -140,7 +163,7 @@ export async function POST(req: NextRequest) {
         paymentInfo: {
           payment_id: razorpay_payment_id,
           order_id: razorpay_order_id,
-          amount: Number(checkout.totalInr) || 0,
+          amount: priced.totalInr,
         },
       });
 

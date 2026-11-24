@@ -19,7 +19,7 @@ export function TmipLandingFooter() {
                 alt="Treel Mobility Intelligence"
                 width={190}
                 height={55}
-                className="h-11 w-auto object-contain"
+                className="h-11! w-auto! max-w-none object-contain mix-blend-screen"
                 priority
               />
             </Link>
@@ -40,7 +40,7 @@ export function TmipLandingFooter() {
 
           {/* Solutions Column */}
           <div className="space-y-3.5">
-            <h2 className="text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold font-mono !text-[#3B82F6]">
+            <h2 className="text-[11px]! leading-normal! uppercase tracking-widest! text-[#3B82F6]! font-bold! font-mono!">
               SOLUTIONS
             </h2>
             <ul className="space-y-2.5">
@@ -69,7 +69,7 @@ export function TmipLandingFooter() {
 
           {/* Technology Column */}
           <div className="space-y-3.5">
-            <h2 className="text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold font-mono !text-[#3B82F6]">
+            <h2 className="text-[11px]! leading-normal! uppercase tracking-widest! text-[#3B82F6]! font-bold! font-mono!">
               TECHNOLOGY
             </h2>
             <ul className="space-y-2.5">
@@ -98,7 +98,7 @@ export function TmipLandingFooter() {
 
           {/* Intelligence Column */}
           <div className="space-y-3.5">
-            <h2 className="text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold font-mono !text-[#3B82F6]">
+            <h2 className="text-[11px]! leading-normal! uppercase tracking-widest! text-[#3B82F6]! font-bold! font-mono!">
               INTELLIGENCE
             </h2>
             <ul className="space-y-2.5">
@@ -137,7 +137,7 @@ export function TmipLandingFooter() {
 
           {/* Company Column */}
           <div className="space-y-3.5">
-            <h2 className="text-[11px] uppercase tracking-widest text-[#3B82F6] font-bold font-mono !text-[#3B82F6]">
+            <h2 className="text-[11px]! leading-normal! uppercase tracking-widest! text-[#3B82F6]! font-bold! font-mono!">
               COMPANY
             </h2>
             <ul className="space-y-2.5">

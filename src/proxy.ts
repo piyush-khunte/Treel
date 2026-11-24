@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ADMIN_SESSION_COOKIE } from "@/lib/admin/admin-constants";
 import { verifySessionToken } from "@/lib/admin/admin-token";
+import { safeAdminRedirect } from "@/lib/admin/admin-redirect";
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // Only block search engine indexing for private admin routes and transactional cart flows.
@@ -39,7 +40,7 @@ export async function middleware(req: NextRequest) {
 
     // If authenticated user visits /admin/login, redirect them into the admin dashboard
     if (isLoginPage && isAuthenticated) {
-      const nextUrl = req.nextUrl.searchParams.get("next") || "/admin";
+      const nextUrl = safeAdminRedirect(req.nextUrl.searchParams.get("next"));
       const redirectRes = NextResponse.redirect(new URL(nextUrl, req.url));
       if (shouldNoIndex) {
         redirectRes.headers.set("X-Robots-Tag", "noindex, nofollow");

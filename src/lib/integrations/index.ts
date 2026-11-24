@@ -9,6 +9,7 @@ export {
   isRazorpayConfigured,
   isRazorpayEventSecretConfigured,
   createRazorpayOrder,
+  fetchRazorpayOrder,
   verifyPaymentSignature,
   verifyEventSignature,
 } from './razorpay/client';
