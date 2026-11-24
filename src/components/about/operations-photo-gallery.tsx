@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, Factory, HardHat, ShieldCheck, Wrench } from "lucide-react";
+import { Award, ChevronLeft, ChevronRight, Factory, ShieldCheck, Users } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -8,46 +8,46 @@ const GALLERY_SLIDES = [
   {
     id: "manufacturing",
     tag: "MANUFACTURING & SENSOR ASSEMBLY",
-    title: "Automotive Cleanroom SMT Production Facility",
+    title: "SMT Production Line",
     description:
-      "High-speed surface-mount technology (SMT) cleanroom assembly and automated optical inspection lines in India, manufacturing IATF 16949 certified automotive TPMS sensors.",
-    image: "https://res.cloudinary.com/uwd11u7t/image/upload/v1793078441/gallery-manufacturing-smt.jpg",
+      "Automated pick-and-place and reflow soldering line where Treel sensor electronics are assembled in-house.",
+    image: "/images/about/premises/smt-production-line.jpg",
     icon: Factory,
-    alt: "Treel cleanroom manufacturing facility and automated SMT electronics line producing automotive sensors",
-    caption: "Cleanroom SMT lines · Automated optical inspection · IATF 16949 compliant",
-  },
-  {
-    id: "deployment",
-    tag: "FIELD OPERATIONS & TELEMATICS DEPLOYMENT",
-    title: "On-the-Job Depot Engineering & Gateway Installation",
-    description:
-      "Treel field telematics applications engineers and technicians deploying ruggedized vehicle gateways, pairing wheel-end sensors, and validating RF links in commercial fleet maintenance yards.",
-    image: "https://res.cloudinary.com/uwd11u7t/image/upload/v1793078443/gallery-field-deployment.jpg",
-    icon: HardHat,
-    alt: "Treel field telematics engineers mounting sensors and gateways on commercial trucks in fleet depot",
-    caption: "Live depot fitments · Telemetry diagnostics · Multi-axle commercial calibration",
-  },
-  {
-    id: "testing",
-    tag: "QUALITY & ENVIRONMENTAL TESTING",
-    title: "IP65 / IP67 Submersion & Environmental Testing Lab",
-    description:
-      "Automotive reliability validation laboratory equipped with pressurized IP67 water immersion tanks, -40°C to +125°C thermal shock chambers, and high-frequency vibration shaker tables.",
-    image: "https://res.cloudinary.com/uwd11u7t/image/upload/v1793078443/gallery-environmental-testing.jpg",
-    icon: ShieldCheck,
-    alt: "Automotive testing laboratory with IP67 water immersion test tank and environmental thermal chambers",
-    caption: "IP65/IP67 water immersion · Thermal shock testing · Vibration stress qualification",
+    alt: "Operator at Treel's automated SMT pick-and-place and reflow soldering line in the manufacturing facility",
+    caption: "Automated pick-and-place · Reflow soldering · In-house electronics assembly",
   },
   {
     id: "inspection",
-    tag: "DIGITAL TIRE MANAGEMENT",
-    title: "Digital Yard Inspection & Bluetooth Tread Diagnostics",
+    tag: "QUALITY & INSPECTION",
+    title: "PCB Quality Inspection",
     description:
-      "Depot technicians performing 10-point wheel-end checks using Bluetooth-enabled digital tread depth gauges and calibrated pressure tools, syncing real-time data directly to TMIP vehicle digital twins.",
-    image: "https://res.cloudinary.com/uwd11u7t/image/upload/v1793078444/gallery-digital-inspection.jpg",
-    icon: Wrench,
-    alt: "Technician using Bluetooth digital tread depth and pressure tool on commercial truck tyre",
-    caption: "Bluetooth digital tread depth · Calibrated pressure inspection · Automated yard telemetry sync",
+      "ESD-protected inspection benches where every assembled circuit board is checked under magnification before it moves on.",
+    image: "/images/about/premises/pcb-inspection.jpg",
+    icon: ShieldCheck,
+    alt: "Treel technicians in ESD-safe gear inspecting assembled circuit boards under digital microscopes",
+    caption: "ESD-safe workstations · Microscope inspection · Batch traceability",
+  },
+  {
+    id: "engineering",
+    tag: "ENGINEERING & OPERATIONS",
+    title: "Engineering & Operations Office",
+    description:
+      "The open-plan office where Treel's engineering, product and operations teams work together.",
+    image: "/images/about/premises/engineering-office.jpg",
+    icon: Users,
+    alt: "Treel engineering and operations team working at their desks in the open-plan office",
+    caption: "Engineering · Product · Operations",
+  },
+  {
+    id: "recognition",
+    tag: "CERTIFICATIONS & RECOGNITION",
+    title: "Certifications & Industry Recognition",
+    description:
+      "Quality certifications and industry awards on display at the Treel office.",
+    image: "/images/about/premises/certifications-awards.jpg",
+    icon: Award,
+    alt: "Quality certificates and industry awards received by Treel Mobility Solutions displayed at the office",
+    caption: "Quality certifications · Industry awards",
   },
 ];
 
