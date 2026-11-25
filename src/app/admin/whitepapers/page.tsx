@@ -429,7 +429,7 @@ export default function AdminWhitepapersPage() {
 
   const targetPublicUrl = editingItem
     ? (editingItem.category === "treel_main" || (editingItem.displayOnResearch && !editingItem.displayOnTmip))
-      ? `/research/${editingItem.slug || "slug"}`
+      ? `/resources/research/${editingItem.slug || "slug"}`
       : `/tmip/whitepapers/${editingItem.slug || "slug"}`
     : "/tmip/whitepapers";
 
@@ -450,8 +450,8 @@ export default function AdminWhitepapersPage() {
                   /tmip/whitepapers
                 </Link>
                 {" "}and{" "}
-                <Link href="/research" target="_blank" className="text-amber-400 hover:underline">
-                  /research
+                <Link href="/resources/research" target="_blank" className="text-amber-400 hover:underline">
+                  /resources/research
                 </Link>
               </p>
             </div>
@@ -556,7 +556,7 @@ export default function AdminWhitepapersPage() {
             className="bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-slate-300 font-mono focus:outline-none focus:border-blue-500"
           >
             <option value="ALL">Channel: All</option>
-            <option value="treel_main">Treel Main (/research)</option>
+            <option value="treel_main">Treel Main (/resources/research)</option>
             <option value="tmip">TMIP (/tmip/whitepapers)</option>
             <option value="both">Shared (Both)</option>
           </select>
@@ -659,7 +659,7 @@ export default function AdminWhitepapersPage() {
                   const isPdf = item.fileFormat?.toUpperCase() === "PDF";
                   const publicUrl = item.directUrl || (
                     item.category === "treel_main" || (item.displayOnResearch && !item.displayOnTmip)
-                      ? `/research/${item.slug}`
+                      ? `/resources/research/${item.slug}`
                       : `/tmip/whitepapers/${item.slug}`
                   );
 
@@ -1106,8 +1106,8 @@ export default function AdminWhitepapersPage() {
                         }}
                         className="w-full bg-slate-950 border border-slate-800 rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
                       >
-                        <option value="both">Shared — Both Channels (/research &amp; /tmip/whitepapers)</option>
-                        <option value="treel_main">Treel Main Corporate Research (/research)</option>
+                        <option value="both">Shared — Both Channels (/resources/research &amp; /tmip/whitepapers)</option>
+                        <option value="treel_main">Treel Main Corporate Research (/resources/research)</option>
                         <option value="tmip">TMIP Enterprise Whitepapers (/tmip/whitepapers)</option>
                       </select>
                     </div>
@@ -1305,7 +1305,7 @@ export default function AdminWhitepapersPage() {
                           }
                           className="rounded bg-slate-900 border-slate-700 text-blue-500 focus:ring-0"
                         />
-                        <span>Display on Research Hub (/research)</span>
+                        <span>Display on Research Hub (/resources/research)</span>
                       </label>
                     </div>
 
@@ -1324,7 +1324,7 @@ export default function AdminWhitepapersPage() {
                         <Input
                           value={editingItem.directUrl || ""}
                           onChange={(e) => setEditingItem({ ...editingItem, directUrl: e.target.value })}
-                          placeholder="e.g. /research/predictive-maintenance-heavy"
+                          placeholder="e.g. /resources/research/predictive-maintenance-heavy"
                           className="bg-slate-900 border-slate-800 text-white text-xs h-8 focus:border-blue-500"
                         />
                       </div>
@@ -1559,7 +1559,7 @@ export default function AdminWhitepapersPage() {
                     <Input
                       value={editingItem.directUrl || ""}
                       onChange={(e) => setEditingItem({ ...editingItem, directUrl: e.target.value })}
-                      placeholder="e.g. /research/roi-fleet-intelligence"
+                      placeholder="e.g. /resources/research/roi-fleet-intelligence"
                       className="bg-slate-950 border-slate-800 text-white text-xs font-mono"
                     />
                     <p className="text-[11px] text-slate-500">

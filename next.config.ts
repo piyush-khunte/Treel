@@ -66,6 +66,11 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Resources section moved under /resources (25 Nov 2026)
+      ...["press", "insights", "research", "events", "annual-reports", "media-kit"].flatMap((section) => [
+        { source: `/${section}`, destination: `/resources/${section}`, permanent: true },
+        { source: `/${section}/:path*`, destination: `/resources/${section}/:path*`, permanent: true },
+      ]),
       // Retire Mining: Redirect /tmip/solutions/mining to /products/otr-tpms
       {
         source: "/tmip/solutions/mining",

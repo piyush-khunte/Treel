@@ -76,8 +76,8 @@ export async function POST(req: NextRequest) {
             lead_source: "event_registration",
             form_id: eventSlug ? `event_${eventSlug}` : "event_registration",
             campaign_type: "events",
-            landing_page: eventSlug ? `https://treel.in/events/${eventSlug}` : "https://treel.in/events",
-            page_path: eventSlug ? `/events/${eventSlug}` : "/events",
+            landing_page: eventSlug ? `https://treel.in/resources/events/${eventSlug}` : "https://treel.in/resources/events",
+            page_path: eventSlug ? `/resources/events/${eventSlug}` : "/resources/events",
             status: "new",
             attribution_metadata: {
               eventName,

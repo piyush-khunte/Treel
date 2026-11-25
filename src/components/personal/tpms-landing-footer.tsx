@@ -126,7 +126,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/research"
+                  href="/resources/research"
                   className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Research Papers
@@ -134,7 +134,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               </li>
               <li>
                 <Link
-                  href="/insights"
+                  href="/resources/insights"
                   className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Insights &amp; Articles
@@ -142,7 +142,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               </li>
               <li>
                 <Link
-                  href="/press"
+                  href="/resources/press"
                   className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Press &amp; Media
@@ -150,7 +150,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               </li>
               <li>
                 <Link
-                  href="/events"
+                  href="/resources/events"
                   className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Events &amp; Keynotes
@@ -158,7 +158,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               </li>
               <li>
                 <Link
-                  href="/annual-reports"
+                  href="/resources/annual-reports"
                   className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Annual Reports

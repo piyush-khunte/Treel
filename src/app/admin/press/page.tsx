@@ -305,7 +305,7 @@ export default function AdminPressPage() {
           </Button>
 
           <Button asChild variant="outline" size="sm" className="border-slate-800 text-slate-300 hover:bg-slate-800 text-xs font-mono gap-1.5">
-            <Link href="/press" target="_blank">
+            <Link href="/resources/press" target="_blank">
               <Globe className="w-3.5 h-3.5 text-blue-400" />
               Public Press Page
             </Link>
@@ -502,7 +502,7 @@ export default function AdminPressPage() {
                           className="h-8 w-8 p-0 text-slate-400 hover:text-white hover:bg-slate-800"
                           title="View on site"
                         >
-                          <Link href={item.externalUrl || `/press/${item.year || '2026'}/${item.slug}`} target="_blank">
+                          <Link href={item.externalUrl || `/resources/press/${item.year || '2026'}/${item.slug}`} target="_blank">
                             <ExternalLink className="w-3.5 h-3.5" />
                           </Link>
                         </Button>
@@ -756,7 +756,7 @@ export default function AdminPressPage() {
                           onChange={(e) => setEditingItem({ ...editingItem, isFeatured: e.target.checked })}
                           className="rounded border-slate-700 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
                         />
-                        <span>Feature at top of /press page</span>
+                        <span>Feature at top of /resources/press page</span>
                       </label>
                     </div>
                   </div>

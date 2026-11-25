@@ -274,7 +274,7 @@ export default function DataInfrastructurePage() {
               </div>
 
               <Button asChild variant="treel" size="lg" className="whitespace-nowrap">
-                <Link href="/research/data-architecture" className="inline-flex items-center gap-2">
+                <Link href="/resources/research/data-architecture" className="inline-flex items-center gap-2">
                   <span>Read the whitepaper</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>

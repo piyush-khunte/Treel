@@ -84,9 +84,9 @@ function classify(blog: MongoBlog, index: ScopeIndex): PersonalBlogScope {
   if (slug && index.caseStudySlugs.has(slug)) {
     return { scope: "tmip", redirectTo: `/tmip/customers/case-studies/${blog.slug}` };
   }
-  // Corporate Insights articles mirrored into the blogs table live at /insights/<slug>.
+  // Corporate Insights articles mirrored into the blogs table live at /resources/insights/<slug>.
   if (slug && index.insightSlugs.has(slug)) {
-    return { scope: "insights", redirectTo: `/insights/${blog.slug}` };
+    return { scope: "insights", redirectTo: `/resources/insights/${blog.slug}` };
   }
   if (slug && index.surakshaSlugs.has(slug)) {
     return { scope: "suraksha", redirectTo: `/suraksha/blog/${blog.slug}` };

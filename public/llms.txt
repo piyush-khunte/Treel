@@ -40,7 +40,7 @@ Treel operates across three unified product verticals built upon a proprietary t
 - [Vehicle Digital Twin Architecture](https://treel.in/vehicle-digital-twin): Deep physics engine correlating tyre footprint pressure, temperature spikes, and vehicle velocity.
 - [Data Infrastructure](https://treel.in/data-infrastructure): High-concurrency telemetry streaming pipeline processing millions of vehicle data points daily.
 - [Technology Overview](https://treel.in/technology): Edge computing architecture, sensor telemetry, and cloud predictive analytics.
-- [Research & Engineering Papers](https://treel.in/research): Scientific publications and technical whitepapers on tyre mechanics and vehicle intelligence.
+- [Research & Engineering Papers](https://treel.in/resources/research): Scientific publications and technical whitepapers on tyre mechanics and vehicle intelligence.
 
 ## Company & Statutory
 
@@ -49,7 +49,7 @@ Treel operates across three unified product verticals built upon a proprietary t
 - [Our Story](https://treel.in/our-story): The founding journey of India's first tyre-centric telematics pioneer.
 - [Global Presence](https://treel.in/global-presence): Domestic footprint across Indian freight corridors and international presence.
 - [Careers](https://treel.in/careers): Engineering, data science, hardware, and commercial career opportunities.
-- [Press & Media](https://treel.in/press): Press releases, media coverage, and corporate announcements.
+- [Press & Media](https://treel.in/resources/press): Press releases, media coverage, and corporate announcements.
 
 ## Optional
 

@@ -530,7 +530,7 @@ export function AdminSubscribersClient({
                         </td>
                         <td className="py-3.5 px-4">
                           <div className="font-medium text-white">{b.articleTitle}</div>
-                          <div className="text-xs font-mono text-slate-400">/insights/{b.articleSlug}</div>
+                          <div className="text-xs font-mono text-slate-400">/resources/insights/{b.articleSlug}</div>
                         </td>
                         <td className="py-3.5 px-4 font-mono text-slate-300">
                           {b.recipientCount}

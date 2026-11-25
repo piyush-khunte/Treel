@@ -95,7 +95,7 @@ export default function TmipWhitepapersSlugPage() {
             </Link>
 
             <Link
-              href="/insights/vehicle-digital-twins-architecture"
+              href="/resources/insights/vehicle-digital-twins-architecture"
               className="p-6 sm:p-7 rounded-[4px] bg-[#0B1220]/80 border border-slate-400/10 hover:border-blue-500/30 transition-all flex flex-col justify-between space-y-5 group"
             >
               <div className="space-y-3">

@@ -557,10 +557,10 @@ export async function createAdminCategoryContent(
         }
         const saved = await saveInsight(payload);
         revalidatePath("/admin/blogs");
-        revalidatePath("/insights");
+        revalidatePath("/resources/insights");
         revalidatePath("/tmip/insights");
         if (saved.slug) {
-          revalidatePath(`/insights/${saved.slug}`);
+          revalidatePath(`/resources/insights/${saved.slug}`);
           revalidatePath(`/tmip/insights/${saved.slug}`);
         }
         return { success: true, data: saved };
@@ -632,10 +632,10 @@ export async function updateAdminCategoryContent(
         }
         const saved = await saveInsight({ ...payload, _id: id });
         revalidatePath("/admin/blogs");
-        revalidatePath("/insights");
+        revalidatePath("/resources/insights");
         revalidatePath("/tmip/insights");
         if (saved.slug) {
-          revalidatePath(`/insights/${saved.slug}`);
+          revalidatePath(`/resources/insights/${saved.slug}`);
           revalidatePath(`/tmip/insights/${saved.slug}`);
         }
         return { success: true, data: saved };
@@ -697,7 +697,7 @@ export async function deleteAdminCategoryContent(
       case "treel_main": {
         await deleteInsight(id);
         revalidatePath("/admin/blogs");
-        revalidatePath("/insights");
+        revalidatePath("/resources/insights");
         revalidatePath("/tmip/insights");
         return { success: true };
       }
@@ -784,7 +784,7 @@ export async function createAdminAnnualReturn(ret: Partial<MongoAnnualReturn>) {
       ]);
       writeLocalAnnualReturns(updatedLocal);
       revalidatePath('/admin/annual-returns');
-      revalidatePath('/annual-reports');
+      revalidatePath('/resources/annual-reports');
     } catch {}
     return { success: true, data };
   } catch (error: any) {
@@ -812,7 +812,7 @@ export async function updateAdminAnnualReturn(id: string, updates: Partial<Mongo
       );
       writeLocalAnnualReturns(updatedLocal);
       revalidatePath('/admin/annual-returns');
-      revalidatePath('/annual-reports');
+      revalidatePath('/resources/annual-reports');
     } catch {}
     return { success: true, data };
   } catch (error: any) {
@@ -835,7 +835,7 @@ export async function deleteAdminAnnualReturn(id: string) {
       const updatedLocal = local.filter((item) => item._id !== id);
       writeLocalAnnualReturns(updatedLocal);
       revalidatePath('/admin/annual-returns');
-      revalidatePath('/annual-reports');
+      revalidatePath('/resources/annual-reports');
     } catch {}
     return { success: true };
   } catch (error: any) {
@@ -1082,7 +1082,7 @@ export async function getAdminLeads(categoryFilter?: string): Promise<{ success:
         pPath.startsWith("/lp") ||
         pPath.includes("/campaign") ||
         pPath === "/suraksha/emi/apply" ||
-        pPath === "/events" ||
+        pPath === "/resources/events" ||
         lPage.includes("/lp") ||
         lPage.includes("/campaign") ||
         Boolean(uCamp);
@@ -1149,7 +1149,7 @@ export async function getAdminLeads(categoryFilter?: string): Promise<{ success:
           source = "Personal TPMS Generic Campaign";
         } else if (cType.includes("suraksha") || fId === "suraksha_emi_apply") {
           source = "Suraksha EMI Apply";
-        } else if (fId === "events-subscription" || pPath === "/events") {
+        } else if (fId === "events-subscription" || pPath === "/resources/events") {
           source = "TMIP Events Subscription";
         } else {
           source = "TMIP Campaign Lead";
@@ -1500,9 +1500,9 @@ export async function saveEventAction(
     const { saveEvent } = await import('@/lib/content/events-storage');
     const res = await saveEvent(data);
     if (res.success && res.data) {
-      revalidatePath('/events');
+      revalidatePath('/resources/events');
       if (res.data.slug) {
-        revalidatePath(`/events/${res.data.slug}`);
+        revalidatePath(`/resources/events/${res.data.slug}`);
       }
       revalidatePath('/admin/events');
     }
@@ -1525,7 +1525,7 @@ export async function deleteEventAction(
     const { deleteEvent } = await import('@/lib/content/events-storage');
     const res = await deleteEvent(id);
     if (res.success) {
-      revalidatePath('/events');
+      revalidatePath('/resources/events');
       revalidatePath('/admin/events');
     }
     return res;
@@ -1551,9 +1551,9 @@ export async function toggleEventPublishAction(
     const { toggleEventPublish } = await import('@/lib/content/events-storage');
     const res = await toggleEventPublish(id);
     if (res.success && res.data) {
-      revalidatePath('/events');
+      revalidatePath('/resources/events');
       if (res.data.slug) {
-        revalidatePath(`/events/${res.data.slug}`);
+        revalidatePath(`/resources/events/${res.data.slug}`);
       }
       revalidatePath('/admin/events');
     }
@@ -1738,7 +1738,7 @@ export async function saveWhitepaperAction(
     const res = await saveWhitepaper(data);
     if (res.success && res.data) {
       revalidatePath('/tmip/whitepapers');
-      revalidatePath('/research');
+      revalidatePath('/resources/research');
       if (res.data.slug) {
         revalidatePath(`/tmip/whitepapers/${res.data.slug}`);
       }
@@ -1764,7 +1764,7 @@ export async function deleteWhitepaperAction(
     const res = await deleteWhitepaper(id);
     if (res.success) {
       revalidatePath('/tmip/whitepapers');
-      revalidatePath('/research');
+      revalidatePath('/resources/research');
       revalidatePath('/admin/whitepapers');
     }
     return res;
@@ -1791,7 +1791,7 @@ export async function toggleWhitepaperPublishAction(
     const res = await toggleWhitepaperPublish(id);
     if (res.success && res.data) {
       revalidatePath('/tmip/whitepapers');
-      revalidatePath('/research');
+      revalidatePath('/resources/research');
       if (res.data.slug) {
         revalidatePath(`/tmip/whitepapers/${res.data.slug}`);
       }
@@ -1850,10 +1850,10 @@ export async function savePressItemAction(
     const { savePressItem } = await import('@/lib/content/press-storage');
     const res = await savePressItem(data);
     if (res.success && res.data) {
-      revalidatePath('/press');
+      revalidatePath('/resources/press');
       revalidatePath('/admin/press');
       if (res.data.slug) {
-        revalidatePath(`/press/${res.data.year || '2026'}/${res.data.slug}`);
+        revalidatePath(`/resources/press/${res.data.year || '2026'}/${res.data.slug}`);
       }
     }
     return res;
@@ -1875,7 +1875,7 @@ export async function deletePressItemAction(
     const { deletePressItem } = await import('@/lib/content/press-storage');
     const res = await deletePressItem(id);
     if (res.success) {
-      revalidatePath('/press');
+      revalidatePath('/resources/press');
       revalidatePath('/admin/press');
     }
     return res;
@@ -1901,10 +1901,10 @@ export async function togglePressPublishAction(
     const { togglePressPublish } = await import('@/lib/content/press-storage');
     const res = await togglePressPublish(id);
     if (res.success && res.data) {
-      revalidatePath('/press');
+      revalidatePath('/resources/press');
       revalidatePath('/admin/press');
       if (res.data.slug) {
-        revalidatePath(`/press/${res.data.year || '2026'}/${res.data.slug}`);
+        revalidatePath(`/resources/press/${res.data.year || '2026'}/${res.data.slug}`);
       }
     }
     return res;
@@ -1954,7 +1954,7 @@ export async function saveMediaKitItemAction(
     const { saveMediaKitItem } = await import('@/lib/content/mediakit-storage');
     const res = await saveMediaKitItem(data);
     if (res.success && res.data) {
-      revalidatePath('/media-kit', 'page');
+      revalidatePath('/resources/media-kit', 'page');
       revalidatePath('/admin/media-kit', 'page');
     }
     return res;
@@ -1976,7 +1976,7 @@ export async function deleteMediaKitItemAction(
     const { deleteMediaKitItem } = await import('@/lib/content/mediakit-storage');
     const res = await deleteMediaKitItem(id);
     if (res.success) {
-      revalidatePath('/media-kit', 'page');
+      revalidatePath('/resources/media-kit', 'page');
       revalidatePath('/admin/media-kit', 'page');
     }
     return res;
@@ -1996,7 +1996,7 @@ export async function deleteAllMediaKitItemsAction(): Promise<{ success: boolean
     const { deleteAllMediaKitItems } = await import('@/lib/content/mediakit-storage');
     const res = await deleteAllMediaKitItems();
     if (res.success) {
-      revalidatePath('/media-kit', 'page');
+      revalidatePath('/resources/media-kit', 'page');
       revalidatePath('/admin/media-kit', 'page');
     }
     return res;
@@ -2022,7 +2022,7 @@ export async function toggleMediaKitPublishAction(
     const { toggleMediaKitPublish } = await import('@/lib/content/mediakit-storage');
     const res = await toggleMediaKitPublish(id);
     if (res.success && res.data) {
-      revalidatePath('/media-kit', 'page');
+      revalidatePath('/resources/media-kit', 'page');
       revalidatePath('/admin/media-kit', 'page');
     }
     return res;

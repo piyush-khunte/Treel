@@ -25,7 +25,7 @@ const EXPLORATION_LINKS = [
       { name: "About Treel", href: "/about" },
       { name: "Technology Architecture", href: "/technology" },
       { name: "Mobility Intelligence", href: "/mobility-intelligence" },
-      { name: "Research & Benchmarks", href: "/research" },
+      { name: "Research & Benchmarks", href: "/resources/research" },
     ],
   },
   {
@@ -41,9 +41,9 @@ const EXPLORATION_LINKS = [
     category: "Support & Media",
     links: [
       { name: "Contact & Headquarters", href: "/contact" },
-      { name: "Press Releases", href: "/press" },
-      { name: "Media Kit Assets", href: "/media-kit" },
-      { name: "Annual Reports", href: "/annual-reports" },
+      { name: "Press Releases", href: "/resources/press" },
+      { name: "Media Kit Assets", href: "/resources/media-kit" },
+      { name: "Annual Reports", href: "/resources/annual-reports" },
     ],
   },
 ];

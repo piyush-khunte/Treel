@@ -61,13 +61,7 @@ export function MasterHeader() {
 
   const isOemActive = pathname.startsWith("/oem");
 
-  const isResourcesActive = 
-    pathname.startsWith("/press") ||
-    pathname.startsWith("/insights") ||
-    pathname.startsWith("/research") ||
-    pathname.startsWith("/events") ||
-    pathname.startsWith("/annual-reports") ||
-    pathname.startsWith("/media-kit");
+  const isResourcesActive = pathname.startsWith("/resources");
 
   const isGlobalActive = pathname.startsWith("/global-presence");
   const isContactActive = pathname.startsWith("/contact");
@@ -245,31 +239,34 @@ export function MasterHeader() {
 
             {/* RESOURCES */}
             <div className="relative group">
-              <button 
-                className={`flex items-center gap-1 py-2 transition-colors cursor-pointer whitespace-nowrap ${
+              <Link prefetch={false} href="/resources"
+                className={`flex items-center gap-1 py-2 transition-colors whitespace-nowrap ${
                   isResourcesActive ? "text-[#B8432A] font-semibold" : "hover:text-[#B8432A]"
                 }`}
               >
                 <span>Resources</span>
                 <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform shrink-0" />
-              </button>
+              </Link>
               <div className="absolute top-full right-0 xl:left-0 w-64 p-2 bg-white rounded-xl shadow-xl border border-slate-200/80 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                <Link prefetch={false} href="/press" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
+                <Link prefetch={false} href="/resources" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
+                  Resources Overview
+                </Link>
+                <Link prefetch={false} href="/resources/press" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Press &amp; Media
                 </Link>
-                <Link prefetch={false} href="/insights" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
+                <Link prefetch={false} href="/resources/insights" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Insights &amp; Articles
                 </Link>
-                <Link prefetch={false} href="/research" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
+                <Link prefetch={false} href="/resources/research" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Research Papers
                 </Link>
-                <Link prefetch={false} href="/events" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
+                <Link prefetch={false} href="/resources/events" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Events &amp; Keynotes
                 </Link>
-                <Link prefetch={false} href="/annual-reports" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
+                <Link prefetch={false} href="/resources/annual-reports" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Annual Reports
                 </Link>
-                <Link prefetch={false} href="/media-kit" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
+                <Link prefetch={false} href="/resources/media-kit" className="block px-3 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#B8432A] transition-colors">
                   Media Kit
                 </Link>
               </div>
@@ -394,12 +391,13 @@ export function MasterHeader() {
               </button>
               {mobileResourcesOpen && (
                 <div className="pl-3 pb-2 space-y-1 text-xs text-slate-600 border-l-2 border-slate-100 ml-1">
-                  <Link prefetch={false} href="/press" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Press &amp; Media</Link>
-                  <Link prefetch={false} href="/insights" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Insights &amp; Articles</Link>
-                  <Link prefetch={false} href="/research" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Research Papers</Link>
-                  <Link prefetch={false} href="/events" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Events &amp; Keynotes</Link>
-                  <Link prefetch={false} href="/annual-reports" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Annual Reports</Link>
-                  <Link prefetch={false} href="/media-kit" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Media Kit</Link>
+                  <Link prefetch={false} href="/resources" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Resources Overview</Link>
+                  <Link prefetch={false} href="/resources/press" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Press &amp; Media</Link>
+                  <Link prefetch={false} href="/resources/insights" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Insights &amp; Articles</Link>
+                  <Link prefetch={false} href="/resources/research" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Research Papers</Link>
+                  <Link prefetch={false} href="/resources/events" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Events &amp; Keynotes</Link>
+                  <Link prefetch={false} href="/resources/annual-reports" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Annual Reports</Link>
+                  <Link prefetch={false} href="/resources/media-kit" onClick={() => setMobileMenuOpen(false)} className="block py-1.5 hover:text-[#B8432A]">Media Kit</Link>
                 </div>
               )}
             </div>

@@ -103,27 +103,27 @@ export function TmipLandingFooter() {
             </h2>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/research" className="text-[13px] text-[#94A3B8] !text-[#94A3B8] hover:!text-[#3B82F6] transition-colors">
+                <Link href="/resources/research" className="text-[13px] text-[#94A3B8] !text-[#94A3B8] hover:!text-[#3B82F6] transition-colors">
                   Research Papers
                 </Link>
               </li>
               <li>
-                <Link href="/insights" className="text-[13px] text-[#94A3B8] !text-[#94A3B8] hover:!text-[#3B82F6] transition-colors">
+                <Link href="/resources/insights" className="text-[13px] text-[#94A3B8] !text-[#94A3B8] hover:!text-[#3B82F6] transition-colors">
                   Insights &amp; Articles
                 </Link>
               </li>
               <li>
-                <Link href="/press" className="text-[13px] text-[#94A3B8] !text-[#94A3B8] hover:!text-[#3B82F6] transition-colors">
+                <Link href="/resources/press" className="text-[13px] text-[#94A3B8] !text-[#94A3B8] hover:!text-[#3B82F6] transition-colors">
                   Press &amp; Media
                 </Link>
               </li>
               <li>
-                <Link href="/events" className="text-[13px] text-[#94A3B8] !text-[#94A3B8] hover:!text-[#3B82F6] transition-colors">
+                <Link href="/resources/events" className="text-[13px] text-[#94A3B8] !text-[#94A3B8] hover:!text-[#3B82F6] transition-colors">
                   Events &amp; Keynotes
                 </Link>
               </li>
               <li>
-                <Link href="/annual-reports" className="text-[13px] text-[#94A3B8] !text-[#94A3B8] hover:!text-[#3B82F6] transition-colors">
+                <Link href="/resources/annual-reports" className="text-[13px] text-[#94A3B8] !text-[#94A3B8] hover:!text-[#3B82F6] transition-colors">
                   Annual Reports
                 </Link>
               </li>

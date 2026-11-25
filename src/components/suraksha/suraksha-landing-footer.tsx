@@ -99,27 +99,27 @@ export function SurakshaLandingFooter({ className = "" }: { className?: string }
             </h2>
             <ul className="space-y-2">
               <li>
-                <Link href="/research" className="inline-block py-1.5 text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors">
+                <Link href="/resources/research" className="inline-block py-1.5 text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors">
                   Research Papers
                 </Link>
               </li>
               <li>
-                <Link href="/insights" className="inline-block py-1.5 text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors">
+                <Link href="/resources/insights" className="inline-block py-1.5 text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors">
                   Insights &amp; Articles
                 </Link>
               </li>
               <li>
-                <Link href="/press" className="inline-block py-1.5 text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors">
+                <Link href="/resources/press" className="inline-block py-1.5 text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors">
                   Press &amp; Media
                 </Link>
               </li>
               <li>
-                <Link href="/events" className="inline-block py-1.5 text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors">
+                <Link href="/resources/events" className="inline-block py-1.5 text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors">
                   Events &amp; Keynotes
                 </Link>
               </li>
               <li>
-                <Link href="/annual-reports" className="inline-block py-1.5 text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors">
+                <Link href="/resources/annual-reports" className="inline-block py-1.5 text-xs text-[#94A3B8] hover:text-[#D5573B] transition-colors">
                   Annual Reports
                 </Link>
               </li>
