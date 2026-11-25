@@ -3,16 +3,13 @@ import { createClient } from "@supabase/supabase-js";
 import { getWhitepaperById, getWhitepaperBySlug, recordWhitepaperDownload } from "@/lib/content/whitepapers-storage";
 import { createWhitepaperAccessToken } from "@/lib/content/whitepaper-tokens";
 import { isSesConfigured, sendEmail, sendWhitepaperAccessEmail } from "@/lib/integrations/email/ses-client";
+import { getCanonicalSiteUrl } from "@/lib/utils/url";
 
 function getSupabaseClient() {
   const url = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "").replace(/^['"]|['"]$/g, "");
   const key = (
     process.env.SUPABASE_SECRET_KEY ||
     process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-    process.env.SUPABASE_ANON_KEY ||
     ""
   ).replace(/^['"]|['"]$/g, "");
 
@@ -140,8 +137,8 @@ export async function POST(req: NextRequest) {
       recentAccessRequests.set(rateLimitKey, { timestamp: Date.now(), token });
     }
 
-    // Determine host origin for document links
-    const origin = req.nextUrl.origin || "https://treel.in";
+    // Emailed links always use the configured site URL, never request headers
+    const origin = getCanonicalSiteUrl();
     const viewUrl = `${origin}/api/tmip/whitepapers/document?token=${encodeURIComponent(token)}&action=view`;
     const downloadUrl = `${origin}/api/tmip/whitepapers/document?token=${encodeURIComponent(token)}&action=download`;
 

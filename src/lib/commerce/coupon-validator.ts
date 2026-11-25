@@ -1,6 +1,30 @@
 import { getAllCoupons, getCouponByCode } from "./coupon-storage";
 import { AdminCoupon, CouponCategory } from "@/types/admin";
 
+/** Date-only values ("2026-12-31") are treated as whole days in IST. */
+function parseCouponDate(value: string | null | undefined, endOfDay: boolean): number | null {
+  if (!value) return null;
+  const v = String(value).trim();
+  const iso = /^\d{4}-\d{2}-\d{2}$/.test(v) ? `${v}T${endOfDay ? "23:59:59.999" : "00:00:00"}+05:30` : v;
+  const t = Date.parse(iso);
+  return Number.isNaN(t) ? null : t;
+}
+
+/**
+ * Returns a reason string when the coupon cannot be used right now (not started, expired,
+ * or usage limit reached), otherwise null.
+ */
+export function getCouponUnavailableReason(coupon: AdminCoupon, now = Date.now()): string | null {
+  const start = parseCouponDate(coupon.startDate, false);
+  if (start !== null && now < start) return `Coupon "${coupon.code}" is not active yet.`;
+  const expiry = parseCouponDate(coupon.expiryDate, true);
+  if (expiry !== null && now > expiry) return `Coupon "${coupon.code}" has expired.`;
+  if (typeof coupon.maxUses === "number" && coupon.maxUses > 0 && (coupon.usedCount || 0) >= coupon.maxUses) {
+    return `Coupon "${coupon.code}" has reached its usage limit.`;
+  }
+  return null;
+}
+
 export interface CouponValidationResult {
   valid: boolean;
   code: string;
@@ -294,6 +318,20 @@ export async function validateCouponServer(params: {
     };
   }
 
+  // Validity window and usage limit
+  const unavailableReason = getCouponUnavailableReason(coupon);
+  if (unavailableReason) {
+    return {
+      valid: false,
+      code: cleanCode,
+      discountType: coupon.discountType,
+      discountValue: 0,
+      discountAmountInr: 0,
+      message: unavailableReason,
+      error: unavailableReason,
+    };
+  }
+
   // 1. Strict Brand Separation Enforcement
   if (detectedBrand === "personal" && coupon.category === "SURAKSHA") {
     return {
@@ -405,7 +443,9 @@ export async function getAvailableCouponsServer(params: {
   const targetCategory: CouponCategory = brand === "suraksha" ? "SURAKSHA" : "PERSONAL_TPMS";
 
   const allCoupons = await getAllCoupons(targetCategory);
-  const activeCoupons = allCoupons.filter((c) => c.status === "Active" && c.category === targetCategory);
+  const activeCoupons = allCoupons.filter(
+    (c) => c.status === "Active" && c.category === targetCategory && !getCouponUnavailableReason(c)
+  );
 
   const eligibleCoupons: AvailableCouponItem[] = [];
 

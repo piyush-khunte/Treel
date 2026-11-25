@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { guardLeadSubmission } from "@/lib/security/lead-guard";
 import { registerWarrantySubmission } from "@/lib/content/warranty-storage";
 import { isSesConfigured, sendWarrantyRegistrationConfirmationEmail } from "@/lib/integrations";
 
@@ -11,6 +12,10 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Per-IP rate limit + honeypot: this route sends email from Treel's domain.
+    const blocked = await guardLeadSubmission("warranty-register", req.headers, body);
+    if (blocked) return blocked;
 
     const orderId = (body.orderId || body.order_id || "").trim();
     const customerEmail = (body.customerEmail || body.email || "").trim().toLowerCase();

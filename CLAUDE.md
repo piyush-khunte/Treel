@@ -20,7 +20,7 @@ For complete in-depth project documentation, architecture details, and content d
    - Partner names (*Bajaj Finance*, *Razorpay*, *Shiprocket*) belong ONLY in Privacy, Terms, and checkout payment/tracking steps where legal disclosure is necessary.
 
 4. **NEXT.JS 16 & REACT 19 COMPLIANCE**
-   - Next.js version: `16.3.4` (App Router). Dynamic route parameters in Page and Layout components are Promises (e.g., `const { slug } = await params;`).
+   - Next.js version: `16.4.6` (App Router; upgraded from 16.3.4 on 25 Nov 2026 for security advisories). Dynamic route parameters in Page and Layout components are Promises (e.g., `const { slug } = await params;`).
    - Do NOT delete the `<!-- BEGIN:nextjs-agent-rules -->` block in `AGENTS.md`.
 
 5. **TYPE CHECK BEFORE FINISHING**

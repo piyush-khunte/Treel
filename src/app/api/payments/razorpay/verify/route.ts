@@ -1,6 +1,8 @@
 import { validateCartBrandServer } from '@/lib/commerce/brand-validator';
 import { priceCartServer } from '@/lib/commerce/server-pricing';
-import { getSupabaseAdminClient,persistOrderToSupabase } from '@/lib/commerce/order-storage';
+import { cartFingerprint, getSupabaseAdminClient, orderRefForPayment, persistOrderToSupabase } from '@/lib/commerce/order-storage';
+import { escapeHtml } from '@/lib/security/escape-html';
+import { recordCouponUse } from '@/lib/commerce/coupon-storage';
 import { syncOrderToShiprocket } from '@/lib/commerce/shiprocket-order-sync';
 import {
 fetchRazorpayOrder,
@@ -53,6 +55,9 @@ export async function POST(req: NextRequest) {
       .eq('payment_id', razorpay_payment_id)
       .maybeSingle();
 
+    // Our order reference is derived from the payment ID, so a replay maps to the same order.
+    const derivedOrderRef = orderRefForPayment(razorpay_payment_id);
+
     if (existingPayment) {
       return NextResponse.json(
         {
@@ -60,7 +65,7 @@ export async function POST(req: NextRequest) {
           configured: true,
           data: {
             verified: true,
-            orderId: existingPayment.order_id,
+            orderId: existingPayment._id === `PAY-${razorpay_payment_id}` ? derivedOrderRef : existingPayment.order_id,
             paymentId: razorpay_payment_id,
           },
         },
@@ -141,6 +146,30 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // The items must be exactly the ones this Razorpay order was created for (not just the same total).
+    const expectedFingerprint = gatewayOrder.data.notes?.cart_fp;
+    const actualFingerprint = cartFingerprint(priced.items, priced.couponCode);
+    if (expectedFingerprint && expectedFingerprint !== actualFingerprint) {
+      console.error('[Online Order] CART MISMATCH — order not recorded, review/refund required', {
+        razorpay_order_id,
+        razorpay_payment_id,
+      });
+      return NextResponse.json(
+        {
+          success: false,
+          configured: true,
+          error: {
+            code: 'CART_MISMATCH',
+            message: 'The items in your order do not match the payment. Please contact support with your payment ID.',
+          },
+        },
+        { status: 409 }
+      );
+    }
+    if (!expectedFingerprint) {
+      console.warn('[Online Order] Razorpay order has no cart fingerprint (created before cart binding was added)', { razorpay_order_id });
+    }
+
     // From here on, only server-verified items and totals are used (storage, shipping, emails).
     const checkout = {
       ...rawCheckout,
@@ -151,25 +180,68 @@ export async function POST(req: NextRequest) {
       couponCode: priced.couponCode,
     };
 
-    // 4. Persist order & payment record to Supabase
-    let orderRef = `TRL-ORD-${Date.now().toString().slice(-6)}`;
-    {
-      const saveRes = await persistOrderToSupabase({
-        checkout: {
-          ...checkout,
-          paymentMethod: 'online',
-        },
-        status: 'processing',
-        paymentInfo: {
-          payment_id: razorpay_payment_id,
-          order_id: razorpay_order_id,
-          amount: priced.totalInr,
-        },
-      });
+    // 4. Persist order & payment record to Supabase. The order must be recorded before
+    //    anything is shipped or emailed; a duplicate means another request already did it.
+    const orderRef = derivedOrderRef;
+    const saveRes = await persistOrderToSupabase({
+      orderRef,
+      checkout: {
+        ...checkout,
+        paymentMethod: 'online',
+      },
+      status: 'processing',
+      paymentInfo: {
+        payment_id: razorpay_payment_id,
+        order_id: razorpay_order_id,
+        amount: priced.totalInr,
+      },
+    });
 
-      if (saveRes.success) {
-        orderRef = saveRes.orderId;
+    if (saveRes.duplicate) {
+      return NextResponse.json(
+        {
+          success: true,
+          configured: true,
+          data: { verified: true, orderId: orderRef, paymentId: razorpay_payment_id },
+        },
+        { status: 200 }
+      );
+    }
+
+    if (!saveRes.success) {
+      console.error('[CRITICAL][Online Order] Payment verified but order could not be recorded — manual follow-up required', {
+        orderRef,
+        razorpay_order_id,
+        razorpay_payment_id,
+        error: saveRes.error,
+      });
+      const alertTo = process.env.SES_TO_EMAIL || process.env.SES_LEADS_EMAIL;
+      if (isSesConfigured() && alertTo) {
+        try {
+          await sendEmail({
+            to: alertTo,
+            subject: `[ACTION REQUIRED] Paid order not recorded — payment ${razorpay_payment_id}`,
+            html: `<p>A Razorpay payment was verified but the order could not be saved. Nothing was shipped.</p><ul><li>Payment ID: ${escapeHtml(razorpay_payment_id)}</li><li>Razorpay order: ${escapeHtml(razorpay_order_id)}</li><li>Intended order ref: ${escapeHtml(orderRef)}</li><li>Customer email: ${escapeHtml(String(checkout.email || ''))}</li></ul>`,
+          });
+        } catch (alertErr) {
+          console.error('[Online Order] Failed to send unrecorded-order alert:', alertErr);
+        }
       }
+      return NextResponse.json(
+        {
+          success: false,
+          configured: true,
+          error: {
+            code: 'ORDER_NOT_RECORDED',
+            message: `Your payment was received, but we could not record your order automatically. Our team has been notified and will contact you. Payment ID: ${razorpay_payment_id}`,
+          },
+        },
+        { status: 500 }
+      );
+    }
+
+    if (priced.couponCode) {
+      await recordCouponUse(priced.couponCode);
     }
 
     // 4. Logistics Pipeline: Trigger Shiprocket if configured
@@ -236,11 +308,11 @@ export async function POST(req: NextRequest) {
           const adminNoticeHtml = `
             <div style="font-family: Arial, sans-serif; padding: 20px; color: #111;">
               <h2 style="color: #059669;">New Prepaid Razorpay Order Confirmed</h2>
-              <p><strong>Order ID:</strong> ${orderRef}</p>
-              <p><strong>Payment ID:</strong> ${razorpay_payment_id}</p>
-              <p><strong>Customer:</strong> ${checkout.fullName} (${checkout.phone}, ${checkout.email})</p>
+              <p><strong>Order ID:</strong> ${escapeHtml(orderRef)}</p>
+              <p><strong>Payment ID:</strong> ${escapeHtml(String(razorpay_payment_id))}</p>
+              <p><strong>Customer:</strong> ${escapeHtml(String(checkout.fullName ?? ''))} (${escapeHtml(String(checkout.phone ?? ''))}, ${escapeHtml(String(checkout.email ?? ''))})</p>
               <p><strong>Total Amount:</strong> ₹${Number(checkout.totalInr).toLocaleString('en-IN')}</p>
-              <p><strong>Destination:</strong> ${checkout.city}, ${checkout.state} (${checkout.pincode})</p>
+              <p><strong>Destination:</strong> ${escapeHtml(String(checkout.city ?? ''))}, ${escapeHtml(String(checkout.state ?? ''))} (${escapeHtml(String(checkout.pincode ?? ''))})</p>
               <p><strong>Status:</strong> Processing for Shipment</p>
             </div>
           `;
@@ -276,14 +348,14 @@ export async function POST(req: NextRequest) {
       { status: 200 }
     );
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : 'Invalid request payload';
+    console.error('[Online Order] Unexpected verify error:', error);
     return NextResponse.json(
       {
         success: false,
         configured: true,
         error: {
           code: 'VALIDATION_ERROR',
-          message,
+          message: 'Invalid request payload',
         },
       },
       { status: 400 }

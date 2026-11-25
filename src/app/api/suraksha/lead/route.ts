@@ -27,10 +27,7 @@ function getSupabaseClient() {
   const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key =
     process.env.SUPABASE_SECRET_KEY ||
-    process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!url || !key || url.includes("placeholder-treel") || key.includes("placeholder-key")) {
     return null;
@@ -87,7 +84,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Spam protection: honeypot field + per-IP rate limit
-    const blocked = guardLeadSubmission("suraksha-lead", req.headers, body);
+    const blocked = await guardLeadSubmission("suraksha-lead", req.headers, body);
     if (blocked) return blocked;
 
     const {

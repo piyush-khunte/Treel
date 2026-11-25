@@ -1,64 +1,52 @@
 /**
- * In-memory brute-force protection for the admin login.
- * Locks a client IP or a username after repeated failed attempts.
- * State lives in the server process (single-instance deployment); it resets on restart.
+ * Brute-force protection for the admin login.
+ *
+ * - Per IP: 5 failures within 15 minutes locks that IP for the rest of the window.
+ * - Per username: 20 failures within 15 minutes locks the username. The higher threshold
+ *   means a single client (locked at 5) can't lock a real admin out on its own.
+ *
+ * Counters use the shared store in @/lib/security/rate-limit (Redis when configured), and
+ * the IP comes from platform-set headers rather than the spoofable X-Forwarded-For value.
  */
+import { getClientIp as getTrustedClientIp, incrementCount, peekCount, resetCount } from "@/lib/security/rate-limit";
 
-const MAX_FAILURES = 5;
-const WINDOW_MS = 15 * 60 * 1000; // failures counted within 15 minutes
-const LOCK_MS = 15 * 60 * 1000; // lockout duration
+const WINDOW_MS = 15 * 60 * 1000;
+const MAX_FAILURES_PER_IP = 5;
+const MAX_FAILURES_PER_USER = 20;
 
-type Entry = { failures: number; firstFailureAt: number; lockedUntil: number };
-
-const attempts = new Map<string, Entry>();
-
-function keysFor(ip: string, username: string): string[] {
-  const keys = [`ip:${ip || "unknown"}`];
-  const user = (username || "").trim().toLowerCase();
-  if (user) keys.push(`user:${user}`);
-  return keys;
+function ipKey(ip: string) {
+  return `login:ip:${ip || "unknown"}`;
 }
-
-function prune(now: number): void {
-  if (attempts.size < 1000) return;
-  for (const [key, entry] of attempts) {
-    if (entry.lockedUntil < now && now - entry.firstFailureAt > WINDOW_MS) attempts.delete(key);
-  }
+function userKey(username: string) {
+  const user = (username || "").trim().toLowerCase();
+  return user ? `login:user:${user}` : null;
 }
 
 /** Returns seconds remaining if the IP or username is locked, otherwise 0. */
-export function getLoginLockSeconds(ip: string, username: string): number {
-  const now = Date.now();
+export async function getLoginLockSeconds(ip: string, username: string): Promise<number> {
   let remaining = 0;
-  for (const key of keysFor(ip, username)) {
-    const entry = attempts.get(key);
-    if (entry && entry.lockedUntil > now) {
-      remaining = Math.max(remaining, Math.ceil((entry.lockedUntil - now) / 1000));
-    }
+  const ipState = await peekCount(ipKey(ip));
+  if (ipState.count >= MAX_FAILURES_PER_IP) remaining = Math.max(remaining, Math.ceil(ipState.ttlMs / 1000));
+  const uKey = userKey(username);
+  if (uKey) {
+    const userState = await peekCount(uKey);
+    if (userState.count >= MAX_FAILURES_PER_USER) remaining = Math.max(remaining, Math.ceil(userState.ttlMs / 1000));
   }
   return remaining;
 }
 
-export function recordLoginFailure(ip: string, username: string): void {
-  const now = Date.now();
-  prune(now);
-  for (const key of keysFor(ip, username)) {
-    const entry = attempts.get(key);
-    if (!entry || now - entry.firstFailureAt > WINDOW_MS) {
-      attempts.set(key, { failures: 1, firstFailureAt: now, lockedUntil: 0 });
-      continue;
-    }
-    entry.failures += 1;
-    if (entry.failures >= MAX_FAILURES) entry.lockedUntil = now + LOCK_MS;
-  }
+export async function recordLoginFailure(ip: string, username: string): Promise<void> {
+  await incrementCount(ipKey(ip), WINDOW_MS);
+  const uKey = userKey(username);
+  if (uKey) await incrementCount(uKey, WINDOW_MS);
 }
 
-export function clearLoginFailures(ip: string, username: string): void {
-  for (const key of keysFor(ip, username)) attempts.delete(key);
+export async function clearLoginFailures(ip: string, username: string): Promise<void> {
+  await resetCount(ipKey(ip));
+  const uKey = userKey(username);
+  if (uKey) await resetCount(uKey);
 }
 
 export function getClientIp(headers: Headers): string {
-  const forwarded = headers.get("x-forwarded-for");
-  if (forwarded) return forwarded.split(",")[0].trim();
-  return headers.get("x-real-ip")?.trim() || "unknown";
+  return getTrustedClientIp(headers);
 }

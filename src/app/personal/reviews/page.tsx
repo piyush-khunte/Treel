@@ -122,6 +122,7 @@ const INITIAL_REVIEWS: ReviewItem[] = [
 ];
 
 const LOCAL_STORAGE_KEY = "treel_personal_user_reviews_v1";
+const DELETE_TOKENS_KEY = "treel_review_delete_tokens";
 
 function ReviewsContent() {
   const searchParams = useSearchParams();
@@ -194,6 +195,15 @@ function ReviewsContent() {
               .then((r) => r.json())
               .then((d) => {
                 if (d?.review?.id) {
+                  if (typeof d.deleteToken === "string") {
+                    try {
+                      const tokens = JSON.parse(localStorage.getItem(DELETE_TOKENS_KEY) || "{}");
+                      tokens[d.review.id] = d.deleteToken;
+                      localStorage.setItem(DELETE_TOKENS_KEY, JSON.stringify(tokens));
+                    } catch {
+                      // Ignore storage errors
+                    }
+                  }
                   setMyReviewIds((prev) => {
                     const up = [...prev, d.review.id];
                     localStorage.setItem("treel_my_submitted_ids", JSON.stringify(up));
@@ -227,8 +237,18 @@ function ReviewsContent() {
 
     // 2. Call backend DELETE endpoint to remove from server file reviews-store.json
     try {
+      let deleteToken = "";
+      try {
+        const tokens = JSON.parse(localStorage.getItem(DELETE_TOKENS_KEY) || "{}");
+        deleteToken = typeof tokens[id] === "string" ? tokens[id] : "";
+        delete tokens[id];
+        localStorage.setItem(DELETE_TOKENS_KEY, JSON.stringify(tokens));
+      } catch {
+        // Ignore storage errors
+      }
       await fetch(`/api/personal/reviews?id=${encodeURIComponent(id)}`, {
         method: "DELETE",
+        headers: deleteToken ? { "x-review-delete-token": deleteToken } : undefined,
       });
     } catch {
       // Ignore network errors

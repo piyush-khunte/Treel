@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyOrderForWarranty } from "@/lib/content/warranty-storage";
+import { consumeLeadRateLimit, getRequestIp } from "@/lib/security/lead-guard";
 
 export async function POST(req: NextRequest) {
   try {
@@ -28,6 +29,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const wait = await consumeLeadRateLimit("warranty-verify", getRequestIp(req.headers));
+    if (wait > 0) {
+      return NextResponse.json(
+        { success: false, error: `Too many attempts. Please try again in ${Math.ceil(wait / 60)} minute(s).` },
+        { status: 429, headers: { "Retry-After": String(wait) } }
+      );
+    }
+
     const verification = await verifyOrderForWarranty(orderId, email);
 
     return NextResponse.json({
@@ -38,11 +47,12 @@ export async function POST(req: NextRequest) {
       customerName: verification.customerName,
       orderDate: verification.orderDate,
       message: verification.message,
+      ...(verification.verified ? {} : { error: verification.message }),
     });
   } catch (err: any) {
     console.error("[Warranty Verify Route] error:", err);
     return NextResponse.json(
-      { success: false, error: err.message || "Failed to verify order." },
+      { success: false, error: "Failed to verify order." },
       { status: 500 }
     );
   }

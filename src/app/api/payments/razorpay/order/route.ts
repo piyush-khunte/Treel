@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createRazorpayOrder, isRazorpayConfigured } from '@/lib/integrations';
 import { priceCartServer } from '@/lib/commerce/server-pricing';
 import { validateCartBrandServer } from '@/lib/commerce/brand-validator';
+import { cartFingerprint } from '@/lib/commerce/order-storage';
 
 export async function GET() {
   const configured = isRazorpayConfigured();
@@ -89,6 +90,8 @@ export async function POST(req: NextRequest) {
         brand: priced.brand,
         verified_total_inr: String(priced.totalInr),
         coupon_code: priced.couponCode,
+        // Binds this payment to exactly these items; re-checked in /verify.
+        cart_fp: cartFingerprint(priced.items, priced.couponCode),
       },
     });
 
@@ -99,14 +102,14 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(result, { status: 200 });
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : 'Invalid request payload';
+    console.error('[Razorpay Order] Unexpected error:', error);
     return NextResponse.json(
       {
         success: false,
         configured: true,
         error: {
           code: 'VALIDATION_ERROR',
-          message,
+          message: 'Invalid request payload',
         },
       },
       { status: 400 }

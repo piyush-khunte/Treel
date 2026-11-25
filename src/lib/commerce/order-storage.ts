@@ -1,5 +1,48 @@
 import { createClient } from '@supabase/supabase-js';
+import { createHash, createHmac, randomBytes } from 'crypto';
 import { MongoCartItem } from '@/types/admin';
+
+/**
+ * Unguessable order reference, e.g. TRL-ORD-7F3A9C21B04E.
+ * (Previously the last 6 digits of Date.now(), which could be enumerated.)
+ */
+export function generateOrderRef(kind: 'ORD' | 'COD'): string {
+  return `TRL-${kind}-${randomBytes(6).toString('hex').toUpperCase()}`;
+}
+
+/**
+ * Deterministic, unguessable order reference for an online payment. The same Razorpay
+ * payment always maps to the same order ID, so the checkout table's primary key makes
+ * a replayed or concurrent verify call fail with a duplicate instead of creating (and
+ * shipping) a second order.
+ */
+export function orderRefForPayment(razorpayPaymentId: string): string {
+  const secret = process.env.RAZORPAY_KEY_SECRET || process.env.RAZORPAY_SECRET || '';
+  const digest = createHmac('sha256', `treel-order-ref:${secret}`).update(razorpayPaymentId).digest('hex');
+  return `TRL-ORD-${digest.slice(0, 12).toUpperCase()}`;
+}
+
+/**
+ * Fingerprint of the server-priced cart. Stored in the Razorpay order notes when the
+ * order is created and re-checked at verification, so a different cart with the same
+ * total cannot be substituted after payment.
+ */
+export function cartFingerprint(
+  items: Array<{ variant_id?: string; sku?: string; quantity?: number }>,
+  couponCode?: string | null
+): string {
+  const lines = items
+    .map((it) => `${it.variant_id || ''}|${it.sku || ''}|${Number(it.quantity) || 0}`)
+    .sort();
+  return createHash('sha256')
+    .update(`${lines.join(';')}#${(couponCode || '').toUpperCase()}`)
+    .digest('hex');
+}
+
+/** Postgres unique/primary-key violation. */
+function isDuplicateKeyError(err: { code?: string } | null | undefined): boolean {
+  return Boolean(err && err.code === '23505');
+}
 
 export function getSupabaseAdminClient() {
   const url =
@@ -9,7 +52,6 @@ export function getSupabaseAdminClient() {
   const key =
     process.env.SUPABASE_SECRET_KEY ||
     process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
     'placeholder-key';
   return createClient(url, key, {
     auth: { persistSession: false },
@@ -124,13 +166,13 @@ export async function persistOrderToSupabase(params: {
     order_id: string;
     amount: number;
   };
-}): Promise<{ success: boolean; orderId: string; error?: string }> {
+}): Promise<{ success: boolean; orderId: string; duplicate?: boolean; error?: string }> {
   const supabase = getSupabaseAdminClient();
   const { checkout, paymentInfo } = params;
 
   const orderRef =
     params.orderRef ||
-    `TRL-${params.paymentInfo ? 'ORD' : 'COD'}-${Date.now().toString().slice(-6)}`;
+    generateOrderRef(params.paymentInfo ? 'ORD' : 'COD');
 
   const nameParts = (checkout.fullName || 'Valued Customer').trim().split(' ');
   const firstname = nameParts[0] || 'Valued';
@@ -197,6 +239,10 @@ export async function persistOrderToSupabase(params: {
       .insert([sanitizedCheckoutRecord]);
 
     if (chkError) {
+      if (isDuplicateKeyError(chkError)) {
+        // Same order reference already stored (replayed/concurrent verify) — do not process again.
+        return { success: false, duplicate: true, orderId: orderRef };
+      }
       console.error('Supabase checkout insert error:', chkError);
       return { success: false, orderId: orderRef, error: chkError.message };
     }
@@ -208,7 +254,8 @@ export async function persistOrderToSupabase(params: {
           .join(', ') || 'Treel TPMS Kit';
 
       const rawPaymentRecord: Record<string, any> = {
-        _id: `PAY-${Date.now()}`,
+        // One record per Razorpay payment (primary key), never a timestamp.
+        _id: `PAY-${paymentInfo.payment_id}`,
         payment_id: paymentInfo.payment_id,
         order_id: paymentInfo.order_id,
         amount: paymentInfo.amount,
@@ -230,8 +277,13 @@ export async function persistOrderToSupabase(params: {
         .from('TreelEcommerce.payments')
         .insert([sanitizedPaymentRecord]);
 
-      if (payError) {
-        console.error('Supabase payment insert error:', payError);
+      if (payError && !isDuplicateKeyError(payError)) {
+        // The order itself is saved; flag loudly so the payment row can be reconciled.
+        console.error('[CRITICAL] Supabase payment insert error — order saved without payment row:', {
+          orderRef,
+          payment_id: paymentInfo.payment_id,
+          error: payError,
+        });
       }
     }
 

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { guardLeadSubmission } from "@/lib/security/lead-guard";
 import { createClient } from "@supabase/supabase-js";
 import { isSesConfigured, sendNewsletterWelcomeEmail } from "@/lib/integrations";
 import { subscribeEmail } from "@/lib/content/subscriber-storage";
@@ -32,6 +33,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Per-IP rate limit + honeypot: this route sends email from Treel's domain.
+    const blocked = await guardLeadSubmission("newsletter-subscribe", req.headers, body);
+    if (blocked) return blocked;
+
     const rawEmail = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
     const source = typeof body.source === "string" ? body.source.trim() : "website_newsletter";
     const interest = typeof body.interest === "string" ? body.interest.trim() : "Mobility Intelligence Research";
@@ -64,7 +69,7 @@ export async function POST(req: NextRequest) {
     // 2. Also log to Supabase leads table if configured for legacy lead CRM tracking
     let persistedLeadId: string | null = null;
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+    const supabaseKey = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
 
     if (supabaseUrl && supabaseKey) {
       try {

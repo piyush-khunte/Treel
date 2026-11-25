@@ -61,15 +61,16 @@ ContentCategoryType
 import { createClient } from '@supabase/supabase-js';
 import { revalidatePath } from 'next/cache';
 
+// Every exported action in this 'use server' module is a public POST endpoint.
+// Admin actions MUST verify the session themselves — the /admin proxy guard
+// only protects page navigation, not server action calls.
+const UNAUTHORIZED_ERROR = "Unauthorized. Admin login required.";
+
 function getAdminClient() {
   const url = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder-treel.supabase.co').replace(/^['"]|['"]$/g, '');
   const key = (
     process.env.SUPABASE_SECRET_KEY ||
     process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-    process.env.SUPABASE_ANON_KEY ||
     'placeholder-key'
   ).replace(/^['"]|['"]$/g, '');
   return createClient(url, key, {
@@ -81,6 +82,7 @@ function getAdminClient() {
 // OVERVIEW STATS
 // ============================================================================
 export async function getAdminOverviewStats() {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   const supabase = getAdminClient();
   try {
     const [prodsRes, checksCountRes, recentChecksRes, allPaysRes, recentPaysRes, blogsRes] = await Promise.all([
@@ -129,6 +131,7 @@ export async function getAdminOverviewStats() {
 // PRODUCTS CRUD
 // ============================================================================
 export async function getAdminProducts(brand?: "personal" | "suraksha" | "all"): Promise<{ success: boolean; data?: MongoProduct[]; error?: string }> {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   try {
     const data = await getAllProducts(true, brand);
     return { success: true, data };
@@ -216,6 +219,7 @@ export async function deleteAdminProduct(id: string) {
 // CHECKOUTS / ORDERS CRUD
 // ============================================================================
 export async function getAdminCheckouts(): Promise<{ success: boolean; data?: MongoCheckout[]; error?: string }> {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   const supabase = getAdminClient();
   try {
     const { data, error } = await supabase
@@ -264,6 +268,7 @@ export async function getAdminCheckouts(): Promise<{ success: boolean; data?: Mo
 }
 
 export async function updateAdminCheckoutStatus(id: string, status: string) {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   const supabase = getAdminClient();
   try {
     const { data, error } = await supabase
@@ -288,6 +293,7 @@ export async function updateAdminCheckoutStatus(id: string, status: string) {
 // PAYMENTS
 // ============================================================================
 export async function getAdminPayments(): Promise<{ success: boolean; data?: MongoPayment[]; error?: string }> {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   const supabase = getAdminClient();
   try {
     const { data, error } = await supabase
@@ -307,6 +313,7 @@ export async function getAdminPayments(): Promise<{ success: boolean; data?: Mon
 // BLOGS CRUD
 // ============================================================================
 export async function getAdminBlogs(): Promise<{ success: boolean; data?: MongoBlog[]; error?: string }> {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   try {
     const data = await getAllBlogsFromDb();
     return { success: true, data };
@@ -501,6 +508,7 @@ export async function deleteAdminBlog(id: string): Promise<{ success: boolean; e
 }
 
 export async function togglePublishAdminBlog(id: string, currentStatus: "Published" | "Draft"): Promise<{ success: boolean; data?: MongoBlog; error?: string }> {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   const newStatus = currentStatus === "Published" ? "Draft" : "Published";
   return updateAdminBlog(id, { status: newStatus });
 }
@@ -510,6 +518,7 @@ export async function togglePublishAdminBlog(id: string, currentStatus: "Publish
 // ============================================================================
 
 export async function getAdminCategoryContent(category: ContentCategoryType): Promise<{ success: boolean; data?: any[]; error?: string }> {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   try {
     switch (category) {
       case "treel_main": {
@@ -730,6 +739,7 @@ export async function togglePublishAdminCategoryContent(
   id: string,
   currentStatus: "Published" | "Draft"
 ): Promise<{ success: boolean; data?: any; error?: string }> {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   const newStatus = currentStatus === "Published" ? "Draft" : "Published";
   return updateAdminCategoryContent(category, id, { status: newStatus });
 }
@@ -738,6 +748,7 @@ export async function togglePublishAdminCategoryContent(
 // ANNUAL RETURNS CRUD
 // ============================================================================
 export async function getAdminAnnualReturns(): Promise<{ success: boolean; data?: MongoAnnualReturn[]; error?: string }> {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   const supabase = getAdminClient();
   try {
     const { data, error } = await supabase
@@ -754,6 +765,7 @@ export async function getAdminAnnualReturns(): Promise<{ success: boolean; data?
 }
 
 export async function createAdminAnnualReturn(ret: Partial<MongoAnnualReturn>) {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   const supabase = getAdminClient();
   try {
     const { _id, ...cleanRet } = ret;
@@ -794,6 +806,7 @@ export async function createAdminAnnualReturn(ret: Partial<MongoAnnualReturn>) {
 }
 
 export async function updateAdminAnnualReturn(id: string, updates: Partial<MongoAnnualReturn>) {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   const supabase = getAdminClient();
   try {
     const fields = { ...updates };
@@ -822,6 +835,7 @@ export async function updateAdminAnnualReturn(id: string, updates: Partial<Mongo
 }
 
 export async function deleteAdminAnnualReturn(id: string) {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   const supabase = getAdminClient();
   try {
     const { error } = await supabase
@@ -849,6 +863,7 @@ export async function deleteAdminAnnualReturn(id: string) {
 // ============================================================================
 
 export async function getAdminNotices(): Promise<{ success: boolean; data?: NoticeItem[]; error?: string }> {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   try {
     const data = await getAllNotices();
     return { success: true, data };
@@ -982,6 +997,7 @@ export async function deleteAdminNotice(id: string): Promise<{ success: boolean;
 }
 
 export async function togglePublishAdminNotice(id: string, currentStatus: "Published" | "Draft"): Promise<{ success: boolean; data?: NoticeItem; error?: string }> {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   const newStatus = currentStatus === "Published" ? "Draft" : "Published";
   return updateAdminNotice(id, { status: newStatus });
 }
@@ -1025,6 +1041,7 @@ export interface AdminLeadItem {
 }
 
 export async function getAdminLeads(categoryFilter?: string): Promise<{ success: boolean; data?: AdminLeadItem[]; error?: string }> {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   const supabase = getAdminClient();
   try {
     const { data, error } = await supabase
@@ -1247,6 +1264,7 @@ export async function getAdminLeads(categoryFilter?: string): Promise<{ success:
 }
 
 export async function updateAdminLeadStatus(id: string, newStatus: string): Promise<{ success: boolean; error?: string }> {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
   const supabase = getAdminClient();
   try {
     await supabase

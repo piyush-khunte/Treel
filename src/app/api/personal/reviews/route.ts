@@ -1,7 +1,58 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import crypto from "crypto";
 import fs from "fs";
 import path from "path";
+import { getAdminSession } from "@/lib/admin/admin-auth";
+import { guardLeadSubmission } from "@/lib/security/lead-guard";
+
+const DELETE_TOKEN_HEADER = "x-review-delete-token";
+
+function hashToken(token: string): string {
+  return crypto.createHash("sha256").update(token).digest("hex");
+}
+
+function tokenMatches(token: string, storedHash: unknown): boolean {
+  if (typeof storedHash !== "string" || storedHash.length !== 64) return false;
+  const a = Buffer.from(hashToken(token), "hex");
+  const b = Buffer.from(storedHash, "hex");
+  return a.length === b.length && crypto.timingSafeEqual(a, b);
+}
+
+/** Fields safe to return publicly — never email or the delete-token hash. */
+function toPublicReview(r: any) {
+  return {
+    id: r.id,
+    name: r.name,
+    vehicle: r.vehicle,
+    stars: r.stars,
+    title: r.title,
+    body: r.body,
+    date: r.date,
+    verified: r.verified,
+    mediaUrl: r.mediaUrl ?? null,
+    mediaType: r.mediaType ?? "image",
+    created_at: r.created_at,
+  };
+}
+
+/** Only accept media produced by our own upload route (local path or our Supabase storage). */
+function sanitizeMediaUrl(value: unknown): string | null {
+  if (typeof value !== "string" || value.length > 2048) return null;
+  if (/^\/uploads\/reviews\/[A-Za-z0-9._-]+$/.test(value)) return value;
+  try {
+    const supabaseUrl = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "").replace(/^['"]|['"]$/g, "");
+    if (!supabaseUrl) return null;
+    const u = new URL(value);
+    const allowedHost = new URL(supabaseUrl).host;
+    if (u.protocol === "https:" && u.host === allowedHost && u.pathname.startsWith("/storage/v1/object/public/reviews/")) {
+      return u.toString();
+    }
+  } catch {
+    // invalid URL
+  }
+  return null;
+}
 
 const STORE_PATH = path.join(process.cwd(), "src", "lib", "data", "reviews-store.json");
 
@@ -34,10 +85,7 @@ function getSupabaseClient() {
   const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key =
     process.env.SUPABASE_SECRET_KEY ||
-    process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!url || !key || url.includes("placeholder-treel") || key.includes("placeholder-key")) {
     return null;
@@ -52,7 +100,7 @@ export async function GET() {
   const stored = readStoredReviews();
   return NextResponse.json({
     success: true,
-    reviews: stored,
+    reviews: stored.map(toPublicReview),
   });
 }
 
@@ -60,12 +108,15 @@ export async function POST(req: NextRequest) {
   try {
     const data = await req.json().catch(() => null);
 
-    if (!data) {
+    if (!data || typeof data !== "object") {
       return NextResponse.json(
         { success: false, error: "Invalid request payload" },
         { status: 400 }
       );
     }
+
+    const blocked = await guardLeadSubmission("personal-reviews", req.headers, data);
+    if (blocked) return blocked;
 
     const { name, email, vehicle, rating, title, review, mediaUrl, mediaType } = data;
 
@@ -98,19 +149,30 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (name.length > 100 || title.length > 200 || review.length > 5000) {
+      return NextResponse.json(
+        { success: false, error: "Review is too long." },
+        { status: 400 }
+      );
+    }
+
+    // Secret returned only to the author so they (and nobody else) can delete it later.
+    const deleteToken = crypto.randomBytes(24).toString("base64url");
+
     const newReview = {
-      id: `rev_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+      id: `rev_${Date.now()}_${crypto.randomBytes(4).toString("hex")}`,
       name: name.trim(),
-      email: email ? String(email).trim() : null,
-      vehicle: vehicle ? String(vehicle).trim() : "Personal Vehicle",
+      email: email ? String(email).trim().slice(0, 254) : null,
+      vehicle: vehicle ? String(vehicle).trim().slice(0, 100) : "Personal Vehicle",
       stars,
       title: title.trim(),
       body: review.trim(),
       date: "Just now",
       verified: true,
-      mediaUrl: mediaUrl || null,
-      mediaType: mediaType || "image",
+      mediaUrl: sanitizeMediaUrl(mediaUrl),
+      mediaType: mediaType === "video" ? "video" : "image",
       created_at: new Date().toISOString(),
+      deleteTokenHash: hashToken(deleteToken),
     };
 
     // 1. Save locally to server filesystem (shared for localhost & port forwarding)
@@ -142,7 +204,8 @@ export async function POST(req: NextRequest) {
       {
         success: true,
         message: "Thank you! Your review has been submitted successfully.",
-        review: newReview,
+        review: toPublicReview(newReview),
+        deleteToken,
       },
       { status: 201 }
     );
@@ -167,8 +230,20 @@ export async function DELETE(req: NextRequest) {
       );
     }
 
-    // 1. Delete from local server filesystem
+    // Only the review's author (holding its delete token) or an admin may delete it.
     const existing = readStoredReviews();
+    const target = existing.find((r) => r.id === id);
+    const token = req.headers.get(DELETE_TOKEN_HEADER) || "";
+    const isAuthor = Boolean(target && token && tokenMatches(token, target.deleteTokenHash));
+    const isAdmin = isAuthor ? false : Boolean(await getAdminSession());
+    if (!isAuthor && !isAdmin) {
+      return NextResponse.json(
+        { success: false, error: "You are not allowed to delete this review." },
+        { status: 403 }
+      );
+    }
+
+    // 1. Delete from local server filesystem
     const filtered = existing.filter((r) => r.id !== id);
     writeStoredReviews(filtered);
 
@@ -190,7 +265,7 @@ export async function DELETE(req: NextRequest) {
   } catch (err: any) {
     console.error("[Reviews Route] Delete error:", err);
     return NextResponse.json(
-      { success: false, error: err.message || "Failed to delete review." },
+      { success: false, error: "Failed to delete review." },
       { status: 500 }
     );
   }

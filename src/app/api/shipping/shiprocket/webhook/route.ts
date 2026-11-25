@@ -1,23 +1,57 @@
 import { NextRequest, NextResponse } from 'next/server';
+import crypto from 'crypto';
 import { getSupabaseAdminClient } from '@/lib/commerce/order-storage';
 import { isSesConfigured, sendShippingNotificationEmail } from '@/lib/integrations';
 
+function tokensEqual(provided: string, expected: string): boolean {
+  // Hash both so the comparison is constant-time regardless of length.
+  const a = crypto.createHash('sha256').update(provided).digest();
+  const b = crypto.createHash('sha256').update(expected).digest();
+  return crypto.timingSafeEqual(a, b);
+}
+
+/** Only trust tracking links that point at Shiprocket; anything else would end up in customer emails. */
+function safeTrackingUrl(value: unknown, awbCode: unknown): string | undefined {
+  if (typeof value === 'string') {
+    try {
+      const u = new URL(value);
+      const host = u.hostname.toLowerCase();
+      const isShiprocket = ['shiprocket.co', 'shiprocket.in'].some((d) => host === d || host.endsWith(`.${d}`));
+      if (u.protocol === 'https:' && isShiprocket) return u.toString();
+    } catch {
+      // fall through
+    }
+  }
+  if (typeof awbCode === 'string' || typeof awbCode === 'number') {
+    return `https://shiprocket.co/tracking/${encodeURIComponent(String(awbCode))}`;
+  }
+  return undefined;
+}
+
 export async function POST(req: NextRequest) {
   try {
-    // Optional shared-secret verification when a Shiprocket token is configured
+    // Shared-secret verification is mandatory: fail closed when it isn't configured.
+    // Configure the same value as the "Token" in Shiprocket → Settings → API → Webhooks
+    // (Shiprocket sends it in the x-api-key header).
     const expectedToken = process.env.SHIPROCKET_WEBHOOK_TOKEN || process.env.SHIPROCKET_WEBHOOK_SECRET;
-    if (expectedToken) {
-      const headerToken =
-        req.headers.get('x-api-key') ||
-        req.headers.get('authorization')?.replace('Bearer ', '') ||
-        new URL(req.url).searchParams.get('token');
+    if (!expectedToken) {
+      console.error('[Shiprocket Status Update] SHIPROCKET_WEBHOOK_TOKEN is not configured; rejecting webhook.');
+      return NextResponse.json(
+        { success: false, error: 'Webhook not configured' },
+        { status: 503 }
+      );
+    }
 
-      if (!headerToken || headerToken !== expectedToken) {
-        return NextResponse.json(
-          { success: false, error: 'Unauthorized status update request' },
-          { status: 401 }
-        );
-      }
+    const authHeader = req.headers.get('authorization');
+    const providedToken =
+      req.headers.get('x-api-key') ||
+      (authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : null);
+
+    if (!providedToken || !tokensEqual(providedToken, expectedToken)) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized status update request' },
+        { status: 401 }
+      );
     }
 
     const body = await req.json().catch(() => null);
@@ -43,9 +77,7 @@ export async function POST(req: NextRequest) {
       body.order_status ||
       ''
     ).toUpperCase();
-    const trackingUrl =
-      body.tracking_url ||
-      (awbCode ? `https://shiprocket.co/tracking/${awbCode}` : undefined);
+    const trackingUrl = safeTrackingUrl(body.tracking_url, awbCode);
 
     let mappedStatus = 'processing';
     if (rawStatus.includes('DELIVERED')) {
@@ -120,7 +152,7 @@ export async function POST(req: NextRequest) {
             orderId,
             courierName: courierName || 'Shiprocket Partner Carrier',
             awbCode: awbCode || 'N/A',
-            trackingUrl: trackingUrl || (awbCode ? `https://shiprocket.co/tracking/${awbCode}` : undefined),
+            trackingUrl,
           });
         } catch (emailErr) {
           console.error('[Shiprocket Status Update] Shipping notification email error:', emailErr);
@@ -137,7 +169,7 @@ export async function POST(req: NextRequest) {
     const message = error instanceof Error ? error.message : 'Unknown status update error';
     console.error('[Shiprocket Status Update Exception]', message);
     return NextResponse.json(
-      { success: false, error: message },
+      { success: false, error: 'Failed to process status update' },
       { status: 500 }
     );
   }

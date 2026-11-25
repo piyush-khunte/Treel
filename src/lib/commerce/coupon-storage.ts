@@ -16,10 +16,6 @@ function getAdminClient() {
   const key =
     process.env.SUPABASE_SECRET_KEY ||
     process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-    process.env.SUPABASE_ANON_KEY ||
     "placeholder-key";
   return createClient(url, key, { auth: { persistSession: false } });
 }
@@ -315,6 +311,33 @@ export async function getCouponByCode(code: string): Promise<AdminCoupon | null>
 }
 
 /**
+ * Increments a coupon's usage counter after an order using it has been recorded.
+ * Note: coupons are stored as one JSON document, so two simultaneous orders can still
+ * race on this counter; it is accurate for normal traffic.
+ */
+export async function recordCouponUse(code: string): Promise<void> {
+  const cleanCode = (code || "").trim().toUpperCase();
+  if (!cleanCode) return;
+  try {
+    const all = await getAllCoupons();
+    const idx = all.findIndex((c) => c.code.toUpperCase() === cleanCode);
+    if (idx < 0) return;
+    const list = [...all];
+    list[idx] = { ...list[idx], usedCount: (list[idx].usedCount || 0) + 1, updatedAt: new Date().toISOString() };
+    writeLocalStore(list);
+    if (isSupabaseConfigured()) {
+      const supabase = getAdminClient();
+      await supabase.from("TreelEcommerce.t_test").upsert(
+        { testKey: "treel_coupons", testValue: JSON.stringify(list) },
+        { onConflict: "testKey" }
+      );
+    }
+  } catch (err) {
+    console.error("[Coupons] Failed to record coupon use:", { code: cleanCode, err });
+  }
+}
+
+/**
  * Persists a coupon with strict server-side validation.
  */
 export async function saveCoupon(
@@ -375,6 +398,8 @@ export async function saveCoupon(
     discountType: coupon.discountType || "percent",
     discountValue,
     status: coupon.status || "Active",
+    // Usage is tracked server-side; an admin edit must never overwrite it with a stale value.
+    usedCount: existing?.usedCount ?? 0,
     updatedAt: now,
     createdAt: existing?.createdAt || now,
   });

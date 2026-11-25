@@ -3,7 +3,7 @@ import { getSupabaseAdminClient } from "@/lib/commerce/order-storage";
 import {
   ADMIN_SESSION_COOKIE,
   ADMIN_ROLE,
-  AUTH_SECRET,
+  isAdminAuthConfigured,
 } from "./admin-constants";
 import {
   AdminSession,
@@ -14,17 +14,36 @@ import {
 export {
   ADMIN_SESSION_COOKIE,
   ADMIN_ROLE,
-  AUTH_SECRET,
+  isAdminAuthConfigured,
   signSessionToken,
   verifySessionToken,
 };
 export type { AdminSession };
 
+// Random per-process key: only used to make the password comparison constant-time,
+// so it never needs to be shared or persisted.
+const PASSWORD_COMPARE_KEY = crypto.getRandomValues(new Uint8Array(32));
+
+/**
+ * Supabase Auth users are only admins if explicitly marked: app_metadata.role === "admin"
+ * (settable only with the service key), or their email is listed in ADMIN_EMAILS.
+ * Any other Supabase account (e.g. a customer or a self sign-up) is NOT an admin.
+ */
+function isAllowedSupabaseAdmin(user: { email?: string | null; app_metadata?: Record<string, unknown> | null }): boolean {
+  if (user.app_metadata && user.app_metadata.role === ADMIN_ROLE) return true;
+  const allowList = (process.env.ADMIN_EMAILS || "")
+    .split(/[,;\s]+/)
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean);
+  const email = (user.email || "").trim().toLowerCase();
+  return Boolean(email) && allowList.includes(email);
+}
+
 async function sha256Hex(text: string): Promise<string> {
   const encoder = new TextEncoder();
   const key = await crypto.subtle.importKey(
     "raw",
-    encoder.encode(AUTH_SECRET),
+    PASSWORD_COMPARE_KEY,
     { name: "HMAC", hash: "SHA-256" },
     false,
     ["sign"]
@@ -68,7 +87,11 @@ export async function authenticateAdmin(
         password: cleanPass,
       });
 
-      if (!authError && authData?.user) {
+      if (!authError && authData?.user && !isAllowedSupabaseAdmin(authData.user)) {
+        console.warn("[admin-auth] Supabase user signed in but is not an admin; access denied.");
+      }
+
+      if (!authError && authData?.user && isAllowedSupabaseAdmin(authData.user)) {
         const now = Math.floor(Date.now() / 1000);
         return {
           success: true,
@@ -132,7 +155,8 @@ export async function authenticateAdmin(
  * Retrieves the active admin session from cookies (Server Component / Action context).
  */
 export async function getAdminSession(): Promise<AdminSession | null> {
-  if (process.env.ADMIN_BYPASS_AUTH === "true") {
+  // Local-development convenience only; can never take effect in a production build.
+  if (process.env.ADMIN_BYPASS_AUTH === "true" && process.env.NODE_ENV !== "production") {
     const now = Math.floor(Date.now() / 1000);
     return {
       username: "admin",

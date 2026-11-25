@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { guardLeadSubmission } from "@/lib/security/lead-guard";
 import { submitWarrantyClaimSubmission } from "@/lib/content/warranty-storage";
 import { isSesConfigured, sendWarrantyClaimConfirmationEmail } from "@/lib/integrations";
 
@@ -11,6 +12,10 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Per-IP rate limit + honeypot: this route sends email from Treel's domain.
+    const blocked = await guardLeadSubmission("warranty-claim", req.headers, body);
+    if (blocked) return blocked;
 
     const orderId = (body.orderId || body.order_id || "").trim();
     const customerEmail = (body.customerEmail || body.email || "").trim().toLowerCase();
@@ -38,6 +43,20 @@ export async function POST(req: NextRequest) {
     if (!claimDescription) {
       return NextResponse.json(
         { success: false, error: "Please provide a brief description of the issue." },
+        { status: 400 }
+      );
+    }
+
+    if (
+      claimDescription.length > 2000 ||
+      claimIssueType.length > 120 ||
+      claimResolution.length > 120 ||
+      customerName.length > 120 ||
+      customerPhone.length > 20 ||
+      orderId.length > 64
+    ) {
+      return NextResponse.json(
+        { success: false, error: "Some fields are too long. Please shorten your description and try again." },
         { status: 400 }
       );
     }
