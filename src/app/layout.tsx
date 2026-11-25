@@ -159,6 +159,7 @@ export default function RootLayout({
         ) : null}
       </head>
       <body className="min-h-screen flex flex-col antialiased selection:bg-[#D5573B]/20 selection:text-[#FAF7F2]">
+      <script src="https://www.magicflowai.io/chatbot.js"></script>
         <CartProvider>
           <a
             href="#main-content"
