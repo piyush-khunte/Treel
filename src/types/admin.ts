@@ -189,6 +189,23 @@ export interface AdminConsentRecord {
   source?: string;
   pagePath?: string;
   updatedAt?: string;
+  /** Services actually active for the granted categories when this decision was recorded. */
+  activeServices?: string[];
+  /** Server time the decision was received (authoritative; `timestamp` is the browser's claim). */
+  recordedAt?: string;
+  /** Earlier decisions for the same anonymous consent ID, oldest first. */
+  history?: ConsentHistoryEntry[];
+}
+
+export interface ConsentHistoryEntry {
+  status: AdminConsentRecord["status"];
+  decision: AdminConsentRecord["decision"];
+  rawCategories: AdminConsentRecord["rawCategories"];
+  activeServices: string[];
+  policyVersion: string;
+  source?: string;
+  pagePath?: string;
+  recordedAt: string;
 }
 
 export type { 

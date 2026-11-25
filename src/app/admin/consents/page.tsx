@@ -34,6 +34,9 @@ export default function AdminConsentsPage() {
     marketingCount: 0,
     functionalCount: 0,
   });
+  const [registry, setRegistry] = useState<
+    Record<"necessary" | "functional" | "analytics" | "marketing", { name: string; active: boolean; cookies: string[] }[]> | null
+  >(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -67,6 +70,7 @@ export default function AdminConsentsPage() {
       const res = await getAdminCookieConsents();
       if (res.success && res.data) {
         setRecords(res.data);
+        if (res.registry) setRegistry(res.registry);
         if (res.stats) {
           setStats({
             total: res.stats.total,
@@ -366,6 +370,51 @@ export default function AdminConsentsPage() {
         </div>
       </div>
 
+      {/* What each category actually loads (live from the tracking registry) */}
+      {registry && (
+        <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+          <div>
+            <h3 className="text-base font-semibold text-white">What each consent category actually loads</h3>
+            <p className="text-xs text-slate-400 mt-0.5">
+              Live from this deployment&apos;s configuration. A category the visitor grants only results in tracking for the services marked Active.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {(["analytics", "marketing", "functional"] as const).map((cat) => {
+              const services = registry[cat] || [];
+              return (
+                <div key={cat} className="p-4 rounded-xl bg-slate-950/50 border border-slate-800 space-y-2">
+                  <div className="text-[11px] uppercase tracking-wider font-semibold text-slate-300">{cat}</div>
+                  {services.length === 0 ? (
+                    <div className="text-xs text-amber-300">
+                      No services — granting this category currently enables nothing.
+                    </div>
+                  ) : (
+                    services.map((s) => (
+                      <div key={s.name} className="flex items-start justify-between gap-3 text-xs">
+                        <div>
+                          <div className="text-slate-200">{s.name}</div>
+                          <div className="font-mono text-[10px] text-slate-500">{s.cookies.join(", ")}</div>
+                        </div>
+                        <span
+                          className={`shrink-0 px-2 py-0.5 rounded text-[10px] font-mono font-semibold border ${
+                            s.active
+                              ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30"
+                              : "bg-slate-800 text-slate-400 border-slate-700"
+                          }`}
+                        >
+                          {s.active ? "Active" : "Not configured"}
+                        </span>
+                      </div>
+                    ))
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* Audit Records Table */}
       <div className="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
         <div className="p-6 border-b border-slate-800 flex items-center justify-between">
@@ -475,6 +524,11 @@ export default function AdminConsentsPage() {
                         {item.status === "Withdrawn" && <AlertTriangle className="w-3 h-3" />}
                         {item.decision || item.status}
                       </span>
+                      {item.history && item.history.length > 0 && (
+                        <div className="mt-1.5 text-[10px] font-mono text-slate-500">
+                          Changed {item.history.length}× · was {item.history[item.history.length - 1].decision}
+                        </div>
+                      )}
                     </td>
 
                     {/* Categories Badges */}
@@ -512,6 +566,15 @@ export default function AdminConsentsPage() {
                           <span className="px-2 py-0.5 rounded text-[10px] font-mono text-slate-500 line-through bg-slate-950/40 border border-slate-800">
                             Functional
                           </span>
+                        )}
+                      </div>
+                      <div className="mt-2 text-[10px] font-mono">
+                        {item.activeServices === undefined ? (
+                          <span className="text-slate-600">Services not recorded (pre-25 Nov 2026 record)</span>
+                        ) : item.activeServices.length > 0 ? (
+                          <span className="text-emerald-300/80">Loaded: {item.activeServices.join(", ")}</span>
+                        ) : (
+                          <span className="text-slate-500">Loaded: essential only (no trackers)</span>
                         )}
                       </div>
                     </td>
@@ -650,7 +713,11 @@ export default function AdminConsentsPage() {
                   <span className="text-slate-200">{selectedRecord.pagePath || "/"}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-400">Timestamp (UTC):</span>
+                  <span className="text-slate-400">Recorded by server (UTC):</span>
+                  <span className="text-slate-300">{selectedRecord.recordedAt || "Not recorded (older record)"}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-400">Browser timestamp (UTC):</span>
                   <span className="text-slate-300">{selectedRecord.timestamp}</span>
                 </div>
                 <div className="flex items-center justify-between">
@@ -695,6 +762,51 @@ export default function AdminConsentsPage() {
                   </div>
                 </div>
               </div>
+
+              {/* Services actually loaded */}
+              <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+                <div className="text-slate-400 uppercase text-[10px] tracking-wider font-semibold mb-1">
+                  Services Loaded For This Decision
+                </div>
+                {selectedRecord.activeServices === undefined ? (
+                  <div className="text-slate-500">Not recorded — this decision was captured before service tracking was added.</div>
+                ) : selectedRecord.activeServices.length > 0 ? (
+                  <ul className="space-y-1">
+                    {selectedRecord.activeServices.map((s) => (
+                      <li key={s} className="text-emerald-300">• {s}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="text-slate-300">Essential only — no analytics or marketing trackers were loaded.</div>
+                )}
+              </div>
+
+              {/* Change history */}
+              {selectedRecord.history && selectedRecord.history.length > 0 && (
+                <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2 max-h-48 overflow-y-auto">
+                  <div className="text-slate-400 uppercase text-[10px] tracking-wider font-semibold mb-1">
+                    Earlier Decisions ({selectedRecord.history.length})
+                  </div>
+                  {[...selectedRecord.history].reverse().map((h, idx) => (
+                    <div key={`${h.recordedAt}-${idx}`} className="flex items-start justify-between gap-3 border-b border-slate-800/60 pb-1.5 last:border-0">
+                      <div>
+                        <div className="text-slate-200">{h.decision}</div>
+                        <div className="text-[10px] text-slate-500">
+                          {[
+                            h.rawCategories.analytics ? "Analytics" : null,
+                            h.rawCategories.marketing ? "Marketing" : null,
+                            h.rawCategories.functional ? "Functional" : null,
+                          ]
+                            .filter(Boolean)
+                            .join(", ") || "Essential only"}
+                          {h.source ? ` · ${h.source}` : ""}
+                        </div>
+                      </div>
+                      <span className="text-[10px] text-slate-400 whitespace-nowrap">{h.recordedAt}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="flex items-center justify-end pt-2 border-t border-white/[0.08]">

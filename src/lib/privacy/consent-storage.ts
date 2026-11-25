@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { AdminConsentRecord } from "@/types/admin";
+import { AdminConsentRecord, ConsentHistoryEntry } from "@/types/admin";
 import { createClient } from "@supabase/supabase-js";
 import { revalidatePath } from "next/cache";
 
@@ -83,7 +83,8 @@ export function normalizeConsentRecord(item: any): AdminConsentRecord {
 
   let formattedDate = "Recently";
   try {
-    const d = new Date(timestamp);
+    // Prefer the server-recorded time; older records only have the browser-supplied timestamp.
+    const d = new Date(typeof item.recordedAt === "string" ? item.recordedAt : timestamp);
     formattedDate = d.toLocaleString("en-IN", {
       day: "2-digit",
       month: "short",
@@ -111,7 +112,54 @@ export function normalizeConsentRecord(item: any): AdminConsentRecord {
     source: item.source || "Banner",
     pagePath: item.pagePath || item.page_path || "/",
     updatedAt: item.updatedAt || item.updated_at || new Date().toISOString(),
+    activeServices: Array.isArray(item.activeServices) ? item.activeServices.map(String) : undefined,
+    recordedAt: typeof item.recordedAt === "string" ? item.recordedAt : undefined,
+    history: Array.isArray(item.history) ? (item.history as ConsentHistoryEntry[]) : [],
   };
+}
+
+function toHistoryEntry(r: AdminConsentRecord): ConsentHistoryEntry {
+  return {
+    status: r.status,
+    decision: r.decision,
+    rawCategories: r.rawCategories,
+    activeServices: r.activeServices || [],
+    policyVersion: r.policyVersion,
+    source: r.source,
+    pagePath: r.pagePath,
+    recordedAt: r.recordedAt || r.timestamp,
+  };
+}
+
+/** True when the new decision is the same as the stored one (e.g. a retried request). */
+function isSameDecision(a: AdminConsentRecord, b: AdminConsentRecord): boolean {
+  return (
+    a.status === b.status &&
+    a.policyVersion === b.policyVersion &&
+    a.rawCategories.functional === b.rawCategories.functional &&
+    a.rawCategories.analytics === b.rawCategories.analytics &&
+    a.rawCategories.marketing === b.rawCategories.marketing
+  );
+}
+
+/** Reads one consent record (by anonymous ID) from the complete store. */
+async function findExistingRecord(consentId: string): Promise<AdminConsentRecord | null> {
+  const local = readLocalStore().find((it) => (it.consentId || (it as any).consent_id) === consentId);
+  try {
+    const supabase = getAdminClient();
+    const { data, error } = await supabase
+      .from("TreelEcommerce.t_test")
+      .select("item")
+      .eq("testKey", "treel_cookie_consent")
+      .eq("_id", consentId)
+      .limit(1);
+    if (!error && data && data[0]?.item) {
+      return normalizeConsentRecord(JSON.parse(data[0].item));
+    }
+  } catch {
+    // fall back to local
+  }
+  return local ? normalizeConsentRecord(local) : null;
 }
 
 /**
@@ -122,6 +170,29 @@ export async function getAllConsentRecords(): Promise<AdminConsentRecord[]> {
   const supabase = getAdminClient();
 
   try {
+    // 0. Complete records (source, page, active services, history) live in t_test.
+    //    The cookie_consents tables only have the core columns, so read them as a fallback.
+    const full = await supabase
+      .from("TreelEcommerce.t_test")
+      .select("item")
+      .eq("testKey", "treel_cookie_consent");
+
+    if (!full.error && full.data && full.data.length > 0) {
+      const items: AdminConsentRecord[] = [];
+      for (const row of full.data) {
+        try {
+          if (row.item) items.push(normalizeConsentRecord(JSON.parse(row.item)));
+        } catch {}
+      }
+      if (items.length > 0) {
+        const sorted = items.sort((a, b) =>
+          (b.recordedAt || b.timestamp || "").localeCompare(a.recordedAt || a.timestamp || "")
+        );
+        writeLocalStore(sorted);
+        return sorted;
+      }
+    }
+
     // 1. Try public.cookie_consents table
     const res1 = await supabase
       .from("cookie_consents")
@@ -188,7 +259,18 @@ export async function getAllConsentRecords(): Promise<AdminConsentRecord[]> {
  * Saves or updates a consent audit record across local storage and remote Supabase database.
  */
 export async function saveConsentRecord(record: any): Promise<AdminConsentRecord> {
-  const normalized = normalizeConsentRecord(record);
+  const incoming = normalizeConsentRecord(record);
+
+  // Keep an audit trail: the previous decision for this anonymous ID moves into `history`
+  // instead of being overwritten. Identical repeats (retries) are not duplicated.
+  const existing = await findExistingRecord(incoming.consentId);
+  let normalized: AdminConsentRecord = incoming;
+  if (existing) {
+    const priorHistory = existing.history || [];
+    normalized = isSameDecision(existing, incoming)
+      ? { ...incoming, history: priorHistory, recordedAt: existing.recordedAt || incoming.recordedAt }
+      : { ...incoming, history: [...priorHistory, toHistoryEntry(existing)].slice(-50) };
+  }
 
   // 1. Save to local persistent file store
   const localItems = readLocalStore();
@@ -208,7 +290,7 @@ export async function saveConsentRecord(record: any): Promise<AdminConsentRecord
     status: normalized.status.toLowerCase(),
     categories: normalized.rawCategories,
     policy_version: normalized.policyVersion,
-    consent_timestamp: normalized.timestamp,
+    consent_timestamp: normalized.recordedAt || normalized.timestamp,
     withdrawn_at: normalized.withdrawnAt,
     updated_at: normalized.updatedAt,
   };

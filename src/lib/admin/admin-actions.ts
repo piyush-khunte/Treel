@@ -1296,6 +1296,8 @@ export async function getAdminCookieConsents(): Promise<{
     marketingCount?: number;
     functionalCount?: number;
   };
+  /** What each consent category actually loads in this deployment. */
+  registry?: Record<"necessary" | "functional" | "analytics" | "marketing", { name: string; active: boolean; cookies: string[] }[]>;
   error?: string;
 }> {
   const session = await getAdminSession();
@@ -1311,11 +1313,13 @@ export async function getAdminCookieConsents(): Promise<{
   try {
     const records = await getAllConsentRecords();
     const stats = getConsentStats(records);
+    const { getTrackingRegistrySummary } = await import("@/lib/privacy/tracking-registry");
 
     return {
       success: true,
       data: records,
       stats,
+      registry: getTrackingRegistrySummary(),
     };
   } catch (error: any) {
     console.error("getAdminCookieConsents error:", error);
