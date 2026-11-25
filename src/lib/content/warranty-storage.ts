@@ -12,10 +12,6 @@ function getAdminClient() {
   const key = (
     process.env.SUPABASE_SECRET_KEY ||
     process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-    process.env.SUPABASE_ANON_KEY ||
     "placeholder-key"
   ).replace(/^['"]|['"]$/g, "");
   return createClient(url, key, { auth: { persistSession: false } });
@@ -243,20 +239,29 @@ export async function verifyOrderForWarranty(
 
   try {
     const supabase = getAdminClient();
+    // Look up by order ID only (parameterised .eq — never interpolate input into .or()),
+    // then require the email on that order to match before revealing anything about it.
     const res = await supabase
       .from("TreelEcommerce.checkouts")
       .select("*")
-      .or(`_id.eq.${cleanOrderId},contact.eq.${cleanEmail}`)
-      .limit(5);
+      .eq("_id", cleanOrderId)
+      .limit(1);
 
     if (!res.error && res.data && res.data.length > 0) {
-      // Find matching checkout
-      const exactMatch = res.data.find(
-        (c) =>
-          c._id === cleanOrderId ||
-          (c.contact && c.contact.toLowerCase() === cleanEmail)
-      );
+      const order = res.data[0];
+      const emailMatches =
+        typeof order.contact === "string" && order.contact.trim().toLowerCase() === cleanEmail;
 
+      if (!emailMatches) {
+        return {
+          verified: false,
+          orderFound: false,
+          productTitle: "Personal TPMS (4-Tyre Kit)",
+          message: "The email address does not match this order. Please use the email you checked out with.",
+        };
+      }
+
+      const exactMatch = order;
       if (exactMatch) {
         const title =
           exactMatch["cartData[0].title"] ||

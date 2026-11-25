@@ -3,8 +3,14 @@ import { validateCouponServer } from "@/lib/commerce/coupon-validator";
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const rawCode = (body.code || "").trim();
+    const body = await req.json().catch(() => null);
+    if (!body || typeof body !== "object") {
+      return NextResponse.json(
+        { success: false, valid: false, error: "Invalid request payload." },
+        { status: 400 }
+      );
+    }
+    const rawCode = String(body.code || "").trim();
     const items = Array.isArray(body.items) ? body.items : [];
     const subtotalInr =
       Number(body.subtotalInr) ||

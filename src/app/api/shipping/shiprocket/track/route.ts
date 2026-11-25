@@ -1,35 +1,67 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isShiprocketConfigured, trackShipment } from '@/lib/integrations';
 import { getSupabaseAdminClient } from '@/lib/commerce/order-storage';
+import { consumeLeadRateLimit, getRequestIp } from '@/lib/security/lead-guard';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const awbCode = searchParams.get('awb') || searchParams.get('awbCode') || undefined;
   const orderId = searchParams.get('orderId') || searchParams.get('order_id') || undefined;
-  const email = searchParams.get('email') || searchParams.get('contact') || undefined;
+  const email = (searchParams.get('email') || searchParams.get('contact') || '').trim().toLowerCase() || undefined;
 
-  // 1. If orderId or email is provided, check database first
-  let dbOrder: any = null;
+  // Order lookups expose the customer's shipping address, so they always need the
+  // order ID *and* the email used at checkout, matched exactly.
+  if (orderId && !email) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: {
+          code: 'VALIDATION_ERROR',
+          message: 'Please provide the email address used for this order.',
+        },
+      },
+      { status: 400 }
+    );
+  }
+
+  // Slow down order-ID/email guessing.
   if (orderId) {
+    const wait = await consumeLeadRateLimit('track-order', getRequestIp(req.headers));
+    if (wait > 0) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: { code: 'RATE_LIMITED', message: `Too many lookups. Please try again in ${Math.ceil(wait / 60)} minute(s).` },
+        },
+        { status: 429, headers: { 'Retry-After': String(wait) } }
+      );
+    }
+  }
+
+  // 1. Look up the order by ID, then confirm the email matches
+  let dbOrder: any = null;
+  if (orderId && email) {
     try {
       const supabase = getSupabaseAdminClient();
-      let query = supabase.from('TreelEcommerce.checkouts').select('*').eq('_id', orderId);
-      if (email) {
-        query = query.ilike('contact', email.trim());
-      }
-      const { data } = await query.limit(1);
-      if (data && data.length > 0) {
-        dbOrder = data[0];
+      const { data } = await supabase
+        .from('TreelEcommerce.checkouts')
+        .select('*')
+        .eq('_id', orderId.trim())
+        .limit(1);
+      const candidate = data && data.length > 0 ? data[0] : null;
+      if (candidate && typeof candidate.contact === 'string' && candidate.contact.trim().toLowerCase() === email) {
+        dbOrder = candidate;
       }
     } catch (dbErr) {
       console.error('[Track Route] DB query error:', dbErr);
     }
   }
 
+  // An order ID that didn't match (or whose email didn't match) is never used for carrier lookups.
   const effectiveAwb = awbCode || dbOrder?.awb_code;
-  const effectiveOrderId = orderId || dbOrder?._id;
+  const effectiveOrderId = dbOrder?._id;
 
-  // 2. If Shiprocket is configured and we have AWB or order ID, attempt carrier tracking
+  // 2. If Shiprocket is configured and we have AWB or a verified order ID, attempt carrier tracking
   let shiprocketData: any = null;
   if (isShiprocketConfigured() && (effectiveAwb || effectiveOrderId)) {
     try {
@@ -175,14 +207,13 @@ export async function POST(req: NextRequest) {
 
     const getReq = new NextRequest(url.toString(), { method: 'GET', headers: req.headers });
     return GET(getReq);
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : 'Invalid request payload';
+  } catch {
     return NextResponse.json(
       {
         success: false,
         error: {
           code: 'VALIDATION_ERROR',
-          message,
+          message: 'Invalid request payload',
         },
       },
       { status: 400 }

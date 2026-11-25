@@ -12,10 +12,6 @@ function getAdminClient() {
   const key = (
     process.env.SUPABASE_SECRET_KEY ||
     process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-    process.env.SUPABASE_ANON_KEY ||
     "placeholder-key"
   ).replace(/^['"]|['"]$/g, "");
   return createClient(url, key, { auth: { persistSession: false } });
@@ -190,7 +186,7 @@ export const SEED_EVENTS: EventItemRecord[] = [
     location: "New Delhi",
     isOnline: false,
     excerpt: "Presentation on commercial fleet electrification and telematics integration.",
-    materialUrl: "/research/roi-fleet-intelligence",
+    materialUrl: "/resources/research/roi-fleet-intelligence",
     materialLabel: "View Session Paper",
     status: "Completed",
     publicationStatus: "Published",
@@ -207,7 +203,7 @@ export const SEED_EVENTS: EventItemRecord[] = [
     location: "Kolkata",
     isOnline: false,
     excerpt: "Executive session on haulage safety and predictive maintenance.",
-    materialUrl: "/research/data-architecture",
+    materialUrl: "/resources/research/data-architecture",
     materialLabel: "Download Executive Deck",
     status: "Completed",
     publicationStatus: "Published",
@@ -224,7 +220,7 @@ export const SEED_EVENTS: EventItemRecord[] = [
     location: "Bengaluru",
     isOnline: false,
     excerpt: "Logistics leadership gathering on connected fleet intelligence.",
-    materialUrl: "/insights/vehicle-digital-twins-architecture",
+    materialUrl: "/resources/insights/vehicle-digital-twins-architecture",
     materialLabel: "Read Summary",
     status: "Completed",
     publicationStatus: "Published",

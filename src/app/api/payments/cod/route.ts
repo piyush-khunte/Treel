@@ -2,21 +2,43 @@ import { NextRequest, NextResponse } from 'next/server';
 import { persistOrderToSupabase } from '@/lib/commerce/order-storage';
 import { syncOrderToShiprocket } from '@/lib/commerce/shiprocket-order-sync';
 import { isSesConfigured, sendOrderConfirmationEmail, sendEmail } from '@/lib/integrations';
-import { validateCouponServer } from '@/lib/commerce/coupon-validator';
-import { validateCartBrandServer, isSurakshaProductOrItem } from '@/lib/commerce/brand-validator';
+import { priceCartServer } from '@/lib/commerce/server-pricing';
+import { validateCartBrandServer } from '@/lib/commerce/brand-validator';
+import { guardLeadSubmission } from '@/lib/security/lead-guard';
+import { escapeHtml } from '@/lib/security/escape-html';
+import { recordCouponUse } from '@/lib/commerce/coupon-storage';
+
+const PHONE_RE = /^(?:\+?91)?\d{10}$/;
+const PIN_RE = /^[1-9]\d{5}$/;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function tooLong(v: unknown, max: number): boolean {
+  return typeof v === 'string' && v.length > max;
+}
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { checkout } = body;
+    const body = await req.json().catch(() => null);
+    if (!body || typeof body !== 'object') {
+      return NextResponse.json(
+        { success: false, error: { code: 'VALIDATION_ERROR', message: 'Invalid request payload' } },
+        { status: 400 }
+      );
+    }
+
+    // COD orders create real shipments and emails, so throttle per IP and drop bot submissions.
+    const blocked = await guardLeadSubmission('cod-order', req.headers, body.checkout ?? body);
+    if (blocked) return blocked;
+
+    const { checkout: rawCheckout } = body;
 
     if (
-      !checkout ||
-      !checkout.fullName ||
-      !checkout.phone ||
-      !checkout.address ||
-      !checkout.city ||
-      !checkout.pincode
+      !rawCheckout ||
+      !rawCheckout.fullName ||
+      !rawCheckout.phone ||
+      !rawCheckout.address ||
+      !rawCheckout.city ||
+      !rawCheckout.pincode
     ) {
       return NextResponse.json(
         {
@@ -31,7 +53,31 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!Array.isArray(checkout.items) || checkout.items.length === 0) {
+    const phoneDigits = String(rawCheckout.phone).replace(/[\s-]/g, '');
+    if (
+      !PHONE_RE.test(phoneDigits) ||
+      !PIN_RE.test(String(rawCheckout.pincode).trim()) ||
+      (rawCheckout.email && !EMAIL_RE.test(String(rawCheckout.email).trim())) ||
+      tooLong(rawCheckout.fullName, 120) ||
+      tooLong(rawCheckout.address, 300) ||
+      tooLong(rawCheckout.addressoptional, 300) ||
+      tooLong(rawCheckout.city, 100) ||
+      tooLong(rawCheckout.state, 100) ||
+      tooLong(rawCheckout.email, 254)
+    ) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'VALIDATION_ERROR',
+            message: 'Please enter a valid 10-digit mobile number, 6-digit pincode and email address.',
+          },
+        },
+        { status: 400 }
+      );
+    }
+
+    if (!Array.isArray(rawCheckout.items) || rawCheckout.items.length === 0) {
       return NextResponse.json(
         {
           success: false,
@@ -45,7 +91,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Enforce strict server-side brand validation
-    const brandValidation = validateCartBrandServer(checkout.items, body.brand || checkout.brand);
+    const brandValidation = validateCartBrandServer(rawCheckout.items, body.brand || rawCheckout.brand);
     if (!brandValidation.valid) {
       return NextResponse.json(
         {
@@ -59,68 +105,43 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const hasSuraksha = checkout.items.some(isSurakshaProductOrItem);
-
-    // Calculate server-side verified subtotal
-    const subtotal = checkout.items.reduce((acc: number, it: any) => {
-      const vid = (it.variant_id || "").toLowerCase();
-      const sku = (it.sku || "").toUpperCase();
-      const isSur = vid.startsWith("suraksha") || sku.includes("SURAKSHA") || it.vehicle_type === "truck";
-      let unitPrice = Number(it.price_inr || it.price) || 0;
-      if (isSur && unitPrice <= 1700) {
-        const sensors = Number(it.sensor_count) || (vid.match(/(\d+)w/) ? parseInt(vid.match(/(\d+)w/)[1], 10) : 1);
-        unitPrice = sensors * 1700;
-      }
-      const q = Number(it.quantity) || 1;
-      return acc + unitPrice * q;
-    }, 0);
-
-    let verifiedDiscount = 0;
-    const rawCoupon = (checkout.couponCode || checkout.coupon || '').trim().toUpperCase();
-    if (rawCoupon) {
-      const couponResult = await validateCouponServer({
-        code: rawCoupon,
-        items: checkout.items,
-        subtotalInr: subtotal,
-        brand: hasSuraksha ? "suraksha" : "personal",
-      });
-
-      if (!couponResult.valid) {
-        return NextResponse.json(
-          {
-            success: false,
-            error: {
-              code: 'INVALID_COUPON',
-              message: couponResult.error || couponResult.message || `Coupon "${rawCoupon}" is invalid for this order.`,
-            },
-          },
-          { status: 400 }
-        );
-      }
-      verifiedDiscount = couponResult.discountAmountInr;
+    // Price the cart entirely server-side (catalogue prices, validated quantities, re-validated coupon).
+    // Client-supplied prices and totals are ignored.
+    const priced = await priceCartServer(rawCheckout.items, rawCheckout.couponCode || rawCheckout.coupon);
+    if (!priced.ok) {
+      return NextResponse.json(
+        { success: false, error: { code: priced.code, message: priced.message } },
+        { status: priced.status }
+      );
     }
 
-    const verifiedTotal = Math.max(0, subtotal - verifiedDiscount);
+    // From here on, only server-verified items and totals are used (storage, shipping, emails).
+    const checkout = {
+      ...rawCheckout,
+      items: priced.items,
+      subtotalInr: priced.subtotalInr,
+      discountInr: priced.discountInr,
+      totalInr: priced.totalInr,
+      couponCode: priced.couponCode,
+    };
 
     // 1. Primary Operation: Persist COD order to Supabase
     const saveRes = await persistOrderToSupabase({
       checkout: {
         ...checkout,
-        subtotalInr: subtotal,
-        discountInr: verifiedDiscount,
-        totalInr: verifiedTotal,
         paymentMethod: 'cod',
       },
       status: 'pending', // COD is pending payment on delivery
     });
 
     if (!saveRes.success) {
+      console.error('[COD Order] Failed to persist order:', saveRes.error);
       return NextResponse.json(
         {
           success: false,
           error: {
             code: 'DATABASE_ERROR',
-            message: saveRes.error || 'Failed to save order to database.',
+            message: 'We could not place your order right now. Please try again or call 1800 833 0233.',
           },
         },
         { status: 500 }
@@ -128,6 +149,10 @@ export async function POST(req: NextRequest) {
     }
 
     const orderId = saveRes.orderId;
+
+    if (priced.couponCode) {
+      await recordCouponUse(priced.couponCode);
+    }
 
     // 2. Logistics Pipeline: Trigger Shiprocket if configured
     let shiprocketSync: any = null;
@@ -174,10 +199,10 @@ export async function POST(req: NextRequest) {
           const adminNoticeHtml = `
             <div style="font-family: Arial, sans-serif; padding: 20px; color: #111;">
               <h2 style="color: #0284c7;">New Cash on Delivery (COD) Order Placed</h2>
-              <p><strong>Order ID:</strong> ${orderId}</p>
-              <p><strong>Customer:</strong> ${checkout.fullName} (${checkout.phone}, ${checkout.email})</p>
+              <p><strong>Order ID:</strong> ${escapeHtml(orderId)}</p>
+              <p><strong>Customer:</strong> ${escapeHtml(checkout.fullName)} (${escapeHtml(checkout.phone)}, ${escapeHtml(checkout.email)})</p>
               <p><strong>Total Amount:</strong> ₹${Number(checkout.totalInr).toLocaleString('en-IN')}</p>
-              <p><strong>Destination:</strong> ${checkout.city}, ${checkout.state} (${checkout.pincode})</p>
+              <p><strong>Destination:</strong> ${escapeHtml(checkout.city)}, ${escapeHtml(checkout.state)} (${escapeHtml(checkout.pincode)})</p>
               <p><strong>Status:</strong> Pending Delivery &amp; Collection</p>
             </div>
           `;
@@ -210,13 +235,13 @@ export async function POST(req: NextRequest) {
       { status: 200 }
     );
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : 'Invalid request payload';
+    console.error('[COD Order] Unexpected error:', error);
     return NextResponse.json(
       {
         success: false,
         error: {
           code: 'VALIDATION_ERROR',
-          message,
+          message: 'Invalid request payload',
         },
       },
       { status: 400 }

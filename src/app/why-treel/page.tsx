@@ -203,7 +203,7 @@ export default function WhyTreelPage() {
               </h2>
             </div>
             <Link
-              href="/research/roi-fleet-intelligence"
+              href="/resources/research/roi-fleet-intelligence"
               className="text-xs font-semibold text-[#D5573B] hover:underline flex items-center gap-1"
             >
               <span>See ROI research paper</span>
@@ -220,7 +220,7 @@ export default function WhyTreelPage() {
               <p className="text-xs text-[#94A3B8] leading-relaxed">
                 How a national 3PL carrier eliminated roadside punctures and saved 3.4% in fuel over 1,000 multi-axle trailers.
               </p>
-              <Link href="/research/case-study-1000-truck" className="text-xs font-semibold text-[#D5573B] inline-flex items-center gap-1 pt-2">
+              <Link href="/resources/research/1000-truck-case-study" className="text-xs font-semibold text-[#D5573B] inline-flex items-center gap-1 pt-2">
                 Read case study <ChevronRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -233,7 +233,7 @@ export default function WhyTreelPage() {
               <p className="text-xs text-[#94A3B8] leading-relaxed">
                 Predictive thermodynamic anomaly alerts protected 50-ton tipper tyres across rugged open-cast quarries.
               </p>
-              <Link href="/research/predictive-maintenance-heavy" className="text-xs font-semibold text-[#D5573B] inline-flex items-center gap-1 pt-2">
+              <Link href="/resources/research/predictive-maintenance-heavy" className="text-xs font-semibold text-[#D5573B] inline-flex items-center gap-1 pt-2">
                 Read case study <ChevronRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -246,7 +246,7 @@ export default function WhyTreelPage() {
               <p className="text-xs text-[#94A3B8] leading-relaxed">
                 Luxury bus fleet operators maintain scheduled departures with real-time pre-trip wheel balance verification.
               </p>
-              <Link href="/research/roi-fleet-intelligence" className="text-xs font-semibold text-[#D5573B] inline-flex items-center gap-1 pt-2">
+              <Link href="/resources/research/roi-fleet-intelligence" className="text-xs font-semibold text-[#D5573B] inline-flex items-center gap-1 pt-2">
                 Read case study <ChevronRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -274,7 +274,7 @@ export default function WhyTreelPage() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/research/roi-fleet-intelligence"
+                href="/resources/research/roi-fleet-intelligence"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[4px] border border-white/20 text-[#FAF7F2] font-medium text-sm hover:border-[#D5573B] hover:text-[#D5573B] transition-all"
               >
                 <span>Read the ROI paper</span>

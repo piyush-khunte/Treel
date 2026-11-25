@@ -82,7 +82,7 @@ export function createEventCalendarLinks(event: EventItemRecord): CalendarLinks 
     });
     details += "\n";
   }
-  details += `Official Event URL: https://treel.in/events/${event.slug}\n`;
+  details += `Official Event URL: https://treel.in/resources/events/${event.slug}\n`;
   details += `Host: Treel Mobility Solutions (hello@treel.in)\n`;
 
   // 1. Google Calendar URL

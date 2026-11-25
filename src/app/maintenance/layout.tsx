@@ -8,6 +8,9 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
+  alternates: {
+    canonical: "https://treel.in/maintenance",
+  },
 };
 
 export default function MaintenanceLayout({

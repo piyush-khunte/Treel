@@ -2,6 +2,7 @@
 
 import React, { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { safeAdminRedirect } from "@/lib/admin/admin-redirect";
 import Link from "next/link";
 import { Lock, User, Eye, EyeOff, ShieldCheck, ArrowLeft, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,7 +10,7 @@ import { Button } from "@/components/ui/button";
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const nextUrl = searchParams.get("next") || "/admin";
+  const nextUrl = safeAdminRedirect(searchParams.get("next"));
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

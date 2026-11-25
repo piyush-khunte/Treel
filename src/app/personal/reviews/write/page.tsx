@@ -179,6 +179,12 @@ export default function WriteReviewPage() {
           myIds.push(serverSavedId);
           localStorage.setItem("treel_my_submitted_ids", JSON.stringify(myIds));
         }
+        // The server only lets the holder of this token delete the review.
+        if (serverSavedId && typeof data?.deleteToken === "string") {
+          const tokens = JSON.parse(localStorage.getItem("treel_review_delete_tokens") || "{}");
+          tokens[serverSavedId] = data.deleteToken;
+          localStorage.setItem("treel_review_delete_tokens", JSON.stringify(tokens));
+        }
       } catch {
         // Ignore storage errors
       }

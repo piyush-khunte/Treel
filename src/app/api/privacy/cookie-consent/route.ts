@@ -1,8 +1,31 @@
 import { NextRequest, NextResponse } from "next/server";
 import { saveConsentRecord } from "@/lib/privacy/consent-storage";
+import { CURRENT_POLICY_VERSION } from "@/lib/privacy/cookie-consent";
+import { getActiveServicesForCategories } from "@/lib/privacy/tracking-registry";
+import { consumeRateLimit, getClientIp } from "@/lib/security/rate-limit";
+
+const CONSENT_ID_RE = /^cons_[a-z0-9]{8,40}$/i;
+// Labels sent by cookie-banner.tsx, cookie-preferences.tsx and withdrawAllConsent().
+const ALLOWED_SOURCES = new Set([
+  "Banner",
+  "Cookie Banner",
+  "Cookie Banner Preferences",
+  "Cookie Preferences Page",
+  "Cookie Preferences Withdrawal",
+  "Preferences Settings",
+]);
 
 export async function POST(req: NextRequest) {
   try {
+    // Consent changes are rare; this only stops scripted flooding of the audit trail.
+    const wait = await consumeRateLimit(`consent:${getClientIp(req.headers)}`, 30, 10 * 60 * 1000);
+    if (wait > 0) {
+      return NextResponse.json(
+        { success: false, error: "Too many consent updates. Please try again later." },
+        { status: 429, headers: { "Retry-After": String(wait) } }
+      );
+    }
+
     const body = await req.json().catch(() => null);
     if (!body || typeof body !== "object") {
       return NextResponse.json(
@@ -20,8 +43,6 @@ export async function POST(req: NextRequest) {
       policyVersion,
       consent_timestamp,
       timestamp,
-      withdrawn_at,
-      withdrawnAt,
       source,
       page_path,
       pagePath,
@@ -30,18 +51,9 @@ export async function POST(req: NextRequest) {
     const finalConsentId = consent_id || consentId;
 
     // 1. Validation
-    if (!finalConsentId || typeof finalConsentId !== "string" || finalConsentId.length < 5 || finalConsentId.length > 64) {
+    if (typeof finalConsentId !== "string" || !CONSENT_ID_RE.test(finalConsentId)) {
       return NextResponse.json(
         { success: false, error: "Invalid anonymous consent ID." },
-        { status: 400 }
-      );
-    }
-
-    const validStatuses = ["accepted", "rejected", "customized", "withdrawn"];
-    const normalizedStatus = (status || "").toLowerCase();
-    if (!normalizedStatus || !validStatuses.includes(normalizedStatus)) {
-      return NextResponse.json(
-        { success: false, error: "Invalid consent status. Allowed: accepted, rejected, customized, withdrawn." },
         { status: 400 }
       );
     }
@@ -53,34 +65,55 @@ export async function POST(req: NextRequest) {
       marketing: Boolean(categories?.marketing),
     };
 
-    const finalPolicyVersion =
-      typeof (policy_version || policyVersion) === "string" && (policy_version || policyVersion).trim().length > 0
-        ? (policy_version || policyVersion).trim()
-        : "2026-10-01";
+    // The decision is derived from what was actually granted, so the audit trail can't
+    // say "Accepted All" for a partial choice (or vice versa).
+    const requestedStatus = typeof status === "string" ? status.toLowerCase() : "";
+    let finalStatus: "accepted" | "rejected" | "customized" | "withdrawn";
+    if (requestedStatus === "withdrawn") {
+      finalStatus = "withdrawn";
+      sanitizedCategories.functional = false;
+      sanitizedCategories.analytics = false;
+      sanitizedCategories.marketing = false;
+    } else if (sanitizedCategories.functional && sanitizedCategories.analytics && sanitizedCategories.marketing) {
+      finalStatus = "accepted";
+    } else if (!sanitizedCategories.functional && !sanitizedCategories.analytics && !sanitizedCategories.marketing) {
+      finalStatus = "rejected";
+    } else {
+      finalStatus = "customized";
+    }
 
-    const finalTimestamp =
-      typeof (consent_timestamp || timestamp) === "string" && (consent_timestamp || timestamp).trim().length > 0
-        ? (consent_timestamp || timestamp).trim()
-        : new Date().toISOString();
+    const claimedPolicyVersion =
+      typeof (policy_version || policyVersion) === "string" ? String(policy_version || policyVersion).trim().slice(0, 20) : "";
+    const finalPolicyVersion = claimedPolicyVersion || CURRENT_POLICY_VERSION;
 
-    const finalWithdrawnAt =
-      normalizedStatus === "withdrawn"
-        ? (typeof (withdrawn_at || withdrawnAt) === "string" ? (withdrawn_at || withdrawnAt) : new Date().toISOString())
-        : null;
+    // Server time is the authoritative record of when the decision was received.
+    const recordedAt = new Date().toISOString();
+    const claimedTimestamp =
+      typeof (consent_timestamp || timestamp) === "string" && !Number.isNaN(Date.parse(consent_timestamp || timestamp))
+        ? new Date(consent_timestamp || timestamp).toISOString()
+        : recordedAt;
 
-    const finalSource = typeof source === "string" && source.trim() ? source.trim() : "Banner";
-    const finalPagePath = typeof (page_path || pagePath) === "string" && (page_path || pagePath).trim() ? (page_path || pagePath).trim() : "/";
+    const rawSource = typeof source === "string" ? source.trim() : "";
+    const finalSource = ALLOWED_SOURCES.has(rawSource) ? rawSource : "Banner";
+    const rawPath = typeof (page_path || pagePath) === "string" ? String(page_path || pagePath).trim() : "";
+    const finalPagePath = rawPath.startsWith("/") ? rawPath.slice(0, 200) : "/";
+
+    // What was actually switched on for this visitor in this deployment.
+    const activeServices =
+      finalStatus === "withdrawn" ? [] : getActiveServicesForCategories(sanitizedCategories);
 
     // 2. Persist record across multi-tier storage (local file + remote Supabase)
     const saved = await saveConsentRecord({
       consentId: finalConsentId,
-      status: normalizedStatus,
+      status: finalStatus,
       rawCategories: sanitizedCategories,
       policyVersion: finalPolicyVersion,
-      timestamp: finalTimestamp,
-      withdrawnAt: finalWithdrawnAt,
+      timestamp: claimedTimestamp,
+      recordedAt,
+      withdrawnAt: finalStatus === "withdrawn" ? recordedAt : null,
       source: finalSource,
       pagePath: finalPagePath,
+      activeServices,
     });
 
     return NextResponse.json({
@@ -90,13 +123,10 @@ export async function POST(req: NextRequest) {
       decision: saved.decision,
       message: "Consent record successfully saved.",
     });
-  } catch (err: any) {
+  } catch (err) {
     console.error("[Cookie Consent Ingestion] Server error:", err);
     return NextResponse.json(
-      {
-        success: false,
-        error: err?.message || "Server processing error while persisting consent record.",
-      },
+      { success: false, error: "Server processing error while persisting consent record." },
       { status: 500 }
     );
   }

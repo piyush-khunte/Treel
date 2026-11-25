@@ -1,4 +1,4 @@
-import { AUTH_SECRET } from "./admin-constants";
+import { getAdminAuthSecret } from "./admin-constants";
 
 export interface AdminSession {
   username: string;
@@ -44,7 +44,7 @@ async function getCryptoKey(): Promise<CryptoKey> {
   const encoder = new TextEncoder();
   return await crypto.subtle.importKey(
     "raw",
-    encoder.encode(AUTH_SECRET),
+    encoder.encode(getAdminAuthSecret()),
     { name: "HMAC", hash: "SHA-256" },
     false,
     ["sign", "verify"]

@@ -61,7 +61,7 @@ export function Footer({ variant, className }: FooterProps) {
       contactHref = "/contact?subject=personal";
     } else if (pathname.startsWith("/global-presence")) {
       contactHref = "/contact?subject=export";
-    } else if (pathname.startsWith("/press") || pathname.startsWith("/media-kit")) {
+    } else if (pathname.startsWith("/resources/press") || pathname.startsWith("/resources/media-kit")) {
       contactHref = "/contact?subject=media";
     }
   }
@@ -221,27 +221,27 @@ export function Footer({ variant, className }: FooterProps) {
             </h2>
             <ul className="space-y-0.5">
               <li>
-                <Link prefetch={false} href="/research" className={theme.link}>
+                <Link prefetch={false} href="/resources/research" className={theme.link}>
                   Research Papers
                 </Link>
               </li>
               <li>
-                <Link prefetch={false} href="/insights" className={theme.link}>
+                <Link prefetch={false} href="/resources/insights" className={theme.link}>
                   Insights &amp; Articles
                 </Link>
               </li>
               <li>
-                <Link prefetch={false} href="/press" className={theme.link}>
+                <Link prefetch={false} href="/resources/press" className={theme.link}>
                   Press &amp; Media
                 </Link>
               </li>
               <li>
-                <Link prefetch={false} href="/events" className={theme.link}>
+                <Link prefetch={false} href="/resources/events" className={theme.link}>
                   Events &amp; Keynotes
                 </Link>
               </li>
               <li>
-                <Link prefetch={false} href="/annual-reports" className={theme.link}>
+                <Link prefetch={false} href="/resources/annual-reports" className={theme.link}>
                   Annual Reports
                 </Link>
               </li>

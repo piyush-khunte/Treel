@@ -112,6 +112,51 @@ export async function createRazorpayOrder(
 }
 
 /**
+ * Fetches an existing Razorpay order (server-side) so the charged amount can be
+ * checked against the server-priced cart before an order is recorded.
+ */
+export async function fetchRazorpayOrder(orderId: string): Promise<IntegrationResult<RazorpayOrder>> {
+  if (!isRazorpayConfigured()) {
+    return {
+      success: false,
+      configured: false,
+      error: { code: 'SERVICE_NOT_CONFIGURED', message: 'Razorpay integration is currently disabled.' },
+    };
+  }
+  if (!/^order_[A-Za-z0-9]+$/.test(orderId || '')) {
+    return { success: false, configured: true, error: { code: 'VALIDATION_ERROR', message: 'Invalid Razorpay order id.' } };
+  }
+
+  const keyId = (process.env.RAZORPAY_KEY_ID || process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID)!;
+  const keySecret = process.env.RAZORPAY_KEY_SECRET!;
+  try {
+    const authHeader = Buffer.from(`${keyId}:${keySecret}`).toString('base64');
+    const response = await fetch(`https://api.razorpay.com/v1/orders/${orderId}`, {
+      headers: { Authorization: `Basic ${authHeader}` },
+      cache: 'no-store',
+    });
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      return {
+        success: false,
+        configured: true,
+        error: {
+          code: 'EXTERNAL_SERVICE_ERROR',
+          message: errorData?.error?.description || `Razorpay order lookup failed with status ${response.status}`,
+        },
+      };
+    }
+    return { success: true, configured: true, data: (await response.json()) as RazorpayOrder };
+  } catch (err: unknown) {
+    return {
+      success: false,
+      configured: true,
+      error: { code: 'EXTERNAL_SERVICE_ERROR', message: err instanceof Error ? err.message : 'Network error while contacting Razorpay' },
+    };
+  }
+}
+
+/**
  * Verifies Razorpay payment signature using HMAC SHA256.
  * Uses timing-safe string comparison to prevent timing attacks.
  */

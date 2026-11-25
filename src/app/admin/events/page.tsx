@@ -370,8 +370,8 @@ export default function AdminEventsPage() {
               <h1 className="text-2xl font-bold text-white tracking-tight">Events & Webinars Management</h1>
               <p className="text-xs text-slate-400 font-mono">
                 Manage live conferences, webinars, roundtables, and public past events on{" "}
-                <Link href="/events" target="_blank" className="text-indigo-400 hover:underline">
-                  /events
+                <Link href="/resources/events" target="_blank" className="text-indigo-400 hover:underline">
+                  /resources/events
                 </Link>
               </p>
             </div>
@@ -652,7 +652,7 @@ export default function AdminEventsPage() {
                         <div className="inline-flex items-center gap-1.5">
                           {isPublished && (
                             <Link
-                              href={`/events/${item.slug}`}
+                              href={`/resources/events/${item.slug}`}
                               target="_blank"
                               className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
                               title="View on live website"
@@ -739,7 +739,7 @@ export default function AdminEventsPage() {
                     {isNew ? "Create New Event" : `Edit: ${editingItem.name || "Event"}`}
                   </h2>
                   <div className="text-[11px] font-mono text-slate-400">
-                    {editingItem.slug ? `/events/${editingItem.slug}` : "Slug will be auto-generated"}
+                    {editingItem.slug ? `/resources/events/${editingItem.slug}` : "Slug will be auto-generated"}
                   </div>
                 </div>
               </div>
@@ -850,7 +850,7 @@ export default function AdminEventsPage() {
                         />
                       </div>
                       <p className="text-[11px] text-slate-500 font-mono">
-                        Public link: /events/{editingItem.slug || "your-slug"}
+                        Public link: /resources/events/{editingItem.slug || "your-slug"}
                       </p>
                     </div>
 

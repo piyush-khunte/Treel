@@ -1,5 +1,110 @@
 [
   {
+    "id": "cons_412fc368c7d94af4",
+    "consentId": "cons_412fc368c7d94af4",
+    "status": "Accepted",
+    "decision": "Accepted All",
+    "categories": "Necessary, Functional, Analytics, Marketing",
+    "rawCategories": {
+      "necessary": true,
+      "functional": true,
+      "analytics": true,
+      "marketing": true
+    },
+    "policyVersion": "2026-10-01",
+    "timestamp": "2026-11-25T09:06:27.382Z",
+    "formattedDate": "25 Nov 2026, 02:36 pm IST",
+    "withdrawnAt": null,
+    "source": "Cookie Banner",
+    "pagePath": "/",
+    "updatedAt": "2026-11-25T09:06:27.719Z",
+    "history": []
+  },
+  {
+    "id": "cons_15cbb62a6cc84c00",
+    "consentId": "cons_15cbb62a6cc84c00",
+    "status": "Accepted",
+    "decision": "Accepted All",
+    "categories": "Necessary, Functional, Analytics, Marketing",
+    "rawCategories": {
+      "necessary": true,
+      "functional": true,
+      "analytics": true,
+      "marketing": true
+    },
+    "policyVersion": "2026-10-01",
+    "timestamp": "2026-11-24T11:37:45.338Z",
+    "formattedDate": "24 Nov 2026, 05:07 pm IST",
+    "withdrawnAt": null,
+    "source": "Cookie Banner",
+    "pagePath": "/about",
+    "updatedAt": "2026-11-24T11:37:46.296Z",
+    "history": []
+  },
+  {
+    "id": "cons_3ee91b59b02944f1",
+    "consentId": "cons_3ee91b59b02944f1",
+    "status": "Accepted",
+    "decision": "Accepted All",
+    "categories": "Necessary, Functional, Analytics, Marketing",
+    "rawCategories": {
+      "necessary": true,
+      "functional": true,
+      "analytics": true,
+      "marketing": true
+    },
+    "policyVersion": "2026-10-01",
+    "timestamp": "2026-11-24T11:32:43.235Z",
+    "formattedDate": "24 Nov 2026, 05:02 pm IST",
+    "withdrawnAt": null,
+    "source": "Cookie Banner",
+    "pagePath": "/about",
+    "updatedAt": "2026-11-24T11:32:44.249Z",
+    "history": []
+  },
+  {
+    "id": "cons_7ffec7550a2044a9",
+    "consentId": "cons_7ffec7550a2044a9",
+    "status": "Rejected",
+    "decision": "Rejected Non-Essential",
+    "categories": "Necessary",
+    "rawCategories": {
+      "necessary": true,
+      "functional": false,
+      "analytics": false,
+      "marketing": false
+    },
+    "policyVersion": "2026-10-01",
+    "timestamp": "2026-11-21T14:39:16.308Z",
+    "formattedDate": "21 Nov 2026, 08:09 pm IST",
+    "withdrawnAt": null,
+    "source": "Cookie Banner",
+    "pagePath": "/insights/vehicle-digital-twins-architecture",
+    "updatedAt": "2026-11-21T14:39:51.151Z",
+    "history": []
+  },
+  {
+    "id": "cons_c9a9c0d9525b40f1",
+    "consentId": "cons_c9a9c0d9525b40f1",
+    "status": "Rejected",
+    "decision": "Rejected Non-Essential",
+    "categories": "Necessary",
+    "rawCategories": {
+      "necessary": true,
+      "functional": false,
+      "analytics": false,
+      "marketing": false
+    },
+    "policyVersion": "2026-10-01",
+    "timestamp": "2026-11-18T05:21:54.813Z",
+    "formattedDate": "18 Nov 2026, 10:51 am IST",
+    "withdrawnAt": null,
+    "source": "Cookie Banner",
+    "pagePath": "/",
+    "updatedAt": "2026-11-18T05:21:54.846Z",
+    "history": []
+  },
+  {
     "id": "cons_dcf6bb3299fa4f15",
     "consentId": "cons_dcf6bb3299fa4f15",
     "status": "Accepted",
@@ -17,7 +122,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/about",
-    "updatedAt": "2026-11-17T06:43:01.008Z"
+    "updatedAt": "2026-11-17T06:43:01.008Z",
+    "history": []
   },
   {
     "id": "cons_b03e9235f7174ed2",
@@ -37,7 +143,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/",
-    "updatedAt": "2026-11-16T09:35:46.900Z"
+    "updatedAt": "2026-11-16T09:35:46.900Z",
+    "history": []
   },
   {
     "id": "cons_1e70af03b32f4140",
@@ -57,7 +164,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/leadership",
-    "updatedAt": "2026-11-10T05:47:32.687Z"
+    "updatedAt": "2026-11-10T05:47:32.687Z",
+    "history": []
   },
   {
     "id": "cons_c83178a4e814427b",
@@ -77,7 +185,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/",
-    "updatedAt": "2026-11-03T11:40:40.525Z"
+    "updatedAt": "2026-11-03T11:40:40.525Z",
+    "history": []
   },
   {
     "id": "cons_0c179611d5314c9f",
@@ -97,7 +206,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/",
-    "updatedAt": "2026-11-03T10:24:22.838Z"
+    "updatedAt": "2026-11-03T10:24:22.838Z",
+    "history": []
   },
   {
     "id": "cons_39f83959fde34399",
@@ -117,7 +227,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/personal/buy",
-    "updatedAt": "2026-11-02T08:48:05.176Z"
+    "updatedAt": "2026-11-02T08:48:05.176Z",
+    "history": []
   },
   {
     "id": "cons_dee9abb2a0154f96",
@@ -137,7 +248,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/personal/product",
-    "updatedAt": "2026-10-30T10:59:12.162Z"
+    "updatedAt": "2026-10-30T10:59:12.162Z",
+    "history": []
   },
   {
     "id": "cons_2b621a4ede404cbc",
@@ -157,7 +269,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/tmip",
-    "updatedAt": "2026-10-30T09:45:46.302Z"
+    "updatedAt": "2026-10-30T09:45:46.302Z",
+    "history": []
   },
   {
     "id": "cons_52508473f34043dd",
@@ -177,7 +290,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/suraksha",
-    "updatedAt": "2026-10-30T07:05:36.937Z"
+    "updatedAt": "2026-10-30T07:05:36.937Z",
+    "history": []
   },
   {
     "id": "cons_811f808a8b384464",
@@ -197,7 +311,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/leadership",
-    "updatedAt": "2026-10-29T18:09:30.278Z"
+    "updatedAt": "2026-10-29T18:09:30.278Z",
+    "history": []
   },
   {
     "id": "cons_72af02483c8c45c3",
@@ -217,7 +332,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/leadership",
-    "updatedAt": "2026-10-29T16:10:42.517Z"
+    "updatedAt": "2026-10-29T16:10:42.517Z",
+    "history": []
   },
   {
     "id": "cons_c727cc9e7a734cf0",
@@ -237,7 +353,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/leadership",
-    "updatedAt": "2026-10-29T09:49:33.119Z"
+    "updatedAt": "2026-10-29T09:49:33.119Z",
+    "history": []
   },
   {
     "id": "cons_d1f3f3056ce3469f",
@@ -257,7 +374,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/leadership",
-    "updatedAt": "2026-10-29T06:01:02.539Z"
+    "updatedAt": "2026-10-29T06:01:02.539Z",
+    "history": []
   },
   {
     "id": "cons_2d93a030d01b46f7",
@@ -277,7 +395,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/leadership",
-    "updatedAt": "2026-10-29T05:51:27.936Z"
+    "updatedAt": "2026-10-29T05:51:27.936Z",
+    "history": []
   },
   {
     "id": "cons_6aeb5b34f85b4df7",
@@ -297,7 +416,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/contact",
-    "updatedAt": "2026-10-27T08:58:12.852Z"
+    "updatedAt": "2026-10-27T08:58:12.852Z",
+    "history": []
   },
   {
     "id": "cons_2001f2ee61ed47a7",
@@ -317,7 +437,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/personal",
-    "updatedAt": "2026-10-25T19:53:13.537Z"
+    "updatedAt": "2026-10-25T19:53:13.537Z",
+    "history": []
   },
   {
     "id": "cons_74aff197e4b24c37",
@@ -337,7 +458,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/leadership",
-    "updatedAt": "2026-10-23T08:59:58.765Z"
+    "updatedAt": "2026-10-23T08:59:58.765Z",
+    "history": []
   },
   {
     "id": "cons_f776bd6f58344a90",
@@ -357,7 +479,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/leadership",
-    "updatedAt": "2026-10-23T08:58:09.401Z"
+    "updatedAt": "2026-10-23T08:58:09.401Z",
+    "history": []
   },
   {
     "id": "cons_f77fd0a386074b07",
@@ -377,7 +500,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/leadership",
-    "updatedAt": "2026-10-23T03:50:38.869Z"
+    "updatedAt": "2026-10-23T03:50:38.869Z",
+    "history": []
   },
   {
     "id": "cons_f6c52f8fdb5c424d",
@@ -397,7 +521,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/tmip",
-    "updatedAt": "2026-10-22T06:17:47.566Z"
+    "updatedAt": "2026-10-22T06:17:47.566Z",
+    "history": []
   },
   {
     "id": "cons_f17bfa7f4f2b4d2a",
@@ -417,7 +542,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/",
-    "updatedAt": "2026-10-21T10:30:01.943Z"
+    "updatedAt": "2026-10-21T10:30:01.943Z",
+    "history": []
   },
   {
     "id": "cons_c759b611a1a94938",
@@ -437,7 +563,8 @@
     "withdrawnAt": "2026-10-21T10:28:36.612Z",
     "source": "Cookie Preferences Withdrawal",
     "pagePath": "/cookies",
-    "updatedAt": "2026-10-21T10:28:37.155Z"
+    "updatedAt": "2026-10-21T10:28:37.155Z",
+    "history": []
   },
   {
     "id": "cons_aa19fb37852b4879",
@@ -457,7 +584,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/personal/specs",
-    "updatedAt": "2026-10-21T04:53:05.076Z"
+    "updatedAt": "2026-10-21T04:53:05.076Z",
+    "history": []
   },
   {
     "id": "cons_df6b8f2ada7341f1",
@@ -477,7 +605,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/",
-    "updatedAt": "2026-10-21T04:46:51.965Z"
+    "updatedAt": "2026-10-21T04:46:51.965Z",
+    "history": []
   },
   {
     "id": "cons_a3a1d8cf5de048ce",
@@ -497,7 +626,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/leadership",
-    "updatedAt": "2026-10-21T04:46:36.443Z"
+    "updatedAt": "2026-10-21T04:46:36.443Z",
+    "history": []
   },
   {
     "id": "cons_cae772f7335a46e9",
@@ -517,7 +647,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/annual-reports",
-    "updatedAt": "2026-10-20T15:38:47.668Z"
+    "updatedAt": "2026-10-20T15:38:47.668Z",
+    "history": []
   },
   {
     "id": "cons_9570918ba6644468",
@@ -537,7 +668,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/",
-    "updatedAt": "2026-10-19T11:23:38.778Z"
+    "updatedAt": "2026-10-19T11:23:38.778Z",
+    "history": []
   },
   {
     "id": "cons_e70f4b5d1679486c",
@@ -557,7 +689,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/",
-    "updatedAt": "2026-10-19T06:13:07.420Z"
+    "updatedAt": "2026-10-19T06:13:07.420Z",
+    "history": []
   },
   {
     "id": "cons_ae3bc9472e0b487e",
@@ -577,7 +710,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/leadership",
-    "updatedAt": "2026-10-17T12:06:17.940Z"
+    "updatedAt": "2026-10-17T12:06:17.940Z",
+    "history": []
   },
   {
     "id": "cons_cd75d3bcb1e74a95",
@@ -597,7 +731,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/leadership",
-    "updatedAt": "2026-10-16T12:31:20.726Z"
+    "updatedAt": "2026-10-16T12:31:20.726Z",
+    "history": []
   },
   {
     "id": "cons_cb180c65862e4d35",
@@ -617,7 +752,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/leadership",
-    "updatedAt": "2026-10-15T12:24:44.589Z"
+    "updatedAt": "2026-10-15T12:24:44.589Z",
+    "history": []
   },
   {
     "id": "cons_a181d9feec2548ac",
@@ -637,7 +773,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/leadership",
-    "updatedAt": "2026-10-15T11:00:31.683Z"
+    "updatedAt": "2026-10-15T11:00:31.683Z",
+    "history": []
   },
   {
     "id": "cons_6bb2d1b3726b48d3",
@@ -657,7 +794,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/leadership",
-    "updatedAt": "2026-10-14T10:39:44.527Z"
+    "updatedAt": "2026-10-14T10:39:44.527Z",
+    "history": []
   },
   {
     "id": "cons_d5e7be202a7b4327",
@@ -677,7 +815,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/",
-    "updatedAt": "2026-10-13T04:07:52.307Z"
+    "updatedAt": "2026-10-13T04:07:52.307Z",
+    "history": []
   },
   {
     "id": "cons_a494531e54224cd3",
@@ -697,7 +836,8 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/",
-    "updatedAt": "2026-10-12T12:05:12.242Z"
+    "updatedAt": "2026-10-12T12:05:12.242Z",
+    "history": []
   },
   {
     "id": "cons_dbd69fa62548421e",
@@ -717,6 +857,7 @@
     "withdrawnAt": null,
     "source": "Cookie Banner",
     "pagePath": "/",
-    "updatedAt": "2026-10-12T12:04:43.508Z"
+    "updatedAt": "2026-10-12T12:04:43.508Z",
+    "history": []
   }
 ]

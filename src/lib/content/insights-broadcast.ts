@@ -29,7 +29,7 @@ export function generateInsightEmailHtml(
   siteUrl?: string
 ): string {
   const baseUrl = siteUrl || getCanonicalSiteUrl();
-  const articleUrl = `${baseUrl}/insights/${article.slug}`;
+  const articleUrl = `${baseUrl}/resources/insights/${article.slug}`;
   const unsubscribeUrl = recipient.token
     ? `${baseUrl}/unsubscribe?token=${recipient.token}&email=${encodeURIComponent(recipient.email)}`
     : `${baseUrl}/unsubscribe?email=${encodeURIComponent(recipient.email)}`;
@@ -189,7 +189,7 @@ export function generateInsightEmailText(
   siteUrl?: string
 ): string {
   const baseUrl = siteUrl || getCanonicalSiteUrl();
-  const articleUrl = `${baseUrl}/insights/${article.slug}`;
+  const articleUrl = `${baseUrl}/resources/insights/${article.slug}`;
   const unsubscribeUrl = recipient.token
     ? `${baseUrl}/unsubscribe?token=${recipient.token}&email=${encodeURIComponent(recipient.email)}`
     : `${baseUrl}/unsubscribe?email=${encodeURIComponent(recipient.email)}`;

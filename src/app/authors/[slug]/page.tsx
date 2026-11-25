@@ -91,13 +91,13 @@ export default async function AuthorProfilePage({
               variant="corporate"
               items={[
                 { label: "Home", href: "/" },
-                { label: "Insights", href: "/insights" },
+                { label: "Insights", href: "/resources/insights" },
                 { label: "Authors" },
                 { label: profile.name },
               ]}
             />
             <Link
-              href="/insights"
+              href="/resources/insights"
               className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#94A3B8] hover:text-[#FAF7F2] transition-colors w-fit"
             >
               <ArrowLeft className="w-3.5 h-3.5 text-[#D5573B]" /> Back to all insights

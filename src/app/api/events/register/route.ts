@@ -5,15 +5,16 @@ import {
   sendEmail,
   sendEventRegistrationConfirmationEmail,
 } from "@/lib/integrations";
+import { getEventBySlug } from "@/lib/content/events-storage";
+import { createEventCalendarLinks } from "@/lib/events/calendar-links";
+import { guardLeadSubmission } from "@/lib/security/lead-guard";
+import { escapeHtml } from "@/lib/security/escape-html";
 
 function getSupabaseClient() {
   const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key =
     process.env.SUPABASE_SECRET_KEY ||
-    process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!url || !key || url.includes("placeholder-treel") || key.includes("placeholder-key")) {
     return null;
@@ -34,17 +35,32 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const fullName = typeof body.fullName === "string" ? body.fullName.trim() : "";
-    const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
-    const company = typeof body.company === "string" ? body.company.trim() : "";
-    const role = typeof body.role === "string" ? body.role.trim() : "";
-    const eventName = typeof body.eventName === "string" ? body.eventName.trim() : "Treel Event";
+    const blocked = await guardLeadSubmission("event-register", req.headers, body);
+    if (blocked) return blocked;
+
+    const fullName = typeof body.fullName === "string" ? body.fullName.trim().slice(0, 120) : "";
+    const email = typeof body.email === "string" ? body.email.trim().toLowerCase().slice(0, 254) : "";
+    const company = typeof body.company === "string" ? body.company.trim().slice(0, 160) : "";
+    const role = typeof body.role === "string" ? body.role.trim().slice(0, 120) : "";
     const eventSlug = typeof body.eventSlug === "string" ? body.eventSlug.trim() : "";
-    const dateTime = typeof body.dateTime === "string" ? body.dateTime.trim() : "";
-    const location = typeof body.location === "string" ? body.location.trim() : "Online";
-    const isOnline = Boolean(body.isOnline);
-    const googleCalendarUrl = typeof body.googleCalendarUrl === "string" ? body.googleCalendarUrl : undefined;
-    const outlookCalendarUrl = typeof body.outlookCalendarUrl === "string" ? body.outlookCalendarUrl : undefined;
+
+    // Event details (name, date, venue, calendar links) are taken from our own event
+    // records — never from the request — so this endpoint can't be used to send
+    // arbitrary content or links from hello@treel.in.
+    const event = eventSlug ? await getEventBySlug(eventSlug) : null;
+    if (!event || event.publicationStatus !== "Published") {
+      return NextResponse.json(
+        { success: false, error: "This event is not open for registration." },
+        { status: 404 }
+      );
+    }
+    const eventName = event.name;
+    const dateTime = event.dateTime;
+    const location = event.location || "Online";
+    const isOnline = Boolean(event.isOnline);
+    const calendarLinks = createEventCalendarLinks(event);
+    const googleCalendarUrl = calendarLinks.google;
+    const outlookCalendarUrl = calendarLinks.outlook;
 
     if (!fullName) {
       return NextResponse.json(
@@ -76,8 +92,8 @@ export async function POST(req: NextRequest) {
             lead_source: "event_registration",
             form_id: eventSlug ? `event_${eventSlug}` : "event_registration",
             campaign_type: "events",
-            landing_page: eventSlug ? `https://treel.in/events/${eventSlug}` : "https://treel.in/events",
-            page_path: eventSlug ? `/events/${eventSlug}` : "/events",
+            landing_page: eventSlug ? `https://treel.in/resources/events/${eventSlug}` : "https://treel.in/resources/events",
+            page_path: eventSlug ? `/resources/events/${eventSlug}` : "/resources/events",
             status: "new",
             attribution_metadata: {
               eventName,
@@ -122,7 +138,7 @@ export async function POST(req: NextRequest) {
           from: "Treel <hello@treel.in>",
           subject: `[Event Registration] ${fullName} - ${eventName}`,
           text: `New Registration:\nName: ${fullName}\nEmail: ${email}\nCompany: ${company || "N/A"}\nRole: ${role || "N/A"}\nEvent: ${eventName}\nDate: ${dateTime}`,
-          html: `<p><strong>New Event Registration:</strong></p><ul><li>Name: ${fullName}</li><li>Email: ${email}</li><li>Company: ${company || "N/A"}</li><li>Role: ${role || "N/A"}</li><li>Event: ${eventName}</li><li>Date: ${dateTime}</li></ul>`,
+          html: `<p><strong>New Event Registration:</strong></p><ul><li>Name: ${escapeHtml(fullName)}</li><li>Email: ${escapeHtml(email)}</li><li>Company: ${escapeHtml(company || "N/A")}</li><li>Role: ${escapeHtml(role || "N/A")}</li><li>Event: ${escapeHtml(eventName)}</li><li>Date: ${escapeHtml(dateTime)}</li></ul>`,
           replyTo: email,
         });
       } catch (mailErr) {

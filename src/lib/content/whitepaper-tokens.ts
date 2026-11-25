@@ -6,14 +6,23 @@ interface WhitepaperTokenPayload {
   exp: number; // Unix timestamp in ms
 }
 
+/**
+ * Signing secret for whitepaper access tokens. Prefer the dedicated WHITEPAPER_TOKEN_SECRET;
+ * the other names are accepted so existing deployments keep working. There is no hardcoded
+ * fallback — without a configured secret, token creation/verification throws instead of
+ * signing with a value anyone can read in the source.
+ */
 function getSigningSecret(): string {
-  return (
+  const secret =
+    process.env.WHITEPAPER_TOKEN_SECRET ||
     process.env.SESSION_SECRET ||
     process.env.SUPABASE_SECRET_KEY ||
     process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.NEXTAUTH_SECRET ||
-    "treel-whitepaper-secure-signing-salt-2026-tmip"
-  );
+    process.env.NEXTAUTH_SECRET;
+  if (!secret) {
+    throw new Error("WHITEPAPER_TOKEN_SECRET is not configured; whitepaper access tokens are disabled.");
+  }
+  return secret;
 }
 
 function base64UrlEncode(str: string): string {
@@ -74,7 +83,13 @@ export function verifyWhitepaperAccessToken(
   }
 
   const [payloadStr, signature] = parts;
-  const secret = getSigningSecret();
+  let secret: string;
+  try {
+    secret = getSigningSecret();
+  } catch (err) {
+    console.error("[whitepaper-tokens]", err);
+    return null;
+  }
 
   const expectedSignature = crypto
     .createHmac("sha256", secret)

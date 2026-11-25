@@ -9,8 +9,28 @@ import {
   sendSupportAcknowledgementEmail,
   sendNewsletterWelcomeEmail,
 } from '@/lib/integrations';
+import { getAdminSession } from '@/lib/admin/admin-auth';
+import { ADMIN_ROLE } from '@/lib/admin/admin-constants';
+
+/**
+ * This endpoint can send arbitrary email through Treel's SES identity, so it is
+ * restricted to authenticated admins. Public forms send their own emails server-side.
+ */
+async function requireAdmin(): Promise<NextResponse | null> {
+  const session = await getAdminSession();
+  if (!session || session.role !== ADMIN_ROLE) {
+    return NextResponse.json(
+      { success: false, error: { code: 'AUTHENTICATION_FAILED', message: 'Admin authentication required.' } },
+      { status: 401 }
+    );
+  }
+  return null;
+}
 
 export async function GET() {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   const configured = isSesConfigured();
   return NextResponse.json({
     service: 'aws-ses',
@@ -23,6 +43,9 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
   if (!isSesConfigured()) {
     return NextResponse.json(
       {

@@ -7,6 +7,9 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
+  alternates: {
+    canonical: "https://treel.in/suraksha/buy/failed",
+  },
 };
 
 export default function SurakshaBuyFailedLayout({

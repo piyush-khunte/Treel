@@ -60,9 +60,9 @@ const CATEGORIES: CategoryMeta[] = [
   {
     id: "treel_main",
     title: "Treel Main",
-    subtitle: "/insights",
+    subtitle: "/resources/insights",
     description: "Mobility Intelligence & Long-Form Articles",
-    publicUrl: "/insights",
+    publicUrl: "/resources/insights",
     itemNoun: "Insight Article",
     icon: Sparkles,
     accentColor: "text-amber-400",
@@ -1310,7 +1310,7 @@ export default function AdminBlogsPage() {
                   // Target preview link
                   let publicPreviewUrl = activeMeta.publicUrl;
                   if (activeCategory === "treel_main" && item.slug) {
-                    publicPreviewUrl = `/insights/${item.slug}`;
+                    publicPreviewUrl = `/resources/insights/${item.slug}`;
                   } else if (activeCategory === "tmip" && item.slug) {
                     publicPreviewUrl = `/tmip/customers/case-studies/${item.slug}`;
                   } else if (activeCategory === "personal" && item.slug) {

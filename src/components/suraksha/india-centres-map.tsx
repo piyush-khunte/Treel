@@ -109,17 +109,17 @@ export default function IndiaCentresMap({
               NATIONWIDE FITMENT NETWORK
             </div>
             <h2 className="font-anton uppercase tracking-normal text-3xl sm:text-4xl text-[#451A03] leading-[1.1]">
-              India Network Map — <span className="text-[#DC2626]">29 Authorized Centres</span>
+              India Network Map — <span className="text-[#DC2626]">{SURAKSHA_CENTRES.length} Listed Centres</span>
             </h2>
             <p className="text-[#78350F] text-sm sm:text-base font-rubik font-medium mt-2 max-w-2xl">
-              Map of India showing all 29 official JK Truck Wheels Centres with calibrated GPS coordinates. Click any pin or cluster to view location specifications and contact details.
+              Map of India showing {SURAKSHA_CENTRES.length} listed JK Truck Wheels centres from our 600+ centre network, with calibrated GPS coordinates. Click any pin or cluster to view location specifications and contact details.
             </p>
           </div>
 
           <div className="flex items-center gap-3 bg-[#FEF3C7] border-2 border-[#451A03]/15 rounded-lg p-3 self-start md:self-auto shrink-0 shadow-sm">
             <div className="text-center px-2">
-              <div className="font-anton text-2xl text-[#DC2626]">29</div>
-              <div className="text-[10px] uppercase font-bold text-[#78350F] tracking-wider">Centres</div>
+              <div className="font-anton text-2xl text-[#DC2626]">{SURAKSHA_CENTRES.length}</div>
+              <div className="text-[10px] uppercase font-bold text-[#78350F] tracking-wider">Listed</div>
             </div>
             <div className="h-8 w-[1px] bg-[#451A03]/20" />
             <div className="text-center px-2">

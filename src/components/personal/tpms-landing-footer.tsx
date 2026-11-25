@@ -45,7 +45,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               <li>
                 <Link
                   href="/tmip"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   TMIP Enterprise
                 </Link>
@@ -53,7 +53,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               <li>
                 <Link
                   href="/suraksha"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Suraksha Fleet
                 </Link>
@@ -61,7 +61,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               <li>
                 <Link
                   href="/personal"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Personal TPMS
                 </Link>
@@ -69,7 +69,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               <li>
                 <Link
                   href="/products"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Products Overview
                 </Link>
@@ -86,7 +86,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               <li>
                 <Link
                   href="/technology"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Platform Architecture
                 </Link>
@@ -94,7 +94,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               <li>
                 <Link
                   href="/vehicle-digital-twin"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Vehicle Digital Twin
                 </Link>
@@ -102,7 +102,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               <li>
                 <Link
                   href="/data-infrastructure"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Data Infrastructure
                 </Link>
@@ -110,7 +110,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               <li>
                 <Link
                   href="/mobility-intelligence"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Mobility Intelligence
                 </Link>
@@ -126,40 +126,40 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/research"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  href="/resources/research"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Research Papers
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/insights"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  href="/resources/insights"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Insights &amp; Articles
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/press"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  href="/resources/press"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Press &amp; Media
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/events"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  href="/resources/events"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Events &amp; Keynotes
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/annual-reports"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  href="/resources/annual-reports"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Annual Reports
                 </Link>
@@ -167,7 +167,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               <li>
                 <Link
                   href="/notices"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Notice Board
                 </Link>
@@ -184,7 +184,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               <li>
                 <Link
                   href="/about"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   About Treel
                 </Link>
@@ -192,7 +192,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               <li>
                 <Link
                   href="/leadership"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Leadership
                 </Link>
@@ -200,7 +200,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               <li>
                 <Link
                   href="/why-treel"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Why Treel
                 </Link>
@@ -208,7 +208,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               <li>
                 <Link
                   href="/global-presence"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Global Presence / Export
                 </Link>
@@ -216,7 +216,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               <li>
                 <Link
                   href="/careers"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Careers
                 </Link>
@@ -224,7 +224,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
               <li>
                 <Link
                   href="/contact?subject=personal"
-                  className="text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
+                  className="inline-block py-1.5 text-xs text-slate-400 font-manrope hover:text-blue-400 transition-colors"
                 >
                   Contact Us
                 </Link>
@@ -238,7 +238,7 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
           <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
             <span>
               Website developed by{" "}
-              <a href="https://magicworksitsolutions.com" rel="nofollow" target="_blank" className="hover:text-blue-400 transition-colors">
+              <a href="https://magicworksitsolutions.com" rel="nofollow" target="_blank" className="inline-block py-1 hover:text-blue-400 transition-colors">
                 MagicWorks
               </a>
             </span>
@@ -246,49 +246,49 @@ export function TpmsLandingFooter({ className = "" }: { className?: string }) {
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs">
             <Link
               href="/privacy"
-              className="hover:text-blue-400 transition-colors"
+              className="inline-block py-1 hover:text-blue-400 transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
               href="/terms"
-              className="hover:text-blue-400 transition-colors"
+              className="inline-block py-1 hover:text-blue-400 transition-colors"
             >
               Terms
             </Link>
             <Link
               href="/cookies"
-              className="hover:text-blue-400 transition-colors"
+              className="inline-block py-1 hover:text-blue-400 transition-colors"
             >
               Cookie Policy
             </Link>
             <Link
               href="/accessibility"
-              className="hover:text-blue-400 transition-colors"
+              className="inline-block py-1 hover:text-blue-400 transition-colors"
             >
               Accessibility
             </Link>
             <Link
               href="/gdpr"
-              className="hover:text-blue-400 transition-colors"
+              className="inline-block py-1 hover:text-blue-400 transition-colors"
             >
               GDPR Compliance
             </Link>
             <Link
               href="/personal/returns"
-              className="hover:text-blue-400 transition-colors"
+              className="inline-block py-1 hover:text-blue-400 transition-colors"
             >
               Returns Policy
             </Link>
             <Link
               href="/personal/shipping"
-              className="hover:text-blue-400 transition-colors"
+              className="inline-block py-1 hover:text-blue-400 transition-colors"
             >
               Shipping Policy
             </Link>
             <Link
               href="/personal/refunds"
-              className="hover:text-blue-400 transition-colors"
+              className="inline-block py-1 hover:text-blue-400 transition-colors"
             >
               Refunds Policy
             </Link>

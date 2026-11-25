@@ -1,4 +1,4 @@
-import { ADMIN_SESSION_COOKIE,authenticateAdmin,signSessionToken } from "@/lib/admin/admin-auth";
+import { ADMIN_SESSION_COOKIE, authenticateAdmin, isAdminAuthConfigured, signSessionToken } from "@/lib/admin/admin-auth";
 import {
   clearLoginFailures,
   getClientIp,
@@ -8,13 +8,21 @@ import {
 import { NextRequest,NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
+  if (!isAdminAuthConfigured()) {
+    console.error("[admin-login] ADMIN_AUTH_SECRET is not set; admin login is disabled.");
+    return NextResponse.json(
+      { success: false, error: "Admin login is not configured on this server." },
+      { status: 503 }
+    );
+  }
+
   try {
     const body = await req.json();
     const { username, password } = body;
     const ip = getClientIp(req.headers);
     const userKey = typeof username === "string" ? username : "";
 
-    const lockSeconds = getLoginLockSeconds(ip, userKey);
+    const lockSeconds = await getLoginLockSeconds(ip, userKey);
     if (lockSeconds > 0) {
       return NextResponse.json(
         {
@@ -28,7 +36,7 @@ export async function POST(req: NextRequest) {
     const result = await authenticateAdmin(username, password);
 
     if (!result.success || !result.session) {
-      recordLoginFailure(ip, userKey);
+      await recordLoginFailure(ip, userKey);
       return NextResponse.json(
         {
           success: false,
@@ -38,7 +46,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    clearLoginFailures(ip, userKey);
+    await clearLoginFailures(ip, userKey);
     const token = await signSessionToken(result.session);
 
     const response = NextResponse.json({

@@ -339,7 +339,7 @@ export default function AdminMediaKitPage() {
           </Button>
 
           <Button asChild variant="outline" size="sm" className="border-slate-800 text-slate-300 hover:bg-slate-800 text-xs font-mono gap-1.5">
-            <Link href="/media-kit" target="_blank">
+            <Link href="/resources/media-kit" target="_blank">
               <Globe className="w-3.5 h-3.5 text-blue-400" />
               Public Media Kit
             </Link>
@@ -376,7 +376,7 @@ export default function AdminMediaKitPage() {
           <div className="text-2xl font-bold text-white font-mono">{stats.total}</div>
         </Card>
         <Card className="p-4 bg-slate-900/80 border-slate-800 rounded-xl space-y-1">
-          <div className="text-xs text-slate-400 font-mono">Live on /media-kit</div>
+          <div className="text-xs text-slate-400 font-mono">Live on /resources/media-kit</div>
           <div className="text-2xl font-bold text-emerald-400 font-mono">{stats.published}</div>
         </Card>
         <Card className="p-4 bg-slate-900/80 border-slate-800 rounded-xl space-y-1">

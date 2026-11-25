@@ -262,7 +262,7 @@ export default function MobilityIntelligencePage() {
                   Learn more <ChevronRight className="w-3.5 h-3.5" />
                 </div>
               </Link>
-              <Link href="/insights" className="p-6 sm:p-8 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group block">
+              <Link href="/resources/insights" className="p-6 sm:p-8 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group block">
                 <div className="text-xs uppercase tracking-widest text-[#94A3B8] font-mono mb-2">Field Notes &amp; Data</div>
                 <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">Read our insights</h3>
                 <div className="mt-4 font-semibold text-xs text-[#D5573B] flex items-center gap-1 group-hover:gap-2 transition-all">

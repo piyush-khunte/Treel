@@ -67,12 +67,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/technology`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/data-infrastructure`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/careers`, lastModified: "2026-10-14T07:26:08.570Z", changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/press`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/media-kit`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/insights`, lastModified: "2026-09-01T00:00:00.000Z", changeFrequency: "daily", priority: 0.8 },
-    { url: `${baseUrl}/research`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/events`, lastModified: "2026-10-14T00:00:00.000Z", changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/annual-reports`, lastModified: "2025-10-15T23:24:26.597Z", changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/resources`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/resources/press`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/resources/media-kit`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/resources/insights`, lastModified: "2026-09-01T00:00:00.000Z", changeFrequency: "daily", priority: 0.8 },
+    { url: `${baseUrl}/resources/research`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/resources/events`, lastModified: "2026-10-14T00:00:00.000Z", changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/resources/annual-reports`, lastModified: "2025-10-15T23:24:26.597Z", changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/notices`, lastModified: "2026-10-12T10:18:51.894Z", changeFrequency: "monthly", priority: 0.8 },
 
     // 0.8 - OEM Industry Hub & Segments
@@ -138,8 +139,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/personal/app/ios`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
 
     // 0.8 - Research & Deep Telematics Architecture
-    { url: `${baseUrl}/research/data-architecture`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/research/roi-fleet-intelligence`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/resources/research/data-architecture`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/resources/research/roi-fleet-intelligence`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
 
     // Campaign landing pages (/lp-*), /personal/track-order and /personal/reviews/write
     // are noindex or canonicalised elsewhere, so they are intentionally not listed.
@@ -197,14 +198,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const article of insights) {
     if (!article.slug) continue;
     const published = toIsoDate(article.publishIsoDate, releaseDate);
-    add(`/insights/${article.slug}`, published, "monthly", 0.7);
+    add(`/resources/insights/${article.slug}`, published, "monthly", 0.7);
     if (article.categorySlug) {
       const previous = insightCategories.get(article.categorySlug);
       if (!previous || published > previous) insightCategories.set(article.categorySlug, published);
     }
   }
   for (const [categorySlug, lastModified] of insightCategories) {
-    add(`/insights/category/${categorySlug}`, lastModified, "weekly", 0.6);
+    add(`/resources/insights/category/${categorySlug}`, lastModified, "weekly", 0.6);
   }
 
   // Suraksha drivers' blog
@@ -234,19 +235,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Events
   for (const event of events) {
     if (!event.slug) continue;
-    add(`/events/${event.slug}`, toIsoDate(event.updatedAt || event.startDate, releaseDate), "weekly", 0.6);
+    add(`/resources/events/${event.slug}`, toIsoDate(event.updatedAt || event.startDate, releaseDate), "weekly", 0.6);
   }
 
   // Press releases
   for (const item of pressItems) {
     if (!item.slug) continue;
-    add(`/press/${item.year || "2026"}/${item.slug}`, toIsoDate(item.updatedAt || item.createdAt, releaseDate), "monthly", 0.5);
+    add(`/resources/press/${item.year || "2026"}/${item.slug}`, toIsoDate(item.updatedAt || item.createdAt, releaseDate), "monthly", 0.5);
   }
 
   // Research papers
   for (const paper of whitepapers) {
     if (!paper.slug || RESEARCH_ALIAS_SLUGS.has(paper.slug) || RESEARCH_STATIC_SLUGS.has(paper.slug)) continue;
-    add(`/research/${paper.slug}`, toIsoDate(paper.updatedAt || paper.createdAt, releaseDate), "monthly", 0.6);
+    add(`/resources/research/${paper.slug}`, toIsoDate(paper.updatedAt || paper.createdAt, releaseDate), "monthly", 0.6);
   }
 
   // De-duplicate (static entries win) so no URL is listed twice.

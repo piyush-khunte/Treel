@@ -236,7 +236,7 @@ export default function VehicleDigitalTwinPage() {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Link href="/research/roi-fleet-intelligence" className="p-6 sm:p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group block">
+              <Link href="/resources/research/roi-fleet-intelligence" className="p-6 sm:p-8 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D5573B]/40 hover:-translate-y-1 transition-all duration-300 group block">
                 <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">Read the technical whitepaper</h3>
                 <p className="text-xs text-[#94A3B8] mt-2">Deep dive into ROI analysis and telemetry architecture.</p>
                 <div className="mt-4 font-semibold text-xs text-[#D5573B] flex items-center gap-1 group-hover:gap-2 transition-all">

@@ -61,7 +61,7 @@ export default function SurakshaCentresPage() {
             />
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#DC2626] bg-[#DC2626]/10 text-[#DC2626] font-rubik text-xs font-bold uppercase tracking-wider">
               <MapPin className="w-3.5 h-3.5" />
-              {centres.length} AUTHORISED FITMENT CENTRES
+              {centres.length} CENTRES LISTED · 600+ NETWORK
             </div>
             <h1 className="font-anton uppercase tracking-normal text-4xl sm:text-5xl lg:text-6xl text-[#451A03] leading-[1.05]">
               Find your <span className="italic text-[#DC2626]">nearest centre.</span>
@@ -73,7 +73,7 @@ export default function SurakshaCentresPage() {
               आपके रूट पर, आपके पास।
             </SurakshaRotator>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              Get Suraksha fitted at Truck Wheels centres, authorised dealers and select puncture shops across India. Search by pincode or city below to find one on your route.
+              Get Suraksha fitted at Truck Wheels centres, authorised dealers and select puncture shops across India. The {centres.length} centres listed below are part of our 600+ centre network. Search by pincode or city to find one on your route.
             </p>
           </div>
         </div>
@@ -193,7 +193,7 @@ export default function SurakshaCentresPage() {
                         <Phone className="w-4 h-4 text-[#DC2626] shrink-0" />
                         <Link
                           href={`tel:${c.phone}`}
-                          className="font-bold text-[#451A03] hover:text-[#DC2626] hover:underline"
+                          className="inline-flex items-center min-h-6 py-1 font-bold text-[#451A03] hover:text-[#DC2626] hover:underline"
                         >
                           Toll-Free: {c.phone}
                         </Link>
@@ -220,7 +220,7 @@ export default function SurakshaCentresPage() {
                     <div className="flex items-center justify-between">
                       <Link
                         href={`tel:${c.phone}`}
-                        className="text-xs font-bold text-[#DC2626] hover:underline flex items-center gap-1 uppercase tracking-wider"
+                        className="min-h-6 py-1 text-xs font-bold text-[#DC2626] hover:underline flex items-center gap-1 uppercase tracking-wider"
                       >
                         Call Centre →
                       </Link>
@@ -228,7 +228,7 @@ export default function SurakshaCentresPage() {
                         href={googleMapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs font-bold text-[#78350F] hover:text-[#DC2626] flex items-center gap-1 uppercase tracking-wider"
+                        className="min-h-6 py-1 text-xs font-bold text-[#78350F] hover:text-[#DC2626] flex items-center gap-1 uppercase tracking-wider"
                       >
                         Directions <ExternalLink className="w-3.5 h-3.5" />
                       </a>

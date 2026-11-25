@@ -1333,6 +1333,17 @@
   transition: background 0.25s, width 0.25s;
 }
 
+/* Invisible 24px-tall tap area around the 4px dot (WCAG 2.5.8 target size) */
+.tmip-landing .slider-dot {
+  position: relative;
+}
+
+.tmip-landing .slider-dot::before {
+  content: "";
+  position: absolute;
+  inset: -10px -4px;
+}
+
 .tmip-landing .slider-dot.active {
   background: var(--blue);
   width: 36px;
@@ -2731,11 +2742,12 @@
 
 .tmip-carousel-dots {
   display: flex;
-  gap: 8px;
+  gap: 16px; /* keeps each dot's 24px tap area from overlapping its neighbour */
   align-items: center;
 }
 
 .tmip-carousel-dot {
+  position: relative;
   width: 8px;
   height: 8px;
   background: rgba(255, 255, 255, 0.2);
@@ -2744,6 +2756,13 @@
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+/* Invisible 24px tap area around the 8px dot (WCAG 2.5.8 target size) */
+.tmip-carousel-dot::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
 }
 
 .tmip-carousel-dot.active {
