@@ -322,7 +322,7 @@ export default function AdminMediaKitPage() {
           </div>
           <h1 className="text-3xl font-bold text-white tracking-tight">Media Kit Assets</h1>
           <p className="text-sm text-slate-400 font-mono mt-0.5">
-            Manage logos, brand guidelines, photography packs, executive bios, and downloadable media archives.
+            Manage logos, photography packs, executive bios, and downloadable media archives.
           </p>
         </div>
 
@@ -656,7 +656,7 @@ export default function AdminMediaKitPage() {
                 <Input
                   type="text"
                   required
-                  placeholder="e.g. Official Treel Logo Pack or Brand Guidelines V3.1"
+                  placeholder="e.g. Official Treel Logo Pack"
                   value={editingItem.title}
                   onChange={(e) => setEditingItem({ ...editingItem, title: e.target.value })}
                   className="bg-slate-950 border-slate-800 text-xs text-white"

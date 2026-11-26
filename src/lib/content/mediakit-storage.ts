@@ -65,21 +65,6 @@ export const SEED_MEDIA_KIT_ITEMS: MediaKitItemRecord[] = [
     updatedAt: "2026-01-01T00:00:00.000Z"
   },
   {
-    _id: "mk_brand_guidelines",
-    title: "Brand Guidelines V3.1",
-    category: "Brand Assets",
-    format: "PDF Document",
-    description: "Full specifications on color palette (Ink, Treel Red, Cream), typography, and tone.",
-    fileSize: "8.5 MB",
-    fileUrl: "/downloads/media-kit/treel-brand-guidelines.pdf",
-    file: "treel-brand-guidelines.pdf",
-    iconName: "FileText",
-    order: 4,
-    publicationStatus: "Published",
-    createdAt: "2026-01-01T00:00:00.000Z",
-    updatedAt: "2026-01-01T00:00:00.000Z"
-  },
-  {
     _id: "mk_typography_guide",
     title: "Typography & Specimen Guide",
     category: "Brand Assets",
@@ -185,6 +170,15 @@ export const SEED_MEDIA_KIT_ITEMS: MediaKitItemRecord[] = [
     updatedAt: "2026-01-01T00:00:00.000Z"
   }
 ];
+
+// Brand guidelines are internal-only: never list or serve them, even if an old
+// record still exists in Supabase or the local store.
+function isBlockedMediaKitItem(item: MediaKitItemRecord): boolean {
+  return (
+    item._id === "mk_brand_guidelines" ||
+    /brand[\s-]*guideline/i.test(`${item.title} ${item.fileUrl || ""}`)
+  );
+}
 
 function readLocalStore(): MediaKitItemRecord[] {
   try {
@@ -403,6 +397,7 @@ export async function getAllMediaKitItems(includeDrafts = true): Promise<MediaKi
         try {
           if (row.item) {
             const parsed = normalizeMediaKit(JSON.parse(row.item));
+            if (isBlockedMediaKitItem(parsed)) continue;
             if (!tombstoneSet.has(parsed._id)) {
               items.push(parsed);
             } else {
@@ -458,7 +453,7 @@ export async function getAllMediaKitItems(includeDrafts = true): Promise<MediaKi
   }
 
   // Fallback to local storage
-  const localItems = readLocalStore();
+  const localItems = readLocalStore().filter((p) => !isBlockedMediaKitItem(p));
   const sorted = [...localItems].sort((a, b) => (a.order || 0) - (b.order || 0));
   return includeDrafts ? sorted : sorted.filter((p) => p.publicationStatus === "Published");
 }

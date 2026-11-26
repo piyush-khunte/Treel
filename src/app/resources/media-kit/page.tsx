@@ -134,13 +134,13 @@ export default async function MediaKitPage() {
             <div className="max-w-4xl space-y-10">
               <div className="space-y-3">
                 <div className="text-xs font-mono uppercase tracking-widest text-[#D5573B] font-semibold">
-                  LOGOS &amp; GUIDELINES
+                  LOGOS &amp; MARKS
                 </div>
                 <h2 className="font-fraunces text-3xl sm:text-4xl font-medium tracking-tight text-[#FAF7F2]">
                   Brand assets
                 </h2>
                 <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
-                  Official vector marks and design documentation. Use only unmodified assets.
+                  Official vector marks and logos. Use only unmodified assets.
                 </p>
               </div>
 
