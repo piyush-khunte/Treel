@@ -283,7 +283,7 @@ export default async function CareersRoleSlugPage({ params }: { params: Promise<
                   </a>
                 </div>
               ) : (
-                <RoleApplicationForm roleTitle={role.title} />
+                <RoleApplicationForm roleTitle={role.title} roleSlug={role.slug} />
               )}
             </section>
           </div>

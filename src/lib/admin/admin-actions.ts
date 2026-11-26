@@ -1011,7 +1011,8 @@ export type AdminLeadCategory =
   | "demo"
   | "whitepaper"
   | "suraksha"
-  | "support";
+  | "support"
+  | "career";
 
 export interface AdminLeadItem {
   id: string;
@@ -1084,9 +1085,14 @@ export async function getAdminLeads(categoryFilter?: string): Promise<{ success:
       }
       const rawSubject = (meta?.subject || meta?.category || "").trim();
 
+      // Careers applications (form_id "careers_application", see /api/careers/apply)
+      const isCareer =
+        fId === "careers_application" || cType === "careers_application" || pPath.startsWith("/careers");
+
       // Reliable classification based on schema & persisted fields
       const isCampaign =
-        cType.includes("campaign") ||
+        !isCareer &&
+        (cType.includes("campaign") ||
         lSource.includes("campaign") ||
         lSource.includes("landing page") ||
         lSource === "car_tpms_popup" ||
@@ -1102,7 +1108,7 @@ export async function getAdminLeads(categoryFilter?: string): Promise<{ success:
         pPath === "/resources/events" ||
         lPage.includes("/lp") ||
         lPage.includes("/campaign") ||
-        Boolean(uCamp);
+        Boolean(uCamp));
 
       const isContactForm =
         !isCampaign &&
@@ -1141,7 +1147,9 @@ export async function getAdminLeads(categoryFilter?: string): Promise<{ success:
           pPath.startsWith("/personal/support"));
 
       let category: AdminLeadCategory = "campaign";
-      if (isCampaign) {
+      if (isCareer) {
+        category = "career";
+      } else if (isCampaign) {
         category = "campaign";
       } else if (isContactForm) {
         category = "contact_form";
@@ -1157,7 +1165,9 @@ export async function getAdminLeads(categoryFilter?: string): Promise<{ success:
 
       // Display source label
       let source = "TMIP Demo";
-      if (isCampaign) {
+      if (isCareer) {
+        source = "Career Application";
+      } else if (isCampaign) {
         if (cType.includes("personal_tpms_2w") || lSource.includes("bike")) {
           source = "Personal TPMS 2W Campaign";
         } else if (cType.includes("personal_tpms_4w") || lSource.includes("car")) {
@@ -1192,7 +1202,9 @@ export async function getAdminLeads(categoryFilter?: string): Promise<{ success:
       else if (rawStatus === "closed") status = "Closed";
 
       let vehiclesDisplay = "1-5";
-      if (source === "TMIP Demo") {
+      if (isCareer) {
+        vehiclesDisplay = meta?.role_title || item.company || "Career Application";
+      } else if (source === "TMIP Demo") {
         vehiclesDisplay = item.fleet_size ? `${item.fleet_size} Trucks` : meta?.vehicle_type || meta?.fleet_size_label || "Enterprise";
       } else if (source === "Personal Support" || source.includes("Support") || source.includes("Warranty")) {
         vehiclesDisplay = meta?.category || meta?.subject || "Support Inquiry";
@@ -1252,6 +1264,7 @@ export async function getAdminLeads(categoryFilter?: string): Promise<{ success:
         if (categoryFilter === "WHITEPAPER") return item.category === "whitepaper";
         if (categoryFilter === "SURAKSHA") return item.category === "suraksha";
         if (categoryFilter === "SUPPORT") return item.category === "support";
+        if (categoryFilter === "CAREERS") return item.category === "career";
         return true;
       });
       return { success: true, data: filtered };
@@ -1260,6 +1273,40 @@ export async function getAdminLeads(categoryFilter?: string): Promise<{ success:
     return { success: true, data: formatted };
   } catch (error: any) {
     return { success: false, error: error.message || 'Failed to fetch leads' };
+  }
+}
+
+/**
+ * Returns a short-lived signed download link for a career applicant's resume.
+ * Resumes live in the private "resumes" bucket; the path is read from the lead row
+ * itself so callers cannot request arbitrary storage objects.
+ */
+export async function getCareerResumeUrl(leadId: string): Promise<{ success: boolean; url?: string; error?: string }> {
+  if (!(await getAdminSession())) return { success: false, error: UNAUTHORIZED_ERROR };
+  const supabase = getAdminClient();
+  try {
+    const { data, error } = await supabase
+      .from('leads')
+      .select('attribution_metadata, form_id')
+      .eq('id', leadId)
+      .single();
+    if (error || !data) return { success: false, error: error?.message || 'Application not found' };
+    const row = data as { attribution_metadata?: Record<string, any> | null; form_id?: string | null };
+    const meta = row.attribution_metadata || {};
+    const resumePath = typeof meta.resume_path === 'string' ? meta.resume_path : '';
+    if (row.form_id !== 'careers_application' || !resumePath) {
+      return { success: false, error: 'No resume attached to this record' };
+    }
+    const bucket = typeof meta.resume_bucket === 'string' ? meta.resume_bucket : 'resumes';
+    const { data: signed, error: signError } = await supabase.storage
+      .from(bucket)
+      .createSignedUrl(resumePath, 300, { download: typeof meta.resume_file_name === 'string' ? meta.resume_file_name : true });
+    if (signError || !signed?.signedUrl) {
+      return { success: false, error: signError?.message || 'Could not create download link' };
+    }
+    return { success: true, url: signed.signedUrl };
+  } catch (error: any) {
+    return { success: false, error: error.message || 'Could not create download link' };
   }
 }
 

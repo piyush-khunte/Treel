@@ -4,8 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { AdminLeadItem, getAdminLeads, updateAdminLeadStatus } from "@/lib/admin/admin-actions";
+import { AdminLeadItem, getAdminLeads, getCareerResumeUrl, updateAdminLeadStatus } from "@/lib/admin/admin-actions";
 import {
+  Download,
   ChevronLeft,
   ChevronRight,
   ExternalLink,
@@ -26,7 +27,8 @@ export type LeadFilterKey =
   | "DEMO"
   | "WHITEPAPER"
   | "SURAKSHA"
-  | "SUPPORT";
+  | "SUPPORT"
+  | "CAREERS";
 
 interface FilterOptionConfig {
   key: LeadFilterKey;
@@ -44,6 +46,7 @@ const FILTER_OPTIONS: FilterOptionConfig[] = [
   { key: "WHITEPAPER", label: "Whitepaper Downloads", shortLabel: "Whitepapers", description: "Whitepaper gated asset downloads" },
   { key: "SURAKSHA", label: "Suraksha Callbacks", shortLabel: "Suraksha Callbacks", description: "Suraksha direct callbacks and inquiries" },
   { key: "SUPPORT", label: "Support & Warranty", shortLabel: "Support & Warranty", description: "Personal TPMS support and warranty claims" },
+  { key: "CAREERS", label: "Career Applications", shortLabel: "Careers", description: "Job applications submitted from /careers role pages" },
 ];
 
 const DEFAULT_DEMO_LEADS: AdminLeadItem[] = [
@@ -108,6 +111,10 @@ const DEFAULT_DEMO_LEADS: AdminLeadItem[] = [
 
 function matchesCategory(l: AdminLeadItem, filter: LeadFilterKey): boolean {
   if (filter === "ALL") return true;
+
+  if (filter === "CAREERS") return l.category === "career";
+  // Career applications only appear under "All" and "Careers"
+  if (l.category === "career") return false;
 
   if (filter === "CAMPAIGN") {
     return Boolean(
@@ -182,6 +189,24 @@ export default function AdminLeadsPage() {
 
   // Selected Lead Modal State
   const [inspectedLead, setInspectedLead] = useState<AdminLeadItem | null>(null);
+  const [resumeLoading, setResumeLoading] = useState(false);
+  const [resumeError, setResumeError] = useState("");
+
+  const handleDownloadResume = async (lead: AdminLeadItem) => {
+    if (!lead.rawId) return;
+    setResumeError("");
+    setResumeLoading(true);
+    try {
+      const res = await getCareerResumeUrl(lead.rawId);
+      if (res.success && res.url) {
+        window.open(res.url, "_blank", "noopener,noreferrer");
+      } else {
+        setResumeError(res.error || "Could not fetch resume.");
+      }
+    } finally {
+      setResumeLoading(false);
+    }
+  };
 
   const fetchLeads = async () => {
     setLoading(true);
@@ -225,6 +250,7 @@ export default function AdminLeadsPage() {
       WHITEPAPER: 0,
       SURAKSHA: 0,
       SUPPORT: 0,
+      CAREERS: 0,
     };
 
     leads.forEach((l) => {
@@ -235,6 +261,7 @@ export default function AdminLeadsPage() {
       if (matchesCategory(l, "WHITEPAPER")) counts.WHITEPAPER++;
       if (matchesCategory(l, "SURAKSHA")) counts.SURAKSHA++;
       if (matchesCategory(l, "SUPPORT")) counts.SUPPORT++;
+      if (matchesCategory(l, "CAREERS")) counts.CAREERS++;
     });
 
     return counts;
@@ -694,7 +721,7 @@ export default function AdminLeadsPage() {
                 <p className="text-xs text-slate-400 font-mono mt-1">Submitted {inspectedLead.time}</p>
               </div>
               <button
-                onClick={() => setInspectedLead(null)}
+                onClick={() => { setInspectedLead(null); setResumeError(""); }}
                 className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors"
                 aria-label="Close modal"
               >
@@ -732,6 +759,53 @@ export default function AdminLeadsPage() {
                 )}
               </div>
             </div>
+
+            {/* Career application: resume + cover letter */}
+            {inspectedLead.category === "career" && (
+              <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3 text-xs">
+                <span className="text-slate-500 text-[10px] uppercase tracking-wider block font-bold font-mono">
+                  Application
+                </span>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button
+                    size="sm"
+                    onClick={() => handleDownloadResume(inspectedLead)}
+                    disabled={resumeLoading || !inspectedLead.rawId}
+                    className="bg-teal-600 hover:bg-teal-500 text-white text-xs"
+                  >
+                    <Download className="w-3.5 h-3.5 mr-1.5" />
+                    {resumeLoading ? "Preparing..." : "Download resume"}
+                  </Button>
+                  {inspectedLead.attributionMetadata?.resume_file_name && (
+                    <span className="text-slate-400 font-mono text-[11px]">
+                      {inspectedLead.attributionMetadata.resume_file_name}
+                    </span>
+                  )}
+                  {typeof inspectedLead.attributionMetadata?.linkedin === "string" &&
+                    /^https?:\/\//i.test(inspectedLead.attributionMetadata.linkedin) && (
+                    <a
+                      href={inspectedLead.attributionMetadata.linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-400 hover:underline inline-flex items-center gap-1 font-mono text-[11px]"
+                    >
+                      LinkedIn <ExternalLink className="w-3 h-3" />
+                    </a>
+                  )}
+                </div>
+                {resumeError && <p className="text-rose-400 text-[11px]">{resumeError}</p>}
+                {inspectedLead.attributionMetadata?.heard_from && (
+                  <p className="text-slate-400 text-[11px] font-mono">
+                    Heard via: <span className="text-slate-200">{inspectedLead.attributionMetadata.heard_from}</span>
+                  </p>
+                )}
+                {inspectedLead.attributionMetadata?.cover_letter && (
+                  <div className="text-slate-300 whitespace-pre-wrap bg-slate-900/60 p-3 rounded-lg max-h-48 overflow-y-auto leading-relaxed">
+                    {inspectedLead.attributionMetadata.cover_letter}
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Source & Attribution Meta */}
             {(inspectedLead.pagePath || inspectedLead.campaignType || inspectedLead.utmCampaign) && (

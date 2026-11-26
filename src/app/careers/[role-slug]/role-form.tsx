@@ -1,19 +1,23 @@
 "use client";
 
 import { normalizePhone } from "@/lib/validation/phone";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { HoneypotField } from "@/components/forms/honeypot-field";
 import Link from "next/link";
 import { CheckCircle2, Loader2, ArrowRight, Upload } from "lucide-react";
 
 interface RoleApplicationFormProps {
   roleTitle: string;
+  roleSlug: string;
 }
 
-export function RoleApplicationForm({ roleTitle }: RoleApplicationFormProps) {
+export function RoleApplicationForm({ roleTitle, roleSlug }: RoleApplicationFormProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [fileName, setFileName] = useState("");
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const honeypotRef = useRef<HTMLInputElement>(null);
   const [linkedin, setLinkedin] = useState("");
   const [coverLetter, setCoverLetter] = useState("");
   const [source, setSource] = useState("");
@@ -21,6 +25,7 @@ export function RoleApplicationForm({ roleTitle }: RoleApplicationFormProps) {
 
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitError, setSubmitError] = useState("");
 
   const validate = () => {
     const errs: Record<string, string> = {};
@@ -34,7 +39,7 @@ export function RoleApplicationForm({ roleTitle }: RoleApplicationFormProps) {
     if (!cleanPhone || cleanPhone.length !== 10 || !/^[6-9]\d{9}$/.test(cleanPhone)) {
       errs.phone = "Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.";
     }
-    if (!fileName) errs.resume = "Please attach your resume (PDF or DOCX, max 5MB).";
+    if (!resumeFile) errs.resume = "Please attach your resume (PDF or DOCX, max 4MB).";
     if (!consent) errs.consent = "Please confirm your consent to process your application.";
     setErrors(errs);
     return Object.keys(errs).length === 0;
@@ -43,11 +48,13 @@ export function RoleApplicationForm({ roleTitle }: RoleApplicationFormProps) {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (file.size > 5 * 1024 * 1024) {
-        setErrors((prev) => ({ ...prev, resume: "File size exceeds 5MB." }));
+      if (file.size > 4 * 1024 * 1024) {
+        setErrors((prev) => ({ ...prev, resume: "File size exceeds 4MB." }));
         setFileName("");
+        setResumeFile(null);
       } else {
         setFileName(file.name);
+        setResumeFile(file);
         setErrors((prev) => {
           const rest = { ...prev };
           delete rest.resume;
@@ -57,17 +64,40 @@ export function RoleApplicationForm({ roleTitle }: RoleApplicationFormProps) {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) {
+    setSubmitError("");
+    if (!validate() || !resumeFile) {
       setStatus("error");
       return;
     }
 
     setStatus("loading");
-    setTimeout(() => {
+    try {
+      const body = new FormData();
+      body.append("roleSlug", roleSlug);
+      body.append("name", name.trim());
+      body.append("email", email.trim());
+      body.append("phone", phone.replace(/\D/g, ""));
+      body.append("linkedin", linkedin.trim());
+      body.append("coverLetter", coverLetter.trim());
+      body.append("source", source);
+      body.append("consent", consent ? "true" : "false");
+      body.append("website", honeypotRef.current?.value || "");
+      body.append("resume", resumeFile);
+
+      const res = await fetch("/api/careers/apply", { method: "POST", body });
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.success) {
+        setSubmitError(data?.error || "Something went wrong while submitting your application. Please try again.");
+        setStatus("error");
+        return;
+      }
       setStatus("success");
-    }, 700);
+    } catch {
+      setSubmitError("Network error. Please check your connection and try again.");
+      setStatus("error");
+    }
   };
 
   if (status === "success") {
@@ -99,6 +129,8 @@ export function RoleApplicationForm({ roleTitle }: RoleApplicationFormProps) {
           Submit your details below. We respond to every applicant within two weeks.
         </p>
       </div>
+
+      <HoneypotField ref={honeypotRef} />
 
       <div className="space-y-4">
         {/* Full Name */}
@@ -157,7 +189,7 @@ export function RoleApplicationForm({ roleTitle }: RoleApplicationFormProps) {
         {/* Resume upload */}
         <div className="space-y-1.5">
           <label className="block text-xs font-mono uppercase tracking-wider text-[#94A3B8]">
-            Resume upload (PDF, DOCX, max 5MB) <span className="text-[#D5573B]">*</span>
+            Resume upload (PDF, DOCX, max 4MB) <span className="text-[#D5573B]">*</span>
           </label>
           <div className="relative">
             <input
@@ -253,6 +285,12 @@ export function RoleApplicationForm({ roleTitle }: RoleApplicationFormProps) {
           {errors.consent && <p className="text-xs text-[#D5573B] font-inter mt-1">{errors.consent}</p>}
         </div>
       </div>
+
+      {submitError && (
+        <p role="alert" className="text-sm text-[#D5573B] font-inter">
+          {submitError}
+        </p>
+      )}
 
       <div className="pt-2">
         <button
