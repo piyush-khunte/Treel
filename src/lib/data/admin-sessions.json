@@ -1,0 +1,13 @@
+{
+  "totalLogins": 1,
+  "todayLogins": 1,
+  "lastResetDate": "2026-11-27",
+  "sessions": [
+    {
+      "id": "TreelEcosystem@332_1795588871",
+      "username": "TreelEcosystem@332",
+      "loginAt": "2026-11-27T05:34:43.427Z",
+      "lastSeenAt": "2026-11-27T05:35:46.001Z"
+    }
+  ]
+}

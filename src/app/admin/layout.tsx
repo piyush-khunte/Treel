@@ -1,15 +1,15 @@
 import Link from "next/link";
-import { 
-  LayoutDashboard, 
-  ShoppingBag, 
-  CreditCard, 
-  Package, 
+import {
+  LayoutDashboard,
+  ShoppingBag,
+  CreditCard,
+  Package,
   Tag,
-  FileText, 
-  BookOpen, 
-  Users, 
-  ArrowLeft, 
-  ShieldCheck, 
+  FileText,
+  BookOpen,
+  Users,
+  ArrowLeft,
+  ShieldCheck,
   Bell,
   Cookie,
   Calendar,
@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { getAdminSession } from "@/lib/admin/admin-auth";
 import { AdminLogoutButton } from "./admin-logout-button";
+import { AdminSessionWidget } from "./admin-session-widget";
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const session = await getAdminSession();
@@ -209,9 +210,20 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 p-6 sm:p-10 lg:p-12 overflow-y-auto">
-        {children}
-      </main>
+      <div className="flex-1 flex flex-col overflow-y-auto min-h-0">
+        {/* Top header bar */}
+        <header className="shrink-0 border-b border-slate-800 bg-slate-900/70 backdrop-blur-sm px-6 sm:px-10 lg:px-12 py-2.5 flex items-center justify-between gap-4">
+          <div className="text-[11px] font-mono text-slate-500 hidden sm:block">
+            Treel Back-Office &mdash; Operations Console
+          </div>
+          <div className="ml-auto">
+            <AdminSessionWidget />
+          </div>
+        </header>
+        <main className="flex-1 p-6 sm:p-10 lg:p-12">
+          {children}
+        </main>
+      </div>
     </div>
   );
 }
