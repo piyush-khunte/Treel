@@ -60,9 +60,9 @@ function writeLocalStore(items: WhitepaperRecord[]): void {
 // ---------------------------------------------------------------------------
 // Supabase Sync helpers
 // ---------------------------------------------------------------------------
-async function syncToSupabase(whitepaper: WhitepaperRecord): Promise<void> {
+async function syncToSupabase(whitepaper: WhitepaperRecord): Promise<boolean> {
   const supabase = getSupabaseClient();
-  if (!supabase) return;
+  if (!supabase) return true;
 
   try {
     const payload = {
@@ -71,11 +71,32 @@ async function syncToSupabase(whitepaper: WhitepaperRecord): Promise<void> {
       item: JSON.stringify(whitepaper),
       qty: 1,
     };
-    await supabase
+
+    // Delete any existing row(s) with this _id first to avoid unique-constraint
+    // errors on upsert or duplicate rows in TreelEcommerce.t_test
+    const { error: delError } = await supabase
       .from("TreelEcommerce.t_test")
-      .upsert([payload], { onConflict: "_id" });
+      .delete()
+      .eq("_id", whitepaper._id)
+      .eq("testKey", "treel_whitepaper");
+
+    if (delError) {
+      console.warn("Supabase TreelEcommerce.t_test delete warning for whitepaper:", delError);
+    }
+
+    const { error: insertError } = await supabase
+      .from("TreelEcommerce.t_test")
+      .insert([payload]);
+
+    if (insertError) {
+      console.error("Supabase TreelEcommerce.t_test insert error for whitepaper:", insertError);
+      return false;
+    }
+
+    return true;
   } catch (err) {
     console.warn("Supabase TreelEcommerce.t_test sync warning for whitepaper:", err);
+    return false;
   }
 }
 
@@ -258,7 +279,10 @@ export async function saveWhitepaper(
     writeLocalStore(currentList);
 
     // 2. Synchronize to Supabase
-    await syncToSupabase(record);
+    const synced = await syncToSupabase(record);
+    if (!synced) {
+      return { success: false, error: "Failed to persist whitepaper to database." };
+    }
 
     return { success: true, data: record };
   } catch (err: any) {
@@ -289,7 +313,8 @@ export async function deleteWhitepaper(id: string): Promise<{ success: boolean; 
 }
 
 export async function toggleWhitepaperPublish(
-  id: string
+  id: string,
+  currentStatus: "Published" | "Draft"
 ): Promise<{ success: boolean; data?: WhitepaperRecord; error?: string }> {
   try {
     const currentList = await getAllWhitepapers();
@@ -299,7 +324,8 @@ export async function toggleWhitepaperPublish(
     }
 
     const current = currentList[idx];
-    const newStatus = current.publicationStatus === "Published" ? "Draft" : "Published";
+    // Use client-supplied currentStatus to avoid Supabase stale-read race condition
+    const newStatus = currentStatus === "Published" ? "Draft" : "Published";
     const updated: WhitepaperRecord = {
       ...current,
       publicationStatus: newStatus,
@@ -308,7 +334,10 @@ export async function toggleWhitepaperPublish(
 
     currentList[idx] = updated;
     writeLocalStore(currentList);
-    await syncToSupabase(updated);
+    const synced = await syncToSupabase(updated);
+    if (!synced) {
+      return { success: false, error: "Failed to persist whitepaper status to database." };
+    }
 
     return { success: true, data: updated };
   } catch (err: any) {

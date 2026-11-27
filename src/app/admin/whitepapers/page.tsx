@@ -75,6 +75,7 @@ export default function AdminWhitepapersPage() {
   const [uploadingCover, setUploadingCover] = useState(false);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const [togglingId, setTogglingId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"general" | "document" | "media" | "seo">("general");
 
   const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(null);
@@ -166,15 +167,21 @@ export default function AdminWhitepapersPage() {
   };
 
   const handleTogglePublish = async (item: WhitepaperRecord) => {
-    const res = await toggleWhitepaperPublishAction(item._id);
-    if (res.success && res.data) {
-      setWhitepapers((prev) => prev.map((w) => (w._id === item._id ? res.data! : w)));
-      showFeedback(
-        "success",
-        `Whitepaper "${item.title}" is now ${res.data.publicationStatus.toLowerCase()}.`
-      );
-    } else {
-      showFeedback("error", res.error || "Failed to toggle status.");
+    if (togglingId === item._id) return;
+    setTogglingId(item._id);
+    try {
+      const res = await toggleWhitepaperPublishAction(item._id, item.publicationStatus as "Published" | "Draft");
+      if (res.success && res.data) {
+        setWhitepapers((prev) => prev.map((w) => (w._id === item._id ? res.data! : w)));
+        showFeedback(
+          "success",
+          `Whitepaper "${item.title}" is now ${res.data.publicationStatus.toLowerCase()}.`
+        );
+      } else {
+        showFeedback("error", res.error || "Failed to toggle status.");
+      }
+    } finally {
+      setTogglingId(null);
     }
   };
 
@@ -744,7 +751,8 @@ export default function AdminWhitepapersPage() {
                       <td className="py-4 px-4 whitespace-nowrap">
                         <button
                           onClick={() => handleTogglePublish(item)}
-                          className={`inline-flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-1 rounded-lg border transition-all ${
+                          disabled={togglingId === item._id}
+                          className={`inline-flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-1 rounded-lg border transition-all disabled:opacity-50 disabled:cursor-wait ${
                             isPublished
                               ? "bg-emerald-500/10 text-emerald-300 border-emerald-500/40 hover:bg-emerald-500/20"
                               : "bg-amber-500/10 text-amber-300 border-amber-500/40 hover:bg-amber-500/20"

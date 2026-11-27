@@ -1,7 +1,9 @@
 import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { getWhitepaperBySlug } from "@/lib/content/whitepapers-storage";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -20,7 +22,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TmipWhitepapersSlugPage() {
+export const dynamic = "force-dynamic";
+
+export default async function TmipWhitepapersSlugPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const anyPaper = await getWhitepaperBySlug(slug, true);
+  if (anyPaper && anyPaper.publicationStatus !== "Published") {
+    notFound();
+  }
   return (
     <div className="relative bg-[#050A17] text-[#F1F5F9] font-ibm-plex overflow-x-hidden min-h-screen">
       {/* Subtle Blueprint Grid: 60px x 60px rgba(59,130,246,0.04) */}

@@ -1,5 +1,6 @@
 import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { getWhitepaperBySlug } from "@/lib/content/whitepapers-storage";
 import {
 ArrowRight,
 BookOpen,
@@ -9,6 +10,7 @@ User
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { WhitepaperGatedForm } from "./whitepaper-form";
 
 export const metadata: Metadata = {
@@ -25,7 +27,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ResearchRoiFleetIntelligencePage() {
+export const dynamic = "force-dynamic";
+
+export default async function ResearchRoiFleetIntelligencePage() {
+  const paper = await getWhitepaperBySlug("roi-fleet-intelligence", true);
+  if (paper && paper.publicationStatus !== "Published") {
+    notFound();
+  }
   return (
     <div className="space-y-0 bg-[#0F1419] text-[#FAF7F2] font-inter">
       {/* Header & Hero Section */}

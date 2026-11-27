@@ -22,10 +22,10 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export default async function TmipWhitepapersPage() {
-  const publishedWhitepapers = await getPublishedWhitepapers();
+  const publishedWhitepapers = await getPublishedWhitepapers("tmip");
 
   return (
     <div className="relative bg-[#050A17] text-[#F1F5F9] font-ibm-plex overflow-x-hidden min-h-screen">

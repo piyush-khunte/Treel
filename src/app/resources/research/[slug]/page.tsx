@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { getAllWhitepapers, getWhitepaperBySlug } from "@/lib/content/whitepapers-storage";
 import { WhitepaperGatedForm } from "../roi-fleet-intelligence/whitepaper-form";
 
@@ -126,9 +127,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+export const dynamic = "force-dynamic";
+
 export default async function ResearchSlugPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const dbPaper = await getWhitepaperBySlug(slug, false);
+  const anyPaper = await getWhitepaperBySlug(slug, true);
+  if (anyPaper && anyPaper.publicationStatus !== "Published") {
+    notFound();
+  }
+  const dbPaper = anyPaper;
   const fallback = PAPERS[slug] || {
     slug,
     topic: "Mobility Intelligence",

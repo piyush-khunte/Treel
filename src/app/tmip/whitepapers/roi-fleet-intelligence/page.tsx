@@ -1,7 +1,9 @@
 import { DEFAULT_OG_IMAGES } from "@/lib/seo/metadata";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { getWhitepaperBySlug } from "@/lib/content/whitepapers-storage";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { ArrowRight, BookOpen, Clock } from "lucide-react";
 import { WhitepaperForm } from "./whitepaper-form";
 
@@ -21,7 +23,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RoiFleetIntelligencePage() {
+export const dynamic = "force-dynamic";
+
+export default async function RoiFleetIntelligencePage() {
+  const paper = await getWhitepaperBySlug("roi-fleet-intelligence", true);
+  if (paper && paper.publicationStatus !== "Published") {
+    notFound();
+  }
   return (
     <div className="relative bg-[#050A17] text-[#F1F5F9] font-ibm-plex overflow-x-hidden min-h-screen">
       {/* Subtle Blueprint Grid: 60px x 60px rgba(59,130,246,0.04) */}

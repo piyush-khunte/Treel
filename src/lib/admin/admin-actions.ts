@@ -1808,8 +1808,13 @@ export async function saveWhitepaperAction(
     if (res.success && res.data) {
       revalidatePath('/tmip/whitepapers');
       revalidatePath('/resources/research');
+      revalidatePath('/sitemap.xml');
       if (res.data.slug) {
         revalidatePath(`/tmip/whitepapers/${res.data.slug}`);
+        revalidatePath(`/resources/research/${res.data.slug}`);
+      }
+      if (res.data.directUrl) {
+        revalidatePath(res.data.directUrl);
       }
       revalidatePath('/admin/whitepapers');
     }
@@ -1844,7 +1849,8 @@ export async function deleteWhitepaperAction(
 }
 
 export async function toggleWhitepaperPublishAction(
-  id: string
+  id: string,
+  currentStatus: "Published" | "Draft"
 ): Promise<{
   success: boolean;
   data?: import('@/types/content').WhitepaperRecord;
@@ -1857,12 +1863,17 @@ export async function toggleWhitepaperPublishAction(
 
   try {
     const { toggleWhitepaperPublish } = await import('@/lib/content/whitepapers-storage');
-    const res = await toggleWhitepaperPublish(id);
+    const res = await toggleWhitepaperPublish(id, currentStatus);
     if (res.success && res.data) {
       revalidatePath('/tmip/whitepapers');
       revalidatePath('/resources/research');
+      revalidatePath('/sitemap.xml');
       if (res.data.slug) {
         revalidatePath(`/tmip/whitepapers/${res.data.slug}`);
+        revalidatePath(`/resources/research/${res.data.slug}`);
+      }
+      if (res.data.directUrl) {
+        revalidatePath(res.data.directUrl);
       }
       revalidatePath('/admin/whitepapers');
     }
