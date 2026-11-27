@@ -297,7 +297,7 @@ export default function PersonalSpecsPage() {
               Ready to protect your car tyres?
             </h2>
             <p className="text-[#4B5563] text-sm sm:text-base font-medium max-w-xl mx-auto">
-              Order your 4-tyre smart sensor kit today for ₹8,999. Free pan-India express shipping.
+              Order your 4-tyre smart sensor kit today for ₹3,749. Free pan-India express shipping.
             </p>
             <div className="pt-2 flex justify-center">
               <Link

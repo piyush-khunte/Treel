@@ -234,7 +234,7 @@ export default function PersonalFeaturesMonitoringPage() {
                 Experience real-time tyre intelligence.
               </h2>
               <p className="text-[#94A3B8] text-sm sm:text-base font-normal">
-                Get Personal TPMS for ₹8,999 with 1-year replacement warranty and free pan-India shipping.
+                Get Personal TPMS for ₹3,749 with 1-year replacement warranty and free pan-India shipping.
               </p>
             </div>
             <Link

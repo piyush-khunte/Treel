@@ -32,7 +32,7 @@ export default function OemIntroductionPage() {
               OEM <span className="italic font-normal text-[#D5573B]">Introduction.</span>
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-inter max-w-3xl">
-              Factory-grade tyre telematics architecture designed for seamless automotive assembly line integration and connected vehicle platforms.
+              Factory-grade tyre telematics architecture designed for direct automotive assembly line integration and connected vehicle platforms.
             </p>
           </div>
         </div>

@@ -519,7 +519,7 @@ function CorporateContactFormContent() {
             className="w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/15 focus:border-[#D5573B] focus:ring-1 focus:ring-[#D5573B] text-[#FAF7F2] placeholder-[#94A3B8]/50 text-sm outline-none transition-all"
           />
           <p className="text-[11px] text-[#94A3B8] font-inter">
-            Inquiry will be routed directly to Treel&apos;s International Business Desk for OEM fitments, cross-border distributor agreements, and regional hardware certifications (SLA: at earliest).
+            Inquiry will be routed directly to Treel&apos;s International Business Desk for OEM fitments, cross-border distributor agreements, and regional hardware certifications. We will contact you shortly.
           </p>
         </div>
       )}

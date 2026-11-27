@@ -95,7 +95,7 @@ const differentiators = [
   },
   {
     title: "Multi-region deployment",
-    desc: "Unified global control console engineered to support India-scale deployments, expanding seamlessly into Middle East and European corridors.",
+    desc: "Unified global control console engineered to support India-scale deployments, expanding directly into Middle East and European corridors.",
   },
 ];
 

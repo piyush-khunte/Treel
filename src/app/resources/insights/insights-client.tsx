@@ -61,7 +61,7 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
       category: "Fleet Operations",
       title: "The Direct Thermodynamics of Under-Inflation on Diesel Consumption",
       excerpt: "An empirical study tracking 100,000 km across multi-axle trailers reveals the non-linear relationship between tyre rolling resistance and fuel burn.",
-      author: "Pradnya Choudhary",
+      author: "Pradnya Chaudhari",
       date: "August 2026",
       readTime: "5 min read"
     },
@@ -96,7 +96,7 @@ export function InsightsClientView({ initialArticles }: InsightsClientViewProps 
       slug: "founding-conviction-2018-to-2026",
       category: "Founder Notes",
       title: "The Tyre Was the Entry Point: Reflections on Building Treel: The Journey Since 2018",
-      excerpt: "Reflecting on the journey from our first valve-stem sensor prototypes in Pune to operating India's largest connected commercial vehicle platform.",
+      excerpt: "Reflecting on the journey from our first valve-stem sensor prototypes in Pune to operating one of the largest connected commercial vehicle datasets in India.",
       author: "Manish Ingale",
       date: "June 2026",
       readTime: "5 min read"

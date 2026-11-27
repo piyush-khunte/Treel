@@ -127,7 +127,7 @@ export default async function PressPage() {
               </h3>
               <div className="space-y-2 text-xs sm:text-sm text-[#94A3B8] font-mono">
                 <div>Treel Mobility Solutions Communications</div>
-                <div>Baner Tech Park, Pune 411045, Maharashtra, India</div>
+                <div>S.No. 6/1B, 6/4, 7/4, Plot No. 02, NDA Road, Village Shivane, Tal. Haveli, Pune, Maharashtra 411023, India</div>
                 <div className="pt-2">
                   Email:{" "}
                   <a href="mailto:hello@treel.in" className="text-[#D5573B] underline">

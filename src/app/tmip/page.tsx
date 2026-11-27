@@ -45,7 +45,7 @@ const capabilities = [
   {
     icon: Clock,
     title: "Drastically Reduced Downtime",
-    body: "Eliminate costly roadside strandings and emergency tyre failures. Predictive intelligence detects pressure degradation 24–48 hours ahead, preventing breakdown delays and SLA penalties.",
+    body: "Eliminate costly roadside strandings and emergency tyre failures. Predictive intelligence detects pressure degradation and thermal stress patterns early, preventing breakdown delays and SLA penalties.",
   },
   {
     icon: BarChart3,
@@ -60,7 +60,7 @@ const capabilities = [
   {
     icon: Globe,
     title: "Multi-region deployment",
-    body: "India first. Middle East from Month 4. Europe from Month 8. One platform, region-tuned intelligence, unified operator experience.",
+    body: "India first. Middle East and Europe next. One platform, region-tuned intelligence, unified operator experience.",
   },
 ];
 
@@ -372,7 +372,7 @@ export default function TmipPage() {
               ENTERPRISE TELEMATICS &amp; ERP INTEGRATIONS
             </div>
             <h2 className="font-space-grotesk text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#F1F5F9] tracking-[-0.02em]">
-              Connects seamlessly into your existing fleet stack.
+              Connects natively into your existing fleet stack.
             </h2>
             <p className="font-ibm-plex text-sm sm:text-base text-[#94A3B8] leading-[1.6]">
               TMIP ingests real-time CAN bus telemetry and exports enriched tyre, fuel, and trip intelligence directly into enterprise ERPs, TMS platforms, and government-mandated tracking systems.

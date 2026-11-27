@@ -62,7 +62,7 @@ const layers = [
 const useCases = [
   {
     title: "Ask real questions.",
-    query: '"Which vehicles in the Bangalore-to-Chennai route have tyre wear >70% and are due for replacement in the next 30 days?"',
+    query: '"Which vehicles in the Bengaluru-to-Chennai route have tyre wear >70% and are due for replacement in the next 30 days?"',
     desc: "TMIP returns a structured list with estimated replacement costs, inventory availability, and optimal depot scheduling windows.",
     icon: Database,
   },

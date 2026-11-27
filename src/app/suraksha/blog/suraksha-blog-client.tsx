@@ -38,7 +38,7 @@ const fallbackArticlesData: Article[] = [
     id: "fuel-10-tips",
     title: "10 Simple Fuel-Saving Tips Every Driver Should Know",
     category: "Fuel efficiency",
-    excerpt: "Maintaining proper tyre pressure and smooth throttle control can cut your diesel consumption by 8–12%.",
+    excerpt: "Maintaining proper tyre pressure and smooth throttle control helps reduce your diesel consumption. Under-inflated tyres increase rolling resistance and fuel use.",
     author: "Suraksha Fleet Team",
     date: "October 2026",
     readTime: "5 min read",

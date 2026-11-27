@@ -51,7 +51,7 @@ export default function TmipCompliancePage() {
               Compliance is a floor, not a ceiling.
             </h1>
             <p className="text-[#94A3B8] text-lg sm:text-xl leading-relaxed font-ibm-plex max-w-3xl">
-              From automotive manufacturing quality (IATF 16949) to military-grade environmental sealing (IP65 / IP67) and global enterprise data governance (ISO 27001, GDPR), Treel engineering adheres to the strictest tier-1 standards.
+              From automotive manufacturing quality (IATF 16949) to ruggedised environmental sealing (IP65 / IP67) and global enterprise data governance (ISO 27001, GDPR), Treel engineering adheres to the strictest tier-1 standards.
             </p>
           </div>
         </div>
@@ -288,7 +288,7 @@ export default function TmipCompliancePage() {
               Data Residency &amp; Sovereignty
             </h2>
             <p className="text-[#94A3B8] text-base leading-relaxed font-ibm-plex">
-              For Indian enterprise fleets, 100% of Vehicle Digital Twin telemetry and audit data is hosted in MeitY-empaneled tier-4 data centres within India. For international customers, regional data residency clusters in the European Union, MENA, and North America ensure localized compliance with national data sovereignty mandates.
+              TMIP is hosted on Amazon Web Services (AWS), leveraging MeitY-empaneled AWS cloud infrastructure in India to support secure and reliable data hosting for Indian enterprise fleets. Built on a region-flexible cloud architecture, TMIP supports regional deployment configurations across the European Union (EU), Middle East &amp; North Africa (MENA), and North America, enabling customers to align data hosting with regional data residency and sovereignty requirements.
             </p>
           </div>
         </div>

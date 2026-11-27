@@ -92,7 +92,7 @@ const responseTimes = [
   },
   {
     label: "Complex queries",
-    time: "Same day",
+    time: "Reply within 2 hours, 8 AM to 8 PM.",
     detail: "Direct escalation to technical and warranty specialists",
     icon: ShieldCheck,
   },
@@ -160,7 +160,7 @@ export default function SurakshaWhatsappPage() {
               What you can do on WhatsApp
             </h2>
             <p className="text-[#78350F] text-lg mt-3 font-medium">
-              Our dedicated support channel is available 24/7 to answer questions and assist drivers nationwide.
+              WhatsApp bot answers anytime. Our team replies 8 AM to 8 PM to assist drivers nationwide.
             </p>
           </div>
 

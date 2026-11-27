@@ -7,14 +7,14 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Truck Safety · Front-Tyre Blowouts Prevented · Suraksha",
-  description: "Prevent highway front-tyre blowouts. Suraksha real-time pressure and temperature monitoring alerts you 24–48 hours before a tyre fails. Built for safety.",
+  description: "Prevent highway front-tyre blowouts. Suraksha real-time pressure and temperature monitoring detects warning signs before a tyre fails. Built for safety.",
   alternates: {
     canonical: "https://treel.in/suraksha/safety",
   },
   openGraph: {
     images: DEFAULT_OG_IMAGES,
     title: "Truck Safety · Front-Tyre Blowouts Prevented · Suraksha",
-    description: "Prevent highway front-tyre blowouts. Suraksha real-time pressure and temperature monitoring alerts you 24–48 hours before a tyre fails. Built for safety.",
+    description: "Prevent highway front-tyre blowouts. Suraksha real-time pressure and temperature monitoring detects warning signs before a tyre fails. Built for safety.",
     url: "https://treel.in/suraksha/safety",
   },
 };
@@ -46,7 +46,7 @@ export default function SurakshaSafetyPage() {
               हर टायर पर नज़र, हर सफ़र सुरक्षित।
             </SurakshaRotator>
             <p className="text-[#78350F] text-lg sm:text-xl leading-relaxed font-rubik font-medium max-w-3xl">
-              A front-tyre blowout on an Indian highway can cost a human life and shatter a family&apos;s sole livelihood. Suraksha continuously tracks the pressure and temperature of every tyre, alerting drivers 24–48 hours before failure so they can stop safely, save crucial transit time, and protect their vehicle.
+              A front-tyre blowout on an Indian highway can cost a human life and shatter a family&apos;s sole livelihood. Suraksha continuously tracks the pressure and temperature of every tyre, alerting drivers to pressure drops and thermal spikes so they can stop safely, save crucial transit time, and protect their vehicle.
             </p>
 
             {/* National Road Safety & Livelihood Stat Box */}
@@ -57,9 +57,9 @@ export default function SurakshaSafetyPage() {
                 <p className="text-[11px] text-[#78350F] mt-1 leading-snug">National road statistics across Indian highways.</p>
               </div>
               <div className="p-4 rounded-lg bg-[#FEF3C7] border-2 border-[#DC2626]/30">
-                <div className="font-anton text-2xl sm:text-3xl text-[#DC2626]">~13% TIED TO TYRES</div>
-                <div className="text-xs font-bold text-[#451A03] uppercase tracking-wider mt-0.5">Catastrophic Failures</div>
-                <p className="text-[11px] text-[#78350F] mt-1 leading-snug">Caused by burst tyres, overheating, and sudden blowouts.</p>
+                <div className="font-anton text-2xl sm:text-3xl text-[#DC2626]">~2–2.5% NATIONWIDE</div>
+                <div className="text-xs font-bold text-[#451A03] uppercase tracking-wider mt-0.5">Tyre-Related Crashes</div>
+                <p className="text-[11px] text-[#78350F] mt-1 leading-snug">Rising to ~10% on high-speed highways. Source: MoRTH Annual Report.</p>
               </div>
               <div className="p-4 rounded-lg bg-[#FEF3C7] border-2 border-[#DC2626]/30">
                 <div className="font-anton text-2xl sm:text-3xl text-[#DC2626]">LIVELIHOOD SHIELD</div>
@@ -153,9 +153,9 @@ export default function SurakshaSafetyPage() {
               </div>
 
               <div className="p-6 rounded-lg bg-[#FEF3C7] border-2 border-[#DC2626]/20 shadow-sm space-y-2">
-                <div className="font-anton text-4xl text-[#DC2626]">80%</div>
+                <div className="font-anton text-4xl text-[#DC2626]">10%+</div>
                 <p className="text-sm text-[#451A03] font-medium leading-relaxed">
-                  of tyre failures show warning signs 24-48 hours in advance
+                  of highway crashes on expressways involve tyre failures — where high speeds make blowouts far deadlier (Source: MoRTH)
                 </p>
               </div>
 

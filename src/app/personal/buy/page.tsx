@@ -323,7 +323,7 @@ export default function PersonalBuyPage() {
             </div>
             <div className="p-4 rounded-2xl bg-white border border-black/[0.06] text-center space-y-1.5">
               <Clock className="w-6 h-6 text-[#2563EB] mx-auto" />
-              <div className="text-xs font-bold text-[#111827]">48-Hour Dispatch</div>
+              <div className="text-xs font-bold text-[#111827]">48-Hour Dispatch (excluding weekends)</div>
               <div className="text-[11px] text-[#6B7280]">Direct from factory stock</div>
             </div>
             <div className="p-4 rounded-2xl bg-white border border-black/[0.06] text-center space-y-1.5">

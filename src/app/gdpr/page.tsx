@@ -159,11 +159,8 @@ export default function GdprPage() {
                 <div className="font-fraunces text-base font-medium text-[#FAF7F2]">
                   Current Status &amp; EU Deployment Roadmap
                 </div>
-                <p className="text-[#94A3B8]">
-                  Placeholder page. Full activation on European Union deployment (Month 8+ per current roadmap).
-                </p>
                 <p className="text-xs text-[#94A3B8]/80 font-mono pt-1">
-                  Prior to EU activation, this framework demonstrates architecture and process readiness for enterprise buyers evaluating Treel across European fleets.
+                  This framework demonstrates architecture and process readiness for enterprise buyers evaluating Treel across European fleets.
                 </p>
               </div>
             </div>

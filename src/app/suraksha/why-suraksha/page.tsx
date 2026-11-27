@@ -60,7 +60,7 @@ export default function SurakshaWhySurakshaPage() {
               <span className="font-rubik text-xs font-bold px-3 py-1 rounded-full border border-[#DC2626]/30 bg-[#DC2626]/10 text-[#DC2626]">
                 01 · SAFETY
               </span>
-              <span className="text-xs font-semibold text-[#78350F]">Pillar 1: Suraksha Red</span>
+              <span className="text-xs font-semibold text-[#78350F]">Pillar 1: Safety</span>
             </div>
 
             <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal text-[#451A03]">
@@ -72,7 +72,7 @@ export default function SurakshaWhySurakshaPage() {
             </p>
 
             <p className="text-[#78350F] text-base leading-relaxed">
-              Suraksha is engineered around human safety, time saved on the road, and protecting driver livelihoods. By continuously streaming real-time tyre pressure and temperature directly to an in-cab display, Suraksha warns drivers 24 to 48 hours before pressure anomalies or thermal stress cause blowouts. You eliminate roadside downtime, prevent dangerous night repairs, and guarantee safe arrival home to your family.
+              Suraksha is engineered around human safety, time saved on the road, and protecting driver livelihoods. By continuously streaming real-time tyre pressure and temperature directly to an in-cab display, Suraksha warns drivers the moment pressure anomalies or thermal stress appear — before they escalate into blowouts. You eliminate roadside downtime, prevent dangerous night repairs, and guarantee safe arrival home to your family.
             </p>
 
             <div className="pt-2 border-t border-[#451A03]/10">
@@ -82,7 +82,7 @@ export default function SurakshaWhySurakshaPage() {
               <ul className="space-y-2.5 text-sm text-[#451A03]">
                 <li className="flex items-start gap-2">
                   <span className="text-[#DC2626] font-bold">•</span>
-                  <span><strong>~1.83–1.9 Lakh annual road fatalities in India:</strong> Official national transport data indicates that roughly 13% of highway road fatalities are directly tied to tyre failures, burst tyres, and catastrophic blowouts.</span>
+                  <span><strong>~1.83–1.9 Lakh annual road fatalities in India:</strong> Official national transport data indicates that roughly 2% to 2.5% of all road accidents in India are directly tied to tyre failures, burst tyres, and catastrophic blowouts — rising to roughly 10% on high-speed highways and expressways. Source: MoRTH Annual Report.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#DC2626] font-bold">•</span>
@@ -90,7 +90,7 @@ export default function SurakshaWhySurakshaPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#DC2626] font-bold">•</span>
-                  <span><strong>24–48 Hour Early Warning:</strong> Over 80% of tyre failures begin with invisible thermal spikes or subtle pressure leaks detectable only through precision sensor telemetry.</span>
+                  <span><strong>Early Warning:</strong> Many tyre failures begin with invisible thermal spikes or subtle pressure leaks detectable only through precision sensor telemetry — Suraksha alerts you as soon as these patterns appear.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#DC2626] font-bold">•</span>
@@ -101,7 +101,7 @@ export default function SurakshaWhySurakshaPage() {
 
             <div className="pt-2">
               <p className="text-[#451A03] text-sm font-semibold">
-                The Suraksha promise: You receive early warning 24 to 48 hours before failure occurs.
+                The Suraksha promise: You receive early warning the moment your tyres show signs of pressure loss or thermal stress — before failure occurs.
               </p>
             </div>
 
@@ -128,7 +128,7 @@ export default function SurakshaWhySurakshaPage() {
               <span className="font-rubik text-xs font-bold px-3 py-1 rounded-full border border-[#EA580C]/30 bg-[#EA580C]/10 text-[#EA580C]">
                 02 · SAVINGS
               </span>
-              <span className="text-xs font-semibold text-[#78350F]">Pillar 2: Marigold</span>
+              <span className="text-xs font-semibold text-[#78350F]">Pillar 2: Savings</span>
             </div>
 
             <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal text-[#451A03]">
@@ -202,7 +202,7 @@ export default function SurakshaWhySurakshaPage() {
               <span className="font-rubik text-xs font-bold px-3 py-1 rounded-full border border-[#0891B2]/30 bg-[#0891B2]/10 text-[#0891B2]">
                 03 · SIMPLICITY
               </span>
-              <span className="text-xs font-semibold text-[#78350F]">Pillar 3: Ganga Teal</span>
+              <span className="text-xs font-semibold text-[#78350F]">Pillar 3: Simplicity</span>
             </div>
 
             <h2 className="font-anton uppercase tracking-wide text-3xl sm:text-4xl lg:text-5xl font-normal text-[#451A03]">
@@ -236,7 +236,7 @@ export default function SurakshaWhySurakshaPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#0891B2] font-bold">•</span>
-                  <span><strong>No tyre brand restrictions</strong> — works seamlessly with any tyre brand</span>
+                  <span><strong>No tyre brand restrictions</strong> — works with any tyre brand</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#0891B2] font-bold">•</span>

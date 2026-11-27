@@ -165,7 +165,7 @@ export default function VehicleDigitalTwinPage() {
                   03
                 </div>
                 <div>
-                  <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2]">Step 3 · Check All Reports</h3>
+                  <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2]">Step 3 · Ask the Twin</h3>
                   <p className="text-sm text-[#94A3B8] mt-2 leading-relaxed font-inter">
                     Fleet operators access the Digital Twin through the TMIP dashboard, or scheduled reports. They ask questions (&ldquo;which vehicles are due for tyre replacement in the next 30 days?&rdquo;) and get answers with the vehicle&apos;s own data as the source.
                   </p>

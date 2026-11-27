@@ -15,14 +15,14 @@ import { CareersInteractiveRoster } from "./careers-client";
 
 export const metadata: Metadata = {
   title: "Careers — Build Mobility Intelligence",
-  description: "Explore open engineering, product, and growth roles at Treel Mobility Solutions in Pune. Help build India's leading mobility intelligence platform.",
+  description: "Explore open engineering, product, and growth roles at Treel Mobility Solutions in Pune. Help build mobility intelligence for Indian roads.",
   alternates: {
     canonical: "https://treel.in/careers",
   },
   openGraph: {
     images: DEFAULT_OG_IMAGES,
     title: "Careers — Build Mobility Intelligence",
-    description: "Explore open engineering, product, and growth roles at Treel Mobility Solutions in Pune. Help build India's leading mobility intelligence platform.",
+    description: "Explore open engineering, product, and growth roles at Treel Mobility Solutions in Pune. Help build mobility intelligence for Indian roads.",
     url: "https://treel.in/careers",
   },
 };

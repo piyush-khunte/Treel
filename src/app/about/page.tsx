@@ -113,7 +113,7 @@ export default function AboutPage() {
                 One architecture. Three audiences.
               </h2>
               <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed font-inter">
-                Today Treel operates three product families on one shared data infrastructure. TMIP serves enterprise fleets managing ten or more vehicles. Project Suraksha serves commercial vehicle owner-drivers, one truck at a time, across India&apos;s key highway freight corridors. All three share the Vehicle Digital Twin architecture, the sensor family, and the operational DNA that binds Treel together.
+                Today Treel operates three product families on one shared data infrastructure. TMIP serves enterprise fleets managing ten or more vehicles. Project Suraksha serves commercial vehicle owner-drivers, one truck at a time, across India&apos;s key highway freight corridors. Personal TPMS serves car and two-wheeler owners with Bluetooth tyre monitoring for every drive. All three share the Vehicle Digital Twin architecture, the sensor family, and the operational DNA that binds Treel together.
               </p>
             </div>
 
@@ -133,7 +133,7 @@ export default function AboutPage() {
                 <div>
                   <div className="font-jetbrains font-mono text-[10px] text-[#94A3B8] tracking-[0.12em] uppercase mb-2">OWNER-DRIVERS</div>
                   <h3 className="font-fraunces text-xl font-medium text-[#FAF7F2] group-hover:text-[#D5573B] transition-colors">Project Suraksha</h3>
-                  <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed">Puncture avoidance, tyre life extension, and 15-min driver helpline across Indian highways.</p>
+                  <p className="text-xs text-[#94A3B8] mt-2 leading-relaxed">Puncture avoidance, tyre life extension, and a driver helpline across Indian highways.</p>
                 </div>
                 <div className="mt-4 font-inter text-[13px] font-semibold text-[#E07A5F] flex items-center gap-1 group-hover:gap-2 transition-all">
                   Explore Suraksha <ChevronRight className="w-3.5 h-3.5" />

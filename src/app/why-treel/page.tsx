@@ -57,7 +57,7 @@ export default function WhyTreelPage() {
       num: "06",
       icon: DollarSign,
       title: "Financial rigour.",
-      body: "We sell only when the payback math works for you. If it does not, we do not sell into it. Our commercial discipline is why our customer retention holds where category peers see churn.",
+      body: "We sell only when the payback math works for you. If it does not, we do not sell into it.",
     },
   ];
 
@@ -212,18 +212,7 @@ export default function WhyTreelPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-lg bg-white/[0.02] border border-white/[0.08] space-y-3">
-              <div className="text-xs font-mono text-[#D5573B] font-bold">1,000-TRUCK CASE STUDY</div>
-              <h3 className="font-fraunces text-lg font-medium text-[#FAF7F2]">
-                Full Payback in Week 11
-              </h3>
-              <p className="text-xs text-[#94A3B8] leading-relaxed">
-                How a national 3PL carrier eliminated roadside punctures and saved 3.4% in fuel over 1,000 multi-axle trailers.
-              </p>
-              <Link href="/resources/research/1000-truck-case-study" className="text-xs font-semibold text-[#D5573B] inline-flex items-center gap-1 pt-2">
-                Read case study <ChevronRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
+            {/* Case study card hidden pending sign-off */}
 
             <div className="p-6 rounded-lg bg-white/[0.02] border border-white/[0.08] space-y-3">
               <div className="text-xs font-mono text-[#D5573B] font-bold">MINING &amp; HAULAGE</div>

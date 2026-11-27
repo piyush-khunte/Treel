@@ -82,7 +82,7 @@ export default function PersonalSupportContactPage() {
     {
       icon: Mail,
       title: "Email",
-      desc: "Fill out the form below. We respond at earliest.",
+      desc: "Fill out the form below. We will contact you shortly.",
       badge: "Written Inquiry"
     },
     {
@@ -121,7 +121,7 @@ export default function PersonalSupportContactPage() {
               Reach our support team.
             </h1>
             <p className="text-[#4B5563] text-lg sm:text-xl leading-relaxed font-normal max-w-3xl">
-              Response at earliest by email. Faster by phone during business hours.
+              We will contact you shortly by email. Faster by phone during business hours.
             </p>
           </div>
         </div>
@@ -276,7 +276,6 @@ export default function PersonalSupportContactPage() {
                   >
                     <option value="Not urgent — reply when you can">Not urgent — reply when you can</option>
                     <option value="Standard — 2 business days">Standard — 2 business days</option>
-                    <option value="Urgent — same day if possible">Urgent — same day if possible</option>
                   </select>
                 </div>
 

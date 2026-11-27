@@ -106,7 +106,7 @@ export default function AccessibilityPage() {
       title: "Complete keyboard navigation on all form components",
       status: "In Progress",
       description:
-        "Optimization is currently in active progress for the multi-step Suraksha EMI application form to ensure seamless focus-trap management and error announcements.",
+        "Optimization is currently in active progress for the multi-step Suraksha EMI application form to ensure reliable focus-trap management and error announcements.",
     },
     {
       title: "Language attribute markup for Hinglish content",
@@ -232,7 +232,7 @@ export default function AccessibilityPage() {
                     Treel is committed to ensuring that treel.in and our digital products are accessible to people with disabilities. We believe technology should be usable by everyone, regardless of ability.
                   </p>
                   <p className="text-sm text-[#94A3B8]/90">
-                    From our web presence to vehicle telematics interfaces, our digital design and engineering systems actively integrate universal design principles so that fleet operators, drivers, enterprise managers, and everyday vehicle owners can interact with our information seamlessly.
+                    From our web presence to vehicle telematics interfaces, our digital design and engineering systems actively integrate universal design principles so that fleet operators, drivers, enterprise managers, and everyday vehicle owners can interact with our information with ease.
                   </p>
                 </div>
               </section>
@@ -366,7 +366,7 @@ export default function AccessibilityPage() {
                   5. Report an accessibility issue
                 </h2>
                 <p>
-                  If you encounter an accessibility issue or need content in an alternative format, please contact us and we will respond at earliest.
+                  If you encounter an accessibility issue or need content in an alternative format, please contact us and we will get back to you shortly.
                 </p>
 
                 <div className="p-6 sm:p-8 rounded-xl bg-white/[0.03] border border-white/[0.08] space-y-6">

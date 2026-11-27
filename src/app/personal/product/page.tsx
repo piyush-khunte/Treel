@@ -301,7 +301,7 @@ function ProductDetailContent({ product }: { product: PersonalProduct }) {
                 </div>
                 <div className="p-3 rounded-2xl bg-[#F9FAFB] border border-black/[0.06] text-center space-y-1">
                   <Clock className="w-5 h-5 text-[#2563EB] mx-auto" />
-                  <div className="text-[11px] font-bold text-[#111827]">48-Hour Dispatch</div>
+                  <div className="text-[11px] font-bold text-[#111827]">48-Hour Dispatch (excluding weekends)</div>
                   <div className="text-[10px] text-[#6B7280]">Direct from factory</div>
                 </div>
                 <div className="p-3 rounded-2xl bg-[#F9FAFB] border border-black/[0.06] text-center space-y-1">

@@ -72,7 +72,7 @@ export default function ContactPage() {
                   Send us a note
                 </h2>
                 <p className="text-[#94A3B8] text-sm sm:text-base leading-relaxed font-inter">
-                  Fill out the form and we&apos;ll route your message to the right team. We will review your message and an application engineer or regional lead will contact you at earliest.
+                  Fill out the form and we&apos;ll route your message to the right team. We will review your message and an application engineer or regional lead will contact you shortly.
                 </p>
               </div>
 

@@ -76,7 +76,7 @@ export default function PersonalSupportPage() {
     },
     {
       q: "What is covered under the 1-year warranty?",
-      a: "1-year full replacement warranty on all four sensors and the app. Covers manufacturing defects and Bluetooth hardware failure. Replacement dispatched within 48 hours."
+      a: "1-year full replacement warranty on all four sensors and the app. Covers manufacturing defects and Bluetooth hardware failure. Replacement dispatched within 48 hours (excluding weekends)."
     }
   ];
 

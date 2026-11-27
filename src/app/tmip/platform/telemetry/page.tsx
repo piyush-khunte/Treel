@@ -80,7 +80,7 @@ const alerts = [
     vehicle: "MH-12-AB-3456",
     reading: "Front-left tyre at 28 PSI (threshold: 32 PSI)",
     recommended: "Pull for inspection within 2 hours",
-    assigned: "Regional Ops · Bangalore",
+    assigned: "Regional Ops · Bengaluru",
     icon: ShieldAlert,
   },
   {

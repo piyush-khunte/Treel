@@ -6,14 +6,14 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Our Story",
-  description: "From a JK Tyre R&D idea in 2018 to India's largest connected commercial vehicle dataset in 2026. The Treel story, in milestones.",
+  description: "From a JK Tyre R&D idea in 2018 to one of the largest connected commercial vehicle datasets in India in 2026. The Treel story, in milestones.",
   alternates: {
     canonical: "https://treel.in/our-story",
   },
   openGraph: {
     images: DEFAULT_OG_IMAGES,
     title: "Our Story",
-    description: "From a JK Tyre R&D idea in 2018 to India's largest connected commercial vehicle dataset in 2026. The Treel story, in milestones.",
+    description: "From a JK Tyre R&D idea in 2018 to one of the largest connected commercial vehicle datasets in India in 2026. The Treel story, in milestones.",
     url: "https://treel.in/our-story",
   },
 };

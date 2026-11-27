@@ -99,7 +99,7 @@ export default function TmipSecurityPage() {
     },
     {
       label: "Vulnerability disclosure",
-      detail: "Public responsible disclosure program with 48-hour response commitment."
+      detail: "Security issues can be reported to security@treel.in. We review disclosures and follow up with the reporter."
     }
   ];
 
@@ -299,7 +299,7 @@ export default function TmipSecurityPage() {
                 Incident response
               </h2>
               <p className="text-[#94A3B8] text-base leading-relaxed font-ibm-plex">
-                Treel operates a 24/7 incident response process for security events. In the event of a confirmed security incident:
+                Treel follows a structured incident response process for security events. In the event of a confirmed security incident:
               </p>
             </div>
 

@@ -264,7 +264,7 @@ export default function OemOverviewPage() {
                 Passenger Vehicle Factory-Fit Telematics
               </h2>
               <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
-                Seamless factory integration for passenger sedans, SUVs, and electric cars. Combines high-precision interior rim valve sensors with central gateway ECU protocols, allowing auto manufacturers to provide live tyre pressure and temperature on the instrument cluster without third-party gadgets.
+                Direct factory integration for passenger sedans, SUVs, and electric cars. Combines high-precision interior rim valve sensors with central gateway ECU protocols, allowing auto manufacturers to provide live tyre pressure and temperature on the instrument cluster without third-party gadgets.
               </p>
               <div className="pt-2">
                 <Link href="/contact" className="text-xs font-mono text-[#D5573B] hover:text-white inline-flex items-center gap-1 font-semibold">

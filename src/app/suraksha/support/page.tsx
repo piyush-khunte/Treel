@@ -314,7 +314,7 @@ export default function SurakshaSupportPage() {
 
                 <div className="flex items-center gap-2 text-xs font-semibold text-[#78350F]">
                   <Clock className="w-4 h-4 text-[#EA580C] shrink-0" />
-                  <span>Response within 2 business hours</span>
+                  <span>Reply within 2 hours, 8 AM to 8 PM.</span>
                 </div>
 
                 <p className="text-xs text-[#78350F] leading-relaxed pt-2 border-t border-[#451A03]/10 font-medium">

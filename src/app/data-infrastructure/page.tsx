@@ -15,14 +15,14 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Data Infrastructure",
-  description: "India's largest fleet dataset: sub-second telemetry from 70,000+ vehicles and 2M+ tyres, built for enterprise scale, data governance, and DPDP compliance.",
+  description: "One of the largest connected commercial vehicle datasets in India: sub-second telemetry from 70,000+ vehicles and 2M+ tyres, built for enterprise scale, data governance, and DPDP compliance.",
   alternates: {
     canonical: "https://treel.in/data-infrastructure",
   },
   openGraph: {
     images: DEFAULT_OG_IMAGES,
     title: "Data Infrastructure",
-    description: "India's largest fleet dataset: sub-second telemetry from 70,000+ vehicles and 2M+ tyres, built for enterprise scale, data governance, and DPDP compliance.",
+    description: "One of the largest connected commercial vehicle datasets in India: sub-second telemetry from 70,000+ vehicles and 2M+ tyres, built for enterprise scale, data governance, and DPDP compliance.",
     url: "https://treel.in/data-infrastructure",
   },
 };
@@ -42,7 +42,7 @@ export default function DataInfrastructurePage() {
     {
       value: "2M+",
       label: "Connected tyres monitored",
-      detail: "Operational telemetry from Indian highways (Founded 2018)"
+      detail: "Operational telemetry from Indian highways"
     },
     {
       value: "Billions",

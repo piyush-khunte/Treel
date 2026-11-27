@@ -227,7 +227,7 @@ export default function TmipSolutionsPassengerTransportPage() {
               <div className="space-y-3 pt-1">
                 <div className="flex items-center justify-between p-3 rounded-[3px] bg-white/[0.02] border border-slate-400/10">
                   <span className="text-sm text-[#94A3B8] font-ibm-plex">Thermal Alert Lead Time</span>
-                  <span className="text-sm font-jetbrains font-bold text-[#10B981]">18–25 min in advance</span>
+                  <span className="text-sm font-jetbrains font-bold text-[#10B981]">Early thermal alert</span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-[3px] bg-white/[0.02] border border-slate-400/10">
                   <span className="text-sm text-[#94A3B8] font-ibm-plex">Harsh Braking Index</span>

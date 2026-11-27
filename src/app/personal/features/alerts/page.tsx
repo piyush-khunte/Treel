@@ -223,7 +223,7 @@ export default function PersonalFeaturesAlertsPage() {
                 Get early puncture warnings on every drive.
               </h2>
               <p className="text-[#94A3B8] text-sm sm:text-base font-normal">
-                Equip your personal car with 4 smart BLE sensors for ₹8,999.
+                Equip your personal car with 4 smart BLE sensors for ₹3,749.
               </p>
             </div>
             <Link

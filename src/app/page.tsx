@@ -27,13 +27,13 @@ export const metadata: Metadata = {
   title: {
     absolute: "Treel · Mobility Intelligence & Vehicle Digital Twin",
   },
-  description: "India's largest connected commercial vehicle dataset. Three product families, one Vehicle Digital Twin platform. Turn vehicle motion into intelligence.",
+  description: "One of the largest connected commercial vehicle datasets in India. Three product families, one Vehicle Digital Twin platform. Turn vehicle motion into intelligence.",
   alternates: {
     canonical: "https://treel.in/",
   },
   openGraph: {
     title: "Treel · Mobility Intelligence & Vehicle Digital Twin",
-    description: "India's largest connected commercial vehicle dataset. Three product families, one Vehicle Digital Twin platform. Turn vehicle motion into intelligence.",
+    description: "One of the largest connected commercial vehicle datasets in India. Three product families, one Vehicle Digital Twin platform. Turn vehicle motion into intelligence.",
     url: "https://treel.in/",
     images: [{ url: "/images/og/treel-og.jpg", width: 1200, height: 630, alt: "Treel Mobility Intelligence" }],
   },
@@ -61,7 +61,7 @@ export default function HomePage() {
     "alternateName": "Treel Mobility Solutions Private Limited",
     "url": "https://treel.in",
     "foundingDate": "2018-04-12",
-    "description": "Treel operates India's largest connected commercial vehicle dataset. Three product families, one Vehicle Digital Twin architecture."
+    "description": "Treel operates one of the largest connected commercial vehicle datasets in India. Three product families, one Vehicle Digital Twin architecture."
   };
 
   return (
@@ -102,7 +102,7 @@ export default function HomePage() {
               </h1>
 
               <p className="font-fraunces text-base sm:text-xl font-normal leading-[1.4] text-[#94A3B8] mb-6 sm:mb-10 max-w-[560px]">
-                Treel operates India's largest connected commercial vehicle dataset. Three product families, one architecture, and a single mission: turn raw motion into operating intelligence.
+                Treel operates one of the largest connected commercial vehicle datasets in India. Three product families, one architecture, and a single mission: turn raw motion into operating intelligence.
               </p>
 
               <div className="flex flex-wrap items-center gap-4">

@@ -31,7 +31,7 @@ const FAQ_ITEMS: FAQItem[] = [
     category: "Integration",
     question: "Which transport management (TMS) and ERP platforms does TMIP support?",
     answer:
-      "TMIP integrates natively with enterprise platforms, commercial transport management systems, and fleet dispatch software. Custom internal dispatch systems, workshop maintenance ERPs, or BI dashboards connect seamlessly via our native connectors.",
+      "TMIP integrates natively with enterprise platforms, commercial transport management systems, and fleet dispatch software. Custom internal dispatch systems, workshop maintenance ERPs, or BI dashboards connect directly via our native connectors.",
   },
   {
     id: "faq-4",
@@ -52,7 +52,7 @@ const FAQ_ITEMS: FAQItem[] = [
     category: "Contract",
     question: "What is covered under the Enterprise tier SLA rider?",
     answer:
-      "The Enterprise tier SLA rider provides a contractually binding response commitment of within 1 hour for critical incidents, 24/7 critical coverage, dedicated Slack/Teams communication channels, and a named Customer Success Manager for quarterly business reviews and operational optimization.",
+      "The Enterprise tier SLA rider provides response commitments and service levels defined in your TMIP agreement. It includes senior escalation paths for critical incidents and quarterly operational and tyre ROI reviews.",
   },
   {
     id: "faq-7",

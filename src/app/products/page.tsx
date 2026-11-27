@@ -130,7 +130,7 @@ export default function ProductsPage() {
                 </div>
 
                 <p className="text-sm text-slate-300 leading-relaxed font-inter">
-                  The Vehicle Digital Twin platform for fleet operators. Cost per kilometre, uptime, predicted maintenance, and seamless integrations with your existing ERP or FMS stack.
+                  The Vehicle Digital Twin platform for fleet operators. Cost per kilometre, uptime, predicted maintenance, and native integrations with your existing ERP or FMS stack.
                 </p>
               </div>
 

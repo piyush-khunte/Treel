@@ -205,7 +205,7 @@ export function PersonalBlogClient({ initialArticles }: PersonalBlogClientProps)
                 Equip your personal vehicle today.
               </h2>
               <p className="text-[#94A3B8] text-sm sm:text-base font-normal">
-                4-tyre smart wireless TPMS kit for ₹8,999 with 1-year replacement warranty.
+                4-tyre smart wireless TPMS kit for ₹3,749 with 1-year replacement warranty.
               </p>
             </div>
             <Link

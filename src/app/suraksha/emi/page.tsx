@@ -86,7 +86,7 @@ const faqs = [
   },
   {
     q: "How long does approval take?",
-    a: "Usually within 24–48 hours. When all clear documents are submitted upfront, same-day approval is often possible.",
+    a: "Approval time depends on Bajaj Finance. Most applications are reviewed within 2 working days.",
   },
   {
     q: "What happens if an EMI payment is missed?",
@@ -210,7 +210,7 @@ export default function SurakshaEmiPage() {
               </div>
 
               <p className="text-xs font-semibold text-[#78350F] pt-2 border-t border-[#451A03]/10">
-                Note: Final eligibility is subject to partner finance approval. Verifications are typically completed within 24–48 hours.
+                Note: Final eligibility is subject to Bajaj Finance approval. Approval time depends on Bajaj Finance. Most applications are reviewed within 2 working days.
               </p>
             </div>
 

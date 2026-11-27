@@ -91,7 +91,7 @@ export default function PersonalFaqsPage() {
     {
       cat: "Pricing & purchase",
       q: "How much does Personal TPMS cost?",
-      a: "₹8,999 launch pricing (MRP ₹12,999). Free express shipping across India."
+      a: "₹3,749 (MRP ₹4,999). Free express shipping across India."
     },
     {
       cat: "Pricing & purchase",

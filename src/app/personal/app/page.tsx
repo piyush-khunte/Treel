@@ -60,7 +60,7 @@ export default function PersonalAppPage() {
     {
       icon: Moon,
       title: "Dark Mode & Multi-Car",
-      desc: "OLED-friendly dark theme and seamless management for up to 5 personal vehicles."
+      desc: "OLED-friendly dark theme and simple management for up to 5 personal vehicles."
     }
   ];
 
@@ -297,7 +297,7 @@ export default function PersonalAppPage() {
                 Don't have Personal TPMS sensors yet?
               </h2>
               <p className="text-[#94A3B8] text-sm sm:text-base font-normal">
-                Get the complete 4-tyre wireless kit for ₹8,999 with 1-year replacement warranty.
+                Get the complete 4-tyre wireless kit for ₹3,749 with 1-year replacement warranty.
               </p>
             </div>
             <Link

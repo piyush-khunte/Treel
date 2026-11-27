@@ -18,7 +18,7 @@ export const SURAKSHA_FAQS: FaqItem[] = [
   {
     cat: "Pricing",
     q: "What configurations does Suraksha support and what is included in the kit?",
-    a: "Suraksha is available for all commercial configurations: 6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, 16-wheeler, and 18-wheeler trailers. Every kit includes a solar-assisted in-cab display, high-precision wheel sensors, anti-theft mounting hardware, official 3-year warranty, and 24x7 helpline access. Contact your nearest Truck Wheels centre or chat on WhatsApp for current pricing and fleet offers."
+    a: "Suraksha is available for all commercial configurations: 6-wheeler, 10-wheeler, 12-wheeler, 14-wheeler, 16-wheeler, and 18-wheeler trailers. Every kit includes a solar-assisted in-cab display, high-precision wheel sensors, anti-theft mounting hardware, official 3-year warranty, and helpline access. WhatsApp bot answers anytime. Our team replies 8 AM to 8 PM. Contact your nearest Truck Wheels centre or chat on WhatsApp for current pricing and fleet offers."
   },
   {
     cat: "Pricing",
@@ -43,7 +43,7 @@ export const SURAKSHA_FAQS: FaqItem[] = [
   {
     cat: "Support",
     q: "How do I reach emergency roadside assistance or support?",
-    a: "Call our 24x7 toll-free helpline at 1800 258 4567 or message us directly on WhatsApp. Assistance is available in Hindi, Punjabi, Tamil, Telugu, Marathi, and English."
+    a: "Message us on WhatsApp — the bot answers anytime, and our team replies 8 AM to 8 PM. You can also call our toll-free helpline at 1800 833 0233. Assistance is available in Hindi, Punjabi, Tamil, Telugu, Marathi, and English."
   }
 ];
 

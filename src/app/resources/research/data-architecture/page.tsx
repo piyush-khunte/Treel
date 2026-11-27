@@ -70,13 +70,6 @@ export default async function ResearchDataArchitecturePage() {
       pages: "32 pages"
     },
     {
-      slug: "research/1000-truck-case-study",
-      topic: "ENTERPRISE DEPLOYMENTS",
-      title: "The 1,000-Truck Case Study: Operational Payback in Week 11",
-      desc: "Operational benchmarks and downtime reduction across national logistics prime movers.",
-      pages: "18 pages"
-    },
-    {
       slug: "insights/vehicle-digital-twins-architecture",
       topic: "MOBILITY INTELLIGENCE",
       title: "From Telemetry to Reasoning: The Architecture of Vehicle Digital Twins",

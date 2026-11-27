@@ -34,7 +34,7 @@ const pillars = [
   {
     number: "01 · Safety",
     title: "Front-tyre blowouts, prevented.",
-    desc: "Real-time tyre pressure and temperature on the cabin display. Early warnings 24–48 hours ahead prevent catastrophic highway blowouts, saving hours of downtime and protecting the driver's life and livelihood.",
+    desc: "Real-time tyre pressure and temperature on the cabin display. Early warnings of pressure drops and thermal spikes help prevent catastrophic highway blowouts, saving hours of downtime and protecting the driver's life and livelihood.",
     color: "#DC2626",
     badgeBg: "bg-[#DC2626]/10 text-[#B91C1C] border-[#DC2626]/30",
     icon: Shield,
@@ -238,7 +238,7 @@ export default function SurakshaPage() {
                   </p>
                   <p className="text-[#78350F] text-xs sm:text-sm font-medium leading-relaxed text-pretty">
                     The number of sensors required depends on your truck&apos;s wheel configuration •{" "}
-                    <span className="whitespace-nowrap">DIY install</span> •{" "}
+                    <span className="whitespace-nowrap">Fits in 15 minutes at any puncture shop</span> •{" "}
                     <span className="whitespace-nowrap">Any tyre brand</span>
                   </p>
                 </div>

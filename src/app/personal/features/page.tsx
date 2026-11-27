@@ -39,7 +39,7 @@ export default function PersonalFeaturesPage() {
       desc: "Pressure and temperature updated every three seconds when driving. Every tyre. Continuous visibility.",
       href: "/personal/features/monitoring",
       cta: "See how it works",
-      highlight: "±0.5 PSI medical precision"
+      highlight: "±0.5 PSI accuracy"
     },
     {
       icon: Bell,
@@ -224,15 +224,15 @@ export default function PersonalFeaturesPage() {
               Equip your personal vehicle today.
             </h2>
             <p className="text-[#4B5563] text-base sm:text-lg max-w-xl mx-auto leading-relaxed font-medium">
-              Launch price of ₹8,999 (MRP ₹12,999). Includes 4 wireless smart sensors, lifetime Treel app access, and 1-year full replacement warranty.
+              ₹3,749 (MRP ₹4,999). Includes 4 wireless smart sensors, lifetime Treel app access, and 1-year full replacement warranty.
             </p>
 
             <div className="inline-flex items-baseline justify-center gap-3 px-6 py-3 rounded-full bg-white border border-black/[0.08] shadow-xs">
               <span className="font-manrope text-3xl sm:text-4xl font-extrabold text-[#111827]">
-                ₹8,999
+                ₹3,749
               </span>
               <span className="text-[#6B7280] line-through text-base font-medium">
-                MRP ₹12,999
+                MRP ₹4,999
               </span>
             </div>
 

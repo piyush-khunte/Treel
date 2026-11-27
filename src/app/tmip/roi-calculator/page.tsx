@@ -139,7 +139,7 @@ export default function TMIPROICalculatorPage() {
 
   // Calibrated Baseline Assumptions (Mandated: 7% Tyre Life & 0.4%-0.5% Fuel)
   const [tyreLifeExtension, setTyreLifeExtension] = useState<number>(7.0); // Default 7.0%
-  const [fuelSavingsPercent, setFuelSavingsPercent] = useState<number>(0.45); // Default 0.45% (0.4% - 0.5%)
+  const [fuelSavingsPercent, setFuelSavingsPercent] = useState<number>(0.55); // Default 0.55% (0.5% - 1.0%)
 
   // Hardware & Platform Investment Parameters
   const [hardwarePerTyre, setHardwarePerTyre] = useState<number>(currency.defaultHardwarePerTyre);
@@ -167,7 +167,7 @@ export default function TMIPROICalculatorPage() {
     setFuelPrice(currency.defaultFuelPrice);
     setCostPerTyre(currency.defaultTyreCost);
     setTyreLifeExtension(7.0);
-    setFuelSavingsPercent(0.45);
+    setFuelSavingsPercent(0.55);
     setHardwarePerTyre(currency.defaultHardwarePerTyre);
     setMonthlyPlatformPerVehicle(currency.defaultMonthlyPlatform);
     setCustomRate(currency.defaultRateToINR);
@@ -728,12 +728,12 @@ export default function TMIPROICalculatorPage() {
                       />
                     </div>
 
-                    {/* Presets: 0.40%, 0.45%, 0.50% */}
+                    {/* Presets: 0.50%, 0.55%, 1.00% */}
                     <div className="flex items-center gap-2">
                       {[
-                        { label: "0.40%", val: 0.40 },
-                        { label: "0.45% (Default)", val: 0.45 },
                         { label: "0.50%", val: 0.50 },
+                        { label: "0.55% (Default)", val: 0.55 },
+                        { label: "1.00%", val: 1.00 },
                       ].map((preset) => (
                         <button
                           key={preset.label}
@@ -751,7 +751,7 @@ export default function TMIPROICalculatorPage() {
                     </div>
 
                     <p className="text-[11px] text-[#94A3B8] font-ibm-plex leading-relaxed">
-                      Baseline default set to <strong>0.4%–0.5%</strong> (0.45% median). Derived from parasitic rolling-resistance reduction across verified fleet trials.
+                      Baseline default set to <strong>0.5%–1%</strong> (0.55% median). Derived from parasitic rolling-resistance reduction across verified fleet trials.
                     </p>
                   </div>
                 </div>
